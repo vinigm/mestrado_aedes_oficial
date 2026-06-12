@@ -12,11 +12,13 @@ USAR_CACHE = True
 CACHE_DURATION = 3600  # segundos (1 hora)
 CACHE_FILE = 'dados_cache.json'
 
-# Configurações de output - Caminhos alternativos (Windows e Linux)
+# Configurações de output - Caminhos alternativos (Windows, Linux e macOS)
 # Caminho Windows
 OUTPUT_DIR_WINDOWS = r'C:\Users\vinig\OneDrive\Documentos\Python Scripts\WebScrapingAedes\Raspagem'
 # Caminho Linux
 OUTPUT_DIR_LINUX = os.path.join(os.path.expanduser('~'), 'GoogleDrive', 'Mestrado', 'Mestrado mesmo', 'ScriptScrapping', 'Raspagem')
+# Caminho macOS
+OUTPUT_DIR_MACOS = '/Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/Raspagem'
 
 DEFAULT_OUTPUT = 'Raspagem/dados_aedes_{timestamp}.xlsx'
 

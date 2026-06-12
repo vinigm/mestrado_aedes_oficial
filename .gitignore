@@ -23,6 +23,7 @@ marilia_tosbiz_projeto_completo/
 !dados_aedes_*.xlsx
 
 # Ambiente virtual
+.venv/
 venv/
 env/
 .env

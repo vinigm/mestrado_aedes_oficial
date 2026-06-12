@@ -1,3 +1,4 @@
+
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -24,6 +25,7 @@ except ImportError:
     DEFAULT_OUTPUT = 'dados_aedes_{timestamp}.xlsx'
     CACHE_FILE = 'dados_cache.json'
     CACHE_DURATION = 3600
+    OUTPUT_DIR_MACOS = None
 
 # Configurar logging
 def setup_logging(verbose=False):
@@ -171,8 +173,12 @@ def save_data(df, output_path):
         
         # Se o caminho original não é absoluto ou é apenas 'Raspagem', tentar caminhos configurados
         if not os.path.isabs(output_path) or diretorio_original == 'Raspagem':
-            # Tentar caminho Linux primeiro (verificar se o diretório pai existe)
-            if OUTPUT_DIR_LINUX and os.path.exists(os.path.dirname(OUTPUT_DIR_LINUX)):
+            # Tentar caminho macOS primeiro
+            if OUTPUT_DIR_MACOS and os.path.exists(os.path.dirname(OUTPUT_DIR_MACOS)):
+                diretorio_original = OUTPUT_DIR_MACOS
+                logging.info(f"Usando diretório macOS: {diretorio_original}")
+            # Tentar caminho Linux
+            elif OUTPUT_DIR_LINUX and os.path.exists(os.path.dirname(OUTPUT_DIR_LINUX)):
                 diretorio_original = OUTPUT_DIR_LINUX
                 logging.info(f"Usando diretório Linux: {diretorio_original}")
             # Se não encontrar, tentar caminho Windows
