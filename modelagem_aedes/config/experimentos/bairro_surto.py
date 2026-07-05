@@ -17,6 +17,10 @@ e a epoca do ano do alvo):
 
 import dataclasses
 
+from lightgbm import LGBMRegressor
+
+from config.modelo import EspecificacaoModelo
+
 # Colunas de "semanas atras" da densidade do proprio bairro e da vizinhanca.
 COLUNAS_LAG_DENSIDADE = ["dens_lag1", "dens_lag2", "dens_lag3", "dens_lag4"]
 COLUNAS_LAG_VIZINHANCA = ["viz_lag1", "viz_lag2", "viz_lag3", "viz_lag4"]
@@ -39,7 +43,7 @@ class ConfiguracaoBairroSurto:
         coluna_alvo: O que o modelo tenta prever ('dens', a densidade de mosquito).
         anos: De quais anos abrir as capturas de mosquito.
         numero_vizinhos: Quantos bairros vizinhos considerar em cada bairro.
-        parametros_lgbm: Ajustes internos do modelo que controlam como ele aprende.
+        modelo: A ficha do algoritmo usado pra prever a densidade de mosquito.
         horizontes: Quantas semanas a frente prever, em cada rodada.
         semana_minima_teste: A partir de qual semana comecar a testar.
         passo: De quantas em quantas semanas testar.
@@ -58,7 +62,7 @@ class ConfiguracaoBairroSurto:
     coluna_alvo: str
     anos: tuple[int, ...]
     numero_vizinhos: int
-    parametros_lgbm: dict
+    modelo: EspecificacaoModelo
     horizontes: tuple[int, ...]
     semana_minima_teste: int
     passo: int
@@ -74,14 +78,18 @@ BAIRRO_SURTO = ConfiguracaoBairroSurto(
     coluna_alvo="dens",
     anos=tuple(range(2019, 2024)),
     numero_vizinhos=4,
-    parametros_lgbm={
-        "n_estimators": 300,
-        "learning_rate": 0.05,
-        "num_leaves": 31,
-        "min_child_samples": 20,
-        "verbose": -1,
-        "n_jobs": -1,
-    },
+    modelo=EspecificacaoModelo(
+        nome="lightgbm",
+        classe=LGBMRegressor,
+        parametros={
+            "n_estimators": 300,
+            "learning_rate": 0.05,
+            "num_leaves": 31,
+            "min_child_samples": 20,
+            "verbose": -1,
+            "n_jobs": -1,
+        },
+    ),
     horizontes=tuple(range(1, 5)),
     semana_minima_teste=120,
     passo=4,

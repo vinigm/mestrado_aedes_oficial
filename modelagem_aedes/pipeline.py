@@ -3,15 +3,12 @@
 Este arquivo comanda os experimentos do projeto, na ordem em que eles acontecem
 (leia de cima pra baixo).
 
-Hoje ele roda o experimento de detectar surto de dengue na cidade:
-  A) confere se da pra detectar surto so com os dados do InfoDengue notificado
-     (2010-2026, sem cortar as semanas mais novas que ainda podem mudar);
-  B) confere se os dados de mosquito ajudam a detectar surto, comparando
-     so-clima com clima+mosquito pelo teste de McNemar, na tabela_final.
-Pra criar um experimento novo, e so escrever uma funcao nova chamada
-rodar_<nome_do_experimento>(config) aqui, reaproveitando o mesmo motor (que
-treina no passado e preve o futuro, semana a semana), as mesmas colunas
-calculadas e a mesma forma de avaliar os resultados (metricas).
+Cada experimento tem uma funcao rodar_<nome>(config) que reaproveita o mesmo
+motor (que treina no passado e preve o futuro, semana a semana), as mesmas
+colunas calculadas e a mesma forma de avaliar. QUAL modelo cada experimento usa
+vem da ficha (config.modelo); assim da pra comparar LightGBM, RandomForest, etc.
+Toda tabela de saida ganha uma coluna 'algoritmo' com o nome do modelo, pra
+comparar os resultados de modelos diferentes lado a lado.
 
 """
 
@@ -52,8 +49,8 @@ def rodar_experimento_a(config, infodengue: pd.DataFrame) -> pd.DataFrame:
 
     Pra cada percentil (o corte que define o que conta como surto) e cada
     horizonte de tempo, o codigo treina no passado e preve o futuro, semana a
-    semana, e compara o modelo principal - o LightGBM, que usa o clima e o
-    proprio historico de casos - com dois modelos bem mais simples, usados so
+    semana, e compara o modelo principal - o do config.modelo, que usa o clima e
+    o proprio historico de casos - com dois modelos bem mais simples, usados so
     de comparacao: um que so olha a epoca do ano (sazonal) e outro que so
     repete o ultimo valor visto (persistencia).
 
@@ -75,7 +72,7 @@ def rodar_experimento_a(config, infodengue: pd.DataFrame) -> pd.DataFrame:
         for horizonte in config.horizontes:
             resultado_walk_forward = executar_walk_forward_surto(
                 infodengue, features_infodengue, "fonte", horizonte, percentil,
-                config.parametros_lgbm,
+                config.modelo,
             )
             for nome_modelo, coluna_pred, coluna_prob in MODELOS_EXPERIMENTO_A:
                 probabilidade = (
@@ -140,11 +137,11 @@ def rodar_experimento_b(config, tabela_final: pd.DataFrame) -> tuple[pd.DataFram
         for horizonte in config.horizontes:
             resultado_clima = executar_walk_forward_surto(
                 tabela_final, features_so_clima, "fonte", horizonte, percentil,
-                config.parametros_lgbm,
+                config.modelo,
             )
             resultado_vetor = executar_walk_forward_surto(
                 tabela_final, features_clima_vetor, "fonte", horizonte, percentil,
-                config.parametros_lgbm,
+                config.modelo,
             )
             comparacao = resultado_clima.merge(
                 resultado_vetor, on=["h", "data", "real"], suffixes=("_c", "_v")
@@ -226,6 +223,8 @@ def rodar_cidade_deteccao_surto(config) -> dict[str, pd.DataFrame]:
     resultados_completos = pd.concat(
         [resultados_experimento_a, resultados_experimento_b], ignore_index=True
     )
+    resultados_completos.insert(0, "algoritmo", config.modelo.nome)
+    resultados_mcnemar.insert(0, "algoritmo", config.modelo.nome)
     return {
         "deteccao_surto_resultados.csv": resultados_completos,
         "deteccao_surto_mcnemar.csv": resultados_mcnemar,
@@ -239,7 +238,12 @@ def juntar_referencias(resultados: pd.DataFrame, config) -> pd.DataFrame:
         return resultados
     referencias = pd.read_csv(settings.PASTA_RESULTADOS / config.arquivo_referencias)
     referencias = referencias[referencias["conjunto"].isin(config.conjuntos_referencia)]
-    referencias = referencias.groupby(["conjunto", "h"])[["MAE", "R2"]].first().reset_index()
+    # Traz o 'algoritmo' do arquivo de referencia se ele existir la; senao, as
+    # linhas de referencia ficam sem algoritmo (viram vazio depois do concat).
+    colunas_referencia = ["MAE", "R2"]
+    if "algoritmo" in referencias.columns:
+        colunas_referencia = ["algoritmo"] + colunas_referencia
+    referencias = referencias.groupby(["conjunto", "h"])[colunas_referencia].first().reset_index()
     return pd.concat([resultados, referencias], ignore_index=True)
 
 
@@ -272,7 +276,7 @@ def rodar_regressao_selecao_clima(config) -> dict[str, pd.DataFrame]:
     )
     ranking_clima = selecao_features.selecionar_clima_por_ganho(
         tabela_final, colunas_nucleo, colunas_clima, config.coluna_alvo,
-        config.horizontes_selecao_clima, config.parametros_lgbm, config.fracao_treino_selecao,
+        config.horizontes_selecao_clima, config.modelo_selecao_clima, config.fracao_treino_selecao,
     )
     print("clima top-8:", ranking_clima.head(8).index.tolist())
 
@@ -282,18 +286,20 @@ def rodar_regressao_selecao_clima(config) -> dict[str, pd.DataFrame]:
 
         resultado_m0 = executar_walk_forward_regressao(
             tabela_final, colunas_nucleo + clima_enxuto, config.coluna_alvo,
-            config.horizontes, config.parametros_lgbm, config.minimo_semanas_treino, config.passo,
+            config.horizontes, config.modelo, config.minimo_semanas_treino, config.passo,
         )
         linhas_metricas += calcular_metricas_regressao(resultado_m0, f"M0_clima{k}")
 
         resultado_m1 = executar_walk_forward_regressao(
             tabela_final, colunas_nucleo + clima_enxuto + colunas_vetor, config.coluna_alvo,
-            config.horizontes, config.parametros_lgbm, config.minimo_semanas_treino, config.passo,
+            config.horizontes, config.modelo, config.minimo_semanas_treino, config.passo,
         )
         linhas_metricas += calcular_metricas_regressao(resultado_m1, f"M1_clima{k}_vetor")
 
-    resultados = pd.DataFrame(linhas_metricas)[list(config.colunas_saida)]
+    resultados = pd.DataFrame(linhas_metricas)
+    resultados["algoritmo"] = config.modelo.nome
     resultados = juntar_referencias(resultados, config)
+    resultados = resultados[list(config.colunas_saida)]
     return {config.arquivo_saida: resultados}
 
 
@@ -329,11 +335,13 @@ def rodar_regressao_conjuntos_fixos(config) -> dict[str, pd.DataFrame]:
             colunas = colunas + colunas_vetor
         resultado = executar_walk_forward_regressao(
             tabela_final, colunas, config.coluna_alvo,
-            config.horizontes, config.parametros_lgbm, config.minimo_semanas_treino, config.passo,
+            config.horizontes, config.modelo, config.minimo_semanas_treino, config.passo,
         )
         linhas_metricas += calcular_metricas_regressao(resultado, nome_conjunto)
 
-    resultados = pd.DataFrame(linhas_metricas)[list(config.colunas_saida)]
+    resultados = pd.DataFrame(linhas_metricas)
+    resultados["algoritmo"] = config.modelo.nome
+    resultados = resultados[list(config.colunas_saida)]
     return {config.arquivo_saida: resultados}
 
 
@@ -366,7 +374,7 @@ def rodar_cidade_diebold(config) -> dict[str, pd.DataFrame]:
         )
         ranking_clima = selecao_features.selecionar_clima_por_ganho(
             tabela_final, colunas_nucleo, colunas_clima, config.coluna_alvo,
-            config.horizontes_selecao_clima, config.parametros_lgbm, config.fracao_treino_selecao,
+            config.horizontes_selecao_clima, config.modelo_selecao_clima, config.fracao_treino_selecao,
         )
         clima_enxuto = ranking_clima.head(config.valor_k).index.tolist()
         colunas_m0 = colunas_nucleo + clima_enxuto
@@ -376,7 +384,7 @@ def rodar_cidade_diebold(config) -> dict[str, pd.DataFrame]:
         for horizonte in config.horizontes:
             erros_m0, erros_m1 = executar_walk_forward_pareado(
                 tabela_final, colunas_m0, colunas_m1, config.coluna_alvo, horizonte,
-                config.parametros_lgbm, config.minimo_semanas_treino, config.passo,
+                config.modelo, config.minimo_semanas_treino, config.passo,
             )
             diferenca_mae = np.abs(erros_m0).mean() - np.abs(erros_m1).mean()
             resultado_quadratico = diebold_mariano.teste_diebold_mariano(
@@ -398,7 +406,9 @@ def rodar_cidade_diebold(config) -> dict[str, pd.DataFrame]:
                 }
             )
 
-    resultados = pd.DataFrame(linhas_resultado)[list(config.colunas_saida)]
+    resultados = pd.DataFrame(linhas_resultado)
+    resultados["algoritmo"] = config.modelo.nome
+    resultados = resultados[list(config.colunas_saida)]
     return {config.arquivo_saida: resultados}
 
 
@@ -427,17 +437,18 @@ def rodar_comparacao_literatura(config) -> dict[str, pd.DataFrame]:
     print("PARTE 1: previsao de casos (treina no passado, preve o futuro)...")
     r2_so_clima = comparacao_literatura.r2_por_horizonte(
         tabela_final, features_so_clima, config.coluna_alvo, config.horizontes,
-        config.parametros_lgbm, config.minimo_semanas_treino, config.passo_regressao,
+        config.modelo_regressao, config.minimo_semanas_treino, config.passo_regressao,
     )
     r2_clima_vetor = comparacao_literatura.r2_por_horizonte(
         tabela_final, features_clima_vetor, config.coluna_alvo, config.horizontes,
-        config.parametros_lgbm, config.minimo_semanas_treino, config.passo_regressao,
+        config.modelo_regressao, config.minimo_semanas_treino, config.passo_regressao,
     )
     comparacao_casos = pd.DataFrame(
         {"R2_so_clima": r2_so_clima, "R2_clima_vetor": r2_clima_vetor}
     )
     comparacao_casos["ganho"] = comparacao_casos["R2_clima_vetor"] - comparacao_casos["R2_so_clima"]
     comparacao_casos = comparacao_casos.reset_index(names="h")
+    comparacao_casos.insert(0, "algoritmo", config.modelo_regressao.nome)
     print(comparacao_casos.round(3).to_string(index=False))
 
     print("\nPARTE 2: aceleracao de casos (replica do Oliveira)...")
@@ -446,19 +457,19 @@ def rodar_comparacao_literatura(config) -> dict[str, pd.DataFrame]:
     tabela_final["aceleracao"] = (diferenca_de_casos > 0).astype(int)
 
     acerto_honesto_clima, n_testes = comparacao_literatura.acerto_aceleracao_walk_forward(
-        tabela_final, features_so_clima, "aceleracao", config.parametros_lgbm,
+        tabela_final, features_so_clima, "aceleracao", config.modelo_classificacao,
         config.minimo_semanas_treino, config.passo_classificacao,
     )
     acerto_honesto_vetor, _ = comparacao_literatura.acerto_aceleracao_walk_forward(
-        tabela_final, features_clima_vetor, "aceleracao", config.parametros_lgbm,
+        tabela_final, features_clima_vetor, "aceleracao", config.modelo_classificacao,
         config.minimo_semanas_treino, config.passo_classificacao,
     )
     acerto_split_clima = comparacao_literatura.acerto_aceleracao_split_aleatorio(
-        tabela_final, features_so_clima, "aceleracao", config.parametros_lgbm,
+        tabela_final, features_so_clima, "aceleracao", config.modelo_classificacao,
         config.sementes_split, config.fracao_teste,
     )
     acerto_split_vetor = comparacao_literatura.acerto_aceleracao_split_aleatorio(
-        tabela_final, features_clima_vetor, "aceleracao", config.parametros_lgbm,
+        tabela_final, features_clima_vetor, "aceleracao", config.modelo_classificacao,
         config.sementes_split, config.fracao_teste,
     )
 
@@ -480,6 +491,7 @@ def rodar_comparacao_literatura(config) -> dict[str, pd.DataFrame]:
             },
         ]
     )
+    comparacao_oliveira.insert(0, "algoritmo", config.modelo_regressao.nome)
     print(comparacao_oliveira.round(3).to_string(index=False))
 
     return {
@@ -520,7 +532,7 @@ def rodar_bairro_surto(config) -> dict[str, pd.DataFrame]:
         r2_por_combo[nome_combo] = executar_walk_forward_bairro(
             dados_bairro, list(colunas), config.coluna_alvo, config.horizontes,
             config.semana_minima_teste, config.passo, config.minimo_linhas_treino,
-            config.parametros_lgbm, usar_epoca_do_alvo,
+            config.modelo, usar_epoca_do_alvo,
         )
 
     resultados = pd.DataFrame(r2_por_combo).round(3)
@@ -529,5 +541,6 @@ def rodar_bairro_surto(config) -> dict[str, pd.DataFrame]:
     coluna_lift_a, coluna_lift_b = config.colunas_lift_vizinhanca
     resultados["lift_viz_enh"] = (resultados[coluna_lift_a] - resultados[coluna_lift_b]).round(3)
     resultados = resultados.reset_index(names="h")
+    resultados.insert(0, "algoritmo", config.modelo.nome)
     print(resultados.to_string(index=False))
     return {config.arquivo_saida: resultados}

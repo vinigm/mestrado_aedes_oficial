@@ -12,6 +12,9 @@ disso). Usa as 6 colunas de clima que mais ajudam.
 
 import dataclasses
 
+from config.experimentos.cidade_regressao import LGBM_REGRESSAO
+from config.modelo import EspecificacaoModelo
+
 
 @dataclasses.dataclass(frozen=True)
 class ConfiguracaoDiebold:
@@ -22,7 +25,8 @@ class ConfiguracaoDiebold:
     Attributes:
         nome: Nome que identifica este experimento.
         coluna_alvo: Nome da coluna que o modelo tenta prever ('casos').
-        parametros_lgbm: Ajustes internos do modelo que controlam como ele aprende.
+        modelo: A ficha do algoritmo comparado (M0 so-clima x M1 clima+mosquito).
+        modelo_selecao_clima: A ficha do algoritmo que escolhe as colunas de clima.
         horizontes: Quantas semanas a frente o modelo tenta prever, em cada rodada.
         horizontes_selecao_clima: Quais semanas a frente sao usadas pra escolher
             as colunas de clima que mais ajudam.
@@ -43,7 +47,8 @@ class ConfiguracaoDiebold:
 
     nome: str
     coluna_alvo: str
-    parametros_lgbm: dict
+    modelo: EspecificacaoModelo
+    modelo_selecao_clima: EspecificacaoModelo
     horizontes: tuple[int, ...]
     horizontes_selecao_clima: tuple[int, ...]
     valor_k: int
@@ -61,14 +66,8 @@ class ConfiguracaoDiebold:
 CIDADE_DIEBOLD = ConfiguracaoDiebold(
     nome="cidade_diebold",
     coluna_alvo="casos",
-    parametros_lgbm={
-        "n_estimators": 250,
-        "learning_rate": 0.05,
-        "num_leaves": 15,
-        "min_child_samples": 5,
-        "verbose": -1,
-        "n_jobs": -1,
-    },
+    modelo=LGBM_REGRESSAO,
+    modelo_selecao_clima=LGBM_REGRESSAO,
     horizontes=tuple(range(1, 13)),
     horizontes_selecao_clima=(1, 4, 8),
     valor_k=6,
@@ -90,6 +89,6 @@ CIDADE_DIEBOLD = ConfiguracaoDiebold(
         ("sem_maturidade", 0),
         ("com_maturidade", 12),
     ),
-    colunas_saida=("conjunto", "h", "n", "dMAE", "DM_sq", "p_sq", "DM_abs", "p_abs"),
+    colunas_saida=("algoritmo", "conjunto", "h", "n", "dMAE", "DM_sq", "p_sq", "DM_abs", "p_abs"),
     arquivo_saida="diebold_mariano_resultados.csv",
 )

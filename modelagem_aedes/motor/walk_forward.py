@@ -13,9 +13,9 @@ especifico.
 
 import numpy as np
 import pandas as pd
-from lightgbm import LGBMClassifier
 
 from config import settings
+from config.modelo import EspecificacaoModelo
 
 # Quantas semanas de diferenca ainda contam como "a mesma epoca do ano" (o
 # calendario e circular: a semana 52 fica pertinho da semana 1 de novo).
@@ -31,7 +31,7 @@ def executar_walk_forward_surto(
     coluna_fonte: str,
     horizonte: int,
     percentil: int,
-    parametros_lgbm: dict,
+    especificacao_modelo: EspecificacaoModelo,
     passo: int = 1,
 ) -> pd.DataFrame:
     """
@@ -63,8 +63,8 @@ def executar_walk_forward_surto(
         horizonte: Quantas semanas a frente a gente quer prever.
         percentil: Percentil dos casos que define o corte pra contar como
             surto.
-        parametros_lgbm: Ajustes do modelo (LGBMClassifier), escolhidos em
-            cada experimento.
+        especificacao_modelo: A ficha que diz qual modelo usar e com quais
+            ajustes (por padrao um classificador LightGBM).
         passo: De quantas em quantas semanas testar (1 = testa toda semana).
 
     Returns:
@@ -104,7 +104,7 @@ def executar_walk_forward_surto(
             # nao-surto), pula este passo — nao da pra treinar assim.
             continue
 
-        modelo = LGBMClassifier(**parametros_lgbm)
+        modelo = especificacao_modelo.criar()
         modelo.fit(treino[features_com_sazonalidade], surto_treino)
         probabilidade_surto = float(
             modelo.predict_proba(teste[features_com_sazonalidade])[0, 1]

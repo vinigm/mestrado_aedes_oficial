@@ -14,6 +14,10 @@ resto do programa (o "motor") nao muda.
 
 import dataclasses
 
+from lightgbm import LGBMClassifier
+
+from config.modelo import EspecificacaoModelo
+
 
 @dataclasses.dataclass(frozen=True)
 class ConfiguracaoDeteccaoSurto:
@@ -26,7 +30,7 @@ class ConfiguracaoDeteccaoSurto:
         horizontes: Pra quantas semanas a frente o modelo tenta prever
             (1, 2 ou 3 meses vira 4, 8 ou 12 semanas).
         percentis: Percentis de casos que marcam a partir de quando e considerado surto.
-        parametros_lgbm: Ajustes do LGBMClassifier, o algoritmo usado pra dizer se vai ter surto ou nao.
+        modelo: A ficha do algoritmo (um classificador) usado pra dizer se vai ter surto ou nao.
         semanas_corte_maturidade: Semanas mais recentes em que os casos ainda
             ficam em branco (NaN), porque o SINAN ainda nao fechou a contagem
             dessas semanas direito; isso so vale pra tabela_final.
@@ -39,7 +43,7 @@ class ConfiguracaoDeteccaoSurto:
     nome: str
     horizontes: tuple[int, ...]
     percentis: tuple[int, ...]
-    parametros_lgbm: dict
+    modelo: EspecificacaoModelo
     semanas_corte_maturidade: int
     prefixos_features_infodengue: tuple[str, ...]
     prefixos_clima: tuple[str, ...]
@@ -51,15 +55,19 @@ CIDADE_DETECCAO_SURTO = ConfiguracaoDeteccaoSurto(
     nome="cidade_deteccao_surto",
     horizontes=(4, 8, 12),
     percentis=(90, 95),
-    parametros_lgbm={
-        "n_estimators": 250,
-        "learning_rate": 0.05,
-        "num_leaves": 15,
-        "min_child_samples": 5,
-        "class_weight": "balanced",
-        "verbose": -1,
-        "n_jobs": 1,
-    },
+    modelo=EspecificacaoModelo(
+        nome="lightgbm",
+        classe=LGBMClassifier,
+        parametros={
+            "n_estimators": 250,
+            "learning_rate": 0.05,
+            "num_leaves": 15,
+            "min_child_samples": 5,
+            "class_weight": "balanced",
+            "verbose": -1,
+            "n_jobs": 1,
+        },
+    ),
     semanas_corte_maturidade=12,
     prefixos_features_infodengue=("casos_lag", "casos_mm", "temp_media_lag", "umid_media_lag"),
     prefixos_clima=(

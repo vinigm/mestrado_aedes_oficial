@@ -9,19 +9,13 @@ governo ja reportou, e sem deixar o El Nino entre os candidatos de clima.
 
 """
 
-from config.experimentos.cidade_regressao import ConfiguracaoRegressao
+from config.experimentos.cidade_regressao import ConfiguracaoRegressao, LGBM_REGRESSAO
 
 CIDADE_REGRESSAO_SEM_ENSO = ConfiguracaoRegressao(
     nome="cidade_regressao_sem_enso",
     coluna_alvo="casos",
-    parametros_lgbm={
-        "n_estimators": 250,
-        "learning_rate": 0.05,
-        "num_leaves": 15,
-        "min_child_samples": 5,
-        "verbose": -1,
-        "n_jobs": -1,
-    },
+    modelo=LGBM_REGRESSAO,
+    modelo_selecao_clima=LGBM_REGRESSAO,
     # 0 = nao apaga nenhuma semana recente (diferente do cidade_regressao, que apaga 12).
     semanas_corte_maturidade=0,
     horizontes=tuple(range(1, 13)),
@@ -41,5 +35,5 @@ CIDADE_REGRESSAO_SEM_ENSO = ConfiguracaoRegressao(
         "temp", "precip", "orvalho", "umid", "pressao", "radiacao", "vento", "dias_de_chuva",
     ),
     arquivo_saida="clima_enxuto_sem_enso_resultados.csv",
-    colunas_saida=("conjunto", "h", "MAE", "R2"),
+    colunas_saida=("algoritmo", "conjunto", "h", "MAE", "R2"),
 )

@@ -11,19 +11,13 @@ que vieram do experimento cidade_lift_vetor.
 
 """
 
-from config.experimentos.cidade_regressao import ConfiguracaoRegressao
+from config.experimentos.cidade_regressao import ConfiguracaoRegressao, LGBM_REGRESSAO
 
 CIDADE_REGRESSAO_COM_ENSO = ConfiguracaoRegressao(
     nome="cidade_regressao_com_enso",
     coluna_alvo="casos",
-    parametros_lgbm={
-        "n_estimators": 250,
-        "learning_rate": 0.05,
-        "num_leaves": 15,
-        "min_child_samples": 5,
-        "verbose": -1,
-        "n_jobs": -1,
-    },
+    modelo=LGBM_REGRESSAO,
+    modelo_selecao_clima=LGBM_REGRESSAO,
     # 0 = nao apaga nenhuma semana recente.
     semanas_corte_maturidade=0,
     horizontes=tuple(range(1, 13)),
@@ -45,7 +39,7 @@ CIDADE_REGRESSAO_COM_ENSO = ConfiguracaoRegressao(
         "nino34", "oni",
     ),
     arquivo_saida="clima_enxuto_vetor_resultados.csv",
-    colunas_saida=("conjunto", "h", "MAE", "R2"),
+    colunas_saida=("algoritmo", "conjunto", "h", "MAE", "R2"),
     # Junta no fim as linhas "so clima" e "so mosquito" ja calculadas no cidade_lift_vetor.
     arquivo_referencias="lift_limpo_resultados.csv",
     conjuntos_referencia=("so_clima", "so_vetor"),

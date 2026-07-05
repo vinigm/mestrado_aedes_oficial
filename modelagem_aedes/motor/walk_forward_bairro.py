@@ -11,10 +11,10 @@ mede o quanto ele explica (R2) pra cada quantidade de semanas a frente.
 
 import numpy as np
 import pandas as pd
-from lightgbm import LGBMRegressor
 from sklearn.metrics import r2_score
 
 from config import settings
+from config.modelo import EspecificacaoModelo
 
 
 def r2_do_grupo(grupo: pd.DataFrame) -> float:
@@ -30,7 +30,7 @@ def executar_walk_forward_bairro(
     semana_minima_teste: int,
     passo: int,
     minimo_linhas_treino: int,
-    parametros_lgbm: dict,
+    especificacao_modelo: EspecificacaoModelo,
     usar_sazonalidade_do_alvo: bool = False,
     coluna_fonte: str = "bairro",
     coluna_tempo: str = "t",
@@ -54,7 +54,7 @@ def executar_walk_forward_bairro(
         semana_minima_teste: A partir de qual semana (tempo 't') comecar a testar.
         passo: De quantas em quantas semanas testar.
         minimo_linhas_treino: Quantas linhas de treino sao precisas, no minimo.
-        parametros_lgbm: Ajustes que controlam como o modelo aprende.
+        especificacao_modelo: A ficha que diz qual modelo usar e com quais ajustes.
         usar_sazonalidade_do_alvo: Se True, soma a epoca do ano da semana-alvo.
         coluna_fonte: Coluna que separa os bairros.
         coluna_tempo: Coluna do numero de tempo (semanas em ordem).
@@ -88,7 +88,7 @@ def executar_walk_forward_bairro(
             if len(teste) == 0 or len(treino) < minimo_linhas_treino:
                 continue
 
-            modelo = LGBMRegressor(**parametros_lgbm)
+            modelo = especificacao_modelo.criar()
             modelo.fit(treino[features_do_passo], treino["y"])
             previsoes_do_passo = pd.DataFrame(
                 {

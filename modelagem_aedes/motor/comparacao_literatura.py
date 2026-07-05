@@ -11,13 +11,17 @@ prevendo o resto:
   - o mesmo acerto, mas do jeito da literatura (embaralha e separa treino/teste),
     que costuma dar numeros mais bonitos do que a realidade.
 
+QUAL modelo usar chega pronto na ficha (EspecificacaoModelo): uma pra prever
+numero (regressao) e outra pra prever sim/nao (classificacao).
+
 """
 
 import numpy as np
 import pandas as pd
-from lightgbm import LGBMClassifier, LGBMRegressor
 from sklearn.metrics import balanced_accuracy_score, r2_score
 from sklearn.model_selection import train_test_split
+
+from config.modelo import EspecificacaoModelo
 
 
 def r2_por_horizonte(
@@ -25,7 +29,7 @@ def r2_por_horizonte(
     colunas_features: list[str],
     coluna_alvo: str,
     horizontes: tuple[int, ...],
-    parametros_lgbm: dict,
+    especificacao_modelo: EspecificacaoModelo,
     minimo_semanas_treino: int,
     passo: int,
     coluna_fonte: str = "fonte",
@@ -55,7 +59,7 @@ def r2_por_horizonte(
         for indice_corte in range(minimo_semanas_treino, len(dados_validos), passo):
             treino = dados_validos.iloc[:indice_corte]
             teste = dados_validos.iloc[indice_corte:indice_corte + 1]
-            modelo = LGBMRegressor(**parametros_lgbm)
+            modelo = especificacao_modelo.criar()
             modelo.fit(treino[colunas_features], treino["y"])
             valores_reais.append(teste["y"].to_numpy()[0])
             valores_previstos.append(modelo.predict(teste[colunas_features])[0])
@@ -67,7 +71,7 @@ def acerto_aceleracao_walk_forward(
     dados: pd.DataFrame,
     colunas_features: list[str],
     coluna_binaria: str,
-    parametros_lgbm: dict,
+    especificacao_modelo: EspecificacaoModelo,
     minimo_semanas_treino: int,
     passo: int,
     coluna_data: str = "data",
@@ -95,7 +99,7 @@ def acerto_aceleracao_walk_forward(
         teste = dados_validos.iloc[indice_corte:indice_corte + 1]
         if treino[coluna_binaria].nunique() < 2:
             continue
-        modelo = LGBMClassifier(**parametros_lgbm)
+        modelo = especificacao_modelo.criar()
         modelo.fit(treino[colunas_features], treino[coluna_binaria])
         valores_previstos.append(int(modelo.predict(teste[colunas_features])[0]))
         valores_reais.append(int(teste[coluna_binaria].to_numpy()[0]))
@@ -106,7 +110,7 @@ def acerto_aceleracao_split_aleatorio(
     dados: pd.DataFrame,
     colunas_features: list[str],
     coluna_binaria: str,
-    parametros_lgbm: dict,
+    especificacao_modelo: EspecificacaoModelo,
     sementes: tuple[int, ...],
     fracao_teste: float = 0.3,
 ) -> float:
@@ -132,7 +136,7 @@ def acerto_aceleracao_split_aleatorio(
             random_state=semente,
             stratify=dados_validos[coluna_binaria],
         )
-        modelo = LGBMClassifier(**parametros_lgbm)
+        modelo = especificacao_modelo.criar()
         modelo.fit(features_treino, alvo_treino)
         acertos.append(balanced_accuracy_score(alvo_teste, modelo.predict(features_teste)))
     return float(np.mean(acertos))

@@ -12,6 +12,9 @@ clima. Nao corta as semanas recentes.
 
 import dataclasses
 
+from config.experimentos.cidade_regressao import LGBM_REGRESSAO
+from config.modelo import EspecificacaoModelo
+
 
 @dataclasses.dataclass(frozen=True)
 class ConfiguracaoRegressaoConjuntos:
@@ -22,7 +25,7 @@ class ConfiguracaoRegressaoConjuntos:
     Attributes:
         nome: Nome que identifica este experimento.
         coluna_alvo: Nome da coluna que o modelo tenta prever ('casos').
-        parametros_lgbm: Ajustes internos do modelo que controlam como ele aprende.
+        modelo: A ficha do algoritmo usado (LightGBM, RandomForest, etc.).
         semanas_corte_maturidade: Quantas semanas recentes ficam com os casos
             apagados (0 = nao apaga nenhuma).
         horizontes: Quantas semanas a frente o modelo tenta prever, em cada rodada.
@@ -42,7 +45,7 @@ class ConfiguracaoRegressaoConjuntos:
 
     nome: str
     coluna_alvo: str
-    parametros_lgbm: dict
+    modelo: EspecificacaoModelo
     semanas_corte_maturidade: int
     horizontes: tuple[int, ...]
     minimo_semanas_treino: int
@@ -58,14 +61,7 @@ class ConfiguracaoRegressaoConjuntos:
 CIDADE_LIFT_VETOR = ConfiguracaoRegressaoConjuntos(
     nome="cidade_lift_vetor",
     coluna_alvo="casos",
-    parametros_lgbm={
-        "n_estimators": 250,
-        "learning_rate": 0.05,
-        "num_leaves": 15,
-        "min_child_samples": 5,
-        "verbose": -1,
-        "n_jobs": -1,
-    },
+    modelo=LGBM_REGRESSAO,
     semanas_corte_maturidade=0,
     horizontes=tuple(range(1, 13)),
     minimo_semanas_treino=104,
@@ -85,6 +81,6 @@ CIDADE_LIFT_VETOR = ConfiguracaoRegressaoConjuntos(
         ("clima_vetor", True, True),
         ("so_vetor", False, True),
     ),
-    colunas_saida=("conjunto", "h", "MAE", "R2"),
+    colunas_saida=("algoritmo", "conjunto", "h", "MAE", "R2"),
     arquivo_saida="lift_limpo_resultados.csv",
 )

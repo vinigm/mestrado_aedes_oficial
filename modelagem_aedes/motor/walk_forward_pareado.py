@@ -9,15 +9,15 @@ e o que deixa o teste de Diebold-Mariano valido: so da pra comparar os erros se
 os dois foram medidos nos mesmos pontos.
 
 Como no motor de regressao normal, o modelo treina no passado e preve o futuro,
-semana a semana.
+semana a semana, e QUAL modelo usar chega pronto na ficha (LightGBM, RandomForest...).
 
 """
 
 import numpy as np
 import pandas as pd
-from lightgbm import LGBMRegressor
 
 from config import settings
+from config.modelo import EspecificacaoModelo
 from dominio.features import construir_alvo_horizonte
 
 
@@ -27,7 +27,7 @@ def executar_walk_forward_pareado(
     colunas_m1: list[str],
     coluna_alvo: str,
     horizonte: int,
-    parametros_lgbm: dict,
+    especificacao_modelo: EspecificacaoModelo,
     minimo_semanas_treino: int = settings.MINIMO_SEMANAS_TREINO,
     passo: int = 1,
 ) -> tuple[np.ndarray, np.ndarray]:
@@ -46,7 +46,8 @@ def executar_walk_forward_pareado(
         colunas_m1: Colunas de entrada do modelo maior (M1 = M0 + mosquito).
         coluna_alvo: Nome da coluna que se quer prever.
         horizonte: Quantas semanas a frente prever.
-        parametros_lgbm: Ajustes que controlam como o modelo aprende.
+        especificacao_modelo: A ficha que diz qual modelo usar e com quais
+            ajustes (o mesmo modelo e usado no M0 e no M1).
         minimo_semanas_treino: Historico minimo antes de comecar a prever.
         passo: De quantas em quantas semanas o teste e feito.
 
@@ -70,11 +71,11 @@ def executar_walk_forward_pareado(
         treino = dados_validos.iloc[:indice_corte]
         teste = dados_validos.iloc[indice_corte:indice_corte + 1]
 
-        modelo_m0 = LGBMRegressor(**parametros_lgbm)
+        modelo_m0 = especificacao_modelo.criar()
         modelo_m0.fit(treino[features_m0], treino["y_h"])
         previsao_m0 = modelo_m0.predict(teste[features_m0])[0]
 
-        modelo_m1 = LGBMRegressor(**parametros_lgbm)
+        modelo_m1 = especificacao_modelo.criar()
         modelo_m1.fit(treino[features_m1], treino["y_h"])
         previsao_m1 = modelo_m1.predict(teste[features_m1])[0]
 

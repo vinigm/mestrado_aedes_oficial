@@ -5,17 +5,19 @@ o que ja aconteceu pra tentar prever o proximo passo (ou seja: treina no
 passado e preve o futuro, semana a semana). Aqui o que se quer adivinhar e um
 numero — quantos casos vao acontecer — e nao uma categoria (isso e chamado de
 regressao). Serve pra qualquer experimento: quem usa essa funcao manda as
-colunas de entrada e os ajustes do modelo por fora.
+colunas de entrada e QUAL modelo usar por fora.
 
+O modelo nao e mais fixo no LightGBM: ele chega pronto na ficha
+EspecificacaoModelo, entao da pra rodar LightGBM, RandomForest, XGBoost, etc.
 Tem uma versao parecida pra prever categorias (por exemplo, sim ou nao) no
 arquivo motor/walk_forward.py; aqui o resultado e sempre um numero.
 
 """
 
 import pandas as pd
-from lightgbm import LGBMRegressor
 
 from config import settings
+from config.modelo import EspecificacaoModelo
 from dominio.features import construir_alvo_horizonte
 
 
@@ -24,7 +26,7 @@ def executar_walk_forward_regressao(
     colunas_features: list[str],
     coluna_alvo: str,
     horizontes: tuple[int, ...],
-    parametros_lgbm: dict,
+    especificacao_modelo: EspecificacaoModelo,
     minimo_semanas_treino: int = settings.MINIMO_SEMANAS_TREINO,
     passo: int = 2,
 ) -> pd.DataFrame:
@@ -44,8 +46,8 @@ def executar_walk_forward_regressao(
             sazonalidade do alvo, que e adicionada aqui dentro).
         coluna_alvo: Nome da coluna que se quer prever (por exemplo, 'casos').
         horizontes: Pra quantas semanas a frente o modelo deve prever.
-        parametros_lgbm: Hiperparametros (os ajustes que controlam como o
-            modelo aprende) usados no LGBMRegressor.
+        especificacao_modelo: A ficha que diz qual modelo usar e com quais
+            ajustes (LightGBM, RandomForest, etc.).
         minimo_semanas_treino: Quantas semanas de historico sao precisas
             antes de comecar a prever.
         passo: De quantas em quantas semanas o teste e feito.
@@ -68,7 +70,7 @@ def executar_walk_forward_regressao(
         for indice_corte in range(minimo_semanas_treino, len(dados_validos), passo):
             treino = dados_validos.iloc[:indice_corte]
             teste = dados_validos.iloc[indice_corte:indice_corte + 1]
-            modelo = LGBMRegressor(**parametros_lgbm)
+            modelo = especificacao_modelo.criar()
             modelo.fit(treino[features_com_sazonalidade], treino["y_h"])
             previsao = modelo.predict(teste[features_com_sazonalidade])[0]
             linhas_resultado.append(

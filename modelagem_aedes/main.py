@@ -25,6 +25,7 @@ from config.experimentos.cidade_diebold import CIDADE_DIEBOLD
 from config.experimentos.cidade_lift_vetor import CIDADE_LIFT_VETOR
 from config.experimentos.cidade_regressao import CIDADE_REGRESSAO
 from config.experimentos.cidade_regressao_com_enso import CIDADE_REGRESSAO_COM_ENSO
+from config.experimentos.cidade_regressao_rf import CIDADE_REGRESSAO_RF
 from config.experimentos.cidade_regressao_sem_enso import CIDADE_REGRESSAO_SEM_ENSO
 from config.experimentos.comparacao_literatura import COMPARACAO_LITERATURA
 from pipeline import (
@@ -42,6 +43,7 @@ from pipeline import (
 EXPERIMENTOS = {
     "cidade_deteccao_surto": (CIDADE_DETECCAO_SURTO, rodar_cidade_deteccao_surto),
     "cidade_regressao": (CIDADE_REGRESSAO, rodar_regressao_selecao_clima),
+    "cidade_regressao_rf": (CIDADE_REGRESSAO_RF, rodar_regressao_selecao_clima),
     "cidade_regressao_sem_enso": (CIDADE_REGRESSAO_SEM_ENSO, rodar_regressao_selecao_clima),
     "cidade_regressao_com_enso": (CIDADE_REGRESSAO_COM_ENSO, rodar_regressao_selecao_clima),
     "cidade_lift_vetor": (CIDADE_LIFT_VETOR, rodar_regressao_conjuntos_fixos),

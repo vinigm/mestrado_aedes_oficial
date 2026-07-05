@@ -12,6 +12,10 @@ casos, e dizer se os casos vao "acelerar".
 
 import dataclasses
 
+from lightgbm import LGBMClassifier, LGBMRegressor
+
+from config.modelo import EspecificacaoModelo
+
 
 @dataclasses.dataclass(frozen=True)
 class ConfiguracaoComparacaoLiteratura:
@@ -22,7 +26,8 @@ class ConfiguracaoComparacaoLiteratura:
     Attributes:
         nome: Nome que identifica este experimento.
         coluna_alvo: Nome da coluna de casos ('casos').
-        parametros_lgbm: Ajustes internos do modelo que controlam como ele aprende.
+        modelo_regressao: A ficha do algoritmo que preve o numero de casos (parte 1).
+        modelo_classificacao: A ficha do algoritmo que preve a aceleracao (parte 2).
         horizontes: Quantas semanas a frente prever, na comparacao de casos.
         minimo_semanas_treino: Historico minimo antes de comecar a prever.
         passo_regressao: De quantas em quantas semanas testar, na parte de casos.
@@ -42,7 +47,8 @@ class ConfiguracaoComparacaoLiteratura:
 
     nome: str
     coluna_alvo: str
-    parametros_lgbm: dict
+    modelo_regressao: EspecificacaoModelo
+    modelo_classificacao: EspecificacaoModelo
     horizontes: tuple[int, ...]
     minimo_semanas_treino: int
     passo_regressao: int
@@ -58,14 +64,30 @@ class ConfiguracaoComparacaoLiteratura:
 COMPARACAO_LITERATURA = ConfiguracaoComparacaoLiteratura(
     nome="comparacao_literatura",
     coluna_alvo="casos",
-    parametros_lgbm={
-        "n_estimators": 250,
-        "learning_rate": 0.05,
-        "num_leaves": 15,
-        "min_child_samples": 5,
-        "verbose": -1,
-        "n_jobs": -1,
-    },
+    modelo_regressao=EspecificacaoModelo(
+        nome="lightgbm",
+        classe=LGBMRegressor,
+        parametros={
+            "n_estimators": 250,
+            "learning_rate": 0.05,
+            "num_leaves": 15,
+            "min_child_samples": 5,
+            "verbose": -1,
+            "n_jobs": -1,
+        },
+    ),
+    modelo_classificacao=EspecificacaoModelo(
+        nome="lightgbm",
+        classe=LGBMClassifier,
+        parametros={
+            "n_estimators": 250,
+            "learning_rate": 0.05,
+            "num_leaves": 15,
+            "min_child_samples": 5,
+            "verbose": -1,
+            "n_jobs": -1,
+        },
+    ),
     horizontes=tuple(range(1, 13)),
     minimo_semanas_treino=104,
     passo_regressao=2,

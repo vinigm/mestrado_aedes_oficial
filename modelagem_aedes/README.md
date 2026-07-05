@@ -11,7 +11,7 @@ arquivo de 2000 linhas. Espelha o padrão do `otimizador_v2` (projeto Sortimento
 
 ```
 CÓDIGO:
-  config/        settings (paths, constantes globais) + experimentos/<x>.py (o que muda por experimento)
+  config/        settings (paths) + modelo.py (a ficha do algoritmo) + experimentos/<x>.py (o que muda por experimento)
   acesso/        todo o I/O de leitura isolado aqui (carregar tabela_final, infodengue, capturas...)
   dominio/       monta tabelas e features SEM modelar (montagem da tabela, features, features espaciais, surto)
   motor/         o motor agnóstico ao experimento (walk-forward, baselines)
@@ -68,6 +68,26 @@ O que é específico — quais features, qual alvo, limiar de surto, horizontes 
 `config/experimentos/<experimento>.py`. **Experimento novo = arquivo de config novo**, sem
 mexer no motor. É o que resolve a duplicação antiga (o mesmo `walk_forward`/`montar_features`
 estava copiado em quase todo script).
+
+O motor também é **agnóstico ao algoritmo**. Qual modelo cada experimento usa vem de uma
+ficha `EspecificacaoModelo` (`config/modelo.py`) — `nome`, `classe` (ex.: `LGBMRegressor`,
+`RandomForestRegressor`) e `parametros`. O motor faz `modelo = config.modelo.criar()` e confia
+só no `.fit()/.predict()` (a API padrão do scikit-learn, que LightGBM, XGBoost e sklearn seguem).
+
+## Comparar algoritmos (LightGBM × RandomForest × ...)
+
+Pra testar outro algoritmo, **não se mexe no motor** — cria-se um config apontando outra
+`classe`. Exemplo pronto: [config/experimentos/cidade_regressao_rf.py](config/experimentos/cidade_regressao_rf.py)
+é o mesmo `cidade_regressao` (4c) trocando LightGBM por RandomForest:
+
+```bash
+python main.py --experimento cidade_regressao       # 4c com LightGBM
+python main.py --experimento cidade_regressao_rf    # 4c com RandomForest
+```
+
+Toda saída tem uma coluna **`algoritmo`** (o `nome` da ficha), então dá pra empilhar os dois
+resultados e comparar lado a lado. Para uma comparação justa, mantenha o `modelo_selecao_clima`
+igual nos dois (a escolha das colunas de clima fica constante; só o estimador varia).
 
 ## Experimentos (mapa do antigo → novo)
 
