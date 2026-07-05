@@ -1,0 +1,330 @@
+1. Identificação e Notificação
+
+tp_not (Tipo de Notificação): 1-Negativa, 2-Individual, 3-Surto, 4-Agregado.
+
+
+id_agravo (Agravo): Código CID-10 e nome do agravo.
+
+
+dt_notific (Data da Notificação): Data de preenchimento da ficha.
+
+
+sem_not (Semana Epidemiológica): Preenchida automaticamente (AAAASS).
+
+
+nu_ano (Ano da Notificação): Ano da notificação.
+
+
+sg_uf_not (UF de Notificação): Sigla da UF da unidade de saúde.
+
+
+id_municip (Município de Notificação): Código IBGE do município notificante.
+
+
+id_regiona (Regional): Código da regional de saúde.
+
+
+id_unidade (Unidade de Saúde): Nome e código CNES da unidade.
+
+2. Dados do Paciente e Residência
+
+dt_sin_pri (Data dos Primeiros Sintomas): Data de início dos sintomas ou diagnóstico.
+
+
+sem_pri (Semana Epidemiológica dos Sintomas): Preenchida automaticamente (AAAASS).
+
+
+ano_nasc (Ano de Nascimento): Ano de nascimento do paciente.
+
+
+nu_idade_n (Idade): Composta por unidade de medida e número (ex: 4018 para 18 anos).
+
+
+cs_sexo (Sexo): M-Masculino, F-Feminino, I-Ignorado.
+
+
+cs_gestant (Gestante): 1-1º Trimestre, 2-2º Trimestre, 3-3º Trimestre, 4-Idade gestacional ignorada, 5-Não, 6-Não se aplica, 9-Ignorado.
+
+
+cs_raca (Raça/Cor): 1-Branca, 2-Preta, 3-Amarela, 4-Parda, 5-Indígena, 9-Ignorado.
+
+
+cs_escol_n (Escolaridade): 0-Analfabeto, 1 a 8-Graus de instrução, 10-Não se aplica.
+
+
+sg_uf (UF de Residência): UF onde o paciente reside.
+
+
+id_mn_resi (Município de Residência): Código IBGE do município de residência.
+
+
+id_rg_resi (Regional de Saúde): Regional de saúde da residência.
+
+
+id_pais (País): País de residência (se fora do Brasil).
+
+
+dt_invest (Data da Investigação): Data de início da investigação.
+
+
+id_ocupa_n (Ocupação): Ramo de atividade econômica.
+
+3. Sinais Clínicos e Doenças Pré-existentes (1-Sim, 2-Não)
+
+febre: Febre.
+
+
+mialgia: Mialgia.
+
+
+cefaleia: Cefaleia.
+
+
+exantema: Exantema.
+
+
+vomito: Vômito.
+
+
+nausea: Náusea.
+
+
+dor_costas: Dor nas costas.
+
+
+conjuntvit: Conjuntivite.
+
+
+artrite: Artrite.
+
+
+artralgia: Artralgia intensa.
+
+
+petequia_n: Petéquias.
+
+
+leucopenia: Leucopenia.
+
+
+laco: Prova do laço.
+
+
+dor_retro: Dor retroorbital.
+
+
+diabetes: Diabetes.
+
+
+hematolog: Doenças hematológicas.
+
+
+hepatopat: Hepatopatias.
+
+
+renal: Doença renal crônica.
+
+
+hipertensa: Hipertensão arterial.
+
+
+acido_pept: Doença ácido-péptica.
+
+
+auto_imune: Doenças autoimunes.
+
+4. Dados Laboratoriais (Chikungunya e Dengue)
+
+dt_chik_s1 / dt_chik_s2: Datas das coletas de soro 1 e 2 para Chikungunya.
+
+
+res_chiks1 / res_chiks2: Resultados (1-Reagente a 4-Não realizado).
+
+
+dt_prnt / resul_prnt: Data e resultado do exame PRNT.
+
+
+dt_soro / resul_soro: Data e resultado da sorologia IgM Dengue.
+
+
+dt_ns1 / resul_ns1: Data e resultado do exame NS1.
+
+
+dt_viral / resul_vi_n: Data e resultado do isolamento viral.
+
+
+dt_pcr / resul_pcr_: Data e resultado do RT-PCR.
+
+
+sorotipo: 1-DEN 1, 2-DEN 2, 3-DEN 3, 4-DEN 4.
+
+
+histopa_n: Resultado da histopatologia.
+
+
+imunoh_n: Resultado da imunohistoquímica.
+
+5. Hospitalização e Autoctonia
+hospitaliz: Ocorreu hospitalização? (1-Sim, 2-Não, 9-Ignorado) .
+
+
+dt_interna: Data da internação.
+
+
+coufinf: UF provável da fonte de infecção.
+
+
+municipio: Município onde o paciente foi hospitalizado.
+
+tpautocto: O caso é autóctone de residência? (1-Sim, 2-Não, 3-Indeterminado) .
+
+
+copaisinf: País provável da fonte de infecção.
+
+
+comuninf: Município provável da fonte de infecção.
+
+6. Conclusão, Evolução e Classificação
+
+classi_fin (Classificação Final): 1-Confirmado, 2-Descartado, 8-Inconclusivo, 10-Dengue, 11-Dengue c/ sinais de alarme, 12-Dengue grave, 13-Chikungunya.
+
+
+criterio: 1-Laboratório, 2-Clínico-epidemiológico, 3-Clínico.
+
+
+doenca_tra: Doença relacionada ao trabalho?.
+
+
+clinic_chik: Apresentação clínica (1-Aguda, 2-Crônica).
+
+
+evolucao: 1-Cura, 2-Óbito pelo agravo, 3-Óbito p/ outras causas, 4-Óbito em investigação, 9-Ignorado.
+
+
+dt_obito: Data do óbito.
+
+
+dt_encerra: Data do encerramento do caso.
+
+7. Sinais de Alarme (Dengue)
+
+alrm_hipot: Hipotensão.
+
+
+alrm_plaq: Queda de plaquetas.
+
+
+alrm_vom: Vômitos persistentes.
+
+
+alrm_sang: Sangramento de mucosa.
+
+
+alrm_hemat: Aumento de hematócrito.
+
+
+alrm_abdom: Dor abdominal.
+
+
+alrm_letar: Letargia ou irritabilidade.
+
+
+alrm_hepat: Hepatomegalia.
+
+
+alrm_liq: Acúmulo de líquidos.
+
+
+dt_alrm: Data de início dos sinais de alarme.
+
+8. Critérios de Dengue Grave
+
+grav_pulso: Pulso débil ou indetectável.
+
+
+grav_conv: PA convergente.
+
+
+grav_ench: Tempo de enchimento capilar.
+
+
+grav_insuf: Insuficiência respiratória.
+
+
+grav_taqui: Taquicardia.
+
+
+grav_extre: Extremidades frias.
+
+
+grav_hipot: Hipotensão arterial tardia.
+
+
+grav_hemat: Hematêmese.
+
+
+grav_melen: Melena.
+
+
+grav_metro: Metrorragia volumosa.
+
+
+grav_sang: Sangramento do SNC.
+
+
+grav_ast: AST/ALT > 1.000.
+
+
+grav_mioc: Miocardite.
+
+
+grav_consc: Alteração da consciência.
+
+
+grav_orgao: Outros órgãos afetados.
+
+
+dt_grav: Data de início dos sintomas de gravidade.
+
+9. Outras Manifestações e Controles
+
+mani_hemor: Manifestações hemorrágicas em geral.
+
+
+epistaxe / gengivo / metro / petequias / hematura / sangram: Tipos específicos de sangramento.
+
+
+laco_n: Prova do laço positiva.
+
+
+plasmatico: Extravasamento plasmático.
+
+
+evidencia: Evidenciado por exames.
+
+
+plaq_menor: Valor de plaquetas menor.
+
+
+con_fhd: Caso de FHD (Febre Hemorrágica da Dengue).
+
+
+complica: Tipo de complicações.
+
+
+tp_sistema: 1-Sinan Net, 2-Sinan Online.
+
+
+nduplic_n: Controle de duplicidade (0-Não identificado, 1-Não listar, 2-Duplicidade).
+
+
+dt_digita: Data de digitação.
+
+
+cs_flxret: Fluxo de retorno.
+
+
+flxrecebi: Recebida por fluxo de retorno.
+
+
+migrado_w: Identifica se o registro veio do Sinan Windows.

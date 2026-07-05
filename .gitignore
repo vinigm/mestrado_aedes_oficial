@@ -12,6 +12,8 @@ Bases de dados/
 
 # Arquivos grandes de bases brutas
 bases_governo/*.zip
+# Zips brutos do SINAN em qualquer pasta (baixaveis do OpenDataSUS; passam do limite de 100MB do GitHub)
+*.csv.zip
 
 # Scripts temporários
 resumir_dengbr25.py

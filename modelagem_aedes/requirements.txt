@@ -1,0 +1,20 @@
+# Dependencias do modelagem_aedes.
+# Versoes minimas = as usadas no desenvolvimento (Python 3.14).
+# Instalar com:  pip install -r requirements.txt
+
+# --- Manipulacao de dados (montagem da tabela + features) ---
+pandas>=3.0.2
+numpy>=2.4.4
+
+# --- Modelagem e avaliacao ---
+lightgbm>=4.6.0        # motor de gradient boosting (walk-forward de surto e regressao)
+scikit-learn>=1.8.0    # metricas de classificacao (f1, auc, matriz de confusao, ...)
+scipy>=1.17.1          # testes estatisticos (McNemar: binomial exato / qui-quadrado)
+
+# --- Figuras (relatorio) ---
+matplotlib>=3.10.9
+
+# --- Captura/leitura das fontes (raspagem e planilhas da Marilia) ---
+requests>=2.34.1
+beautifulsoup4>=4.14.3
+openpyxl>=3.1.5        # leitura dos .xlsx da raspagem e da Marilia
