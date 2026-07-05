@@ -1,0 +1,5 @@
+algoritmo,h,base_own,base_+viz,enh_own,enh_+viz,ganho_enh,lift_viz_enh
+lightgbm,1,0.544,0.546,0.547,0.556,0.01,0.009
+lightgbm,2,0.363,0.368,0.405,0.419,0.051,0.014
+lightgbm,3,0.267,0.323,0.241,0.293,-0.03,0.052
+lightgbm,4,0.48,0.489,0.535,0.54,0.051,0.005

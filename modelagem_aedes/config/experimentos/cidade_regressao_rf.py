@@ -38,4 +38,7 @@ CIDADE_REGRESSAO_RF = dataclasses.replace(
     modelo=RANDOM_FOREST,
     modelo_selecao_clima=LGBM_REGRESSAO,
     arquivo_saida="clima_enxuto_maturidade_rf_resultados.csv",
+    # MESMO cenario do cidade_regressao (4c) -> os dois modelos caem no mesmo
+    # experimento do MLflow, pra comparar LightGBM x RandomForest lado a lado.
+    cenario="cidade_regressao",
 )

@@ -89,6 +89,28 @@ Toda saída tem uma coluna **`algoritmo`** (o `nome` da ficha), então dá pra e
 resultados e comparar lado a lado. Para uma comparação justa, mantenha o `modelo_selecao_clima`
 igual nos dois (a escolha das colunas de clima fica constante; só o estimador varia).
 
+## Versionar os experimentos (MLflow)
+
+Cada `python main.py --experimento X` é **automaticamente versionado** com MLflow: registra o
+modelo, os hiperparâmetros, métricas de resumo (MAE médio, R² médio...) e anexa os CSVs. Tudo
+local, numa pasta `mlruns/` (sem servidor). A organização é:
+
+- **experimento MLflow = cenário** (`cidade_regressao`, `bairro_surto`, ...)
+- **run = modelo** (`lightgbm`, `random_forest`, ...)
+
+Assim, `cidade_regressao` (LightGBM) e `cidade_regressao_rf` (RandomForest) caem no **mesmo**
+experimento e você compara os modelos lado a lado. Pra ver na interface:
+
+```bash
+cd modelagem_aedes
+MLFLOW_ALLOW_FILE_STORE=true mlflow ui --backend-store-uri "$PWD/mlruns"
+# abra http://localhost:5000
+```
+
+O rastreamento vive só em `rastreamento.py` + `main.py` (o motor/domínio/pipeline continuam
+cegos ao MLflow). Se o MLflow não estiver instalado, os experimentos rodam igual — só não
+versionam.
+
 ## Experimentos (mapa do antigo → novo)
 
 | Antigo (`py_pre_refatoracao/`) | Novo (experimento) | O que é |

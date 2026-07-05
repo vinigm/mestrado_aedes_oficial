@@ -30,6 +30,9 @@ venv/
 env/
 .env
 
+# Rastreamento do MLflow (historico de execucoes; regeneravel, nao e codigo)
+mlruns/
+
 # IDEs
 .vscode/
 .idea/

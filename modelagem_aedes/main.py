@@ -18,6 +18,7 @@ import argparse
 
 import pandas as pd
 
+import rastreamento
 from config import settings
 from config.experimentos.bairro_surto import BAIRRO_SURTO
 from config.experimentos.cidade_deteccao_surto import CIDADE_DETECCAO_SURTO
@@ -65,13 +66,22 @@ def main() -> None:
 
     pd.set_option("display.width", 170)
     configuracao, rodar_experimento = EXPERIMENTOS[argumentos.experimento]
-    saidas = rodar_experimento(configuracao)
 
-    settings.PASTA_RESULTADOS.mkdir(parents=True, exist_ok=True)
-    for nome_arquivo, dataframe in saidas.items():
-        caminho_saida = settings.PASTA_RESULTADOS / nome_arquivo
-        dataframe.to_csv(caminho_saida, index=False)
-        print("salvo:", caminho_saida)
+    # O run do MLflow envolve a execucao: roda o experimento, salva os CSVs e
+    # registra tudo (modelo, hiperparametros, metricas, arquivos). Se o MLflow
+    # nao estiver disponivel, roda igual, so sem versionar.
+    with rastreamento.rastrear(configuracao):
+        saidas = rodar_experimento(configuracao)
+
+        settings.PASTA_RESULTADOS.mkdir(parents=True, exist_ok=True)
+        caminhos_salvos = []
+        for nome_arquivo, dataframe in saidas.items():
+            caminho_saida = settings.PASTA_RESULTADOS / nome_arquivo
+            dataframe.to_csv(caminho_saida, index=False)
+            print("salvo:", caminho_saida)
+            caminhos_salvos.append(caminho_saida)
+
+        rastreamento.registrar(configuracao, saidas, caminhos_salvos)
 
 
 if __name__ == "__main__":

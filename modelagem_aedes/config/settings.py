@@ -19,6 +19,11 @@ PASTA_SAIDAS = PASTA_DADOS / "saidas"
 PASTA_RESULTADOS = PASTA_SAIDAS / "resultados"   # as tabelas de resultado que cada experimento gera
 PASTA_FIGURAS = PASTA_SAIDAS / "figuras"         # os graficos que os experimentos geram
 
+# Onde o MLflow guarda o historico das execucoes (versionamento de modelos,
+# hiperparametros e metricas). Fica na raiz do pacote pra nao depender de onde
+# o comando foi rodado. Veja com:  mlflow ui --backend-store-uri <esta pasta>
+PASTA_MLRUNS = PASTA_PROJETO / "mlruns"
+
 
 # --- Fontes de dados (cada uma tem sua pasta dentro de dados/entradas) ---
 

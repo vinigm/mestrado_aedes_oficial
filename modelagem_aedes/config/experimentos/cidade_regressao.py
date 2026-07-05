@@ -96,6 +96,11 @@ class ConfiguracaoRegressao:
 
         conjuntos_referencia: Quais linhas puxar desse resultado de referencia.
 
+        cenario: Nome do CENARIO pro versionamento (MLflow). Experimentos que sao
+            o mesmo cenario com modelos diferentes (ex.: 4c com LightGBM e 4c com
+            RandomForest) usam o MESMO cenario, pra os runs caírem juntos e dar pra
+            comparar os modelos lado a lado. Se ficar None, usa-se o proprio 'nome'.
+
     """
 
     nome: str
@@ -116,6 +121,7 @@ class ConfiguracaoRegressao:
     colunas_saida: tuple[str, ...]
     arquivo_referencias: str | None = None
     conjuntos_referencia: tuple[str, ...] = ()
+    cenario: str | None = None
 
 
 CIDADE_REGRESSAO = ConfiguracaoRegressao(

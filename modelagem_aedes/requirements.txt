@@ -14,6 +14,11 @@ scipy>=1.17.1          # testes estatisticos (McNemar: binomial exato / qui-quad
 # --- Figuras (relatorio) ---
 matplotlib>=3.10.9
 
+# --- Rastreamento de experimentos (versionar modelos, hiperparametros e metricas) ---
+mlflow>=3.14.0
+# Obs: ao instalar o mlflow, o pip pode tentar REBAIXAR o pandas pra < 3. Se isso
+# acontecer, restaure com:  pip install "pandas>=3.0.2"  (o mlflow funciona com o 3.0.2).
+
 # --- Captura/leitura das fontes (raspagem e planilhas da Marilia) ---
 requests>=2.34.1
 beautifulsoup4>=4.14.3
