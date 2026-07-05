@@ -17,7 +17,9 @@ CÓDIGO:
   motor/         o motor agnóstico ao experimento (walk-forward, baselines)
   avaliacao/     métricas + testes estatísticos (regressão/classificação, McNemar, Diebold-Mariano)
   relatorio/     gráficos (graficos.py: as figuras dos experimentos)
+  preparo/       consolida os dados crus (Marília + SINAN + raspagem) nos insumos da montagem
   pipeline.py    o "código pai": a sequência de etapas de cada experimento
+  preparar_dados.py  CLI: consolida os dados das fontes (Marília, SINAN, raspagem)
   montar.py      CLI: (re)gera a tabela_final a partir dos insumos das fontes
   main.py        CLI: roda um experimento (ex.: python main.py --experimento cidade_deteccao_surto)
   plotar.py      CLI: gera as figuras a partir dos CSVs de resultados
@@ -35,6 +37,7 @@ DADOS (não código):
 ```bash
 pip install -r requirements.txt
 
+python preparar_dados.py                            # (opcional) consolida Marília + SINAN + raspagem
 python montar.py                                    # (re)gera dados/.../tabela_final.csv
 python main.py --experimento <nome>                 # roda um experimento -> CSVs em dados/saidas/resultados
 python plotar.py                                    # gera as figuras em dados/saidas/figuras
@@ -55,8 +58,8 @@ comparacao_literatura       nosso método × método da literatura (Oliveira et 
 bairro_surto                previsão da densidade de mosquito por bairro
 ```
 
-O fluxo fecha dentro do pacote: **`montar.py` → `tabela_final` → `main.py` → resultados → `plotar.py`**.
-Com dados novos de raspagem consolidados, `montar.py` regenera a base e tudo se refaz.
+O fluxo fecha dentro do pacote: **`preparar_dados.py` → `montar.py` → `tabela_final` → `main.py` → resultados → `plotar.py`**.
+Com dados novos, `preparar_dados.py` reconsolida as fontes e `montar.py` regenera a base.
 
 ## Princípio central
 
@@ -90,7 +93,9 @@ estava copiado em quase todo script).
   (números batem com o antigo, onde há resultado antigo).
 - ✅ **Estilo**: todos os `.py` no padrão de linguagem simples + estética (ver
   `../../Contexto/CODIGOS...rtf` §17 e `../../Contexto/ARQUITETURA_MODELAGEM_AEDES.md`).
-- ⏳ **Falta (upstream mais fundo)**: levar pra camada `acesso` os scripts/notebooks que geram
-  os insumos crus (consolidação da raspagem, filtragem do SINAN, captura de clima/ENSO), pra
-  o projeto se renovar do zero sozinho. Hoje esses passos ainda são notebooks/scripts avulsos
-  em `dados/entradas/<fonte>/`.
+- ✅ **Consolidação das fontes (`preparo/`)**: Marília, SINAN e raspagem portados dos notebooks
+  pra módulos (`preparar_dados.py`) e validados — Marília/SINAN byte a byte; a raspagem reproduz
+  o antigo exatamente e ainda incorpora as semanas novas.
+- ⏳ **Falta (só isto)**: a **captura de clima/ENSO** (`dados/entradas/clima/captura_*.py`) ainda
+  é script solto. Diferente dos de cima, ela baixa de APIs ao vivo (NASA POWER, NOAA), então não
+  dá pra validar byte a byte — funciona, só não está empacotada no `preparo/` ainda.
