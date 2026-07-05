@@ -88,15 +88,21 @@ def metricas_das_saidas(saidas: dict) -> dict:
     E o que aparece no painel pra comparar os runs de forma rapida (ex.: MAE
     medio, R2 medio). A tabela completa vai como arquivo anexado ao run.
 
+    Quando o experimento tem UMA saida so, a metrica fica com nome limpo
+    ("MAE_media", "R2_media") — assim modelos diferentes do mesmo cenario, mesmo
+    salvando em arquivos diferentes, alinham na MESMA coluna do painel. Quando ha
+    varias saidas, cada uma leva o nome do arquivo como prefixo, pra nao colidir.
+
     """
     metricas = {}
+    usar_prefixo = len(saidas) > 1
     for nome_arquivo, tabela in saidas.items():
-        base = nome_arquivo.replace(".csv", "")
+        prefixo = f"{nome_arquivo.replace('.csv', '')}__" if usar_prefixo else ""
         for coluna in tabela.columns:
             if pd.api.types.is_numeric_dtype(tabela[coluna]):
                 media = tabela[coluna].mean()
                 if pd.notna(media) and math.isfinite(media):
-                    metricas[f"{base}__{coluna}_media"] = float(media)
+                    metricas[f"{prefixo}{coluna}_media"] = float(media)
     return metricas
 
 
