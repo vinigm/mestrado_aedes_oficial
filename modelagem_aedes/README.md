@@ -19,7 +19,7 @@ CÓDIGO:
   relatorio/     gráficos (graficos.py: as figuras dos experimentos)
   preparo/       consolida os dados crus (Marília + SINAN + raspagem) nos insumos da montagem
   pipeline.py    o "código pai": a sequência de etapas de cada experimento
-  preparar_dados.py  CLI: consolida os dados das fontes (Marília, SINAN, raspagem)
+  preparar_dados.py  CLI: prepara as fontes (Marília, SINAN, raspagem, clima e El Niño)
   montar.py      CLI: (re)gera a tabela_final a partir dos insumos das fontes
   main.py        CLI: roda um experimento (ex.: python main.py --experimento cidade_deteccao_surto)
   plotar.py      CLI: gera as figuras a partir dos CSVs de resultados
@@ -37,7 +37,7 @@ DADOS (não código):
 ```bash
 pip install -r requirements.txt
 
-python preparar_dados.py                            # (opcional) consolida Marília + SINAN + raspagem
+python preparar_dados.py                            # (opcional) prepara as fontes: Marília, SINAN, raspagem, clima, ENSO
 python montar.py                                    # (re)gera dados/.../tabela_final.csv
 python main.py --experimento <nome>                 # roda um experimento -> CSVs em dados/saidas/resultados
 python plotar.py                                    # gera as figuras em dados/saidas/figuras
@@ -135,9 +135,10 @@ versionam.
   (números batem com o antigo, onde há resultado antigo).
 - ✅ **Estilo**: todos os `.py` no padrão de linguagem simples + estética (ver
   `../../Contexto/CODIGOS...rtf` §17 e `../../Contexto/ARQUITETURA_MODELAGEM_AEDES.md`).
-- ✅ **Consolidação das fontes (`preparo/`)**: Marília, SINAN e raspagem portados dos notebooks
-  pra módulos (`preparar_dados.py`) e validados — Marília/SINAN byte a byte; a raspagem reproduz
-  o antigo exatamente e ainda incorpora as semanas novas.
-- ⏳ **Falta (só isto)**: a **captura de clima/ENSO** (`dados/entradas/clima/captura_*.py`) ainda
-  é script solto. Diferente dos de cima, ela baixa de APIs ao vivo (NASA POWER, NOAA), então não
-  dá pra validar byte a byte — funciona, só não está empacotada no `preparo/` ainda.
+- ✅ **Preparo das fontes (`preparo/`)**: Marília, SINAN, raspagem, **clima (NASA POWER) e El Niño
+  (ENSO)** portados pra módulos (`preparar_dados.py`) e validados — Marília/SINAN byte a byte; a
+  raspagem reproduz o antigo exatamente e incorpora as semanas novas; clima/ENSO reproduzem o
+  histórico exatamente (só as semanas mais recentes mudam, por revisão da própria NASA/NOAA).
+- ✅ **Arquitetura completa**: o fluxo inteiro (preparo → montagem → experimentos → relatório) está
+  em camadas, no padrão e verificado. (A captura de vegetação/MODIS e de feriados existe como script
+  solto, mas não entra no modelo — fica como exploração futura.)
