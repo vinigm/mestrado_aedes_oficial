@@ -26,6 +26,7 @@ from config.experimentos.cidade_diebold import CIDADE_DIEBOLD
 from config.experimentos.cidade_lift_vetor import CIDADE_LIFT_VETOR
 from config.experimentos.cidade_regressao import CIDADE_REGRESSAO
 from config.experimentos.cidade_regressao_com_enso import CIDADE_REGRESSAO_COM_ENSO
+from config.experimentos.cidade_regressao_modelos import TODOS_MODELOS
 from config.experimentos.cidade_regressao_rf import CIDADE_REGRESSAO_RF
 from config.experimentos.cidade_regressao_sem_enso import CIDADE_REGRESSAO_SEM_ENSO
 from config.experimentos.comparacao_literatura import COMPARACAO_LITERATURA
@@ -52,6 +53,12 @@ EXPERIMENTOS = {
     "comparacao_literatura": (COMPARACAO_LITERATURA, rodar_comparacao_literatura),
     "bairro_surto": (BAIRRO_SURTO, rodar_bairro_surto),
 }
+
+# Os modelos alternativos do cidade_regressao (ExtraTrees, boosting, Ridge, SVR,
+# KNN...) usam a mesma funcao de regressao com selecao de clima; entram aqui pra
+# aparecerem em --experimento e caírem no mesmo cenario do MLflow.
+for _nome_modelo, _config_modelo in TODOS_MODELOS.items():
+    EXPERIMENTOS[_nome_modelo] = (_config_modelo, rodar_regressao_selecao_clima)
 
 
 def main() -> None:
