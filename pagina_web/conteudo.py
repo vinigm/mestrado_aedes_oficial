@@ -77,6 +77,7 @@ OBJETIVO = {
 FONTES_DADOS = [
     {
         "nome": "Captura de mosquito (atual)",
+        "tipo": "vetor",
         "periodo": "2025 em diante",
         "cadencia": "semanal",
         "papel": "Quanto mosquito foi pego nas armadilhas da cidade a cada semana. E o “vetor” — o personagem principal da pesquisa.",
@@ -85,6 +86,7 @@ FONTES_DADOS = [
     },
     {
         "nome": "Captura de mosquito (historico)",
+        "tipo": "vetor",
         "periodo": "2019 a 2023",
         "cadencia": "semanal",
         "papel": "A mesma contagem de mosquito, so que do passado, para dar historico ao modelo.",
@@ -93,6 +95,7 @@ FONTES_DADOS = [
     },
     {
         "nome": "Clima",
+        "tipo": "clima",
         "periodo": "serie longa",
         "cadencia": "diario e semanal",
         "papel": "Temperatura, chuva, umidade, orvalho e pressao — o que faz o mosquito crescer.",
@@ -101,6 +104,7 @@ FONTES_DADOS = [
     },
     {
         "nome": "El Nino / La Nina (ENSO)",
+        "tipo": "clima",
         "periodo": "serie longa",
         "cadencia": "mensal",
         "papel": "A fase do oceano Pacifico que empurra o clima da regiao para mais quente ou mais chuvoso.",
@@ -109,6 +113,7 @@ FONTES_DADOS = [
     },
     {
         "nome": "Casos de dengue confirmados",
+        "tipo": "alvo",
         "periodo": "serie longa",
         "cadencia": "semanal",
         "papel": "Os casos confirmados em Porto Alegre. E o alvo — o numero que a gente quer prever.",
@@ -117,6 +122,7 @@ FONTES_DADOS = [
     },
     {
         "nome": "InfoDengue (Porto Alegre)",
+        "tipo": "contexto",
         "periodo": "desde 2010",
         "cadencia": "semanal",
         "papel": "Serie historica de casos e clima da cidade, para completar o passado.",
@@ -124,6 +130,26 @@ FONTES_DADOS = [
         "vital": False,
     },
 ]
+
+
+# O que compoe o "clima" (mostrado na pagina "Dados"): cada tema e as colunas
+# que ele gera. Cada grandeza vira minimo/media/maximo na semana, por isso sao
+# varias por tema. Tudo vem do NASA POWER, agregado de diario para semanal.
+COLUNAS_CLIMA = {
+    "intro": "Cada grandeza vem resumida na semana (minimo / media / maximo), por isso sao varias por tema:",
+    "fonte": "NASA POWER",
+    "nota_agregacao": "agregadas de diario para semanal",
+    "nota_lag": "O modelo ainda cria versoes defasadas (1 a 4 semanas) de algumas delas, para tambem olhar o clima das semanas anteriores.",
+    "temas": [
+        ("🌧️", "Chuva", ["precip_total_mm", "precip_max_dia_mm", "precip_media_dia_mm", "dias_de_chuva"]),
+        ("🌡️", "Temperatura", ["temp_media", "temp_min", "temp_max", "temp_amplitude_media"]),
+        ("💧", "Ponto de orvalho", ["orvalho_min", "orvalho_media", "orvalho_max"]),
+        ("💦", "Umidade", ["umid_min", "umid_media", "umid_max"]),
+        ("🔻", "Pressao", ["pressao_min", "pressao_media", "pressao_max"]),
+        ("☀️", "Radiacao solar", ["radiacao_min", "radiacao_media", "radiacao_max"]),
+        ("🌫️", "Vento", ["vento_media", "vento_max"]),
+    ],
+}
 
 
 # O que sai da juncao de tudo (mostrado na pagina "Dados").
@@ -148,48 +174,158 @@ FLUXO = [
 
 # Nome bonito e explicacao de cada cenario (experimento). A chave e o nome
 # tecnico usado no MLflow; se um cenario nao estiver aqui, o gerador usa o
-# proprio nome tecnico.
+# proprio nome tecnico. "menu" e o rotulo curto que aparece no menu lateral.
 CENARIOS = {
     "cidade_regressao": {
-        "titulo": "Quantos casos? (modelo principal)",
-        "pergunta": "Quantos casos de dengue vao ter na cidade?",
-        "descricao": "O resultado principal da pesquisa: preve o numero de casos usando clima e mosquito, apagando as semanas recentes que ainda nao fecharam (corte de maturidade).",
-    },
-    "cidade_regressao_sem_enso": {
-        "titulo": "Quantos casos? (sem corte de maturidade)",
-        "pergunta": "E se nao apagar as semanas recentes?",
-        "descricao": "Igual ao principal, mas sem o corte de maturidade — serve de comparacao para mostrar que o corte ajuda.",
+        "menu": "Previsao principal",
+        "titulo": "Quantos casos vao ter",
+        "pergunta": "Quantos casos de dengue a cidade vai ter nas proximas semanas?",
+        "descricao": "O modelo principal do trabalho. Usa clima e mosquito para prever o numero de casos, e deixa de fora as semanas mais recentes, que ainda estao sendo contadas e enganam.",
     },
     "cidade_regressao_com_enso": {
-        "titulo": "Quantos casos? (deixando o El Nino entrar)",
-        "pergunta": "O El Nino ajuda na escolha do clima?",
-        "descricao": "Igual ao principal, mas deixando o El Nino disputar espaco entre as colunas de clima escolhidas.",
+        "menu": "Com El Nino",
+        "titulo": "E se o El Nino entrar na conta?",
+        "pergunta": "Somar o El Nino ao clima melhora a previsao?",
+        "descricao": "A previsao principal, mas deixando o El Nino (o esquenta e esfria do oceano Pacifico) concorrer com o clima local.",
+    },
+    "cidade_regressao_sem_enso": {
+        "menu": "Sem apagar semanas",
+        "titulo": "E sem apagar as semanas recentes?",
+        "pergunta": "O que muda se a gente confiar nas semanas que ainda nao fecharam?",
+        "descricao": "A previsao principal sem tirar as semanas recentes. Serve de comparacao para mostrar que deixar essas semanas de fora ajuda mesmo.",
     },
     "cidade_lift_vetor": {
-        "titulo": "O ganho do mosquito (lift)",
-        "pergunta": "So-clima x clima+mosquito x so-mosquito?",
-        "descricao": "Mede o ganho bruto do mosquito: compara prever com so clima, com clima mais mosquito, e com so mosquito.",
+        "menu": "O ganho do mosquito",
+        "titulo": "O mosquito ajuda a prever?",
+        "pergunta": "So clima, clima mais mosquito, ou so mosquito — o que preve melhor?",
+        "descricao": "Compara os tres jeitos lado a lado para medir quanto a contagem de mosquito acrescenta a previsao.",
     },
     "cidade_diebold": {
-        "titulo": "O ganho do mosquito e real? (Diebold-Mariano)",
-        "pergunta": "A melhora do mosquito e estatistica ou foi sorte?",
-        "descricao": "Prova estatistica de que o modelo com mosquito erra de fato menos que o modelo so com clima.",
-    },
-    "cidade_deteccao_surto": {
-        "titulo": "Vai ter surto? (sim/nao)",
-        "pergunta": "A proxima janela vai passar do limite de surto?",
-        "descricao": "Em vez de um numero, responde sim ou nao para “vai ter surto”, e usa o teste de McNemar para comparar com um palpite simples.",
+        "menu": "E ganho de verdade?",
+        "titulo": "Esse ganho e real ou foi sorte?",
+        "pergunta": "A melhora que o mosquito traz aguenta um teste estatistico?",
+        "descricao": "Poe o modelo so com clima contra o modelo com clima mais mosquito e testa (Diebold-Mariano) se a diferenca e real, e nao coincidencia.",
     },
     "comparacao_literatura": {
-        "titulo": "Nosso metodo x a literatura",
-        "pergunta": "Como nos comparamos com o metodo publicado?",
-        "descricao": "Poe o nosso metodo lado a lado com o metodo da literatura (Oliveira et al.).",
+        "menu": "Contra a literatura",
+        "titulo": "Como a gente se sai contra o metodo publicado",
+        "pergunta": "Somando o mosquito, a gente bate o metodo publicado que usa so clima?",
+        "descricao": "Recria um metodo ja publicado (Oliveira et al., so com clima) e coloca lado a lado com o nosso, que tambem usa o mosquito.",
+    },
+    "cidade_deteccao_surto": {
+        "menu": "Vai ter surto?",
+        "titulo": "Vai ter surto ou nao?",
+        "pergunta": "As proximas semanas vao passar do limite de surto?",
+        "descricao": "Em vez de um numero, responde sim ou nao para “vai ter surto” e compara com um palpite simples para ver se acerta mais.",
     },
     "bairro_surto": {
-        "titulo": "Onde o mosquito vai subir? (por bairro)",
+        "menu": "Por bairro",
+        "titulo": "Onde o mosquito vai subir",
         "pergunta": "Em quais bairros o mosquito tende a crescer?",
-        "descricao": "A direcao nova da pesquisa: como so ha contagem de mosquito por bairro (e nao casos), preve o mosquito por bairro, usando tambem os vizinhos.",
+        "descricao": "O rumo novo da pesquisa. Como so ha contagem de mosquito por bairro (e nao de casos), aqui a gente preve o proprio mosquito, olhando tambem os bairros vizinhos.",
     },
+}
+
+
+# Como os cenarios sao agrupados no menu e na pagina de cenarios, seguindo a
+# historia do trabalho: primeiro prever os casos, depois provar que o mosquito
+# ajuda, e por fim as outras frentes. Cada grupo lista os nomes tecnicos na
+# ordem em que devem aparecer.
+GRUPOS_CENARIOS = [
+    ("Prever os casos", [
+        "cidade_regressao",
+        "cidade_regressao_com_enso",
+        "cidade_regressao_sem_enso",
+    ]),
+    ("O mosquito faz diferenca?", [
+        "cidade_lift_vetor",
+        "cidade_diebold",
+        "comparacao_literatura",
+    ]),
+    ("Outras frentes", [
+        "cidade_deteccao_surto",
+        "bairro_surto",
+    ]),
+]
+
+
+# Ficha de dados de cada cenario (mostrada no topo da pagina do cenario): as
+# mesmas linhas em todos, pra dar pra comparar um cenario com o outro so de
+# bater o olho. A ultima linha, "O que muda", e a diferenca entre os testes
+# daquele cenario. Os valores saem direto dos arquivos de config dos experimentos.
+FICHA_DADOS = {
+    "cidade_regressao": [
+        ("Alvo", "Casos de dengue confirmados na cidade"),
+        ("Clima", "Entra — o modelo fica so com as 6 ou 8 colunas que mais ajudam"),
+        ("Mosquito", "Entra — captura semanal nas armadilhas"),
+        ("El Nino", "Fica de fora"),
+        ("Corte de maturidade", "12 semanas: apaga as mais recentes, que ainda estao sendo contadas"),
+        ("Horizontes", "1 a 12 semanas a frente"),
+        ("O que muda", "Varios algoritmos (LightGBM, RandomForest e outros) com exatamente os mesmos dados"),
+    ],
+    "cidade_regressao_com_enso": [
+        ("Alvo", "Casos de dengue confirmados na cidade"),
+        ("Clima", "Entra — 6 ou 8 colunas escolhidas, e o El Nino concorre por uma vaga"),
+        ("Mosquito", "Entra"),
+        ("El Nino", "Entra — disputa espaco com o clima na hora de escolher as colunas"),
+        ("Corte de maturidade", "Nenhum: usa todas as semanas"),
+        ("Horizontes", "1 a 12 semanas a frente"),
+        ("O que muda", "So clima, clima + mosquito e so mosquito — pra ver se o El Nino mudava o ganho do mosquito"),
+    ],
+    "cidade_regressao_sem_enso": [
+        ("Alvo", "Casos de dengue confirmados na cidade"),
+        ("Clima", "Entra — 6 ou 8 colunas que mais ajudam"),
+        ("Mosquito", "Entra"),
+        ("El Nino", "Fica de fora"),
+        ("Corte de maturidade", "Nenhum: usa todas as semanas ja reportadas"),
+        ("Horizontes", "1 a 12 semanas a frente"),
+        ("O que muda", "So clima x clima + mosquito. A unica diferenca pro principal e nao apagar as semanas recentes"),
+    ],
+    "cidade_lift_vetor": [
+        ("Alvo", "Casos de dengue confirmados na cidade"),
+        ("Clima", "Entra o clima INTEIRO (aqui nao escolhe as melhores colunas)"),
+        ("Mosquito", "Entra"),
+        ("El Nino", "Entra, junto com o clima"),
+        ("Corte de maturidade", "Nenhum"),
+        ("Horizontes", "1 a 12 semanas a frente"),
+        ("O que muda", "Tres conjuntos fixos de colunas: so clima, clima + mosquito e so mosquito"),
+    ],
+    "cidade_diebold": [
+        ("Alvo", "Casos de dengue confirmados na cidade"),
+        ("Clima", "Entra — as 6 colunas que mais ajudam"),
+        ("Mosquito", "Entra no M1 (o M0 fica so com clima)"),
+        ("El Nino", "Fica de fora"),
+        ("Corte de maturidade", "Roda dos dois jeitos: sem corte e cortando 12 semanas"),
+        ("Horizontes", "1 a 12 semanas a frente, testando todas as semanas"),
+        ("O que muda", "M0 (so clima) x M1 (clima + mosquito), com o teste de Diebold-Mariano dizendo se a diferenca e confiavel"),
+    ],
+    "cidade_deteccao_surto": [
+        ("Alvo", "Vai ter surto? (sim/nao) — passar do percentil 90 ou 95 de casos"),
+        ("Clima", "Entra — clima de semanas atras (temperatura, chuva, orvalho, umidade, pressao)"),
+        ("Mosquito", "Entra — captura de semanas atras e media movel"),
+        ("El Nino", "Fica de fora"),
+        ("Corte de maturidade", "12 semanas"),
+        ("Horizontes", "4, 8 e 12 semanas a frente"),
+        ("O que muda", "Modelo com mosquito x sem mosquito (teste de McNemar), e a comparacao com um palpite simples"),
+    ],
+    "comparacao_literatura": [
+        ("Alvo", "Duas coisas: o numero de casos, e se os casos vao acelerar (subir)"),
+        ("Clima", "Entra nos dois metodos"),
+        ("Mosquito", "Entra so no nosso metodo"),
+        ("El Nino", "Fica de fora"),
+        ("Corte de maturidade", "Nao se aplica"),
+        ("Horizontes", "1 a 12 semanas a frente"),
+        ("O que muda", "O metodo da literatura (Oliveira et al., so clima) x o nosso (clima + mosquito), nos mesmos dados de POA"),
+    ],
+    "bairro_surto": [
+        ("Alvo", "Densidade de mosquito de cada bairro (nao ha casos de dengue por bairro)"),
+        ("Clima", "Nao usa"),
+        ("Mosquito", "E o proprio alvo: usa o passado da densidade do bairro e dos 4 vizinhos (2019-2023)"),
+        ("El Nino", "Nao usa"),
+        ("Corte de maturidade", "Nao se aplica"),
+        ("Horizontes", "1 a 4 semanas a frente"),
+        ("O que muda", "Quatro receitas de colunas: so o bairro x + vizinhanca, e basico x melhorado (passado mais longe e criticidade)"),
+    ],
 }
 
 

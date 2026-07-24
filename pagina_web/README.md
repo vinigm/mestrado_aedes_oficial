@@ -15,7 +15,12 @@ cd pagina_web
 python3 gerar.py
 ```
 
-Depois abra **`site/index.html`** no navegador.
+Depois abra **`docs/index.html`** (na raiz do repositório) no navegador.
+
+> A saída fica em **`docs/`** de propósito: é a pasta que o **GitHub Pages**
+> publica na internet. Depois de gerar, um `git add docs && git commit && git push`
+> já atualiza o site público em
+> <https://vinigm.github.io/mestrado_aedes_oficial/>.
 
 Treinou um modelo novo? Rode o experimento e gere o painel de novo:
 
@@ -72,11 +77,11 @@ numerada), `**negrito**`, `*itálico*`, `` `código` ``, `[texto](link)`,
 
 | Arquivo | O que faz |
 |---|---|
-| `gerar.py` | o comando: lê o MLflow, monta as páginas e grava em `site/` |
+| `gerar.py` | o comando: lê o MLflow, monta as páginas e grava em `docs/` |
 | `conteudo.py` | os **textos** (objetivo, fontes de dados, nome bonito dos cenários) — edite aqui |
 | `paginas/` | suas **páginas novas** em Markdown (uma por arquivo `.md`) |
 | `leitor_mlflow.py` | lê a pasta `mlruns/` (Python puro, sem depender do MLflow) |
 | `markdown_simples.py` | traduz o Markdown das páginas extras em HTML |
-| `site/` | a **saída** — as páginas HTML prontas (é o que você abre) |
+| `docs/` | a **saída** (na raiz do repo) — as páginas HTML prontas; é o que você abre e o que o GitHub Pages publica |
 
 Para mudar um texto, edite `conteudo.py` e rode `python gerar.py` de novo.

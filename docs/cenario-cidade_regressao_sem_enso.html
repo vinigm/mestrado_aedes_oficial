@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E sem apagar as semanas recentes? — Modelagem preditiva de Aedes aegypti e dengue</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --fundo:#EAE4DD; --superficie:#FBF8F4; --elevado:#F2ECE4;
+  --tinta:#332F30; --tinta-suave:#4E4849; --muted:#666161; --faint:#948C87;
+  --borda:#DDD4C9; --borda-forte:#C7BBAC; --linha-grade:#E4DCD1;
+  --acento:#AF9AC9; --acento-forte:#6A5391; --acento-suave:#ECE6F3;
+  --bom:#6E8B5A; --atencao:#B07D33; --critico:#B0574B;
+  --raio:16px; --raio-p:10px; --largura:1080px;
+  --sombra:0 1px 2px rgba(14,26,22,.04), 0 6px 20px -12px rgba(14,26,22,.14);
+  --fonte-titulo:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --fonte-corpo:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --fonte-dados:"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --fundo:#0B1411; --superficie:#121C18; --elevado:#17221D;
+    --tinta:#EAF1ED; --tinta-suave:#C6D2CC; --muted:#95A89F; --faint:#66786F;
+    --borda:#233029; --borda-forte:#31423A; --linha-grade:#1E2A24;
+    --acento:#43BFA3; --acento-forte:#6FD6BF; --acento-suave:#10312A;
+    --bom:#5FB98A; --atencao:#E0A64B; --critico:#E07A7A;
+    --sombra:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -14px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --fundo:#211E20; --superficie:#2A2628; --elevado:#332E30;
+  --tinta:#EDE7E1; --tinta-suave:#D3C9C2; --muted:#A79E98; --faint:#7C736E;
+  --borda:#3C3739; --borda-forte:#4C4649; --linha-grade:#332E30;
+  --acento:#AF9AC9; --acento-forte:#C6B5DC; --acento-suave:#342B41;
+  --bom:#8FA875; --atencao:#D6A455; --critico:#D08579;
+  --sombra:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -14px rgba(0,0,0,.5);
+}
+:root[data-theme="light"]{
+  --fundo:#EAE4DD; --superficie:#FBF8F4; --elevado:#F2ECE4;
+  --tinta:#332F30; --tinta-suave:#4E4849; --muted:#666161; --faint:#948C87;
+  --borda:#DDD4C9; --borda-forte:#C7BBAC; --linha-grade:#E4DCD1;
+  --acento:#AF9AC9; --acento-forte:#6A5391; --acento-suave:#ECE6F3;
+  --bom:#6E8B5A; --atencao:#B07D33; --critico:#B0574B;
+  --sombra:0 1px 2px rgba(14,26,22,.04), 0 6px 20px -12px rgba(14,26,22,.14);
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--fundo); color:var(--tinta);
+  font-family:var(--fonte-corpo); font-size:16.5px; line-height:1.62;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:var(--acento-forte); text-underline-offset:2px}
+h1,h2,h3,h4{font-family:var(--fonte-titulo); font-weight:600; line-height:1.14; text-wrap:balance; color:var(--tinta)}
+h1{font-size:clamp(2.1rem,1.4rem + 2.6vw,3rem); margin:.1em 0 .35em; letter-spacing:-.015em}
+h2{font-size:1.55rem; margin:0 0 .5rem; letter-spacing:-.01em}
+h3{font-size:1.13rem; margin:0 0 .35rem}
+p{margin:0 0 1rem; max-width:66ch}
+strong{color:var(--tinta)}
+.eyebrow{font-size:.73rem; text-transform:uppercase; letter-spacing:.16em; color:var(--acento-forte); font-weight:700; margin:0 0 .7rem}
+
+.barra{position:fixed; top:0; left:0; bottom:0; width:240px; z-index:20; overflow-y:auto;
+  background:var(--superficie); border-right:1px solid var(--borda); display:flex; flex-direction:column; padding:1.5rem 1.1rem}
+.barra-interna{display:flex; flex-direction:column; gap:1.4rem; flex:1}
+.marca{display:flex; align-items:flex-start; gap:.55rem; font-weight:700; color:var(--tinta); text-decoration:none; line-height:1.25}
+.marca .ponto{width:10px; height:10px; border-radius:50%; background:var(--acento); box-shadow:0 0 0 3px var(--acento-suave); margin-top:.35rem; flex:none}
+.marca span{font-size:.92rem; letter-spacing:-.01em}
+.nav-links{display:flex; flex-direction:column; gap:.15rem}
+.nav-links a{color:var(--muted); text-decoration:none; font-size:.92rem; font-weight:600; padding:.55rem .8rem; border-radius:10px; border-left:3px solid transparent; transition:color .15s, background .15s}
+.nav-links a:hover{color:var(--tinta); background:var(--elevado)}
+.nav-links a[aria-current="page"]{color:var(--acento-forte); background:var(--acento-suave); border-left-color:var(--acento)}
+.nav-links a.grupo{margin-top:1rem; color:var(--tinta); font-family:var(--fonte-titulo); font-size:1.02rem; font-weight:600}
+.nav-links a.grupo[aria-current="page"]{color:var(--acento-forte)}
+.nav-links a.sub{padding:.4rem .8rem .4rem 1.5rem; font-size:.85rem; font-weight:500}
+.nav-links a.sub[aria-current="page"]{font-weight:700}
+.nav-secao{font-size:.66rem; text-transform:uppercase; letter-spacing:.12em; color:var(--faint); font-weight:700; margin:1.1rem 0 .3rem .8rem}
+.nav-secao.sub-secao{margin:.75rem 0 .2rem .8rem; color:var(--acento-forte)}
+.tema{margin-top:auto; align-self:flex-start; border:1px solid var(--borda); background:var(--superficie); color:var(--muted);
+  height:36px; padding:0 .85rem; border-radius:10px; cursor:pointer; font-size:.85rem; display:inline-flex; align-items:center; gap:.5rem; transition:color .15s, border-color .15s}
+.tema:hover{color:var(--tinta); border-color:var(--acento)}
+
+.container{margin-left:240px; max-width:1600px; padding:2.6rem clamp(1.6rem,3.5vw,3.5rem) 4.5rem}
+.secao{margin:3rem 0}
+.secao > .eyebrow{margin-bottom:1rem}
+
+.hero{padding:1.4rem 0 .6rem; position:relative}
+.hero .sub, .lead{font-size:1.18rem; line-height:1.5; color:var(--muted); max-width:64ch; margin:.4rem 0 0}
+.hero .lead strong{color:var(--tinta-suave)}
+.hero-visual{margin:1.8rem 0 .4rem; border:1px solid var(--borda); border-radius:var(--raio); background:linear-gradient(180deg,var(--elevado),var(--superficie)); padding:1rem 1.2rem .6rem; box-shadow:var(--sombra)}
+.hero-visual .cap{font-size:.74rem; text-transform:uppercase; letter-spacing:.1em; color:var(--faint); font-weight:700; margin-bottom:.3rem}
+.onda{width:100%; height:96px; display:block}
+
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:1rem; margin:1.6rem 0}
+.kpi{position:relative; background:var(--superficie); border:1px solid var(--borda); border-radius:var(--raio); padding:1.15rem 1.2rem; box-shadow:var(--sombra); overflow:hidden}
+.kpi::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--acento); opacity:.85}
+.kpi .valor{font-family:var(--fonte-dados); font-size:1.9rem; font-weight:600; color:var(--tinta); font-variant-numeric:tabular-nums; letter-spacing:-.03em; line-height:1.1}
+.kpi .rotulo{font-size:.73rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-top:.3rem}
+
+.cartoes{display:grid; grid-template-columns:repeat(auto-fit,minmax(235px,1fr)); gap:1rem}
+.cartao{display:flex; flex-direction:column; background:var(--superficie); border:1px solid var(--borda); border-radius:var(--raio);
+  padding:1.35rem 1.4rem; text-decoration:none; color:inherit; box-shadow:var(--sombra); transition:border-color .18s, transform .18s, box-shadow .18s}
+a.cartao:hover{border-color:var(--acento); transform:translateY(-3px); box-shadow:0 1px 2px rgba(14,26,22,.05), 0 14px 30px -16px rgba(12,110,91,.4)}
+.cartao h3{color:var(--tinta)}
+.cartao p{color:var(--muted); font-size:.94rem; margin:0 0 .8rem}
+.cartao .seta{color:var(--acento-forte); font-weight:700; margin-top:auto; display:inline-block; font-size:.9rem}
+
+.fluxo{display:flex; flex-wrap:wrap; gap:.55rem; align-items:stretch; margin:1.2rem 0}
+.fluxo .passo{flex:1 1 175px; background:var(--elevado); border:1px solid var(--borda); border-radius:var(--raio-p); padding:.95rem 1.05rem}
+.fluxo .passo b{display:block; color:var(--tinta); font-size:.95rem; margin-bottom:.15rem}
+.fluxo .passo small{color:var(--muted)}
+.fluxo .seta{display:grid; place-items:center; color:var(--acento); font-size:1.15rem; padding:0 .1rem}
+@media (max-width:640px){ .fluxo .seta{transform:rotate(90deg)} }
+
+.grade-fontes{display:grid; grid-template-columns:repeat(auto-fit,minmax(265px,1fr)); gap:1rem}
+.fonte{background:var(--superficie); border:1px solid var(--borda); border-radius:var(--raio); padding:1.2rem 1.3rem; box-shadow:var(--sombra); transition:border-color .18s, transform .18s}
+.fonte:hover{border-color:var(--borda-forte); transform:translateY(-2px)}
+.fonte h3{display:flex; align-items:center; flex-wrap:wrap; gap:.5rem; color:var(--tinta)}
+.fonte .papel{color:var(--tinta-suave); font-size:.95rem; margin:.5rem 0 .7rem}
+.fonte .origem{color:var(--muted); font-size:.84rem; margin:0}
+.chips{display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:.5rem}
+.chip{font-size:.71rem; font-weight:600; color:var(--muted); background:var(--elevado); border:1px solid var(--borda); border-radius:99px; padding:.18rem .6rem}
+.badge{font-size:.66rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; padding:.18rem .5rem; border-radius:99px}
+.badge.vital{color:#fff; background:var(--critico)}
+
+.callout{background:var(--acento-suave); border:1px solid color-mix(in srgb, var(--acento) 28%, var(--borda)); border-left:4px solid var(--acento);
+  border-radius:var(--raio-p); padding:1.15rem 1.3rem; margin:1.4rem 0}
+.callout .eyebrow{color:var(--acento-forte); margin-bottom:.4rem}
+.callout p{margin:0; color:var(--tinta); max-width:74ch}
+
+.lista-metodo{display:grid; gap:.9rem; margin:1.3rem 0; padding:0; list-style:none; counter-reset:passo}
+.lista-metodo li{position:relative; background:var(--superficie); border:1px solid var(--borda); border-radius:var(--raio-p); padding:1.1rem 1.2rem 1.1rem 3.2rem}
+.lista-metodo li::before{counter-increment:passo; content:counter(passo); position:absolute; left:1rem; top:1.05rem; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--acento-suave); color:var(--acento-forte); font-family:var(--fonte-dados); font-weight:700; font-size:.85rem; display:grid; place-items:center}
+.lista-metodo b{color:var(--tinta)}
+.lista-metodo p{margin:.3rem 0 0; color:var(--muted); font-size:.94rem}
+
+.cenario{background:var(--superficie); border:1px solid var(--borda); border-radius:var(--raio); padding:1.6rem 1.7rem; margin:1.5rem 0; box-shadow:var(--sombra)}
+.cenario-topo{display:flex; flex-wrap:wrap; align-items:baseline; gap:.7rem; margin-bottom:.2rem}
+.cenario-topo h2{margin:0}
+.cenario .pergunta{color:var(--muted); margin:.1rem 0 .2rem; font-size:1.02rem}
+.cenario .tecnico{font-family:var(--fonte-dados); font-size:.75rem; color:var(--faint)}
+.cenario .descricao{color:var(--tinta-suave); font-size:.95rem; max-width:74ch}
+
+.tabela-rolavel{overflow-x:auto; margin:1.1rem 0; border:1px solid var(--borda); border-radius:var(--raio-p)}
+table.tabela{width:100%; border-collapse:collapse; font-size:.9rem}
+table.tabela th, table.tabela td{padding:.62rem .85rem; text-align:right; white-space:nowrap; border-bottom:1px solid var(--borda)}
+table.tabela th:first-child, table.tabela td:first-child{text-align:left}
+table.tabela thead th{background:var(--elevado); color:var(--muted); font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; font-weight:700; position:sticky; top:0}
+table.tabela tbody tr{transition:background .12s}
+table.tabela tbody tr:hover{background:var(--elevado)}
+table.tabela tbody tr:last-child td{border-bottom:none}
+table.tabela td.num{font-family:var(--fonte-dados); font-variant-numeric:tabular-nums}
+table.tabela td.melhor{color:var(--acento-forte); font-weight:700; background:var(--acento-suave)}
+table.tabela td.melhor::after{content:" ✓"; font-size:.8em}
+.modelo-nome{font-weight:600; color:var(--tinta)}
+.pastilha{font-family:var(--fonte-dados); font-size:.72rem; font-weight:600; padding:.14rem .55rem; border-radius:99px; background:var(--acento-suave); color:var(--acento-forte)}
+.status{font-size:.76rem; color:var(--muted); margin-top:.15rem}
+.status.concluido::before{content:"● "; color:var(--bom)}
+.status.falhou::before{content:"● "; color:var(--critico)}
+
+/* Ranking em barras (comparacao visual dos modelos) */
+.ranking{display:flex; flex-direction:column; gap:.5rem; margin:1.2rem 0}
+.ranking .titulo-graf{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:700; margin-bottom:.2rem}
+.ranking-linha{display:grid; grid-template-columns:minmax(120px,auto) 1fr auto; align-items:center; gap:.7rem}
+.ranking-nome{font-size:.86rem; color:var(--tinta-suave); text-align:right; font-variant-numeric:tabular-nums}
+.ranking-trilho{background:var(--elevado); border-radius:99px; height:16px; overflow:hidden; border:1px solid var(--borda)}
+.ranking-barra{height:100%; background:color-mix(in srgb, var(--acento) 55%, var(--superficie)); border-radius:99px}
+.ranking-linha.top .ranking-barra{background:var(--acento)}
+.ranking-linha.top .ranking-nome{color:var(--tinta); font-weight:700}
+.ranking-valor{font-family:var(--fonte-dados); font-size:.85rem; font-variant-numeric:tabular-nums; color:var(--tinta); min-width:3.4em; text-align:right}
+.ranking-linha.top .ranking-valor{color:var(--acento-forte); font-weight:700}
+
+.grafico{margin:1.3rem 0 .4rem}
+.grafico .titulo-graf{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:700; margin-bottom:.5rem}
+.grafico svg{width:100%; height:auto; max-width:740px; display:block}
+.grafico .grade{stroke:var(--linha-grade); stroke-width:1}
+.grafico .eixo{fill:var(--muted); font-family:var(--fonte-dados); font-size:11px}
+.grafico .eixo-titulo{fill:var(--faint); font-family:var(--fonte-corpo); font-size:11px}
+.legenda{display:flex; flex-wrap:wrap; gap:.9rem; margin-top:.6rem; font-size:.82rem; color:var(--tinta-suave)}
+.legenda span{display:inline-flex; align-items:center; gap:.4rem}
+.legenda i{width:14px; height:3px; border-radius:2px; display:inline-block}
+
+/* Linha do tempo dos dados */
+.linha-tempo{margin:1.3rem 0 .4rem}
+.linha-tempo svg{width:100%; height:auto; max-width:760px; display:block}
+.linha-tempo .bloco-rot{fill:#fff; font-family:var(--fonte-corpo); font-size:12px; font-weight:700}
+.linha-tempo .ano{fill:var(--muted); font-family:var(--fonte-dados); font-size:11px}
+.linha-tempo .gap-rot{fill:var(--atencao); font-family:var(--fonte-corpo); font-size:11px; font-weight:700}
+
+details.detalhes{margin-top:.8rem; border-top:1px dashed var(--borda); padding-top:.7rem}
+details.detalhes summary{cursor:pointer; color:var(--acento-forte); font-weight:600; font-size:.9rem; list-style:none}
+details.detalhes summary::-webkit-details-marker{display:none}
+details.detalhes summary::before{content:"▸ "; }
+details.detalhes[open] summary::before{content:"▾ "; }
+.grupo-param{margin:1rem 0}
+.grupo-param h4{margin:0 0 .35rem; font-size:.76rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-family:var(--fonte-corpo)}
+table.params{width:100%; border-collapse:collapse; font-size:.85rem}
+table.params td{padding:.3rem .6rem; border-bottom:1px solid var(--borda); vertical-align:top}
+table.params td:first-child{color:var(--muted); width:45%}
+table.params td:last-child{font-family:var(--fonte-dados); color:var(--tinta); text-align:right; font-variant-numeric:tabular-nums; word-break:break-word}
+
+.vazio{text-align:center; color:var(--muted); background:var(--superficie); border:1px dashed var(--borda-forte); border-radius:var(--raio); padding:3rem 1.5rem}
+.vazio code{background:var(--elevado); padding:.15rem .45rem; border-radius:6px; font-family:var(--fonte-dados); font-size:.85em}
+
+footer{border-top:1px solid var(--borda); margin-top:3.5rem; margin-left:240px}
+.rodape{max-width:1600px; margin:0; padding:1.8rem clamp(1.6rem,3.5vw,3.5rem); color:var(--muted); font-size:.83rem; display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; justify-content:space-between}
+
+@media (max-width:880px){
+  .barra{position:static; width:auto; height:auto; flex-direction:row; align-items:center; overflow:visible; border-right:none; border-bottom:1px solid var(--borda); padding:.7rem 1.2rem}
+  .barra-interna{flex-direction:row; align-items:center; gap:.7rem 1.1rem; flex-wrap:wrap}
+  .marca{margin-right:auto}
+  .marca span{font-size:.85rem}
+  .marca .ponto{margin-top:.25rem}
+  .nav-links{flex-direction:row; flex-wrap:wrap}
+  .nav-links a{border-left:none; padding:.35rem .7rem; border-radius:99px}
+  .nav-links a[aria-current="page"]{border-left-color:transparent}
+  .tema{margin-top:0}
+  .container, footer{margin-left:0}
+  .rodape{padding-left:1.4rem; padding-right:1.4rem}
+}
+
+.acordeao{display:flex; flex-direction:column; gap:.7rem; margin-top:1.4rem}
+.cenario-item{background:var(--superficie); border:1px solid var(--borda); border-radius:var(--raio); box-shadow:var(--sombra); transition:border-color .15s}
+.cenario-item[open]{border-color:var(--borda-forte)}
+.cenario-item>summary{list-style:none; cursor:pointer; padding:1.1rem 1.3rem; display:flex; align-items:center; gap:.8rem}
+.cenario-item>summary::-webkit-details-marker{display:none}
+.cenario-item>summary::before{content:"▸"; color:var(--acento); font-size:.85rem; transition:transform .18s; flex:none}
+.cenario-item[open]>summary::before{transform:rotate(90deg)}
+.cenario-item[open]>summary{border-bottom:1px solid var(--borda)}
+.cenario-item .titulo-cen{font-family:var(--fonte-titulo); font-size:1.14rem; font-weight:600; color:var(--tinta); margin-right:auto}
+.cenario-item .destaque{font-family:var(--fonte-dados); font-size:.8rem; color:var(--muted); white-space:nowrap}
+.cenario-item .destaque b{color:var(--acento-forte)}
+.cenario-item .corpo{padding:1.2rem 1.3rem}
+.cenario-item .pergunta-cen{color:var(--muted); font-size:.95rem; margin:0 0 1.1rem}
+.tag{font-size:.71rem; font-weight:700; padding:.2rem .62rem; border-radius:99px; white-space:nowrap}
+.tag.rodado{background:var(--acento-suave); color:var(--acento-forte)}
+.tag.pendente{background:var(--elevado); color:var(--muted); border:1px solid var(--borda)}
+.modelos-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(245px,1fr)); gap:.9rem}
+.modelo-card{border:1px solid var(--borda); border-radius:var(--raio-p); padding:1rem 1.1rem; background:var(--elevado)}
+.modelo-card.campeao{border-color:var(--acento); box-shadow:inset 0 0 0 1px var(--acento)}
+.modelo-cab{display:flex; align-items:center; gap:.5rem; margin-bottom:.8rem}
+.modelo-cab .coroa{font-size:.9rem}
+.stats{display:flex; flex-wrap:wrap; gap:1.2rem; margin-bottom:.4rem}
+.stat .v{font-family:var(--fonte-dados); font-size:1.25rem; font-weight:600; color:var(--tinta); font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.stat .r{font-size:.65rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-top:.1rem}
+.nao-rodado{color:var(--muted); font-size:.92rem; margin:0}
+.nao-rodado code{background:var(--elevado); border:1px solid var(--borda); border-radius:6px; padding:.1em .4em; font-family:var(--fonte-dados); font-size:.85em}
+
+.conteudo-md{max-width:70ch}
+.conteudo-md h2{margin:2rem 0 .6rem}
+.conteudo-md h3{margin:1.4rem 0 .4rem}
+.conteudo-md p{color:var(--tinta-suave)}
+.conteudo-md ul,.conteudo-md ol{color:var(--tinta-suave); padding-left:1.3rem; margin:0 0 1rem}
+.conteudo-md li{margin:.3rem 0}
+.conteudo-md blockquote{margin:1.2rem 0; padding:.8rem 1.1rem; border-left:4px solid var(--acento);
+  background:var(--acento-suave); border-radius:0 var(--raio-p) var(--raio-p) 0; color:var(--tinta)}
+.conteudo-md code{font-family:var(--fonte-dados); font-size:.88em; background:var(--elevado); border:1px solid var(--borda); border-radius:6px; padding:.08em .4em}
+.conteudo-md img{max-width:100%; height:auto; border-radius:var(--raio-p); border:1px solid var(--borda); margin:.6rem 0}
+.conteudo-md hr{border:none; border-top:1px solid var(--borda); margin:2rem 0}
+.conteudo-md a{color:var(--acento-forte)}
+
+.tabela-dados{width:100%; border-collapse:collapse; font-size:.93rem}
+.tabela-dados thead th{text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; padding:.6rem .9rem; border-bottom:1px solid var(--borda-forte); white-space:nowrap}
+.tabela-dados td{text-align:left; padding:.9rem; border-bottom:1px solid var(--borda); vertical-align:top}
+.tabela-dados tbody tr:last-child td{border-bottom:none}
+.tabela-dados tbody tr{transition:background .12s}
+.tabela-dados tbody tr:hover{background:var(--elevado)}
+.tabela-dados .fonte-nome{font-weight:700; color:var(--tinta); display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
+.tabela-dados .fonte-desc{color:var(--muted); font-size:.85rem; margin-top:.25rem; max-width:46ch}
+.tabela-dados .cobertura, .tabela-dados .freq{white-space:nowrap; color:var(--tinta-suave)}
+.tabela-dados .origem-cel{color:var(--muted); font-size:.88rem}
+.tag-papel{font-size:.72rem; font-weight:700; padding:.16rem .58rem; border-radius:99px; white-space:nowrap}
+.tag-papel.vetor{background:var(--acento-suave); color:var(--acento-forte)}
+.tag-papel.alvo{background:var(--acento-forte); color:var(--superficie)}
+.tag-papel.clima{background:var(--elevado); color:var(--muted); border:1px solid var(--borda)}
+.tag-papel.contexto{background:var(--elevado); color:var(--faint); border:1px solid var(--borda)}
+
+/* Detalhamento do clima: cada tema e as colunas que ele gera */
+.clima-intro{color:var(--tinta-suave); max-width:74ch; margin:0 0 1rem}
+.clima-rodape{color:var(--muted); font-size:.9rem; margin:1rem 0 0; max-width:74ch}
+.clima-rodape strong{color:var(--tinta)}
+table.tabela-clima td{vertical-align:middle}
+table.tabela-clima .clima-tema{font-weight:700; color:var(--tinta); white-space:nowrap; width:1%; padding-right:1.4rem}
+table.tabela-clima .clima-emoji{margin-right:.15rem}
+.clima-chips{display:flex; flex-wrap:wrap; gap:.4rem}
+table.tabela-clima code{font-family:var(--fonte-dados); font-size:.82rem; background:var(--elevado); border:1px solid var(--borda); border-radius:6px; padding:.14rem .5rem; color:var(--tinta-suave); white-space:nowrap}
+
+/* Ficha de dados do cenario: o que entra e o que muda entre os testes */
+table.tabela-ficha .ficha-rot{font-weight:700; color:var(--tinta); white-space:nowrap; width:1%; padding-right:1.8rem; vertical-align:top}
+table.tabela-ficha .ficha-val{color:var(--tinta-suave)}
+table.tabela-ficha tr.ficha-compara td{background:var(--acento-suave); border-top:1px solid color-mix(in srgb, var(--acento) 28%, var(--borda))}
+table.tabela-ficha tr.ficha-compara .ficha-rot{color:var(--acento-forte)}
+table.tabela-ficha tr.ficha-compara .ficha-val{color:var(--tinta); font-weight:600}
+table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
+
+.figura{margin:1.5rem 0; border:1px solid var(--borda); border-radius:var(--raio); overflow:hidden; box-shadow:var(--sombra)}
+.figura img{display:block; width:100%; height:auto; background:#fff}
+.figura figcaption{padding:.75rem 1.1rem; font-size:.86rem; color:var(--muted); background:var(--superficie); border-top:1px solid var(--borda)}
+
+:focus-visible{outline:2px solid var(--acento); outline-offset:2px; border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto !important}}
+@media print{
+  .barra,.tema,footer{display:none}
+  body{background:#fff; font-size:11pt}
+  .cenario,.kpi,.fonte,.cartao,.cenario-item{break-inside:avoid; box-shadow:none}
+}
+</style>
+<script>(function(){try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+</head>
+<body>
+<aside class="barra"><div class="barra-interna"><a class="marca" href="index.html"><span class="ponto"></span><span>Modelagem preditiva de Aedes aegypti e dengue</span></a><nav class="nav-links"><a href="index.html">Inicio</a><a href="objetivo.html">Objetivo</a><a href="dados.html">Dados</a><a href="cenarios.html" class="grupo">Cenarios</a><div class="nav-secao sub-secao">Prever os casos</div><a href="cenario-cidade_regressao.html" class="sub">Previsao principal</a><a href="cenario-cidade_regressao_com_enso.html" class="sub">Com El Nino</a><a href="cenario-cidade_regressao_sem_enso.html" aria-current="page" class="sub">Sem apagar semanas</a><div class="nav-secao sub-secao">O mosquito faz diferenca?</div><a href="cenario-cidade_lift_vetor.html" class="sub">O ganho do mosquito</a><a href="cenario-cidade_diebold.html" class="sub">E ganho de verdade?</a><a href="cenario-comparacao_literatura.html" class="sub">Contra a literatura</a><div class="nav-secao sub-secao">Outras frentes</div><a href="cenario-cidade_deteccao_surto.html" class="sub">Vai ter surto?</a><a href="cenario-bairro_surto.html" class="sub">Por bairro</a><div class="nav-secao">Paginas</div><a href="metodo.html">Método</a></nav><button class="tema" onclick="alternarTema()" aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">◑ Tema</button></div></aside>
+<main class="container">
+<section class="hero"><p class="eyebrow">Cenario</p><h1>E sem apagar as semanas recentes?</h1><p class="lead">O que muda se a gente confiar nas semanas que ainda nao fecharam?</p><p class="tecnico" style="margin-top:.7rem">cidade_regressao_sem_enso</p></section><p class="descricao">A previsao principal sem tirar as semanas recentes. Serve de comparacao para mostrar que deixar essas semanas de fora ajuda mesmo.</p><section class="secao"><p class="eyebrow">Os dados deste cenario</p><div class="tabela-rolavel"><table class="tabela-dados tabela-ficha"><thead><tr><th>Ingrediente</th><th>Como entra aqui</th></tr></thead><tbody><tr class=""><td class="ficha-rot">Alvo</td><td class="ficha-val">Casos de dengue confirmados na cidade</td></tr><tr class=""><td class="ficha-rot">Clima</td><td class="ficha-val">Entra — 6 ou 8 colunas que mais ajudam</td></tr><tr class=""><td class="ficha-rot">Mosquito</td><td class="ficha-val">Entra</td></tr><tr class=""><td class="ficha-rot">El Nino</td><td class="ficha-val">Fica de fora</td></tr><tr class=""><td class="ficha-rot">Corte de maturidade</td><td class="ficha-val">Nenhum: usa todas as semanas ja reportadas</td></tr><tr class=""><td class="ficha-rot">Horizontes</td><td class="ficha-val">1 a 12 semanas a frente</td></tr><tr class="ficha-compara"><td class="ficha-rot">O que muda</td><td class="ficha-val">So clima x clima + mosquito. A unica diferenca pro principal e nao apagar as semanas recentes</td></tr></tbody></table></div></section><div class="tabela-rolavel"><table class="tabela"><thead><tr><th>Modelo</th><th>Erro medio (MAE)</th><th>R² (o quanto explica)</th><th>Duracao</th><th>Quando</th></tr></thead><tbody><tr><td><span class="modelo-nome">lightgbm</span><div class="status concluido">concluido</div></td><td class="num">60.39</td><td class="num">0.404</td><td class="num">20min 56s</td><td class="num">23/07/2026 11:54</td></tr></tbody></table></div><div class="grafico"><div class="titulo-graf">Erro medio (MAE) por horizonte (semanas)</div><svg viewBox="0 0 720 320" role="img" aria-label="Erro medio (MAE) por horizonte (semanas)"><line class="grade" x1="56" y1="276.0" x2="704" y2="276.0"/><text class="eixo" x="48" y="279.0" text-anchor="end">23.22</text><line class="grade" x1="56" y1="211.5" x2="704" y2="211.5"/><text class="eixo" x="48" y="214.5" text-anchor="end">41.40</text><line class="grade" x1="56" y1="147.0" x2="704" y2="147.0"/><text class="eixo" x="48" y="150.0" text-anchor="end">59.59</text><line class="grade" x1="56" y1="82.5" x2="704" y2="82.5"/><text class="eixo" x="48" y="85.5" text-anchor="end">77.77</text><line class="grade" x1="56" y1="18.0" x2="704" y2="18.0"/><text class="eixo" x="48" y="21.0" text-anchor="end">95.95</text><text class="eixo" x="56.0" y="294" text-anchor="middle">1</text><text class="eixo" x="114.9" y="294" text-anchor="middle">2</text><text class="eixo" x="173.8" y="294" text-anchor="middle">3</text><text class="eixo" x="232.7" y="294" text-anchor="middle">4</text><text class="eixo" x="291.6" y="294" text-anchor="middle">5</text><text class="eixo" x="350.5" y="294" text-anchor="middle">6</text><text class="eixo" x="409.5" y="294" text-anchor="middle">7</text><text class="eixo" x="468.4" y="294" text-anchor="middle">8</text><text class="eixo" x="527.3" y="294" text-anchor="middle">9</text><text class="eixo" x="586.2" y="294" text-anchor="middle">10</text><text class="eixo" x="645.1" y="294" text-anchor="middle">11</text><text class="eixo" x="704.0" y="294" text-anchor="middle">12</text><text class="eixo-titulo" x="380.0" y="314" text-anchor="middle">horizonte (semanas)</text><polyline fill="none" stroke="#9179B8" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" points="56.0,255.3 114.9,258.2 173.8,224.1 232.7,185.6 291.6,172.4 350.5,142.0 409.5,129.9 468.4,89.3 527.3,63.3 586.2,57.1 645.1,54.2 704.0,35.8"/><circle cx="56.0" cy="255.3" r="2.6" fill="#9179B8"/><circle cx="114.9" cy="258.2" r="2.6" fill="#9179B8"/><circle cx="173.8" cy="224.1" r="2.6" fill="#9179B8"/><circle cx="232.7" cy="185.6" r="2.6" fill="#9179B8"/><circle cx="291.6" cy="172.4" r="2.6" fill="#9179B8"/><circle cx="350.5" cy="142.0" r="2.6" fill="#9179B8"/><circle cx="409.5" cy="129.9" r="2.6" fill="#9179B8"/><circle cx="468.4" cy="89.3" r="2.6" fill="#9179B8"/><circle cx="527.3" cy="63.3" r="2.6" fill="#9179B8"/><circle cx="586.2" cy="57.1" r="2.6" fill="#9179B8"/><circle cx="645.1" cy="54.2" r="2.6" fill="#9179B8"/><circle cx="704.0" cy="35.8" r="2.6" fill="#9179B8"/><circle cx="704.0" cy="35.8" r="4.4" fill="#9179B8" stroke="var(--superficie)" stroke-width="2"/><polyline fill="none" stroke="#C79A5B" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" points="56.0,251.3 114.9,243.0 173.8,212.2 232.7,184.2 291.6,187.6 350.5,150.1 409.5,109.5 468.4,108.7 527.3,64.4 586.2,75.6 645.1,83.5 704.0,86.8"/><circle cx="56.0" cy="251.3" r="2.6" fill="#C79A5B"/><circle cx="114.9" cy="243.0" r="2.6" fill="#C79A5B"/><circle cx="173.8" cy="212.2" r="2.6" fill="#C79A5B"/><circle cx="232.7" cy="184.2" r="2.6" fill="#C79A5B"/><circle cx="291.6" cy="187.6" r="2.6" fill="#C79A5B"/><circle cx="350.5" cy="150.1" r="2.6" fill="#C79A5B"/><circle cx="409.5" cy="109.5" r="2.6" fill="#C79A5B"/><circle cx="468.4" cy="108.7" r="2.6" fill="#C79A5B"/><circle cx="527.3" cy="64.4" r="2.6" fill="#C79A5B"/><circle cx="586.2" cy="75.6" r="2.6" fill="#C79A5B"/><circle cx="645.1" cy="83.5" r="2.6" fill="#C79A5B"/><circle cx="704.0" cy="86.8" r="2.6" fill="#C79A5B"/><circle cx="704.0" cy="86.8" r="4.4" fill="#C79A5B" stroke="var(--superficie)" stroke-width="2"/><polyline fill="none" stroke="#A5937B" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" points="56.0,249.1 114.9,244.0 173.8,216.5 232.7,169.1 291.6,138.1 350.5,148.5 409.5,143.8 468.4,101.4 527.3,86.4 586.2,82.2 645.1,83.3 704.0,57.5"/><circle cx="56.0" cy="249.1" r="2.6" fill="#A5937B"/><circle cx="114.9" cy="244.0" r="2.6" fill="#A5937B"/><circle cx="173.8" cy="216.5" r="2.6" fill="#A5937B"/><circle cx="232.7" cy="169.1" r="2.6" fill="#A5937B"/><circle cx="291.6" cy="138.1" r="2.6" fill="#A5937B"/><circle cx="350.5" cy="148.5" r="2.6" fill="#A5937B"/><circle cx="409.5" cy="143.8" r="2.6" fill="#A5937B"/><circle cx="468.4" cy="101.4" r="2.6" fill="#A5937B"/><circle cx="527.3" cy="86.4" r="2.6" fill="#A5937B"/><circle cx="586.2" cy="82.2" r="2.6" fill="#A5937B"/><circle cx="645.1" cy="83.3" r="2.6" fill="#A5937B"/><circle cx="704.0" cy="57.5" r="2.6" fill="#A5937B"/><circle cx="704.0" cy="57.5" r="4.4" fill="#A5937B" stroke="var(--superficie)" stroke-width="2"/><polyline fill="none" stroke="#6E8B5A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" points="56.0,248.6 114.9,242.4 173.8,213.2 232.7,167.9 291.6,137.8 350.5,153.0 409.5,148.8 468.4,109.8 527.3,78.2 586.2,88.3 645.1,95.5 704.0,91.2"/><circle cx="56.0" cy="248.6" r="2.6" fill="#6E8B5A"/><circle cx="114.9" cy="242.4" r="2.6" fill="#6E8B5A"/><circle cx="173.8" cy="213.2" r="2.6" fill="#6E8B5A"/><circle cx="232.7" cy="167.9" r="2.6" fill="#6E8B5A"/><circle cx="291.6" cy="137.8" r="2.6" fill="#6E8B5A"/><circle cx="350.5" cy="153.0" r="2.6" fill="#6E8B5A"/><circle cx="409.5" cy="148.8" r="2.6" fill="#6E8B5A"/><circle cx="468.4" cy="109.8" r="2.6" fill="#6E8B5A"/><circle cx="527.3" cy="78.2" r="2.6" fill="#6E8B5A"/><circle cx="586.2" cy="88.3" r="2.6" fill="#6E8B5A"/><circle cx="645.1" cy="95.5" r="2.6" fill="#6E8B5A"/><circle cx="704.0" cy="91.2" r="2.6" fill="#6E8B5A"/><circle cx="704.0" cy="91.2" r="4.4" fill="#6E8B5A" stroke="var(--superficie)" stroke-width="2"/></svg><div class="legenda"><span><i style="background:#9179B8"></i>M0_clima6</span><span><i style="background:#C79A5B"></i>M0_clima8</span><span><i style="background:#A5937B"></i>M1_clima6_vetor</span><span><i style="background:#6E8B5A"></i>M1_clima8_vetor</span></div></div><section class="secao"><p class="eyebrow">Detalhes de cada modelo</p><details class="detalhes"><summary>Detalhes de lightgbm</summary><div class="grupo-param"><h4>Modelo e ajustes</h4><table class="params"><tr><td>learning_rate</td><td>0.05</td></tr><tr><td>min_child_samples</td><td>5</td></tr><tr><td>n_estimators</td><td>250</td></tr><tr><td>n_jobs</td><td>-1</td></tr><tr><td>num_leaves</td><td>15</td></tr><tr><td>verbose</td><td>-1</td></tr></table></div><div class="grupo-param"><h4>Escolha das colunas de clima</h4><table class="params"><tr><td>learning_rate</td><td>0.05</td></tr><tr><td>min_child_samples</td><td>5</td></tr><tr><td>n_estimators</td><td>250</td></tr><tr><td>n_jobs</td><td>-1</td></tr><tr><td>num_leaves</td><td>15</td></tr><tr><td>verbose</td><td>-1</td></tr><tr><td>nome</td><td>lightgbm</td></tr></table></div><div class="grupo-param"><h4>Configuracao do experimento</h4><table class="params"><tr><td>Algoritmo</td><td>lightgbm</td></tr><tr><td>arquivo_referencias</td><td>None</td></tr><tr><td>arquivo_saida</td><td>clima_enxuto_sem_enso_resultados.csv</td></tr><tr><td>Cenario</td><td>None</td></tr><tr><td>O que preve</td><td>casos</td></tr><tr><td>colunas_ignorar</td><td>(&#x27;fonte&#x27;, &#x27;SE&#x27;, &#x27;data&#x27;, &#x27;ano&#x27;, &#x27;semana&#x27;, &#x27;interpolado&#x27;, &#x27;aedes_aegypti&#x27;, &#x27;aedes_albopictus&#x27;, &#x27;culex_sp&#x27;, &#x27;numero_de_armadilhas&#x27;, &#x27;nino34_anom&#x27;, &#x27;oni&#x27;)</td></tr><tr><td>colunas_saida</td><td>(&#x27;algoritmo&#x27;, &#x27;conjunto&#x27;, &#x27;h&#x27;, &#x27;MAE&#x27;, &#x27;R2&#x27;)</td></tr><tr><td>conjuntos_referencia</td><td>()</td></tr><tr><td>fracao_treino_selecao</td><td>0.6</td></tr><tr><td>Horizontes (semanas)</td><td>(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)</td></tr><tr><td>horizontes_selecao_clima</td><td>(1, 4, 8)</td></tr><tr><td>minimo_semanas_treino</td><td>104</td></tr><tr><td>Modelo</td><td>lightgbm</td></tr><tr><td>nome</td><td>cidade_regressao_sem_enso</td></tr><tr><td>padroes_clima</td><td>(&#x27;temp&#x27;, &#x27;precip&#x27;, &#x27;orvalho&#x27;, &#x27;umid&#x27;, &#x27;pressao&#x27;, &#x27;radiacao&#x27;, &#x27;vento&#x27;, &#x27;dias_de_chuva&#x27;)</td></tr><tr><td>padroes_vetor</td><td>(&#x27;aedes&#x27;, &#x27;armadilha&#x27;, &#x27;vetor&#x27;)</td></tr><tr><td>passo</td><td>2</td></tr><tr><td>Corte de maturidade (semanas)</td><td>0</td></tr><tr><td>valores_k</td><td>(6, 8)</td></tr></table></div><div class="grupo-param"><h4>clima_enxuto_sem_enso_resultados.csv</h4><div class="tabela-rolavel"><table class="tabela"><thead><tr><th>algoritmo</th><th>conjunto</th><th>h</th><th>MAE</th><th>R2</th></tr></thead><tbody><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">1</td><td class="num">29.06</td><td class="num">0.828</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">2</td><td class="num">28.24</td><td class="num">0.840</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">3</td><td class="num">37.84</td><td class="num">0.712</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">4</td><td class="num">48.70</td><td class="num">0.610</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">5</td><td class="num">52.43</td><td class="num">0.479</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">6</td><td class="num">60.98</td><td class="num">0.416</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">7</td><td class="num">64.40</td><td class="num">0.286</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">8</td><td class="num">75.86</td><td class="num">0.166</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">9</td><td class="num">83.17</td><td class="num">-0.025</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">10</td><td class="num">84.92</td><td class="num">-0.024</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">11</td><td class="num">85.75</td><td class="num">-0.111</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima6</td><td class="num">12</td><td class="num">90.94</td><td class="num">-0.115</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">1</td><td class="num">30.81</td><td class="num">0.824</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">2</td><td class="num">32.24</td><td class="num">0.848</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">3</td><td class="num">39.99</td><td class="num">0.732</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">4</td><td class="num">53.34</td><td class="num">0.599</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">5</td><td class="num">62.10</td><td class="num">0.382</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">6</td><td class="num">59.16</td><td class="num">0.507</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">7</td><td class="num">60.50</td><td class="num">0.405</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">8</td><td class="num">72.44</td><td class="num">0.217</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">9</td><td class="num">76.67</td><td class="num">0.190</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">10</td><td class="num">77.86</td><td class="num">0.315</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">11</td><td class="num">77.53</td><td class="num">0.143</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima6_vetor</td><td class="num">12</td><td class="num">84.82</td><td class="num">0.031</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">1</td><td class="num">30.17</td><td class="num">0.818</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">2</td><td class="num">32.52</td><td class="num">0.798</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">3</td><td class="num">41.21</td><td class="num">0.653</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">4</td><td class="num">49.10</td><td class="num">0.581</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">5</td><td class="num">48.14</td><td class="num">0.577</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">6</td><td class="num">58.72</td><td class="num">0.421</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">7</td><td class="num">70.15</td><td class="num">0.215</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">8</td><td class="num">70.40</td><td class="num">0.216</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">9</td><td class="num">82.87</td><td class="num">0.038</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">10</td><td class="num">79.72</td><td class="num">0.130</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">11</td><td class="num">77.49</td><td class="num">0.069</td></tr><tr><td class="num">lightgbm</td><td class="num">M0_clima8</td><td class="num">12</td><td class="num">76.56</td><td class="num">0.140</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">1</td><td class="num">30.95</td><td class="num">0.826</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">2</td><td class="num">32.69</td><td class="num">0.842</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">3</td><td class="num">40.94</td><td class="num">0.716</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">4</td><td class="num">53.70</td><td class="num">0.585</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">5</td><td class="num">62.17</td><td class="num">0.396</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">6</td><td class="num">57.91</td><td class="num">0.497</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">7</td><td class="num">59.07</td><td class="num">0.408</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">8</td><td class="num">70.07</td><td class="num">0.283</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">9</td><td class="num">78.99</td><td class="num">0.155</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">10</td><td class="num">76.13</td><td class="num">0.315</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">11</td><td class="num">74.12</td><td class="num">0.220</td></tr><tr><td class="num">lightgbm</td><td class="num">M1_clima8_vetor</td><td class="num">12</td><td class="num">75.33</td><td class="num">0.246</td></tr></tbody></table></div></div></details></section>
+</main>
+<footer><div class="rodape"><span>Vinicius Guerra · PPGC — UFRGS (Mestrado)</span><span>Painel gerado a partir do MLflow local · 24/07/2026 13:12</span></div></footer>
+<script>function alternarTema(){var r=document.documentElement;var e=r.getAttribute('data-theme');if(!e){e=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}var n=e==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('tema',n);}catch(e){}}</script>
+</body>
+</html>
