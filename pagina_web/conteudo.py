@@ -41,8 +41,12 @@ OBJETIVO = {
         ),
     ],
     "pergunta_central": (
-        "Saber quanto mosquito foi capturado ajuda a prever a dengue melhor do "
-        "que so olhar o clima?"
+        "Como os dados de captura de mosquito em armadilhas podem ajudar a "
+        "prever o surto de dengue na cidade?"
+    ),
+    "objetivo_central": (
+        "Usar modelos de machine learning — de classificacao ou de regressao — "
+        "para prever o surto de dengue com 1, 2 e 3 meses de antecedencia."
     ),
     "pergunta_explica": (
         "Essa e a pergunta central da pesquisa. No jargao, e o “lift do "
@@ -163,6 +167,49 @@ TABELA_FINAL = {
 }
 
 
+# Dicionario de dados: uma entrada por COLUNA da tabela_final (o arquivo unico
+# que alimenta os modelos). Cada tupla e (coluna, grupo, o_que_e, unidade). Os
+# nomes e a ordem seguem exatamente o cabecalho de tabela_final.csv (36 colunas).
+DICIONARIO_COLUNAS = [
+    ("fonte", "Nucleo", "De onde veio a linha (historico da Marilia ou raspagem propria).", "texto"),
+    ("SE", "Nucleo", "Semana epidemiologica no formato ANOSS (ex.: 201901).", "codigo"),
+    ("data_inicio_semana_epidemi", "Nucleo", "Data em que a semana epidemiologica comeca.", "data"),
+    ("ano", "Nucleo", "Ano.", "ano"),
+    ("semana", "Nucleo", "Numero da semana no ano.", "1-53"),
+    ("numero_de_armadilhas", "Vetor", "Quantas armadilhas foram lidas na semana.", "contagem"),
+    ("aedes_aegypti", "Vetor", "Aedes aegypti capturados na semana (soma da cidade).", "contagem"),
+    ("aedes_albopictus", "Contexto", "Aedes albopictus capturados (outra especie).", "contagem"),
+    ("culex_sp", "Contexto", "Culex sp capturados (pernilongo comum).", "contagem"),
+    ("aedes_aegypti_por_armadilha", "Vetor", "Aedes aegypti por armadilha: a densidade do vetor. E a principal medida do mosquito.", "indice"),
+    ("interpolado", "Nucleo", "Diz se o valor da semana foi preenchido por interpolacao.", "sim/nao"),
+    ("precip_total_mm", "Clima · chuva", "Chuva total na semana.", "mm"),
+    ("precip_max_dia_mm", "Clima · chuva", "Maior chuva num unico dia da semana.", "mm"),
+    ("precip_media_dia_mm", "Clima · chuva", "Chuva media por dia na semana.", "mm"),
+    ("dias_de_chuva", "Clima · chuva", "Quantos dias choveu na semana.", "dias"),
+    ("temp_media", "Clima · temperatura", "Temperatura media da semana.", "°C"),
+    ("temp_min", "Clima · temperatura", "Temperatura minima da semana.", "°C"),
+    ("temp_max", "Clima · temperatura", "Temperatura maxima da semana.", "°C"),
+    ("temp_amplitude_media", "Clima · temperatura", "Diferenca media entre a maxima e a minima do dia.", "°C"),
+    ("orvalho_min", "Clima · orvalho", "Ponto de orvalho minimo (indica a umidade do ar).", "°C"),
+    ("orvalho_media", "Clima · orvalho", "Ponto de orvalho medio.", "°C"),
+    ("orvalho_max", "Clima · orvalho", "Ponto de orvalho maximo.", "°C"),
+    ("umid_min", "Clima · umidade", "Umidade relativa minima.", "%"),
+    ("umid_media", "Clima · umidade", "Umidade relativa media.", "%"),
+    ("umid_max", "Clima · umidade", "Umidade relativa maxima.", "%"),
+    ("pressao_min", "Clima · pressao", "Pressao atmosferica minima.", "kPa"),
+    ("pressao_media", "Clima · pressao", "Pressao atmosferica media.", "kPa"),
+    ("pressao_max", "Clima · pressao", "Pressao atmosferica maxima.", "kPa"),
+    ("radiacao_min", "Clima · radiacao", "Radiacao solar minima.", "MJ/m²"),
+    ("radiacao_media", "Clima · radiacao", "Radiacao solar media.", "MJ/m²"),
+    ("radiacao_max", "Clima · radiacao", "Radiacao solar maxima.", "MJ/m²"),
+    ("vento_media", "Clima · vento", "Velocidade media do vento.", "m/s"),
+    ("vento_max", "Clima · vento", "Velocidade maxima do vento.", "m/s"),
+    ("casos_confirmados", "Alvo", "Casos de dengue confirmados na semana. E o que o modelo quer prever.", "contagem"),
+    ("nino34_anom", "El Nino", "Anomalia de temperatura do Pacifico (regiao Nino 3.4).", "°C"),
+    ("oni", "El Nino", "Indice ONI: mede a fase El Nino / La Nina.", "°C"),
+]
+
+
 # O caminho dos dados, de ponta a ponta (diagrama simples).
 FLUXO = [
     ("Fontes", "mosquito, clima, casos, El Nino"),
@@ -178,48 +225,64 @@ FLUXO = [
 CENARIOS = {
     "cidade_regressao": {
         "menu": "Previsao principal",
+        "tipo": "Regressao",
+        "rotulo": "Casos de dengue — previsao direta do numero de casos (sem El Nino, com corte de maturidade)",
         "titulo": "Quantos casos vao ter",
         "pergunta": "Quantos casos de dengue a cidade vai ter nas proximas semanas?",
         "descricao": "O modelo principal do trabalho. Usa clima e mosquito para prever o numero de casos, e deixa de fora as semanas mais recentes, que ainda estao sendo contadas e enganam.",
     },
     "cidade_regressao_com_enso": {
         "menu": "Com El Nino",
+        "tipo": "Regressao",
+        "rotulo": "Casos de dengue — previsao direta do numero de casos (COM dados de El Nino)",
         "titulo": "E se o El Nino entrar na conta?",
         "pergunta": "Somar o El Nino ao clima melhora a previsao?",
         "descricao": "A previsao principal, mas deixando o El Nino (o esquenta e esfria do oceano Pacifico) concorrer com o clima local.",
     },
     "cidade_regressao_sem_enso": {
         "menu": "Sem apagar semanas",
+        "tipo": "Regressao",
+        "rotulo": "Casos de dengue — previsao direta do numero de casos (sem corte de maturidade)",
         "titulo": "E sem apagar as semanas recentes?",
         "pergunta": "O que muda se a gente confiar nas semanas que ainda nao fecharam?",
         "descricao": "A previsao principal sem tirar as semanas recentes. Serve de comparacao para mostrar que deixar essas semanas de fora ajuda mesmo.",
     },
     "cidade_lift_vetor": {
         "menu": "O ganho do mosquito",
+        "tipo": "Regressao",
+        "rotulo": "Ganho do mosquito — compara so-clima x clima+mosquito x so-mosquito",
         "titulo": "O mosquito ajuda a prever?",
         "pergunta": "So clima, clima mais mosquito, ou so mosquito — o que preve melhor?",
         "descricao": "Compara os tres jeitos lado a lado para medir quanto a contagem de mosquito acrescenta a previsao.",
     },
     "cidade_diebold": {
         "menu": "E ganho de verdade?",
+        "tipo": "Regressao",
+        "rotulo": "Teste de significancia (Diebold-Mariano) — o ganho do mosquito e real?",
         "titulo": "Esse ganho e real ou foi sorte?",
         "pergunta": "A melhora que o mosquito traz aguenta um teste estatistico?",
         "descricao": "Poe o modelo so com clima contra o modelo com clima mais mosquito e testa (Diebold-Mariano) se a diferenca e real, e nao coincidencia.",
     },
     "comparacao_literatura": {
         "menu": "Contra a literatura",
+        "tipo": "Regressao + Classificacao",
+        "rotulo": "Nosso metodo x a literatura (Oliveira et al., so clima)",
         "titulo": "Como a gente se sai contra o metodo publicado",
         "pergunta": "Somando o mosquito, a gente bate o metodo publicado que usa so clima?",
         "descricao": "Recria um metodo ja publicado (Oliveira et al., so com clima) e coloca lado a lado com o nosso, que tambem usa o mosquito.",
     },
     "cidade_deteccao_surto": {
         "menu": "Vai ter surto?",
+        "tipo": "Classificacao",
+        "rotulo": "Vai ter surto? — sim/nao acima do limite de casos (teste de McNemar)",
         "titulo": "Vai ter surto ou nao?",
         "pergunta": "As proximas semanas vao passar do limite de surto?",
         "descricao": "Em vez de um numero, responde sim ou nao para “vai ter surto” e compara com um palpite simples para ver se acerta mais.",
     },
     "bairro_surto": {
         "menu": "Por bairro",
+        "tipo": "Regressao",
+        "rotulo": "Densidade de mosquito por bairro (nao ha casos de dengue por bairro)",
         "titulo": "Onde o mosquito vai subir",
         "pergunta": "Em quais bairros o mosquito tende a crescer?",
         "descricao": "O rumo novo da pesquisa. Como so ha contagem de mosquito por bairro (e nao de casos), aqui a gente preve o proprio mosquito, olhando tambem os bairros vizinhos.",

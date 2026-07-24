@@ -59,12 +59,11 @@ PREFERENCIA_METRICAS = [
 ROTULO_COLUNA = {"mae": "Erro medio (MAE)", "rmse": "Erro (RMSE)", "r2": "R²"}
 
 # As paginas do site: (arquivo, chave de navegacao, titulo do menu). "Dados"
-# nao e mais uma pagina propria: virou uma secao da inicial, entao o link e uma
-# ancora (#dados) que rola ate la.
+# saiu do menu — virou uma secao da propria pagina inicial (a home tem o card
+# "Dados" que rola ate la).
 PAGINAS = [
     ("index.html", "inicio", "Inicio"),
-    ("objetivo.html", "objetivo", "Objetivo"),
-    ("index.html#dados", "dados", "Dados"),
+    ("metodologia.html", "metodologia", "Metodologia"),
 ]
 
 CSS = """
@@ -81,32 +80,6 @@ CSS = """
   --fonte-corpo:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --fonte-dados:"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
 }
-@media (prefers-color-scheme:dark){
-  :root{
-    --fundo:#0B1411; --superficie:#121C18; --elevado:#17221D;
-    --tinta:#EAF1ED; --tinta-suave:#C6D2CC; --muted:#95A89F; --faint:#66786F;
-    --borda:#233029; --borda-forte:#31423A; --linha-grade:#1E2A24;
-    --acento:#43BFA3; --acento-forte:#6FD6BF; --acento-suave:#10312A;
-    --bom:#5FB98A; --atencao:#E0A64B; --critico:#E07A7A;
-    --sombra:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -14px rgba(0,0,0,.5);
-  }
-}
-:root[data-theme="dark"]{
-  --fundo:#211E20; --superficie:#2A2628; --elevado:#332E30;
-  --tinta:#EDE7E1; --tinta-suave:#D3C9C2; --muted:#A79E98; --faint:#7C736E;
-  --borda:#3C3739; --borda-forte:#4C4649; --linha-grade:#332E30;
-  --acento:#AF9AC9; --acento-forte:#C6B5DC; --acento-suave:#342B41;
-  --bom:#8FA875; --atencao:#D6A455; --critico:#D08579;
-  --sombra:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -14px rgba(0,0,0,.5);
-}
-:root[data-theme="light"]{
-  --fundo:#EAE4DD; --superficie:#FBF8F4; --elevado:#F2ECE4;
-  --tinta:#332F30; --tinta-suave:#4E4849; --muted:#666161; --faint:#948C87;
-  --borda:#DDD4C9; --borda-forte:#C7BBAC; --linha-grade:#E4DCD1;
-  --acento:#AF9AC9; --acento-forte:#6A5391; --acento-suave:#ECE6F3;
-  --bom:#6E8B5A; --atencao:#B07D33; --critico:#B0574B;
-  --sombra:0 1px 2px rgba(14,26,22,.04), 0 6px 20px -12px rgba(14,26,22,.14);
-}
 html{scroll-behavior:smooth}
 body{
   margin:0; background:var(--fundo); color:var(--tinta);
@@ -122,29 +95,56 @@ p{margin:0 0 1rem; max-width:66ch}
 strong{color:var(--tinta)}
 .eyebrow{font-size:.73rem; text-transform:uppercase; letter-spacing:.16em; color:var(--acento-forte); font-weight:700; margin:0 0 .7rem}
 
-.barra{position:fixed; top:0; left:0; bottom:0; width:240px; z-index:20; overflow-y:auto;
-  background:var(--superficie); border-right:1px solid var(--borda); display:flex; flex-direction:column; padding:1.5rem 1.1rem}
-.barra-interna{display:flex; flex-direction:column; gap:1.4rem; flex:1}
-.marca{display:flex; align-items:flex-start; gap:.55rem; font-weight:700; color:var(--tinta); text-decoration:none; line-height:1.25}
-.marca .ponto{width:10px; height:10px; border-radius:50%; background:var(--acento); box-shadow:0 0 0 3px var(--acento-suave); margin-top:.35rem; flex:none}
-.marca span{font-size:.92rem; letter-spacing:-.01em}
-.nav-links{display:flex; flex-direction:column; gap:.15rem}
-.nav-links a{color:var(--muted); text-decoration:none; font-size:.92rem; font-weight:600; padding:.55rem .8rem; border-radius:10px; border-left:3px solid transparent; transition:color .15s, background .15s}
-.nav-links a:hover{color:var(--tinta); background:var(--elevado)}
-.nav-links a[aria-current="page"]{color:var(--acento-forte); background:var(--acento-suave); border-left-color:var(--acento)}
-.nav-links a.grupo{margin-top:1rem; color:var(--tinta); font-family:var(--fonte-titulo); font-size:1.02rem; font-weight:600}
-.nav-links a.grupo[aria-current="page"]{color:var(--acento-forte)}
-.nav-links a.sub{padding:.4rem .8rem .4rem 1.5rem; font-size:.85rem; font-weight:500}
-.nav-links a.sub[aria-current="page"]{font-weight:700}
-.nav-secao{font-size:.66rem; text-transform:uppercase; letter-spacing:.12em; color:var(--faint); font-weight:700; margin:1.1rem 0 .3rem .8rem}
-.nav-secao.sub-secao{margin:.75rem 0 .2rem .8rem; color:var(--acento-forte)}
-.tema{margin-top:auto; align-self:flex-start; border:1px solid var(--borda); background:var(--superficie); color:var(--muted);
-  height:36px; padding:0 .85rem; border-radius:10px; cursor:pointer; font-size:.85rem; display:inline-flex; align-items:center; gap:.5rem; transition:color .15s, border-color .15s}
-.tema:hover{color:var(--tinta); border-color:var(--acento)}
+/* Layout lado a lado (padrao do otimizador de sortimento): sidebar sticky + conteudo */
+#appShell{display:flex; align-items:flex-start; min-height:100vh}
+#mainArea{flex:1 1 auto; min-width:0; display:flex; flex-direction:column; min-height:100vh}
+#sideNav{flex:0 0 262px; width:262px; box-sizing:border-box; position:sticky; top:0; align-self:flex-start;
+  height:100vh; background:var(--superficie); border-right:1px solid var(--borda);
+  display:flex; flex-direction:column; transition:flex-basis .16s ease, width .16s ease; overflow:hidden; z-index:5}
+.sidenav-inner{flex:1 1 auto; overflow-y:auto; overflow-x:hidden; padding:16px 12px}
+.marca{display:flex; align-items:flex-start; gap:.5rem; text-decoration:none; color:var(--tinta); padding:2px 8px 14px; line-height:1.25}
+.marca .ponto{width:9px; height:9px; border-radius:50%; background:var(--acento); box-shadow:0 0 0 3px var(--acento-suave); margin-top:.32rem; flex:none}
+.marca span{font-size:.85rem; font-weight:700; letter-spacing:-.01em}
+.sidenav-title{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:var(--muted); padding:2px 8px 10px}
+.sidenav-tree{display:flex; flex-direction:column; gap:1px}
+.sn-group{display:flex; flex-direction:column}
+.sn-node{display:flex; align-items:center; gap:6px; width:100%; text-align:left; padding:7px 8px;
+  border:none; background:none; color:var(--tinta); font-size:13px; font-weight:500; font-family:inherit;
+  border-radius:6px; cursor:pointer; line-height:1.3; text-decoration:none}
+.sn-node:hover{background:var(--elevado)}
+.sn-arrow{display:inline-block; width:11px; flex:none; font-size:9px; color:var(--muted); transition:transform .15s ease; text-align:center}
+.sn-node.sn-open>.sn-arrow{transform:rotate(90deg)}
+.sn-label{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.sn-children{display:none; flex-direction:column; gap:1px; margin-left:9px; border-left:1px solid var(--borda); padding-left:8px; margin-top:1px; margin-bottom:2px}
+.sn-children.open{display:flex}
+.sn-node.sn-leaf{font-size:12.5px; font-weight:500; color:var(--muted)}
+.sn-node.sn-leaf:hover{color:var(--tinta)}
+/* hierarquia de menu: topo (maior + negrito), cabecalho de grupo (maiuscula), folha (menor + clara) */
+.sidenav-tree > .sn-node, .sidenav-tree > .sn-group > .sn-toggle{font-size:13.5px; font-weight:700; color:var(--tinta)}
+.sn-children .sn-toggle{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted)}
+.sn-node.sn-active{background:var(--acento-suave); color:var(--acento-forte); font-weight:700}
+.sidenav-rodape{flex:none; display:flex; flex-direction:column; border-top:1px solid var(--borda)}
+.sidenav-acao{border:none; background:var(--superficie); color:var(--muted); font-size:12px; padding:11px 12px;
+  display:flex; align-items:center; gap:8px; cursor:pointer; font-family:inherit; text-align:left; width:100%; transition:background .15s, color .15s}
+.sidenav-acao:hover{background:var(--elevado); color:var(--tinta)}
+.sidenav-acao + .sidenav-acao{border-top:1px solid var(--borda)}
+.sn-icon{font-size:14px; flex:none; width:16px; text-align:center}
+#appShell.sn-collapsed #sideNav{flex-basis:48px; width:48px}
+#appShell.sn-collapsed .sidenav-title,
+#appShell.sn-collapsed .sidenav-tree,
+#appShell.sn-collapsed .marca span,
+#appShell.sn-collapsed .sn-acao-texto{display:none}
+#appShell.sn-collapsed .sidenav-inner{padding:16px 4px}
+#appShell.sn-collapsed .sidenav-acao{padding:11px 4px; justify-content:center}
 
-.container{margin-left:240px; max-width:1600px; padding:2.6rem clamp(1.6rem,3.5vw,3.5rem) 4.5rem}
+.wrap{max-width:1440px; margin:0 auto; width:100%; padding:2.4rem clamp(1.4rem,3vw,3.2rem) 4.5rem}
 .secao{margin:3rem 0}
 .secao > .eyebrow{margin-bottom:1rem}
+
+/* Faixa: separador de secao bem marcado (titulo centralizado entre duas linhas) */
+.faixa{text-align:center; margin:3rem 0 1.6rem; padding:.8rem 0; border-top:2px solid var(--acento-forte); border-bottom:2px solid var(--acento-forte)}
+.faixa span{font-family:var(--fonte-titulo); font-size:1.4rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--acento-forte)}
+.secao > .faixa:first-child{margin-top:0}
 
 .hero{padding:1.4rem 0 .6rem; position:relative}
 .hero .sub, .lead{font-size:1.18rem; line-height:1.5; color:var(--muted); max-width:64ch; margin:.4rem 0 0}
@@ -165,11 +165,12 @@ a.cartao:hover{border-color:var(--acento); transform:translateY(-3px); box-shado
 .cartao p{color:var(--muted); font-size:.94rem; margin:0 0 .8rem}
 .cartao .seta{color:var(--acento-forte); font-weight:700; margin-top:auto; display:inline-block; font-size:.9rem}
 
-.fluxo{display:flex; flex-wrap:wrap; gap:.55rem; align-items:stretch; margin:1.2rem 0}
-.fluxo .passo{flex:1 1 175px; background:var(--elevado); border:1px solid var(--borda); border-radius:var(--raio-p); padding:.95rem 1.05rem}
-.fluxo .passo b{display:block; color:var(--tinta); font-size:.95rem; margin-bottom:.15rem}
+.fluxo{display:flex; flex-wrap:wrap; gap:.6rem; align-items:stretch; margin:1.2rem 0}
+.fluxo .passo{position:relative; flex:1 1 175px; background:var(--superficie); border:1px solid var(--borda-forte); border-radius:var(--raio-p); padding:.95rem 1.05rem 1rem 1.2rem; box-shadow:var(--sombra); overflow:hidden}
+.fluxo .passo::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--acento)}
+.fluxo .passo b{display:block; color:var(--tinta); font-size:.98rem; font-weight:700; margin-bottom:.2rem}
 .fluxo .passo small{color:var(--muted)}
-.fluxo .seta{display:grid; place-items:center; color:var(--acento); font-size:1.15rem; padding:0 .1rem}
+.fluxo .seta{display:grid; place-items:center; color:var(--acento-forte); font-size:1.3rem; font-weight:700; padding:0 .15rem}
 @media (max-width:640px){ .fluxo .seta{transform:rotate(90deg)} }
 
 .grade-fontes{display:grid; grid-template-columns:repeat(auto-fit,minmax(265px,1fr)); gap:1rem}
@@ -262,21 +263,14 @@ table.params td:last-child{font-family:var(--fonte-dados); color:var(--tinta); t
 .vazio{text-align:center; color:var(--muted); background:var(--superficie); border:1px dashed var(--borda-forte); border-radius:var(--raio); padding:3rem 1.5rem}
 .vazio code{background:var(--elevado); padding:.15rem .45rem; border-radius:6px; font-family:var(--fonte-dados); font-size:.85em}
 
-footer{border-top:1px solid var(--borda); margin-top:3.5rem; margin-left:240px}
-.rodape{max-width:1600px; margin:0; padding:1.8rem clamp(1.6rem,3.5vw,3.5rem); color:var(--muted); font-size:.83rem; display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; justify-content:space-between}
+footer{border-top:1px solid var(--borda); margin-top:auto}
+.rodape{max-width:1440px; margin:0 auto; width:100%; padding:1.8rem clamp(1.4rem,3vw,3.2rem); color:var(--muted); font-size:.83rem; display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; justify-content:space-between}
 
-@media (max-width:880px){
-  .barra{position:static; width:auto; height:auto; flex-direction:row; align-items:center; overflow:visible; border-right:none; border-bottom:1px solid var(--borda); padding:.7rem 1.2rem}
-  .barra-interna{flex-direction:row; align-items:center; gap:.7rem 1.1rem; flex-wrap:wrap}
-  .marca{margin-right:auto}
-  .marca span{font-size:.85rem}
-  .marca .ponto{margin-top:.25rem}
-  .nav-links{flex-direction:row; flex-wrap:wrap}
-  .nav-links a{border-left:none; padding:.35rem .7rem; border-radius:99px}
-  .nav-links a[aria-current="page"]{border-left-color:transparent}
-  .tema{margin-top:0}
-  .container, footer{margin-left:0}
-  .rodape{padding-left:1.4rem; padding-right:1.4rem}
+@media (max-width:760px){
+  #appShell{flex-direction:column}
+  #sideNav{position:static; flex-basis:auto; width:100%; height:auto; max-height:60vh; border-right:none; border-bottom:1px solid var(--borda)}
+  #appShell.sn-collapsed #sideNav{width:100%; flex-basis:auto}
+  #appShell.sn-collapsed .sidenav-title,#appShell.sn-collapsed .sidenav-tree,#appShell.sn-collapsed .marca span,#appShell.sn-collapsed .sn-acao-texto{display:revert}
 }
 
 .acordeao{display:flex; flex-direction:column; gap:.7rem; margin-top:1.4rem}
@@ -319,21 +313,28 @@ footer{border-top:1px solid var(--borda); margin-top:3.5rem; margin-left:240px}
 .conteudo-md hr{border:none; border-top:1px solid var(--borda); margin:2rem 0}
 .conteudo-md a{color:var(--acento-forte)}
 
-.tabela-dados{width:100%; border-collapse:collapse; font-size:.93rem}
-.tabela-dados thead th{text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; padding:.6rem .9rem; border-bottom:1px solid var(--borda-forte); white-space:nowrap}
+.tabela-dados{width:100%; border-collapse:collapse; font-size:.93rem; border:1px solid var(--borda-forte); border-radius:var(--raio-p); overflow:hidden}
+.tabela-dados thead th{text-align:left; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:#fff; font-weight:700; padding:.8rem .9rem; background:var(--acento-forte); white-space:nowrap}
 .tabela-dados td{text-align:left; padding:.9rem; border-bottom:1px solid var(--borda); vertical-align:top}
 .tabela-dados tbody tr:last-child td{border-bottom:none}
-.tabela-dados tbody tr{transition:background .12s}
-.tabela-dados tbody tr:hover{background:var(--elevado)}
+.tabela-dados tbody tr{transition:background .12s; background:var(--superficie)}
+.tabela-dados tbody tr:nth-child(even){background:color-mix(in srgb, var(--acento) 16%, var(--superficie))}
+.tabela-dados tbody tr:hover{background:var(--acento-suave)}
 .tabela-dados .fonte-nome{font-weight:700; color:var(--tinta); display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
 .tabela-dados .fonte-desc{color:var(--muted); font-size:.85rem; margin-top:.25rem; max-width:46ch}
 .tabela-dados .cobertura, .tabela-dados .freq{white-space:nowrap; color:var(--tinta-suave)}
 .tabela-dados .origem-cel{color:var(--muted); font-size:.88rem}
+/* Dicionario de dados: uma linha por coluna da tabela_final */
+table.tabela-dic td{padding:.6rem .9rem}
+table.tabela-dic .dic-num{font-family:var(--fonte-dados); font-size:.8rem; color:var(--faint); text-align:right; width:1%; white-space:nowrap}
+.dic-col{font-family:var(--fonte-dados); font-size:.82rem; color:var(--tinta); background:var(--elevado); border:1px solid var(--borda-forte); border-radius:5px; padding:.12rem .45rem; white-space:nowrap}
+.dic-unid{font-family:var(--fonte-dados); font-size:.82rem; color:var(--muted); white-space:nowrap}
+
 .tag-papel{font-size:.72rem; font-weight:700; padding:.16rem .58rem; border-radius:99px; white-space:nowrap}
 .tag-papel.vetor{background:var(--acento-suave); color:var(--acento-forte)}
 .tag-papel.alvo{background:var(--acento-forte); color:var(--superficie)}
-.tag-papel.clima{background:var(--elevado); color:var(--muted); border:1px solid var(--borda)}
-.tag-papel.contexto{background:var(--elevado); color:var(--faint); border:1px solid var(--borda)}
+.tag-papel.clima{background:var(--elevado); color:var(--tinta-suave); border:1px solid var(--borda-forte)}
+.tag-papel.contexto{background:var(--elevado); color:var(--muted); border:1px solid var(--borda-forte)}
 
 /* Detalhamento do clima: cada tema e as colunas que ele gera */
 .clima-intro{color:var(--tinta-suave); max-width:74ch; margin:0 0 1rem}
@@ -357,23 +358,76 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 .figura img{display:block; width:100%; height:auto; background:#fff}
 .figura figcaption{padding:.75rem 1.1rem; font-size:.86rem; color:var(--muted); background:var(--superficie); border-top:1px solid var(--borda)}
 
+/* Esquemas (diagramas SVG desenhados na mao) da pagina de Metodologia */
+.esquema{margin:1.3rem 0; border:1px solid var(--borda); border-radius:var(--raio-p); background:var(--superficie); padding:1.3rem 1.4rem 1rem; box-shadow:var(--sombra)}
+.esquema svg{width:100%; height:auto; max-width:600px; display:block; margin:0 auto}
+.esquema .cap{font-size:.84rem; color:var(--muted); margin:.7rem auto 0; text-align:center; max-width:60ch}
+.esquema .svg-rot{fill:var(--tinta-suave); font-family:var(--fonte-corpo); font-size:13px}
+.esquema .svg-sub{fill:var(--muted); font-family:var(--fonte-corpo); font-size:11px}
+
+/* Objetivo central em destaque + os dois caminhos de modelo (regressao/classificacao) */
+.obj-central{background:linear-gradient(180deg,var(--acento-suave),var(--superficie)); border:1px solid color-mix(in srgb, var(--acento) 30%, var(--borda)); border-left:4px solid var(--acento); border-radius:var(--raio-p); padding:1.4rem 1.5rem; margin:1.1rem 0}
+.obj-central .eyebrow{color:var(--acento-forte); margin-bottom:.5rem}
+.obj-central p{margin:0; font-size:1.18rem; line-height:1.45; color:var(--tinta); max-width:70ch; font-family:var(--fonte-titulo)}
+.dois-caminhos{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin:1.2rem 0}
+.caminho{border:1px solid var(--borda); border-radius:var(--raio-p); background:var(--superficie); padding:1.2rem 1.3rem; box-shadow:var(--sombra)}
+.caminho h3{font-size:1.05rem; margin:.6rem 0 .3rem}
+.caminho p{margin:0; color:var(--muted); font-size:.92rem}
+.caminho .saida{margin-top:.8rem; font-family:var(--fonte-dados); font-size:.82rem; color:var(--tinta-suave); background:var(--elevado); border:1px solid var(--borda); border-radius:6px; padding:.4rem .7rem; display:inline-block}
+
+/* Pagina de cenarios como ARVORE de hierarquia (raiz -> grupos -> cenarios),
+   com linhas conectoras desenhadas pelos ::before/::after de cada item. */
+.arvore{margin:1.8rem 0 .5rem}
+.arv-raiz{display:inline-flex; align-items:center; gap:.6rem; font-family:var(--fonte-titulo); font-weight:600;
+  font-size:1.55rem; text-transform:uppercase; letter-spacing:.03em; color:var(--tinta); padding:0 0 .5rem}
+.arv-raiz .ponto{width:12px; height:12px; border-radius:50%; background:var(--acento); box-shadow:0 0 0 4px var(--acento-suave); flex:none}
+.arvore ul{list-style:none; margin:0; padding-left:24px; position:relative}
+.arvore > ul{padding-left:12px}
+.arvore li{position:relative; padding:5px 0 5px 8px}
+.arvore li::before{content:""; position:absolute; left:-12px; top:0; bottom:0; width:2px; background:var(--borda-forte)}
+.arvore li:last-child::before{bottom:auto; height:22px}
+.arvore li::after{content:""; position:absolute; left:-12px; top:22px; width:16px; height:2px; background:var(--borda-forte)}
+.arv-grupo{display:inline-block; font-weight:700; color:var(--acento-forte); font-size:1rem; text-transform:uppercase; letter-spacing:.05em; padding:6px 2px 4px}
+.arv-folha{display:inline-flex; flex-direction:column; align-items:flex-start; gap:.4rem; max-width:660px; text-decoration:none; color:var(--tinta);
+  padding:10px 15px; border:1px solid var(--borda); border-radius:5px; background:var(--superficie); box-shadow:var(--sombra);
+  transition:border-color .14s, background .14s, transform .14s}
+.arv-folha:hover{border-color:var(--acento); background:var(--acento-suave); transform:translateX(2px)}
+.arv-linha{display:flex; align-items:baseline; gap:.55rem}
+.arv-tag{font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.2rem .5rem; border-radius:4px; white-space:nowrap; flex:none}
+.arv-tag.reg{background:var(--acento-suave); color:var(--acento-forte)}
+.arv-tag.clf{background:color-mix(in srgb, var(--atencao) 20%, transparent); color:var(--atencao)}
+.arv-tag.mix{background:var(--elevado); color:var(--muted); border:1px solid var(--borda)}
+.arv-folha .arv-nome{font-size:.84rem; font-weight:600}
+.arv-folha .arv-meta{font-size:.71rem; color:var(--muted); font-family:var(--fonte-dados)}
+.arv-mods{list-style:none; margin:.05rem 0 0; padding:0 0 0 4px; font-family:var(--fonte-dados); font-size:.72rem; color:var(--muted)}
+.arv-mods li{position:relative; padding:1px 0 1px 14px}
+.arv-mods li::before{content:""; position:absolute; left:0; top:0; bottom:0; width:1px; background:var(--borda-forte)}
+.arv-mods li:last-child::before{bottom:auto; height:10px}
+.arv-mods li::after{content:""; position:absolute; left:0; top:10px; width:9px; height:1px; background:var(--borda-forte)}
+.arv-folha.vazia{opacity:.62}
+.arv-folha.vazia .arv-nome{font-weight:500; color:var(--muted)}
+
 :focus-visible{outline:2px solid var(--acento); outline-offset:2px; border-radius:4px}
 @media (prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto !important}}
 @media print{
-  .barra,.tema,footer{display:none}
+  #sideNav,footer{display:none}
   body{background:#fff; font-size:11pt}
   .cenario,.kpi,.fonte,.cartao,.cenario-item{break-inside:avoid; box-shadow:none}
 }
 """
 
-# Script no <head>: aplica o tema salvo antes de desenhar (evita piscar).
-JS_INICIAL = "(function(){try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();"
-
-# Script do botao de tema: alterna claro/escuro e lembra a escolha.
-JS_TEMA = (
-    "function alternarTema(){var r=document.documentElement;var e=r.getAttribute('data-theme');"
-    "if(!e){e=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}"
-    "var n=e==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('tema',n);}catch(e){}}"
+# Script do menu lateral: abre/fecha os grupos (setinha) e recolhe a sidebar
+# inteira (botao "Recolher menu"), lembrando o estado recolhido entre paginas.
+JS_MENU = (
+    "(function(){"
+    "document.querySelectorAll('.sn-toggle').forEach(function(b){"
+    "b.addEventListener('click',function(){var k=b.parentNode.querySelector('.sn-children');"
+    "if(k){b.classList.toggle('sn-open');k.classList.toggle('open');}});});"
+    "var s=document.getElementById('appShell'),c=document.getElementById('recolherMenu');"
+    "try{if(localStorage.getItem('menuRecolhido')==='1'&&s)s.classList.add('sn-collapsed');}catch(e){}"
+    "if(c&&s){c.addEventListener('click',function(){s.classList.toggle('sn-collapsed');"
+    "try{localStorage.setItem('menuRecolhido',s.classList.contains('sn-collapsed')?'1':'0');}catch(e){}});}"
+    "})();"
 )
 
 
@@ -432,27 +486,51 @@ def rotulo_metrica(chave: str) -> str:
     return chave.replace("_media", "").replace("_", " ").upper()
 
 
-# Monta a barra de navegacao do topo, marcando a pagina atual.
+# Monta o menu lateral (arvore): folhas (Inicio, Objetivo, Cenarios, Metodo) e
+# os grupos de cenarios como nos recolhiveis. O grupo que contem a pagina atual
+# ja abre aberto; a folha atual fica destacada. No padrao do otimizador de
+# sortimento: titulo "Navegacao", arvore e, no rodape, tema + recolher menu.
 def barra_navegacao(ativo: str, menu: dict) -> str:
-    def link(arquivo, chave, titulo, classe=""):
+    def folha(arquivo, chave, titulo, topo=True):
         atual = ' aria-current="page"' if chave == ativo else ""
-        cls = f' class="{classe}"' if classe else ""
-        return f'<a href="{arquivo}"{atual}{cls}>{escapar(titulo)}</a>'
+        classe = "sn-node" + ("" if topo else " sn-leaf") + (" sn-active" if chave == ativo else "")
+        espaco = '<span class="sn-arrow"></span>' if topo else ""
+        return f'<a class="{classe}" href="{arquivo}"{atual}>{espaco}<span class="sn-label">{escapar(titulo)}</span></a>'
 
-    partes = [link(*item) for item in menu["fixas"]]
-    partes.append(link("cenarios.html", "cenarios", "Cenarios", "grupo"))
+    partes = [folha(*item) for item in menu["fixas"]]
+
+    # "Cenarios" e um grupo de topo que contem os 3 sub-grupos (cada um com seus
+    # cenarios) e um atalho "Ver todos" pra pagina indice. Todos ja vem ABERTOS
+    # por padrao (nao precisa clicar); o clique so serve pra recolher, se quiser.
+    sub = [folha("cenarios.html", "cenarios", "Ver todos", topo=False)]
     for grupo_nome, itens in menu["grupos_cenarios"]:
-        partes.append(f'<div class="nav-secao sub-secao">{escapar(grupo_nome)}</div>')
-        partes += [link(arquivo, chave, titulo, "sub") for arquivo, chave, titulo in itens]
-    if menu["extras"]:
-        partes.append('<div class="nav-secao">Paginas</div>')
-        partes += [link(*item) for item in menu["extras"]]
+        filhos = "".join(folha(arquivo, chave, titulo, topo=False) for arquivo, chave, titulo in itens)
+        sub.append(
+            '<div class="sn-group">'
+            '<button class="sn-node sn-toggle sn-open" type="button">'
+            f'<span class="sn-arrow">&#9656;</span><span class="sn-label">{escapar(grupo_nome)}</span></button>'
+            f'<div class="sn-children open">{filhos}</div>'
+            "</div>"
+        )
+    partes.append(
+        '<div class="sn-group">'
+        '<button class="sn-node sn-toggle sn-open" type="button">'
+        '<span class="sn-arrow">&#9656;</span><span class="sn-label">Cenarios</span></button>'
+        f'<div class="sn-children open">{"".join(sub)}</div>'
+        "</div>"
+    )
+    partes += [folha(*item) for item in menu["extras"]]
+
     return (
-        '<aside class="barra"><div class="barra-interna">'
-        f'<a class="marca" href="index.html"><span class="ponto"></span>'
+        '<aside id="sideNav"><div class="sidenav-inner">'
+        '<a class="marca" href="index.html"><span class="ponto"></span>'
         f'<span>{escapar(conteudo.PROJETO["titulo"])}</span></a>'
-        f'<nav class="nav-links">{"".join(partes)}</nav>'
-        '<button class="tema" onclick="alternarTema()" aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">◑ Tema</button>'
+        '<div class="sidenav-title">Navega&ccedil;&atilde;o</div>'
+        f'<nav class="sidenav-tree" aria-label="Navegacao do projeto">{"".join(partes)}</nav>'
+        "</div>"
+        '<div class="sidenav-rodape">'
+        '<button class="sidenav-acao" id="recolherMenu" type="button" title="Recolher menu">'
+        '<span class="sn-icon">&laquo;</span><span class="sn-acao-texto">Recolher menu</span></button>'
         "</div></aside>"
     )
 
@@ -478,24 +556,31 @@ def documento(titulo: str, ativo: str, corpo: str, gerado_em: str, menu: list) -
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
         f"<title>{escapar(titulo)} — {escapar(projeto['titulo'])}</title>\n"
         f"<style>{CSS}</style>\n"
-        f"<script>{JS_INICIAL}</script>\n"
         "</head>\n<body>\n"
+        '<div id="appShell">\n'
         f"{barra_navegacao(ativo, menu)}\n"
-        f'<main class="container">\n{corpo}\n</main>\n'
+        '<div id="mainArea">\n'
+        f'<main class="wrap">\n{corpo}\n</main>\n'
         f"{rodape(gerado_em)}\n"
-        f"<script>{JS_TEMA}</script>\n"
+        "</div>\n</div>\n"
+        f"<script>{JS_MENU}</script>\n"
         "</body>\n</html>\n"
     )
 
 
-# Desenha o diagrama do caminho dos dados (fontes -> montagem -> ... -> painel).
-def diagrama_fluxo() -> str:
+# Desenha um diagrama de passos em caixas ligadas por setas (fluxo horizontal).
+def diagrama_passos(passos) -> str:
     partes = []
-    for indice, (titulo, detalhe) in enumerate(conteudo.FLUXO):
+    for indice, (titulo, detalhe) in enumerate(passos):
         if indice:
             partes.append('<div class="seta">→</div>')
         partes.append(f'<div class="passo"><b>{escapar(titulo)}</b><small>{escapar(detalhe)}</small></div>')
     return f'<div class="fluxo">{"".join(partes)}</div>'
+
+
+# O caminho dos dados (fontes -> montagem -> ... -> painel), usado na home.
+def diagrama_fluxo() -> str:
+    return diagrama_passos(conteudo.FLUXO)
 
 
 # Embute uma figura (imagem da pasta imagens/) com uma legenda embaixo.
@@ -505,6 +590,12 @@ def figura(arquivo: str, titulo: str, legenda: str) -> str:
         f'<img src="imagens/{arquivo}" alt="{escapar(titulo)}" loading="lazy">'
         f"<figcaption>{escapar(legenda)}</figcaption></figure>"
     )
+
+
+# Faixa separadora de secao: um titulo em maiuscula, centralizado entre duas
+# linhas horizontais, pra demarcar bem uma secao da outra.
+def faixa(titulo: str) -> str:
+    return f'<div class="faixa"><span>{escapar(titulo)}</span></div>'
 
 
 # Desenha a tabela do que compoe o "clima": cada tema e as colunas que gera.
@@ -569,6 +660,36 @@ def ficha_de_dados(nome: str) -> str:
         '<div class="tabela-rolavel"><table class="tabela-dados tabela-ficha">'
         "<thead><tr><th>Ingrediente</th><th>Como entra aqui</th></tr></thead>"
         f'<tbody>{"".join(linhas)}</tbody></table></div></section>'
+    )
+
+
+# Desenha o dicionario de dados: uma linha por coluna da tabela_final, com o
+# grupo (etiqueta colorida), a descricao e a unidade. Cobre todas as colunas.
+def tabela_dicionario() -> str:
+    linhas = []
+    for indice, (coluna, grupo, descricao, unidade) in enumerate(conteudo.DICIONARIO_COLUNAS, 1):
+        g = grupo.lower()
+        if g.startswith("vetor"):
+            cls = "vetor"
+        elif g.startswith("alvo"):
+            cls = "alvo"
+        elif g.startswith("clima") or g.startswith("el nino"):
+            cls = "clima"
+        else:
+            cls = "contexto"
+        linhas.append(
+            "<tr>"
+            f'<td class="dic-num">{indice}</td>'
+            f'<td><code class="dic-col">{escapar(coluna)}</code></td>'
+            f'<td><span class="tag-papel {cls}">{escapar(grupo)}</span></td>'
+            f"<td>{escapar(descricao)}</td>"
+            f'<td class="dic-unid">{escapar(unidade)}</td>'
+            "</tr>"
+        )
+    return (
+        '<div class="tabela-rolavel"><table class="tabela-dados tabela-dic">'
+        "<thead><tr><th>#</th><th>Coluna</th><th>Grupo</th><th>O que e</th><th>Unidade</th></tr></thead>"
+        f'<tbody>{"".join(linhas)}</tbody></table></div>'
     )
 
 
@@ -937,8 +1058,10 @@ def pagina_cenario(nome: str, cenario) -> str:
     pergunta = info.get("pergunta", "")
     descricao = info.get("descricao", "")
 
+    tipo = info.get("tipo", "")
+    eyebrow = f"Cenario &middot; {escapar(tipo)}" if tipo else "Cenario"
     cabeca = (
-        '<section class="hero"><p class="eyebrow">Cenario</p>'
+        f'<section class="hero"><p class="eyebrow">{eyebrow}</p>'
         f"<h1>{escapar(titulo)}</h1>"
         + (f'<p class="lead">{escapar(pergunta)}</p>' if pergunta else "")
         + f'<p class="tecnico" style="margin-top:.7rem">{escapar(nome)}</p></section>'
@@ -998,8 +1121,8 @@ def pagina_inicio(cenarios) -> str:
     projeto = conteudo.PROJETO
     objetivo = conteudo.OBJETIVO
     cartoes = [
-        ("objetivo.html", "Objetivo", "Por que este trabalho existe e como ele testa as previsoes.", "Abrir →"),
-        ("#dados", "Dados", "As fontes usadas: mosquito, clima, casos e El Nino.", "Ver abaixo ↓"),
+        ("metodologia.html", "Metodologia", "O objetivo do trabalho e como as previsoes sao feitas e testadas.", "Abrir →"),
+        ("metodologia.html#dados", "Dados", "As fontes usadas: mosquito, clima, casos e El Nino.", "Abrir →"),
         ("cenarios.html", "Cenarios", "Cada pergunta do projeto e os modelos treinados nela.", "Abrir →"),
     ]
     atalhos = "".join(
@@ -1014,34 +1137,67 @@ def pagina_inicio(cenarios) -> str:
         "</section>"
         f"{indicadores_gerais(cenarios)}"
         f'<section class="secao"><div class="cartoes">{atalhos}</div></section>'
-        # A antiga pagina de Dados, agora embutida aqui (a ancora #dados leva pra ca).
-        '<section class="secao" id="dados"><p class="eyebrow">Dados</p>'
-        "<h2>As fontes que alimentam as previsoes</h2>"
-        '<p class="lead" style="margin-top:.35rem">Tudo e medido semana a semana e depois juntado numa tabela unica.</p></section>'
-        f"{secoes_dados()}"
     )
 
 
-# Monta a pagina do objetivo (a pergunta central e como ela e testada).
-def pagina_objetivo() -> str:
-    objetivo = conteudo.OBJETIVO
-    paragrafos = "".join(f"<p>{escapar(p)}</p>" for p in objetivo["paragrafos"])
-    metodo = "".join(
-        f'<li><b>{escapar(titulo)}</b><p>{escapar(texto)}</p></li>'
-        for titulo, texto in objetivo["como_testa"]
-    )
+# Desenha (SVG na mao) os horizontes de previsao: hoje -> 4, 8 e 12 semanas.
+def svg_horizonte() -> str:
+    x0, x1, y = 70, 540, 72
+
+    def px(sem):
+        return x0 + (x1 - x0) * sem / 12
+
+    meses = {4: "1 mes", 8: "2 meses", 12: "3 meses"}
+    p = ['<svg viewBox="0 0 600 150" role="img" aria-label="Horizontes de previsao">']
+    p.append(f'<line x1="{x0}" y1="{y}" x2="{x1 + 12}" y2="{y}" stroke="var(--borda-forte)" stroke-width="2" stroke-dasharray="6 5"/>')
+    p.append(f'<circle cx="{x0}" cy="{y}" r="6" fill="var(--tinta)"/>')
+    p.append(f'<text class="svg-rot" x="{x0}" y="{y + 28}" text-anchor="middle" font-weight="700">hoje</text>')
+    for sem in (4, 8, 12):
+        x = px(sem)
+        p.append(f'<circle cx="{x:.0f}" cy="{y}" r="5" fill="var(--acento)"/>')
+        p.append(f'<text class="svg-rot" x="{x:.0f}" y="{y - 16}" text-anchor="middle">{sem} semanas</text>')
+        p.append(f'<text class="svg-sub" x="{x:.0f}" y="{y + 28}" text-anchor="middle">{meses[sem]}</text>')
+    p.append("</svg>")
+    return "".join(p)
+
+
+# Monta a pagina de Metodologia: junta o objetivo e o metodo num lugar so, com
+# poucos textos e muitos esquemas (o objetivo, a pergunta central, o caminho dos
+# dados e como as previsoes sao testadas).
+def pagina_metodologia() -> str:
+    obj = conteudo.OBJETIVO
     return (
-        '<section class="hero"><p class="eyebrow">Objetivo</p>'
-        f"<h1>{escapar(objetivo['frase'])}</h1></section>"
-        f'<section class="secao">{paragrafos}</section>'
-        '<section class="secao"><div class="callout">'
-        '<p class="eyebrow">A pergunta central</p>'
-        f"<p><strong>{escapar(objetivo['pergunta_central'])}</strong></p>"
-        f"<p style=\"margin-top:.6rem;color:var(--tinta-suave)\">{escapar(objetivo['pergunta_explica'])}</p>"
+        '<section class="hero"><p class="eyebrow">Metodologia</p>'
+        "<h1>Metodologia</h1>"
+        f'<p class="lead">{escapar(obj["frase"])}</p></section>'
+        # A pergunta central + o objetivo em destaque, com os horizontes ilustrando o "1, 2 e 3 meses".
+        f'<section class="secao">{faixa("A pergunta e o objetivo")}'
+        '<div class="callout" style="margin-top:0">'
+        f'<p><strong>{escapar(obj["pergunta_central"])}</strong></p></div>'
+        '<div class="obj-central"><p class="eyebrow">Objetivo central</p>'
+        f'<p>{escapar(obj["objetivo_central"])}</p></div>'
+        f'<div class="esquema">{svg_horizonte()}'
+        '<div class="cap">Os tres horizontes de antecedencia: 4, 8 e 12 semanas — ou seja, 1, 2 e 3 meses a frente.</div></div>'
+        "</section>"
+        # Os dois tipos de modelo usados.
+        f'<section class="secao">{faixa("Dois caminhos de modelo")}'
+        '<div class="dois-caminhos">'
+        '<div class="caminho"><span class="arv-tag reg">Regressao</span>'
+        "<h3>Quantos casos vao ter?</h3><p>Preve o numero de casos de dengue.</p>"
+        '<span class="saida">saida: um numero (ex.: 320 casos)</span></div>'
+        '<div class="caminho"><span class="arv-tag clf">Classificacao</span>'
+        "<h3>Vai ter surto?</h3><p>Preve se vai passar do limite de surto.</p>"
+        '<span class="saida">saida: sim / nao</span></div>'
         "</div></section>"
-        '<section class="secao"><h2>Como as previsoes sao testadas</h2>'
-        f'<ul class="lista-metodo">{metodo}</ul>'
-        f'{figura("walkforward.png", "Validacao walk-forward", "Validacao walk-forward: em cada corte o modelo treina so com o passado e preve ate 12 semanas a frente, e depois compara com o real. Ele nunca ve o futuro que tenta prever.")}</section>'
+        # Como as previsoes sao testadas (validacao honesta + provas estatisticas).
+        f'<section class="secao">{faixa("Como testamos")}'
+        f'{figura("walkforward.png", "Validacao walk-forward", "Em cada corte, o modelo treina so com o passado e preve ate 12 semanas a frente; depois compara com o real. Nunca ve o futuro que tenta prever.")}'
+        '<p class="lead" style="font-size:1rem; margin-top:1.2rem">Para saber se uma diferenca e real (e nao sorte), usamos testes estatisticos: <strong>McNemar</strong> no alarme de surto e <strong>Diebold-Mariano</strong> no erro de previsao.</p>'
+        "</section>"
+        # Os dados (movidos da home): tudo que alimenta os modelos, no fim da metodologia.
+        f'<section class="secao" id="dados">{faixa("Dados do projeto")}'
+        '<p class="lead" style="margin-top:0">Tudo e medido semana a semana e depois juntado numa tabela unica.</p></section>'
+        f"{secoes_dados()}"
     )
 
 
@@ -1068,11 +1224,14 @@ def secoes_dados() -> str:
         f'<tbody>{"".join(linhas)}</tbody></table></div>'
     )
     return (
-        f'<section class="secao"><p class="eyebrow">O caminho dos dados</p>{diagrama_fluxo()}</section>'
-        f'<section class="secao"><p class="eyebrow">As fontes</p>{tabela}</section>'
-        f'<section class="secao"><p class="eyebrow">O que compoe o clima</p>{tabela_colunas_clima()}</section>'
-        f'<section class="secao"><p class="eyebrow">A serie do mosquito</p>{figura("vetor_por_semana.png", "Aedes aegypti capturados por semana", "Aedes aegypti capturados por semana em POA. Dois blocos: Marilia (2019-2023) e a raspagem propria (2025-2026), com o vao de ~2 anos sem captura no meio.")}</section>'
-        f'<section class="secao"><p class="eyebrow">A limitacao dos dados</p>{figura("vetor_vs_casos.png", "Mosquito capturado x casos de dengue", "Mosquito capturado x casos de dengue confirmados. Os dois maiores surtos (2024 e 2025) caem justo no vao sem dado de mosquito — a limitacao central da pesquisa.")}</section>'
+        f'<section class="secao">{faixa("O caminho dos dados")}{diagrama_fluxo()}</section>'
+        f'<section class="secao">{faixa("Fontes utilizadas")}{tabela}</section>'
+        f'<section class="secao">{faixa("O que compoe o clima")}{tabela_colunas_clima()}</section>'
+        f'<section class="secao">{faixa("A serie do mosquito")}{figura("vetor_por_semana.png", "Aedes aegypti capturados por semana", "Aedes aegypti capturados por semana em POA. Dois blocos: Marilia (2019-2023) e a raspagem propria (2025-2026), com o vao de ~2 anos sem captura no meio.")}</section>'
+        f'<section class="secao">{faixa("A limitacao dos dados")}{figura("vetor_vs_casos.png", "Mosquito capturado x casos de dengue", "Mosquito capturado x casos de dengue confirmados. Os dois maiores surtos (2024 e 2025) caem justo no vao sem dado de mosquito — a limitacao central da pesquisa.")}</section>'
+        f'<section class="secao">{faixa("Dicionario de dados usados na tabela final de features")}'
+        '<p class="lead" style="font-size:1rem; margin-top:0">Cada linha e uma coluna da <strong>tabela_final</strong> — o arquivo unico que junta tudo por semana e alimenta os modelos.</p>'
+        f"{tabela_dicionario()}</section>"
     )
 
 
@@ -1092,26 +1251,42 @@ def pagina_cenarios(cenarios) -> str:
         '<p class="lead">Cada cenario e uma pergunta. Clique num deles pra ver os modelos, os resultados e os ajustes daquele teste.</p></section>'
     )
     corpo = indicadores_gerais(cenarios) if cenarios else ""
+    ramos = []
     for grupo_nome, itens in agrupar_cenarios(ordem_dos_cenarios(cenarios)):
-        cartoes = []
+        folhas = []
         for nome in itens:
             info = conteudo.CENARIOS.get(nome, {})
-            titulo = info.get("titulo", nome)
+            rotulo = info.get("rotulo") or info.get("titulo", nome)
             pergunta = info.get("pergunta", "")
+            tipo = info.get("tipo", "")
+            tbaixo = tipo.lower()
+            classe_tag = "mix" if ("regress" in tbaixo and "classif" in tbaixo) else "clf" if "classif" in tbaixo else "reg"
+            etiqueta = f'<span class="arv-tag {classe_tag}">{escapar(tipo)}</span>' if tipo else ""
             cenario = por_nome.get(nome)
             if cenario and cenario.modelos:
                 quantidade = len(cenario.modelos)
-                marca = f'{quantidade} modelo{"s" if quantidade > 1 else ""} &rarr;'
+                meta = f'{quantidade} modelo{"s" if quantidade > 1 else ""}'
+                lista = "".join(f"<li>{escapar(modelo.nome)}</li>" for modelo in cenario.modelos)
+                corpo_mods = f'<span class="arv-meta">{meta}</span><ul class="arv-mods">{lista}</ul>'
+                vazia = ""
             else:
-                marca = "nao rodado &rarr;"
-            cartoes.append(
-                f'<a class="cartao" href="cenario-{escapar(nome)}.html"><h3>{escapar(titulo)}</h3>'
-                f'<p>{escapar(pergunta)}</p><span class="seta">{marca}</span></a>'
+                corpo_mods = '<span class="arv-meta">nao rodado</span>'
+                vazia = " vazia"
+            folhas.append(
+                f'<li><a class="arv-folha{vazia}" href="cenario-{escapar(nome)}.html" title="{escapar(pergunta)}">'
+                f'<span class="arv-linha">{etiqueta}<span class="arv-nome">{escapar(rotulo)}</span></span>'
+                f'{corpo_mods}</a></li>'
             )
-        corpo += (
-            f'<section class="secao"><p class="eyebrow">{escapar(grupo_nome)}</p>'
-            f'<div class="cartoes">{"".join(cartoes)}</div></section>'
+        ramos.append(
+            f'<li><span class="arv-grupo">{escapar(grupo_nome)}</span>'
+            f'<ul>{"".join(folhas)}</ul></li>'
         )
+    arvore = (
+        '<div class="arvore">'
+        '<div class="arv-raiz"><span class="ponto"></span>Cenarios do projeto</div>'
+        f'<ul>{"".join(ramos)}</ul></div>'
+    )
+    corpo += f'<section class="secao">{arvore}</section>'
     return cabeca + corpo
 
 
@@ -1225,7 +1400,7 @@ def gerar(pasta_mlruns: Path, pasta_site: Path, pasta_paginas: Path) -> None:
 
     fixas = {
         "index.html": ("Inicio", "inicio", pagina_inicio(cenarios)),
-        "objetivo.html": ("Objetivo", "objetivo", pagina_objetivo()),
+        "metodologia.html": ("Metodologia", "metodologia", pagina_metodologia()),
         "cenarios.html": ("Cenários", "cenarios", pagina_cenarios(cenarios)),
     }
     for arquivo, (titulo, ativo, corpo) in fixas.items():
