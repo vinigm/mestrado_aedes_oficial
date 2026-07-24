@@ -102,6 +102,9 @@ strong{color:var(--tinta)}
   height:100vh; background:var(--superficie); border-right:1px solid var(--borda);
   display:flex; flex-direction:column; transition:flex-basis .16s ease, width .16s ease; overflow:hidden; z-index:5}
 .sidenav-inner{flex:1 1 auto; overflow-y:auto; overflow-x:hidden; padding:16px 12px}
+.barra-topo{display:contents}
+.menu-hamburguer{display:none; align-items:center; gap:.4rem; border:1px solid var(--borda-forte); background:var(--superficie); color:var(--tinta); font-family:inherit; font-size:.9rem; font-weight:600; padding:.5rem .8rem; border-radius:8px; cursor:pointer}
+.menu-hamburguer:hover{border-color:var(--acento)}
 .marca{display:flex; align-items:flex-start; gap:.5rem; text-decoration:none; color:var(--tinta); padding:2px 8px 14px; line-height:1.25}
 .marca .ponto{width:9px; height:9px; border-radius:50%; background:var(--acento); box-shadow:0 0 0 3px var(--acento-suave); margin-top:.32rem; flex:none}
 .marca span{font-size:.85rem; font-weight:700; letter-spacing:-.01em}
@@ -268,9 +271,18 @@ footer{border-top:1px solid var(--borda); margin-top:auto}
 
 @media (max-width:760px){
   #appShell{flex-direction:column}
-  #sideNav{position:static; flex-basis:auto; width:100%; height:auto; max-height:60vh; border-right:none; border-bottom:1px solid var(--borda)}
-  #appShell.sn-collapsed #sideNav{width:100%; flex-basis:auto}
-  #appShell.sn-collapsed .sidenav-title,#appShell.sn-collapsed .sidenav-tree,#appShell.sn-collapsed .marca span,#appShell.sn-collapsed .sn-acao-texto{display:revert}
+  /* Sidebar vira uma barra fixa no topo; a arvore so aparece ao tocar em "Menu" */
+  #sideNav{position:sticky; top:0; flex-basis:auto; width:100%; height:auto; max-height:none; border-right:none; border-bottom:1px solid var(--borda-forte); overflow:visible; z-index:30; box-shadow:var(--sombra)}
+  #appShell.sn-collapsed #sideNav{flex-basis:auto; width:100%}
+  .sidenav-inner{padding:0; overflow:visible}
+  .barra-topo{display:flex; align-items:center; justify-content:space-between; padding:.55rem .9rem .55rem 1rem}
+  .marca{padding:0; align-items:center}
+  .menu-hamburguer{display:inline-flex}
+  .sidenav-title{display:none}
+  .sidenav-tree{display:none; padding:.4rem 1rem 1rem; border-top:1px solid var(--borda); max-height:72vh; overflow-y:auto}
+  #sideNav.nav-aberto .sidenav-tree{display:flex}
+  .sidenav-rodape{display:none}
+  .wrap{padding-top:1.8rem}
 }
 
 .acordeao{display:flex; flex-direction:column; gap:.7rem; margin-top:1.4rem}
@@ -427,6 +439,8 @@ JS_MENU = (
     "try{if(localStorage.getItem('menuRecolhido')==='1'&&s)s.classList.add('sn-collapsed');}catch(e){}"
     "if(c&&s){c.addEventListener('click',function(){s.classList.toggle('sn-collapsed');"
     "try{localStorage.setItem('menuRecolhido',s.classList.contains('sn-collapsed')?'1':'0');}catch(e){}});}"
+    "var h=document.getElementById('menuHamburguer'),sn=document.getElementById('sideNav');"
+    "if(h&&sn){h.addEventListener('click',function(){sn.classList.toggle('nav-aberto');});}"
     "})();"
 )
 
@@ -523,8 +537,11 @@ def barra_navegacao(ativo: str, menu: dict) -> str:
 
     return (
         '<aside id="sideNav"><div class="sidenav-inner">'
+        '<div class="barra-topo">'
         '<a class="marca" href="index.html"><span class="ponto"></span>'
         f'<span>{escapar(conteudo.PROJETO["titulo"])}</span></a>'
+        '<button class="menu-hamburguer" id="menuHamburguer" type="button" aria-label="Abrir ou fechar o menu">&#9776; Menu</button>'
+        "</div>"
         '<div class="sidenav-title">Navega&ccedil;&atilde;o</div>'
         f'<nav class="sidenav-tree" aria-label="Navegacao do projeto">{"".join(partes)}</nav>'
         "</div>"
