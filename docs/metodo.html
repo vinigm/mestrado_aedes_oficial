@@ -86,9 +86,7 @@ strong{color:var(--tinta)}
 .hero{padding:1.4rem 0 .6rem; position:relative}
 .hero .sub, .lead{font-size:1.18rem; line-height:1.5; color:var(--muted); max-width:64ch; margin:.4rem 0 0}
 .hero .lead strong{color:var(--tinta-suave)}
-.hero-visual{margin:1.8rem 0 .4rem; border:1px solid var(--borda); border-radius:var(--raio); background:linear-gradient(180deg,var(--elevado),var(--superficie)); padding:1rem 1.2rem .6rem; box-shadow:var(--sombra)}
-.hero-visual .cap{font-size:.74rem; text-transform:uppercase; letter-spacing:.1em; color:var(--faint); font-weight:700; margin-bottom:.3rem}
-.onda{width:100%; height:96px; display:block}
+.secao[id]{scroll-margin-top:1.5rem}
 
 .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:1rem; margin:1.6rem 0}
 .kpi{position:relative; background:var(--superficie); border:1px solid var(--borda); border-radius:var(--raio); padding:1.15rem 1.2rem; box-shadow:var(--sombra); overflow:hidden}
@@ -307,7 +305,7 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 <script>(function(){try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
 </head>
 <body>
-<aside class="barra"><div class="barra-interna"><a class="marca" href="index.html"><span class="ponto"></span><span>Modelagem preditiva de Aedes aegypti e dengue</span></a><nav class="nav-links"><a href="index.html">Inicio</a><a href="objetivo.html">Objetivo</a><a href="dados.html">Dados</a><a href="cenarios.html" class="grupo">Cenarios</a><div class="nav-secao sub-secao">Prever os casos</div><a href="cenario-cidade_regressao.html" class="sub">Previsao principal</a><a href="cenario-cidade_regressao_com_enso.html" class="sub">Com El Nino</a><a href="cenario-cidade_regressao_sem_enso.html" class="sub">Sem apagar semanas</a><div class="nav-secao sub-secao">O mosquito faz diferenca?</div><a href="cenario-cidade_lift_vetor.html" class="sub">O ganho do mosquito</a><a href="cenario-cidade_diebold.html" class="sub">E ganho de verdade?</a><a href="cenario-comparacao_literatura.html" class="sub">Contra a literatura</a><div class="nav-secao sub-secao">Outras frentes</div><a href="cenario-cidade_deteccao_surto.html" class="sub">Vai ter surto?</a><a href="cenario-bairro_surto.html" class="sub">Por bairro</a><div class="nav-secao">Paginas</div><a href="metodo.html" aria-current="page">Método</a></nav><button class="tema" onclick="alternarTema()" aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">◑ Tema</button></div></aside>
+<aside class="barra"><div class="barra-interna"><a class="marca" href="index.html"><span class="ponto"></span><span>Modelagem preditiva de Aedes aegypti e dengue</span></a><nav class="nav-links"><a href="index.html">Inicio</a><a href="objetivo.html">Objetivo</a><a href="index.html#dados">Dados</a><a href="cenarios.html" class="grupo">Cenarios</a><div class="nav-secao sub-secao">Prever os casos</div><a href="cenario-cidade_regressao.html" class="sub">Previsao principal</a><a href="cenario-cidade_regressao_com_enso.html" class="sub">Com El Nino</a><a href="cenario-cidade_regressao_sem_enso.html" class="sub">Sem apagar semanas</a><div class="nav-secao sub-secao">O mosquito faz diferenca?</div><a href="cenario-cidade_lift_vetor.html" class="sub">O ganho do mosquito</a><a href="cenario-cidade_diebold.html" class="sub">E ganho de verdade?</a><a href="cenario-comparacao_literatura.html" class="sub">Contra a literatura</a><div class="nav-secao sub-secao">Outras frentes</div><a href="cenario-cidade_deteccao_surto.html" class="sub">Vai ter surto?</a><a href="cenario-bairro_surto.html" class="sub">Por bairro</a><div class="nav-secao">Paginas</div><a href="metodo.html" aria-current="page">Método</a></nav><button class="tema" onclick="alternarTema()" aria-label="Alternar tema claro/escuro" title="Tema claro/escuro">◑ Tema</button></div></aside>
 <main class="container">
 <section class="hero"><p class="eyebrow">Pagina do projeto</p><h1>Método</h1></section><section class="secao conteudo-md"><p>Como o projeto transforma dados de mosquito, clima e casos em previsões — em linguagem simples. <em>(Esta página é um exemplo: ela foi criada só com o arquivo <code>paginas/10_metodo.md</code>. Edite, renomeie ou apague à vontade.)</em></p>
 <h2>Treina no passado, prevê o futuro</h2>
@@ -318,11 +316,11 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 <ul><li><strong>Atrasos</strong>: o valor de 1, 2, 3 e 4 semanas atrás.</li><li><strong>Média das últimas 4 semanas</strong>: para suavizar o sobe-e-desce.</li><li><strong>Época do ano</strong>: dois números que dizem em que parte do ano estamos, de um</li></ul>
 <p>jeito que dezembro e janeiro fiquem &quot;perto&quot;.</p>
 <h2>A pergunta central</h2>
-<p>Saber quanto mosquito foi capturado ajuda a prever a dengue <strong>melhor</strong> do que só olhar o clima? Vários cenários existem só para medir e comprovar esse ganho — o chamado <em>lift do vetor</em>. Veja os números na página <a href="resultados.html">Resultados</a>.</p>
+<p>Saber quanto mosquito foi capturado ajuda a prever a dengue <strong>melhor</strong> do que só olhar o clima? Vários cenários existem só para medir e comprovar esse ganho — o chamado <em>lift do vetor</em>. Veja os números na página <a href="cenarios.html">Cenários</a>.</p>
 <hr>
 <p><em>Dica: para criar uma página nova, é só colocar um arquivo <code>.md</code> na pasta <code>paginas/</code> e rodar <code>python3 gerar.py</code>. Ela aparece sozinha no menu.</em></p></section>
 </main>
-<footer><div class="rodape"><span>Vinicius Guerra · PPGC — UFRGS (Mestrado)</span><span>Painel gerado a partir do MLflow local · 24/07/2026 13:12</span></div></footer>
+<footer><div class="rodape"><span>Vinicius Guerra · PPGC — UFRGS (Mestrado)</span><span>Painel gerado a partir do MLflow local · 24/07/2026 13:25</span></div></footer>
 <script>function alternarTema(){var r=document.documentElement;var e=r.getAttribute('data-theme');if(!e){e=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}var n=e==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('tema',n);}catch(e){}}</script>
 </body>
 </html>

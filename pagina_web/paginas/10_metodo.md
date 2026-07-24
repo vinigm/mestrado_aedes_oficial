@@ -28,7 +28,7 @@ Para o teste ser honesto, o modelo só pode usar o que **já** aconteceu. Então
 
 Saber quanto mosquito foi capturado ajuda a prever a dengue **melhor** do que só
 olhar o clima? Vários cenários existem só para medir e comprovar esse ganho — o
-chamado *lift do vetor*. Veja os números na página [Resultados](resultados.html).
+chamado *lift do vetor*. Veja os números na página [Cenários](cenarios.html).
 
 ---
 

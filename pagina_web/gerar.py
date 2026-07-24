@@ -58,11 +58,13 @@ PREFERENCIA_METRICAS = [
 # Nome bonito das colunas de resultado usadas nos graficos.
 ROTULO_COLUNA = {"mae": "Erro medio (MAE)", "rmse": "Erro (RMSE)", "r2": "R²"}
 
-# As paginas do site: (arquivo, chave de navegacao, titulo do menu).
+# As paginas do site: (arquivo, chave de navegacao, titulo do menu). "Dados"
+# nao e mais uma pagina propria: virou uma secao da inicial, entao o link e uma
+# ancora (#dados) que rola ate la.
 PAGINAS = [
     ("index.html", "inicio", "Inicio"),
     ("objetivo.html", "objetivo", "Objetivo"),
-    ("dados.html", "dados", "Dados"),
+    ("index.html#dados", "dados", "Dados"),
 ]
 
 CSS = """
@@ -147,9 +149,7 @@ strong{color:var(--tinta)}
 .hero{padding:1.4rem 0 .6rem; position:relative}
 .hero .sub, .lead{font-size:1.18rem; line-height:1.5; color:var(--muted); max-width:64ch; margin:.4rem 0 0}
 .hero .lead strong{color:var(--tinta-suave)}
-.hero-visual{margin:1.8rem 0 .4rem; border:1px solid var(--borda); border-radius:var(--raio); background:linear-gradient(180deg,var(--elevado),var(--superficie)); padding:1rem 1.2rem .6rem; box-shadow:var(--sombra)}
-.hero-visual .cap{font-size:.74rem; text-transform:uppercase; letter-spacing:.1em; color:var(--faint); font-weight:700; margin-bottom:.3rem}
-.onda{width:100%; height:96px; display:block}
+.secao[id]{scroll-margin-top:1.5rem}
 
 .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:1rem; margin:1.6rem 0}
 .kpi{position:relative; background:var(--superficie); border:1px solid var(--borda); border-radius:var(--raio); padding:1.15rem 1.2rem; box-shadow:var(--sombra); overflow:hidden}
@@ -992,45 +992,33 @@ def indicadores_gerais(cenarios) -> str:
     return f'<div class="kpis">{itens}</div>'
 
 
-# Uma linha de "observado -> previsao" pra dar identidade ao topo (decorativa).
-def onda_decorativa() -> str:
-    return (
-        '<svg class="onda" viewBox="0 0 760 96" preserveAspectRatio="none" aria-hidden="true">'
-        '<defs><linearGradient id="gwave" x1="0" y1="0" x2="0" y2="1">'
-        '<stop offset="0" stop-color="var(--acento)" stop-opacity=".20"/>'
-        '<stop offset="1" stop-color="var(--acento)" stop-opacity="0"/></linearGradient></defs>'
-        '<path d="M0,66 C95,62 130,28 210,32 C300,36 330,72 410,68 C500,64 520,26 590,30 L590,96 L0,96 Z" fill="url(#gwave)"/>'
-        '<path d="M0,66 C95,62 130,28 210,32 C300,36 330,72 410,68 C500,64 520,26 590,30" fill="none" stroke="var(--acento)" stroke-width="2.6" stroke-linecap="round"/>'
-        '<path d="M590,30 C650,33 690,52 760,44" fill="none" stroke="var(--atencao)" stroke-width="2.2" stroke-dasharray="5 5" stroke-linecap="round"/>'
-        '<circle cx="590" cy="30" r="4" fill="var(--atencao)"/>'
-        "</svg>"
-    )
-
-
-# Monta a pagina inicial (capa + indicadores + atalhos + fluxo).
+# Monta a pagina inicial: capa + indicadores + atalhos e, embaixo, a antiga
+# pagina de Dados embutida (Inicio e Dados viraram uma pagina so).
 def pagina_inicio(cenarios) -> str:
     projeto = conteudo.PROJETO
     objetivo = conteudo.OBJETIVO
     cartoes = [
-        ("objetivo.html", "Objetivo", "Por que este trabalho existe e como ele testa as previsoes."),
-        ("dados.html", "Dados", "As fontes usadas: mosquito, clima, casos e El Nino."),
-        ("cenarios.html", "Cenarios", "Cada pergunta do projeto e os modelos treinados nela."),
-        ("resultados.html", "Resultados", "O painel comparativo: notas, graficos e ajustes."),
+        ("objetivo.html", "Objetivo", "Por que este trabalho existe e como ele testa as previsoes.", "Abrir →"),
+        ("#dados", "Dados", "As fontes usadas: mosquito, clima, casos e El Nino.", "Ver abaixo ↓"),
+        ("cenarios.html", "Cenarios", "Cada pergunta do projeto e os modelos treinados nela.", "Abrir →"),
     ]
     atalhos = "".join(
-        f'<a class="cartao" href="{arq}"><h3>{escapar(t)}</h3><p>{escapar(d)}</p><span class="seta">Abrir →</span></a>'
-        for arq, t, d in cartoes
+        f'<a class="cartao" href="{arq}"><h3>{escapar(t)}</h3><p>{escapar(d)}</p><span class="seta">{escapar(s)}</span></a>'
+        for arq, t, d, s in cartoes
     )
     return (
         '<section class="hero">'
         f'<p class="eyebrow">{escapar(projeto["instituicao"])} · {escapar(projeto["local"])}</p>'
         f"<h1>{escapar(objetivo['frase'])}</h1>"
         f'<p class="lead">{escapar(projeto["subtitulo"])}. Este painel reune os dados, o objetivo e os resultados dos experimentos num lugar so.</p>'
-        f'<div class="hero-visual"><div class="cap">casos observados &rarr; previsao</div>{onda_decorativa()}</div>'
         "</section>"
         f"{indicadores_gerais(cenarios)}"
         f'<section class="secao"><div class="cartoes">{atalhos}</div></section>'
-        f'<section class="secao"><p class="eyebrow">O caminho dos dados</p>{diagrama_fluxo()}</section>'
+        # A antiga pagina de Dados, agora embutida aqui (a ancora #dados leva pra ca).
+        '<section class="secao" id="dados"><p class="eyebrow">Dados</p>'
+        "<h2>As fontes que alimentam as previsoes</h2>"
+        '<p class="lead" style="margin-top:.35rem">Tudo e medido semana a semana e depois juntado numa tabela unica.</p></section>'
+        f"{secoes_dados()}"
     )
 
 
@@ -1057,8 +1045,9 @@ def pagina_objetivo() -> str:
     )
 
 
-# Monta a pagina de dados (tabela das fontes + linha do tempo + o que sai da juncao).
-def pagina_dados() -> str:
+# Monta as secoes de dados (fluxo + fontes + clima + graficos), SEM capa propria,
+# pra serem embutidas na pagina inicial (Inicio e Dados viraram uma pagina so).
+def secoes_dados() -> str:
     linhas = []
     for fonte in conteudo.FONTES_DADOS:
         badge = ' <span class="badge vital">insubstituivel</span>' if fonte.get("vital") else ""
@@ -1079,9 +1068,6 @@ def pagina_dados() -> str:
         f'<tbody>{"".join(linhas)}</tbody></table></div>'
     )
     return (
-        '<section class="hero"><p class="eyebrow">Dados</p>'
-        "<h1>As fontes que alimentam as previsoes</h1>"
-        '<p class="lead">Tudo e medido semana a semana e depois juntado numa tabela unica.</p></section>'
         f'<section class="secao"><p class="eyebrow">O caminho dos dados</p>{diagrama_fluxo()}</section>'
         f'<section class="secao"><p class="eyebrow">As fontes</p>{tabela}</section>'
         f'<section class="secao"><p class="eyebrow">O que compoe o clima</p>{tabela_colunas_clima()}</section>'
@@ -1240,7 +1226,6 @@ def gerar(pasta_mlruns: Path, pasta_site: Path, pasta_paginas: Path) -> None:
     fixas = {
         "index.html": ("Inicio", "inicio", pagina_inicio(cenarios)),
         "objetivo.html": ("Objetivo", "objetivo", pagina_objetivo()),
-        "dados.html": ("Dados", "dados", pagina_dados()),
         "cenarios.html": ("Cenários", "cenarios", pagina_cenarios(cenarios)),
     }
     for arquivo, (titulo, ativo, corpo) in fixas.items():
