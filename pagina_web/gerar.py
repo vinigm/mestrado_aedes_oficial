@@ -38,7 +38,7 @@ PASTA_SITE = PASTA_AQUI.parent / "docs"
 PASTA_PAGINAS = PASTA_AQUI / "paginas"
 
 # Enderecos das paginas fixas (nao dar esses nomes a paginas novas em paginas/).
-NOMES_RESERVADOS = {"index", "objetivo", "dados", "cenarios", "resultados"}
+NOMES_RESERVADOS = {"index", "objetivo", "dados", "cenarios", "resultados", "metodologia", "diario"}
 
 # Cores das linhas dos graficos (uma por serie). Da paleta Pearl, legiveis nos dois temas.
 CORES_SERIES = ["#9179B8", "#C79A5B", "#A5937B", "#6E8B5A", "#B0574B", "#5B84A6"]
@@ -419,6 +419,16 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 .arv-folha.vazia{opacity:.62}
 .arv-folha.vazia .arv-nome{font-weight:500; color:var(--muted)}
 
+/* Diario de atividades: timeline vertical, um bloco por dia */
+.diario{position:relative; margin:1.6rem 0; padding:0; list-style:none}
+.diario-dia{position:relative; padding:0 0 1.6rem 1.9rem; margin-left:.4rem; border-left:2px solid var(--borda-forte)}
+.diario-dia:last-child{padding-bottom:.2rem}
+.diario-dia::before{content:""; position:absolute; left:-8px; top:.15rem; width:14px; height:14px; border-radius:50%; background:var(--acento); box-shadow:0 0 0 4px var(--acento-suave)}
+.diario-data{font-family:var(--fonte-dados); font-size:.8rem; font-weight:700; color:var(--acento-forte); letter-spacing:.02em}
+.diario-titulo{font-family:var(--fonte-titulo); font-weight:600; font-size:1.08rem; color:var(--tinta); margin:.15rem 0 .35rem}
+.diario-itens{margin:.3rem 0 0; padding-left:1.15rem; color:var(--tinta-suave)}
+.diario-itens li{margin:.3rem 0}
+
 :focus-visible{outline:2px solid var(--acento); outline-offset:2px; border-radius:4px}
 @media (prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto !important}}
 @media print{
@@ -534,6 +544,7 @@ def barra_navegacao(ativo: str, menu: dict) -> str:
         "</div>"
     )
     partes += [folha(*item) for item in menu["extras"]]
+    partes.append(folha("diario.html", "diario", "Diario de atividades"))
 
     return (
         '<aside id="sideNav"><div class="sidenav-inner">'
@@ -1252,6 +1263,41 @@ def secoes_dados() -> str:
     )
 
 
+# Converte uma data AAAA-MM-DD para o formato brasileiro DD/MM/AAAA.
+def _data_br(iso: str) -> str:
+    try:
+        ano, mes, dia = iso.split("-")
+        return f"{dia}/{mes}/{ano}"
+    except ValueError:
+        return iso
+
+
+# Monta a pagina "Diario de atividades": uma timeline vertical, um bloco por dia.
+def pagina_diario() -> str:
+    entradas = conteudo.DIARIO
+    if not entradas:
+        corpo = '<div class="vazio"><p>Ainda sem registros. Adicione dias em <code>DIARIO</code> no conteudo.py.</p></div>'
+    else:
+        dias = []
+        for e in entradas:
+            itens = "".join(f"<li>{escapar(x)}</li>" for x in e.get("itens", []))
+            titulo = f'<div class="diario-titulo">{escapar(e["titulo"])}</div>' if e.get("titulo") else ""
+            dias.append(
+                '<li class="diario-dia">'
+                f'<div class="diario-data">{escapar(_data_br(e["data"]))}</div>'
+                f"{titulo}"
+                f'<ul class="diario-itens">{itens}</ul>'
+                "</li>"
+            )
+        corpo = f'<ul class="diario">{"".join(dias)}</ul>'
+    return (
+        '<section class="hero"><p class="eyebrow">Diario</p>'
+        "<h1>Diario de atividades</h1>"
+        '<p class="lead">O que foi sendo feito no projeto, dia a dia.</p></section>'
+        f'<section class="secao">{corpo}</section>'
+    )
+
+
 # Monta a pagina "Cenarios": um indice com um cartao por cenario (leva pra pagina de cada um).
 def pagina_cenarios(cenarios) -> str:
     """
@@ -1419,6 +1465,7 @@ def gerar(pasta_mlruns: Path, pasta_site: Path, pasta_paginas: Path) -> None:
         "index.html": ("Inicio", "inicio", pagina_inicio(cenarios)),
         "metodologia.html": ("Metodologia", "metodologia", pagina_metodologia()),
         "cenarios.html": ("Cenários", "cenarios", pagina_cenarios(cenarios)),
+        "diario.html": ("Diario de atividades", "diario", pagina_diario()),
     }
     for arquivo, (titulo, ativo, corpo) in fixas.items():
         (pasta_site / arquivo).write_text(documento(titulo, ativo, corpo, gerado_em, menu), encoding="utf-8")

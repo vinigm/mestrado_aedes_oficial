@@ -210,6 +210,36 @@ DICIONARIO_COLUNAS = [
 ]
 
 
+# Diario de atividades (pagina "Diario de atividades"): o que foi feito ao longo
+# do tempo, um bloco por dia. Para adicionar um dia novo, copie um item e edite
+# (a data no formato AAAA-MM-DD; o "titulo" e opcional). Ordene do mais recente
+# para o mais antigo — o primeiro da lista aparece no topo.
+DIARIO = [
+    {
+        "data": "2026-07-27",
+        "titulo": "Diario de atividades no painel",
+        "itens": [
+            "Criada esta pagina de diario, no fim do menu, para registrar o trabalho dia a dia.",
+        ],
+    },
+    {
+        "data": "2026-07-25",
+        "titulo": "Raspagem da captura",
+        "itens": [
+            "Coleta da captura de mosquito (semana 499): 137 exemplares.",
+        ],
+    },
+    {
+        "data": "2026-07-24",
+        "titulo": "Painel publicado e raspagem",
+        "itens": [
+            "Painel publicado no GitHub Pages com o novo layout: menu em arvore, home enxuta, pagina de Metodologia, arvore de cenarios, dicionario de dados e versao para celular.",
+            "Coleta da captura de mosquito (semana 499): 116 exemplares.",
+        ],
+    },
+]
+
+
 # O caminho dos dados, de ponta a ponta (diagrama simples).
 FLUXO = [
     ("Fontes", "mosquito, clima, casos, El Nino"),
