@@ -419,15 +419,20 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 .arv-folha.vazia{opacity:.62}
 .arv-folha.vazia .arv-nome{font-weight:500; color:var(--muted)}
 
-/* Diario de atividades: timeline vertical, um bloco por dia */
-.diario{position:relative; margin:1.6rem 0; padding:0; list-style:none}
-.diario-dia{position:relative; padding:0 0 1.6rem 1.9rem; margin-left:.4rem; border-left:2px solid var(--borda-forte)}
-.diario-dia:last-child{padding-bottom:.2rem}
-.diario-dia::before{content:""; position:absolute; left:-8px; top:.15rem; width:14px; height:14px; border-radius:50%; background:var(--acento); box-shadow:0 0 0 4px var(--acento-suave)}
-.diario-data{font-family:var(--fonte-dados); font-size:.8rem; font-weight:700; color:var(--acento-forte); letter-spacing:.02em}
-.diario-titulo{font-family:var(--fonte-titulo); font-weight:600; font-size:1.08rem; color:var(--tinta); margin:.15rem 0 .35rem}
-.diario-itens{margin:.3rem 0 0; padding-left:1.15rem; color:var(--tinta-suave)}
-.diario-itens li{margin:.3rem 0}
+/* Diario de atividades: lista compacta (data - dia - palavras-chave) + busca */
+.di-topo{margin:0 0 1.3rem}
+.di-busca{width:100%; max-width:440px; font-family:var(--fonte-corpo); font-size:.95rem; color:var(--tinta); background:var(--superficie); border:1px solid var(--borda-forte); border-radius:8px; padding:.6rem .9rem}
+.di-busca::placeholder{color:var(--faint)}
+.di-busca:focus{outline:none; border-color:var(--acento); box-shadow:0 0 0 3px var(--acento-suave)}
+.di-lista{display:flex; flex-direction:column}
+.di-linha{display:flex; align-items:center; flex-wrap:wrap; gap:.5rem; padding:.75rem 0; border-bottom:1px solid var(--borda)}
+.di-linha:last-child{border-bottom:none}
+.di-data{font-family:var(--fonte-dados); font-weight:700; color:var(--acento-forte); font-size:.9rem; white-space:nowrap}
+.di-dia{font-size:.85rem; color:var(--muted); white-space:nowrap}
+.di-sep{color:var(--faint)}
+.di-tags{display:flex; flex-wrap:wrap; gap:.4rem}
+.di-tag{font-size:.75rem; color:var(--tinta-suave); background:var(--elevado); border:1px solid var(--borda); border-radius:99px; padding:.16rem .62rem; white-space:nowrap}
+.di-vazio{color:var(--muted); padding:1rem 0}
 
 :focus-visible{outline:2px solid var(--acento); outline-offset:2px; border-radius:4px}
 @media (prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto !important}}
@@ -451,6 +456,11 @@ JS_MENU = (
     "try{localStorage.setItem('menuRecolhido',s.classList.contains('sn-collapsed')?'1':'0');}catch(e){}});}"
     "var h=document.getElementById('menuHamburguer'),sn=document.getElementById('sideNav');"
     "if(h&&sn){h.addEventListener('click',function(){sn.classList.toggle('nav-aberto');});}"
+    "var db=document.getElementById('diarioBusca');"
+    "if(db){db.addEventListener('input',function(){var q=db.value.trim().toLowerCase(),n=0;"
+    "document.querySelectorAll('.di-linha').forEach(function(l){"
+    "var ok=!q||l.getAttribute('data-busca').indexOf(q)>=0;l.style.display=ok?'':'none';if(ok)n++;});"
+    "var v=document.getElementById('diarioVazio');if(v)v.hidden=n>0;});}"
     "})();"
 )
 
@@ -1263,37 +1273,50 @@ def secoes_dados() -> str:
     )
 
 
-# Converte uma data AAAA-MM-DD para o formato brasileiro DD/MM/AAAA.
-def _data_br(iso: str) -> str:
+_DIAS_SEMANA = ("Segunda", "Terca", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo")
+_MESES = ("janeiro", "fevereiro", "marco", "abril", "maio", "junho", "julho",
+          "agosto", "setembro", "outubro", "novembro", "dezembro")
+
+
+# A partir de uma data AAAA-MM-DD, devolve (DD/MM/AAAA, dia_da_semana, mes_por_extenso).
+def _partes_data(iso: str):
     try:
-        ano, mes, dia = iso.split("-")
-        return f"{dia}/{mes}/{ano}"
-    except ValueError:
-        return iso
+        ano, mes, dia = (int(x) for x in iso.split("-"))
+        d = datetime.date(ano, mes, dia)
+        return f"{dia:02d}/{mes:02d}/{ano}", _DIAS_SEMANA[d.weekday()], _MESES[mes - 1]
+    except (ValueError, IndexError):
+        return iso, "", ""
 
 
-# Monta a pagina "Diario de atividades": uma timeline vertical, um bloco por dia.
+# Monta a pagina "Diario de atividades": uma linha por dia (data - dia da semana
+# - palavras-chave) e um campo de busca que filtra por data, mes ou palavra.
 def pagina_diario() -> str:
     entradas = conteudo.DIARIO
     if not entradas:
         corpo = '<div class="vazio"><p>Ainda sem registros. Adicione dias em <code>DIARIO</code> no conteudo.py.</p></div>'
     else:
-        dias = []
+        linhas = []
         for e in entradas:
-            itens = "".join(f"<li>{escapar(x)}</li>" for x in e.get("itens", []))
-            titulo = f'<div class="diario-titulo">{escapar(e["titulo"])}</div>' if e.get("titulo") else ""
-            dias.append(
-                '<li class="diario-dia">'
-                f'<div class="diario-data">{escapar(_data_br(e["data"]))}</div>'
-                f"{titulo}"
-                f'<ul class="diario-itens">{itens}</ul>'
-                "</li>"
+            data_br, dia_sem, mes_nome = _partes_data(e["data"])
+            topicos = e.get("topicos", [])
+            tags = "".join(f'<span class="di-tag">{escapar(t)}</span>' for t in topicos)
+            busca = " ".join([data_br, dia_sem, mes_nome, e["data"], *topicos]).lower()
+            linhas.append(
+                f'<div class="di-linha" data-busca="{escapar(busca)}">'
+                f'<span class="di-data">{escapar(data_br)}</span><span class="di-sep">&middot;</span>'
+                f'<span class="di-dia">{escapar(dia_sem)}</span><span class="di-sep">&middot;</span>'
+                f'<div class="di-tags">{tags}</div></div>'
             )
-        corpo = f'<ul class="diario">{"".join(dias)}</ul>'
+        corpo = (
+            '<div class="di-topo"><input type="search" id="diarioBusca" class="di-busca" '
+            'placeholder="Buscar por data, mes ou palavra..." aria-label="Buscar no diario"></div>'
+            f'<div class="di-lista">{"".join(linhas)}</div>'
+            '<p class="di-vazio" id="diarioVazio" hidden>Nada encontrado.</p>'
+        )
     return (
         '<section class="hero"><p class="eyebrow">Diario</p>'
         "<h1>Diario de atividades</h1>"
-        '<p class="lead">O que foi sendo feito no projeto, dia a dia.</p></section>'
+        '<p class="lead">O que foi sendo feito no projeto, dia a dia. Use a busca para achar por data, mes ou palavra.</p></section>'
         f'<section class="secao">{corpo}</section>'
     )
 

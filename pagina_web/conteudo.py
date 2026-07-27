@@ -210,35 +210,16 @@ DICIONARIO_COLUNAS = [
 ]
 
 
-# Diario de atividades (pagina "Diario de atividades"): o que foi feito ao longo
-# do tempo, um bloco por dia. Para adicionar um dia novo, copie um item e edite
-# (a data no formato AAAA-MM-DD; o "titulo" e opcional). Ordene do mais recente
-# para o mais antigo — o primeiro da lista aparece no topo.
+# Diario de atividades (pagina "Diario de atividades"): uma linha por dia, no
+# formato "data - dia da semana - palavras-chave". Para adicionar um dia, copie
+# um item e edite (a data no formato AAAA-MM-DD; "topicos" e a lista de palavras-
+# chave do dia). Ordene do mais recente para o mais antigo (o primeiro aparece
+# no topo). O dia da semana e o mes sao calculados sozinhos a partir da data, e
+# a busca da pagina acha por data, mes ou qualquer palavra dos topicos.
 DIARIO = [
-    {
-        "data": "2026-07-27",
-        "titulo": "Dados da Secretaria de Saude (liberacao)",
-        "itens": [
-            "Novo contato por telefone com a Secretaria de Saude, porque a pessoa de contato nao respondeu sobre a liberacao dos dados.",
-            "E-mail enviado para dvs@portoalegre.rs.gov.br, que em tese vai liberar os dados e conectar com o pessoal de dados da secretaria.",
-            "Criada a pagina de diario no painel.",
-        ],
-    },
-    {
-        "data": "2026-07-25",
-        "titulo": "Raspagem da captura",
-        "itens": [
-            "Coleta da captura de mosquito (semana 499): 137 exemplares.",
-        ],
-    },
-    {
-        "data": "2026-07-24",
-        "titulo": "Painel publicado e raspagem",
-        "itens": [
-            "Painel publicado no GitHub Pages com o novo layout: menu em arvore, home enxuta, pagina de Metodologia, arvore de cenarios, dicionario de dados e versao para celular.",
-            "Coleta da captura de mosquito (semana 499): 116 exemplares.",
-        ],
-    },
+    {"data": "2026-07-27", "topicos": ["Secretaria de Saude", "liberacao de dados", "contato por telefone", "e-mail dvs@portoalegre.rs.gov.br", "raspagem semana 500 (42)"]},
+    {"data": "2026-07-25", "topicos": ["raspagem", "captura semana 499 (137)"]},
+    {"data": "2026-07-24", "topicos": ["painel publicado", "GitHub Pages", "novo layout", "versao mobile", "raspagem semana 499 (116)"]},
 ]
 
 

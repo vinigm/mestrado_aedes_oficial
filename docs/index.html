@@ -357,15 +357,20 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 .arv-folha.vazia{opacity:.62}
 .arv-folha.vazia .arv-nome{font-weight:500; color:var(--muted)}
 
-/* Diario de atividades: timeline vertical, um bloco por dia */
-.diario{position:relative; margin:1.6rem 0; padding:0; list-style:none}
-.diario-dia{position:relative; padding:0 0 1.6rem 1.9rem; margin-left:.4rem; border-left:2px solid var(--borda-forte)}
-.diario-dia:last-child{padding-bottom:.2rem}
-.diario-dia::before{content:""; position:absolute; left:-8px; top:.15rem; width:14px; height:14px; border-radius:50%; background:var(--acento); box-shadow:0 0 0 4px var(--acento-suave)}
-.diario-data{font-family:var(--fonte-dados); font-size:.8rem; font-weight:700; color:var(--acento-forte); letter-spacing:.02em}
-.diario-titulo{font-family:var(--fonte-titulo); font-weight:600; font-size:1.08rem; color:var(--tinta); margin:.15rem 0 .35rem}
-.diario-itens{margin:.3rem 0 0; padding-left:1.15rem; color:var(--tinta-suave)}
-.diario-itens li{margin:.3rem 0}
+/* Diario de atividades: lista compacta (data - dia - palavras-chave) + busca */
+.di-topo{margin:0 0 1.3rem}
+.di-busca{width:100%; max-width:440px; font-family:var(--fonte-corpo); font-size:.95rem; color:var(--tinta); background:var(--superficie); border:1px solid var(--borda-forte); border-radius:8px; padding:.6rem .9rem}
+.di-busca::placeholder{color:var(--faint)}
+.di-busca:focus{outline:none; border-color:var(--acento); box-shadow:0 0 0 3px var(--acento-suave)}
+.di-lista{display:flex; flex-direction:column}
+.di-linha{display:flex; align-items:center; flex-wrap:wrap; gap:.5rem; padding:.75rem 0; border-bottom:1px solid var(--borda)}
+.di-linha:last-child{border-bottom:none}
+.di-data{font-family:var(--fonte-dados); font-weight:700; color:var(--acento-forte); font-size:.9rem; white-space:nowrap}
+.di-dia{font-size:.85rem; color:var(--muted); white-space:nowrap}
+.di-sep{color:var(--faint)}
+.di-tags{display:flex; flex-wrap:wrap; gap:.4rem}
+.di-tag{font-size:.75rem; color:var(--tinta-suave); background:var(--elevado); border:1px solid var(--borda); border-radius:99px; padding:.16rem .62rem; white-space:nowrap}
+.di-vazio{color:var(--muted); padding:1rem 0}
 
 :focus-visible{outline:2px solid var(--acento); outline-offset:2px; border-radius:4px}
 @media (prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto !important}}
@@ -383,9 +388,9 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 <main class="wrap">
 <section class="hero"><p class="eyebrow">PPGC — UFRGS (Mestrado) · Porto Alegre, RS</p><h1>Prever, com semanas de antecedencia, quando o mosquito Aedes aegypti e a dengue vao aumentar em Porto Alegre.</h1><p class="lead">Porto Alegre — previsao semana a semana. Este painel reune os dados, o objetivo e os resultados dos experimentos num lugar so.</p></section><div class="kpis"><div class="kpi"><div class="valor">8</div><div class="rotulo">Cenarios</div></div><div class="kpi"><div class="valor">16</div><div class="rotulo">Modelos treinados</div></div><div class="kpi"><div class="valor">0.488</div><div class="rotulo">Melhor R²</div></div><div class="kpi"><div class="valor">23/07/2026</div><div class="rotulo">Ultima execucao</div></div></div><section class="secao"><div class="cartoes"><a class="cartao" href="metodologia.html"><h3>Metodologia</h3><p>O objetivo do trabalho e como as previsoes sao feitas e testadas.</p><span class="seta">Abrir →</span></a><a class="cartao" href="metodologia.html#dados"><h3>Dados</h3><p>As fontes usadas: mosquito, clima, casos e El Nino.</p><span class="seta">Abrir →</span></a><a class="cartao" href="cenarios.html"><h3>Cenarios</h3><p>Cada pergunta do projeto e os modelos treinados nela.</p><span class="seta">Abrir →</span></a></div></section>
 </main>
-<footer><div class="rodape"><span>Vinicius Guerra · PPGC — UFRGS (Mestrado)</span><span>Painel gerado a partir do MLflow local · 27/07/2026 16:01</span></div></footer>
+<footer><div class="rodape"><span>Vinicius Guerra · PPGC — UFRGS (Mestrado)</span><span>Painel gerado a partir do MLflow local · 27/07/2026 18:59</span></div></footer>
 </div>
 </div>
-<script>(function(){document.querySelectorAll('.sn-toggle').forEach(function(b){b.addEventListener('click',function(){var k=b.parentNode.querySelector('.sn-children');if(k){b.classList.toggle('sn-open');k.classList.toggle('open');}});});var s=document.getElementById('appShell'),c=document.getElementById('recolherMenu');try{if(localStorage.getItem('menuRecolhido')==='1'&&s)s.classList.add('sn-collapsed');}catch(e){}if(c&&s){c.addEventListener('click',function(){s.classList.toggle('sn-collapsed');try{localStorage.setItem('menuRecolhido',s.classList.contains('sn-collapsed')?'1':'0');}catch(e){}});}var h=document.getElementById('menuHamburguer'),sn=document.getElementById('sideNav');if(h&&sn){h.addEventListener('click',function(){sn.classList.toggle('nav-aberto');});}})();</script>
+<script>(function(){document.querySelectorAll('.sn-toggle').forEach(function(b){b.addEventListener('click',function(){var k=b.parentNode.querySelector('.sn-children');if(k){b.classList.toggle('sn-open');k.classList.toggle('open');}});});var s=document.getElementById('appShell'),c=document.getElementById('recolherMenu');try{if(localStorage.getItem('menuRecolhido')==='1'&&s)s.classList.add('sn-collapsed');}catch(e){}if(c&&s){c.addEventListener('click',function(){s.classList.toggle('sn-collapsed');try{localStorage.setItem('menuRecolhido',s.classList.contains('sn-collapsed')?'1':'0');}catch(e){}});}var h=document.getElementById('menuHamburguer'),sn=document.getElementById('sideNav');if(h&&sn){h.addEventListener('click',function(){sn.classList.toggle('nav-aberto');});}var db=document.getElementById('diarioBusca');if(db){db.addEventListener('input',function(){var q=db.value.trim().toLowerCase(),n=0;document.querySelectorAll('.di-linha').forEach(function(l){var ok=!q||l.getAttribute('data-busca').indexOf(q)>=0;l.style.display=ok?'':'none';if(ok)n++;});var v=document.getElementById('diarioVazio');if(v)v.hidden=n>0;});}})();</script>
 </body>
 </html>
