@@ -217,9 +217,11 @@ DICIONARIO_COLUNAS = [
 DIARIO = [
     {
         "data": "2026-07-27",
-        "titulo": "Diario de atividades no painel",
+        "titulo": "Dados da Secretaria de Saude (liberacao)",
         "itens": [
-            "Criada esta pagina de diario, no fim do menu, para registrar o trabalho dia a dia.",
+            "Novo contato por telefone com a Secretaria de Saude, porque a Andreia nao respondeu sobre a liberacao dos dados.",
+            "E-mail enviado para dvs@portoalegre.rs.gov.br, que em tese vai liberar os dados e conectar com o pessoal de dados da secretaria.",
+            "Criada a pagina de diario no painel.",
         ],
     },
     {
