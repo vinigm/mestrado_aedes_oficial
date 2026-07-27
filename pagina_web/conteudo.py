@@ -210,16 +210,41 @@ DICIONARIO_COLUNAS = [
 ]
 
 
-# Diario de atividades (pagina "Diario de atividades"): uma linha por dia, no
-# formato "data - dia da semana - palavras-chave". Para adicionar um dia, copie
-# um item e edite (a data no formato AAAA-MM-DD; "topicos" e a lista de palavras-
-# chave do dia). Ordene do mais recente para o mais antigo (o primeiro aparece
-# no topo). O dia da semana e o mes sao calculados sozinhos a partir da data, e
-# a busca da pagina acha por data, mes ou qualquer palavra dos topicos.
+# Diario de atividades (pagina "Diario de atividades"): um bloco por dia, com o
+# que foi "feito" e os "proximos" passos. Para adicionar um dia, copie um item e
+# edite (data no formato AAAA-MM-DD; "feito" e "proximos" sao listas de frases;
+# "proximos" pode ficar vazio). Ordene do mais recente para o mais antigo (o
+# primeiro aparece no topo). O dia da semana e o mes saem sozinhos da data, e a
+# busca da pagina acha por data, mes ou qualquer palavra (sem acento).
 DIARIO = [
-    {"data": "2026-07-27", "topicos": ["Secretaria de Saude", "liberacao de dados", "contato por telefone", "e-mail dvs@portoalegre.rs.gov.br", "raspagem semana 500 (42)"]},
-    {"data": "2026-07-25", "topicos": ["raspagem", "captura semana 499 (137)"]},
-    {"data": "2026-07-24", "topicos": ["painel publicado", "GitHub Pages", "novo layout", "versao mobile", "raspagem semana 499 (116)"]},
+    {
+        "data": "2026-07-27",
+        "feito": [
+            "Novo contato por telefone com a Secretaria de Saude, porque a pessoa de contato nao respondeu sobre a liberacao dos dados.",
+            "E-mail enviado para dvs@portoalegre.rs.gov.br, que em tese vai liberar os dados e conectar com o pessoal de dados da secretaria.",
+            "Raspagem da captura de mosquito (semana 500): 42 exemplares.",
+            "Diario de atividades reformado no painel: timeline com atividades realizadas e proximos passos, mais busca.",
+        ],
+        "proximos": [
+            "Aguardar o retorno da Secretaria de Saude / DVS sobre a liberacao e a conexao com o pessoal de dados.",
+            "Quando os dados oficiais chegarem, integrar a serie de casos na tabela_final.",
+        ],
+    },
+    {
+        "data": "2026-07-25",
+        "feito": [
+            "Raspagem da captura de mosquito (semana 499): 137 exemplares.",
+        ],
+        "proximos": [],
+    },
+    {
+        "data": "2026-07-24",
+        "feito": [
+            "Painel publicado no GitHub Pages com o novo layout: menu em arvore, home enxuta, Metodologia, arvore de cenarios, dicionario de dados e versao para celular.",
+            "Raspagem da captura de mosquito (semana 499): 116 exemplares.",
+        ],
+        "proximos": [],
+    },
 ]
 
 
