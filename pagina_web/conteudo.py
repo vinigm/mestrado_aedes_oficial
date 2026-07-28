@@ -218,6 +218,17 @@ DICIONARIO_COLUNAS = [
 # busca da pagina acha por data, mes ou qualquer palavra (sem acento).
 DIARIO = [
     {
+        "data": "2026-07-28",
+        "feito": [
+            "A DVS (Assessoria de Ensino e Pesquisa) retornou e enviou o Termo de Anuencia assinado, liberando o seguimento do processo e a submissao ao Comite de Etica em Pesquisa (CEP).",
+            "A DVS colocou em copia as areas responsaveis pela base do monitoramento do MI-Aedes e pelo banco de casos humanos notificados de dengue; as equipes tecnicas vao definir como compartilhar os dados.",
+        ],
+        "proximos": [
+            "Submeter o projeto ao Comite de Etica em Pesquisa (CEP) com o Termo de Anuencia.",
+            "Alinhar com as equipes tecnicas da DVS o formato de compartilhamento das bases (MI-Aedes e casos de dengue notificados).",
+        ],
+    },
+    {
         "data": "2026-07-27",
         "feito": [
             "Novo contato por telefone com a Secretaria de Saude, porque a pessoa de contato nao respondeu sobre a liberacao dos dados.",
