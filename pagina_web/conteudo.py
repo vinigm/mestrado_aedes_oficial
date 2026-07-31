@@ -211,17 +211,24 @@ DICIONARIO_COLUNAS = [
 
 
 # Diario de atividades (pagina "Diario de atividades"): um bloco por dia, com o
-# que foi "feito" e os "proximos" passos. Para adicionar um dia, copie um item e
-# edite (data no formato AAAA-MM-DD; "feito" e "proximos" sao listas de frases;
-# "proximos" pode ficar vazio). Ordene do mais recente para o mais antigo (o
-# primeiro aparece no topo). O dia da semana e o mes saem sozinhos da data, e a
-# busca da pagina acha por data, mes ou qualquer palavra (sem acento).
+# que foi feito e os "proximos" passos. Para adicionar um dia, copie um item e
+# edite (data no formato AAAA-MM-DD). Ordene do mais recente para o mais antigo
+# (o primeiro aparece no topo). O dia da semana e o mes saem sozinhos da data, e
+# a busca da pagina acha por data, mes ou qualquer palavra (sem acento).
+#
+# O que foi feito no dia pode ser escrito de duas formas:
+#   - "feito": uma lista de frases, tudo junto (aparece como "Atividades realizadas");
+#   - "blocos": separado por assunto, cada bloco com "titulo" e "itens".
+# Em "blocos" da pra pedir uma cor para o titulo com a chave "cor":
+#   "modelos" = verde | "dados" = ambar | sem a chave = cinza padrao.
+# Os "proximos" passos saem sempre em roxo, no fim do dia.
 DIARIO = [
     {
         "data": "2026-07-31",
         "blocos": [
             {
                 "titulo": "Em relacao aos modelos",
+                "cor": "modelos",
                 "itens": [
                     "Conferimos todas as fontes de dados e todos os 9 cenarios, arquivo por arquivo. Os resultados batem com o que estava anotado.",
                     "Erro 1: a conta da densidade de mosquito divide sempre por 910 armadilhas, mas em muitas semanas menos armadilhas foram inspecionadas. O numero sai mais baixo do que deveria.",
@@ -234,6 +241,7 @@ DIARIO = [
             },
             {
                 "titulo": "Em relacao aos dados com a prefeitura",
+                "cor": "dados",
                 "itens": [
                     "Conversamos com o responsavel pelas armadilhas e com a responsavel pelo banco de casos de dengue.",
                     "As duas bases seguem caminhos diferentes. As armadilhas vem direto, sem comite de etica, porque mosquito nao e pessoa.",

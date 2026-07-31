@@ -432,11 +432,16 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 .diaData{font-size:12px; font-weight:700; letter-spacing:.05em; color:var(--acento-forte); text-transform:uppercase; margin-bottom:9px}
 .diaData .dow{color:var(--muted); font-weight:600; letter-spacing:.02em}
 .diaSecao{font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--faint); margin:0 0 4px}
-.diaSecao.prox{margin-top:12px}
+.diaLista + .diaSecao{margin-top:12px}
+.diaSecao.prox{color:var(--acento-forte)}
+.diaSecao.cor-modelos{color:var(--bom)}
+.diaSecao.cor-dados{color:var(--atencao)}
 .diaLista{list-style:none; margin:0 0 0 1px; padding:0}
 .diaLista li{position:relative; padding:3px 0 3px 15px; font-size:13.5px; line-height:1.6; color:var(--tinta-suave)}
 .diaLista li::before{content:""; position:absolute; left:0; top:12px; width:5px; height:5px; border-radius:50%; border:1.5px solid var(--faint)}
 .diaLista.prox li::before{border-color:var(--acento); background:var(--acento-suave)}
+.diaLista.cor-modelos li::before{border-color:var(--bom); background:color-mix(in srgb, var(--bom) 18%, transparent)}
+.diaLista.cor-dados li::before{border-color:var(--atencao); background:color-mix(in srgb, var(--atencao) 18%, transparent)}
 .diaVazio,.diaSemRegistro{color:var(--muted); font-size:14px; padding:10px 0}
 
 :focus-visible{outline:2px solid var(--acento); outline-offset:2px; border-radius:4px}
@@ -1334,7 +1339,15 @@ def pagina_diario() -> str:
                 atividades_html = ""
                 itens_das_atividades = []
                 for bloco in blocos_por_assunto:
-                    atividades_html += _bloco_diario(bloco["titulo"], bloco["itens"])
+                    # A cor do bloco e opcional e vira uma classe da folha de
+                    # estilo: "modelos" virou "cor-modelos". Bloco sem cor fica
+                    # no cinza padrao.
+                    nome_da_cor = bloco.get("cor", "")
+                    if nome_da_cor:
+                        classe_do_bloco = f"cor-{nome_da_cor}"
+                    else:
+                        classe_do_bloco = ""
+                    atividades_html += _bloco_diario(bloco["titulo"], bloco["itens"], classe_do_bloco)
                     itens_das_atividades.extend(bloco["itens"])
             else:
                 atividades_html = _bloco_diario("Atividades realizadas", feito)
