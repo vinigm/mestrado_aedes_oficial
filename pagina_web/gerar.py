@@ -1312,8 +1312,9 @@ def _bloco_diario(rotulo: str, itens: list, classe: str = "") -> str:
 
 
 # Monta a pagina "Diario de atividades": timeline com um bloco por dia (data +
-# dia da semana, "Atividades realizadas" e "Proximos passos") e busca por data,
-# mes ou palavra (sem acento, varios termos ao mesmo tempo).
+# dia da semana, as atividades e "Proximos passos") e busca por data, mes ou
+# palavra (sem acento, varios termos ao mesmo tempo). As atividades do dia podem
+# estar numa lista so ou separadas por assunto, com um titulo para cada assunto.
 def pagina_diario() -> str:
     entradas = conteudo.DIARIO
     if not entradas:
@@ -1324,8 +1325,23 @@ def pagina_diario() -> str:
             data_br, dia_sem, mes_nome = _partes_data(e["data"])
             feito = e.get("feito", [])
             proximos = e.get("proximos", [])
-            busca = _sem_acento(" ".join([data_br, dia_sem, mes_nome, e["data"], *feito, *proximos]))
-            secoes = _bloco_diario("Atividades realizadas", feito) + _bloco_diario("Proximos passos", proximos, "prox")
+            blocos_por_assunto = e.get("blocos", [])
+
+            # As atividades do dia podem vir de duas formas: soltas numa lista
+            # ("feito") ou separadas por assunto ("blocos", cada um com titulo e
+            # itens). Quando ha blocos, cada assunto ganha seu proprio titulo.
+            if blocos_por_assunto:
+                atividades_html = ""
+                itens_das_atividades = []
+                for bloco in blocos_por_assunto:
+                    atividades_html += _bloco_diario(bloco["titulo"], bloco["itens"])
+                    itens_das_atividades.extend(bloco["itens"])
+            else:
+                atividades_html = _bloco_diario("Atividades realizadas", feito)
+                itens_das_atividades = list(feito)
+
+            busca = _sem_acento(" ".join([data_br, dia_sem, mes_nome, e["data"], *itens_das_atividades, *proximos]))
+            secoes = atividades_html + _bloco_diario("Proximos passos", proximos, "prox")
             if not secoes:
                 secoes = '<p class="diaSemRegistro">Sem registro.</p>'
             blocos.append(
