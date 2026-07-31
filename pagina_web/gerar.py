@@ -428,8 +428,10 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 .diaCont{margin-top:.6rem; font-size:.8rem; color:var(--muted)}
 .diaItem{position:relative; padding:0 0 26px 22px; border-left:2px solid var(--borda-forte)}
 .diaItem:last-child{border-left-color:transparent; padding-bottom:0}
-.diaItem::before{content:""; position:absolute; left:-6px; top:5px; width:10px; height:10px; border-radius:50%; background:var(--acento); border:2px solid var(--fundo)}
-.diaData{font-size:12px; font-weight:700; letter-spacing:.05em; color:var(--acento-forte); text-transform:uppercase; margin-bottom:9px}
+.diaItem::before{content:""; position:absolute; left:-6px; top:9px; width:10px; height:10px; border-radius:50%; background:var(--acento); border:2px solid var(--fundo)}
+.diaData{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.05em; color:var(--acento-forte); text-transform:uppercase;
+  background:var(--acento-suave); border:1px solid color-mix(in srgb, var(--acento) 32%, var(--borda));
+  border-radius:var(--raio-p); padding:5px 11px; margin-bottom:11px}
 .diaData .dow{color:var(--muted); font-weight:600; letter-spacing:.02em}
 .diaSecao{font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--faint); margin:0 0 4px}
 .diaLista + .diaSecao{margin-top:12px}
