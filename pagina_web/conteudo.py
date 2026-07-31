@@ -222,6 +222,12 @@ DICIONARIO_COLUNAS = [
 # Em "blocos" da pra pedir uma cor para o titulo com a chave "cor":
 #   "modelos" = verde | "dados" = ambar | sem a chave = cinza padrao.
 # Os "proximos" passos saem sempre em roxo, no fim do dia.
+#
+# Cada item de uma lista (tanto dos "itens" quanto dos "proximos") pode ser:
+#   - uma frase, escrita direto entre aspas; ou
+#   - um topico com sub-topicos: {"texto": "a frase", "sub": ["detalhe", "detalhe"]}.
+# Os sub-topicos aparecem recuados, com um tracinho em vez da bolinha. Use-os
+# para quebrar explicacao comprida em pedacos curtos, em vez de texto corrido.
 DIARIO = [
     {
         "data": "2026-07-31",
@@ -230,13 +236,45 @@ DIARIO = [
                 "titulo": "Em relacao aos modelos",
                 "cor": "modelos",
                 "itens": [
-                    "Conferimos todas as fontes de dados e todos os 9 cenarios, arquivo por arquivo. Os resultados batem com o que estava anotado.",
-                    "Erro 1: a conta da densidade de mosquito divide sempre por 910 armadilhas, mas em muitas semanas menos armadilhas foram inspecionadas. O numero sai mais baixo do que deveria.",
-                    "Erro 2: as 17 primeiras semanas de 2026 entram no modelo como se quase nao tivesse dengue, justo quando o mosquito estava no pico do ano. Houve mais de 4 mil notificacoes nesse periodo. O que faltava era a papelada, nao a doenca.",
-                    "Erro 3: no modelo por bairro, quase um quarto da tabela foi preenchido com zero onde ninguem passou para inspecionar. Assim o modelo aprende o roteiro do agente de saude, e nao onde tem mosquito.",
-                    "Entendemos o que a coluna de casos confirmados mede de verdade: em 2025, mais da metade das fichas foi encerrada como inconclusiva. Ela mede quanto a vigilancia conseguiu concluir, e nao quanta dengue houve.",
-                    "Descobrimos por que o ganho do mosquito muda tanto de um cenario para outro: ele parece grande quando o modelo de comparacao esta ruim. Isso enfraquece o nosso resultado principal.",
-                    "Confirmamos que as armadilhas de hoje sao as mesmas de 2019. A rede so encolheu, de 1.430 para 910 armadilhas.",
+                    "Conferimos as 6 fontes de dados e os 9 cenarios, arquivo por arquivo: os numeros batem com o que estava anotado.",
+                    {
+                        "texto": "Erro 1: a densidade de mosquito esta sendo calculada errado.",
+                        "sub": [
+                            "A conta divide sempre por 910 armadilhas.",
+                            "Mas em muitas semanas menos armadilhas foram inspecionadas.",
+                            "Resultado: o numero sai mais baixo do que deveria.",
+                        ],
+                    },
+                    {
+                        "texto": "Erro 2: as 17 primeiras semanas de 2026 entram no modelo quase sem dengue.",
+                        "sub": [
+                            "Era justo o periodo em que o mosquito estava no pico do ano.",
+                            "Houve mais de 4 mil notificacoes nessas semanas.",
+                            "O que faltava era a papelada, nao a doenca.",
+                        ],
+                    },
+                    {
+                        "texto": "Erro 3: no modelo por bairro, quase um quarto da tabela foi preenchido com zero.",
+                        "sub": [
+                            "O zero entrou onde ninguem passou para inspecionar.",
+                            "Assim o modelo aprende o roteiro do agente de saude, e nao onde tem mosquito.",
+                        ],
+                    },
+                    {
+                        "texto": "Entendemos o que a coluna de casos confirmados mede de verdade.",
+                        "sub": [
+                            "Em 2025, mais da metade das fichas foi encerrada como inconclusiva.",
+                            "Ou seja: ela mede quanto a vigilancia conseguiu concluir, e nao quanta dengue houve.",
+                        ],
+                    },
+                    {
+                        "texto": "Descobrimos por que o ganho do mosquito muda tanto de um cenario para outro.",
+                        "sub": [
+                            "Ele parece grande quando o modelo de comparacao esta ruim.",
+                            "Isso enfraquece o nosso resultado principal.",
+                        ],
+                    },
+                    "Confirmamos que as armadilhas de hoje sao as mesmas de 2019: a rede so encolheu, de 1.430 para 910.",
                 ],
             },
             {
@@ -244,10 +282,28 @@ DIARIO = [
                 "cor": "dados",
                 "itens": [
                     "Conversamos com o responsavel pelas armadilhas e com a responsavel pelo banco de casos de dengue.",
-                    "As duas bases seguem caminhos diferentes. As armadilhas vem direto, sem comite de etica, porque mosquito nao e pessoa.",
-                    "O banco de casos precisa passar pelo comite, porque envolve dado de gente. Em troca, ele traz os casos separados por bairro, que e justamente o que falta para o modelo por bairro fazer sentido.",
-                    "O dado publico do SINAN nao tem bairro: sao 121 colunas e nenhuma de endereco. Bairro so vem da prefeitura.",
-                    "Mapeamos o caminho no comite de etica: a submissao e uma so, feita pela UFRGS, e o orientador precisa ser o pesquisador responsavel. Antes dela falta o parecer da comissao de pesquisa do Instituto de Informatica.",
+                    {
+                        "texto": "As duas bases seguem caminhos diferentes.",
+                        "sub": [
+                            "Armadilhas: vem direto, sem comite de etica, porque mosquito nao e pessoa.",
+                            "Casos de dengue: tem que passar pelo comite, porque envolve dado de gente.",
+                        ],
+                    },
+                    {
+                        "texto": "O banco de casos vale a espera: ele traz os casos separados por bairro.",
+                        "sub": [
+                            "E o que falta para o modelo por bairro fazer sentido.",
+                            "O dado publico do SINAN nao tem bairro: 121 colunas e nenhuma de endereco.",
+                        ],
+                    },
+                    {
+                        "texto": "Mapeamos o caminho no comite de etica.",
+                        "sub": [
+                            "A submissao e uma so, feita pela UFRGS.",
+                            "O orientador precisa ser o pesquisador responsavel; o aluno entra como assistente.",
+                            "Antes dela falta o parecer da comissao de pesquisa do Instituto de Informatica.",
+                        ],
+                    },
                 ],
             },
             {
@@ -258,8 +314,21 @@ DIARIO = [
             },
         ],
         "proximos": [
-            "Retornar a ligacao no dia 10 e pedir a serie das armadilhas no mesmo formato da nossa raspagem, dizendo tambem se cada armadilha foi inspecionada ou nao na semana.",
-            "Perguntar se a contagem de casos por bairro, ja somada e sem nome de ninguem, dispensa o comite de etica. Se dispensar, economiza meses.",
+            {
+                "texto": "Retornar a ligacao no dia 10 e pedir a serie historica das armadilhas.",
+                "sub": [
+                    "No mesmo formato da nossa raspagem: uma linha por armadilha por semana.",
+                    "Dizendo tambem se cada armadilha foi inspecionada ou nao na semana.",
+                    "Mandar uma planilha nossa como modelo.",
+                ],
+            },
+            {
+                "texto": "Perguntar se a contagem de casos por bairro dispensa o comite de etica.",
+                "sub": [
+                    "Ja somada por semana e sem nome de ninguem.",
+                    "Se dispensar, economiza meses.",
+                ],
+            },
             "Pedir para as duas areas usarem os mesmos nomes de bairro, senao da retrabalho para juntar as bases.",
             "Ligar para a comissao de pesquisa do Instituto de Informatica: (51) 3308-7760.",
             "Pedir ao orientador que se cadastre na Plataforma Brasil como pesquisador responsavel.",

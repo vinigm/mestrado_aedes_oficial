@@ -439,11 +439,17 @@ table.tabela-ficha tr.ficha-compara:hover td{background:var(--acento-suave)}
 .diaSecao.cor-modelos{color:var(--bom)}
 .diaSecao.cor-dados{color:var(--atencao)}
 .diaLista{list-style:none; margin:0 0 0 1px; padding:0}
-.diaLista li{position:relative; padding:3px 0 3px 15px; font-size:13.5px; line-height:1.6; color:var(--tinta-suave)}
-.diaLista li::before{content:""; position:absolute; left:0; top:12px; width:5px; height:5px; border-radius:50%; border:1.5px solid var(--faint)}
-.diaLista.prox li::before{border-color:var(--acento); background:var(--acento-suave)}
-.diaLista.cor-modelos li::before{border-color:var(--bom); background:color-mix(in srgb, var(--bom) 18%, transparent)}
-.diaLista.cor-dados li::before{border-color:var(--atencao); background:color-mix(in srgb, var(--atencao) 18%, transparent)}
+.diaLista>li{position:relative; padding:3px 0 3px 15px; font-size:13.5px; line-height:1.6; color:var(--tinta-suave)}
+.diaLista>li::before{content:""; position:absolute; left:0; top:12px; width:5px; height:5px; border-radius:50%; border:1.5px solid var(--faint)}
+.diaLista.prox>li::before{border-color:var(--acento); background:var(--acento-suave)}
+.diaLista.cor-modelos>li::before{border-color:var(--bom); background:color-mix(in srgb, var(--bom) 18%, transparent)}
+.diaLista.cor-dados>li::before{border-color:var(--atencao); background:color-mix(in srgb, var(--atencao) 18%, transparent)}
+.diaSub{list-style:none; margin:4px 0 3px; padding:0}
+.diaSub li{position:relative; padding:2px 0 2px 14px; font-size:12.8px; line-height:1.55; color:var(--muted)}
+.diaSub li::before{content:""; position:absolute; left:0; top:11px; width:7px; height:1.5px; border-radius:1px; background:var(--borda-forte)}
+.diaLista.cor-modelos .diaSub li::before{background:color-mix(in srgb, var(--bom) 60%, var(--borda-forte))}
+.diaLista.cor-dados .diaSub li::before{background:color-mix(in srgb, var(--atencao) 60%, var(--borda-forte))}
+.diaLista.prox .diaSub li::before{background:var(--acento)}
 .diaVazio,.diaSemRegistro{color:var(--muted); font-size:14px; padding:10px 0}
 
 :focus-visible{outline:2px solid var(--acento); outline-offset:2px; border-radius:4px}
@@ -1310,11 +1316,44 @@ def _sem_acento(texto: str) -> str:
     return "".join(c for c in normal if unicodedata.category(c) != "Mn").lower()
 
 
+# Monta um item da lista do diario. O item pode ser uma frase solta ou um topico
+# com sub-topicos: nesse caso ele vem como {"texto": ..., "sub": [...]} e os
+# sub-topicos aparecem recuados, com um tracinho em vez da bolinha.
+def _item_diario(item) -> str:
+    if isinstance(item, str):
+        return f"<li>{escapar(item)}</li>"
+
+    texto = item["texto"]
+    sub_topicos = item.get("sub", [])
+    if not sub_topicos:
+        return f"<li>{escapar(texto)}</li>"
+
+    linhas_de_dentro = ""
+    for sub in sub_topicos:
+        linhas_de_dentro += f"<li>{escapar(sub)}</li>"
+    return f'<li>{escapar(texto)}<ul class="diaSub">{linhas_de_dentro}</ul></li>'
+
+
+# Junta num texto so tudo o que esta escrito num item do diario (a frase e, se
+# houver, os sub-topicos). Serve para a busca da pagina achar as palavras que
+# estao dentro dos sub-topicos tambem.
+def _texto_do_item(item) -> str:
+    if isinstance(item, str):
+        return item
+
+    partes = [item["texto"]]
+    partes.extend(item.get("sub", []))
+    return " ".join(partes)
+
+
 # Monta um bloco do diario (rotulo + lista de itens); vazio se nao houver itens.
 def _bloco_diario(rotulo: str, itens: list, classe: str = "") -> str:
     if not itens:
         return ""
-    lis = "".join(f"<li>{escapar(x)}</li>" for x in itens)
+
+    lis = ""
+    for item in itens:
+        lis += _item_diario(item)
     return f'<div class="diaSecao {classe}">{escapar(rotulo)}</div><ul class="diaLista {classe}">{lis}</ul>'
 
 
@@ -1355,7 +1394,13 @@ def pagina_diario() -> str:
                 atividades_html = _bloco_diario("Atividades realizadas", feito)
                 itens_das_atividades = list(feito)
 
-            busca = _sem_acento(" ".join([data_br, dia_sem, mes_nome, e["data"], *itens_das_atividades, *proximos]))
+            textos_para_busca = [data_br, dia_sem, mes_nome, e["data"]]
+            for item in itens_das_atividades:
+                textos_para_busca.append(_texto_do_item(item))
+            for item in proximos:
+                textos_para_busca.append(_texto_do_item(item))
+
+            busca = _sem_acento(" ".join(textos_para_busca))
             secoes = atividades_html + _bloco_diario("Proximos passos", proximos, "prox")
             if not secoes:
                 secoes = '<p class="diaSemRegistro">Sem registro.</p>'
