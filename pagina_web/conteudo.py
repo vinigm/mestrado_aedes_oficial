@@ -218,6 +218,41 @@ DICIONARIO_COLUNAS = [
 # busca da pagina acha por data, mes ou qualquer palavra (sem acento).
 DIARIO = [
     {
+        "data": "2026-07-31",
+        "feito": [
+            "Auditoria completa das fontes de dados, conferindo arquivo por arquivo: raspagem das armadilhas, historico da Marilia, casos do SINAN, InfoDengue, clima do NASA POWER e El Nino.",
+            "Auditoria dos 9 cenarios de modelagem, com os numeros de resultado lidos dos CSVs e conferidos contra a documentacao do projeto. Os numeros batem: a rodada de 23/07 reproduziu os valores registrados em 04/07 em tres casas decimais.",
+            "ERRO ENCONTRADO — densidade de mosquito subestimada: o calculo divide sempre por 910 armadilhas, mas em cada semana so 450 a 883 foram inspecionadas de fato. Existe uma coluna de situacao da inspecao no dado da raspagem que o codigo nunca consulta. O erro medio e de 17 por cento e chega a dobrar numa semana ruim.",
+            "ERRO ENCONTRADO — as 17 primeiras semanas de 2026 entram no modelo com 0, 1 ou 2 casos, justamente quando o mosquito esta no pico do ano. Nessas mesmas semanas houve 4.159 notificacoes: o que faltava era a ficha fechada, nao a dengue.",
+            "ERRO ENCONTRADO — no cenario por bairro, 23,1 por cento da grade de bairro por semana esta preenchida com densidade zero inventada, porque onde nao houve captura o codigo escreve zero. De 8.086 zeros da grade, apenas 4.444 sao reais. O modelo passa parte do tempo aprendendo quando a prefeitura visita a armadilha.",
+            "Medido o tempo real de amadurecimento do alvo: a mediana entre o primeiro sintoma e o fechamento da ficha como dengue e de 10,4 semanas, e o percentil 90 e de 31,6 semanas. O projeto corta 12 semanas, cerca de um terco do necessario.",
+            "Descoberta sobre o que o alvo mede de verdade: em 2025, 55,9 por cento das fichas de Porto Alegre foram encerradas como inconclusivo (30.959 de 53.535). A coluna de casos confirmados mede quanto a vigilancia conseguiu concluir, nao quanta dengue houve. A taxa de conclusao caiu de 99,6 por cento em 2023 para 42,0 por cento em 2025.",
+            "Descoberta ao juntar os cenarios lado a lado: o ganho do mosquito e do tamanho do estrago no modelo de comparacao. Com El Nino na disputa o ganho e de 0,006 de R2; sem El Nino e sem corte, de 0,15 a 0,34; sem El Nino e com corte, de 0,28 a 0,34. Quanto pior o modelo de referencia, maior parece o ganho.",
+            "Problema metodologico: o corte das semanas recentes muda quais colunas de clima o modelo escolhe, entao a comparacao com corte contra sem corte mexe em duas coisas ao mesmo tempo. O mesmo vale para as duas versoes do teste de Diebold-Mariano.",
+            "Conferido que o valor-p de 4,1 elevado a menos 38 no teste de Diebold-Mariano e defeito de calculo, nao evidencia: a variancia estimada colapsou para 22 numa linha em que a comparavel vale 13.800.",
+            "Confirmado que a rede de armadilhas e a MESMA nos dois blocos de dados: a armadilha nova esta a 85 metros (mediana) da armadilha antiga mais proxima, dentro do arredondamento das coordenadas. A rede apenas encolheu, de 1.430 armadilhas em 63 bairros em 2019 para 910 em 46 bairros hoje.",
+            "Confirmado que o microdado publico do SINAN nao tem bairro: sao 121 colunas e nenhuma de bairro, CEP, endereco ou coordenada. O unico caminho espacial nesses arquivos seria a unidade de saude que notificou, cruzada com o cadastro nacional de estabelecimentos.",
+            "Achado util para a metodologia: a data de encerramento da ficha esta 99,8 por cento preenchida, o que permite reconstruir como a serie era vista em qualquer data passada. Dos casos com sintoma entre janeiro e marco de 2025, so 64,6 por cento estavam fechados em 30 de junho de 2025; hoje sao 99,98 por cento.",
+            "Verificado que 2026 foi uma temporada pequena de verdade: 4.312 notificacoes no ano contra 64.809 em 2025, com pico semanal de 304 contra 6.260. Nao e atraso de informacao, e ano fraco mesmo.",
+            "Mapeado o caminho do Comite de Etica: submissao unica na Plataforma Brasil, com a UFRGS como proponente e a Prefeitura como coparticipante. O orientador precisa figurar como pesquisador responsavel e o aluno entra como assistente de pesquisa, podendo preencher e enviar tudo. Antes da Plataforma e necessario o parecer da Comissao de Pesquisa do Instituto de Informatica.",
+            "Contato com a Secretaria de Saude: conversa com Tiago Fazolo, responsavel pelas armadilhas, e com Raquel Borba, responsavel pelo banco de casos humanos.",
+            "As duas bases seguem caminhos separados: as armadilhas vem SEM passar pelo Comite de Etica, e o banco de casos precisa do Comite porque envolve pessoas — mas em troca traz os casos segmentados por bairro, que e o que destrava o modelo espacial.",
+            "Raspagem da captura de mosquito (semana 500): 112 exemplares.",
+        ],
+        "proximos": [
+            "Retornar a ligacao para o responsavel pelas armadilhas no dia 10, pedindo a serie historica no mesmo formato da raspagem: uma linha por armadilha por semana, com situacao da inspecao, contagem por especie e por sexo, bairro, coordenada e o numero de armadilhas inspecionadas por semana e por bairro. Mandar uma planilha propria como modelo.",
+            "Conversar de novo com o responsavel pelas armadilhas em uma semana.",
+            "Perguntar a responsavel pelo banco de casos se a contagem agregada por bairro e por semana, sem registro individual, ainda exige Comite de Etica. A resposta pode economizar meses.",
+            "Pedir as duas areas que usem a MESMA chave de bairro, para as duas bases casarem sem trabalho manual depois.",
+            "Ligar para a Comissao de Pesquisa do Instituto de Informatica, (51) 3308-7760, para saber o processo do parecer: e a unica etapa da fila sem prazo publicado.",
+            "Pedir ao orientador que se cadastre na Plataforma Brasil como pesquisador responsavel e inclua o aluno como assistente de pesquisa.",
+            "Corrigir o cronograma do formulario de submissao, que esta com data de janeiro de 2015, e preencher cronograma e orcamento em documentos separados.",
+            "Consertar os tres erros de dado antes da proxima rodada de testes: o denominador da densidade, os zeros falsos dos casos e os zeros inventados da grade de bairro.",
+            "Copiar as semanas 497 a 500 da raspagem para o backup, que esta parado na semana 496.",
+            "Deixar de lado a extracao dos PDFs de IMFA por bairro: a serie bruta das armadilhas resolve o mesmo vao com dado melhor.",
+        ],
+    },
+    {
         "data": "2026-07-28",
         "feito": [
             "A DVS (Assessoria de Ensino e Pesquisa) retornou e enviou o Termo de Anuencia assinado, liberando o seguimento do processo e a submissao ao Comite de Etica em Pesquisa (CEP).",
