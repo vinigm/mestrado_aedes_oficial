@@ -47,3 +47,9 @@ Thumbs.db
 .~lock.*
 
 logs/
+
+# Arquivos crus da Secretaria de Saude: contem NOME e TELEFONE do morador da
+# casa onde a armadilha fica (colunas MORADOR e FONE1), mais o endereco
+# completo. O repositorio e PUBLICO, entao o cru NAO pode ser commitado.
+# Use a versao sem dado pessoal, gerada pelo preparo.
+arquivos_secretaria_saude_poa/
