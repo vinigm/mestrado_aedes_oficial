@@ -53,3 +53,8 @@ logs/
 # completo. O repositorio e PUBLICO, entao o cru NAO pode ser commitado.
 # Use a versao sem dado pessoal, gerada pelo preparo.
 arquivos_secretaria_saude_poa/
+
+# Scripts que tratam os arquivos da Secretaria: ficam so na maquina, junto dos
+# dados que eles processam.
+modelagem_aedes/preparo/limpar_arquivos_secretaria.py
+modelagem_aedes/preparo/unificar_arquivos_secretaria.py
