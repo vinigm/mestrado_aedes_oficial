@@ -230,6 +230,46 @@ DICIONARIO_COLUNAS = [
 # para quebrar explicacao comprida em pedacos curtos, em vez de texto corrido.
 DIARIO = [
     {
+        "data": "2026-08-08",
+        "blocos": [
+            {
+                "titulo": "Em relacao aos dados com a prefeitura",
+                "cor": "dados",
+                "itens": [
+                    "Recebimento dos dados de armadilhas da Secretaria de Saude: os anos de 2012 a 2021.",
+                    "Os arquivos vem em tres formatos diferentes ao longo dos anos, com nomes de coluna distintos para a mesma informacao.",
+                    {
+                        "texto": "Unificamos tudo num arquivo unico.",
+                        "sub": [
+                            "435.157 inspecoes, de setembro de 2012 a dezembro de 2021.",
+                            "Uma linha por armadilha por semana, com bairro, quadra, coordenada e contagem por especie e sexo.",
+                        ],
+                    },
+                    {
+                        "texto": "Conferimos contra a base que ja tinhamos e os dados batem.",
+                        "sub": [
+                            "Os anos de 2019, 2020 e 2021 se sobrepoem e dao o mesmo numero, exato: 13.619, 8.527 e 13.084 femeas de Aedes aegypti.",
+                            "Ou seja, as duas bases vem da mesma origem.",
+                        ],
+                    },
+                    "A serie de mosquito passa de 276 para cerca de 600 semanas, somada ao que ja existia.",
+                    "Ainda faltam os anos de 2022 a 2025, que a Secretaria vai enviar.",
+                ],
+            },
+            {
+                "titulo": "Coleta do dia",
+                "itens": [
+                    "Raspagem da captura de mosquito (semana 501): 112 exemplares.",
+                ],
+            },
+        ],
+        "proximos": [
+            "Reforcar o pedido dos anos de 2022 a 2025, que sao os que contem os grandes surtos de dengue.",
+            "Pedir o significado de alguns codigos de coluna dos anos mais antigos.",
+            "Refazer a tabela de modelagem usando a serie longa.",
+        ],
+    },
+    {
         "data": "2026-07-31",
         "blocos": [
             {
