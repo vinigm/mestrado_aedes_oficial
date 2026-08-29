@@ -93,8 +93,8 @@ FONTES_DADOS = [
         "tipo": "vetor",
         "periodo": "2012 a 2025",
         "cadencia": "semanal",
-        "papel": "A mesma contagem de mosquito, historico oficial que da a base longa ao modelo.",
-        "origem": "Secretaria Municipal de Saude — serie historica oficial do MI-Aedes, obtida em agosto de 2026, corrigida e certificada.",
+        "papel": "A mesma contagem de mosquito, historico oficial que da a base longa ao modelo: 636.587 inspecoes de armadilha, 236.166 femeas de Aedes aegypti, 81 bairros e 2.742 armadilhas ao longo de 14 anos.",
+        "origem": "Secretaria Municipal de Saude — serie historica oficial do MI-Aedes, obtida em agosto de 2026, corrigida e certificada: 636.587 inspecoes, 236.166 femeas de Aedes aegypti, 81 bairros, 2.742 armadilhas.",
         "vital": False,
     },
     {
@@ -162,7 +162,10 @@ TABELA_FINAL = {
     "papel": (
         "Todas as fontes acima entram numa linha de montagem e viram UMA tabela "
         "por semana: mosquito, clima, casos e El Nino lado a lado. E esse arquivo "
-        "unico que os modelos usam para treinar e prever."
+        "unico que os modelos usam para treinar e prever. Hoje a tabela cobre "
+        "718 semanas com dado de mosquito, de 23/09/2012 a 09/08/2026, sem "
+        "interrupcao — faltam so 7 semanas em 14 anos, 3 delas a enchente de "
+        "maio de 2024, quando as vistorias de campo pararam."
     ),
 }
 
@@ -181,7 +184,7 @@ DICIONARIO_COLUNAS = [
     ("aedes_albopictus", "Contexto", "Aedes albopictus capturados (outra especie).", "contagem"),
     ("culex_sp", "Contexto", "Culex sp capturados (pernilongo comum).", "contagem"),
     ("aedes_aegypti_por_armadilha", "Vetor", "Aedes aegypti por armadilha: a densidade do vetor. E a principal medida do mosquito.", "indice"),
-    ("interpolado", "Nucleo", "Diz se o valor da semana foi preenchido por interpolacao.", "sim/nao"),
+    ("denominador_aproximado", "Nucleo", "Diz se o numero de armadilhas da semana e aproximado (2012 a 2018, quando o dado nao informa quais inspecoes foram concluidas).", "0/1"),
     ("precip_total_mm", "Clima · chuva", "Chuva total na semana.", "mm"),
     ("precip_max_dia_mm", "Clima · chuva", "Maior chuva num unico dia da semana.", "mm"),
     ("precip_media_dia_mm", "Clima · chuva", "Chuva media por dia na semana.", "mm"),
