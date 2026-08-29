@@ -158,6 +158,56 @@ def _ler_modelo(pasta: Path) -> Modelo | None:
     )
 
 
+# Devolve o inicio do modelo, trocando None pelo menor instante possivel.
+def _instante_de_inicio(modelo: Modelo) -> datetime.datetime:
+    """
+
+    Serve so pra ordenar e comparar datas sem quebrar quando o modelo nao tem
+    inicio registrado (run que falhou antes de comecar, por exemplo).
+
+    """
+    if modelo.inicio is None:
+        return datetime.datetime.min
+    return modelo.inicio
+
+
+# Filtra os modelos de um cenario: so os concluidos, e um por nome (o mais novo).
+def _selecionar_modelos_validos(modelos: list) -> list:
+    """
+
+    O mlruns acumula varias GERACOES de execucao ao longo do projeto (testes de
+    julho, uma rodada intermediaria de agosto que saiu com bug, e a rodada
+    oficial). Todas continuam na pasta como historico, entao sem filtro a
+    pagina misturaria resultado velho com o oficial.
+
+    A regra: descarta runs que nao terminaram (so fica "concluido") e, quando
+    duas execucoes tem o MESMO nome de modelo dentro do mesmo cenario, fica so
+    com a que comecou por ultimo — e a versao mais nova daquele modelo.
+
+    Args:
+        modelos: lista de modelos lidos de dentro de um cenario (experimento).
+
+    Returns:
+        Lista filtrada, um modelo por nome, ordenada do mais recente pro mais
+        antigo — mesma ordem que a funcao ja devolvia antes do filtro existir.
+
+    """
+    modelos_concluidos = [modelo for modelo in modelos if modelo.status == "concluido"]
+
+    modelo_mais_recente_por_nome = {}
+    for modelo in modelos_concluidos:
+        modelo_ja_guardado = modelo_mais_recente_por_nome.get(modelo.nome)
+        if modelo_ja_guardado is None:
+            modelo_mais_recente_por_nome[modelo.nome] = modelo
+            continue
+        if _instante_de_inicio(modelo) > _instante_de_inicio(modelo_ja_guardado):
+            modelo_mais_recente_por_nome[modelo.nome] = modelo
+
+    modelos_selecionados = list(modelo_mais_recente_por_nome.values())
+    modelos_selecionados.sort(key=_instante_de_inicio, reverse=True)
+    return modelos_selecionados
+
+
 # Le um cenario (experimento) inteiro: os dados dele + todos os modelos dentro.
 def _ler_cenario(pasta: Path) -> Cenario | None:
     meta_arquivo = pasta / "meta.yaml"
@@ -174,9 +224,8 @@ def _ler_cenario(pasta: Path) -> Cenario | None:
             if modelo:
                 modelos.append(modelo)
 
-    # Modelo mais recente primeiro (quem tem inicio; o resto vai pro fim).
-    modelos.sort(key=lambda m: m.inicio or datetime.datetime.min, reverse=True)
-    return Cenario(nome=meta["name"], experiment_id=meta.get("experiment_id", pasta.name), modelos=modelos)
+    modelos_selecionados = _selecionar_modelos_validos(modelos)
+    return Cenario(nome=meta["name"], experiment_id=meta.get("experiment_id", pasta.name), modelos=modelos_selecionados)
 
 
 # Le a pasta mlruns inteira e devolve a lista de cenarios (so os que tem modelo).

@@ -250,7 +250,7 @@ table.tabela td.melhor::after{content:" ✓"; font-size:.8em}
 .linha-tempo svg{width:100%; height:auto; max-width:760px; display:block}
 .linha-tempo .bloco-rot{fill:#fff; font-family:var(--fonte-corpo); font-size:12px; font-weight:700}
 .linha-tempo .ano{fill:var(--muted); font-family:var(--fonte-dados); font-size:11px}
-.linha-tempo .gap-rot{fill:var(--atencao); font-family:var(--fonte-corpo); font-size:11px; font-weight:700}
+.linha-tempo .marca-rot{fill:var(--atencao); font-family:var(--fonte-corpo); font-size:11px; font-weight:700}
 
 details.detalhes{margin-top:.8rem; border-top:1px dashed var(--borda); padding-top:.7rem}
 details.detalhes summary{cursor:pointer; color:var(--acento-forte); font-weight:600; font-size:.9rem; list-style:none}
@@ -785,19 +785,21 @@ def grafico_barras(itens: list, menor_melhor: bool, rotulo: str) -> str:
     return f'<div class="ranking"><div class="titulo-graf">Ranking por {escapar(rotulo)}</div>{"".join(linhas)}</div>'
 
 
-# Desenha a linha do tempo das capturas de mosquito (dois blocos + o vao sem dados).
+# Desenha a linha do tempo das capturas de mosquito (serie continua, sem vao).
 def linha_do_tempo_dados() -> str:
     """
 
-    Mostra, numa regua de 2019 a 2026, os dois pedacos de dados de mosquito (o
-    historico da Marilia, 2019-2023, e a raspagem, de 2025 em diante) e o vao de
-    ~2 anos entre eles, quando nao houve captura. E o mesmo desenho que aparece na
-    apresentacao, ligando o site ao material do orientador.
+    Mostra, numa regua de 2012 a 2026, a serie de mosquito inteira, sem vao: o
+    bloco da Secretaria Municipal de Saude (2012-2025, historico oficial
+    corrigido e certificado) seguido do bloco da raspagem propria (2026 em
+    diante, continuacao corrente da mesma serie). Uma marca separada assinala
+    a enchente de maio de 2024, quando a vistoria de armadilhas parou por 3
+    semanas por causa da cheia — nao e um vao de fonte, e um evento pontual.
 
     """
     largura, altura = 760, 104
     esq, dir_ = 10, 10
-    ano_inicio, ano_fim = 2019, 2026.6
+    ano_inicio, ano_fim = 2012, 2026.7
     area = largura - esq - dir_
 
     def px(ano):
@@ -805,22 +807,22 @@ def linha_do_tempo_dados() -> str:
 
     y_barra, alt_barra = 50, 26
     blocos = [
-        (2019, 2023.3, "Marilia 2019-2023", "var(--acento)", "bloco"),
-        (2023.3, 2025.6, "sem captura (~2 anos)", "var(--acento-suave)", "gap"),
-        (2025.6, 2026.6, "raspagem", "var(--acento)", "bloco"),
+        (2012.7, 2025.9, "Secretaria (2012-2025)", "var(--acento)"),
+        (2025.9, 2026.7, "raspagem propria (2026+)", "var(--acento-forte)"),
     ]
+    # A enchente caiu justo na virada abril/maio de 2024 (semanas 28/04, 05/05 e 12/05).
+    ano_enchente = 2024.33
     partes = [f'<svg viewBox="0 0 {largura} {altura}" role="img" aria-label="Linha do tempo das capturas de mosquito">']
-    partes.append(f'<text class="ano" x="{esq}" y="18">Capturas de mosquito ao longo do tempo</text>')
-    for inicio, fim, rotulo, cor, tipo in blocos:
+    partes.append(f'<text class="ano" x="{esq}" y="18">Capturas de mosquito ao longo do tempo (serie continua)</text>')
+    for inicio, fim, rotulo, cor in blocos:
         xa, xb = px(inicio), px(fim)
         meio = (xa + xb) / 2
-        if tipo == "gap":
-            partes.append(f'<rect x="{xa:.0f}" y="{y_barra}" width="{xb - xa:.0f}" height="{alt_barra}" rx="6" fill="{cor}" stroke="var(--atencao)" stroke-dasharray="4 4"/>')
-            partes.append(f'<text class="gap-rot" x="{meio:.0f}" y="{y_barra - 8}" text-anchor="middle">{rotulo}</text>')
-        else:
-            partes.append(f'<rect x="{xa:.0f}" y="{y_barra}" width="{xb - xa:.0f}" height="{alt_barra}" rx="6" fill="{cor}"/>')
-            partes.append(f'<text class="bloco-rot" x="{meio:.0f}" y="{y_barra + alt_barra / 2 + 4:.0f}" text-anchor="middle">{rotulo}</text>')
-    for ano in range(2019, 2027):
+        partes.append(f'<rect x="{xa:.0f}" y="{y_barra}" width="{xb - xa:.0f}" height="{alt_barra}" rx="6" fill="{cor}"/>')
+        partes.append(f'<text class="bloco-rot" x="{meio:.0f}" y="{y_barra + alt_barra / 2 + 4:.0f}" text-anchor="middle">{rotulo}</text>')
+    x_enchente = px(ano_enchente)
+    partes.append(f'<line x1="{x_enchente:.0f}" y1="{y_barra - 4}" x2="{x_enchente:.0f}" y2="{y_barra + alt_barra + 4}" stroke="var(--atencao)" stroke-width="2" stroke-dasharray="3 3"/>')
+    partes.append(f'<text class="marca-rot" x="{x_enchente:.0f}" y="{y_barra - 8}" text-anchor="middle">enchente mai/2024</text>')
+    for ano in range(2012, 2027, 2):
         partes.append(f'<text class="ano" x="{px(ano):.0f}" y="{altura - 4}" text-anchor="middle">{ano}</text>')
     partes.append("</svg>")
     return f'<div class="linha-tempo">{"".join(partes)}</div>'
@@ -1287,8 +1289,8 @@ def secoes_dados() -> str:
         f'<section class="secao">{faixa("O caminho dos dados")}{diagrama_fluxo()}</section>'
         f'<section class="secao">{faixa("Fontes utilizadas")}{tabela}</section>'
         f'<section class="secao">{faixa("O que compoe o clima")}{tabela_colunas_clima()}</section>'
-        f'<section class="secao">{faixa("A serie do mosquito")}{figura("vetor_por_semana.png", "Aedes aegypti capturados por semana", "Aedes aegypti capturados por semana em POA. Dois blocos: Marilia (2019-2023) e a raspagem propria (2025-2026), com o vao de ~2 anos sem captura no meio.")}</section>'
-        f'<section class="secao">{faixa("A limitacao dos dados")}{figura("vetor_vs_casos.png", "Mosquito capturado x casos de dengue", "Mosquito capturado x casos de dengue confirmados. Os dois maiores surtos (2024 e 2025) caem justo no vao sem dado de mosquito — a limitacao central da pesquisa.")}</section>'
+        f'<section class="secao">{faixa("A serie do mosquito")}{figura("vetor_por_semana.png", "Aedes aegypti capturados por semana", "Aedes aegypti capturados por semana em POA, serie continua de 2012 a 2026: o historico oficial da Secretaria Municipal de Saude seguido da raspagem propria, sem vao entre as duas fontes.")}</section>'
+        f'<section class="secao">{faixa("Limitacoes atuais")}{figura("vetor_vs_casos.png", "Mosquito capturado x casos de dengue", "Mosquito capturado x casos de dengue confirmados. Os surtos de 2024 e 2025 agora tem mosquito medido ao lado — a limitacao que sobra e outra: casos e clima so cobrem 2018 em diante, e a serie ainda tem cerca de 2 epidemias grandes para comparar, o que limita o poder estatistico dos testes.")}</section>'
         f'<section class="secao">{faixa("Dicionario de dados usados na tabela final de features")}'
         '<p class="lead" style="font-size:1rem; margin-top:0">Cada linha e uma coluna da <strong>tabela_final</strong> — o arquivo unico que junta tudo por semana e alimenta os modelos.</p>'
         f"{tabela_dicionario()}</section>"

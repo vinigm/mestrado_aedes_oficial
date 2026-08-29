@@ -80,21 +80,21 @@ OBJETIVO = {
 # As fontes de dados (pagina "Dados"): uma entrada por fonte.
 FONTES_DADOS = [
     {
-        "nome": "Captura de mosquito (atual)",
+        "nome": "Captura de mosquito (raspagem propria)",
         "tipo": "vetor",
-        "periodo": "2025 em diante",
+        "periodo": "2026 em diante",
         "cadencia": "semanal",
-        "papel": "Quanto mosquito foi pego nas armadilhas da cidade a cada semana. E o “vetor” — o personagem principal da pesquisa.",
-        "origem": "Raspado do sistema oficial, semana a semana.",
+        "papel": "Quanto mosquito foi pego nas armadilhas da cidade a cada semana. E o “vetor” — o personagem principal da pesquisa. Continua a serie oficial sem interrupcao.",
+        "origem": "Raspagem propria do portal publico do MI-Aedes.",
         "vital": True,
     },
     {
-        "nome": "Captura de mosquito (historico)",
+        "nome": "Captura de mosquito (Secretaria Municipal de Saude)",
         "tipo": "vetor",
-        "periodo": "2019 a 2023",
+        "periodo": "2012 a 2025",
         "cadencia": "semanal",
-        "papel": "A mesma contagem de mosquito, so que do passado, para dar historico ao modelo.",
-        "origem": "Base da pesquisadora Marilia.",
+        "papel": "A mesma contagem de mosquito, historico oficial que da a base longa ao modelo.",
+        "origem": "Secretaria Municipal de Saude — serie historica oficial do MI-Aedes, obtida em agosto de 2026, corrigida e certificada.",
         "vital": False,
     },
     {
@@ -171,7 +171,7 @@ TABELA_FINAL = {
 # que alimenta os modelos). Cada tupla e (coluna, grupo, o_que_e, unidade). Os
 # nomes e a ordem seguem exatamente o cabecalho de tabela_final.csv (36 colunas).
 DICIONARIO_COLUNAS = [
-    ("fonte", "Nucleo", "De onde veio a linha (historico da Marilia ou raspagem propria).", "texto"),
+    ("fonte", "Nucleo", "De onde veio a linha (secretaria ou raspagem propria).", "texto"),
     ("SE", "Nucleo", "Semana epidemiologica no formato ANOSS (ex.: 201901).", "codigo"),
     ("data_inicio_semana_epidemi", "Nucleo", "Data em que a semana epidemiologica comeca.", "data"),
     ("ano", "Nucleo", "Ano.", "ano"),
@@ -229,6 +229,46 @@ DICIONARIO_COLUNAS = [
 # Os sub-topicos aparecem recuados, com um tracinho em vez da bolinha. Use-os
 # para quebrar explicacao comprida em pedacos curtos, em vez de texto corrido.
 DIARIO = [
+    {
+        "data": "2026-08-16",
+        "blocos": [
+            {
+                "titulo": "Base de mosquito corrigida e certificada",
+                "cor": "dados",
+                "itens": [
+                    {
+                        "texto": "A serie da Secretaria Municipal de Saude (2012-2025) passou por auditoria antes de virar oficial.",
+                        "sub": [
+                            "Datas invertidas em varias linhas de 2022 a 2025, corrigidas.",
+                            "222 duplicatas removidas.",
+                        ],
+                    },
+                    "A auditoria revelou a enchente de maio de 2024 nos proprios dados: as vistorias de armadilha pararam nas semanas de 28/04, 05/05 e 12/05, exatamente a cheia.",
+                    "A raspagem propria (2026 em diante) virou a continuacao corrente dessa mesma serie oficial, sem interrupcao entre as duas fontes; o historico agora e atribuido direto a Secretaria Municipal de Saude, a origem verdadeira do dado.",
+                ],
+            },
+            {
+                "titulo": "Pipeline migrado e cenarios reexecutados",
+                "cor": "modelos",
+                "itens": [
+                    "O pipeline de modelagem foi migrado da serie curta para a serie completa (2012-2026).",
+                    "Todos os cenarios foram reexecutados na base corrigida — essa e a geracao OFICIAL de resultados (rodadas das 16h11 as 21h38).",
+                    {
+                        "texto": "Veredito honesto da estatistica:",
+                        "sub": [
+                            "O modelo vence persistencia e sazonalidade nos 12 horizontes (R² de 0,89 em 1 semana a 0,63 em 12 semanas).",
+                            "O ganho do mosquito favorece o vetor em estimativa pontual em todos os horizontes, mas nem o Diebold-Mariano nem o McNemar sao significativos apos correcao de multiplas comparacoes.",
+                            "Poder estatistico limitado: a serie ainda tem so cerca de 2 epidemias grandes para comparar.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        "proximos": [
+            "Estender a cobertura de casos e clima para antes de 2018, hoje o gargalo do lift do vetor.",
+            "Levar mais epidemias para a serie assim que novos surtos forem confirmados, para ganhar poder estatistico.",
+        ],
+    },
     {
         "data": "2026-08-08",
         "blocos": [
