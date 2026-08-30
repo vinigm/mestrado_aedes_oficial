@@ -1,0 +1,42 @@
+M0 (sem vetor): 14 colunas
+M1 (com vetor): 20 colunas
+colunas do vetor acrescentadas: ['aedes_aegypti_por_armadilha', 'aedes_aegypti_por_armadilha_lag1', 'aedes_aegypti_por_armadilha_lag2', 'aedes_aegypti_por_armadilha_lag3', 'aedes_aegypti_por_armadilha_lag4', 'vetor_mm4']
+
+--- padrao | M0_sem_vetor ---
+  h= 1: 307 semanas (2.4 min)
+  h= 4: 304 semanas (1.5 min)
+  h= 8: 300 semanas (5.8 min)
+  h=12: 296 semanas (7.0 min)
+--- padrao | M1_com_vetor ---
+  h= 1: 295 semanas (2.2 min)
+  h= 4: 292 semanas (2.2 min)
+  h= 8: 288 semanas (2.4 min)
+  h=12: 284 semanas (2.5 min)
+--- quantil_0.85 | M0_sem_vetor ---
+  h= 1: 307 semanas (2.9 min)
+  h= 4: 304 semanas (2.6 min)
+  h= 8: 300 semanas (2.8 min)
+  h=12: 296 semanas (2.8 min)
+--- quantil_0.85 | M1_com_vetor ---
+  h= 1: 295 semanas (2.2 min)
+  h= 4: 292 semanas (2.2 min)
+  h= 8: 288 semanas (2.7 min)
+  h=12: 284 semanas (2.2 min)
+
+======================================================================================================================
+O VETOR AJUDA? — periodo de AVALIACAO (2024+), M0 sem vetor x M1 com vetor
+======================================================================================================================
+       perda  h   n  MAE_sem_vetor  MAE_com_vetor  ganho_MAE  vies_pico_sem_vetor  vies_pico_com_vetor  DM_estatistica  DM_p_bruto  DM_p_holm_8  significativo
+      padrao  1 102       102.1945       113.0136   -10.8192            -189.6097            -222.2562         -1.2196      0.8873          1.0          False
+      padrao  4 102       182.6266       170.4949    12.1317            -291.1614            -367.5415          0.5631      0.2873          1.0          False
+      padrao  8 102       212.6660       183.1349    29.5312            -453.7521            -397.4551          0.7766      0.2196          1.0          False
+      padrao 12 102       205.2970       203.4075     1.8895            -494.3079            -460.4308          0.0461      0.4817          1.0          False
+quantil_0.85  1 102        91.9828        97.9871    -6.0043            -103.6749            -137.1019         -0.6320      0.7356          1.0          False
+quantil_0.85  4 102       180.5682       168.7066    11.8616            -147.9260            -177.0441          0.9728      0.1665          1.0          False
+quantil_0.85  8 102       179.0109       178.3477     0.6632            -333.0624            -359.2869          0.0225      0.4911          1.0          False
+quantil_0.85 12 102       199.0345       184.1988    14.8358            -420.5898            -400.5657          0.7095      0.2398          1.0          False
+
+M1 (com vetor) tem MAE menor em 6 de 8 comparacoes.
+Sobrevivem a Holm (8 comparacoes, alfa=0.05): 0
+
+tempo total: 46.5 min
