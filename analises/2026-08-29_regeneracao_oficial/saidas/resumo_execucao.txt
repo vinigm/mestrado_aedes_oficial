@@ -1,0 +1,38 @@
+REGENERACAO OFICIAL — inicio: 29/08/2026 14:45:56
+total de experimentos: 16
+
+[1/16] cidade_regressao — iniciado 14:45:56
+    OK    — 43 min
+[2/16] cidade_lift_vetor — iniciado 15:29:23
+    OK    — 34 min
+[3/16] cidade_diebold — iniciado 16:03:37
+    OK    — 89 min
+[4/16] cidade_deteccao_surto — iniciado 17:33:02
+    OK    — 2 min
+[5/16] cidade_regressao_sem_enso — iniciado 17:35:57
+    OK    — 49 min
+[6/16] cidade_regressao_com_enso — iniciado 18:25:10
+    OK    — 48 min
+[7/16] comparacao_literatura — iniciado 19:13:52
+    OK    — 28 min
+[8/16] bairro_surto — iniciado 19:42:51
+    OK    — 7 min
+[9/16] cidade_regressao_rf — iniciado 19:50:49
+    OK    — 14 min
+[10/16] cidade_regressao_extra_trees — iniciado 20:05:10
+    OK    — 49 min
+[11/16] cidade_regressao_hist_gradient_boosting — iniciado 20:54:30
+    OK    — 188 min
+[12/16] cidade_regressao_gradient_boosting — iniciado 00:03:07
+    OK    — 13 min
+[13/16] cidade_regressao_ridge — iniciado 00:16:52
+    OK    — 0 min
+[14/16] cidade_regressao_elastic_net — iniciado 00:17:05
+    OK    — 0 min
+[15/16] cidade_regressao_svr — iniciado 00:17:18
+    OK    — 0 min
+[16/16] cidade_regressao_knn — iniciado 00:17:46
+    OK    — 0 min
+
+REGENERACAO CONCLUIDA — fim: 30/08/2026 00:18:04
+sucesso: 16 de 16 | falhas: 0

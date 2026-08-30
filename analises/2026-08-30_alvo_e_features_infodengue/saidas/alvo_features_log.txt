@@ -1,0 +1,67 @@
+##########################################################################################
+# TESTE A — qual alvo? confirmados x notificados x nowcasting
+##########################################################################################
+
+--- A1_confirmados (20 colunas) ---
+  h= 1: 295 semanas (3.1 min)
+  h= 4: 292 semanas (2.5 min)
+  h= 8: 288 semanas (2.3 min)
+  h=12: 284 semanas (2.3 min)
+
+--- A2_notificados (20 colunas) ---
+  h= 1: 575 semanas (4.8 min)
+  h= 4: 572 semanas (4.8 min)
+  h= 8: 568 semanas (4.7 min)
+  h=12: 564 semanas (4.7 min)
+
+--- A3_nowcast (20 colunas) ---
+  h= 1: 575 semanas (4.8 min)
+  h= 4: 572 semanas (4.7 min)
+  h= 8: 568 semanas (4.7 min)
+  h=12: 564 semanas (4.7 min)
+
+##########################################################################################
+# TESTE B — features de transmissao (Rt, p_rt1, notif_accum_year, receptivo, transmissao)
+##########################################################################################
+
+--- B_com_transmissao (25 colunas) ---
+  h= 1: 295 semanas (2.3 min)
+  h= 4: 292 semanas (2.3 min)
+  h= 8: 288 semanas (2.4 min)
+  h=12: 284 semanas (2.2 min)
+
+====================================================================================================
+CAPTURA DO PICO na AVALIACAO (previsto/real; 1,0 = perfeito) — metrica principal do Teste A
+====================================================================================================
+variante  A1_confirmados  A2_notificados  A3_nowcast  B_confirmados_+_transmissao
+h                                                                                
+1                  0.800           0.859       0.859                        0.786
+4                  0.664           0.684       0.684                        0.645
+8                  0.570           0.463       0.463                        0.566
+12                 0.598           0.480       0.480                        0.604
+
+=== R2 na AVALIACAO ===
+variante  A1_confirmados  A2_notificados  A3_nowcast  B_confirmados_+_transmissao
+h                                                                                
+1                  0.883           0.859       0.859                        0.873
+4                  0.779           0.525       0.525                        0.735
+8                  0.724           0.496       0.496                        0.722
+12                 0.758           0.418       0.418                        0.762
+
+=== MAE na AVALIACAO (so comparavel DENTRO do mesmo alvo) ===
+variante  A1_confirmados  A2_notificados  A3_nowcast  B_confirmados_+_transmissao
+h                                                                                
+1                  101.3           267.8       267.8                        103.4
+4                  168.4           560.6       560.6                        187.5
+8                  184.0           604.7       604.7                        181.7
+12                 179.6           694.9       694.9                        174.0
+
+=== escala de cada alvo (media do pico) ===
+variante  A1_confirmados  A2_notificados  A3_nowcast  B_confirmados_+_transmissao
+h                                                                                
+1                 1882.0          4107.0      4107.0                       1882.0
+4                 1900.0          4107.0      4107.0                       1900.0
+8                 1900.0          4107.0      4107.0                       1900.0
+12                1900.0          4107.0      4107.0                       1900.0
+
+tempo total: 57.2 min

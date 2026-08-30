@@ -1,0 +1,7 @@
+algoritmo,pctl,h,n,n_pos,clima_certo_vetor_errado,vetor_certo_clima_errado,p
+lightgbm,90,4,243,59,8,12,0.503
+lightgbm,90,8,237,58,4,14,0.031
+lightgbm,90,12,234,61,9,20,0.063
+lightgbm,95,4,243,43,6,6,1.0
+lightgbm,95,8,238,43,7,8,1.0
+lightgbm,95,12,232,42,7,9,0.804

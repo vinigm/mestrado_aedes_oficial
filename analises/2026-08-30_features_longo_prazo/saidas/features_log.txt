@@ -1,0 +1,65 @@
+conjunto de referencia (A): 20 colunas
+  B_lags_anuais: ['casos_lag52', 'casos_lag104', 'vetor_lag52']
+  C_anomalia: ['temp_media_anomalia', 'precip_total_mm_anomalia', 'umid_media_anomalia']
+  D_acumulo: ['precip_total_mm_acum8', 'precip_total_mm_acum12', 'temp_media_acum8', 'temp_media_acum12']
+  E_enso: ['nino34_anom', 'oni']
+
+--- A_referencia (20 colunas) ---
+  h= 1: 295 semanas (2.7 min)
+  h= 4: 292 semanas (1.9 min)
+  h= 8: 288 semanas (2.0 min)
+  h=12: 284 semanas (1.9 min)
+
+--- A+B_lags_anuais (23 colunas) ---
+  h= 1: 191 semanas (1.2 min)
+  h= 4: 188 semanas (1.1 min)
+  h= 8: 184 semanas (1.1 min)
+  h=12: 180 semanas (1.2 min)
+
+--- A+C+D_clima_longo (27 colunas) ---
+  h= 1: 295 semanas (2.1 min)
+  h= 4: 292 semanas (2.0 min)
+  h= 8: 288 semanas (1.9 min)
+  h=12: 284 semanas (1.9 min)
+
+--- A+E_enso (22 colunas) ---
+  h= 1: 295 semanas (2.0 min)
+  h= 4: 292 semanas (2.0 min)
+  h= 8: 288 semanas (2.0 min)
+  h=12: 284 semanas (1.9 min)
+
+--- A+TUDO (32 colunas) ---
+  h= 1: 191 semanas (1.2 min)
+  h= 4: 188 semanas (1.2 min)
+  h= 8: 184 semanas (1.2 min)
+  h=12: 180 semanas (1.1 min)
+
+====================================================================================================
+MAE — periodo de CALIBRACAO
+====================================================================================================
+variante  A+B_lags_anuais  A+C+D_clima_longo  A+E_enso  A+TUDO  A_referencia
+h                                                                           
+1                    54.2               26.7      24.6    54.4          23.6
+4                    82.2               34.5      37.0    75.7          35.3
+8                    75.8               28.9      35.3    48.6          36.6
+12                   52.5               38.8      36.7    53.3          37.2
+
+====================================================================================================
+MAE — periodo de AVALIACAO
+====================================================================================================
+variante  A+B_lags_anuais  A+C+D_clima_longo  A+E_enso  A+TUDO  A_referencia
+h                                                                           
+1                    95.6               97.3      98.0    95.2         101.3
+4                   143.2              165.0     167.0   152.1         168.4
+8                   189.7              184.2     171.1   208.4         184.0
+12                  190.1              190.0     179.3   190.8         179.6
+
+=== CAPTURA DO PICO no periodo de AVALIACAO (quanto mais perto de 1, melhor) ===
+variante  A+B_lags_anuais  A+C+D_clima_longo  A+E_enso  A+TUDO  A_referencia
+h                                                                           
+1                   0.859              0.860     0.850   0.883         0.850
+4                   0.823              0.786     0.823   0.770         0.832
+8                   0.703              0.634     0.679   0.665         0.632
+12                  0.606              0.620     0.640   0.607         0.619
+
+tempo total: 33.6 min

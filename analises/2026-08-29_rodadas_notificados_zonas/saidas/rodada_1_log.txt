@@ -1,0 +1,46 @@
+2026/08/29 12:27:24 INFO mlflow.tracking.fluent: Experiment with name 'cidade_surto_notificados' does not exist. Creating a new experiment.
+
+################################################################################
+# SURTO COM ALVO NOTIFICADOS (InfoDengue) — so-clima vs clima+VETOR
+################################################################################
+semanas com alvo (notificados, apos corte de maturidade de 12 semanas): 703
+  P90 h= 4: n=565 pos=116 | clima>vetor=9 vetor>clima=9 McNemar p=1.0000
+  P90 h= 8: n=559 pos=115 | clima>vetor=15 vetor>clima=10 McNemar p=0.4237
+  P90 h=12: n=553 pos=113 | clima>vetor=14 vetor>clima=10 McNemar p=0.5413
+  P95 h= 4: n=568 pos= 75 | clima>vetor=14 vetor>clima=8 McNemar p=0.2863
+  P95 h= 8: n=560 pos= 76 | clima>vetor=10 vetor>clima=7 McNemar p=0.6291
+  P95 h=12: n=554 pos= 76 | clima>vetor=12 vetor>clima=8 McNemar p=0.5034
+
+=== Metricas por modelo ===
+ pctl  h      modelo   n  n_pos  sensib  espec    f1  bal_acc   auc    ap
+   90  4     sazonal 565    116   0.009  0.998 0.017    0.503 0.844 0.454
+   90  4    so-clima 565    116   0.698  0.978 0.783    0.838 0.958 0.875
+   90  4 clima+vetor 565    116   0.716  0.973 0.787    0.844 0.953 0.853
+   90  8     sazonal 559    115   0.009  0.998 0.017    0.503 0.849 0.464
+   90  8    so-clima 559    115   0.583  0.964 0.677    0.773 0.907 0.756
+   90  8 clima+vetor 559    115   0.565  0.957 0.653    0.761 0.922 0.765
+   90 12     sazonal 553    113   0.000  0.998 0.000    0.499 0.836 0.442
+   90 12    so-clima 553    113   0.451  0.964 0.567    0.707 0.902 0.647
+   90 12 clima+vetor 553    113   0.451  0.955 0.554    0.703 0.901 0.652
+   95  4     sazonal 568     75   0.000  1.000 0.000    0.500 0.880 0.386
+   95  4    so-clima 568     75   0.627  0.976 0.701    0.801 0.966 0.839
+   95  4 clima+vetor 568     75   0.627  0.963 0.671    0.795 0.953 0.798
+   95  8     sazonal 560     76   0.000  1.000 0.000    0.500 0.880 0.400
+   95  8    so-clima 560     76   0.355  0.975 0.470    0.665 0.916 0.613
+   95  8 clima+vetor 560     76   0.316  0.975 0.429    0.645 0.911 0.580
+   95 12     sazonal 554     76   0.000  1.000 0.000    0.500 0.877 0.392
+   95 12    so-clima 554     76   0.263  0.979 0.377    0.621 0.895 0.541
+   95 12 clima+vetor 554     76   0.276  0.969 0.375    0.622 0.897 0.514
+
+=== McNemar com correcao de Holm (6 comparacoes) ===
+ pctl  h   n  n_pos  clima_certo_vetor_errado  vetor_certo_clima_errado  discordantes  p_bruto  p_holm  significativo_holm  alfa
+   90  4 565    116                         9                         9            18   1.0000     1.0               False  0.05
+   90  8 559    115                        15                        10            25   0.4237     1.0               False  0.05
+   90 12 553    113                        14                        10            24   0.5413     1.0               False  0.05
+   95  4 568     75                        14                         8            22   0.2863     1.0               False  0.05
+   95  8 560     76                        10                         7            17   0.6291     1.0               False  0.05
+   95 12 554     76                        12                         8            20   0.5034     1.0               False  0.05
+
+VEREDITO: 0 de 6 comparacoes sobrevivem a Holm em alfa=0.05.
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/surto_notificados_resultados.csv
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/surto_notificados_mcnemar.csv

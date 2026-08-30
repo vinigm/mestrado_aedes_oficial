@@ -1,0 +1,7 @@
+lag_semanas,spearman_ranking_mediano,n_semanas_validas,granularidade
+4,0.47568901124765006,388,bairro
+8,0.35231532615567573,384,bairro
+4,0.6071428571428572,388,zona_k8
+8,0.5,384,zona_k8
+4,0.5589285714285713,388,zona_k16
+8,0.4227402917825936,384,zona_k16

@@ -1,0 +1,14 @@
+clima top-8: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4', 'temp_amplitude_media', 'umid_media_lag2']
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/clima_enxuto_maturidade_extra_trees_resultados.csv
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/mlflow/utils/yaml_utils.py:105: DeprecationWarning: codecs.open() is deprecated. Use open() instead.
+  with codecs.open(file_path, mode="r", encoding=ENCODING) as yaml_file:
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/mlflow/utils/file_utils.py:304: DeprecationWarning: codecs.open() is deprecated. Use open() instead.
+  with codecs.open(filename, mode="w", encoding=ENCODING) as handle:
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/mlflow/utils/yaml_utils.py:105: DeprecationWarning: codecs.open() is deprecated. Use open() instead.
+  with codecs.open(file_path, mode="r", encoding=ENCODING) as yaml_file:
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/mlflow/utils/file_utils.py:263: DeprecationWarning: codecs.open() is deprecated. Use open() instead.
+  with codecs.open(file_path, mode="r", encoding=ENCODING) as f:
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/mlflow/utils/file_utils.py:279: DeprecationWarning: codecs.open() is deprecated. Use open() instead.
+  with codecs.open(file_path, mode="r", encoding=ENCODING) as f:
+/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/mlflow/utils/yaml_utils.py:43: DeprecationWarning: codecs.open() is deprecated. Use open() instead.
+  with codecs.open(yaml_file_name, mode="w", encoding=ENCODING) as yaml_file:

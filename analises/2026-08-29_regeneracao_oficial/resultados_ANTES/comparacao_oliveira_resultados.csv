@@ -1,0 +1,3 @@
+algoritmo,protocolo,so_clima,clima_vetor,n,referencia_oliveira
+lightgbm,split_aleatorio,0.6344561403508772,0.6792982456140352,,0.6738
+lightgbm,walk_forward,0.661046511627907,0.6640697674418605,272,0.6738

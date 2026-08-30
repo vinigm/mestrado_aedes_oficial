@@ -1,0 +1,21 @@
+arquivo,situacao,formato_antes,formato_depois,colunas_comparadas,celulas_diferentes,maior_diferenca_relativa
+bairro_vetor_r2_resultados.csv,IDENTICO,"(4, 8)","(4, 8)",7,0,0.0
+clima_enxuto_maturidade_elastic_net_resultados.csv,VALORES MUDARAM,"(48, 6)","(48, 6)",4,144,0.2209793165283207
+clima_enxuto_maturidade_extra_trees_resultados.csv,VALORES MUDARAM,"(48, 6)","(48, 6)",4,144,0.27293056860854836
+clima_enxuto_maturidade_gradient_boosting_resultados.csv,VALORES MUDARAM,"(48, 6)","(48, 6)",4,144,0.3699060447073181
+clima_enxuto_maturidade_hist_gradient_boosting_resultados.csv,VALORES MUDARAM,"(48, 6)","(48, 6)",4,144,0.3730596050082248
+clima_enxuto_maturidade_knn_resultados.csv,VALORES MUDARAM,"(48, 6)","(48, 6)",4,144,0.4149519192681791
+clima_enxuto_maturidade_resultados.csv,VALORES MUDARAM,"(48, 6)","(48, 6)",4,144,0.3963121508909436
+clima_enxuto_maturidade_rf_resultados.csv,VALORES MUDARAM,"(48, 6)","(48, 6)",4,144,0.31059654671108167
+clima_enxuto_maturidade_ridge_resultados.csv,VALORES MUDARAM,"(48, 6)","(48, 6)",4,144,0.246448633041538
+clima_enxuto_maturidade_svr_resultados.csv,VALORES MUDARAM,"(48, 6)","(48, 6)",4,144,1.5859261226315324
+clima_enxuto_sem_enso_resultados.csv,VALORES MUDARAM,"(48, 5)","(48, 5)",3,96,0.3406487954497783
+clima_enxuto_vetor_resultados.csv,VALORES MUDARAM,"(72, 5)","(72, 5)",3,144,0.31253819037329494
+comparacao_casos_resultados.csv,VALORES MUDARAM,"(12, 5)","(12, 5)",4,36,3.117404114859199
+comparacao_oliveira_resultados.csv,VALORES MUDARAM,"(2, 6)","(2, 6)",4,5,0.5698529411764706
+deteccao_surto_mcnemar.csv,VALORES MUDARAM,"(6, 8)","(6, 8)",7,30,8.741935483870968
+deteccao_surto_resultados.csv,VALORES MUDARAM,"(36, 18)","(36, 18)",15,212,2.5
+diebold_mariano_resultados.csv,VALORES MUDARAM,"(24, 9)","(24, 9)",7,144,9.787286016743392
+lift_limpo_resultados.csv,VALORES MUDARAM,"(36, 5)","(36, 5)",3,48,0.2702053785557629
+surto_notificados_mcnemar.csv,IDENTICO,"(6, 12)","(6, 12)",10,0,0.0
+surto_notificados_resultados.csv,IDENTICO,"(18, 18)","(18, 18)",15,0,0.0

@@ -1,0 +1,55 @@
+############ VARIANTE 1: alvo NOTIFICADOS ############
+ALVO: casos notificados | 715 semanas com alvo nao-nulo
+Tabela final carregada: 725 semanas.
+  SO_CLIMA_PURO (puro): 24 features
+  SO_VETOR_PURO (puro): 8 features
+  SO_CLIMA_AR (com_ar): 29 features
+  SO_VETOR_AR (com_ar): 13 features
+  [  23.3s] SO_CLIMA_PURO h=1: 610 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_PURO_h1.csv
+  [  32.9s] SO_VETOR_PURO h=1: 587 previsões -> rodada_2_notificados_previsoes_SO_VETOR_PURO_h1.csv
+  [  57.9s] SO_CLIMA_AR h=1: 606 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_AR_h1.csv
+  [  69.7s] SO_VETOR_AR h=1: 587 previsões -> rodada_2_notificados_previsoes_SO_VETOR_AR_h1.csv
+  [  92.3s] SO_CLIMA_PURO h=4: 607 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_PURO_h4.csv
+  [ 101.9s] SO_VETOR_PURO h=4: 584 previsões -> rodada_2_notificados_previsoes_SO_VETOR_PURO_h4.csv
+  [ 126.6s] SO_CLIMA_AR h=4: 603 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_AR_h4.csv
+  [ 138.5s] SO_VETOR_AR h=4: 584 previsões -> rodada_2_notificados_previsoes_SO_VETOR_AR_h4.csv
+  [ 160.9s] SO_CLIMA_PURO h=8: 603 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_PURO_h8.csv
+  [ 170.5s] SO_VETOR_PURO h=8: 580 previsões -> rodada_2_notificados_previsoes_SO_VETOR_PURO_h8.csv
+  [ 195.2s] SO_CLIMA_AR h=8: 599 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_AR_h8.csv
+  [ 207.0s] SO_VETOR_AR h=8: 580 previsões -> rodada_2_notificados_previsoes_SO_VETOR_AR_h8.csv
+  [ 228.9s] SO_CLIMA_PURO h=12: 599 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_PURO_h12.csv
+  [ 238.6s] SO_VETOR_PURO h=12: 576 previsões -> rodada_2_notificados_previsoes_SO_VETOR_PURO_h12.csv
+  [ 262.9s] SO_CLIMA_AR h=12: 595 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_AR_h12.csv
+  [ 274.8s] SO_VETOR_AR h=12: 576 previsões -> rodada_2_notificados_previsoes_SO_VETOR_AR_h12.csv
+
+Resultados salvos em: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-08-29_rodadas_notificados_zonas/saidas/rodada_2_notificados_resultados_equivalencia.csv
+Tempo total: 275.1s (4.6 min)
+
+############ VARIANTE 2: alvo CONFIRMADOS ############
+ALVO: casos confirmados | 428 semanas com alvo nao-nulo
+Tabela final carregada: 725 semanas.
+  SO_CLIMA_PURO (puro): 24 features
+  SO_VETOR_PURO (puro): 8 features
+  SO_CLIMA_AR (com_ar): 29 features
+  SO_VETOR_AR (com_ar): 13 features
+  [   9.7s] SO_CLIMA_PURO h=1: 324 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_PURO_h1.csv
+  [  14.3s] SO_VETOR_PURO h=1: 312 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_PURO_h1.csv
+  [  24.2s] SO_CLIMA_AR h=1: 319 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_AR_h1.csv
+  [  29.3s] SO_VETOR_AR h=1: 307 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_AR_h1.csv
+  [  38.8s] SO_CLIMA_PURO h=4: 324 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_PURO_h4.csv
+  [  43.2s] SO_VETOR_PURO h=4: 309 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_PURO_h4.csv
+  [  52.9s] SO_CLIMA_AR h=4: 316 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_AR_h4.csv
+  [  57.8s] SO_VETOR_AR h=4: 304 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_AR_h4.csv
+  [  67.6s] SO_CLIMA_PURO h=8: 324 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_PURO_h8.csv
+  [  71.8s] SO_VETOR_PURO h=8: 305 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_PURO_h8.csv
+  [  81.4s] SO_CLIMA_AR h=8: 312 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_AR_h8.csv
+  [  86.2s] SO_VETOR_AR h=8: 300 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_AR_h8.csv
+  [  95.6s] SO_CLIMA_PURO h=12: 324 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_PURO_h12.csv
+  [ 100.0s] SO_VETOR_PURO h=12: 305 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_PURO_h12.csv
+  [ 109.4s] SO_CLIMA_AR h=12: 308 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_AR_h12.csv
+  [ 114.2s] SO_VETOR_AR h=12: 296 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_AR_h12.csv
+
+Resultados salvos em: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-08-29_rodadas_notificados_zonas/saidas/rodada_2_confirmados_resultados_equivalencia.csv
+Tempo total: 114.4s (1.9 min)
+
+############ RODADA 2 CONCLUIDA ############

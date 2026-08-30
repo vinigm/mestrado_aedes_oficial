@@ -1,0 +1,3 @@
+=== sem_maturidade | clima top-6: ['temp_media_lag4', 'umid_media', 'temp_max', 'temp_media_lag3', 'pressao_media_lag3', 'pressao_media_lag4'] ===
+=== com_maturidade | clima top-6: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4'] ===
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/diebold_mariano_resultados.csv

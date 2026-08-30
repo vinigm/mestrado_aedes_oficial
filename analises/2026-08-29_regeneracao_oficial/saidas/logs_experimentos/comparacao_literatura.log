@@ -1,0 +1,21 @@
+PARTE 1: previsao de casos (treina no passado, preve o futuro)...
+algoritmo  h  R2_so_clima  R2_clima_vetor  ganho
+ lightgbm  1        0.236           0.308  0.073
+ lightgbm  2        0.213           0.393  0.179
+ lightgbm  3        0.357           0.383  0.026
+ lightgbm  4        0.400           0.494  0.093
+ lightgbm  5        0.346           0.609  0.262
+ lightgbm  6        0.408           0.607  0.199
+ lightgbm  7        0.411           0.556  0.145
+ lightgbm  8        0.370           0.603  0.233
+ lightgbm  9        0.208           0.503  0.295
+ lightgbm 10        0.318           0.594  0.276
+ lightgbm 11        0.250           0.532  0.282
+ lightgbm 12        0.210           0.518  0.308
+
+PARTE 2: aceleracao de casos (replica do Oliveira)...
+algoritmo       protocolo  so_clima  clima_vetor    n  referencia_oliveira
+ lightgbm split_aleatorio     0.573        0.568 <NA>                0.674
+ lightgbm    walk_forward     0.559        0.552  427                0.674
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/comparacao_casos_resultados.csv
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/comparacao_oliveira_resultados.csv

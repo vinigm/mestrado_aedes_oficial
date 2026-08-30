@@ -1,0 +1,5 @@
+serie,percentil,periodo,n_semanas_classificaveis,n_semanas_surto,taxa_surto
+notificados_infodengue,90,2010-01-03 a 2026-05-31,805,193,0.23975155279503105
+confirmados_sinan_tabela_final,90,2012-09-23 a 2026-08-09,376,89,0.23670212765957446
+notificados_infodengue,95,2010-01-03 a 2026-05-31,805,112,0.1391304347826087
+confirmados_sinan_tabela_final,95,2012-09-23 a 2026-08-09,376,62,0.16489361702127658

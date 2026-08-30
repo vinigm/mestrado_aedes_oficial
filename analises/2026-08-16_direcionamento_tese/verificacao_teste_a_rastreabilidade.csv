@@ -1,0 +1,2 @@
+colunas_previsoes,tem_coluna_data_origem_e_data_alvo_separadas,linhas_testadas_semantica_data,linhas_consistentes_com_data_igual_origem
+"['data', 'h', 'real', 'pred']",False,8,8

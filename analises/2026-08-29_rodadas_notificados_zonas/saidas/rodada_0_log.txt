@@ -1,0 +1,10 @@
+clima ANTERIOR: (388, 23) | 2018-12-30 -> 2026-05-31
+baixando NASA POWER desde 20120923 (pode levar 1-2 min)...
+clima NOVO: (727, 23) | 2012-09-23 -> 2026-08-23
+
+semanas comparadas: 388 (estaveis, bloqueantes: 365 | em reprocessamento: 23)
+divergencias gravadas em: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-08-29_rodadas_notificados_zonas/saidas/rodada_0_divergencias_clima.csv
+APROVADO: as 365 semanas do periodo estavel bateram exatamente.
+[esperado] 169 valores em 23 semanas posteriores a 2025-12-21 vieram reprocessados pela NASA; o valor novo e o mais preciso e substitui o anterior.
+
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/entradas/clima/output/clima_nasa_power_semanal.csv | linhas x colunas: (727, 23)

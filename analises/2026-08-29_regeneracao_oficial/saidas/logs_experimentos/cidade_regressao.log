@@ -1,0 +1,2 @@
+clima top-8: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4', 'temp_amplitude_media', 'umid_media_lag2']
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/clima_enxuto_maturidade_resultados.csv

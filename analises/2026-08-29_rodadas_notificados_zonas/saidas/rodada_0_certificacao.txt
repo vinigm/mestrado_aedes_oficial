@@ -1,0 +1,13 @@
+[OK  ] criterio 1 - formato 725x36: (725, 36)
+[OK  ] criterio 1 - ordem das colunas preservada: identica
+[OK  ] criterio 1 - grade de datas preservada: 2012-09-23 -> 2026-08-09
+[OK  ] criterio 2 - vetor intocado: nao-nulos=718 (esperado 718) soma=280.8343 (esperado 280.8343)
+[OK  ] criterio 3 - casos intocados: nao-nulos=428 (esperado 428) soma=56624 (esperado 56624)
+[OK  ] criterio 2+3 - nenhuma coluna nao-clima alterada: nenhuma
+[OK  ] criterio 5 - clima cobre a serie: temp_media nao-nulos=725 (antes 388, minimo exigido 700)
+
+GANHO MEDIDO:
+  clima+vetor+casos_confirmados: 379 -> 424 semanas
+  clima+vetor (teto p/ notificados): 718 semanas
+
+CERTIFICACAO APROVADA: a recaptura do clima nao alterou nada alem do clima.
