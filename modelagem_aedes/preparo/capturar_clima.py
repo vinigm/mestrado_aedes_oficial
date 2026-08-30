@@ -19,9 +19,18 @@ import datetime
 import pandas as pd
 import requests
 
-# Ponto no centro de Porto Alegre e o primeiro domingo do bloco de dados da Marilia.
+# Ponto no centro de Porto Alegre e o primeiro domingo da serie do vetor.
 LATITUDE, LONGITUDE = -30.03, -51.23
-INICIO_PADRAO = "20181230"
+
+# 23/09/2012 e o domingo que abre a primeira semana com captura de mosquito na
+# base certificada da Secretaria. Ate 29/08/2026 esta constante valia
+# "20181230", o primeiro domingo do bloco da Marilia - uma justificativa que
+# morreu quando a Marilia saiu do fluxo (16/08/2026) e que truncava o clima em
+# 388 semanas enquanto o vetor ja tinha 718. Com o inicio em 2012 a
+# interseccao clima+vetor sai de 379 para ~718 semanas, que e o que da poder
+# ao teste de equivalencia clima x vetor (ver analises/
+# 2026-08-29_rodadas_notificados_zonas/PRE_DECLARACAO.md, Rodada 0).
+INICIO_PADRAO = "20120923"
 
 # O codigo de cada medida no NASA POWER e o nome simples que a gente da pra ela.
 MEDIDAS = {

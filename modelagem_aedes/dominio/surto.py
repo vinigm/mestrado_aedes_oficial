@@ -34,7 +34,17 @@ def aplicar_corte_maturidade(
 
     """
     dados_corrigidos = dados.copy()
-    data_referencia = dados_corrigidos["data"].max()
+
+    # A contagem parte da ultima semana que TEM caso divulgado, nao da ultima
+    # linha da tabela. A tabela segue ate hoje mesmo quando os casos param
+    # semanas antes (a divulgacao do SINAN atrasa); se a contagem partisse do
+    # fim da tabela, o corte cairia inteiro na parte que ja esta sem
+    # informacao e nao apagaria semana nenhuma.
+    semanas_com_caso = dados_corrigidos.dropna(subset=["casos"])
+    if semanas_com_caso.empty or semanas_corte <= 0:
+        return dados_corrigidos
+
+    data_referencia = semanas_com_caso["data"].max()
     limite_maturidade = data_referencia - pd.Timedelta(weeks=semanas_corte)
     dados_corrigidos.loc[dados_corrigidos["data"] > limite_maturidade, "casos"] = np.nan
     return dados_corrigidos

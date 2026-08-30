@@ -16,7 +16,7 @@ import numpy as np
 import pandas as pd
 
 from acesso import fontes
-from avaliacao import diebold_mariano, mcnemar
+from avaliacao import correcao_multipla, diebold_mariano, mcnemar
 from avaliacao.metricas import calcular_metricas_classificacao
 from avaliacao.metricas_regressao import calcular_metricas_regressao
 from config import settings
@@ -506,22 +506,30 @@ def rodar_bairro_surto(config) -> dict[str, pd.DataFrame]:
 
     Roda o experimento que preve a densidade de mosquito por bairro.
 
-    Abre as capturas de mosquito, monta a tabela bairro x semana, descobre os
-    bairros vizinhos e cria as colunas do modelo (do proprio bairro e da
-    vizinhanca). Depois roda as quatro receitas de colunas (so o bairro, com
-    vizinhanca, melhoradas, e melhoradas + vizinhanca), medindo o quanto cada uma
-    explica (R2) por semana a frente, e calcula o ganho das colunas melhoradas e
-    o quanto a vizinhanca ajuda.
+    Abre as capturas de mosquito do parquet certificado da Secretaria (a
+    mesma fonte da tabela_final da cidade, ver acesso.fontes.
+    carregar_secretaria_armadilhas), filtra pelos anos do experimento, monta a
+    tabela bairro x semana, descobre os bairros vizinhos e cria as colunas do
+    modelo (do proprio bairro e da vizinhanca). Semana sem inspecao num bairro
+    fica com densidade NaN (nao inventa zero - ver
+    dominio.features_bairro.construir_grade_completa_secretaria). Depois roda
+    as quatro receitas de colunas (so o bairro, com vizinhanca, melhoradas, e
+    melhoradas + vizinhanca), medindo o quanto cada uma explica (R2) por
+    semana a frente, e calcula o ganho das colunas melhoradas e o quanto a
+    vizinhanca ajuda.
 
     Returns:
         Um dicionario ligando o nome do arquivo de saida a tabela de resultados.
 
     """
-    capturas = fontes.carregar_capturas_marilia_por_ano(config.anos)
-    painel = features_bairro.construir_painel_semanal(capturas)
+    capturas = fontes.carregar_secretaria_armadilhas()
+    capturas = capturas[capturas["ano"].isin(config.anos)]
+
+    calendario = features_bairro.construir_calendario_completo(capturas["data_inicio_semana"])
+    painel = features_bairro.construir_painel_semanal_secretaria(capturas, calendario)
     bairros = sorted(painel["bairro"].unique())
 
-    dados_bairro = features_bairro.construir_grade_completa(painel)
+    dados_bairro = features_bairro.construir_grade_completa_secretaria(painel, calendario)
     vizinhos_de = features_bairro.mapear_vizinhos(painel, bairros, config.numero_vizinhos)
     dados_bairro = features_bairro.adicionar_densidade_vizinhanca(dados_bairro, vizinhos_de, bairros)
     dados_bairro = features_bairro.adicionar_features_temporais(dados_bairro)
@@ -544,3 +552,147 @@ def rodar_bairro_surto(config) -> dict[str, pd.DataFrame]:
     resultados.insert(0, "algoritmo", config.modelo.nome)
     print(resultados.to_string(index=False))
     return {config.arquivo_saida: resultados}
+
+
+
+def rodar_cidade_surto_notificados(config) -> dict[str, pd.DataFrame]:
+    """
+
+    Deteccao de surto na cidade com alvo NOTIFICADOS (InfoDengue), com a
+    correcao de multiplas comparacoes ja aplicada.
+
+    E o mesmo desenho do rodar_experimento_b - so-clima contra clima+vetor,
+    mesmas divisoes de treino e teste, McNemar pareado - trocando so a fonte do
+    alvo: notificados do InfoDengue (serie desde 2010) no lugar dos confirmados
+    do SINAN (serie desde 2018). Pre-declarado em 29/08/2026 (ver
+    analises/2026-08-29_rodadas_notificados_zonas/PRE_DECLARACAO.md, Rodada 1).
+
+    Este experimento NAO reaproveita rodar_experimento_b por um motivo
+    especifico: aquela funcao arredonda o p-valor do McNemar para 3 casas na
+    tabela de saida, e a correcao de Holm precisa do p bruto em precisao
+    cheia (um p de 0,0011 arredondado para 0,001 muda o valor corrigido).
+    Mudar o arredondamento la dentro alteraria o CSV que o experimento antigo
+    ja produz e que o painel le, entao a duplicacao do laco aqui e deliberada:
+    e o preco de nao mexer no comportamento de um experimento ja certificado.
+
+    A correcao de Holm cobre TODAS as comparacoes deste experimento
+    (percentis x horizontes) de uma vez - e o conjunto pre-declarado, e nao se
+    escolhe um subconjunto depois de ver os p-valores.
+
+    Returns:
+        Um dicionario ligando o nome de cada arquivo de saida a sua tabela: as
+        metricas por modelo e o McNemar com as colunas p_bruto, p_holm e
+        significativo_holm.
+
+    """
+    print("\n" + "#" * 80)
+    print("# SURTO COM ALVO NOTIFICADOS (InfoDengue) — so-clima vs clima+VETOR")
+    print("#" * 80, flush=True)
+
+    tabela = fontes.carregar_tabela_final_com_casos_notificados()
+    tabela = surto.aplicar_corte_maturidade(tabela, config.semanas_corte_maturidade)
+    tabela = features.construir_features_temporais(tabela)
+
+    semanas_com_alvo = int(tabela["casos"].notna().sum())
+    print(f"semanas com alvo (notificados, apos corte de maturidade de "
+          f"{config.semanas_corte_maturidade} semanas): {semanas_com_alvo}", flush=True)
+
+    colunas_clima = features.selecionar_colunas_por_prefixo(tabela, config.prefixos_clima)
+    colunas_autorregressivas = features.selecionar_colunas_por_prefixo(
+        tabela, config.prefixos_autorregressivo
+    )
+    colunas_vetor = features.selecionar_colunas_por_prefixo(tabela, config.prefixos_vetor)
+    features_so_clima = colunas_autorregressivas + colunas_clima + ["sem_sin", "sem_cos"]
+    features_clima_vetor = (
+        colunas_autorregressivas + colunas_clima + colunas_vetor + ["sem_sin", "sem_cos"]
+    )
+
+    linhas_metricas = []
+    linhas_mcnemar = []
+    for percentil in config.percentis:
+        for horizonte in config.horizontes:
+            resultado_clima = executar_walk_forward_surto(
+                tabela, features_so_clima, "fonte", horizonte, percentil, config.modelo,
+            )
+            resultado_vetor = executar_walk_forward_surto(
+                tabela, features_clima_vetor, "fonte", horizonte, percentil, config.modelo,
+            )
+            comparacao = resultado_clima.merge(
+                resultado_vetor, on=["h", "data", "real"], suffixes=("_c", "_v")
+            )
+
+            metricas_sazonal = calcular_metricas_classificacao(
+                comparacao["real"], comparacao["pred_saz_c"], comparacao["prob_saz_c"]
+            )
+            metricas_sazonal.update(
+                {"exp": "surto_notificados", "pctl": percentil, "h": horizonte, "modelo": "sazonal"}
+            )
+            linhas_metricas.append(metricas_sazonal)
+
+            for nome_modelo, sufixo in [("so-clima", "_c"), ("clima+vetor", "_v")]:
+                metricas = calcular_metricas_classificacao(
+                    comparacao["real"], comparacao[f"pred{sufixo}"], comparacao[f"prob{sufixo}"]
+                )
+                metricas.update(
+                    {
+                        "exp": "surto_notificados",
+                        "pctl": percentil,
+                        "h": horizonte,
+                        "modelo": nome_modelo,
+                    }
+                )
+                linhas_metricas.append(metricas)
+
+            resultado_mcnemar = mcnemar.teste_mcnemar(
+                (comparacao["pred_c"] == comparacao["real"]).to_numpy(),
+                (comparacao["pred_v"] == comparacao["real"]).to_numpy(),
+            )
+            linhas_mcnemar.append(
+                {
+                    "pctl": percentil,
+                    "h": horizonte,
+                    "n": len(comparacao),
+                    "n_pos": int(comparacao["real"].sum()),
+                    "clima_certo_vetor_errado": resultado_mcnemar.n_a_certo_b_errado,
+                    "vetor_certo_clima_errado": resultado_mcnemar.n_a_errado_b_certo,
+                    "discordantes": (
+                        resultado_mcnemar.n_a_certo_b_errado
+                        + resultado_mcnemar.n_a_errado_b_certo
+                    ),
+                    "p_bruto": resultado_mcnemar.valor_p,
+                }
+            )
+            print(
+                f"  P{percentil} h={horizonte:2d}: n={len(comparacao):3d} "
+                f"pos={int(comparacao['real'].sum()):3d} | "
+                f"clima>vetor={resultado_mcnemar.n_a_certo_b_errado} "
+                f"vetor>clima={resultado_mcnemar.n_a_errado_b_certo} "
+                f"McNemar p={resultado_mcnemar.valor_p:.4f}",
+                flush=True,
+            )
+
+    resultados_metricas = pd.DataFrame(linhas_metricas)
+    resultados_mcnemar = pd.DataFrame(linhas_mcnemar)
+
+    resultados_mcnemar["p_holm"] = correcao_multipla.corrigir_holm(
+        resultados_mcnemar["p_bruto"].to_numpy()
+    )
+    resultados_mcnemar["significativo_holm"] = resultados_mcnemar["p_holm"] < config.alfa
+    resultados_mcnemar["alfa"] = config.alfa
+
+    print("\n=== Metricas por modelo ===", flush=True)
+    print(resultados_metricas[COLUNAS_EXIBICAO].round(3).to_string(index=False), flush=True)
+    print(f"\n=== McNemar com correcao de Holm ({len(resultados_mcnemar)} comparacoes) ===",
+          flush=True)
+    print(resultados_mcnemar.round(4).to_string(index=False), flush=True)
+
+    quantidade_significativa = int(resultados_mcnemar["significativo_holm"].sum())
+    print(f"\nVEREDITO: {quantidade_significativa} de {len(resultados_mcnemar)} comparacoes "
+          f"sobrevivem a Holm em alfa={config.alfa}.", flush=True)
+
+    resultados_metricas.insert(0, "algoritmo", config.modelo.nome)
+    resultados_mcnemar.insert(0, "algoritmo", config.modelo.nome)
+    return {
+        config.arquivo_saida_metricas: resultados_metricas,
+        config.arquivo_saida_mcnemar: resultados_mcnemar,
+    }

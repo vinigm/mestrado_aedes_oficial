@@ -29,11 +29,13 @@ from config.experimentos.cidade_regressao_com_enso import CIDADE_REGRESSAO_COM_E
 from config.experimentos.cidade_regressao_modelos import TODOS_MODELOS
 from config.experimentos.cidade_regressao_rf import CIDADE_REGRESSAO_RF
 from config.experimentos.cidade_regressao_sem_enso import CIDADE_REGRESSAO_SEM_ENSO
+from config.experimentos.cidade_surto_notificados import CIDADE_SURTO_NOTIFICADOS
 from config.experimentos.comparacao_literatura import COMPARACAO_LITERATURA
 from pipeline import (
     rodar_bairro_surto,
     rodar_cidade_deteccao_surto,
     rodar_cidade_diebold,
+    rodar_cidade_surto_notificados,
     rodar_comparacao_literatura,
     rodar_regressao_conjuntos_fixos,
     rodar_regressao_selecao_clima,
@@ -44,6 +46,7 @@ from pipeline import (
 # cada arquivo de saida).
 EXPERIMENTOS = {
     "cidade_deteccao_surto": (CIDADE_DETECCAO_SURTO, rodar_cidade_deteccao_surto),
+    "cidade_surto_notificados": (CIDADE_SURTO_NOTIFICADOS, rodar_cidade_surto_notificados),
     "cidade_regressao": (CIDADE_REGRESSAO, rodar_regressao_selecao_clima),
     "cidade_regressao_rf": (CIDADE_REGRESSAO_RF, rodar_regressao_selecao_clima),
     "cidade_regressao_sem_enso": (CIDADE_REGRESSAO_SEM_ENSO, rodar_regressao_selecao_clima),

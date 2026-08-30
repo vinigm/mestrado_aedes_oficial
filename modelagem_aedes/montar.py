@@ -22,14 +22,13 @@ from dominio import montagem_tabela
 
 
 def main() -> None:
-    df_raspagem = fontes.carregar_raspagem_consolidada()
-    df_marilia = fontes.carregar_marilia_consolidada()
+    df_secretaria = fontes.carregar_secretaria_armadilhas()
     df_clima = fontes.carregar_clima()
     df_casos = fontes.carregar_casos_nivel_caso()
     df_enso = fontes.carregar_enso()
 
     tabela_final = montagem_tabela.montar_tabela_final(
-        df_raspagem, df_marilia, df_clima, df_casos, df_enso
+        df_secretaria, df_clima, df_casos, df_enso
     )
 
     settings.CAMINHO_TABELA_FINAL.parent.mkdir(parents=True, exist_ok=True)

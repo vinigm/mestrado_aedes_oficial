@@ -26,8 +26,10 @@ CÓDIGO:
   tests/         testes rápidos (unidade) + validar_experimentos.py (equivalência end-to-end, lento)
 
 DADOS (não código):
-  dados/entradas/<fonte>/   uma subpasta por fonte (tabela_modelagem, infodengue_poa, dados_marilia,
-                            clima, bases_governo, juntar_arquivos_raspagem)
+  dados/entradas/<fonte>/   uma subpasta por fonte (tabela_modelagem, infodengue_poa,
+                            arquivos_secretaria_saude_poa, clima, bases_governo,
+                            dados_marilia e juntar_arquivos_raspagem - as duas ultimas
+                            fora do fluxo da tabela_final desde 16/08/2026, ver abaixo)
   dados/saidas/resultados/  CSVs de métricas gerados pelos experimentos
   dados/saidas/figuras/     gráficos gerados
 ```
@@ -142,3 +144,35 @@ versionam.
 - ✅ **Arquitetura completa**: o fluxo inteiro (preparo → montagem → experimentos → relatório) está
   em camadas, no padrão e verificado. (A captura de vegetação/MODIS e de feriados existe como script
   solto, mas não entra no modelo — fica como exploração futura.)
+
+## Migração pra base certificada (16/08/2026)
+
+O vetor da `tabela_final` passou a vir de uma fonte só: o parquet certificado da
+Secretaria Municipal de Saúde de Porto Alegre (`dados/entradas/arquivos_secretaria_saude_poa/
+secretaria_poa_armadilhas.parquet`, 2012 até hoje, uma linha por inspeção, sem dado
+pessoal — ver `preparo/limpar_arquivos_secretaria.py` e `preparo/unificar_arquivos_secretaria.py`).
+O próprio parquet já inclui 2026 em diante a partir da raspagem própria.
+
+O que muda:
+
+- **Sai do fluxo**: os dados da Marília (2019-2023) e a raspagem consolidada por fora
+  (`juntar_arquivos_raspagem/`) não alimentam mais a `tabela_final`. As pastas continuam
+  existindo (nada foi apagado) — só não são mais lidas por `montar.py`. A Marília continua
+  usada pelo experimento `bairro_surto` (captura por bairro), que é outro fluxo.
+- **Grade semanal contínua**: a `tabela_final` agora tem uma linha para TODA semana entre
+  23/09/2012 e a última semana com dado, mesmo quando não houve nenhuma inspeção naquela
+  semana (são 7 semanas: a virada de 2017/2018 e as três semanas da enchente de 2024) — essas
+  ficam com as colunas do vetor vazias (NaN), sem interpolação nenhuma.
+- **Densidade**: `aedes_aegypti_por_armadilha` passou a ser fêmeas de Aedes aegypti dividido
+  pelas armadilhas REALMENTE inspecionadas na semana. De 2012 a 2018 a Secretaria ainda não
+  registrava isso; nesses anos o denominador é aproximado (todas as armadilhas com QUALQUER
+  registro na semana) e a coluna nova `denominador_aproximado` marca essas semanas.
+- **Casos confirmados**: a série local do SINAN só começa em 2018 (antes fica NaN, nunca
+  zero) e as últimas semanas do arquivo de casos (que ainda podem estar em apuração no SINAN)
+  também ficam NaN em vez de zero — ver `JANELA_MATURACAO_CASOS_SEMANAS` em
+  `dominio/montagem_tabela.py`.
+- **Lags/médias móveis**: `dominio/features.py` não separa mais os cálculos "por bloco de
+  fonte" — a série agora é uma grade semanal única e contínua (sem buraco de tempo entre
+  secretaria e raspagem), então separar por bloco só introduziria um corte artificial onde
+  não existe corte nenhum.
+- **Coluna `fonte`**: passou a significar `secretaria` ou `raspagem` (era `marilia`/`raspagem`).

@@ -41,7 +41,13 @@ class ConfiguracaoBairroSurto:
     Attributes:
         nome: Nome que identifica este experimento.
         coluna_alvo: O que o modelo tenta prever ('dens', a densidade de mosquito).
-        anos: De quais anos abrir as capturas de mosquito.
+        anos: De quais anos abrir as capturas de mosquito. Desde 16/08/2026 a
+            fonte e o parquet certificado da Secretaria (2012 a hoje), entao
+            qualquer intervalo dentro de 2012-2026 funciona aqui - o default
+            abaixo (2019-2023) fica igual por continuidade com os resultados
+            anteriores, mas dar um range diferente (por exemplo,
+            tuple(range(2012, 2027))) usa o periodo inteiro sem precisar
+            mexer em mais nada.
         numero_vizinhos: Quantos bairros vizinhos considerar em cada bairro.
         modelo: A ficha do algoritmo usado pra prever a densidade de mosquito.
         horizontes: Quantas semanas a frente prever, em cada rodada.

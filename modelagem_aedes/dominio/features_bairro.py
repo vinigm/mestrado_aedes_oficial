@@ -7,6 +7,16 @@ Tudo aqui e so preparo (nao treina modelo). A ideia central e prever quanto
 mosquito vai ter em cada bairro, usando o passado do proprio bairro E o dos
 bairros vizinhos (mosquito que sobe num lugar tende a subir na vizinhanca).
 
+Desde 16/08/2026 a fonte do vetor por bairro e o MESMO parquet certificado da
+Secretaria usado pela tabela_final da cidade (ver
+acesso.fontes.carregar_secretaria_armadilhas e dominio/montagem_tabela.py),
+no lugar das capturas cruas da Marilia. As funcoes construir_painel_semanal e
+construir_grade_completa (mais antigas, pensadas pro formato da Marilia)
+continuam aqui sem uso no pipeline principal, caso alguem queira reler ou
+comparar; quem monta a tabela por bairro agora e
+construir_painel_semanal_secretaria + construir_calendario_completo +
+construir_grade_completa_secretaria, logo abaixo delas.
+
 """
 
 import numpy as np
@@ -14,6 +24,7 @@ import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 
 from config import settings
+from dominio import montagem_tabela
 
 # Janela (em semanas) das medias moveis de densidade e de vizinhanca.
 JANELA_MEDIA_MOVEL_SEMANAS = 4
@@ -120,6 +131,161 @@ def construir_grade_completa(painel: pd.DataFrame) -> pd.DataFrame:
         .merge(calendario[["t", "Semana"]], on="t", how="left")
     )
     dados_bairro["dens"] = dados_bairro["dens"].fillna(0.0)
+    dados_bairro = dados_bairro.sort_values(["bairro", "t"]).reset_index(drop=True)
+    return dados_bairro
+
+
+def construir_calendario_completo(datas_inicio_semana: pd.Series) -> pd.DataFrame:
+    """
+
+    Monta a grade continua de semanas (um domingo apos o outro) entre a
+    primeira e a ultima do periodo, com o ano, a semana epidemiologica e o
+    numero de tempo 't' de cada uma.
+
+    Isso inclui TAMBEM as semanas sem nenhuma inspecao registrada em bairro
+    nenhum (por exemplo, as tres semanas da enchente de Porto Alegre em
+    abril/maio de 2024). Sem essa grade continua, essas semanas simplesmente
+    sumiriam da tabela por bairro (elas nao aparecem em nenhum agrupamento
+    por bairro-semana, porque nao ha NENHUMA linha delas no parquet) em vez
+    de aparecerem, como devem, como "sem inspecao" (NaN) em todos os bairros.
+    E a mesma regra de semana epidemiologica que
+    dominio.montagem_tabela.calcular_semana_epidemiologica usa pra tabela_final
+    da cidade.
+
+    Args:
+        datas_inicio_semana: As datas de inicio de semana de TODAS as
+            inspecoes do parquet certificado (so o minimo e o maximo importam).
+
+    Returns:
+        Uma linha por semana da grade continua, com Ano, Semana e t.
+
+    """
+    domingos = pd.Series(
+        pd.date_range(datas_inicio_semana.min(), datas_inicio_semana.max(), freq="W-SUN")
+    )
+    semana_epidemiologica = montagem_tabela.calcular_semana_epidemiologica(domingos)
+    calendario = pd.DataFrame(
+        {"Ano": semana_epidemiologica["ano"], "Semana": semana_epidemiologica["semana"]}
+    )
+    calendario["t"] = np.arange(len(calendario))
+    return calendario
+
+
+def construir_painel_semanal_secretaria(
+    df_secretaria: pd.DataFrame, calendario: pd.DataFrame
+) -> pd.DataFrame:
+    """
+
+    Junta as inspecoes do parquet certificado da Secretaria numa tabela por
+    bairro, ano e semana, com a densidade de mosquito.
+
+    A densidade e as femeas de Aedes aegypti dividida pelas armadilhas
+    REALMENTE inspecionadas (inspecao_realizada verdadeiro) naquele bairro
+    naquela semana - a MESMA regra do denominador que
+    dominio.montagem_tabela.agregar_vetor_semanal usa pra tabela_final da
+    cidade, so que agrupada por bairro em vez de agrupada so pela cidade
+    inteira. De 2012 a 2018 a Secretaria ainda nao registrava se a vistoria
+    foi feita de verdade (inspecao_realizada fica vazio nesses anos); nesses
+    casos o denominador vira o total de armadilhas com QUALQUER registro
+    naquele bairro-semana (uma aproximacao), e a coluna
+    'denominador_aproximado' marca isso, pra quem for analisar saber que o
+    denominador dali e menos confiavel.
+
+    So sai uma linha aqui pra bairro-semana que teve ALGUM registro no
+    parquet. As semanas sem NENHUM registro em bairro nenhum (por exemplo, a
+    enchente de 2024) nao aparecem - elas entram depois, em
+    construir_grade_completa_secretaria, como NaN em todos os bairros.
+
+    Args:
+        df_secretaria: O parquet certificado, uma linha por inspecao de
+            armadilha (ver acesso.fontes.carregar_secretaria_armadilhas).
+        calendario: A grade continua de semanas (ver
+            construir_calendario_completo), usada so pra trazer o numero de
+            tempo 't' de cada Ano/Semana.
+
+    Returns:
+        A tabela por bairro/semana com a densidade, a posicao media (lat/lon,
+        pra achar os vizinhos), o numero de tempo 't' e a marca de
+        denominador aproximado.
+
+    """
+    inspecoes = df_secretaria.copy()
+    inspecoes["foi_inspecionada"] = inspecoes["inspecao_realizada"].fillna(False)
+
+    painel = (
+        inspecoes.groupby(["bairro", "ano", "semana"])
+        .agg(
+            registros_na_semana=("ano", "size"),
+            armadilhas_inspecionadas=("foi_inspecionada", "sum"),
+            realizada_desconhecida=(
+                "inspecao_realizada", montagem_tabela.semana_tem_denominador_aproximado
+            ),
+            femeas_aegypti=("aegypti_femea", "sum"),
+            lat=("latitude", "mean"),
+            lon=("longitude", "mean"),
+        )
+        .reset_index()
+        .rename(columns={"ano": "Ano", "semana": "Semana"})
+    )
+
+    painel["denominador_aproximado"] = painel["realizada_desconhecida"]
+    usa_denominador_aproximado = painel["denominador_aproximado"]
+    painel["n"] = painel["armadilhas_inspecionadas"]
+    painel.loc[usa_denominador_aproximado, "n"] = painel.loc[
+        usa_denominador_aproximado, "registros_na_semana"
+    ]
+    painel["dens"] = painel["femeas_aegypti"] / painel["n"]
+
+    painel = painel.merge(calendario[["Ano", "Semana", "t"]], on=["Ano", "Semana"])
+    return painel.drop(columns=["realizada_desconhecida"])
+
+
+def construir_grade_completa_secretaria(
+    painel: pd.DataFrame, calendario: pd.DataFrame
+) -> pd.DataFrame:
+    """
+
+    Monta a grade com TODOS os bairros em TODAS as semanas da grade continua.
+
+    Faz o cruzamento de cada bairro com cada semana do calendario; onde o
+    bairro nao teve NENHUMA inspecao naquela semana, a densidade fica vazia
+    (NaN) - NUNCA vira zero. Essa e uma escolha deliberada: 0.0 so aparece
+    quando de fato houve inspecao e nao se achou femea de Aedes aegypti
+    nenhuma; NaN quer dizer "essa semana nao foi medida nesse bairro"
+    (inclusive nas tres semanas da enchente de maio de 2024, sem nenhuma
+    inspecao na cidade inteira). Essa distincao entre zero real e "sem
+    inspecao" sobrevive ate o motor (motor/walk_forward_bairro.py), que ja
+    descarta (dropna) as linhas com feature ou alvo faltando em vez de
+    aprender com um zero inventado - por isso NAO se faz fillna(0) aqui
+    (diferente da versao antiga desta grade, pensada pra Marilia, que
+    inventava zero pra semana sem inspecao).
+
+    Args:
+        painel: A tabela por bairro/semana (ver
+            construir_painel_semanal_secretaria; so tem linha onde houve
+            registro).
+        calendario: A grade continua de semanas (ver
+            construir_calendario_completo).
+
+    Returns:
+        A grade completa, em ordem de bairro e tempo, com densidade (podendo
+        ser NaN), a marca de denominador aproximado (tambem NaN quando nao
+        houve inspecao) e a semana do ano.
+
+    """
+    bairros = sorted(painel["bairro"].unique())
+    grade = pd.MultiIndex.from_product(
+        [bairros, calendario["t"]], names=["bairro", "t"]
+    ).to_frame(index=False)
+
+    dados_bairro = (
+        grade.merge(
+            painel[["bairro", "t", "dens", "denominador_aproximado"]],
+            on=["bairro", "t"],
+            how="left",
+        )
+        .merge(calendario[["t", "Semana"]], on="t", how="left")
+    )
     dados_bairro = dados_bairro.sort_values(["bairro", "t"]).reset_index(drop=True)
     return dados_bairro
 

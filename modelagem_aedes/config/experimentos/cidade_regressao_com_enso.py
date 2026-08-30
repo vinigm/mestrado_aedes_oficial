@@ -30,7 +30,7 @@ CIDADE_REGRESSAO_COM_ENSO = ConfiguracaoRegressao(
     # como candidato de clima (repare que os padroes de clima abaixo incluem
     # "nino34" e "oni").
     colunas_ignorar=(
-        "fonte", "SE", "data", "ano", "semana", "interpolado",
+        "fonte", "SE", "data", "ano", "semana", "interpolado", "denominador_aproximado",
         "aedes_aegypti", "aedes_albopictus", "culex_sp", "numero_de_armadilhas",
     ),
     padroes_vetor=("aedes", "armadilha", "vetor"),

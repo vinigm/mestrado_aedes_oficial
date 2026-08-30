@@ -68,7 +68,7 @@ CIDADE_LIFT_VETOR = ConfiguracaoRegressaoConjuntos(
     passo=2,
     # O El Nino/La Nina entra junto no clima (os padroes de clima incluem "nino34" e "oni").
     colunas_ignorar=(
-        "fonte", "SE", "data", "ano", "semana", "interpolado",
+        "fonte", "SE", "data", "ano", "semana", "interpolado", "denominador_aproximado",
         "aedes_aegypti", "aedes_albopictus", "culex_sp", "numero_de_armadilhas",
     ),
     padroes_vetor=("aedes", "armadilha", "vetor"),

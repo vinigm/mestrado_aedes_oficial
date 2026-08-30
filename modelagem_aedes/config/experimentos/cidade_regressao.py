@@ -141,7 +141,7 @@ CIDADE_REGRESSAO = ConfiguracaoRegressao(
     # modelo usa o historico dela mesma pra prever o futuro. Ficam de fora so
     # os identificadores, os dados do El Nino/La Nina e os numeros brutos.
     colunas_ignorar=(
-        "fonte", "SE", "data", "ano", "semana", "interpolado",
+        "fonte", "SE", "data", "ano", "semana", "interpolado", "denominador_aproximado",
         "aedes_aegypti", "aedes_albopictus", "culex_sp", "numero_de_armadilhas",
         "nino34_anom", "oni",
     ),

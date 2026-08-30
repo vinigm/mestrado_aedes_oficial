@@ -26,7 +26,7 @@ CIDADE_REGRESSAO_SEM_ENSO = ConfiguracaoRegressao(
     passo=2,
     # O El Nino/La Nina (nino34_anom, oni) fica de fora dos candidatos de clima.
     colunas_ignorar=(
-        "fonte", "SE", "data", "ano", "semana", "interpolado",
+        "fonte", "SE", "data", "ano", "semana", "interpolado", "denominador_aproximado",
         "aedes_aegypti", "aedes_albopictus", "culex_sp", "numero_de_armadilhas",
         "nino34_anom", "oni",
     ),

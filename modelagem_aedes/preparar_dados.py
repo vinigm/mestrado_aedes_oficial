@@ -2,20 +2,27 @@
 
 CLI que prepara os arquivos crus ANTES da montagem.
 
-Faz cinco coisas: consolida o historico da Marilia (junta os arquivos anuais),
-filtra os casos de dengue confirmados de Porto Alegre dos arquivos do governo
-(SINAN), junta os arquivos da raspagem (um por semana), baixa o clima do NASA
-POWER e baixa o El Nino/La Nina (ENSO) do NOAA. Rode quando chegarem dados novos;
-depois rode montar.py pra refazer a tabela_final.
+Faz cinco coisas: limpa e junta os arquivos da Secretaria de Saude num
+parquet so (a base certificada do vetor), filtra os casos de dengue
+confirmados de Porto Alegre dos arquivos do governo (SINAN), baixa o clima
+do NASA POWER e baixa o El Nino/La Nina (ENSO) do NOAA. Rode quando chegarem
+dados novos; depois rode montar.py pra refazer a tabela_final.
 
 Uso:  python preparar_dados.py
 
-Obs 1: a consolidacao da raspagem SO LE os .xlsx (os dados que nao podem ser
-perdidos) e escreve so o resultado juntado; nunca mexe nos arquivos originais.
+Obs 1: os dois passos da Secretaria (limpar e depois juntar) demoram - o de
+limpar le um arquivo por ano desde 2012, e o de juntar tambem le a raspagem
+propria (os .xlsx de 2026 em diante). Pode levar alguns minutos os dois juntos.
 
 Obs 2: o clima e o ENSO sao baixados da internet ao vivo. Se estiver sem conexao,
-esses dois passos avisam e sao pulados (o arquivo que ja existe e mantido) — as
-consolidacoes locais nao dependem deles.
+esses dois passos avisam e sao pulados (o arquivo que ja existe e mantido) — os
+passos da Secretaria e do SINAN nao dependem deles.
+
+Obs 3: a consolidacao da Marilia (2019-2023) e da raspagem consolidada por fora
+(preparo/consolidar_marilia.py e preparo/consolidar_raspagem.py) SAIRAM daqui
+em 16/08/2026 - a base certificada da Secretaria substituiu as duas como fonte
+do vetor da tabela_final (ver README do pacote). Os dois scripts continuam
+existindo (nao foram apagados), so ninguem mais chama eles por aqui.
 
 """
 
@@ -28,9 +35,9 @@ from config import settings
 from preparo import (
     capturar_clima,
     capturar_enso,
-    consolidar_marilia,
-    consolidar_raspagem,
     consolidar_sinan,
+    limpar_arquivos_secretaria,
+    unificar_arquivos_secretaria,
 )
 
 
@@ -42,17 +49,15 @@ def salvar(tabela, caminho) -> None:
 
 
 def main() -> None:
-    print("== consolidando o historico da Marilia ==")
-    marilia = consolidar_marilia.consolidar_marilia()
-    salvar(marilia, settings.CAMINHO_MARILIA_CONSOLIDADA)
+    print("== limpando os arquivos da Secretaria (tira o dado pessoal; pode levar alguns minutos) ==")
+    limpar_arquivos_secretaria.main()
+
+    print("\n== juntando os arquivos limpos da Secretaria (+ a raspagem propria de 2026) num parquet so (pode levar alguns minutos) ==")
+    unificar_arquivos_secretaria.main()
 
     print("\n== filtrando os casos confirmados do SINAN (pode levar alguns minutos) ==")
     casos = consolidar_sinan.consolidar_sinan()
     salvar(casos, settings.CAMINHO_CASOS_NIVEL_CASO)
-
-    print("\n== juntando os arquivos da raspagem (abre os .xlsx, pode levar 1-2 min) ==")
-    raspagem = consolidar_raspagem.consolidar_raspagem()
-    salvar(raspagem, settings.CAMINHO_RASPAGEM_CONSOLIDADA)
 
     print("\n== baixando o clima do NASA POWER (internet, pode levar 1-2 min) ==")
     try:

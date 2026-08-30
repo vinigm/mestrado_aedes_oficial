@@ -5,6 +5,7 @@
 # --- Manipulacao de dados (montagem da tabela + features) ---
 pandas>=3.0.2
 numpy>=2.4.4
+pyarrow>=24.0.0        # le o parquet certificado da Secretaria (armadilhas)
 
 # --- Modelagem e avaliacao ---
 lightgbm>=4.6.0        # motor de gradient boosting (walk-forward de surto e regressao)

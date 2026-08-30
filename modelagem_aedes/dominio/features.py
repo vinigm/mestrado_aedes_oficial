@@ -32,12 +32,7 @@ JANELA_MEDIA_MOVEL_SEMANAS = 4
 def media_movel_4_semanas(serie: pd.Series) -> pd.Series:
     """
 
-    Calcula a media das ultimas 4 semanas de uma serie que pertence a um
-    unico bloco de dados (uma fonte).
-
-    Isso e usado no calculo feito grupo por grupo, pra que a media nao
-    misture dados dos dois blocos diferentes (o bloco antigo da Marilia,
-    de 2019 a 2023, e o bloco novo da raspagem, de 2025 em diante).
+    Calcula a media das ultimas 4 semanas de uma serie semanal continua.
 
     """
     return serie.rolling(JANELA_MEDIA_MOVEL_SEMANAS).mean()
@@ -66,24 +61,30 @@ def selecionar_colunas_por_prefixo(
 
 
 
-def construir_features_temporais(
-    dados: pd.DataFrame,
-    coluna_fonte: str = "fonte",
-) -> pd.DataFrame:
+def construir_features_temporais(dados: pd.DataFrame) -> pd.DataFrame:
     """
 
     Cria as colunas de semanas passadas, as medias moveis e a marcacao da
     epoca do ano — a mesma receita usada nos Modelos 1 a 5.
 
-    Todas essas colunas sao calculadas POR BLOCO (separando pela coluna de
-    fonte), pra que os valores de semanas passadas e as medias nunca
-    misturem dados dos dois blocos diferentes.
+    Antigamente essas colunas eram calculadas POR BLOCO (separando pela
+    coluna 'fonte'), porque a tabela vinha de duas fontes com um buraco de
+    tempo real entre elas (a Marilia, 2019-2023, e a raspagem, 2025+): sem
+    separar por bloco, a primeira semana da raspagem teria puxado "1 semana
+    atras" da ULTIMA semana da Marilia, quase 2 anos antes. Desde a migracao
+    pra base certificada da Secretaria (16/08/2026) a serie e uma unica grade
+    semanal continua (a raspagem so cobre o pedacinho de 2026 que a
+    Secretaria ainda nao mandou, encostado sem buraco na semana anterior da
+    Secretaria - ver dominio/montagem_tabela.py); por isso o calculo agora e
+    direto, sem separar por bloco. As semanas sem dado (vetor NaN ou casos
+    NaN) continuam propagando NaN nos lags e nas medias moveis de forma
+    natural (o shift/rolling do pandas ja faz isso sozinho); ninguem
+    preenche esse vazio aqui.
 
     Args:
         dados: Tabela semanal com, no minimo, a coluna 'semana' e as
             colunas de origem listadas em COLUNAS_PARA_LAG que estiverem
-            presentes.
-        coluna_fonte: Coluna que diz de qual bloco de dados cada linha veio.
+            presentes, EM ORDEM CRONOLOGICA (uma linha por semana).
 
     Returns:
         Uma COPIA da tabela com as colunas novas adicionadas. A tabela
@@ -91,24 +92,21 @@ def construir_features_temporais(
 
     """
     dados_com_features = dados.copy()
-    grupos_por_fonte = dados_com_features.groupby(coluna_fonte, group_keys=False)
 
     for coluna_origem in COLUNAS_PARA_LAG:
         if coluna_origem in dados_com_features.columns:
             for numero_de_semanas in LAGS_SEMANAS:
                 nome_coluna_lag = f"{coluna_origem}_lag{numero_de_semanas}"
-                dados_com_features[nome_coluna_lag] = grupos_por_fonte[coluna_origem].shift(
+                dados_com_features[nome_coluna_lag] = dados_com_features[coluna_origem].shift(
                     numero_de_semanas
                 )
 
     if "casos" in dados_com_features.columns:
-        dados_com_features["casos_mm4"] = grupos_por_fonte["casos"].transform(
-            media_movel_4_semanas
-        )
+        dados_com_features["casos_mm4"] = media_movel_4_semanas(dados_com_features["casos"])
     if "aedes_aegypti_por_armadilha" in dados_com_features.columns:
-        dados_com_features["vetor_mm4"] = grupos_por_fonte[
-            "aedes_aegypti_por_armadilha"
-        ].transform(media_movel_4_semanas)
+        dados_com_features["vetor_mm4"] = media_movel_4_semanas(
+            dados_com_features["aedes_aegypti_por_armadilha"]
+        )
 
     angulo_sazonal = 2 * np.pi * dados_com_features["semana"] / settings.SEMANAS_POR_ANO
     dados_com_features["sem_sin"] = np.sin(angulo_sazonal)
@@ -121,7 +119,6 @@ def construir_alvo_horizonte(
     dados: pd.DataFrame,
     coluna_alvo: str,
     horizonte: int,
-    coluna_fonte: str = "fonte",
 ) -> pd.DataFrame:
     """
 
@@ -129,26 +126,30 @@ def construir_alvo_horizonte(
     semanas quanto for o horizonte escolhido, e marca a epoca do ano dessa
     semana futura.
 
-    Cria a coluna 'y_h' (o valor a prever, la na frente, dentro de cada
-    bloco de fonte) e o sin/cos da semana que sera prevista. Usada tanto na
-    escolha das colunas do modelo quanto no teste que treina no passado e
-    preve o futuro, semana a semana.
+    Cria a coluna 'y_h' (o valor a prever, la na frente) e o sin/cos da
+    semana que sera prevista. Usada tanto na escolha das colunas do modelo
+    quanto no teste que treina no passado e preve o futuro, semana a semana.
+
+    Antes esse deslocamento era feito POR BLOCO de fonte (ver
+    construir_features_temporais, que passou pelo mesmo ajuste e explica o
+    motivo): a tabela agora e uma serie semanal unica e continua, entao o
+    deslocamento e direto, sem separar por bloco. Nas ultimas linhas da
+    tabela (tantas quanto o horizonte) nao existe semana futura pra olhar,
+    entao y_h fica vazio (NaN) - isso continua exatamente igual.
 
     Args:
         dados: Tabela semanal com as colunas 'semana' e a coluna do que
-            queremos prever.
+            queremos prever, EM ORDEM CRONOLOGICA (uma linha por semana).
         coluna_alvo: Nome da coluna que sera deslocada pra frente no tempo.
         horizonte: Quantas semanas a frente a gente quer prever.
-        coluna_fonte: Coluna que diz de qual bloco de dados cada linha veio.
 
     Returns:
         Uma COPIA da tabela com as colunas y_h, alvo_sin e alvo_cos.
 
     """
-    grupos_por_fonte = dados.groupby(coluna_fonte, group_keys=False)
     resultado = dados.copy()
-    resultado["y_h"] = grupos_por_fonte[coluna_alvo].shift(-horizonte)
-    semana_alvo = grupos_por_fonte["semana"].shift(-horizonte)
+    resultado["y_h"] = dados[coluna_alvo].shift(-horizonte)
+    semana_alvo = dados["semana"].shift(-horizonte)
     angulo_sazonal_alvo = 2 * np.pi * semana_alvo / settings.SEMANAS_POR_ANO
     resultado["alvo_sin"] = np.sin(angulo_sazonal_alvo)
     resultado["alvo_cos"] = np.cos(angulo_sazonal_alvo)

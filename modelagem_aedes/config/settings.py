@@ -33,7 +33,21 @@ CAMINHO_TABELA_FINAL = PASTA_ENTRADAS / "tabela_modelagem" / "tabela_final.csv"
 # Dados do InfoDengue de Porto Alegre (casos e clima, semana a semana, desde 2010, sem ajuste pra atraso de notificacao).
 CAMINHO_INFODENGUE = PASTA_ENTRADAS / "infodengue_poa" / "infodengue_poa_dengue.csv"
 
+# Capturas de mosquito por armadilha da SECRETARIA MUNICIPAL DE SAUDE de Porto
+# Alegre: a base CERTIFICADA (2012 ate hoje, uma linha por inspecao, ja sem
+# dado pessoal - ver preparo/limpar_arquivos_secretaria.py e
+# preparo/unificar_arquivos_secretaria.py). E a fonte do vetor usada pela
+# tabela_final desde 16/08/2026 (ver README do pacote, secao "Migracao pra
+# base certificada"); substitui a Marilia e a raspagem consolidada por fora.
+PASTA_SECRETARIA_ARMADILHAS = PASTA_ENTRADAS / "arquivos_secretaria_saude_poa"
+CAMINHO_SECRETARIA_ARMADILHAS = PASTA_SECRETARIA_ARMADILHAS / "secretaria_poa_armadilhas.parquet"
+
 # Capturas de mosquito por armadilha (dados da Marilia, 2019 a 2023, 68 bairros).
+# NAO alimenta mais nada do fluxo ativo (nem a tabela_final nem o experimento
+# bairro_surto, que tambem migrou para CAMINHO_SECRETARIA_ARMADILHAS). Continua
+# aqui porque esses arquivos sao o padrao-ouro de validacao da base da
+# Secretaria (ja provaram a correcao das datas de 2022-2025) e porque
+# carregar_capturas_marilia_por_ano segue disponivel pra conferencias manuais.
 PASTA_DADOS_MARILIA = PASTA_ENTRADAS / "dados_marilia"
 
 # Outras fontes de dados (ainda como vieram, antes de virarem tabelas prontas pra usar).
@@ -49,6 +63,10 @@ PASTA_RASPAGEM_ARQUIVOS = PASTA_PROJETO.parent / "Raspagem" / "Arquivos"
 
 # --- Pecas que entram na montagem da tabela_final (arquivos que cada fonte ja deixou prontos) ---
 # Cada arquivo e feito por um script de captura ou processamento dentro da pasta da sua fonte; quem so junta tudo na tabela_final e o arquivo dominio/montagem_tabela.py.
+# CAMINHO_RASPAGEM_CONSOLIDADA e CAMINHO_MARILIA_CONSOLIDADA NAO alimentam mais
+# a tabela_final (ver CAMINHO_SECRETARIA_ARMADILHAS); ficam aqui so porque
+# carregar_raspagem_consolidada/carregar_marilia_consolidada (acesso/fontes.py)
+# continuam existindo pra quem quiser ler esses arquivos antigos por fora do fluxo.
 CAMINHO_RASPAGEM_CONSOLIDADA = PASTA_RASPAGEM_CONSOLIDADA / "output" / "base_armadilhas_concatenada.csv"
 CAMINHO_MARILIA_CONSOLIDADA = PASTA_DADOS_MARILIA / "output" / "base_dados_marilia.csv"
 CAMINHO_CLIMA_SEMANAL = PASTA_CLIMA / "output" / "clima_nasa_power_semanal.csv"
