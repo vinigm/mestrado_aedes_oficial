@@ -233,6 +233,150 @@ DICIONARIO_COLUNAS = [
 # para quebrar explicacao comprida em pedacos curtos, em vez de texto corrido.
 DIARIO = [
     {
+        "data": "2026-08-30",
+        "blocos": [
+            {
+                "titulo": "Clima recapturado: a serie dobrou",
+                "cor": "dados",
+                "itens": [
+                    {
+                        "texto": "A captura de clima do NASA POWER comecava em dezembro de 2018 por causa de uma constante herdada de uma base que saiu do projeto em agosto. O dado sempre existiu; o projeto e que nao estava pedindo.",
+                        "sub": [
+                            "Clima semanal: de 388 para 727 semanas (setembro de 2012 em diante).",
+                            "A interseccao clima + mosquito + casos subiu de 379 para 424 semanas.",
+                        ],
+                    },
+                    {
+                        "texto": "A certificacao REPROVOU a recaptura na primeira tentativa, e a investigacao mostrou que estava tudo certo.",
+                        "sub": [
+                            "365 das 388 semanas antigas bateram exatamente.",
+                            "As 23 divergentes sao todas posteriores a 28/12/2025: e o reprocessamento normal da NASA, que revisa as semanas recentes.",
+                            "Mosquito e casos ficaram intocados, conferidos celula a celula.",
+                        ],
+                    },
+                ],
+            },
+            {
+                "titulo": "A funcao de perda importa mais que o algoritmo",
+                "cor": "modelos",
+                "itens": [
+                    {
+                        "texto": "Um grid de 120 execucoes comparou 30 configuracoes: 3 algoritmos x 5 funcoes de perda x com e sem mosquito, em 4 horizontes.",
+                        "sub": [
+                            "Trocar o melhor algoritmo pelo pior custa 16,5% de erro.",
+                            "Trocar a funcao de perda, no MESMO algoritmo, custa 20,2%.",
+                            "As 6 configuracoes de perda padrao ficaram entre a 10a e a 23a posicao de 30.",
+                        ],
+                    },
+                    "Configuracao de referencia do projeto: HistGradientBoosting com perda quantilica em 0,80, incluindo as variaveis de mosquito. As tres primeiras colocadas sao o mesmo algoritmo variando so o quantil, separadas por 2% a 4% — sao estatisticamente indistinguiveis.",
+                    "O projeto passou meses comparando 9 algoritmos, e o ganho maior estava numa linha de configuracao que ninguem tinha mexido.",
+                ],
+            },
+            {
+                "titulo": "O modelo subestimava os picos: causa achada e tratada",
+                "cor": "modelos",
+                "itens": [
+                    {
+                        "texto": "Nas semanas de pico o modelo previa bem menos casos do que aconteceu, e a subestimacao crescia com a distancia da previsao.",
+                        "sub": [
+                            "Hipotese testada e REFUTADA: nao era limite de extrapolacao das arvores. O teto do treino era 1.439 casos e o pico medio 829 — o modelo tinha folga e mesmo assim previa baixo.",
+                            "Causa real: 61% das semanas tem 5 casos ou menos, e a perda padrao puxa toda previsao para o centro dessa distribuicao.",
+                            "O remedio veio de um projeto antigo de previsao de demanda no varejo, que ja tinha resolvido problema parecido.",
+                        ],
+                    },
+                    "Com a calibracao quantilica, a captura do pico em 1 mes subiu de 78% para 92%.",
+                    {
+                        "texto": "Limite de confianca medido por horizonte, no periodo que nao participou da escolha:",
+                        "sub": [
+                            "1 semana: captura 98% da magnitude do pico.",
+                            "1 mes: 92%.",
+                            "2 meses: 70%.",
+                            "3 meses: 62% — serve para alarmar, nao para dimensionar resposta.",
+                        ],
+                    },
+                ],
+            },
+            {
+                "titulo": "Por que a previsao piora com a distancia",
+                "cor": "dados",
+                "itens": [
+                    {
+                        "texto": "A degradacao tem causa medida, e nao e falta de ajuste do modelo.",
+                        "sub": [
+                            "O numero de casos de hoje explica 91% da variacao dos casos da semana que vem.",
+                            "Em 12 semanas, explica ZERO — a correlacao e -0,005.",
+                            "Nesse regime o mosquito passa a ser o preditor individual mais forte disponivel (0,61 a 0,62 entre 4 e 8 semanas, contra 0,27 a 0,40 do clima).",
+                        ],
+                    },
+                    {
+                        "texto": "Cinco familias de variaveis novas foram testadas para sustentar o horizonte longo. Quatro reprovaram.",
+                        "sub": [
+                            "Reprovadas: comparacao com o mesmo periodo de anos anteriores, anomalia climatica contra a media historica, acumulo de chuva e calor em 8 e 12 semanas, e os indicadores de transmissao do InfoDengue.",
+                            "Aprovada: El Nino / La Nina, com ganho de cerca de 7% em 2 meses.",
+                        ],
+                    },
+                    {
+                        "texto": "O que falta nao e mais clima nem mais mosquito. E o sorotipo em circulacao e a imunidade da populacao, que determinam o tamanho de uma epidemia de dengue.",
+                        "sub": [
+                            "A base do SINAN tem o campo de sorotipo, mas so 0,33% dos 56.624 casos estao preenchidos — 43 registros em 2025.",
+                            "O grupo InfoDengue declara exatamente a mesma limitacao no Relatorio Tecnico 02/2026: os modelos nao capturam imunidade previa nem introducao de novos sorotipos.",
+                        ],
+                    },
+                ],
+            },
+            {
+                "titulo": "O alvo da previsao ficou decidido por medicao",
+                "cor": "dados",
+                "itens": [
+                    {
+                        "texto": "A escolha entre casos confirmados e casos notificados estava em aberto desde junho. Os tres candidatos foram testados na mesma configuracao.",
+                        "sub": [
+                            "Casos confirmados vencem: R² de 0,758 contra 0,418 dos notificados em 3 meses.",
+                            "O terceiro candidato, a serie corrigida por nowcasting do InfoDengue, e IDENTICA aos notificados em 99,1% das semanas — ela so corrige as 8 semanas mais recentes.",
+                        ],
+                    },
+                    {
+                        "texto": "Fica registrada uma ressalva sobre esse alvo: a taxa de confirmacao caiu de 73% em 2022 para 38% em 2025.",
+                        "sub": [
+                            "Quanto maior a epidemia, menor a fracao que chega a ser confirmada em laboratorio.",
+                            "Parte da subestimacao dos picos pode vir dessa compressao do proprio alvo, e nao do modelo.",
+                        ],
+                    },
+                ],
+            },
+            {
+                "titulo": "O que o mosquito mostra, e o que ainda nao prova",
+                "cor": "modelos",
+                "itens": [
+                    {
+                        "texto": "No grid completo, as variaveis de mosquito aparecem em 8 das 10 melhores configuracoes.",
+                        "sub": [
+                            "Em 3 meses, incluir o mosquito melhorou o resultado em 15 de 15 combinacoes de algoritmo e perda.",
+                            "Em 1 semana, piorou em 15 de 15 — coerente com a biologia, ja que a densidade de mosquito e um sinal antecedente.",
+                        ],
+                    },
+                    {
+                        "texto": "Mas o teste estatistico continua nao fechando.",
+                        "sub": [
+                            "Das 60 comparacoes pareadas, nenhuma sobrevive a correcao para multiplas comparacoes.",
+                            "A direcao e consistente; a prova nao existe. O texto da tese precisa dizer as duas coisas.",
+                        ],
+                    },
+                ],
+            },
+            {
+                "titulo": "Proximos passos",
+                "cor": "dados",
+                "itens": [
+                    "Gravar a configuracao de referencia no codigo do projeto: hoje ela existe so nas analises datadas.",
+                    "Rodar um teste focado no horizonte de 3 meses, declarado por escrito antes, para tentar transformar o padrao de 15 em 15 em achado com prova.",
+                    "Validar o El Nino dentro do grid completo, e nao isolado como foi testado.",
+                    "Republicar o painel: as paginas de resultados ainda mostram os numeros de 16 de agosto.",
+                ],
+            },
+        ],
+    },
+    {
         "data": "2026-08-16",
         "blocos": [
             {

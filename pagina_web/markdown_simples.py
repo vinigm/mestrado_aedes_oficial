@@ -2,7 +2,7 @@
 
 Um tradutor de Markdown SIMPLES para HTML, feito na mao, so com o que a gente
 usa nas paginas do projeto: titulos, paragrafos, listas, negrito, italico,
-links, imagens, citacao, linha divisoria e trecho de codigo.
+links, imagens, citacao, linha divisoria, trecho de codigo e tabelas.
 
 Nao e um Markdown completo — e de proposito: assim a pagina_web nao depende de
 nenhuma biblioteca de fora e o codigo fica facil de entender. Se um dia precisar
@@ -45,6 +45,65 @@ def _inline(texto: str) -> str:
     return re.sub(r"\x00(\d+)\x00", devolver, texto)
 
 
+# Diz se a linha e o separador de cabecalho de uma tabela ( |---|---| ).
+def _e_separador_de_tabela(linha: str) -> bool:
+    if "|" not in linha:
+        return False
+    miolo = linha.strip().strip("|")
+    celulas = [celula.strip() for celula in miolo.split("|")]
+    if not celulas:
+        return False
+    for celula in celulas:
+        if not re.fullmatch(r":?-{2,}:?", celula):
+            return False
+    return True
+
+
+# Quebra "| a | b |" na lista ['a', 'b'].
+def _celulas_da_linha(linha: str) -> list[str]:
+    return [celula.strip() for celula in linha.strip().strip("|").split("|")]
+
+
+def _montar_tabela(linhas_da_tabela: list[str]) -> str:
+    """
+
+    Monta o HTML de uma tabela escrita no formato de canos (pipes).
+
+    A primeira linha e o cabecalho, a segunda e o separador (|---|---|) e o
+    resto sao os dados. Linhas com menos celulas que o cabecalho recebem
+    celulas vazias no fim, para a tabela nao ficar torta; celulas a mais sao
+    descartadas.
+
+    Args:
+        linhas_da_tabela: As linhas cruas, comecando pelo cabecalho.
+
+    Returns:
+        O HTML da tabela pronto.
+
+    """
+    cabecalho = _celulas_da_linha(linhas_da_tabela[0])
+    numero_de_colunas = len(cabecalho)
+
+    celulas_cabecalho = "".join(f"<th>{_inline(titulo)}</th>" for titulo in cabecalho)
+    partes = [f"<thead><tr>{celulas_cabecalho}</tr></thead>"]
+
+    linhas_de_dados = []
+    for linha in linhas_da_tabela[2:]:
+        celulas = _celulas_da_linha(linha)
+        celulas = (celulas + [""] * numero_de_colunas)[:numero_de_colunas]
+        celulas_html = "".join(f"<td>{_inline(celula)}</td>" for celula in celulas)
+        linhas_de_dados.append(f"<tr>{celulas_html}</tr>")
+
+    if linhas_de_dados:
+        partes.append("<tbody>" + "".join(linhas_de_dados) + "</tbody>")
+
+    # 'tabela' herda o visual do site; 'tabela-md' corrige o alinhamento: a
+    # folha de estilo base alinha tudo a direita e proibe quebra de linha,
+    # porque foi feita para tabela de numeros - aqui o conteudo e texto.
+    return ('<div class="tabelaRolavel">'
+            '<table class="tabela tabela-md">' + "".join(partes) + "</table></div>")
+
+
 # Traduz um texto Markdown inteiro em HTML (linha por linha, juntando blocos).
 def para_html(markdown_texto: str) -> str:
     """
@@ -85,10 +144,23 @@ def para_html(markdown_texto: str) -> str:
         fechar_lista()
         fechar_citacao()
 
-    for linha in linhas:
-        crua = linha.rstrip()
+    indice = 0
+    while indice < len(linhas):
+        crua = linhas[indice].rstrip()
         if not crua.strip():
             fechar_tudo()
+            indice += 1
+            continue
+
+        # Tabela: a linha atual tem canos e a proxima e o separador |---|---|.
+        proxima = linhas[indice + 1].rstrip() if indice + 1 < len(linhas) else ""
+        if "|" in crua and _e_separador_de_tabela(proxima):
+            fechar_tudo()
+            fim = indice + 2
+            while fim < len(linhas) and "|" in linhas[fim] and linhas[fim].strip():
+                fim += 1
+            blocos.append(_montar_tabela([linha.rstrip() for linha in linhas[indice:fim]]))
+            indice = fim
             continue
 
         titulo = re.match(r"^(#{1,6})\s+(.*)$", crua)
@@ -124,6 +196,8 @@ def para_html(markdown_texto: str) -> str:
             fechar_lista()
             fechar_citacao()
             paragrafo.append(crua.strip())
+
+        indice += 1
 
     fechar_tudo()
     return "\n".join(blocos)

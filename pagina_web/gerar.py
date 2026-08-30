@@ -338,6 +338,11 @@ footer{border-top:1px solid var(--borda); margin-top:auto}
 .tabela-dados .cobertura, .tabela-dados .freq{white-space:nowrap; color:var(--tinta-suave)}
 .tabela-dados .origem-cel{color:var(--muted); font-size:.88rem}
 /* Dicionario de dados: uma linha por coluna da tabela_final */
+.tabelaRolavel{overflow-x:auto; margin:1.1rem 0}
+table.tabela-md{font-size:.88rem}
+table.tabela-md th, table.tabela-md td{text-align:left; white-space:normal; vertical-align:top; line-height:1.45}
+table.tabela-md td:first-child{font-weight:600; color:var(--tinta)}
+table.tabela-md code{font-family:var(--fonte-dados); font-size:.82rem; background:var(--elevado); border:1px solid var(--borda); border-radius:6px; padding:.1rem .38rem; white-space:nowrap}
 table.tabela-dic td{padding:.6rem .9rem}
 table.tabela-dic .dic-num{font-family:var(--fonte-dados); font-size:.8rem; color:var(--faint); text-align:right; width:1%; white-space:nowrap}
 .dic-col{font-family:var(--fonte-dados); font-size:.82rem; color:var(--tinta); background:var(--elevado); border:1px solid var(--borda-forte); border-radius:5px; padding:.12rem .45rem; white-space:nowrap}
