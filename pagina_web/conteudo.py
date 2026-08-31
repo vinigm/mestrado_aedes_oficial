@@ -365,11 +365,78 @@ DIARIO = [
                 ],
             },
             {
+                "titulo": "O ganho do projeto, medido de ponta a ponta",
+                "cor": "modelos",
+                "itens": [
+                    {
+                        "texto": "A primeira configuracao (LightGBM, perda padrao, sem mosquito) foi comparada com a atual nas MESMAS semanas de avaliacao. A diferenca e so de modelagem: nenhuma recebeu dado que a outra nao tivesse.",
+                        "sub": [
+                            "Captura do pico em 1 mes: de 65% para 83%.",
+                            "Captura do pico em 3 meses: de 46% para 62%.",
+                            "R² em 3 meses: de 0,541 para 0,758.",
+                        ],
+                    },
+                    {
+                        "texto": "Decompondo o ganho de 1 mes, uma mudanca por vez, aparece algo que nenhuma analise anterior tinha visto:",
+                        "sub": [
+                            "Trocar o algoritmo para HistGradientBoosting: +15,1 pontos.",
+                            "Acrescentar as variaveis de mosquito: MENOS 9,9 pontos.",
+                            "Calibrar a funcao de perda: +13,3 pontos.",
+                            "Ou seja: o mosquito sozinho DERRUBA a captura do pico. Ele melhora o erro medio e piora o topo; so nao prejudica porque a calibracao vem depois e corrige o topo com folga. E um efeito de interacao — as duas mudancas isoladas nao entregam o que entregam juntas.",
+                        ],
+                    },
+                ],
+            },
+            {
+                "titulo": "Teste focado no horizonte de 3 meses",
+                "cor": "modelos",
+                "itens": [
+                    {
+                        "texto": "O padrao de 15 vitorias em 15 combinacoes precisava ser medido, e nao so contado. Foram 60 execucoes: 3 algoritmos, 2 horizontes, 2 conjuntos de variaveis e 5 sementes diferentes.",
+                        "sub": [
+                            "Em 3 meses o mosquito reduz o erro em 33,5 a 44,3 casos, sobre uma base de 215.",
+                            "O ganho aparece nas 5 sementes, nos 3 algoritmos — nao depende da inicializacao do modelo.",
+                            "O intervalo de confianca exclui zero em 2 dos 3 algoritmos, em todas as sementes.",
+                            "Em 2 meses o efeito desaparece e o sinal muda conforme o algoritmo: e especifico do horizonte longo.",
+                        ],
+                    },
+                    {
+                        "texto": "Mesmo assim, nenhuma das 6 comparacoes sobrevive a correcao para multiplas comparacoes. Os melhores valores brutos, 0,027 e 0,031, passariam sozinhos, mas multiplicados por seis nao passam.",
+                        "sub": [
+                            "O resultado e EXPLORATORIO, nao confirmatorio: a hipotese nasceu destes mesmos dados.",
+                            "So a temporada 2026-2027, que ainda nao existe, poderia confirma-lo.",
+                        ],
+                    },
+                ],
+            },
+            {
+                "titulo": "Tres trocas que os numeros sugeriram e que NAO foram feitas",
+                "cor": "dados",
+                "itens": [
+                    {
+                        "texto": "O protocolo do dia separa o periodo que ESCOLHE (ate 2023) do periodo que JULGA (2024 em diante). Em tres momentos o periodo de julgamento apontou uma escolha diferente, e em nenhum deles a escolha foi trocada.",
+                        "sub": [
+                            "O quantil 0,85 saiu melhor que o 0,80 selecionado.",
+                            "O LightGBM lidera em 2 e 3 meses — mas e o pior dos tres no periodo de selecao, nos 4 horizontes.",
+                            "Trocar pelo periodo que serve de juiz destruiria o valor do proprio julgamento. As tres ficam registradas como hipoteses para teste proprio.",
+                        ],
+                    },
+                ],
+            },
+            {
+                "titulo": "Pagina Cenario Principal no painel",
+                "cor": "dados",
+                "itens": [
+                    "Criada uma pagina de acompanhamento com a configuracao vigente, a linha do tempo do projeto em seis etapas, o desempenho por horizonte, as 12 versoes testadas e descartadas, e as limitacoes assumidas.",
+                    "Um erro foi corrigido no caminho: os numeros de captura do pico que a pagina exibia vinham de OUTRA configuracao (quantil 0,85 sem mosquito). Recalculados a partir das previsoes da configuracao de referencia.",
+                    "Outro foi evitado: uma diferenca de 2 pontos em 2 meses estava escrita como piora. Conferido o intervalo de confianca, ele cruza zero — nao ha piora, ha ausencia de ganho mensuravel.",
+                ],
+            },
+            {
                 "titulo": "Proximos passos",
                 "cor": "dados",
                 "itens": [
                     "Gravar a configuracao de referencia no codigo do projeto: hoje ela existe so nas analises datadas.",
-                    "Rodar um teste focado no horizonte de 3 meses, declarado por escrito antes, para tentar transformar o padrao de 15 em 15 em achado com prova.",
                     "Validar o El Nino dentro do grid completo, e nao isolado como foi testado.",
                     "Republicar o painel: as paginas de resultados ainda mostram os numeros de 16 de agosto.",
                 ],

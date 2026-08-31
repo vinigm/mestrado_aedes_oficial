@@ -2,7 +2,8 @@
 
 Um tradutor de Markdown SIMPLES para HTML, feito na mao, so com o que a gente
 usa nas paginas do projeto: titulos, paragrafos, listas, negrito, italico,
-links, imagens, citacao, linha divisoria, trecho de codigo e tabelas.
+links, imagens, citacao, linha divisoria, trecho de codigo, tabelas e
+blocos de HTML cru (para os componentes visuais das paginas).
 
 Nao e um Markdown completo — e de proposito: assim a pagina_web nao depende de
 nenhuma biblioteca de fora e o codigo fica facil de entender. Se um dia precisar
@@ -150,6 +151,19 @@ def para_html(markdown_texto: str) -> str:
         if not crua.strip():
             fechar_tudo()
             indice += 1
+            continue
+
+        # HTML cru: linha de bloco que comeca com '<'. Passa sem escapar, ate a
+        # proxima linha em branco. E o que deixa as paginas usarem os
+        # componentes visuais do site (cards, jornada) sem inventar sintaxe nova
+        # de Markdown para cada um deles.
+        if crua.lstrip().startswith("<"):
+            fechar_tudo()
+            fim = indice
+            while fim < len(linhas) and linhas[fim].strip():
+                fim += 1
+            blocos.append("\n".join(linha.rstrip() for linha in linhas[indice:fim]))
+            indice = fim
             continue
 
         # Tabela: a linha atual tem canos e a proxima e o separador |---|---|.

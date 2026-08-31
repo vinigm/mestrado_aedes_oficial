@@ -36,6 +36,8 @@ COR_RASPAGEM = "#D97B29"
 COR_CASOS = "#C0392B"
 COR_TREINO = "#D8DEE6"
 COR_JANELA_PREVISTA = "#1E7A6E"
+COR_CLIMA = "#6E8B5A"
+COR_ENSO = "#8A7AA8"
 
 # A enchente de maio de 2024: as vistorias de armadilha pararam por 3 semanas
 # (28/04, 05/05 e 12/05) por causa da cheia. Nao e falta de fonte, e um evento
@@ -62,6 +64,65 @@ def carregar_tabela_final() -> pd.DataFrame:
         parse_dates=["data_inicio_semana_epidemi"],
     )
     return tabela
+
+
+# Desenha a cobertura de cada fonte de dados ao longo do tempo.
+def desenhar_cobertura_fontes(tabela: pd.DataFrame) -> None:
+    """
+
+    Mostra, numa linha do tempo, de quando ate quando cada fonte tem dado.
+
+    Cada faixa horizontal e uma fonte. O trecho colorido marca as semanas com
+    dado; os buracos aparecem como falhas na faixa. E o jeito de enxergar de
+    uma vez que o mosquito cobre 14 anos, o clima passou a cobrir o mesmo
+    periodo depois da recaptura, e os casos so existem de 2018 em diante - que
+    e o que limita a janela util de qualquer modelo que cruze as tres coisas.
+
+    Args:
+        tabela: A tabela_final, uma linha por semana.
+
+    """
+    faixas = [
+        ("Mosquito (armadilhas)", "aedes_aegypti_por_armadilha", COR_SECRETARIA),
+        ("Clima (NASA POWER)", "temp_media", COR_CLIMA),
+        ("Casos confirmados (SINAN)", "casos_confirmados", COR_CASOS),
+        ("El Nino / La Nina (NOAA)", "oni", COR_ENSO),
+    ]
+
+    figura, eixo = plt.subplots(figsize=(11, 3.4))
+    datas = tabela["data_inicio_semana_epidemi"]
+
+    for posicao, (rotulo, coluna, cor) in enumerate(faixas):
+        tem_dado = tabela[coluna].notna()
+        altura = len(faixas) - posicao
+
+        # Fundo cinza: a extensao total possivel, para o buraco ficar visivel.
+        eixo.barh(altura, datas.max() - datas.min(), left=datas.min(),
+                  height=0.55, color=COR_TREINO, zorder=1)
+
+        # Cada semana com dado vira um tracinho; semanas sem dado deixam falha.
+        eixo.barh([altura] * int(tem_dado.sum()), pd.Timedelta(days=7),
+                  left=datas[tem_dado], height=0.55, color=cor, zorder=2)
+
+        total = int(tem_dado.sum())
+        eixo.text(datas.max() + pd.Timedelta(days=60), altura,
+                  f"{total} sem.", va="center", ha="left", fontsize=9,
+                  color=cor, fontweight="bold")
+
+    eixo.set_yticks(range(1, len(faixas) + 1))
+    eixo.set_yticklabels([rotulo for rotulo, _, _ in reversed(faixas)], fontsize=9)
+    eixo.set_xlim(datas.min() - pd.Timedelta(days=60),
+                  datas.max() + pd.Timedelta(days=420))
+    eixo.set_ylim(0.4, len(faixas) + 0.6)
+    eixo.set_title("Cobertura de cada fonte, semana a semana", fontsize=11, pad=10)
+    eixo.grid(axis="x", alpha=0.3)
+    eixo.set_axisbelow(True)
+    for lado in ("top", "right", "left"):
+        eixo.spines[lado].set_visible(False)
+
+    figura.tight_layout()
+    figura.savefig(PASTA_IMAGENS / "cobertura_fontes.png", dpi=150)
+    plt.close(figura)
 
 
 # Desenha a serie semanal de mosquito, colorida por fonte, sem nenhum vao.
@@ -258,6 +319,7 @@ def main() -> None:
 
     """
     tabela = carregar_tabela_final()
+    desenhar_cobertura_fontes(tabela)
     desenhar_vetor_por_semana(tabela)
     desenhar_vetor_vs_casos(tabela)
     desenhar_walkforward()
