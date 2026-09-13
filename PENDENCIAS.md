@@ -46,8 +46,8 @@
 - **Ablação de janela de treino para o alvo CASOS** — só existe para o vetor. ~20 min. Pedida pelo
   Vinicius em 13/09.
 - **Validar o ENSO dentro do grid** — passou isolado (+7% em h=8), nunca no protocolo completo.
-- **Métrica de alarme de verdade** — sensibilidade e antecedência por episódio. A "captura do pico"
-  atual é razão de níveis médios, não taxa de detecção.
+- ✅ **Métrica de alarme — FEITA em 13/09/2026.** Sensibilidade 97,1% em h=4 e 76,9% em h=12.
+  Ver `analises/2026-09-13_metrica_de_alarme/`. ⏳ Falta uma temporada com mais episódios: só há 2.
 - **Confirmar que o vetor piora o alarme** — só a temporada 2026-2027 torna o achado confirmatório.
 
 ---
@@ -61,8 +61,8 @@
   efeito de avaliar em semanas diferentes.
 - **Os 4 documentos vivos estão FORA do git** (vivem na raiz `Pesquisa/`; o repo é ``).
 - **`bairro_surto` recebeu a correção mas não foi re-rodado** — segue contaminado no painel.
-- **Dois números sem script que os gere**: a autocorrelação "91% → 0%" e a taxa de confirmação
-  "99,6% em 2023" (recalculada dá 69,3%). Recomputar ou remover dos documentos.
+- **Corrigir o docstring de `modelagem_aedes/acesso/fontes.py`**: ele afirma taxa de confirmação de
+  99,6% em 2023, e o medido é **69,3%**. A direção da alegação se sustenta, o número não.
 - **`testar_remedios.py` usa hiperparâmetros diferentes do cenário 1** (300/31/20 contra 250/15/5),
   apesar do comentário dizer que são iguais.
 - Miúdos: testes das funções de bairro · `linha_do_tempo_dados()` é código morto · CSVs de previsão sem

@@ -91,17 +91,18 @@ guardado como juiz. Refeito integralmente em 13/09 com o corte de treino corrigi
 
 ### 1.2 O que faz o modelo piorar com o horizonte
 
-⚠️ **NÃO VERIFICADO.** A frase que circula no projeto — "a autocorrelação dos casos explica 91% da
-variação em h=1 e 0% em h=12" — aparece em `analises/2026-08-30_grid_completo/README.md`, mas
-**nenhum script do repositório a calcula** (verificado por busca em 13/09/2026). Não usar como fato até
-ser recomputada. É barato: uma correlação entre `casos_lag1` e `y_h` por horizonte.
+✅ **FATO — a autocorrelação dos casos morre com o horizonte.** R² de prever `casos[t+h]` usando só
+`casos[t]`, medido em 13/09/2026:
 
-✅ **O que ESTÁ medido e sustenta a mesma leitura:** a degradação é real e grande — o R² da configuração
-de referência vai de 0,898 em uma semana a 0,437 em doze, e a captura do pico de 0,886 a 0,388.
+| h | 1 | 2 | 4 | 8 | 12 |
+|---|---|---|---|---|---|
+| R² | **0,915** | 0,804 | 0,527 | 0,080 | **0,000** |
 
-🔬 **HIPÓTESE (plausível, não medida):** em três meses o passado recente dos casos não informa mais, e
-o que sobra é fraco. Se confirmada, a consequência prática é que não adianta trocar de algoritmo nem
-acrescentar feature para consertar h=12.
+A frase que circulava no projeto ("91% em h=1 e 0% em h=12") estava certa, mas **não tinha script**.
+Agora tem: `analises/2026-09-13_metrica_de_alarme/`.
+
+**Consequência:** em três meses o passado recente dos casos não informa nada. Não adianta trocar de
+algoritmo nem acrescentar feature — o sinal não está lá.
 
 ### 1.3 O modelo subestimava sistematicamente os picos
 
@@ -259,6 +260,37 @@ O menor p do experimento inteiro foi de 0,00018 para 0,143.
 amostral.
 
 ---
+
+### 3.4 A métrica de alarme que faltava
+
+**Por quê.** A "captura do pico" é `média(previsto) ÷ média(real)` nas semanas acima de 100 casos —
+razão de nível, não alarme. Não dizia quantos surtos seriam sinalizados nem com quanta antecedência.
+
+**Como.** Re-agregação das previsões já salvas do grid corrigido, sem rodar nada. Sensibilidade,
+precisão e falsos por ano, com o mesmo limiar de 100 casos. A antecedência é o próprio horizonte.
+
+✅ **FATO — o modelo é um alarme melhor do que a métrica antiga sugeria.**
+
+| h | Sensibilidade | Precisão | Falsos/ano | Captura do pico |
+|---|---|---|---|---|
+| 1 semana | 96,9% | 91,2% | 1,0 | 0,886 |
+| 4 semanas | **97,1%** | **94,3%** | **0,7** | 0,702 |
+| 8 semanas | 81,6% | 86,1% | 1,7 | 0,417 |
+| 12 semanas | **76,9%** | 81,1% | 2,3 | 0,388 |
+
+As duas métricas discordam porque medem coisas diferentes: a captura mede se o modelo acerta o
+**tamanho** da epidemia (não acerta, subestima); o alarme só precisa cruzar o **limiar**.
+
+⚠️ **EXPLORATÓRIO — no alarme, o vetor ajuda.** Pareado: em h=12 a sensibilidade sobe de 61,5% para
+**76,9%**; em h=4 corta os alarmes falsos pela metade. Sem pré-declaração e sem teste.
+
+🔴 **Ressalvas que precisam acompanhar qualquer citação:** só há **2 episódios** no período de
+avaliação, então toda métrica por episódio é inútil; são 32 a 39 semanas de surto; e não há teste de
+significância.
+
+⚠️ **Tensão declarada com §3.1.** No experimento de surto o vetor **piora** o alarme (Holm 0,037);
+aqui ele ajuda. Alvos diferentes (notificados × confirmados) e métodos diferentes (classificador com
+percentil × regressor cortado em 100). Não se escolhe a leitura conveniente: as duas vão no texto.
 
 ## 4. Onde? A camada espacial
 
@@ -427,12 +459,19 @@ salvo**. Reconstruído em 13/09 (`resumir.py`), validado contra as tabelas origi
 
 ### 6.6 Um número que circula há meses e não se reproduz
 
-⚠️ A taxa de confirmação de casos **"99,6% em 2023 → 42,0% em 2025"** aparece em duas pré-declarações
-e em `modelagem_aedes/acesso/fontes.py`, e foi usada como argumento para trocar o alvo. **Recalculada em 13/09/2026 a
-partir dos próprios dados, 2023 dá 69,3%, não 99,6%.** Nenhum script do repositório gera 99,6%.
+🚫 **RESOLVIDO em 13/09/2026 — o número estava errado.** Medido dos próprios dados:
 
-A pasta `2026-08-30_alvo_e_features_infodengue` cita outra série para a mesma alegação: 73,2% em 2022 →
-38,3% em 2025, e essa **se reproduz exatamente**.
+| Ano | 2022 | 2023 | 2024 | 2025 |
+|---|---|---|---|---|
+| Taxa de confirmação | **73,2%** | **69,3%** | 60,1% | **38,3%** |
+
+- A série **"99,6% em 2023 → 42,0% em 2025"**, em `PENDENCIAS` e em `modelagem_aedes/acesso/fontes.py`,
+  usada como argumento para trocar o alvo: **não bate**. O real é 69,3% e 38,3%.
+- A série **"73,2% em 2022 → 38,3% em 2025"**, da pré-declaração de `alvo_e_features_infodengue`:
+  **bate exatamente**.
+
+A direção da alegação (a taxa despencou) se sustenta; o valor de 2023 não. ⏳ Corrigir o docstring de
+`fontes.py`.
 
 **Lição:** número que entra em documento sem script que o gere sobrevive por meses e vira argumento.
 A direção da alegação (a taxa caiu muito) se sustenta; o valor de 2023 não.

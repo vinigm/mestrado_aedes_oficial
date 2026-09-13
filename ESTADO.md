@@ -101,7 +101,16 @@ contra 7 no sentido inverso. p bruto **0,0062**, Holm **0,037**.
 
 ⚠️ Robusto, porém **não pré-declarado** nessa direção. Vira confirmatório só com a temporada 2026-2027.
 
-### 3.4 A camada espacial
+### 3.4 O modelo como alarme
+
+✅ **FATO — melhor do que a "captura do pico" sugeria.** Sensibilidade **97,1%** a um mês (precisão
+94,3%, 0,7 alarme falso por ano) e **76,9%** a três meses (precisão 81,1%, 2,3 falsos por ano).
+
+A captura do pico mede se o modelo acerta o **tamanho** da epidemia, e ele não acerta. Para alarme
+basta cruzar o limiar. ⚠️ Só há 2 episódios na avaliação: nada por episódio pode ser citado.
+Detalhe em `analises/2026-09-13_metrica_de_alarme/`.
+
+### 3.5 A camada espacial
 
 ✅ **FATO — a regra simples vence o aprendizado de máquina em 8 de 8 combinações.** A persistência
 ("a ordem de hoje vale para daqui a h semanas") bate o modelo em todas.
@@ -111,14 +120,14 @@ das duas treina, logo nenhuma tinha vazamento.
 
 **Entrega possível:** um protocolo de priorização de zonas transparente e sem infraestrutura.
 
-### 3.5 Os dados
+### 3.6 Os dados
 
 ✅ **FATO — treinar desde 2012 vence em 3 de 4 horizontes**, e a vantagem cresce com o horizonte. Os
 14 anos resgatados melhoram a previsão. (Alvo: densidade do vetor. Para casos, nunca testado.)
 
 ✅ **FATO — o alvo é casos confirmados**, decidido por medição em 30/08/2026.
 
-### 3.6 O que NÃO se pode afirmar
+### 3.7 O que NÃO se pode afirmar
 
 - 🚫 **"O vetor melhora a previsão de casos."** 0 de 60 em Holm.
 - 🚫 **"A equivalência clima × vetor está demonstrada."** Com a margem pré-declarada e o alvo decidido:

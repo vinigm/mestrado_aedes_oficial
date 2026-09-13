@@ -1,0 +1,37 @@
+============================================================================================
+CONFIGURACAO DE REFERENCIA — HistGradientBoosting · quantil 0,85 · com vetor
+avaliacao 2024+ · surto = mais de 100 casos na semana
+============================================================================================
+    n_semanas  semanas_surto  episodios  sensibilidade  precisao inicios_pegos  atraso_mediano  falsos_por_ano  captura_pico_antiga
+h                                                                                                                                  
+1         102             32          2          0.969     0.912           2/2             0.0           1.000                0.886
+4         102             34          2          0.971     0.943           1/2             0.5           0.667                0.702
+8         102             38          2          0.816     0.861           0/2             2.5           1.667                0.417
+12        102             39          2          0.769     0.811           1/2             1.0           2.333                0.388
+
+============================================================================================
+A MESMA COISA, SEM O VETOR (para ver se o vetor muda o ALARME)
+============================================================================================
+    n_semanas  semanas_surto  episodios  sensibilidade  precisao inicios_pegos  atraso_mediano  falsos_por_ano  captura_pico_antiga
+h                                                                                                                                  
+1         109             39          2          1.000     0.929           2/2             0.0           1.000                0.980
+4         109             39          2          0.974     0.864           1/2             0.5           2.000                0.714
+8         109             39          2          0.821     0.800           0/2             2.0           2.667                0.487
+12        109             39          2          0.615     0.800           2/2             0.0           2.000                0.382
+
+============================================================================================
+TODAS AS 30 CONFIGURACOES EM h=4 — quem seria o melhor ALARME?
+============================================================================================
+             algoritmo        perda     conjunto  sensibilidade  precisao inicios_pegos  falsos_por_ano  captura_pico_antiga
+              lightgbm quantil_0.85 M0_sem_vetor          1.000     0.848           2/2           2.333                0.767
+              lightgbm quantil_0.70 M0_sem_vetor          1.000     0.848           2/2           2.333                0.589
+     gradient_boosting quantil_0.70 M0_sem_vetor          0.974     0.864           1/2           2.000                0.676
+              lightgbm quantil_0.90 M0_sem_vetor          0.974     0.844           2/2           2.333                0.807
+     gradient_boosting quantil_0.80 M0_sem_vetor          0.974     0.927           1/2           1.000                0.710
+              lightgbm quantil_0.80 M0_sem_vetor          0.974     0.826           2/2           2.667                0.696
+hist_gradient_boosting quantil_0.85 M0_sem_vetor          0.974     0.864           1/2           2.000                0.714
+hist_gradient_boosting quantil_0.80 M1_com_vetor          0.971     0.943           1/2           0.667                0.694
+     gradient_boosting       padrao M1_com_vetor          0.971     0.917           1/2           1.000                0.536
+              lightgbm quantil_0.85 M1_com_vetor          0.971     0.868           1/2           1.667                0.723
+
+salvo em /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-13_metrica_de_alarme/saidas
