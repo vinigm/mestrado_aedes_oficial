@@ -43,8 +43,9 @@
 
 ## ⏳ Rodadas candidatas (nenhuma pré-declarada ainda)
 
-- **Ablação de janela de treino para o alvo CASOS** — só existe para o vetor. ~20 min. Pedida pelo
-  Vinicius em 13/09.
+- ✅ **Ablação de janela para o alvo CASOS — FEITA em 13/09/2026.** Indeterminado (2×1×1), e a janela
+  rende só 3,8% de MAE. ⏳ Fica a hipótese exploratória de que janelas curtas melhoram o **alarme** em
+  horizonte longo (sensibilidade 0,846 × 0,769 em h=12) — exige pré-declaração própria.
 - **Validar o ENSO dentro do grid** — passou isolado (+7% em h=8), nunca no protocolo completo.
 - ✅ **Métrica de alarme — FEITA em 13/09/2026.** Sensibilidade 97,1% em h=4 e 76,9% em h=12.
   Ver `analises/2026-09-13_metrica_de_alarme/`. ⏳ Falta uma temporada com mais episódios: só há 2.

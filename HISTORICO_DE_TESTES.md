@@ -57,6 +57,8 @@
 | 30/08/2026 | Teste focado em h=12 | ⚠️ 5 sementes, nada em Holm |
 | 13/09/2026 | Auditoria da mecânica dos resultados | ✅ vazamento descoberto |
 | 13/09/2026 | Correção do vazamento — 152 células | ✅ tudo remedido |
+| 13/09/2026 | Métrica de alarme de verdade | ✅ 97% em h=4, 77% em h=12 |
+| 13/09/2026 | Janela de treino para o alvo casos | ✅ indeterminado, e pouco importa |
 
 ---
 
@@ -356,7 +358,32 @@ Os 14 anos resgatados **melhoram a previsão**, não são só volume.
 **casos** nunca foi testada. Nota: para casos, a série já começa em fev/2018 (428 semanas), então não
 existem "14 anos de casos".
 
-### 5.3 Features novas: quase todas reprovadas
+### 5.3 A janela de treino para CASOS: indeterminado, e pouco importa
+
+**Por quê.** A ablação de 29/08 respondeu isso para o **vetor**. Para **casos** nunca tinha sido feita,
+e não é a mesma pergunta: os casos só existem desde fev/2018 e a epidemiologia mudou demais no período.
+
+**Como.** Quatro regimes, mesmo modelo, **mesmas semanas**: expansível total, expansível desde 2020,
+deslizante de 4 anos e de 2 anos. O pareamento empurrou a avaliação para 2022 em diante.
+
+MAE na avaliação, n=102:
+
+| h | expansível total | desde 2020 | deslizante 4a | deslizante 2a |
+|---|---|---|---|---|
+| 1 | **98,0** | 104,3 | 109,7 | 107,5 |
+| 4 | 219,7 | **209,3** | 209,4 | 247,1 |
+| 8 | 272,6 | 283,8 | 284,6 | **263,1** |
+| 12 | **278,7** | 286,1 | 287,1 | 284,0 |
+| média | **217,2** | 220,9 | 222,7 | 225,4 |
+
+- ✅ **Veredito pré-declarado: INDETERMINADO.** Exigia 3 de 4 horizontes; deu 2 × 1 × 1.
+- ✅ **FATO — a janela não é alavanca importante.** Regimes de 104 a 348 linhas de treino cabem em
+  **3,8%** de MAE médio. Menos que a função de perda (9,9%) e que o algoritmo (11,8%).
+- ⚠️ **EXPLORATÓRIO, e não era o critério:** no **alarme**, janelas curtas vão melhor em horizonte
+  longo (sensibilidade 0,846 contra 0,769 em h=12). Fica como hipótese para rodada própria — não se
+  troca o critério depois de ver o resultado.
+
+### 5.4 Features novas: quase todas reprovadas
 
 🚫 **Quatro de cinco famílias reprovadas em 30/08/2026**: lags anuais (52 e 104 semanas), anomalia
 climática, acúmulo de 8 a 12 semanas, e as features de transmissão do InfoDengue (`Rt`, `p_rt1`,
@@ -365,7 +392,7 @@ climática, acúmulo de 8 a 12 semanas, e as features de transmissão do InfoDen
 ⏳ **Só o ENSO passou** (~7% de MAE em h=8), e **nunca foi validado dentro do grid**. É candidato, não
 parte da configuração.
 
-### 5.4 O clima da série longa
+### 5.5 O clima da série longa
 
 ✅ **FATO (29/08).** A captura de clima começava em 2018 por causa de um bloco de dados que já tinha
 saído do fluxo. Corrigido para 2012: **388 → 727 semanas**. Certificação adversarial conferiu 365 das

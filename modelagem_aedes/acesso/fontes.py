@@ -173,7 +173,11 @@ def carregar_tabela_final_com_casos_notificados() -> pd.DataFrame:
     Serve aos experimentos que preveem surto sobre a serie de notificados
     (decisao de 29/08/2026; ver analises/2026-08-29_rodadas_notificados_zonas/
     PRE_DECLARACAO.md). O motivo nao e so estatistico: a taxa de confirmacao em
-    Porto Alegre caiu de 99,6% (2023) para 42,0% (2025), entao "confirmado"
+    Porto Alegre despencou - 73,2% em 2022, 69,3% em 2023, 60,1% em 2024 e
+    38,3% em 2025 (medido em 13/09/2026 sobre as duas series; ver
+    analises/2026-09-13_metrica_de_alarme/README.md secao 6). Ate 13/09/2026
+    esta docstring afirmava 99,6% em 2023, numero que nao se reproduz e do qual
+    nao havia script - a direcao da queda estava certa, o valor nao. "Confirmado"
     virou medida administrativa, e a serie encolheu por motivo burocratico e
     nao epidemiologico. Notificado e o que a vigilancia enxerga em tempo real,
     e e sobre ele que um alarme operacional teria de agir.

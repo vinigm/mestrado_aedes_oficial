@@ -1,0 +1,22 @@
+h= 1: 399 linhas validas | 201 cortes comuns (2022-01-02T00:00:00.000000 em diante)
+    expansivel_total     1.5 min
+    expansivel_2020      1.1 min
+    deslizante_4anos     1.1 min
+    deslizante_2anos     0.7 min
+h= 4: 396 linhas validas | 195 cortes comuns (2022-01-23T00:00:00.000000 em diante)
+    expansivel_total     1.3 min
+    expansivel_2020      1.0 min
+    deslizante_4anos     1.1 min
+    deslizante_2anos     0.6 min
+h= 8: 392 linhas validas | 187 cortes comuns (2022-02-20T00:00:00.000000 em diante)
+    expansivel_total     1.3 min
+    expansivel_2020      0.9 min
+    deslizante_4anos     1.0 min
+    deslizante_2anos     0.6 min
+h=12: 388 linhas validas | 179 cortes comuns (2022-03-20T00:00:00.000000 em diante)
+    expansivel_total     1.1 min
+    expansivel_2020      0.9 min
+    deslizante_4anos     1.0 min
+    deslizante_2anos     0.6 min
+
+CONCLUIDO em 15.8 min

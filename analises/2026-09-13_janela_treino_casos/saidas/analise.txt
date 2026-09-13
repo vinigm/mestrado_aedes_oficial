@@ -1,0 +1,62 @@
+====================================================================================
+CONTROLE (§4): as semanas avaliadas sao as MESMAS nos 4 regimes?
+====================================================================================
+  h= 1: {201} semanas por regime | identicas: True
+  h= 4: {195} semanas por regime | identicas: True
+  h= 8: {187} semanas por regime | identicas: True
+  h=12: {179} semanas por regime | identicas: True
+
+====================================================================================
+CONTROLE (§4): expansivel_total reproduz o grid de 13/09 nas semanas comuns?
+====================================================================================
+  semanas pareadas com o grid: 762
+  diferenca maxima de previsao: 0.0000000000
+  PASSOU — o expansivel_total e mesmo o protocolo do grid, so com inicio mais tarde.
+
+====================================================================================
+RESULTADO — avaliacao (data_alvo > 2023-12-31)
+====================================================================================
+ h           regime     n     MAE    R2  sensibilidade  n_treino_mediano
+ 1 deslizante_2anos 102.0 107.513 0.885          0.906             104.0
+ 1 deslizante_4anos 102.0 109.706 0.886          1.000             208.0
+ 1  expansivel_2020 102.0 104.250 0.894          1.000             253.5
+ 1 expansivel_total 102.0  97.987 0.898          0.969             347.5
+ 4 deslizante_2anos 102.0 247.125 0.548          0.912             104.0
+ 4 deslizante_4anos 102.0 209.363 0.637          0.971             208.0
+ 4  expansivel_2020 102.0 209.347 0.651          0.971             247.5
+ 4 expansivel_total 102.0 219.669 0.628          0.971             341.5
+ 8 deslizante_2anos 102.0 263.084 0.478          0.842             104.0
+ 8 deslizante_4anos 102.0 284.622 0.365          0.895             208.0
+ 8  expansivel_2020 102.0 283.825 0.384          0.842             239.5
+ 8 expansivel_total 102.0 272.627 0.450          0.816             333.5
+12 deslizante_2anos 102.0 284.007 0.415          0.846             104.0
+12 deslizante_4anos 102.0 287.103 0.395          0.744             208.0
+12  expansivel_2020 102.0 286.087 0.397          0.641             231.5
+12 expansivel_total 102.0 278.654 0.437          0.769             325.5
+
+====================================================================================
+CRITERIO (§5): quem vence por horizonte, pelo menor MAE
+====================================================================================
+regime  deslizante_2anos  deslizante_4anos  expansivel_2020  expansivel_total
+h                                                                            
+1                 107.51            109.71           104.25             97.99
+4                 247.12            209.36           209.35            219.67
+8                 263.08            284.62           283.83            272.63
+12                284.01            287.10           286.09            278.65
+
+  vitorias por regime:
+    expansivel_total     2 de 4 horizontes
+    expansivel_2020      1 de 4 horizontes
+    deslizante_2anos     1 de 4 horizontes
+
+  MAE medio geral: 
+    expansivel_total     217.23
+    expansivel_2020      220.88
+    deslizante_4anos     222.70
+    deslizante_2anos     225.43
+
+  -> VEREDITO PELO CRITERIO PRE-DECLARADO:
+     dividido ({'expansivel_total': np.int64(2), 'expansivel_2020': np.int64(1), 'deslizante_2anos': np.int64(1)}) -> INDETERMINADO. A pratica atual permanece
+     por inercia, e isso fica declarado como tal.
+
+salvo em saidas/janelas_resumo.csv
