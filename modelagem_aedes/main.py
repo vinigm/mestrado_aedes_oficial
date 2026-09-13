@@ -28,6 +28,7 @@ from config.experimentos.cidade_regressao import CIDADE_REGRESSAO
 from config.experimentos.cidade_regressao_com_enso import CIDADE_REGRESSAO_COM_ENSO
 from config.experimentos.cidade_regressao_modelos import TODOS_MODELOS
 from config.experimentos.cidade_regressao_rf import CIDADE_REGRESSAO_RF
+from config.experimentos.cidade_referencia import CIDADE_REFERENCIA
 from config.experimentos.cidade_regressao_sem_enso import CIDADE_REGRESSAO_SEM_ENSO
 from config.experimentos.cidade_surto_notificados import CIDADE_SURTO_NOTIFICADOS
 from config.experimentos.comparacao_literatura import COMPARACAO_LITERATURA
@@ -45,6 +46,9 @@ from pipeline import (
 # funcao que roda esse experimento e devolve as tabelas prontas (uma tabela pra
 # cada arquivo de saida).
 EXPERIMENTOS = {
+    # A configuracao de referencia do projeto (grid de 30/08/2026) vem primeiro:
+    # e ela que responde "qual modelo o projeto usa hoje".
+    "cidade_referencia": (CIDADE_REFERENCIA, rodar_regressao_selecao_clima),
     "cidade_deteccao_surto": (CIDADE_DETECCAO_SURTO, rodar_cidade_deteccao_surto),
     "cidade_surto_notificados": (CIDADE_SURTO_NOTIFICADOS, rodar_cidade_surto_notificados),
     "cidade_regressao": (CIDADE_REGRESSAO, rodar_regressao_selecao_clima),
