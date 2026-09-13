@@ -585,6 +585,133 @@ def desenhar_walkforward() -> None:
     plt.close(figura)
 
 
+# Cinza neutro da barra "antes", pra ela nao competir com a barra do resultado.
+COR_ANTES = "#B9BDC4"
+
+
+def desenhar_ganho_do_projeto() -> None:
+    """
+
+    Mostra o ganho do projeto em dois paineis: QUANTO se ganhou e DE ONDE veio.
+
+    Substitui duas tabelas que estavam lado a lado na pagina. Tabela obriga a
+    subtrair de cabeca; aqui a diferenca vira comprimento de barra, que e a
+    coisa que o olho compara sem esforco.
+
+    Painel da esquerda: captura do pico da PRIMEIRA configuracao (LightGBM,
+    perda padrao, sem vetor) contra a ATUAL, nos quatro horizontes, medidas nas
+    MESMAS semanas de avaliacao - a diferenca e so de modelagem, nenhuma das
+    duas recebeu dado que a outra nao tivesse.
+
+    Painel da direita: a decomposicao em um mes, acrescentando uma mudanca por
+    vez. E um grafico de cascata porque um dos passos e NEGATIVO: o vetor
+    sozinho derruba a captura do pico em 9,9 pontos. Ele so nao prejudica
+    porque a perda quantilica vem depois e corrige o topo com folga. Barra
+    empilhada comum esconderia esse sinal; a cascata mostra.
+
+    Os numeros vem de analises/2026-08-30_grid_completo/ e da decomposicao de
+    30/08/2026. Estao escritos aqui porque sao resultado fechado e
+    pre-declarado, nao algo recalculado a cada geracao do site.
+
+    """
+    horizontes = ["1 semana", "1 mes", "2 meses", "3 meses"]
+    captura_primeira = [75, 65, 57, 46]
+    captura_atual = [85, 83, 63, 62]
+
+    figura, (esquerda, direita) = plt.subplots(
+        1, 2, figsize=(15.5, 5.4), gridspec_kw={"width_ratios": [1.05, 1.0],
+                                                "wspace": 0.22},
+    )
+
+    # --- esquerda: antes x depois, por horizonte ---
+    posicoes = range(len(horizontes))
+    altura_da_barra = 0.36
+    posicoes_primeira = [posicao + altura_da_barra / 2 for posicao in posicoes]
+    posicoes_atual = [posicao - altura_da_barra / 2 for posicao in posicoes]
+
+    esquerda.barh(posicoes_primeira, captura_primeira, height=altura_da_barra,
+                  color=COR_ANTES, label="primeira configuracao")
+    esquerda.barh(posicoes_atual, captura_atual, height=altura_da_barra,
+                  color=COR_JANELA_PREVISTA, label="configuracao atual")
+
+    for indice in posicoes:
+        esquerda.text(captura_primeira[indice] + 1.2, posicoes_primeira[indice],
+                      f"{captura_primeira[indice]}%", va="center", fontsize=9,
+                      color="#6b6b6b")
+        ganho_em_pontos = captura_atual[indice] - captura_primeira[indice]
+        esquerda.text(captura_atual[indice] + 1.2, posicoes_atual[indice],
+                      f"{captura_atual[indice]}%   +{ganho_em_pontos} pp",
+                      va="center", fontsize=9, fontweight="bold", color="#2b2b2b")
+
+    esquerda.set_yticks(list(posicoes))
+    esquerda.set_yticklabels(horizontes, fontsize=10)
+    esquerda.invert_yaxis()
+    esquerda.set_xlim(0, 108)
+    esquerda.set_xlabel("captura do pico (%)", fontsize=9)
+    esquerda.set_title("Quanto se ganhou — mesmas semanas de avaliacao",
+                       fontsize=11, loc="left", pad=10, color="#2b2b2b")
+    esquerda.legend(fontsize=9, frameon=False, loc="lower right")
+
+    # --- direita: cascata da decomposicao em um mes ---
+    passos = ["Primeira\nconfiguracao", "+ trocar o\nalgoritmo",
+              "+ variaveis\nde vetor", "+ calibrar\na perda"]
+    efeitos = [64.7, 15.1, -9.9, 13.3]
+
+    base_de_cada_passo = [0.0]
+    acumulado = efeitos[0]
+    for efeito in efeitos[1:]:
+        if efeito >= 0:
+            base_de_cada_passo.append(acumulado)
+        else:
+            base_de_cada_passo.append(acumulado + efeito)
+        acumulado = acumulado + efeito
+
+    for indice, efeito in enumerate(efeitos):
+        if indice == 0:
+            cor_da_barra = COR_ANTES
+        elif efeito >= 0:
+            cor_da_barra = COR_JANELA_PREVISTA
+        else:
+            cor_da_barra = COR_CRITICO
+        direita.bar(indice, abs(efeito), bottom=base_de_cada_passo[indice],
+                    width=0.58, color=cor_da_barra)
+
+    # A linha pontilhada liga o topo de um passo a base do seguinte.
+    alturas_acumuladas = [64.7, 79.8, 69.9, 83.2]
+    for indice in range(len(efeitos) - 1):
+        direita.plot([indice + 0.29, indice + 1 - 0.29],
+                     [alturas_acumuladas[indice], alturas_acumuladas[indice]],
+                     color="#9a9a9a", linewidth=0.8, linestyle=":")
+
+    rotulos_dos_efeitos = ["64,7%", "+15,1 pp", "\u22129,9 pp", "+13,3 pp"]
+    for indice, rotulo in enumerate(rotulos_dos_efeitos):
+        if efeitos[indice] >= 0:
+            altura_do_rotulo = base_de_cada_passo[indice] + abs(efeitos[indice]) + 1.6
+        else:
+            altura_do_rotulo = base_de_cada_passo[indice] - 4.2
+        direita.text(indice, altura_do_rotulo, rotulo, ha="center", fontsize=9.5,
+                     fontweight="bold", color="#2b2b2b")
+
+    direita.text(3, alturas_acumuladas[3] + 9.5, "chega a 83,2%", ha="center",
+                 fontsize=9.5, color=COR_JANELA_PREVISTA, fontweight="bold")
+    direita.set_xticks(range(len(passos)))
+    direita.set_xticklabels(passos, fontsize=9)
+    direita.set_ylim(0, 100)
+    direita.set_ylabel("captura do pico (%)", fontsize=9)
+    direita.set_title("De onde veio — decomposicao em um mes, uma mudanca por vez",
+                      fontsize=11, loc="left", pad=10, color="#2b2b2b")
+
+    for eixo in (esquerda, direita):
+        eixo.grid(alpha=0.25, axis="x" if eixo is esquerda else "y")
+        eixo.set_axisbelow(True)
+        for lado in ("top", "right"):
+            eixo.spines[lado].set_visible(False)
+
+    figura.subplots_adjust(left=0.062, right=0.99, top=0.9, bottom=0.12)
+    figura.savefig(PASTA_IMAGENS / "ganho_do_projeto.png", dpi=150)
+    plt.close(figura)
+
+
 # Roda as tres figuras em sequencia e confirma que os arquivos foram gravados.
 def main() -> None:
     """
@@ -598,6 +725,7 @@ def main() -> None:
     desenhar_cobertura_fontes(tabela)
     desenhar_series_para_modelar(tabela)
     desenhar_riqueza_da_armadilha(tabela)
+    desenhar_ganho_do_projeto()
     desenhar_ciclo_anual(tabela)
     desenhar_vetor_por_semana(tabela)
     desenhar_vetor_vs_casos(tabela)

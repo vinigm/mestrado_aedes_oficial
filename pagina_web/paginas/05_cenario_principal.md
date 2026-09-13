@@ -103,25 +103,15 @@ A variavel de mosquito e **femeas de *Aedes aegypti* divididas pelas armadilhas 
 
 Comparacao entre a **primeira configuracao** (LightGBM, perda padrao, sem vetor) e a **atual**, medidas nas **mesmas semanas** de avaliacao. A diferenca e so de modelagem: nenhuma das duas recebeu dado que a outra nao tivesse.
 
-| horizonte | primeira configuracao | atual | ganho |
-|---|---|---|---|
-| 1 semana | 75% | **85%** | +10 pp |
-| **1 mes** | 65% | **83%** | **+18 pp** |
-| 2 meses | 57% | **63%** | +6 pp |
-| **3 meses** | 46% | **62%** | **+16 pp** |
+![Quanto se ganhou por horizonte, e a decomposicao do ganho em um mes](imagens/ganho_do_projeto.png)
 
-*(captura do pico; R&sup2; em 3 meses vai de 0,541 para 0,758)*
-
-### De onde veio o ganho, passo a passo
-
-Decomposicao em **um mes**, acrescentando uma mudanca por vez:
-
-| passo | captura do pico | efeito |
-|---|---|---|
-| Primeira configuracao | 64,7% | — |
-| + trocar o algoritmo para HistGradientBoosting | 79,8% | **+15,1 pp** |
-| + acrescentar as variaveis de vetor | 69,9% | **&minus;9,9 pp** |
-| + calibrar a funcao de perda | **83,2%** | **+13,3 pp** |
+<div class="cards">
+<div class="card bom"><div class="cardRot">Maior ganho</div><div class="cardNum">+18 pp</div><div class="cardTxt">em <b>1 mes</b>: de 65% para <b>83%</b> de captura do pico.</div></div>
+<div class="card bom"><div class="cardRot">Horizonte longo</div><div class="cardNum">+16 pp</div><div class="cardTxt">em <b>3 meses</b>. O R² sobe de <b>0,541</b> para <b>0,758</b>.</div></div>
+<div class="card critico"><div class="cardRot">O vetor sozinho PIORA o pico</div><div class="cardTxt">Ele derruba <b>9,9 pontos</b> — melhora o erro medio e estraga o topo. E a barra vermelha da cascata.</div></div>
+<div class="card acento"><div class="cardRot">E um efeito de interacao</div><div class="cardTxt">A calibracao vem depois e corrige o topo com folga. <b>Isoladas, as duas mudancas nao entregam o que entregam juntas.</b></div></div>
+<div class="card"><div class="cardRot">Comparacao justa</div><div class="cardTxt">Mesmas semanas de avaliacao. Nenhuma das duas recebeu dado que a outra nao tivesse — <b>a diferenca e so de modelagem</b>.</div></div>
+</div>
 
 <div class="veredito atencao"><span class="vRot">O que a decomposicao revela</span><p>O vetor, sozinho e sem calibracao, <b>derruba a captura do pico em 10 pontos</b> — ele melhora o erro medio e piora o topo. So nao prejudica porque a perda quantilica vem depois e corrige justamente o topo, com folga. <b>E um efeito de interacao</b>: as duas mudancas isoladas nao entregam o que entregam juntas. Isso nao aparecia nas analises anteriores, que mediram o vetor por MAE e por Diebold-Mariano, nunca por captura de pico.</p></div>
 
