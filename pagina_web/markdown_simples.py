@@ -105,6 +105,25 @@ def _montar_tabela(linhas_da_tabela: list[str]) -> str:
             '<table class="tabela tabela-md">' + "".join(partes) + "</table></div>")
 
 
+# Uma figura sozinha na linha nao e um paragrafo de texto.
+def _e_apenas_uma_imagem(html_do_paragrafo: str) -> bool:
+    """
+
+    Diz se o bloco e uma imagem e nada mais. Quando e, o gerador solta a <img>
+    solta, sem embrulhar em <p>.
+
+    Motivo: o CSS limita a largura do paragrafo a 82ch para a leitura nao ficar
+    cansativa, e esse limite vazava para a figura, espremendo o grafico a ~850px
+    numa tela de 1700px. Fora do <p>, a figura cai na regra propria
+    ('.conteudo-md > img'), que a deixa ocupar a largura inteira do conteudo.
+
+    """
+    texto = html_do_paragrafo.strip()
+    if not texto.startswith("<img "):
+        return False
+    return texto.endswith(">") and texto.count("<img ") == 1 and "</" not in texto
+
+
 # Traduz um texto Markdown inteiro em HTML (linha por linha, juntando blocos).
 def para_html(markdown_texto: str) -> str:
     """
@@ -123,7 +142,11 @@ def para_html(markdown_texto: str) -> str:
     def fechar_paragrafo():
         nonlocal paragrafo
         if paragrafo:
-            blocos.append("<p>" + _inline(" ".join(paragrafo)) + "</p>")
+            html_do_paragrafo = _inline(" ".join(paragrafo))
+            if _e_apenas_uma_imagem(html_do_paragrafo):
+                blocos.append(html_do_paragrafo)
+            else:
+                blocos.append("<p>" + html_do_paragrafo + "</p>")
             paragrafo = []
 
     def fechar_lista():

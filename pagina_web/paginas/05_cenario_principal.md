@@ -27,6 +27,46 @@ ordem: 25
 <div class="fmLinha"><span class="fmRot">Validacao</span><span class="fmVal"><b>Walk-forward</b> — treina so com o passado, preve uma semana, repete</span></div>
 </div>
 
+## Os dados que temos para modelar
+
+![O que existe para modelar, semana a semana](imagens/series_para_modelar.png)
+
+<div class="cards">
+<div class="card acento"><div class="cardRot">Eixo compartilhado</div><div class="cardTxt">As tres series no <b>mesmo tempo</b>. Da para ver alinhamento e defasagem sem esforco.</div></div>
+<div class="card critico"><div class="cardRot">A defasagem</div><div class="cardTxt">Mosquito e clima: <b>14 anos</b>. Casos: so de <b>2018</b>, e epidemia de verdade so de <b>2022</b>.</div></div>
+<div class="card atencao"><div class="cardRot">A linha tracejada</div><div class="cardTxt"><b>Enchente de mai/2024.</b> Interrupcao real da vistoria, nao falha de coleta.</div></div>
+<div class="card bom"><div class="cardRot">Painel de cima</div><div class="cardTxt"><b>Densidade</b>, nao contagem bruta: femeas por armadilha <b>inspecionada</b>.</div></div>
+<div class="card"><div class="cardRot">Por que densidade</div><div class="cardTxt">Contagem bruta subiria junto com o <b>numero de armadilhas instaladas</b> — isso nao e sinal epidemiologico.</div></div>
+</div>
+
+### Cobertura de cada fonte
+
+![Cobertura de cada fonte, semana a semana](imagens/cobertura_fontes.png)
+
+<div class="cards">
+<div class="card acento"><div class="cardRot">Mosquito &middot; armadilhas</div><div class="cardNum">718</div><div class="cardTxt">semanas, set/2012 a ago/2026. Secretaria ate 2025, raspagem propria depois — <b>sem vao entre as duas</b>.</div></div>
+<div class="card bom"><div class="cardRot">Clima &middot; NASA POWER</div><div class="cardNum">725</div><div class="cardTxt">semanas. Cobria so <b>388</b> ate a recaptura de 29/08.</div></div>
+<div class="card critico"><div class="cardRot">Casos &middot; SINAN</div><div class="cardNum">428</div><div class="cardTxt">semanas, fev/2018 a abr/2026. <b>E o gargalo</b> — limita a janela util de tudo.</div></div>
+<div class="card"><div class="cardRot">El Nino &middot; NOAA</div><div class="cardNum">434</div><div class="cardTxt">semanas, 2018+. Cobre exatamente o periodo dos casos, entao <b>nao descarta nenhuma linha</b>.</div></div>
+</div>
+
+Os cortes finos na faixa do mosquito sao as **7 semanas sem vistoria**: a virada de 2017/18, uma semana de 2022 e as **tres semanas da enchente de maio/2024**.
+
+### O ciclo se repete, a altura nao
+
+![O ciclo anual da dengue em Porto Alegre](imagens/ciclo_anual.png)
+
+<div class="cards">
+<div class="card bom"><div class="cardRot">A forma</div><div class="cardTxt">Sempre a mesma: sobe na <b>semana 8</b>, pica entre a <b>13 e a 20</b> (marco a maio), zera no inverno.</div></div>
+<div class="card critico"><div class="cardRot">A altura</div><div class="cardNum">51&times;</div><div class="cardTxt">entre o menor e o maior ano: <b>489</b> casos em 2019 contra <b>24.793</b> em 2025.</div></div>
+<div class="card atencao"><div class="cardRot">Consequencia</div><div class="cardTxt">Saber a epoca do ano prediz <b>quando</b>, nunca <b>quanto</b>. Por isso a climatologia sozinha tem R&sup2; negativo em 3 meses.</div></div>
+<div class="card critico"><div class="cardRot">Epidemias grandes</div><div class="cardNum">2</div><div class="cardTxt">2024 e 2025. E disso que o modelo aprende magnitude — e por que ela e o ponto fraco.</div></div>
+</div>
+
+A escala vertical e **logaritmica** de proposito: em escala linear, os anos de poucos casos virariam uma linha colada no zero e o ciclo deles nao apareceria.
+
+A variavel de mosquito e **femeas de *Aedes aegypti* divididas pelas armadilhas efetivamente inspecionadas** na semana. So femeas, porque macho nao transmite.
+
 ## O que o numero significa
 
 <div class="cards">
@@ -95,21 +135,6 @@ Medido em 2024+, periodo que **nao participou** da escolha da configuracao.
 | 3 meses | **0,64** | −1,08 | −0,20 |
 
 Valor negativo = pior que chutar a media de todas as semanas. **Em 1 semana o modelo perde** para a regra "vai ter o mesmo tanto de hoje" — nesse horizonte ninguem precisa de modelo.
-
-## Os dados
-
-![Cobertura de cada fonte, semana a semana](imagens/cobertura_fontes.png)
-
-<div class="cards">
-<div class="card acento"><div class="cardRot">Mosquito &middot; armadilhas</div><div class="cardNum">718</div><div class="cardTxt">semanas, set/2012 a ago/2026. Secretaria ate 2025, raspagem propria depois — <b>sem vao entre as duas</b>.</div></div>
-<div class="card bom"><div class="cardRot">Clima &middot; NASA POWER</div><div class="cardNum">725</div><div class="cardTxt">semanas. Cobria so <b>388</b> ate a recaptura de 29/08.</div></div>
-<div class="card critico"><div class="cardRot">Casos &middot; SINAN</div><div class="cardNum">428</div><div class="cardTxt">semanas, fev/2018 a abr/2026. <b>E o gargalo</b> — limita a janela util de tudo.</div></div>
-<div class="card"><div class="cardRot">El Nino &middot; NOAA</div><div class="cardNum">434</div><div class="cardTxt">semanas, 2018+. Cobre exatamente o periodo dos casos, entao <b>nao descarta nenhuma linha</b>.</div></div>
-</div>
-
-<div class="veredito"><span class="vRot">O que o grafico mostra</span><p>Mosquito e clima cobrem os <b>14 anos</b>. Os casos so existem de <b>2018</b> em diante — e sao eles que definem quanto dado o modelo realmente pode usar. Os cortes finos na faixa do mosquito sao as <b>7 semanas sem vistoria</b>: a virada de 2017/18, uma semana de 2022 e as <b>tres semanas da enchente de maio/2024</b>.</p></div>
-
-A variavel de mosquito e **femeas de *Aedes aegypti* divididas pelas armadilhas efetivamente inspecionadas** na semana. So femeas, porque macho nao transmite.
 
 ## O mosquito: o que mostra e o que nao prova
 

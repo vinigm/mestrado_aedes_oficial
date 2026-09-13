@@ -38,6 +38,8 @@ COR_TREINO = "#D8DEE6"
 COR_JANELA_PREVISTA = "#1E7A6E"
 COR_CLIMA = "#6E8B5A"
 COR_ENSO = "#8A7AA8"
+COR_CRITICO = "#B0574B"
+COR_ATENCAO = "#B07D33"
 
 # A enchente de maio de 2024: as vistorias de armadilha pararam por 3 semanas
 # (28/04, 05/05 e 12/05) por causa da cheia. Nao e falta de fonte, e um evento
@@ -64,6 +66,137 @@ def carregar_tabela_final() -> pd.DataFrame:
         parse_dates=["data_inicio_semana_epidemi"],
     )
     return tabela
+
+
+# Desenha o que existe para modelar: tres series alinhadas no mesmo eixo de tempo.
+def desenhar_series_para_modelar(tabela: pd.DataFrame) -> None:
+    """
+
+    Mostra as tres series que alimentam o modelo, uma sobre a outra, no MESMO
+    eixo de tempo.
+
+    Eixo compartilhado de proposito: e o que deixa ver, sem esforco, que o
+    mosquito e o clima cobrem 14 anos enquanto os casos so existem de 2018 -
+    e que so 2022 em diante tem epidemia de verdade. E essa defasagem que
+    limita a janela util de qualquer modelo que cruze as tres coisas.
+
+    A serie de mosquito e a DENSIDADE (femeas por armadilha inspecionada), e
+    nao a contagem bruta: e a variavel que o modelo realmente usa. Contagem
+    bruta subiria e desceria junto com o numero de armadilhas instaladas.
+
+    Args:
+        tabela: A tabela_final, uma linha por semana.
+
+    """
+    datas = tabela["data_inicio_semana_epidemi"]
+    figura, eixos = plt.subplots(3, 1, figsize=(15.5, 7.4), sharex=True,
+                                 gridspec_kw={"height_ratios": [1, 1, 0.75]})
+
+    # --- 1. densidade do vetor ---
+    eixos[0].fill_between(datas, tabela["aedes_aegypti_por_armadilha"],
+                          color=COR_SECRETARIA, alpha=0.28, linewidth=0)
+    eixos[0].plot(datas, tabela["aedes_aegypti_por_armadilha"],
+                  color=COR_SECRETARIA, linewidth=1.0)
+    eixos[0].set_ylabel("femeas por\narmadilha", fontsize=9)
+    eixos[0].set_title("O que existe para modelar, semana a semana",
+                       fontsize=12, pad=12)
+
+    # --- 2. casos confirmados ---
+    eixos[1].fill_between(datas, tabela["casos_confirmados"],
+                          color=COR_CASOS, alpha=0.25, linewidth=0)
+    eixos[1].plot(datas, tabela["casos_confirmados"], color=COR_CASOS, linewidth=1.1)
+    eixos[1].set_ylabel("casos\nconfirmados", fontsize=9)
+
+    # A area sem serie de casos fica marcada: e o gargalo do projeto.
+    primeira_semana_com_caso = tabela.loc[tabela["casos_confirmados"].notna(),
+                                          "data_inicio_semana_epidemi"].min()
+    eixos[1].axvspan(datas.min(), primeira_semana_com_caso,
+                     color=COR_TREINO, alpha=0.55, zorder=0)
+    eixos[1].text(datas.min() + pd.Timedelta(days=120),
+                  tabela["casos_confirmados"].max() * 0.62,
+                  "sem serie de casos\nantes de 2018", fontsize=8.5,
+                  color="#6b6b6b", va="center")
+
+    # --- 3. clima ---
+    eixos[2].plot(datas, tabela["temp_media"], color=COR_CLIMA, linewidth=0.9)
+    eixos[2].set_ylabel("temperatura\nmedia (C)", fontsize=9)
+    eixos[2].set_xlabel("semana epidemiologica", fontsize=9)
+
+    # A enchente de maio/2024 atravessa os tres paineis: foi evento real, nao
+    # falha de coleta, e aparece como buraco na serie de vistoria.
+    for eixo in eixos:
+        eixo.axvline(DATA_ENCHENTE, color=COR_CRITICO, linestyle="--",
+                     linewidth=1.1, alpha=0.75, zorder=1)
+        eixo.grid(alpha=0.25)
+        eixo.set_axisbelow(True)
+        for lado in ("top", "right"):
+            eixo.spines[lado].set_visible(False)
+
+    eixos[0].text(DATA_ENCHENTE + pd.Timedelta(days=40),
+                  tabela["aedes_aegypti_por_armadilha"].max() * 0.88,
+                  "enchente\nmai/2024", fontsize=8.5, color=COR_CRITICO)
+
+    figura.tight_layout()
+    figura.savefig(PASTA_IMAGENS / "series_para_modelar.png", dpi=150)
+    plt.close(figura)
+
+
+# Desenha o ciclo anual: todos os anos sobrepostos na mesma escala de semana.
+def desenhar_ciclo_anual(tabela: pd.DataFrame) -> None:
+    """
+
+    Sobrepoe os anos numa unica escala de semana do ano, para mostrar que a
+    dengue em Porto Alegre liga e desliga sempre na mesma epoca.
+
+    E o que justifica o modelo receber a posicao da semana no calendario como
+    variavel, e tambem o que explica por que a climatologia sozinha nao basta:
+    a FORMA se repete todo ano, mas a ALTURA muda em ordens de grandeza -
+    de 489 casos em 2019 a 24.793 em 2025.
+
+    A escala do eixo vertical e logaritmica justamente por isso: em escala
+    linear, os anos de poucos casos viram uma linha reta colada no zero.
+
+    Args:
+        tabela: A tabela_final, uma linha por semana.
+
+    """
+    trabalho = tabela.dropna(subset=["casos_confirmados"]).copy()
+    trabalho["ano"] = trabalho["data_inicio_semana_epidemi"].dt.year
+    trabalho["semana_do_ano"] = (
+        trabalho["data_inicio_semana_epidemi"].dt.isocalendar().week.astype(int)
+    )
+
+    # So os anos com epidemia de verdade; os demais poluiriam sem informar.
+    totais_por_ano = trabalho.groupby("ano")["casos_confirmados"].sum()
+    anos_relevantes = sorted(totais_por_ano[totais_por_ano > 300].index)
+
+    figura, eixo = plt.subplots(figsize=(15.5, 4.6))
+    tons = [COR_TREINO, "#9FB8D0", COR_SECRETARIA, COR_ATENCAO, COR_CASOS]
+
+    for posicao, ano in enumerate(anos_relevantes):
+        do_ano = trabalho[trabalho["ano"] == ano].sort_values("semana_do_ano")
+        total = int(totais_por_ano[ano])
+        eixo.plot(do_ano["semana_do_ano"], do_ano["casos_confirmados"].clip(lower=0.5),
+                  label=f"{ano} ({total:,} casos)".replace(",", "."),
+                  color=tons[posicao % len(tons)],
+                  linewidth=2.4 if ano >= 2024 else 1.4,
+                  alpha=1.0 if ano >= 2024 else 0.8)
+
+    eixo.set_yscale("log")
+    eixo.set_xlabel("semana do ano", fontsize=9)
+    eixo.set_ylabel("casos confirmados (escala log)", fontsize=9)
+    eixo.set_title("O ciclo se repete; a altura muda em ordens de grandeza",
+                   fontsize=12, pad=12)
+    eixo.set_xlim(1, 52)
+    eixo.legend(fontsize=8.5, frameon=False, ncol=2, loc="upper right")
+    eixo.grid(alpha=0.25)
+    eixo.set_axisbelow(True)
+    for lado in ("top", "right"):
+        eixo.spines[lado].set_visible(False)
+
+    figura.tight_layout()
+    figura.savefig(PASTA_IMAGENS / "ciclo_anual.png", dpi=150)
+    plt.close(figura)
 
 
 # Desenha a cobertura de cada fonte de dados ao longo do tempo.
@@ -320,6 +453,8 @@ def main() -> None:
     """
     tabela = carregar_tabela_final()
     desenhar_cobertura_fontes(tabela)
+    desenhar_series_para_modelar(tabela)
+    desenhar_ciclo_anual(tabela)
     desenhar_vetor_por_semana(tabela)
     desenhar_vetor_vs_casos(tabela)
     desenhar_walkforward()

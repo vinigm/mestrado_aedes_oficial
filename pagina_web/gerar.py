@@ -141,7 +141,7 @@ strong{color:var(--tinta)}
 #appShell.sn-collapsed .sidenav-inner{padding:16px 4px}
 #appShell.sn-collapsed .sidenav-acao{padding:11px 4px; justify-content:center}
 
-.wrap{max-width:1880px; margin:0 auto; width:100%; padding:2.4rem clamp(1.4rem,3vw,3.2rem) 4.5rem}
+.wrap{max-width:1880px; margin:0 auto; width:100%; padding:2.4rem clamp(1rem,1.6vw,1.8rem) 4.5rem}
 .secao{margin:3rem 0}
 .secao > .eyebrow{margin-bottom:1rem}
 
@@ -344,7 +344,9 @@ footer{border-top:1px solid var(--borda); margin-top:auto}
 .conteudo-md > p, .conteudo-md > ul, .conteudo-md > ol, .conteudo-md > blockquote{max-width:82ch}
 .conteudo-md > h2{margin-top:2.6rem}
 .conteudo-md > h3{margin-top:1.9rem}
-.conteudo-md > img{width:100%; max-width:1400px; height:auto; border:1px solid var(--borda); border-radius:var(--raio-p); background:var(--superficie); display:block; margin:1.4rem 0}
+/* Figura ocupa a largura toda do conteudo, sem teto: sao series temporais
+   longas (725 semanas) e cada pixel horizontal a mais e semana visivel. */
+.conteudo-md > img{width:100%; height:auto; border:1px solid var(--borda); border-radius:var(--raio-p); background:var(--superficie); display:block; margin:1.5rem 0}
 
 /* ---- Componentes das paginas de markdown (cards, jornada, ficha) ---- */
 /* JORNADA: faixas verticais lado a lado, lidas da esquerda para a direita
