@@ -32,11 +32,24 @@ ordem: 25
 ![O que existe para modelar, semana a semana](imagens/series_para_modelar.png)
 
 <div class="cards">
-<div class="card acento"><div class="cardRot">Eixo compartilhado</div><div class="cardTxt">As tres series no <b>mesmo tempo</b>. Da para ver alinhamento e defasagem sem esforco.</div></div>
+<div class="card acento"><div class="cardRot">Seis paineis, um tempo so</div><div class="cardTxt">Tudo no <b>mesmo eixo</b>. Da para ver alinhamento e defasagem sem esforco nenhum.</div></div>
 <div class="card critico"><div class="cardRot">A defasagem</div><div class="cardTxt">Mosquito e clima: <b>14 anos</b>. Casos: so de <b>2018</b>, e epidemia de verdade so de <b>2022</b>.</div></div>
-<div class="card atencao"><div class="cardRot">A linha tracejada</div><div class="cardTxt"><b>Enchente de mai/2024.</b> Interrupcao real da vistoria, nao falha de coleta.</div></div>
-<div class="card bom"><div class="cardRot">Painel de cima</div><div class="cardTxt"><b>Densidade</b>, nao contagem bruta: femeas por armadilha <b>inspecionada</b>.</div></div>
-<div class="card"><div class="cardRot">Por que densidade</div><div class="cardTxt">Contagem bruta subiria junto com o <b>numero de armadilhas instaladas</b> — isso nao e sinal epidemiologico.</div></div>
+<div class="card atencao"><div class="cardRot">Chuva e enchente</div><div class="cardTxt">O pico de <b>281,8 mm</b> cai exatamente na linha tracejada de <b>mai/2024</b> — e explica o buraco na vistoria.</div></div>
+<div class="card bom"><div class="cardRot">Densidade, nao contagem</div><div class="cardTxt">Femeas por armadilha <b>inspecionada</b>. Contagem bruta subiria junto com o numero de armadilhas instaladas.</div></div>
+<div class="card"><div class="cardRot">O ENSO tambem so tem 2018+</div><div class="cardTxt">A area cinza e <b>falta de captura</b>, nao ausencia do fenomeno. Houve El Nino antes — nos e que nao temos a serie.</div></div>
+<div class="card"><div class="cardRot">22 colunas de clima</div><div class="cardTxt">Sao <b>7 familias</b> completas de 2012 a 2026. O modelo de referencia usa <b>6 colunas</b>, escolhidas automaticamente.</div></div>
+</div>
+
+### A armadilha captura mais do que o Aedes
+
+![Os tres taxons capturados e o esforco de coleta](imagens/riqueza_da_armadilha.png)
+
+<div class="cards">
+<div class="card acento"><div class="cardRot">Tres taxons</div><div class="cardTxt"><b>237.450</b> Aedes aegypti, <b>159.683</b> Culex e <b>5.425</b> Aedes albopictus. O projeto modela <b>so o primeiro</b>.</div></div>
+<div class="card critico"><div class="cardRot">Culex nao transmite dengue</div><div class="cardTxt">Nao entra como preditor. Entra como <b>contexto de captura</b>: separa "havia mais mosquito" de "a vistoria foi mais intensa".</div></div>
+<div class="card bom"><div class="cardRot">Por que ele serve de controle</div><div class="cardTxt">Spearman de <b>0,30</b> contra o Aedes — ele <b>nao acompanha</b> o sinal que o modelo persegue.</div></div>
+<div class="card atencao"><div class="cardRot">Linha de base o ano inteiro</div><div class="cardTxt">No inverno o Aedes cai para <b>3%</b> do pico; o Culex fica em <b>36%</b>. Na escala log isso parece inversao, mas os dois picam no verao.</div></div>
+<div class="card"><div class="cardRot">O esforco variou muito</div><div class="cardTxt">De <b>14 a 1.436</b> armadilhas ativas por semana ao longo da serie. E a razao de o modelo usar densidade.</div></div>
 </div>
 
 ### Cobertura de cada fonte

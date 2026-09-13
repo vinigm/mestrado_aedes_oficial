@@ -69,61 +69,134 @@ def carregar_tabela_final() -> pd.DataFrame:
 
 
 # Desenha o que existe para modelar: tres series alinhadas no mesmo eixo de tempo.
+def _marcar_periodo_sem_dado(eixo, datas, primeira_data_com_dado, texto) -> None:
+    """
+
+    Sombreia o trecho em que a serie simplesmente nao existe, e escreve por que.
+
+    Existe porque duas series do painel (casos e ENSO) so comecam em 2018,
+    enquanto mosquito e clima cobrem os 14 anos. Sem a marcacao, o grafico
+    sugeriria que nao houve dengue nem El Nino antes de 2018 - o que e falso:
+    o que falta e a CAPTURA do dado, nao o fenomeno.
+
+    Args:
+        eixo: O painel a marcar.
+        datas: A coluna de datas da tabela_final.
+        primeira_data_com_dado: Onde a serie de fato comeca.
+        texto: A explicacao curta escrita dentro da area sombreada.
+
+    """
+    eixo.axvspan(datas.min(), primeira_data_com_dado,
+                 color=COR_TREINO, alpha=0.55, zorder=0)
+    limite_inferior, limite_superior = eixo.get_ylim()
+    altura_do_texto = limite_inferior + (limite_superior - limite_inferior) * 0.62
+    eixo.text(datas.min() + pd.Timedelta(days=120), altura_do_texto, texto,
+              fontsize=8.5, color="#6b6b6b", va="center")
+
+
+def _titular_painel(eixo, titulo, rotulo_do_eixo_y) -> None:
+    """
+
+    Poe o titulo alinhado a esquerda em cima do painel, no lugar de confiar so
+    no rotulo vertical do eixo.
+
+    O rotulo vertical sozinho obriga quem le a virar a cabeca e nao tem espaco
+    para a unidade nem para a ressalva. Numa figura projetada em reuniao, o
+    titulo horizontal e o que se le primeiro.
+
+    Args:
+        eixo: O painel.
+        titulo: A frase curta que aparece acima do painel.
+        rotulo_do_eixo_y: O nome da grandeza, em duas linhas, no eixo vertical.
+
+    """
+    eixo.set_title(titulo, fontsize=10, loc="left", pad=6, color="#2b2b2b")
+    eixo.set_ylabel(rotulo_do_eixo_y, fontsize=8.5)
+
+
 def desenhar_series_para_modelar(tabela: pd.DataFrame) -> None:
     """
 
-    Mostra as tres series que alimentam o modelo, uma sobre a outra, no MESMO
-    eixo de tempo.
+    Mostra TUDO que existe para modelar, painel a painel, no mesmo eixo de tempo.
 
     Eixo compartilhado de proposito: e o que deixa ver, sem esforco, que o
     mosquito e o clima cobrem 14 anos enquanto os casos so existem de 2018 -
-    e que so 2022 em diante tem epidemia de verdade. E essa defasagem que
-    limita a janela util de qualquer modelo que cruze as tres coisas.
+    e que so 2022 em diante ha epidemia de verdade. E essa defasagem que limita
+    a janela util de qualquer modelo que cruze as tres coisas.
 
-    A serie de mosquito e a DENSIDADE (femeas por armadilha inspecionada), e
-    nao a contagem bruta: e a variavel que o modelo realmente usa. Contagem
-    bruta subiria e desceria junto com o numero de armadilhas instaladas.
+    Os seis paineis, e por que cada um esta aqui:
+
+      1. VETOR - a densidade (femeas por armadilha inspecionada), nao a contagem
+         bruta: e a variavel que o modelo usa. Contagem bruta subiria e desceria
+         junto com o numero de armadilhas instaladas.
+      2. CASOS - o alvo do modelo, decidido por medicao em 30/08/2026.
+      3. CHUVA - o pico de 281,8 mm cai exatamente na enchente de mai/2024 e
+         explica, sozinho, a interrupcao da vistoria que aparece no painel 1.
+      4. TEMPERATURA - o unico clima que o painel mostrava antes desta versao.
+      5. UMIDADE - entra porque sobrevivencia do mosquito adulto depende dela.
+      6. ENSO - a unica familia de features novas que passou no teste de 30/08.
+
+    ATENCAO AO QUE A FIGURA NAO DIZ. Os paineis estao empilhados no mesmo tempo
+    para comparacao VISUAL; nenhum deles afirma correlacao testada. A
+    configuracao de referencia usa k=6 colunas de clima escolhidas
+    automaticamente, e nao as 22 que existem na tabela.
 
     Args:
         tabela: A tabela_final, uma linha por semana.
 
     """
     datas = tabela["data_inicio_semana_epidemi"]
-    figura, eixos = plt.subplots(3, 1, figsize=(15.5, 7.4), sharex=True,
-                                 gridspec_kw={"height_ratios": [1, 1, 0.75]})
+    figura, eixos = plt.subplots(
+        6, 1, figsize=(15.5, 11.2), sharex=True,
+        gridspec_kw={"height_ratios": [1.35, 1.35, 0.82, 0.82, 0.82, 0.82],
+                     "hspace": 0.55},
+    )
 
-    # --- 1. densidade do vetor ---
+    # --- 1. densidade do vetor (o protagonista entomologico) ---
     eixos[0].fill_between(datas, tabela["aedes_aegypti_por_armadilha"],
                           color=COR_SECRETARIA, alpha=0.28, linewidth=0)
     eixos[0].plot(datas, tabela["aedes_aegypti_por_armadilha"],
                   color=COR_SECRETARIA, linewidth=1.0)
-    eixos[0].set_ylabel("femeas por\narmadilha", fontsize=9)
-    eixos[0].set_title("O que existe para modelar, semana a semana",
-                       fontsize=12, pad=12)
+    _titular_painel(eixos[0], "Vetor — densidade de Aedes aegypti (o que a armadilha mede)",
+                    "femeas por\narmadilha")
 
-    # --- 2. casos confirmados ---
+    # --- 2. casos confirmados (o alvo) ---
     eixos[1].fill_between(datas, tabela["casos_confirmados"],
                           color=COR_CASOS, alpha=0.25, linewidth=0)
     eixos[1].plot(datas, tabela["casos_confirmados"], color=COR_CASOS, linewidth=1.1)
-    eixos[1].set_ylabel("casos\nconfirmados", fontsize=9)
-
-    # A area sem serie de casos fica marcada: e o gargalo do projeto.
+    _titular_painel(eixos[1], "Casos confirmados de dengue (o alvo do modelo)",
+                    "casos\nconfirmados")
     primeira_semana_com_caso = tabela.loc[tabela["casos_confirmados"].notna(),
                                           "data_inicio_semana_epidemi"].min()
-    eixos[1].axvspan(datas.min(), primeira_semana_com_caso,
-                     color=COR_TREINO, alpha=0.55, zorder=0)
-    eixos[1].text(datas.min() + pd.Timedelta(days=120),
-                  tabela["casos_confirmados"].max() * 0.62,
-                  "sem serie de casos\nantes de 2018", fontsize=8.5,
-                  color="#6b6b6b", va="center")
+    _marcar_periodo_sem_dado(eixos[1], datas, primeira_semana_com_caso,
+                             "sem serie de casos\nantes de 2018")
 
-    # --- 3. clima ---
-    eixos[2].plot(datas, tabela["temp_media"], color=COR_CLIMA, linewidth=0.9)
-    eixos[2].set_ylabel("temperatura\nmedia (C)", fontsize=9)
-    eixos[2].set_xlabel("semana epidemiologica", fontsize=9)
+    # --- 3. chuva (em barras: e total acumulado da semana, nao trajetoria) ---
+    eixos[2].bar(datas, tabela["precip_total_mm"], width=6,
+                 color=COR_CLIMA, alpha=0.65, linewidth=0)
+    _titular_painel(eixos[2], "Chuva — total da semana (o pico de 281,8 mm e a enchente)",
+                    "precipitacao\n(mm/semana)")
 
-    # A enchente de maio/2024 atravessa os tres paineis: foi evento real, nao
-    # falha de coleta, e aparece como buraco na serie de vistoria.
+    # --- 4. temperatura ---
+    eixos[3].plot(datas, tabela["temp_media"], color=COR_CLIMA, linewidth=0.9)
+    _titular_painel(eixos[3], "Temperatura media", "temperatura\nmedia (C)")
+
+    # --- 5. umidade ---
+    eixos[4].plot(datas, tabela["umid_media"], color=COR_CLIMA, linewidth=0.9)
+    _titular_painel(eixos[4], "Umidade relativa media", "umidade\nmedia (%)")
+
+    # --- 6. ENSO (so 2018+, e a figura precisa dizer isso) ---
+    eixos[5].axhline(0, color="#9a9a9a", linewidth=0.7, linestyle=":", zorder=0)
+    eixos[5].plot(datas, tabela["oni"], color=COR_ENSO, linewidth=1.1)
+    _titular_painel(eixos[5], "ENSO — indice ONI (El Nino e La Nina)", "indice\nONI")
+    primeira_semana_com_enso = tabela.loc[tabela["oni"].notna(),
+                                          "data_inicio_semana_epidemi"].min()
+    _marcar_periodo_sem_dado(eixos[5], datas, primeira_semana_com_enso,
+                             "sem captura de ENSO\nantes de 2018")
+    eixos[5].set_xlabel("semana epidemiologica", fontsize=9)
+
+    # A enchente de maio/2024 atravessa os seis paineis: foi evento real, nao
+    # falha de coleta, e aparece como buraco na serie de vistoria do painel 1.
     for eixo in eixos:
         eixo.axvline(DATA_ENCHENTE, color=COR_CRITICO, linestyle="--",
                      linewidth=1.1, alpha=0.75, zorder=1)
@@ -136,8 +209,78 @@ def desenhar_series_para_modelar(tabela: pd.DataFrame) -> None:
                   tabela["aedes_aegypti_por_armadilha"].max() * 0.88,
                   "enchente\nmai/2024", fontsize=8.5, color=COR_CRITICO)
 
-    figura.tight_layout()
+    figura.subplots_adjust(left=0.055, right=0.995, top=0.965, bottom=0.045)
     figura.savefig(PASTA_IMAGENS / "series_para_modelar.png", dpi=150)
+    plt.close(figura)
+
+
+# Desenha o que a armadilha captura alem do Aedes aegypti, e o esforco de coleta.
+def desenhar_riqueza_da_armadilha(tabela: pd.DataFrame) -> None:
+    """
+
+    Mostra os tres taxons que a armadilha captura e o esforco de coleta por tras.
+
+    Por que esta figura existe: a armadilha do MI-Aedes conta TRES taxons e o
+    projeto modela um. O Culex aparece em 717 das 718 semanas, com 159.683
+    individuos contra 237.450 do Aedes aegypti - quase o mesmo volume.
+
+    O CULEX NAO TRANSMITE DENGUE. Ele nao entra como preditor de caso; entra
+    como contexto de captura. Se numa semana o Culex sobe e o Aegypti nao, isso
+    separa "havia mais mosquito" de "a vistoria foi mais intensa naquela semana".
+
+    O painel de baixo e o motivo de o modelo usar densidade e nao contagem: o
+    numero de armadilhas ativas foi de 14 a 1.436 por semana ao longo da serie.
+    Contagem bruta sobe e desce junto com esse numero, sem que a infestacao
+    tenha mudado.
+
+    A escala do painel de cima e logaritmica porque os tres taxons diferem em
+    ordens de grandeza; em escala linear o albopictus vira uma linha colada no
+    zero. Soma-se 1 antes do log para nao perder as semanas de contagem zero.
+
+    Args:
+        tabela: A tabela_final, uma linha por semana.
+
+    """
+    datas = tabela["data_inicio_semana_epidemi"]
+    figura, eixos = plt.subplots(
+        2, 1, figsize=(15.5, 6.4), sharex=True,
+        gridspec_kw={"height_ratios": [1.5, 1.0], "hspace": 0.42},
+    )
+
+    taxons_desenhados = [
+        ("aedes_aegypti", "Aedes aegypti — vetor da dengue", COR_SECRETARIA, "-", 1.1),
+        ("aedes_albopictus", "Aedes albopictus — vetor secundario", COR_ENSO, "-", 0.9),
+        ("culex_sp", "Culex sp. — NAO transmite dengue (contexto de captura)",
+         "#9A9384", "--", 0.9),
+    ]
+    for coluna, rotulo, cor, estilo, espessura in taxons_desenhados:
+        eixos[0].plot(datas, tabela[coluna] + 1, color=cor, linestyle=estilo,
+                      linewidth=espessura, label=rotulo)
+    eixos[0].set_yscale("log")
+    _titular_painel(eixos[0], "A armadilha captura tres taxons — o projeto modela um",
+                    "individuos por semana\n(escala log, +1)")
+    eixos[0].legend(fontsize=8.5, frameon=False, ncol=3, loc="upper left")
+
+    eixos[1].fill_between(datas, tabela["numero_de_armadilhas"],
+                          color=COR_ATENCAO, alpha=0.30, linewidth=0)
+    eixos[1].plot(datas, tabela["numero_de_armadilhas"], color=COR_ATENCAO,
+                  linewidth=0.9)
+    _titular_painel(eixos[1],
+                    "Esforco de coleta — de 14 a 1.436 armadilhas por semana "
+                    "(por isso o modelo usa densidade, nao contagem)",
+                    "armadilhas\nativas")
+    eixos[1].set_xlabel("semana epidemiologica", fontsize=9)
+
+    for eixo in eixos:
+        eixo.axvline(DATA_ENCHENTE, color=COR_CRITICO, linestyle="--",
+                     linewidth=1.1, alpha=0.75, zorder=1)
+        eixo.grid(alpha=0.25)
+        eixo.set_axisbelow(True)
+        for lado in ("top", "right"):
+            eixo.spines[lado].set_visible(False)
+
+    figura.subplots_adjust(left=0.055, right=0.995, top=0.93, bottom=0.085)
+    figura.savefig(PASTA_IMAGENS / "riqueza_da_armadilha.png", dpi=150)
     plt.close(figura)
 
 
@@ -454,6 +597,7 @@ def main() -> None:
     tabela = carregar_tabela_final()
     desenhar_cobertura_fontes(tabela)
     desenhar_series_para_modelar(tabela)
+    desenhar_riqueza_da_armadilha(tabela)
     desenhar_ciclo_anual(tabela)
     desenhar_vetor_por_semana(tabela)
     desenhar_vetor_vs_casos(tabela)
