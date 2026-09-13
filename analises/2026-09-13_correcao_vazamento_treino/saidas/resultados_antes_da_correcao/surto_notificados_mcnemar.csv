@@ -1,0 +1,7 @@
+algoritmo,pctl,h,n,n_pos,clima_certo_vetor_errado,vetor_certo_clima_errado,discordantes,p_bruto,p_holm,significativo_holm,alfa
+lightgbm,90,4,565,116,9,9,18,1.0,1.0,False,0.05
+lightgbm,90,8,559,115,15,10,25,0.4237107971667936,1.0,False,0.05
+lightgbm,90,12,553,113,14,10,24,0.5412561893463135,1.0,False,0.05
+lightgbm,95,4,568,75,14,8,22,0.28627872467041016,1.0,False,0.05
+lightgbm,95,8,560,76,10,7,17,0.629058837890625,1.0,False,0.05
+lightgbm,95,12,554,76,12,8,20,0.5034446716308594,1.0,False,0.05

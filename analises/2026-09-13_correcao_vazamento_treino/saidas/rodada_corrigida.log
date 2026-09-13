@@ -1,0 +1,32 @@
+rodada corrigida: 24 celulas | passo=1
+M0=14 colunas | M1=20 colunas
+
+[ 1/24] pos01 | hist_gradient_boosting | quantil_0.80 | M1_com_vetor | h=1: 295 semanas, ate 0 linhas descartadas do treino (2.3 min)
+[ 2/24] pos01 | hist_gradient_boosting | quantil_0.80 | M1_com_vetor | h=4: 292 semanas, ate 3 linhas descartadas do treino (1.9 min)
+[ 3/24] pos01 | hist_gradient_boosting | quantil_0.80 | M1_com_vetor | h=8: 288 semanas, ate 7 linhas descartadas do treino (1.9 min)
+[ 4/24] pos01 | hist_gradient_boosting | quantil_0.80 | M1_com_vetor | h=12: 284 semanas, ate 11 linhas descartadas do treino (1.9 min)
+[ 5/24] pos15 | hist_gradient_boosting | quantil_0.80 | M0_sem_vetor | h=1: 307 semanas, ate 0 linhas descartadas do treino (2.0 min)
+[ 6/24] pos15 | hist_gradient_boosting | quantil_0.80 | M0_sem_vetor | h=4: 304 semanas, ate 3 linhas descartadas do treino (1.9 min)
+[ 7/24] pos15 | hist_gradient_boosting | quantil_0.80 | M0_sem_vetor | h=8: 300 semanas, ate 7 linhas descartadas do treino (1.9 min)
+[ 8/24] pos15 | hist_gradient_boosting | quantil_0.80 | M0_sem_vetor | h=12: 296 semanas, ate 11 linhas descartadas do treino (1.9 min)
+[ 9/24] pos02 | hist_gradient_boosting | quantil_0.85 | M1_com_vetor | h=1: 295 semanas, ate 0 linhas descartadas do treino (2.0 min)
+[10/24] pos02 | hist_gradient_boosting | quantil_0.85 | M1_com_vetor | h=4: 292 semanas, ate 3 linhas descartadas do treino (2.1 min)
+[11/24] pos02 | hist_gradient_boosting | quantil_0.85 | M1_com_vetor | h=8: 288 semanas, ate 7 linhas descartadas do treino (1.8 min)
+[12/24] pos02 | hist_gradient_boosting | quantil_0.85 | M1_com_vetor | h=12: 284 semanas, ate 11 linhas descartadas do treino (1.6 min)
+[13/24] pos04 | gradient_boosting | quantil_0.70 | M1_com_vetor | h=1: 295 semanas, ate 0 linhas descartadas do treino (0.9 min)
+[14/24] pos04 | gradient_boosting | quantil_0.70 | M1_com_vetor | h=4: 292 semanas, ate 3 linhas descartadas do treino (0.9 min)
+[15/24] pos04 | gradient_boosting | quantil_0.70 | M1_com_vetor | h=8: 288 semanas, ate 7 linhas descartadas do treino (0.8 min)
+[16/24] pos04 | gradient_boosting | quantil_0.70 | M1_com_vetor | h=12: 284 semanas, ate 11 linhas descartadas do treino (0.8 min)
+[17/24] pos26 | lightgbm | quantil_0.70 | M0_sem_vetor | h=1: 307 semanas, ate 0 linhas descartadas do treino (1.5 min)
+[18/24] pos26 | lightgbm | quantil_0.70 | M0_sem_vetor | h=4: 304 semanas, ate 3 linhas descartadas do treino (1.4 min)
+[19/24] pos26 | lightgbm | quantil_0.70 | M0_sem_vetor | h=8: 300 semanas, ate 7 linhas descartadas do treino (1.3 min)
+[20/24] pos26 | lightgbm | quantil_0.70 | M0_sem_vetor | h=12: 296 semanas, ate 11 linhas descartadas do treino (1.3 min)
+[21/24] pos30 | lightgbm | quantil_0.90 | M1_com_vetor | h=1: 295 semanas, ate 0 linhas descartadas do treino (1.1 min)
+[22/24] pos30 | lightgbm | quantil_0.90 | M1_com_vetor | h=4: 292 semanas, ate 3 linhas descartadas do treino (1.1 min)
+[23/24] pos30 | lightgbm | quantil_0.90 | M1_com_vetor | h=8: 288 semanas, ate 7 linhas descartadas do treino (1.1 min)
+[24/24] pos30 | lightgbm | quantil_0.90 | M1_com_vetor | h=12: 284 semanas, ate 11 linhas descartadas do treino (1.0 min)
+
+RODADA CONCLUIDA: 24 de 24 | falhas: 0
+tempo total: 36.4 min
+previsoes em: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-13_correcao_vazamento_treino/saidas/corrigido_previsoes_parciais.csv
+batelada 1 terminou em 07:35

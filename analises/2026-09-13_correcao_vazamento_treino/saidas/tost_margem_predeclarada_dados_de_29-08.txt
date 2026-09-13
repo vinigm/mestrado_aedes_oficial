@@ -1,0 +1,26 @@
+previsoes lidas de: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-08-29_rodadas_notificados_zonas/saidas
+
+=== CONFIRMADOS ===
+versao  h   n  MAE_clima  MAE_vetor  MAE_persistencia  delta_MAE  margem_15pct_clima  equiv_15pct_clima  margem_15pct_persist  equiv_15pct_persist
+  puro  1 312     152.41     129.44             39.13     -22.97               22.86              False                  5.87                False
+  puro  4 309     149.25     137.42            127.84     -11.83               22.39              False                 19.18                False
+  puro  8 305     150.63     133.45            237.12     -17.18               22.59              False                 35.57                False
+  puro 12 305     156.50     150.69            305.10      -5.81               23.48              False                 45.76                False
+com_ar  1 307      63.37      69.73             39.74       6.35                9.51              False                  5.96                False
+com_ar  4 304      89.91     103.25            129.92      13.34               13.49              False                 19.49                False
+com_ar  8 300      99.89      99.92            241.04       0.02               14.98              False                 36.16                 True
+com_ar 12 296     126.15     113.44            314.30     -12.70               18.92              False                 47.15                False
+  a +-15%: fecha 0 de 8 com a margem do CLIMA (o que o codigo fez) | 1 de 8 com a margem da PERSISTENCIA (o que foi pre-declarado)
+
+=== NOTIFICADOS ===
+versao  h   n  MAE_clima  MAE_vetor  MAE_persistencia  delta_MAE  margem_15pct_clima  equiv_15pct_clima  margem_15pct_persist  equiv_15pct_persist
+  puro  1 587     183.21     170.95             45.11     -12.26               27.48               True                  6.77                False
+  puro  4 584     190.08     175.81            143.90     -14.27               28.51               True                 21.59                False
+  puro  8 580     191.69     205.96            253.53      14.27               28.75              False                 38.03                False
+  puro 12 576     199.61     224.98            315.66      25.37               29.94              False                 47.35                False
+com_ar  1 587      72.55      74.44             45.11       1.89               10.88               True                  6.77                False
+com_ar  4 584     120.23     128.76            143.90       8.53               18.04              False                 21.59                 True
+com_ar  8 580     171.33     177.32            253.53       5.99               25.70               True                 38.03                 True
+com_ar 12 576     187.88     227.99            315.66      40.11               28.18              False                 47.35                False
+  a +-15%: fecha 4 de 8 com a margem do CLIMA (o que o codigo fez) | 2 de 8 com a margem da PERSISTENCIA (o que foi pre-declarado)
+

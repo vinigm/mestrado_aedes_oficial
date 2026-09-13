@@ -1,0 +1,26 @@
+previsoes lidas de: saidas
+
+=== CONFIRMADOS ===
+versao  h   n  MAE_clima  MAE_vetor  MAE_persistencia  delta_MAE  margem_15pct_clima  equiv_15pct_clima  margem_15pct_persist  equiv_15pct_persist
+  puro  1 312     152.41     129.44             39.13     -22.97               22.86              False                  5.87                False
+  puro  4 309     156.33     154.68            127.84      -1.65               23.45              False                 19.18                False
+  puro  8 305     169.06     174.85            237.12       5.79               25.36              False                 35.57                False
+  puro 12 305     179.03     170.39            305.10      -8.64               26.85              False                 45.76                False
+com_ar  1 307      63.37      69.73             39.74       6.35                9.51              False                  5.96                False
+com_ar  4 304     126.19     148.51            129.92      22.32               18.93              False                 19.49                False
+com_ar  8 300     127.53     146.93            241.04      19.40               19.13              False                 36.16                False
+com_ar 12 296     143.91     144.76            314.30       0.85               21.59              False                 47.15                 True
+  a +-15%: fecha 0 de 8 com a margem do CLIMA (o que o codigo fez) | 1 de 8 com a margem da PERSISTENCIA (o que foi pre-declarado)
+
+=== NOTIFICADOS ===
+versao  h   n  MAE_clima  MAE_vetor  MAE_persistencia  delta_MAE  margem_15pct_clima  equiv_15pct_clima  margem_15pct_persist  equiv_15pct_persist
+  puro  1 587     183.21     170.95             45.11     -12.26               27.48               True                  6.77                False
+  puro  4 584     198.92     187.05            143.90     -11.87               29.84               True                 21.59                False
+  puro  8 580     199.05     222.05            253.53      23.01               29.86              False                 38.03                False
+  puro 12 576     200.70     234.53            315.66      33.83               30.10              False                 47.35                False
+com_ar  1 587      72.55      74.44             45.11       1.89               10.88               True                  6.77                False
+com_ar  4 584     171.27     161.29            143.90      -9.99               25.69               True                 21.59                False
+com_ar  8 580     250.01     272.94            253.53      22.93               37.50              False                 38.03                False
+com_ar 12 576     248.19     320.67            315.66      72.48               37.23              False                 47.35                False
+  a +-15%: fecha 4 de 8 com a margem do CLIMA (o que o codigo fez) | 0 de 8 com a margem da PERSISTENCIA (o que foi pre-declarado)
+

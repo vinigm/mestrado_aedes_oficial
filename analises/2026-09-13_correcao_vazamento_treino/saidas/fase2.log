@@ -1,0 +1,372 @@
+FASE 2 iniciada em 13/09/2026 08:10:23
+
+######## [08:10:23] B1 rodada 2 - equivalencia, alvo CONFIRMADOS ########
+ALVO: casos confirmados | 428 semanas com alvo nao-nulo
+Tabela final carregada: 725 semanas.
+  SO_CLIMA_PURO (puro): 24 features
+  SO_VETOR_PURO (puro): 8 features
+  SO_CLIMA_AR (com_ar): 29 features
+  SO_VETOR_AR (com_ar): 13 features
+  [   9.3s] SO_CLIMA_PURO h=1: 324 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_PURO_h1.csv
+  [  13.7s] SO_VETOR_PURO h=1: 312 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_PURO_h1.csv
+  [  23.3s] SO_CLIMA_AR h=1: 319 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_AR_h1.csv
+  [  28.2s] SO_VETOR_AR h=1: 307 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_AR_h1.csv
+  [  37.3s] SO_CLIMA_PURO h=4: 324 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_PURO_h4.csv
+  [  41.6s] SO_VETOR_PURO h=4: 309 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_PURO_h4.csv
+  [  51.0s] SO_CLIMA_AR h=4: 316 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_AR_h4.csv
+  [  55.8s] SO_VETOR_AR h=4: 304 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_AR_h4.csv
+  [  65.0s] SO_CLIMA_PURO h=8: 324 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_PURO_h8.csv
+  [  69.2s] SO_VETOR_PURO h=8: 305 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_PURO_h8.csv
+  [  78.5s] SO_CLIMA_AR h=8: 312 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_AR_h8.csv
+  [  83.2s] SO_VETOR_AR h=8: 300 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_AR_h8.csv
+  [  92.2s] SO_CLIMA_PURO h=12: 324 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_PURO_h12.csv
+  [  96.3s] SO_VETOR_PURO h=12: 305 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_PURO_h12.csv
+  [ 105.4s] SO_CLIMA_AR h=12: 308 previsões -> rodada_2_confirmados_previsoes_SO_CLIMA_AR_h12.csv
+  [ 110.1s] SO_VETOR_AR h=12: 296 previsões -> rodada_2_confirmados_previsoes_SO_VETOR_AR_h12.csv
+
+Resultados salvos em: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-13_correcao_vazamento_treino/saidas/rodada_2_confirmados_resultados_equivalencia.csv
+Tempo total: 110.3s (1.8 min)
+[08:12:14] OK
+
+######## [08:12:14] B2 rodada 2 - equivalencia, alvo NOTIFICADOS ########
+ALVO: casos notificados | 715 semanas com alvo nao-nulo
+Tabela final carregada: 725 semanas.
+  SO_CLIMA_PURO (puro): 24 features
+  SO_VETOR_PURO (puro): 8 features
+  SO_CLIMA_AR (com_ar): 29 features
+  SO_VETOR_AR (com_ar): 13 features
+  [  23.0s] SO_CLIMA_PURO h=1: 610 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_PURO_h1.csv
+  [  32.6s] SO_VETOR_PURO h=1: 587 previsões -> rodada_2_notificados_previsoes_SO_VETOR_PURO_h1.csv
+  [  57.4s] SO_CLIMA_AR h=1: 606 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_AR_h1.csv
+  [  69.2s] SO_VETOR_AR h=1: 587 previsões -> rodada_2_notificados_previsoes_SO_VETOR_AR_h1.csv
+  [  91.9s] SO_CLIMA_PURO h=4: 607 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_PURO_h4.csv
+  [ 101.3s] SO_VETOR_PURO h=4: 584 previsões -> rodada_2_notificados_previsoes_SO_VETOR_PURO_h4.csv
+  [ 125.8s] SO_CLIMA_AR h=4: 603 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_AR_h4.csv
+  [ 137.5s] SO_VETOR_AR h=4: 584 previsões -> rodada_2_notificados_previsoes_SO_VETOR_AR_h4.csv
+  [ 159.2s] SO_CLIMA_PURO h=8: 603 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_PURO_h8.csv
+  [ 168.9s] SO_VETOR_PURO h=8: 580 previsões -> rodada_2_notificados_previsoes_SO_VETOR_PURO_h8.csv
+  [ 192.9s] SO_CLIMA_AR h=8: 599 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_AR_h8.csv
+  [ 204.4s] SO_VETOR_AR h=8: 580 previsões -> rodada_2_notificados_previsoes_SO_VETOR_AR_h8.csv
+  [ 225.8s] SO_CLIMA_PURO h=12: 599 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_PURO_h12.csv
+  [ 235.3s] SO_VETOR_PURO h=12: 576 previsões -> rodada_2_notificados_previsoes_SO_VETOR_PURO_h12.csv
+  [ 259.2s] SO_CLIMA_AR h=12: 595 previsões -> rodada_2_notificados_previsoes_SO_CLIMA_AR_h12.csv
+  [ 270.8s] SO_VETOR_AR h=12: 576 previsões -> rodada_2_notificados_previsoes_SO_VETOR_AR_h12.csv
+
+Resultados salvos em: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-13_correcao_vazamento_treino/saidas/rodada_2_notificados_resultados_equivalencia.csv
+Tempo total: 271.0s (4.5 min)
+[08:16:46] OK
+
+######## [08:16:46] C rodada 4 - janela de treino ########
+serie: 725 semanas | alvo: aedes_aegypti_por_armadilha
+janela de avaliacao comum: a partir de 2022-01-02
+regimes: expansivel_2012, expansivel_2020, deslizante_6anos
+
+h=1: rodando os 3 regimes... 226 semanas avaliadas
+h=4: rodando os 3 regimes... 221 semanas avaliadas
+h=8: rodando os 3 regimes... 217 semanas avaliadas
+h=12: rodando os 3 regimes... 213 semanas avaliadas
+
+==============================================================================
+RESUMO — ablacao de janela de treino (alvo: densidade do vetor)
+==============================================================================
+ h           regime  semanas_avaliadas  n_treino_mediano    MAE   RMSE     R2
+ 1  expansivel_2012                226               584 0.1526 0.2523 0.7399
+ 1  expansivel_2020                226               216 0.1617 0.2671 0.7085
+ 1 deslizante_6anos                226               299 0.1505 0.2526 0.7392
+ 4  expansivel_2012                221               577 0.1745 0.2831 0.6772
+ 4  expansivel_2020                221               211 0.1825 0.2764 0.6923
+ 4 deslizante_6anos                221               294 0.1933 0.3025 0.6314
+ 8  expansivel_2012                217               574 0.1930 0.2947 0.6520
+ 8  expansivel_2020                217               208 0.2035 0.3019 0.6348
+ 8 deslizante_6anos                217               290 0.2066 0.3162 0.5992
+12  expansivel_2012                213               568 0.2041 0.3208 0.5876
+12  expansivel_2020                213               202 0.2164 0.3228 0.5824
+12 deslizante_6anos                213               286 0.2281 0.3517 0.5045
+
+=== melhor regime por horizonte (menor MAE) ===
+  h= 1: deslizante_6anos     MAE=0.1505  R2=0.7392
+  h= 4: expansivel_2012      MAE=0.1745  R2=0.6772
+  h= 8: expansivel_2012      MAE=0.1930  R2=0.6520
+  h=12: expansivel_2012      MAE=0.2041  R2=0.5876
+
+tempo total: 2.0 min
+[08:18:46] OK
+
+######## [08:18:46] D rodada 3 - ranking espacial ########
+
+======================================================================
+ZONAS SINTETICAS k=8
+======================================================================
+  347,238 inspecoes | 393 semanas (2019-01-06 00:00:00 a 2026-08-09 00:00:00)
+  zonas elegiveis: 7 de 8
+  h=1: rodando walk-forward... 235 semanas | modelo=0.786 persistencia=0.893
+  h=2: rodando walk-forward... 234 semanas | modelo=0.607 persistencia=0.821
+  h=4: rodando walk-forward... 232 semanas | modelo=0.429 persistencia=0.607
+  h=8: rodando walk-forward... 228 semanas | modelo=0.321 persistencia=0.500
+
+======================================================================
+ZONAS SINTETICAS k=16
+======================================================================
+  347,238 inspecoes | 393 semanas (2019-01-06 00:00:00 a 2026-08-09 00:00:00)
+  zonas elegiveis: 15 de 16
+  h=1: rodando walk-forward... 235 semanas | modelo=0.814 persistencia=0.899
+  h=2: rodando walk-forward... 234 semanas | modelo=0.662 persistencia=0.801
+  h=4: rodando walk-forward... 232 semanas | modelo=0.484 persistencia=0.607
+  h=8: rodando walk-forward... 228 semanas | modelo=0.346 persistencia=0.493
+
+======================================================================
+RESUMO — Spearman mediano do ranking das zonas
+======================================================================
+ k  h  semanas_testadas  spearman_modelo_mediana  spearman_persistencia_mediana  spearman_climatologia_mediana  fracao_semanas_modelo_vence_persistencia  modelo_vence_persistencia
+ 8  1               235                    0.786                          0.893                          0.464                                     0.179                      False
+ 8  2               234                    0.607                          0.821                          0.446                                     0.209                      False
+ 8  4               232                    0.429                          0.607                          0.429                                     0.302                      False
+ 8  8               228                    0.321                          0.500                          0.429                                     0.316                      False
+16  1               235                    0.814                          0.899                          0.373                                     0.153                      False
+16  2               234                    0.662                          0.801                          0.380                                     0.179                      False
+16  4               232                    0.484                          0.607                          0.389                                     0.323                      False
+16  8               228                    0.346                          0.493                          0.394                                     0.329                      False
+
+VEREDITO (regra pre-declarada): o modelo supera a persistencia em 0 de 8 combinacoes k x h.
+
+tempo total: 2.0 min
+[08:20:45] OK
+
+######## [08:20:45] E1 comparacao_literatura ########
+PARTE 1: previsao de casos (treina no passado, preve o futuro)...
+algoritmo  h  R2_so_clima  R2_clima_vetor  ganho
+ lightgbm  1        0.236           0.308  0.073
+ lightgbm  2        0.166           0.287  0.122
+ lightgbm  3        0.232           0.231 -0.002
+ lightgbm  4        0.221           0.279  0.058
+ lightgbm  5        0.240           0.356  0.117
+ lightgbm  6        0.235           0.318  0.083
+ lightgbm  7        0.143           0.249  0.106
+ lightgbm  8        0.089           0.201  0.112
+ lightgbm  9        0.082           0.215  0.132
+ lightgbm 10       -0.045           0.128  0.172
+ lightgbm 11       -0.023           0.133  0.156
+ lightgbm 12       -0.024           0.106  0.130
+
+PARTE 2: aceleracao de casos (replica do Oliveira)...
+algoritmo       protocolo  so_clima  clima_vetor    n  referencia_oliveira
+ lightgbm split_aleatorio     0.573        0.568 <NA>                0.674
+ lightgbm    walk_forward     0.559        0.552  427                0.674
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/comparacao_casos_resultados.csv
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/comparacao_oliveira_resultados.csv
+[08:50:30] OK
+
+######## [08:50:30] E2 cidade_regressao ########
+clima top-8: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4', 'temp_amplitude_media', 'umid_media_lag2']
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/clima_enxuto_maturidade_resultados.csv
+[09:37:54] OK
+
+######## [09:37:54] E3 cidade_diebold ########
+=== sem_maturidade | clima top-6: ['temp_media_lag4', 'umid_media', 'temp_max', 'temp_media_lag3', 'pressao_media_lag3', 'pressao_media_lag4'] ===
+=== com_maturidade | clima top-6: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4'] ===
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/diebold_mariano_resultados.csv
+[11:10:45] OK
+
+######## [11:10:45] E4 cidade_deteccao_surto ########
+################################################################################
+# EXPERIMENTO A — InfoDengue notificado (2010-2026, sem censura)
+#   'da pra detectar surto 1-3 meses a frente em POA?'
+################################################################################
+ pctl  h        modelo   n  n_pos  sensib  espec    f1  bal_acc   auc    ap
+   90  4 clima+AR_LGBM 679    184   0.571  0.947 0.667    0.759 0.870 0.732
+   90  4       sazonal 679    184   0.000  0.996 0.000    0.498 0.713 0.397
+   90  4  persistencia 679    184   0.766  0.925 0.779    0.846   NaN   NaN
+   90  8 clima+AR_LGBM 675    188   0.436  0.934 0.543    0.685 0.811 0.601
+   90  8       sazonal 675    188   0.000  0.996 0.000    0.498 0.731 0.448
+   90  8  persistencia 675    188   0.596  0.856 0.605    0.726   NaN   NaN
+   90 12 clima+AR_LGBM 671    185   0.319  0.924 0.420    0.621 0.767 0.512
+   90 12       sazonal 671    185   0.000  0.996 0.000    0.498 0.744 0.463
+   90 12  persistencia 671    185   0.432  0.802 0.443    0.617   NaN   NaN
+   95  4 clima+AR_LGBM 679    108   0.546  0.953 0.608    0.750 0.915 0.700
+   95  4       sazonal 679    108   0.000  0.998 0.000    0.499 0.787 0.307
+   95  4  persistencia 679    108   0.713  0.956 0.733    0.835   NaN   NaN
+   95  8 clima+AR_LGBM 675    118   0.339  0.946 0.426    0.643 0.832 0.460
+   95  8       sazonal 675    118   0.000  0.998 0.000    0.499 0.796 0.386
+   95  8  persistencia 675    118   0.508  0.905 0.519    0.707   NaN   NaN
+   95 12 clima+AR_LGBM 671    119   0.185  0.940 0.253    0.563 0.747 0.344
+   95 12       sazonal 671    119   0.000  0.998 0.000    0.499 0.794 0.377
+   95 12  persistencia 671    119   0.261  0.851 0.267    0.556   NaN   NaN
+
+################################################################################
+# EXPERIMENTO B — tabela_final: so-clima vs clima+VETOR na deteccao (McNemar)
+################################################################################
+  P90 h= 4: n=288 pos=73 | clima>vetor=12 vetor>clima=10 McNemar p=0.832
+  P90 h= 8: n=283 pos=77 | clima>vetor=8 vetor>clima=11 McNemar p=0.648
+  P90 h=12: n=278 pos=77 | clima>vetor=10 vetor>clima=16 McNemar p=0.327
+  P95 h= 4: n=288 pos=50 | clima>vetor=13 vetor>clima=8 McNemar p=0.383
+  P95 h= 8: n=282 pos=51 | clima>vetor=5 vetor>clima=12 McNemar p=0.143
+  P95 h=12: n=279 pos=53 | clima>vetor=4 vetor>clima=7 McNemar p=0.549
+
+=== Metricas por modelo (Experimento B) ===
+ pctl  h      modelo   n  n_pos  sensib  espec    f1  bal_acc   auc    ap
+   90  4     sazonal 288     73   0.055  0.967 0.095    0.511 0.854 0.587
+   90  4    so-clima 288     73   0.753  0.940 0.780    0.846 0.947 0.850
+   90  4 clima+vetor 288     73   0.781  0.921 0.776    0.851 0.946 0.852
+   90  8     sazonal 283     77   0.130  0.976 0.217    0.553 0.867 0.669
+   90  8    so-clima 283     77   0.442  0.942 0.553    0.692 0.881 0.718
+   90  8 clima+vetor 283     77   0.481  0.942 0.587    0.711 0.921 0.782
+   90 12     sazonal 278     77   0.182  0.965 0.286    0.573 0.861 0.685
+   90 12    so-clima 278     77   0.247  0.980 0.380    0.613 0.910 0.751
+   90 12 clima+vetor 278     77   0.364  0.965 0.500    0.664 0.917 0.785
+   95  4     sazonal 288     50   0.000  0.983 0.000    0.492 0.821 0.448
+   95  4    so-clima 288     50   0.600  0.962 0.674    0.781 0.914 0.774
+   95  4 clima+vetor 288     50   0.540  0.954 0.614    0.747 0.936 0.745
+   95  8     sazonal 282     51   0.020  0.987 0.036    0.503 0.857 0.551
+   95  8    so-clima 282     51   0.333  0.970 0.453    0.652 0.922 0.692
+   95  8 clima+vetor 282     51   0.471  0.970 0.585    0.720 0.921 0.735
+   95 12     sazonal 279     53   0.019  0.982 0.034    0.501 0.857 0.579
+   95 12    so-clima 279     53   0.245  0.987 0.377    0.616 0.812 0.564
+   95 12 clima+vetor 279     53   0.358  0.973 0.487    0.666 0.830 0.657
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/deteccao_surto_resultados.csv
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/deteccao_surto_mcnemar.csv
+[11:13:39] OK
+
+######## [11:13:39] E5 cidade_surto_notificados ########
+
+################################################################################
+# SURTO COM ALVO NOTIFICADOS (InfoDengue) — so-clima vs clima+VETOR
+################################################################################
+semanas com alvo (notificados, apos corte de maturidade de 12 semanas): 703
+  P90 h= 4: n=565 pos=121 | clima>vetor=10 vetor>clima=7 McNemar p=0.6291
+  P90 h= 8: n=558 pos=123 | clima>vetor=32 vetor>clima=15 McNemar p=0.0196
+  P90 h=12: n=553 pos=127 | clima>vetor=23 vetor>clima=7 McNemar p=0.0062
+  P95 h= 4: n=568 pos= 77 | clima>vetor=19 vetor>clima=10 McNemar p=0.1374
+  P95 h= 8: n=560 pos= 78 | clima>vetor=9 vetor>clima=10 McNemar p=1.0000
+  P95 h=12: n=554 pos= 83 | clima>vetor=19 vetor>clima=10 McNemar p=0.1374
+
+=== Metricas por modelo ===
+ pctl  h      modelo   n  n_pos  sensib  espec    f1  bal_acc   auc    ap
+   90  4     sazonal 565    121   0.033  0.973 0.058    0.503 0.798 0.417
+   90  4    so-clima 565    121   0.636  0.980 0.744    0.808 0.935 0.826
+   90  4 clima+vetor 565    121   0.612  0.980 0.725    0.796 0.928 0.819
+   90  8     sazonal 558    123   0.024  0.972 0.043    0.498 0.802 0.433
+   90  8    so-clima 558    123   0.496  0.961 0.607    0.728 0.875 0.647
+   90  8 clima+vetor 558    123   0.472  0.929 0.547    0.700 0.862 0.593
+   90 12     sazonal 553    127   0.016  0.972 0.028    0.494 0.759 0.410
+   90 12    so-clima 553    127   0.307  0.948 0.415    0.628 0.811 0.523
+   90 12 clima+vetor 553    127   0.299  0.913 0.376    0.606 0.793 0.458
+   95  4     sazonal 568     77   0.000  0.988 0.000    0.494 0.832 0.336
+   95  4    so-clima 568     77   0.506  0.971 0.600    0.739 0.926 0.742
+   95  4 clima+vetor 568     77   0.468  0.959 0.541    0.713 0.921 0.653
+   95  8     sazonal 560     78   0.000  0.992 0.000    0.496 0.841 0.368
+   95  8    so-clima 560     78   0.128  0.971 0.196    0.550 0.868 0.458
+   95  8 clima+vetor 560     78   0.192  0.963 0.270    0.577 0.870 0.413
+   95 12     sazonal 554     83   0.000  0.992 0.000    0.496 0.838 0.374
+   95 12    so-clima 554     83   0.217  0.972 0.316    0.595 0.840 0.440
+   95 12 clima+vetor 554     83   0.169  0.962 0.243    0.565 0.832 0.401
+
+=== McNemar com correcao de Holm (6 comparacoes) ===
+ pctl  h   n  n_pos  clima_certo_vetor_errado  vetor_certo_clima_errado  discordantes  p_bruto  p_holm  significativo_holm  alfa
+   90  4 565    121                        10                         7            17   0.6291  1.0000               False  0.05
+   90  8 558    123                        32                        15            47   0.0196  0.0980               False  0.05
+   90 12 553    127                        23                         7            30   0.0062  0.0370                True  0.05
+   95  4 568     77                        19                        10            29   0.1374  0.5496               False  0.05
+   95  8 560     78                         9                        10            19   1.0000  1.0000               False  0.05
+   95 12 554     83                        19                        10            29   0.1374  0.5496               False  0.05
+
+VEREDITO: 1 de 6 comparacoes sobrevivem a Holm em alfa=0.05.
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/surto_notificados_resultados.csv
+salvo: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/saidas/resultados/surto_notificados_mcnemar.csv
+[11:17:45] OK
+
+######## [11:17:45] A grid - as 22 configuracoes restantes (88 celulas, ~2h) ########
+faltavam 22 configuracoes de 30 | 88 celulas
+[  1/88] pos03 | hist_gradient_boosting | quantil_0.70 | M1_com_vetor | h=1: 295 semanas (2.6 min)
+[  2/88] pos03 | hist_gradient_boosting | quantil_0.70 | M1_com_vetor | h=4: 292 semanas (2.2 min)
+[  3/88] pos03 | hist_gradient_boosting | quantil_0.70 | M1_com_vetor | h=8: 288 semanas (2.1 min)
+[  4/88] pos03 | hist_gradient_boosting | quantil_0.70 | M1_com_vetor | h=12: 284 semanas (2.1 min)
+[  5/88] pos05 | gradient_boosting | quantil_0.85 | M1_com_vetor | h=1: 295 semanas (0.9 min)
+[  6/88] pos05 | gradient_boosting | quantil_0.85 | M1_com_vetor | h=4: 292 semanas (0.9 min)
+[  7/88] pos05 | gradient_boosting | quantil_0.85 | M1_com_vetor | h=8: 288 semanas (0.8 min)
+[  8/88] pos05 | gradient_boosting | quantil_0.85 | M1_com_vetor | h=12: 284 semanas (0.8 min)
+[  9/88] pos06 | gradient_boosting | quantil_0.80 | M1_com_vetor | h=1: 295 semanas (0.9 min)
+[ 10/88] pos06 | gradient_boosting | quantil_0.80 | M1_com_vetor | h=4: 292 semanas (0.9 min)
+[ 11/88] pos06 | gradient_boosting | quantil_0.80 | M1_com_vetor | h=8: 288 semanas (0.8 min)
+[ 12/88] pos06 | gradient_boosting | quantil_0.80 | M1_com_vetor | h=12: 284 semanas (0.8 min)
+[ 13/88] pos07 | hist_gradient_boosting | quantil_0.90 | M1_com_vetor | h=1: 295 semanas (1.8 min)
+[ 14/88] pos07 | hist_gradient_boosting | quantil_0.90 | M1_com_vetor | h=4: 292 semanas (1.8 min)
+[ 15/88] pos07 | hist_gradient_boosting | quantil_0.90 | M1_com_vetor | h=8: 288 semanas (1.8 min)
+[ 16/88] pos07 | hist_gradient_boosting | quantil_0.90 | M1_com_vetor | h=12: 284 semanas (1.7 min)
+[ 17/88] pos08 | gradient_boosting | quantil_0.90 | M1_com_vetor | h=1: 295 semanas (0.8 min)
+[ 18/88] pos08 | gradient_boosting | quantil_0.90 | M1_com_vetor | h=4: 292 semanas (0.8 min)
+[ 19/88] pos08 | gradient_boosting | quantil_0.90 | M1_com_vetor | h=8: 288 semanas (0.8 min)
+[ 20/88] pos08 | gradient_boosting | quantil_0.90 | M1_com_vetor | h=12: 284 semanas (0.8 min)
+[ 21/88] pos09 | gradient_boosting | quantil_0.85 | M0_sem_vetor | h=1: 307 semanas (0.8 min)
+[ 22/88] pos09 | gradient_boosting | quantil_0.85 | M0_sem_vetor | h=4: 304 semanas (0.7 min)
+[ 23/88] pos09 | gradient_boosting | quantil_0.85 | M0_sem_vetor | h=8: 300 semanas (0.7 min)
+[ 24/88] pos09 | gradient_boosting | quantil_0.85 | M0_sem_vetor | h=12: 296 semanas (0.7 min)
+[ 25/88] pos10 | gradient_boosting | padrao | M0_sem_vetor | h=1: 307 semanas (0.5 min)
+[ 26/88] pos10 | gradient_boosting | padrao | M0_sem_vetor | h=4: 304 semanas (0.4 min)
+[ 27/88] pos10 | gradient_boosting | padrao | M0_sem_vetor | h=8: 300 semanas (0.4 min)
+[ 28/88] pos10 | gradient_boosting | padrao | M0_sem_vetor | h=12: 296 semanas (0.4 min)
+[ 29/88] pos11 | gradient_boosting | quantil_0.70 | M0_sem_vetor | h=1: 307 semanas (0.8 min)
+[ 30/88] pos11 | gradient_boosting | quantil_0.70 | M0_sem_vetor | h=4: 304 semanas (0.8 min)
+[ 31/88] pos11 | gradient_boosting | quantil_0.70 | M0_sem_vetor | h=8: 300 semanas (0.7 min)
+[ 32/88] pos11 | gradient_boosting | quantil_0.70 | M0_sem_vetor | h=12: 296 semanas (0.7 min)
+[ 33/88] pos12 | hist_gradient_boosting | quantil_0.85 | M0_sem_vetor | h=1: 307 semanas (2.0 min)
+[ 34/88] pos12 | hist_gradient_boosting | quantil_0.85 | M0_sem_vetor | h=4: 304 semanas (1.9 min)
+[ 35/88] pos12 | hist_gradient_boosting | quantil_0.85 | M0_sem_vetor | h=8: 300 semanas (2.0 min)
+[ 36/88] pos12 | hist_gradient_boosting | quantil_0.85 | M0_sem_vetor | h=12: 296 semanas (1.9 min)
+[ 37/88] pos13 | gradient_boosting | padrao | M1_com_vetor | h=1: 295 semanas (0.6 min)
+[ 38/88] pos13 | gradient_boosting | padrao | M1_com_vetor | h=4: 292 semanas (0.6 min)
+[ 39/88] pos13 | gradient_boosting | padrao | M1_com_vetor | h=8: 288 semanas (0.6 min)
+[ 40/88] pos13 | gradient_boosting | padrao | M1_com_vetor | h=12: 284 semanas (0.6 min)
+[ 41/88] pos14 | hist_gradient_boosting | quantil_0.70 | M0_sem_vetor | h=1: 307 semanas (2.3 min)
+[ 42/88] pos14 | hist_gradient_boosting | quantil_0.70 | M0_sem_vetor | h=4: 304 semanas (2.2 min)
+[ 43/88] pos14 | hist_gradient_boosting | quantil_0.70 | M0_sem_vetor | h=8: 300 semanas (2.2 min)
+[ 44/88] pos14 | hist_gradient_boosting | quantil_0.70 | M0_sem_vetor | h=12: 296 semanas (2.2 min)
+[ 45/88] pos16 | gradient_boosting | quantil_0.80 | M0_sem_vetor | h=1: 307 semanas (0.8 min)
+[ 46/88] pos16 | gradient_boosting | quantil_0.80 | M0_sem_vetor | h=4: 304 semanas (0.7 min)
+[ 47/88] pos16 | gradient_boosting | quantil_0.80 | M0_sem_vetor | h=8: 300 semanas (0.7 min)
+[ 48/88] pos16 | gradient_boosting | quantil_0.80 | M0_sem_vetor | h=12: 296 semanas (0.7 min)
+[ 49/88] pos17 | hist_gradient_boosting | padrao | M0_sem_vetor | h=1: 307 semanas (1.9 min)
+[ 50/88] pos17 | hist_gradient_boosting | padrao | M0_sem_vetor | h=4: 304 semanas (1.7 min)
+[ 51/88] pos17 | hist_gradient_boosting | padrao | M0_sem_vetor | h=8: 300 semanas (1.7 min)
+[ 52/88] pos17 | hist_gradient_boosting | padrao | M0_sem_vetor | h=12: 296 semanas (1.8 min)
+[ 53/88] pos19 | gradient_boosting | quantil_0.90 | M0_sem_vetor | h=1: 307 semanas (0.7 min)
+[ 54/88] pos19 | gradient_boosting | quantil_0.90 | M0_sem_vetor | h=4: 304 semanas (0.7 min)
+[ 55/88] pos19 | gradient_boosting | quantil_0.90 | M0_sem_vetor | h=8: 300 semanas (0.7 min)
+[ 56/88] pos19 | gradient_boosting | quantil_0.90 | M0_sem_vetor | h=12: 296 semanas (0.7 min)
+[ 57/88] pos21 | hist_gradient_boosting | quantil_0.90 | M0_sem_vetor | h=1: 307 semanas (1.9 min)
+[ 58/88] pos21 | hist_gradient_boosting | quantil_0.90 | M0_sem_vetor | h=4: 304 semanas (1.9 min)
+[ 59/88] pos21 | hist_gradient_boosting | quantil_0.90 | M0_sem_vetor | h=8: 300 semanas (2.0 min)
+[ 60/88] pos21 | hist_gradient_boosting | quantil_0.90 | M0_sem_vetor | h=12: 296 semanas (1.9 min)
+[ 61/88] pos22 | lightgbm | quantil_0.70 | M1_com_vetor | h=1: 295 semanas (1.4 min)
+[ 62/88] pos22 | lightgbm | quantil_0.70 | M1_com_vetor | h=4: 292 semanas (1.4 min)
+[ 63/88] pos22 | lightgbm | quantil_0.70 | M1_com_vetor | h=8: 288 semanas (1.3 min)
+[ 64/88] pos22 | lightgbm | quantil_0.70 | M1_com_vetor | h=12: 284 semanas (1.3 min)
+[ 65/88] pos23 | lightgbm | padrao | M0_sem_vetor | h=1: 307 semanas (1.7 min)
+[ 66/88] pos23 | lightgbm | padrao | M0_sem_vetor | h=4: 304 semanas (1.7 min)
+[ 67/88] pos23 | lightgbm | padrao | M0_sem_vetor | h=8: 300 semanas (1.6 min)
+[ 68/88] pos23 | lightgbm | padrao | M0_sem_vetor | h=12: 296 semanas (1.6 min)
+[ 69/88] pos24 | lightgbm | quantil_0.80 | M1_com_vetor | h=1: 295 semanas (1.4 min)
+[ 70/88] pos24 | lightgbm | quantil_0.80 | M1_com_vetor | h=4: 292 semanas (1.3 min)
+[ 71/88] pos24 | lightgbm | quantil_0.80 | M1_com_vetor | h=8: 288 semanas (1.3 min)
+[ 72/88] pos24 | lightgbm | quantil_0.80 | M1_com_vetor | h=12: 284 semanas (1.2 min)
+[ 73/88] pos25 | lightgbm | quantil_0.80 | M0_sem_vetor | h=1: 307 semanas (1.4 min)
+[ 74/88] pos25 | lightgbm | quantil_0.80 | M0_sem_vetor | h=4: 304 semanas (1.4 min)
+[ 75/88] pos25 | lightgbm | quantil_0.80 | M0_sem_vetor | h=8: 300 semanas (1.4 min)
+[ 76/88] pos25 | lightgbm | quantil_0.80 | M0_sem_vetor | h=12: 296 semanas (1.3 min)
+[ 77/88] pos27 | lightgbm | quantil_0.85 | M0_sem_vetor | h=1: 307 semanas (1.3 min)
+[ 78/88] pos27 | lightgbm | quantil_0.85 | M0_sem_vetor | h=4: 304 semanas (1.3 min)
+[ 79/88] pos27 | lightgbm | quantil_0.85 | M0_sem_vetor | h=8: 300 semanas (1.3 min)
+[ 80/88] pos27 | lightgbm | quantil_0.85 | M0_sem_vetor | h=12: 296 semanas (1.2 min)
+[ 81/88] pos28 | lightgbm | quantil_0.90 | M0_sem_vetor | h=1: 307 semanas (1.2 min)
+[ 82/88] pos28 | lightgbm | quantil_0.90 | M0_sem_vetor | h=4: 304 semanas (1.2 min)
+[ 83/88] pos28 | lightgbm | quantil_0.90 | M0_sem_vetor | h=8: 300 semanas (1.1 min)
+[ 84/88] pos28 | lightgbm | quantil_0.90 | M0_sem_vetor | h=12: 296 semanas (1.1 min)
+[ 85/88] pos29 | lightgbm | quantil_0.85 | M1_com_vetor | h=1: 295 semanas (1.3 min)
+[ 86/88] pos29 | lightgbm | quantil_0.85 | M1_com_vetor | h=4: 292 semanas (1.2 min)
+[ 87/88] pos29 | lightgbm | quantil_0.85 | M1_com_vetor | h=8: 288 semanas (1.2 min)
+[ 88/88] pos29 | lightgbm | quantil_0.85 | M1_com_vetor | h=12: 284 semanas (1.1 min)
+
+CONCLUIDO: 88 de 88 | falhas: 0 | 110.7 min (1.8 h)
+[13:08:26] OK
+
+######## FASE 2 CONCLUIDA em 13/09/2026 13:08:26 ########
+0

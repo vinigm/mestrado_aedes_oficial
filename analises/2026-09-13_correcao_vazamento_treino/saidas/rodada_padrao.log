@@ -1,0 +1,15 @@
+rodada corrigida: 8 celulas | passo=1
+M0=14 colunas | M1=20 colunas
+
+[ 1/8] pos20 | hist_gradient_boosting | padrao | M1_com_vetor | h=1: 295 semanas, ate 0 linhas descartadas do treino (1.8 min)
+[ 2/8] pos20 | hist_gradient_boosting | padrao | M1_com_vetor | h=4: 292 semanas, ate 3 linhas descartadas do treino (1.9 min)
+[ 3/8] pos20 | hist_gradient_boosting | padrao | M1_com_vetor | h=8: 288 semanas, ate 7 linhas descartadas do treino (2.1 min)
+[ 4/8] pos20 | hist_gradient_boosting | padrao | M1_com_vetor | h=12: 284 semanas, ate 11 linhas descartadas do treino (1.6 min)
+[ 5/8] pos18 | lightgbm | padrao | M1_com_vetor | h=1: 295 semanas, ate 0 linhas descartadas do treino (1.7 min)
+[ 6/8] pos18 | lightgbm | padrao | M1_com_vetor | h=4: 292 semanas, ate 3 linhas descartadas do treino (1.7 min)
+[ 7/8] pos18 | lightgbm | padrao | M1_com_vetor | h=8: 288 semanas, ate 7 linhas descartadas do treino (1.6 min)
+[ 8/8] pos18 | lightgbm | padrao | M1_com_vetor | h=12: 284 semanas, ate 11 linhas descartadas do treino (1.4 min)
+
+RODADA CONCLUIDA: 8 de 8 | falhas: 0
+tempo total: 13.8 min
+previsoes em: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-13_correcao_vazamento_treino/saidas/corrigido_previsoes_padrao.csv

@@ -1,0 +1,43 @@
+
+==============================================================================
+BLOCO C — janela de treino (criterio: 2012 vence em 3 de 4?)
+==============================================================================
+  ANTES: expansivel_2012 vence em 3 de 4 horizontes
+regime  deslizante_6anos  expansivel_2012  expansivel_2020
+h                                                         
+1                   0.15             0.15             0.16
+4                   0.18             0.17             0.18
+8                   0.19             0.18             0.19
+12                  0.21             0.19             0.20
+  DEPOIS: expansivel_2012 vence em 3 de 4 horizontes
+regime  deslizante_6anos  expansivel_2012  expansivel_2020
+h                                                         
+1                   0.15             0.15             0.16
+4                   0.19             0.17             0.18
+8                   0.21             0.19             0.20
+12                  0.23             0.20             0.22
+  -> criterio: 3 de 4 mantem citavel; 2 ou menos vira indeterminado
+
+==============================================================================
+BLOCO D — ranking espacial (criterio: a celula que o modelo vencia sobrevive?)
+==============================================================================
+  ANTES: modelo vence a persistencia em 1 de 8
+ k  h  spearman_modelo_mediana  spearman_persistencia_mediana  spearman_climatologia_mediana  modelo_vence
+ 8  1                    0.786                          0.893                          0.464         False
+ 8  2                    0.679                          0.821                          0.446         False
+ 8  4                    0.536                          0.607                          0.429         False
+ 8  8                    0.536                          0.500                          0.429          True
+16  1                    0.814                          0.899                          0.373         False
+16  2                    0.721                          0.801                          0.380         False
+16  4                    0.570                          0.607                          0.389         False
+16  8                    0.486                          0.493                          0.394         False
+  DEPOIS: modelo vence a persistencia em 0 de 8
+ k  h  spearman_modelo_mediana  spearman_persistencia_mediana  spearman_climatologia_mediana  modelo_vence
+ 8  1                    0.786                          0.893                          0.464         False
+ 8  2                    0.607                          0.821                          0.446         False
+ 8  4                    0.429                          0.607                          0.429         False
+ 8  8                    0.321                          0.500                          0.429         False
+16  1                    0.814                          0.899                          0.373         False
+16  2                    0.662                          0.801                          0.380         False
+16  4                    0.484                          0.607                          0.389         False
+16  8                    0.346                          0.493                          0.394         False
