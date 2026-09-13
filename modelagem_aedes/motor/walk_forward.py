@@ -16,6 +16,7 @@ import pandas as pd
 
 from config import settings
 from config.modelo import EspecificacaoModelo
+from motor import corte_temporal
 
 # Quantas semanas de diferenca ainda contam como "a mesma epoca do ano" (o
 # calendario e circular: a semana 52 fica pertinho da semana 1 de novo).
@@ -93,8 +94,12 @@ def executar_walk_forward_surto(
 
     linhas_resultado = []
     for indice_corte in range(settings.MINIMO_SEMANAS_TREINO, len(dados_validos), passo):
-        treino = dados_validos.iloc[:indice_corte]
         teste = dados_validos.iloc[indice_corte:indice_corte + 1]
+        # So entra no treino a linha cuja RESPOSTA ja tinha acontecido nesta data.
+        # Ver motor/corte_temporal.py para o porque.
+        treino = corte_temporal.selecionar_treino_ja_respondido(
+            dados_validos, teste["data"].to_numpy()[0], horizonte
+        )
 
         limiar_surto = np.percentile(treino["casos_h"], percentil)
         surto_treino = (treino["casos_h"].to_numpy() >= limiar_surto).astype(int)

@@ -22,6 +22,7 @@ from sklearn.metrics import balanced_accuracy_score, r2_score
 from sklearn.model_selection import train_test_split
 
 from config.modelo import EspecificacaoModelo
+from motor import corte_temporal
 
 
 def r2_por_horizonte(
@@ -57,8 +58,12 @@ def r2_por_horizonte(
         valores_reais = []
         valores_previstos = []
         for indice_corte in range(minimo_semanas_treino, len(dados_validos), passo):
-            treino = dados_validos.iloc[:indice_corte]
             teste = dados_validos.iloc[indice_corte:indice_corte + 1]
+            # So entra no treino a linha cuja RESPOSTA ja tinha acontecido nesta data.
+            # Ver motor/corte_temporal.py para o porque.
+            treino = corte_temporal.selecionar_treino_ja_respondido(
+                dados_validos, teste[coluna_data].to_numpy()[0], horizonte, coluna_data
+            )
             modelo = especificacao_modelo.criar()
             modelo.fit(treino[colunas_features], treino["y"])
             valores_reais.append(teste["y"].to_numpy()[0])

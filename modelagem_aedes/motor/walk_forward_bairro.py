@@ -83,7 +83,9 @@ def executar_walk_forward_bairro(
         dados_validos = dados_horizonte.dropna(subset=features_do_passo + ["y"])
 
         for semana_teste in range(semana_minima_teste, instante_maximo - horizonte + 1, passo):
-            treino = dados_validos[dados_validos[coluna_tempo] < semana_teste]
+            # So entra a linha cuja RESPOSTA ja aconteceu. Aqui o tempo e um
+            # indice inteiro de semana, entao o recuo e aritmetico direto.
+            treino = dados_validos[dados_validos[coluna_tempo] <= semana_teste - horizonte]
             teste = dados_validos[dados_validos[coluna_tempo] == semana_teste]
             if len(teste) == 0 or len(treino) < minimo_linhas_treino:
                 continue

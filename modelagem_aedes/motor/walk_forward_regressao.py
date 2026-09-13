@@ -19,6 +19,7 @@ import pandas as pd
 from config import settings
 from config.modelo import EspecificacaoModelo
 from dominio.features import construir_alvo_horizonte
+from motor import corte_temporal
 
 
 def executar_walk_forward_regressao(
@@ -68,8 +69,12 @@ def executar_walk_forward_regressao(
             .reset_index(drop=True)
         )
         for indice_corte in range(minimo_semanas_treino, len(dados_validos), passo):
-            treino = dados_validos.iloc[:indice_corte]
             teste = dados_validos.iloc[indice_corte:indice_corte + 1]
+            # So entra no treino a linha cuja RESPOSTA ja tinha acontecido nesta data.
+            # Ver motor/corte_temporal.py para o porque.
+            treino = corte_temporal.selecionar_treino_ja_respondido(
+                dados_validos, teste["data"].to_numpy()[0], horizonte
+            )
             modelo = especificacao_modelo.criar()
             modelo.fit(treino[features_com_sazonalidade], treino["y_h"])
             previsao = modelo.predict(teste[features_com_sazonalidade])[0]
