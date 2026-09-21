@@ -1,7 +1,7 @@
 titulo: Cenario Principal
 ordem: 25
 
-<div class="veredito atencao"><span class="vRot">Pagina de acompanhamento</span><p>Nao e resultado final. Serve para controle proprio e para mostrar o andamento. Numeros de <b>30/08/2026</b> — vao mudar. A versao oficial sera montada depois, para a apresentacao.</p></div>
+<div class="veredito critico"><span class="vRot">&#9888; Pagina superada — leia a Cenario Principal 2</span><p>Os numeros desta pagina sao de <b>30/08/2026</b> e foram <b>medidos com um vazamento temporal</b> no corte de treino, descoberto e corrigido em <b>13/09/2026</b>. Eles inflam o desempenho de horizonte longo: o R&sup2; de 3 meses aqui aparece como <b>0,758</b> e o valor real e <b>0,437</b>.</p><p>Esta pagina fica no ar como <b>registro historico</b> do caminho percorrido. Para os numeros validos, veja <a href="cenario_principal_2.html"><b>Cenario Principal 2</b></a>.</p></div>
 
 ## Como chegamos ate aqui
 
