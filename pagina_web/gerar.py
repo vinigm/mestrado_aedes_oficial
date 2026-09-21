@@ -38,6 +38,11 @@ PASTA_MLRUNS = PASTA_AQUI.parent / "modelagem_aedes" / "mlruns"
 PASTA_SITE = PASTA_AQUI.parent / "docs"
 PASTA_PAGINAS = PASTA_AQUI / "paginas"
 
+# Pagina de paginas/ com "ordem" ABAIXO deste valor sobe para o topo do menu, ao
+# lado de Inicio e Metodologia, em vez de ficar depois dos cenarios. Serve para a
+# pagina-roteiro, que so cumpre o papel dela se for a primeira coisa que se ve.
+ORDEM_QUE_SOBE_PARA_O_TOPO = 10
+
 # Enderecos das paginas fixas (nao dar esses nomes a paginas novas em paginas/).
 NOMES_RESERVADOS = {"index", "objetivo", "dados", "cenarios", "resultados", "metodologia", "diario"}
 
@@ -1689,13 +1694,24 @@ def gerar(pasta_mlruns: Path, pasta_site: Path, pasta_paginas: Path) -> None:
 
     por_nome = {c.nome: c for c in cenarios}
     nomes = ordem_dos_cenarios(cenarios)
+    # As paginas de ordem baixa (roteiro, por exemplo) entram logo depois do
+    # "Inicio"; o resto continua vindo depois dos cenarios.
+    def entrada_de_menu(pagina):
+        return (pagina["arquivo"], pagina["chave"], pagina["titulo"])
+
+    extras_no_topo = [p for p in extras if p["ordem"] < ORDEM_QUE_SOBE_PARA_O_TOPO]
+    extras_no_fim = [p for p in extras if p["ordem"] >= ORDEM_QUE_SOBE_PARA_O_TOPO]
+    fixas_do_menu = list(PAGINAS)
+    for pagina in reversed(extras_no_topo):
+        fixas_do_menu.insert(1, entrada_de_menu(pagina))
+
     menu = {
-        "fixas": list(PAGINAS),
+        "fixas": fixas_do_menu,
         "grupos_cenarios": [
             (grupo_nome, [(f"cenario-{nome}.html", f"cen-{nome}", rotulo_menu_cenario(nome)) for nome in itens])
             for grupo_nome, itens in agrupar_cenarios(nomes)
         ],
-        "extras": [(p["arquivo"], p["chave"], p["titulo"]) for p in extras],
+        "extras": [entrada_de_menu(p) for p in extras_no_fim],
     }
 
     fixas = {
