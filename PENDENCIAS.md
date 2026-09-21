@@ -12,16 +12,29 @@
 
 ---
 
+## 🔴 SEMINÁRIO DE ANDAMENTO — prazo curto
+
+Definido na reunião de 21/09/2026 com o orientador.
+
+- **Preencher título, resumo, palavras-chave e enquadramento** no sistema do PPGC, para ele agendar a
+  banca (provável: Mariana e Anderson). ⚠️ O PDF do trabalho é **opcional** — ele disse para esquecer.
+- **Slides de até 10 minutos**: problema, importância, metodologia, resultados, próximos passos. O
+  **último slide é de direcionamentos**, com o que saiu da reunião. Ideal até o fim de semana.
+- ⚠️ **Escopo do seminário é SÓ DENGUE.** As outras arboviroses ficam para depois. Instrução direta
+  dele: não chegar na apresentação dizendo "não teve correlação com mosquito ou clima".
+- **Dar push no site + criar uma página-roteiro** dizendo onde os professores clicam e o que veem. Ele
+  vai mandar o link para **Mariana e Rodrigo Mansilha**, com o Vinicius em cópia.
+- **Enviar os dados de mosquito** a ele, sem nome, telefone e endereço.
+- **Enviar a lista de modelos** usados, para ele conferir sobreposição com o Bruno.
+
+**Depois do seminário a pesquisa CONGELA** e o foco passa a ser o artigo para periódico.
+
+---
+
 ## ⏳ Destrava com o VINICIUS
 
-- **Escolher o eixo da tese.** A proposta de 29/08 (equivalência clima × vetor) foi **refutada** em
-  13/09. Os quatro candidatos que sobreviveram estão em [ESTADO.md](ESTADO.md) §4.
-
-- **Decidir o que fazer com o painel.** Ele publica 4 números hoje sabidamente errados, e regerar agora
-  misturaria resultados corrigidos com não corrigidos. Nada foi publicado. [ESTADO.md](ESTADO.md) §5.
-
-- **Commitar o dia 13/09** — correção em 5 motores + `modelagem_aedes/motor/corte_temporal.py` + 2 pastas de análise +
-  os 20 resultados regerados. Ponto de retorno: tag `antes-correcao-vazamento`.
+- **Escolher o eixo da tese.** A de 29/08 caiu em 13/09; o orientador propôs outra em 21/09. Candidatos
+  e ressalvas medidas em [ESTADO.md](ESTADO.md) §4.
 
 - **Automatizar a raspagem** — hoje 100% manual. Em 2026 a raspagem é a única fonte, então uma semana
   perdida é irrecuperável.
@@ -43,13 +56,10 @@
 
 ## ⏳ Rodadas candidatas (nenhuma pré-declarada ainda)
 
-- ✅ **Ablação de janela para o alvo CASOS — FEITA em 13/09/2026.** Indeterminado (2×1×1), e a janela
-  rende só 3,8% de MAE. ⏳ Fica a hipótese exploratória de que janelas curtas melhoram o **alarme** em
-  horizonte longo (sensibilidade 0,846 × 0,769 em h=12) — exige pré-declaração própria.
 - **Validar o ENSO dentro do grid** — passou isolado (+7% em h=8), nunca no protocolo completo.
-- ✅ **Métrica de alarme — FEITA em 13/09/2026.** Sensibilidade 97,1% em h=4 e 76,9% em h=12.
-  Ver `analises/2026-09-13_metrica_de_alarme/`. ⏳ Falta uma temporada com mais episódios: só há 2.
 - **Confirmar que o vetor piora o alarme** — só a temporada 2026-2027 torna o achado confirmatório.
+- ⏳ Janelas curtas parecem melhorar o **alarme** em h=12 (sensib. 0,846 × 0,769) — exploratório, exige
+  pré-declaração própria. Ablação de janela e métrica de alarme: feitas em 13/09.
 
 ---
 
@@ -60,7 +70,8 @@
   em 13/09. E o ranking é instável: recortando em 2023, 4 das 6 colunas mudam.
 - **`rodar_regressao_selecao_clima` não pareia M0 e M1** — a diferença mistura efeito do vetor com
   efeito de avaliar em semanas diferentes.
-- **Os 4 documentos vivos estão FORA do git** (vivem na raiz `Pesquisa/`; o repo é ``).
+- **A pasta `../Contexto/` está fora do git**, sem histórico. Os 4 documentos vivos entraram no
+  repositório em 13/09/2026.
 - **`bairro_surto` recebeu a correção mas não foi re-rodado** — segue contaminado no painel.
 - **Corrigir o docstring de `modelagem_aedes/acesso/fontes.py`**: ele afirma taxa de confirmação de
   99,6% em 2023, e o medido é **69,3%**. A direção da alegação se sustenta, o número não.
@@ -70,6 +81,17 @@
   `data_origem`/`data_alvo` · deck de `../Apresentacao_andamento/2026-06-19/` conta a história antiga.
 
 ## Registro cronológico
+
+### 21/09/2026 — reunião com o orientador, e a pesquisa ganha eixo novo
+
+- 🔄 **Eixo novo, para depois do seminário:** prever a **proliferação do vetor** como antecedente causal
+  do surto, e não o surto. Agregar as arboviroses de vetor único, quantificar a defasagem entre as duas
+  curvas, incluir horizonte de 6 meses, janela 2022–2025. Detalhe e ressalvas em [ESTADO.md](ESTADO.md) §4.
+- ⚠️ **A preocupação dele:** o vetor não impactar *"indica que deve ter algum problema na metodologia"*.
+- ✅ Seminário destravado; banca provável com Mariana e Anderson. Pesquisa **congela** depois dele.
+- 🎯 Desafio sem valer nota: prever a curva de mosquito 2026-2027 e comparar em julho/2027.
+- Transcrição em `../Reunioes de andamento/2026-09-21 - Alinhamento com o professor...md`.
+  ⚠️ **Rótulos de quem fala estão trocados** em vários trechos — atribuir pelo conteúdo.
 
 ### 13/09/2026 — o dia do vazamento
 
@@ -85,24 +107,12 @@
 - ✅ Script perdido do ranking do grid reconstruído e validado.
 - Detalhe: `analises/2026-09-13_auditoria_mecanica_resultados/` e `.../2026-09-13_correcao_vazamento_treino/`.
 
-### 30/08/2026 — o modelo de casos ganhou dono
+### Antes de 13/09/2026
 
-- ✅ Grid de 120 execuções escolheu a configuração de referência; alvo decidido por medição
-  (**confirmados**); viés de pico diagnosticado e tratado com perda quantílica.
-- 🚫 Descartados: 4 de 5 famílias de features novas · LightGBM em horizonte longo · os 9 algoritmos como rotina.
-- ⚠️ Quase tudo deste dia foi **refeito em 13/09**.
+- **30/08** — grid de 120 execuções escolheu a configuração de referência; alvo decidido (confirmados);
+  viés de pico tratado com perda quantílica. ⚠️ Quase tudo refeito em 13/09.
+- **29/08** — clima recapturado desde 2012 (388 → 727 semanas); painel publicado; escopo podado
+  (casos por bairro descartados por Comitê de Ética).
+- **16/08** — base corrigida e certificada, validada contra a Marília com diferença zero.
 
-### 29/08/2026 — clima longo, painel no ar, escopo podado
-
-- ✅ Clima recapturado desde 2012 (388 → **727 semanas**), com certificação adversarial. Painel publicado.
-- 🚫 Descartados pelo Vinicius: dependência do orientador · casos por bairro (Comitê de Ética) ·
-  shapefile como bloqueio · dicionário das colunas de espécie.
-
-### 16/08/2026 — o dia da virada
-
-- ✅ Base corrigida e certificada (datas invertidas + 222 duplicatas), validada contra a Marília com
-  **diferença zero**. Pipeline migrado para a série completa.
-- 🚫 Descartados: "as armadilhas são inúteis" como manchete · regressão de casos como eixo ·
-  bairro administrativo como granularidade.
-
-> Antes de 16/08/2026 e o detalhe de cada teste: [HISTORICO_DE_TESTES.md](HISTORICO_DE_TESTES.md).
+> Detalhe de cada teste, com pergunta, método e conclusão: [HISTORICO_DE_TESTES.md](HISTORICO_DE_TESTES.md).

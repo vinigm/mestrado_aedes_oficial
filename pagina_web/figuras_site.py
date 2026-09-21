@@ -15,6 +15,7 @@ dado de entrada (so leitura) nem na pasta docs/ (isso e trabalho do gerar.py).
 
 from pathlib import Path
 
+import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -92,6 +93,29 @@ def _marcar_periodo_sem_dado(eixo, datas, primeira_data_com_dado, texto) -> None
     altura_do_texto = limite_inferior + (limite_superior - limite_inferior) * 0.62
     eixo.text(datas.min() + pd.Timedelta(days=120), altura_do_texto, texto,
               fontsize=8.5, color="#6b6b6b", va="center")
+
+
+def _marcar_todos_os_anos(eixos) -> None:
+    """
+
+    Poe uma marca por ANO no eixo do tempo, e repete os rotulos em cada painel.
+
+    Sem isso o matplotlib decide sozinho o espacamento e acaba marcando de dois
+    em dois anos, o que obriga o leitor a contar quadradinhos para descobrir em
+    que ano esta olhando. E, quando os paineis compartilham o eixo x
+    (sharex=True), so o de baixo recebe rotulo — quem olha o painel do meio
+    precisa descer os olhos ate o fim da figura para se situar.
+
+    Args:
+        eixos: Um eixo do matplotlib, ou a lista de eixos da figura.
+
+    """
+    lista_de_eixos = [eixos] if not hasattr(eixos, "__iter__") else list(eixos)
+    for eixo in lista_de_eixos:
+        eixo.xaxis.set_major_locator(mdates.YearLocator())
+        eixo.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+        # sharex esconde o rotulo dos paineis de cima; isto devolve.
+        eixo.tick_params(axis="x", labelbottom=True, labelsize=8.5)
 
 
 def _titular_painel(eixo, titulo, rotulo_do_eixo_y) -> None:
@@ -194,6 +218,7 @@ def desenhar_series_para_modelar(tabela: pd.DataFrame) -> None:
     _marcar_periodo_sem_dado(eixos[5], datas, primeira_semana_com_enso,
                              "sem captura de ENSO\nantes de 2018")
     eixos[5].set_xlabel("semana epidemiologica", fontsize=9)
+    _marcar_todos_os_anos(eixos)
 
     # A enchente de maio/2024 atravessa os seis paineis: foi evento real, nao
     # falha de coleta, e aparece como buraco na serie de vistoria do painel 1.
@@ -270,6 +295,7 @@ def desenhar_riqueza_da_armadilha(tabela: pd.DataFrame) -> None:
                     "(por isso o modelo usa densidade, nao contagem)",
                     "armadilhas\nativas")
     eixos[1].set_xlabel("semana epidemiologica", fontsize=9)
+    _marcar_todos_os_anos(eixos)
 
     for eixo in eixos:
         eixo.axvline(DATA_ENCHENTE, color=COR_CRITICO, linestyle="--",
@@ -448,6 +474,7 @@ def desenhar_vetor_por_semana(tabela: pd.DataFrame) -> None:
 
     eixo.set_title("Aedes aegypti capturados por semana - POA (serie continua 2012-2026)")
     eixo.set_xlabel("semana epidemiologica")
+    _marcar_todos_os_anos(eixo)
     eixo.set_ylabel("Aedes aegypti (soma na semana)")
     eixo.legend(loc="upper left")
     eixo.grid(alpha=0.3)
@@ -491,6 +518,7 @@ def desenhar_vetor_vs_casos(tabela: pd.DataFrame) -> None:
 
     eixo_vetor.set_title("Aedes aegypti capturados vs. casos confirmados de dengue - Porto Alegre")
     eixo_vetor.set_xlabel("semana epidemiologica")
+    _marcar_todos_os_anos(eixo_vetor)
     eixo_vetor.set_ylabel("Mosquitos capturados", color=COR_SECRETARIA)
     eixo_casos.set_ylabel("Casos confirmados de dengue", color=COR_CASOS)
     eixo_vetor.tick_params(axis="y", labelcolor=COR_SECRETARIA)

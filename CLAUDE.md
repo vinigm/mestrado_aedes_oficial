@@ -89,5 +89,7 @@ série de captura de mosquitos das armadilhas do MI-Aedes em Porto Alegre.
 - `../Contexto/` — o contexto organizado para IA.
 - `../BACKUP_DADOS_VITAIS_captura_mosquitos/` — cópias dos dados insubstituíveis.
 
-⚠️ **O repositório git é ``.** Os quatro documentos vivos ficam na raiz `Pesquisa/`, **fora
-do git**, sem histórico versionado.
+✅ **Desde 13/09/2026 os quatro documentos vivos moram DENTRO do repositório**, aqui em `Meu_Projeto/`,
+com histórico versionado. Na raiz `Pesquisa/` ficou um `CLAUDE.md` de 6 linhas que só aponta para cá.
+
+⚠️ **A pasta `../Contexto/` continua fora do git**, sem histórico.

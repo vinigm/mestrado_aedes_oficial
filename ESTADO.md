@@ -158,7 +158,26 @@ poder: são 576 a 587 semanas pareadas.
    demonstração de que ele **não é neutro**: favorece exatamente as escolhas que o projeto tinha
    adotado. É defeito que a literatura da área comete.
 
-⏳ **Decisão pendente do Vinicius:** qual desses vira o eixo. Não há proposta fechada — a de 29/08 caiu.
+### 🔄 O eixo proposto em 21/09/2026 pelo orientador
+
+Reunião de 1h06, transcrição em `../Reunioes de andamento/`. **Vale para depois do seminário.**
+
+**A inversão:** deixar de prever o surto e passar a prever **a causa dele** — a proliferação do vetor.
+Segundo a transcrição: *"quando começa a dar surto de dengue, o problema já aconteceu"*. Se a previsão
+for da causa, com 1 a 6 meses, a vigilância pode agir no mês 0 para evitar o surto do mês 4.
+
+Isso reenquadra os quatro pontos acima sem descartá-los, e **reconcilia o resultado negativo**: o vetor
+é redundante com o histórico recente de casos em horizonte curto, que é onde medimos. No horizonte e no
+alvo que ele propõe, é onde o vetor teria chance de aparecer.
+
+⚠️ **Três ressalvas medidas, a levar para ele:**
+- agregar as arboviroses **soma quase nada** (chikungunya são dezenas; zika é 0 desde 2022);
+- a janela 2022–2025 deixa **1 epidemia** no teste, e a janela rende só 3,8% de MAE;
+- **6 meses para casos é improvável** (a autocorrelação já é 0% em 12 semanas), mas **plausível para o
+  vetor**, que é fortemente cíclico.
+
+⏳ **Decisão pendente do Vinicius:** qual eixo adotar. A proposta de 29/08 caiu; a de 21/09 está posta
+e ainda não foi formalizada em pré-declaração.
 
 **Escopo fechado, não reabrir:** casos existem só em nível cidade (Comitê de Ética inviável no prazo);
 o eixo espacial é entomológico puro, sobre zona sintética; decisões de método são nossas, pré-declaradas
