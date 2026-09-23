@@ -88,6 +88,10 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckFiguraCheia .deckFiguraLegenda{flex:0 0 auto; color:var(--muted);
   font-size:.82rem; padding-top:8px}
 
+/* Crédito da fonte, no pé do slide: presente para quem procurar, discreto
+   para quem não estiver procurando. */
+.fonteDoSlide{color:var(--faint); font-size:.78rem; margin:10px 0 0}
+
 /* Agenda: um tópico por linha, numeração destacada. */
 .listaAgenda{list-style:none; margin:0; padding:0}
 .listaAgenda li{font-size:1.18rem; color:var(--tinta-suave); padding:7px 0;

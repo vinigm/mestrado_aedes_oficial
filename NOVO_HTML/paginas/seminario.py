@@ -206,15 +206,7 @@ def _slide_colunas_de_clima() -> deck.Slide:
         titulo=f"O clima entra como {total_de_colunas} variáveis, não como uma",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
-            + layout.montar_aviso(
-                tom="info",
-                rotulo="Tudo da NASA POWER",
-                texto=(
-                    "Agregado de diário para semanal. Algumas dessas colunas "
-                    "ganham ainda versões <b>defasadas de 1 a 4 semanas</b>, "
-                    "para o modelo olhar o clima das semanas anteriores."
-                ),
-            )
+            + '<p class="fonteDoSlide">Fonte: NASA POWER</p>'
         ),
         nota=(
             "Só situar a dimensão: o modelo não recebe 'o clima', recebe "
