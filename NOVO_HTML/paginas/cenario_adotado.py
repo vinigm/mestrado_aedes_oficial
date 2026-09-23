@@ -315,7 +315,26 @@ def _secao_o_vetor() -> str:
         ),
     )
 
-    return grade + enquadramento
+    sinal_nao_capturado = layout.montar_aviso(
+        tom="info",
+        rotulo="A leitura mais provável do resultado",
+        texto=(
+            "Nos gráficos, a subida da captura de mosquito aparece "
+            "<b>antes</b> da subida dos casos, temporada após temporada, com "
+            "alguns meses de distância. É o que a biologia da transmissão faz "
+            "esperar: o vetor prolifera, depois a doença aparece."
+            "<br><br>Um resultado nulo diante de um padrão tão regular aponta "
+            "menos para a ausência do efeito e mais para <b>um efeito que o "
+            "desenho atual não está capturando</b> — o alvo é a consequência e "
+            "não a causa, o horizonte para em três meses, e o histórico "
+            "recente de casos ocupa o lugar que o vetor ocuparia."
+            "<br><br>⚠️ Isto é <b>hipótese</b>. A defasagem entre as duas "
+            "curvas é visível, mas <b>ainda não foi quantificada</b>, e "
+            "quantificá-la é o primeiro passo da etapa seguinte."
+        ),
+    )
+
+    return grade + enquadramento + sinal_nao_capturado
 
 
 def _secao_limitacoes() -> str:
