@@ -99,6 +99,10 @@ Definido na reunião de 21/09/2026 com o orientador.
   29/08. Causa não investigada.
 - 🔴 **Correção no [ESTADO.md](ESTADO.md) §4:** a hierarquia dos alvos estava invertida. Casos seguem
   **primários**, previstos a partir do vetor; prever o vetor é **secundário** (transcrição, linhas 913–921).
+- ✅ **Slides do seminário montados** na página Seminário de Andamento do site: 13 slides, trilha
+  horizontal de progresso, figuras próprias em formato largo (`NOVO_HTML/figuras_slides.py`).
+- ⏳ **Leitura de gráfico, não medição:** em 2022-2025 a subida do vetor vem antes da dos casos. Slide
+  "De perto" ilustra em 2022 e 2023. ⚠️ Pelo **pico**, 2025 empata — a defasagem segue sem estimativa.
 - ⏳ **Rodada da noite, não disparada:** re-rodar `cidade_regressao_com_enso`, `_sem_enso` e
   `bairro_surto` (~5h). Exige pré-declaração antes.
 

@@ -6,8 +6,8 @@ redesenhadas em formato **largo e baixo**, quebradas em duas figuras:
 
   1. vetor e casos — o par que sustenta a pergunta da pesquisa;
   2. clima e ENSO — o contexto que alimenta o modelo;
-  3. vetor e casos no mesmo painel, com a subida de cada série marcada por
-     seta — a figura do slide que fala da relação entre os dois.
+  3. o zoom de duas temporadas, com a subida de cada série marcada por seta —
+     a figura que exemplifica a ordem em que as duas curvas sobem.
 
 Uso:
     python3 figuras_slides.py
@@ -65,11 +65,28 @@ COR_VETOR_EM_BARRA = "#3B78B0"
 # vai de julho de um ano a junho do seguinte, porque o verão epidemiológico
 # atravessa a virada do ano-calendário.
 TEMPORADAS_ANOTADAS = (2022, 2023, 2024, 2025)
+
+# O zoom mostra só estas temporadas. Duas bastam para o olho pegar o padrão, e
+# a janela curta deixa cada seta grande o suficiente para ser vista do fundo
+# da sala — que é o ponto do slide, já que a leitura aqui é visual e não
+# quantitativa.
+TEMPORADAS_DO_ZOOM = (2022, 2023)
 MES_DE_INICIO_DA_TEMPORADA = 7
 
 # A seta marca só o trecho central da rampa de subida, entre estas duas frações
 # do pico da temporada. Começar em 0 faria a seta nascer no chão, onde a série
 # ainda oscila por ruído; terminar em 1 cobriria o próprio pico.
+# Antes de procurar a rampa, a série é suavizada por média móvel. A contagem
+# de mosquito oscila muito de uma semana para a outra: na temporada 2023 ela
+# sobe, cai pela metade e sobe de novo, e o trecho contíguo acima do limiar
+# acaba começando colado no pico — a seta nasceria em cima do pico, dizendo o
+# contrário do que o olho vê. A janela é centrada porque aqui a figura
+# DESCREVE o passado; nada nela alimenta previsão.
+#
+# ⚠️ A suavização serve só para posicionar a seta. As séries desenhadas são
+# as originais, sem nenhum tratamento.
+SEMANAS_DA_SUAVIZACAO_DA_RAMPA = 5
+
 FRACAO_DE_INICIO_DA_RAMPA = 0.35
 FRACAO_DE_FIM_DA_RAMPA = 0.80
 
@@ -80,12 +97,21 @@ FOLGA_VERTICAL_DA_SETA = 0.03
 # Curvatura da seta. Negativo inclina para a direita, acompanhando a subida.
 CURVATURA_DA_SETA = -0.12
 
-# Todas as setas têm o mesmo tamanho, medido em semanas na horizontal e em
-# fração da altura do eixo na vertical. Deixar cada seta crescer junto com a
-# rampa que ela comenta faria o leitor comparar tamanhos, quando o que
-# interessa comparar é só a POSIÇÃO horizontal: quem sobe antes.
-COMPRIMENTO_DA_SETA_EM_SEMANAS = 6
-COMPRIMENTO_DA_SETA_EM_FRACAO_DO_EIXO = 0.14
+# Todas as setas têm o mesmo tamanho, medido em fração do eixo nos dois
+# sentidos. Deixar cada seta crescer junto com a rampa que ela comenta faria o
+# leitor comparar tamanhos, quando o que interessa comparar é só a POSIÇÃO
+# horizontal: quem sobe antes.
+#
+# ⚠️ O comprimento horizontal é fração da JANELA, não um número de semanas:
+# seis semanas somem numa figura de catorze anos e viram uma seta deitada numa
+# figura de duas temporadas. Em fração, a seta tem o mesmo aspecto nas duas.
+COMPRIMENTO_DA_SETA_EM_FRACAO_DA_LARGURA = 0.022
+COMPRIMENTO_DA_SETA_EM_FRACAO_DA_ALTURA = 0.16
+
+# Quanto o topo do eixo sobe antes das setas serem desenhadas. Sem essa folga,
+# a seta de uma temporada cuja rampa começa colada no pico — 2023 no vetor —
+# nasce acima do topo e simplesmente não aparece na figura.
+FOLGA_DO_TOPO_PARA_AS_SETAS = 0.10
 
 
 @dataclasses.dataclass(frozen=True)
@@ -288,6 +314,11 @@ def localizar_rampa_de_subida(
     semana em que cruza `FRACAO_DE_FIM_DA_RAMPA`. É sobre esse trecho que a
     seta da figura é desenhada.
 
+    A busca acontece sobre a série suavizada por média móvel de
+    `SEMANAS_DA_SUAVIZACAO_DA_RAMPA` semanas, e os valores devolvidos são os
+    da série suavizada — o que faz a seta pousar na tendência, e não numa
+    semana isolada que subiu ou caiu sozinha.
+
     Args:
         temporada: As semanas de uma temporada.
         nome_da_coluna: A série a medir.
@@ -302,11 +333,15 @@ def localizar_rampa_de_subida(
     if nome_da_coluna not in temporada.columns:
         raise KeyError(f"Coluna ausente na tabela: {nome_da_coluna!r}")
 
-    serie = temporada[nome_da_coluna].reset_index(drop=True)
+    serie_original = temporada[nome_da_coluna].reset_index(drop=True)
     datas = temporada["data_inicio_semana_epidemi"].reset_index(drop=True)
 
-    if serie.dropna().empty:
+    if serie_original.dropna().empty:
         raise ValueError(f"Temporada sem valor em {nome_da_coluna!r}.")
+
+    serie = serie_original.rolling(
+        SEMANAS_DA_SUAVIZACAO_DA_RAMPA, center=True, min_periods=1
+    ).mean()
 
     posicao_do_pico = int(serie.idxmax())
     valor_do_pico = float(serie.iloc[posicao_do_pico])
@@ -326,13 +361,32 @@ def localizar_rampa_de_subida(
     )
 
 
+def _abrir_espaco_no_topo(eixo) -> None:
+    """Sobe o teto do eixo para as setas caberem dentro da área desenhada.
+
+    As setas são desenhadas acima da curva que comentam. Quando a rampa de uma
+    temporada começa perto do pico, a seta nasceria fora da figura e sumiria
+    sem aviso. Subir o teto resolve isso sem tocar em nenhum dado: as séries
+    continuam desenhadas exatamente onde estavam, só sobra ar em cima.
+
+    Args:
+        eixo: O painel a ajustar.
+    """
+    base_do_eixo, topo_do_eixo = eixo.get_ylim()
+    altura_atual = topo_do_eixo - base_do_eixo
+
+    eixo.set_ylim(
+        base_do_eixo, topo_do_eixo + altura_atual * FOLGA_DO_TOPO_PARA_AS_SETAS
+    )
+
+
 def _desenhar_seta_de_subida(eixo, rampa: RampaDeSubida, cor: str) -> None:
     """Desenha a seta curta que marca onde uma série começou a subir.
 
-    A seta nasce na semana medida de início da rampa e tem tamanho fixo,
-    igual para todas. O que ela comunica é a posição no tempo — em que semana
-    aquela curva começou a subir — e não a intensidade da subida, que já está
-    desenhada pela própria série.
+    A seta nasce na semana medida de início da rampa e tem tamanho fixo em
+    relação à janela desenhada, igual para todas. O que ela comunica é a
+    posição no tempo — em que semana aquela curva começou a subir — e não a
+    intensidade da subida, que já está desenhada pela própria série.
 
     A base fica deslocada para cima em relação à curva, por uma fração do topo
     do eixo, para não se perder dentro das barras ou da linha que comenta.
@@ -346,14 +400,20 @@ def _desenhar_seta_de_subida(eixo, rampa: RampaDeSubida, cor: str) -> None:
     topo_do_eixo = eixo.get_ylim()[1]
     folga = topo_do_eixo * FOLGA_VERTICAL_DA_SETA
 
+    # O eixo do tempo é medido em dias do matplotlib, então a fração da janela
+    # vira um deslocamento em dias antes de voltar a ser uma data.
+    inicio_da_janela, fim_da_janela = eixo.get_xlim()
+    largura_da_janela_em_dias = fim_da_janela - inicio_da_janela
+    avanco_em_dias = (
+        largura_da_janela_em_dias * COMPRIMENTO_DA_SETA_EM_FRACAO_DA_LARGURA
+    )
+
     data_da_base = rampa.data_de_inicio
     altura_da_base = rampa.valor_de_inicio + folga
 
-    data_da_ponta = data_da_base + pd.Timedelta(
-        weeks=COMPRIMENTO_DA_SETA_EM_SEMANAS
-    )
+    data_da_ponta = data_da_base + pd.Timedelta(days=avanco_em_dias)
     altura_da_ponta = altura_da_base + (
-        topo_do_eixo * COMPRIMENTO_DA_SETA_EM_FRACAO_DO_EIXO
+        topo_do_eixo * COMPRIMENTO_DA_SETA_EM_FRACAO_DA_ALTURA
     )
 
     eixo.annotate(
@@ -371,35 +431,53 @@ def _desenhar_seta_de_subida(eixo, rampa: RampaDeSubida, cor: str) -> None:
     )
 
 
-def desenhar_vetor_vs_casos_anotado(tabela: pd.DataFrame) -> pathlib.Path:
-    """Desenha o par vetor × casos com a subida de cada um marcada por seta.
+def desenhar_zoom_das_subidas(tabela: pd.DataFrame) -> pathlib.Path:
+    """Amplia duas temporadas para mostrar a ordem em que as curvas sobem.
 
-    É a figura do slide mais delicado da apresentação. As barras trazem o
-    mosquito capturado (eixo da esquerda) e a linha traz os casos confirmados
-    (eixo da direita), na mesma semana. Sobre cada temporada de
-    `TEMPORADAS_ANOTADAS`, duas setas marcam onde cada série começou a subir.
+    É a versão de perto da figura completa: mesmas séries, mesmas cores, só
+    que recortada em `TEMPORADAS_DO_ZOOM`. A pergunta que ela responde é
+    visual — quem sobe primeiro — e não quantitativa, então a figura não traz
+    número nenhum além dos eixos.
 
-    ⚠️ As setas são leitura de gráfico, não medição de defasagem: elas dizem
-    que a subida do vetor aparece antes, não quantas semanas antes com
-    intervalo de confiança. A defasagem formal ainda não foi estimada.
+    ⚠️ As setas são leitura de gráfico. Elas dizem que a subida do vetor
+    aparece antes, não quantas semanas antes com intervalo de confiança.
 
     Args:
         tabela: A tabela semanal.
 
     Returns:
         O caminho do arquivo gravado.
-    """
-    datas = tabela["data_inicio_semana_epidemi"]
 
-    # O que limita esta figura no slide é a ALTURA, não a largura: abaixo dela
-    # ainda entra o card da limitação. Quanto mais achatada ela for, mais
-    # largura do palco ela consegue ocupar com a altura que sobra.
-    figura, eixo_do_vetor = plt.subplots(figsize=(LARGURA_DA_FIGURA, 4.0))
+    Raises:
+        ValueError: Se o recorte das temporadas do zoom ficar vazio.
+    """
+    primeiro_ano_do_zoom = min(TEMPORADAS_DO_ZOOM)
+    ultimo_ano_do_zoom = max(TEMPORADAS_DO_ZOOM)
+
+    inicio_do_zoom = pd.Timestamp(
+        primeiro_ano_do_zoom - 1, MES_DE_INICIO_DA_TEMPORADA, 1
+    )
+    fim_do_zoom = pd.Timestamp(ultimo_ano_do_zoom, MES_DE_INICIO_DA_TEMPORADA, 1)
+
+    datas_completas = tabela["data_inicio_semana_epidemi"]
+    dentro_do_zoom = (datas_completas >= inicio_do_zoom) & (
+        datas_completas < fim_do_zoom
+    )
+    recorte = tabela[dentro_do_zoom]
+
+    if recorte.empty:
+        raise ValueError(
+            f"Nenhuma semana entre {inicio_do_zoom.date()} e {fim_do_zoom.date()}."
+        )
+
+    datas = recorte["data_inicio_semana_epidemi"]
+
+    figura, eixo_do_vetor = plt.subplots(figsize=(LARGURA_DA_FIGURA, 4.4))
     eixo_dos_casos = eixo_do_vetor.twinx()
 
     eixo_do_vetor.bar(
         datas,
-        tabela["aedes_aegypti"],
+        recorte["aedes_aegypti"],
         width=5,
         color=COR_VETOR_EM_BARRA,
         alpha=0.5,
@@ -407,17 +485,21 @@ def desenhar_vetor_vs_casos_anotado(tabela: pd.DataFrame) -> pathlib.Path:
     )
     eixo_dos_casos.plot(
         datas,
-        tabela["casos_confirmados"],
+        recorte["casos_confirmados"],
         color=COR_CASOS,
-        linewidth=1.8,
+        linewidth=2.4,
         label="Casos confirmados de dengue",
     )
 
-    eixo_do_vetor.set_xlabel("semana epidemiológica", fontsize=10, color=COR_TEXTO)
-    eixo_do_vetor.set_ylabel("Mosquitos capturados", color=COR_VETOR_EM_BARRA)
-    eixo_dos_casos.set_ylabel("Casos confirmados de dengue", color=COR_CASOS)
-    eixo_do_vetor.tick_params(axis="y", labelcolor=COR_VETOR_EM_BARRA)
-    eixo_dos_casos.tick_params(axis="y", labelcolor=COR_CASOS)
+    eixo_do_vetor.set_ylabel(
+        "Mosquitos capturados", color=COR_VETOR_EM_BARRA, fontsize=11
+    )
+    eixo_dos_casos.set_ylabel(
+        "Casos confirmados de dengue", color=COR_CASOS, fontsize=11
+    )
+    eixo_do_vetor.tick_params(axis="y", labelcolor=COR_VETOR_EM_BARRA, labelsize=10)
+    eixo_dos_casos.tick_params(axis="y", labelcolor=COR_CASOS, labelsize=10)
+    eixo_do_vetor.tick_params(axis="x", labelsize=11, colors=COR_TEXTO)
     eixo_do_vetor.grid(True, color=COR_GRADE, linewidth=0.8)
     eixo_do_vetor.set_axisbelow(True)
 
@@ -425,9 +507,10 @@ def desenhar_vetor_vs_casos_anotado(tabela: pd.DataFrame) -> pathlib.Path:
         eixo_do_vetor.spines[lado].set_visible(False)
         eixo_dos_casos.spines[lado].set_visible(False)
 
-    # As setas precisam dos limites já fixados: a folga vertical é calculada
-    # como fração do topo do eixo, que muda se algo for desenhado depois.
-    for ano_do_verao in TEMPORADAS_ANOTADAS:
+    _abrir_espaco_no_topo(eixo_do_vetor)
+    _abrir_espaco_no_topo(eixo_dos_casos)
+
+    for ano_do_verao in TEMPORADAS_DO_ZOOM:
         temporada = _recortar_temporada(tabela, ano_do_verao)
 
         rampa_do_vetor = localizar_rampa_de_subida(temporada, "aedes_aegypti")
@@ -442,11 +525,12 @@ def desenhar_vetor_vs_casos_anotado(tabela: pd.DataFrame) -> pathlib.Path:
         marcas_do_vetor + marcas_dos_casos,
         rotulos_do_vetor + rotulos_dos_casos,
         loc="upper left",
+        fontsize=11,
         framealpha=0.92,
     )
 
     figura.tight_layout()
-    caminho = PASTA_DE_IMAGENS / "slide_vetor_vs_casos_anotado.png"
+    caminho = PASTA_DE_IMAGENS / "slide_zoom_das_subidas.png"
     figura.savefig(caminho, dpi=150, facecolor="white")
     plt.close(figura)
 
@@ -502,7 +586,7 @@ def main() -> None:
     caminhos_gerados = (
         desenhar_vetor_e_casos(tabela),
         desenhar_clima(tabela),
-        desenhar_vetor_vs_casos_anotado(tabela),
+        desenhar_zoom_das_subidas(tabela),
     )
 
     for caminho in caminhos_gerados:

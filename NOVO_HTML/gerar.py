@@ -95,7 +95,7 @@ def copiar_figuras() -> list[str]:
 FIGURAS_DOS_SLIDES = (
     "slide_vetor_e_casos.png",
     "slide_clima.png",
-    "slide_vetor_vs_casos_anotado.png",
+    "slide_zoom_das_subidas.png",
 )
 
 
