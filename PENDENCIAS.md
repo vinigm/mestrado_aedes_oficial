@@ -33,6 +33,9 @@ Definido na reunião de 21/09/2026 com o orientador.
 
 **Depois do seminário a pesquisa CONGELA** e o foco passa a ser o artigo para periódico.
 
+- ✅ **Esqueleto LaTeX do artigo** em `../artigo_oficial/` (23/09), compilando com `tectonic`. ⏳ Falta
+  escolher **periódico-alvo** e idioma; ⚠️ a pasta está **fora do git**. Ver `../artigo_oficial/README.md`.
+
 ---
 
 ## ⏳ Destrava com o VINICIUS
@@ -59,6 +62,14 @@ Definido na reunião de 21/09/2026 com o orientador.
 ---
 
 ## ⏳ Rodadas candidatas (nenhuma pré-declarada ainda)
+
+- ✅ **Horizonte é 3 meses. Decisão do Vinicius em 23/09/2026.** O PEP declara 1 a 4 semanas e está
+  **errado** — corrigir o PEP, não o código. Era a origem provável do `LAGS_SEMANAS=[1,2,3,4]`.
+
+- **Janela de lag nunca foi ablacionada.** `[1,2,3,4]` veio hardcoded do código pré-refatoração, sem
+  comentário (único commit: `355795a`, migração byte a byte). Estender a janela curta para 5-12
+  semanas **nunca foi testado**; só se testou *adicionar* lag52/104 em 30/08, que piorou h=8 e h=12
+  — com vazamento, e está entre os não refeitos.
 
 - **Validar o ENSO dentro do grid** — passou isolado (+7% em h=8), nunca no protocolo completo.
 - **Confirmar que o vetor piora o alarme** — só a temporada 2026-2027 torna o achado confirmatório.
@@ -90,6 +101,7 @@ Definido na reunião de 21/09/2026 com o orientador.
 
 ### 23/09/2026 — o site é reconstruído do zero e republicado
 
+- ✅ **Artigo oficial iniciado:** esqueleto em `../artigo_oficial/`, conteúdo separado da casca do periódico.
 - ✅ **Painel novo no ar**, gerado por `NOVO_HTML/` em vez de `pagina_web/`. Cinco páginas: Início ·
   Dados · Cenários testados · Cenário adotado · Próximos passos. O site antigo saiu do ar (vive no git).
 - ✅ **Todo número sai de um arquivo só** (`numeros_do_projeto.py`), e cenário com execução anterior a

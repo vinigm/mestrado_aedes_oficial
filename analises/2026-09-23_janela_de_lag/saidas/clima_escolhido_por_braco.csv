@@ -1,0 +1,4 @@
+braco,lags,n_features,clima_escolhido
+A_referencia,"[1, 2, 3, 4]",20,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4
+B_lags_ate_8,"[1, 2, 3, 4, 6, 8]",24,temp_media_lag4 | umid_media | temp_media_lag6 | temp_max | temp_media_lag3 | pressao_media_lag3
+C_lags_ate_12,"[1, 2, 3, 4, 6, 8, 10, 12]",28,temp_media_lag4 | umid_media | temp_max | temp_media_lag6 | pressao_media_lag3 | temp_media_lag3

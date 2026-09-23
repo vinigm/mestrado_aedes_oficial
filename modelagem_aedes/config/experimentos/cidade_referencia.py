@@ -12,7 +12,7 @@ O que este experimento tem de diferente do cidade_regressao:
   - ALGORITMO: HistGradientBoosting no lugar do LightGBM. Foi o melhor dos nove
     testados (R2 medio 0,779 contra 0,749 do LightGBM).
 
-  - FUNCAO DE PERDA: quantilica em 0,80, no lugar do erro quadratico. E a
+  - FUNCAO DE PERDA: quantilica em 0,85, no lugar do erro quadratico. E a
     mudanca que mais pesou - trocar a perda custa 20,2% de MAE, contra 16,5%
     de trocar o melhor algoritmo pelo pior. As seis configuracoes de perda
     padrao do grid ficaram entre a 10a e a 23a posicao de 30.
@@ -24,8 +24,8 @@ O que este experimento tem de diferente do cidade_regressao:
   - So k=6 no lugar de (6, 8): o grid rodou com as seis melhores colunas de
     clima, e nao ha motivo para reprocessar k=8 aqui.
 
-ATENCAO AO QUE O MODELO ENTREGA. Com perda quantilica em 0,80 ele NAO estima o
-numero esperado de casos: estima um PATAMAR que so sera ultrapassado em 20% das
+ATENCAO AO QUE O MODELO ENTREGA. Com perda quantilica em 0,85 ele NAO estima o
+numero esperado de casos: estima um PATAMAR que so sera ultrapassado em 15% das
 vezes. E enviesado para cima de proposito, o que e adequado para alarme
 epidemiologico - onde subestimar custa mais caro que superestimar - mas muda o
 que o numero significa. Qualquer texto que cite uma previsao deste experimento
@@ -45,12 +45,29 @@ from config.experimentos.cidade_regressao import CIDADE_REGRESSAO, LGBM_REGRESSA
 from config.modelo import EspecificacaoModelo
 
 # O quantil escolhido pelo grid. As tres primeiras colocadas foram o mesmo
-# algoritmo variando so este numero (0,80 · 0,85 · 0,70), separadas por 2% a 4%
-# de MAE - ou seja, estatisticamente indistinguiveis. O 0,80 venceu pelo
-# criterio declarado antes de rodar (menor MAE medio no periodo de calibracao),
-# e nao foi trocado depois, ainda que o 0,85 tenha saido melhor no periodo de
-# avaliacao: trocar pelo periodo que serve de juiz invalidaria o julgamento.
-QUANTIL_DE_REFERENCIA = 0.80
+# algoritmo variando so este numero, separadas por poucos porcento de MAE - ou
+# seja, estatisticamente indistinguiveis.
+#
+# HISTORICO, porque este numero ja mudou uma vez e a razao importa:
+#
+#   - No grid original de 30/08/2026 o 0,80 venceu, e a decisao foi mantida de
+#     proposito mesmo com o 0,85 melhor no periodo de AVALIACAO. Trocar por ali
+#     invalidaria o julgamento, ja que a avaliacao e juiz e nao campo de treino.
+#
+#   - Em 13/09/2026 o vazamento temporal foi corrigido e as 30 configuracoes
+#     foram reprocessadas, com pre-declaracao escrita antes (a Fase 2 do
+#     analises/2026-09-13_correcao_vazamento_treino/). O ranking mudou: pelo
+#     MESMO criterio pre-declarado - menor MAE medio no periodo de CALIBRACAO -
+#     o 0,85 com vetor passou a primeiro, com 42,02 contra 42,71 do 0,80, que
+#     caiu para terceiro.
+#
+# Ou seja, a troca NAO foi escolher pelo periodo de avaliacao. Foi o mesmo
+# criterio de sempre, aplicado a numeros que deixaram de estar contaminados.
+#
+# Conferido em 23/09/2026 recalculando do CSV bruto: os oito numeros publicados
+# no painel (MAE 98,0/219,7/272,6/278,7 e R2 0,898/0,628/0,450/0,437) reproduzem
+# exatamente a linha quantil_0.85, e nao a do 0,80.
+QUANTIL_DE_REFERENCIA = 0.85
 
 HIST_GRADIENT_BOOSTING_QUANTIL = EspecificacaoModelo(
     nome="hist_gradient_boosting_quantil",

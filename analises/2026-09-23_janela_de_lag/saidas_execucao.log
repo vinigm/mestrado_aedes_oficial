@@ -1,0 +1,49 @@
+referência: hist_gradient_boosting_quantil · quantil 0.85 · passo 1
+
+[A_referencia] lags [1, 2, 3, 4] · 20 features · clima: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+  h= 1  295 semanas  109.2s
+  h= 2  294 semanas   95.8s
+  h= 3  293 semanas   96.3s
+  h= 4  292 semanas  107.8s
+  h= 5  291 semanas   97.5s
+  h= 6  290 semanas   92.3s
+  h= 7  289 semanas   93.4s
+  h= 8  288 semanas   98.3s
+  h= 9  287 semanas   92.3s
+  h=10  286 semanas   92.4s
+  h=11  285 semanas   92.5s
+  h=12  284 semanas  102.9s
+[A_referencia] concluído em 19.5 min
+
+[B_lags_ate_8] lags [1, 2, 3, 4, 6, 8] · 24 features · clima: ['temp_media_lag4', 'umid_media', 'temp_media_lag6', 'temp_max', 'temp_media_lag3', 'pressao_media_lag3']
+  h= 1  285 semanas  116.0s
+  h= 2  284 semanas   93.1s
+  h= 3  283 semanas   98.9s
+  h= 4  282 semanas   91.5s
+  h= 5  281 semanas   91.6s
+  h= 6  280 semanas   88.1s
+  h= 7  279 semanas   88.0s
+  h= 8  278 semanas   88.3s
+  h= 9  277 semanas   87.7s
+  h=10  276 semanas   87.9s
+  h=11  275 semanas   89.2s
+  h=12  274 semanas   86.9s
+[B_lags_ate_8] concluído em 18.5 min
+
+[C_lags_ate_12] lags [1, 2, 3, 4, 6, 8, 10, 12] · 28 features · clima: ['temp_media_lag4', 'umid_media', 'temp_max', 'temp_media_lag6', 'pressao_media_lag3', 'temp_media_lag3']
+  h= 1  275 semanas   87.8s
+  h= 2  274 semanas   85.9s
+  h= 3  273 semanas   83.1s
+  h= 4  272 semanas   86.0s
+  h= 5  271 semanas   86.2s
+  h= 6  270 semanas   82.2s
+  h= 7  269 semanas   83.0s
+  h= 8  268 semanas   81.2s
+  h= 9  267 semanas   84.4s
+  h=10  266 semanas   83.3s
+  h=11  265 semanas   83.6s
+  h=12  264 semanas   81.4s
+[C_lags_ate_12] concluído em 16.8 min
+
+gravado: previsoes_por_braco.csv (10062 linhas)
+gravado: clima_escolhido_por_braco.csv

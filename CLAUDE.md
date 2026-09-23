@@ -74,9 +74,12 @@ série de captura de mosquitos das armadilhas do MI-Aedes em Porto Alegre.
 - **Rodada longa de CPU (>15–30 min): avisar antes, com estimativa, e esperar o ok do Vinicius.**
   Estimar medindo uma célula, nunca por analogia com outra rodada.
 - Processo demorado roda com `nohup` + log + polling. Nunca em foreground.
-- Publicar o site após mexer no painel é pré-autorizado (commit restrito a `NOVO_HTML/` + `docs/`).
-  ✅ **Retomado em 23/09/2026**, com o painel reconstruído: todo número sai de
-  `NOVO_HTML/numeros_do_projeto.py`, e cenário anterior à correção aparece com aviso.
+- 🔴 **Publicar o site NÃO é mais pré-autorizado. Revogado em 23/09/2026 pelo Vinicius.**
+  A versão no ar é a que a banca vai ver, e ele quer fazer modificações locais sem que os
+  professores vejam. **Gerar e conferir localmente sempre; `git push` só quando ele mandar,
+  explicitamente, naquela mensagem.** Último estado publicado: commit `710b411`.
+  - Histórico: a pré-autorização existiu até 23/09/2026, com commit restrito a
+    `NOVO_HTML/` + `docs/`.
 - Código Python segue `~/.claude/PADRAO-CODIGO-PYTHON.md` (leitura obrigatória antes de escrever código).
 
 ---
