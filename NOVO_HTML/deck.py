@@ -65,9 +65,9 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckIndice{position:relative; display:flex; gap:2px; padding:14px 40px 10px;
   background:var(--elevado); border-bottom:1px solid var(--borda)}
 
-.deckIndiceTrilha{position:absolute; top:21px; height:2px; left:0; width:0;
+.deckIndiceTrilha{position:absolute; top:0; height:2px; left:0; width:0;
   background:var(--borda); border-radius:2px}
-.deckIndiceProgresso{position:absolute; top:21px; height:2px; left:0; width:0;
+.deckIndiceProgresso{position:absolute; top:0; height:2px; left:0; width:0;
   background:var(--acento); border-radius:2px;
   transition:width .22s ease}
 
@@ -193,11 +193,16 @@ SCRIPT_DO_DECK = """
   var progressoDoIndice = document.getElementById('deckIndiceProgresso');
   var trilhaDoIndice = document.querySelector('.deckIndiceTrilha');
 
-  // Centro horizontal de um marcador, medido em relação à barra do índice.
+  // Centro de um marcador, medido em relação à barra do índice. As linhas se
+  // alinham por ele, e não por um pixel fixo no CSS: assim continuam centradas
+  // quando o tamanho da bolinha, a fonte ou o padding mudarem.
   function centroDoMarcador(item){
     var barra = item.parentElement.getBoundingClientRect();
     var marca = item.querySelector('.deckIndiceMarca').getBoundingClientRect();
-    return (marca.left + marca.width / 2) - barra.left;
+    return {
+      x: (marca.left + marca.width / 2) - barra.left,
+      y: (marca.top + marca.height / 2) - barra.top,
+    };
   }
   var anterior = document.getElementById('deckAnterior');
   var proximo = document.getElementById('deckProximo');
@@ -229,16 +234,20 @@ SCRIPT_DO_DECK = """
     if (itensDoIndice.length) {
       var centroDoPrimeiro = centroDoMarcador(itensDoIndice[0]);
       var centroDoUltimo = centroDoMarcador(itensDoIndice[itensDoIndice.length - 1]);
+      var alturaDaLinha = 2;
+      var topoDaLinha = centroDoPrimeiro.y - alturaDaLinha / 2;
 
       if (trilhaDoIndice) {
-        trilhaDoIndice.style.left = centroDoPrimeiro + 'px';
-        trilhaDoIndice.style.width = (centroDoUltimo - centroDoPrimeiro) + 'px';
+        trilhaDoIndice.style.left = centroDoPrimeiro.x + 'px';
+        trilhaDoIndice.style.top = topoDaLinha + 'px';
+        trilhaDoIndice.style.width = (centroDoUltimo.x - centroDoPrimeiro.x) + 'px';
       }
 
       if (progressoDoIndice) {
-        progressoDoIndice.style.left = centroDoPrimeiro + 'px';
+        progressoDoIndice.style.left = centroDoPrimeiro.x + 'px';
+        progressoDoIndice.style.top = topoDaLinha + 'px';
         var ateOnde = posicaoDoTopico >= 0
-          ? centroDoMarcador(itensDoIndice[posicaoDoTopico]) - centroDoPrimeiro
+          ? centroDoMarcador(itensDoIndice[posicaoDoTopico]).x - centroDoPrimeiro.x
           : 0;
         progressoDoIndice.style.width = Math.max(0, ateOnde) + 'px';
       }
