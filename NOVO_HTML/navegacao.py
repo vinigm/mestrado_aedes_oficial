@@ -94,8 +94,8 @@ PAGINA_DADOS = PaginaDoSite(
     rotulo_do_submenu="As fontes",
     secoes=(
         SecaoDaPagina("as-series", "As séries lado a lado", "As séries"),
-        SecaoDaPagina("as-fontes", "As fontes"),
         SecaoDaPagina("o-clima", "O clima"),
+        SecaoDaPagina("as-fontes", "As fontes"),
         SecaoDaPagina("a-janela-util", "A janela útil"),
     ),
 )

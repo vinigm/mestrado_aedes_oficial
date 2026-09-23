@@ -47,7 +47,7 @@ FONTES = (
         "série longa",
         "diária, agregada para semanal",
         "Chuva, temperatura, orvalho, umidade, pressão, radiação e vento. "
-        "Detalhe na tabela da seção seguinte.",
+        "Detalhe na tabela da seção anterior.",
         "NASA POWER (satélite e reanálise).",
     ),
     (
