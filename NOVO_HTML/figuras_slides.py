@@ -50,9 +50,19 @@ COR_APAGADO = "#93A2B3"
 # A semana em que a enchente interrompeu as vistorias de campo.
 DATA_DA_ENCHENTE = pd.Timestamp("2024-05-05")
 
-# Formato largo: a mesma proporção do palco do slide, para a figura ocupá-lo
-# sem sobrar faixa branca nas laterais.
-LARGURA_DA_FIGURA = 15.0
+# A caixa que o palco do slide reserva para uma figura mede 1008 x 367 px na
+# tela, ou seja, proporção 2,75. Figura mais alta que isso não é cortada: ela
+# encolhe até a ALTURA caber e deixa faixa branca dos dois lados. A figura de
+# clima, em 1,83, chegava a desperdiçar um terço da largura disponível.
+#
+# O tamanho em polegadas tem um efeito que não é óbvio. Como o navegador reduz
+# a imagem até ela caber na altura da caixa, o fator de redução é
+# `altura_da_caixa / (altura_da_figura * dpi)` — quanto MENOR a figura em
+# polegadas, menos ela é reduzida e MAIOR fica o texto na tela. Por isso a
+# largura caiu de 15 para 13: a figura ocupa a mesma área e a legenda cresce.
+PROPORCAO_DA_CAIXA_DO_SLIDE = 2.75
+LARGURA_DA_FIGURA = 13.0
+ALTURA_DA_FIGURA = LARGURA_DA_FIGURA / PROPORCAO_DA_CAIXA_DO_SLIDE
 
 def carregar_tabela() -> pd.DataFrame:
     """Lê a tabela semanal que alimenta os modelos.
@@ -77,11 +87,11 @@ def _preparar_painel(eixo, titulo: str, rotulo_y: str) -> None:
         titulo: Título curto, centralizado acima do painel.
         rotulo_y: Nome da grandeza no eixo vertical.
     """
-    eixo.set_title(titulo, fontsize=12, fontweight="bold", color=COR_TEXTO, pad=8)
-    eixo.set_ylabel(rotulo_y, fontsize=9.5, color=COR_TEXTO)
+    eixo.set_title(titulo, fontsize=13, fontweight="bold", color=COR_TEXTO, pad=6)
+    eixo.set_ylabel(rotulo_y, fontsize=10, color=COR_TEXTO)
     eixo.grid(True, axis="y", color=COR_GRADE, linewidth=0.8)
     eixo.set_axisbelow(True)
-    eixo.tick_params(colors=COR_TEXTO, labelsize=9)
+    eixo.tick_params(colors=COR_TEXTO, labelsize=9.5)
 
     for lado in ("top", "right"):
         eixo.spines[lado].set_visible(False)
@@ -89,7 +99,7 @@ def _preparar_painel(eixo, titulo: str, rotulo_y: str) -> None:
         eixo.spines[lado].set_color(COR_GRADE)
 
 
-def _marcar_todos_os_anos(eixos) -> None:
+def _marcar_todos_os_anos(eixos, anos_entre_marcas: int = 1) -> None:
     """Põe uma marca por ano no eixo do tempo, e o rótulo em TODOS os painéis.
 
     Duas coisas são consertadas aqui, e as duas custam leitura em apresentação:
@@ -103,11 +113,15 @@ def _marcar_todos_os_anos(eixos) -> None:
 
     Args:
         eixos: A lista de painéis da figura.
+        anos_entre_marcas: De quantos em quantos anos marcar. Fica em 1 no
+            painel que ocupa a largura toda; sobe para 2 quando a figura tem
+            duas colunas, porque catorze rótulos não cabem em meia largura
+            sem se sobreporem.
     """
     for eixo in eixos:
-        eixo.xaxis.set_major_locator(mdates.YearLocator())
+        eixo.xaxis.set_major_locator(mdates.YearLocator(anos_entre_marcas))
         eixo.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
-        eixo.tick_params(axis="x", labelbottom=True, labelsize=9)
+        eixo.tick_params(axis="x", labelbottom=True, labelsize=9.5)
 
 
 def _marcar_enchente(eixo) -> None:
@@ -155,8 +169,8 @@ def desenhar_vetor_e_casos(tabela: pd.DataFrame) -> pathlib.Path:
     datas = tabela["data_inicio_semana_epidemi"]
 
     figura, eixos = plt.subplots(
-        2, 1, figsize=(LARGURA_DA_FIGURA, 6.4), sharex=True,
-        gridspec_kw={"hspace": 0.50},
+        2, 1, figsize=(LARGURA_DA_FIGURA, ALTURA_DA_FIGURA), sharex=True,
+        gridspec_kw={"hspace": 0.46},
     )
 
     eixos[0].fill_between(
@@ -211,28 +225,35 @@ def desenhar_clima(tabela: pd.DataFrame) -> pathlib.Path:
     """
     datas = tabela["data_inicio_semana_epidemi"]
 
-    figura, eixos = plt.subplots(
-        4, 1, figsize=(LARGURA_DA_FIGURA, 8.2), sharex=True,
-        gridspec_kw={"hspace": 0.78},
+    # Grade 2x2, e não quatro painéis empilhados. A caixa do slide tem altura
+    # fixa: empilhados, os quatro dividem 367 px de tela e sobram cerca de 65
+    # px de área de desenho para cada um, depois do título e dos rótulos — o
+    # título de um encostava nos anos do de cima. Em duas colunas cada painel
+    # fica com mais que o dobro de altura, e aí cabe eixo do tempo em todos,
+    # que é o que a figura precisa mostrar.
+    figura, grade = plt.subplots(
+        2, 2, figsize=(LARGURA_DA_FIGURA, ALTURA_DA_FIGURA),
+        gridspec_kw={"hspace": 0.62, "wspace": 0.20},
     )
+    paineis = grade.flatten()
 
-    eixos[0].bar(datas, tabela["precip_total_mm"], width=6, color=COR_CLIMA, alpha=0.75)
-    _preparar_painel(eixos[0], "Chuva — total da semana", "mm/semana")
+    paineis[0].bar(datas, tabela["precip_total_mm"], width=6, color=COR_CLIMA, alpha=0.75)
+    _preparar_painel(paineis[0], "Chuva — total da semana", "mm/semana")
 
-    eixos[1].plot(datas, tabela["temp_media"], color=COR_CLIMA, linewidth=1.0)
-    _preparar_painel(eixos[1], "Temperatura média", "°C")
+    paineis[1].plot(datas, tabela["temp_media"], color=COR_CLIMA, linewidth=1.0)
+    _preparar_painel(paineis[1], "Temperatura média", "°C")
 
-    eixos[2].plot(datas, tabela["umid_media"], color=COR_CLIMA, linewidth=1.0)
-    _preparar_painel(eixos[2], "Umidade relativa média", "%")
+    paineis[2].plot(datas, tabela["umid_media"], color=COR_CLIMA, linewidth=1.0)
+    _preparar_painel(paineis[2], "Umidade relativa média", "%")
 
-    eixos[3].axhline(0, color=COR_APAGADO, linewidth=0.8, linestyle=":")
-    eixos[3].plot(datas, tabela["oni"], color=COR_ENSO, linewidth=1.2)
-    _preparar_painel(eixos[3], "ENSO — índice ONI (El Niño e La Niña)", "índice ONI")
+    paineis[3].axhline(0, color=COR_APAGADO, linewidth=0.8, linestyle=":")
+    paineis[3].plot(datas, tabela["oni"], color=COR_ENSO, linewidth=1.2)
+    _preparar_painel(paineis[3], "ENSO — índice ONI (El Niño e La Niña)", "índice ONI")
 
-    for eixo in eixos:
-        _marcar_enchente(eixo)
+    for painel in paineis:
+        _marcar_enchente(painel)
 
-    _marcar_todos_os_anos(eixos)
+    _marcar_todos_os_anos(paineis, anos_entre_marcas=2)
 
     figura.tight_layout()
     caminho = PASTA_DE_IMAGENS / "slide_clima.png"
