@@ -102,6 +102,21 @@ _ALVO_POR_ANCORA = {
 }
 
 
+# O mesmo alvo, em versão curta. A página tem largura para a frase inteira; um
+# slide projetado não tem, e nove linhas longas estouram o palco.
+_ALVO_CURTO_POR_ANCORA = {
+    "sem-el-nino": "Casos, <b>sem</b> El Niño",
+    "com-el-nino": "Casos, <b>com</b> El Niño",
+    "com-corte-maturidade": "Casos, com corte de <b>12 semanas</b>",
+    "ganho-do-mosquito": "Casos, com conjuntos <b>fixos</b> de variáveis",
+    "ganho-e-real": "A diferença de erro, sob <b>teste estatístico</b>",
+    "contra-literatura": "Casos e a subida que um <b>artigo</b> prevê",
+    "surto-confirmados": "<b>Surto</b> de casos confirmados",
+    "surto-notificados": "<b>Surto</b> de casos notificados",
+    "mosquito-por-bairro": "Densidade de mosquito por <b>bairro</b>",
+}
+
+
 # O corpo de cada cenário. Vazio por enquanto: o texto de cada um será escrito
 # à mão aqui, uma âncora por vez. Âncora ausente significa seção sem corpo.
 _CORPO_POR_ANCORA: dict[str, str] = {}
@@ -203,6 +218,43 @@ def _modelos_em_linha(ancora: str) -> str:
         itens.append(f"<span>{layout.escapar(nome)}</span>")
 
     return f'<span class="celulaModelos">{"".join(itens)}</span>'
+
+
+def resumo_dos_cenarios() -> list[tuple[int, str, str, str]]:
+    """Os cenários como dados, para quem quiser montar outra visão deles.
+
+    A página monta a tabela completa; a apresentação monta uma versão enxuta.
+    Os dois leem daqui, então não podem divergir.
+
+    Returns:
+        Uma tupla por cenário: (ordem, título, alvo curto, resumo dos modelos).
+        O resumo dos modelos traz o nome do algoritmo quando há só um, e a
+        contagem quando há vários.
+    """
+    linhas = []
+    for ordem, secao in enumerate(navegacao.PAGINA_CENARIOS.secoes, start=1):
+        modelos = _MODELOS_POR_ANCORA.get(secao.ancora, ())
+
+        if len(modelos) == 1:
+            chave_do_algoritmo = modelos[0][0]
+            resumo_dos_modelos = _NOME_DO_ALGORITMO.get(
+                chave_do_algoritmo, chave_do_algoritmo
+            )
+        elif modelos:
+            resumo_dos_modelos = f"{len(modelos)} algoritmos"
+        else:
+            resumo_dos_modelos = "—"
+
+        linhas.append(
+            (
+                ordem,
+                secao.titulo,
+                _ALVO_CURTO_POR_ANCORA[secao.ancora],
+                resumo_dos_modelos,
+            )
+        )
+
+    return linhas
 
 
 def _tabela_resumo() -> str:

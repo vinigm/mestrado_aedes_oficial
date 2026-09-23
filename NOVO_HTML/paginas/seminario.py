@@ -23,6 +23,7 @@ import numeros_do_projeto as numeros
 
 # A lista de temas climáticos vive na página de dados. Importar de lá evita
 # que o slide e a página divirjam quando uma coluna for acrescentada.
+import cenarios as pagina_de_cenarios
 import dados as pagina_de_dados
 
 
@@ -216,15 +217,32 @@ def _slide_colunas_de_clima() -> deck.Slide:
 
 
 def _slide_cenarios() -> deck.Slide:
-    """O mapa dos experimentos."""
+    """O mapa dos experimentos, em versão enxuta para projetar."""
+    resumo = pagina_de_cenarios.resumo_dos_cenarios()
+
+    cabecalhos = ["#", "Cenário", "Alvo", "Modelos"]
+
+    linhas = []
+    for ordem, titulo, alvo, modelos in resumo:
+        linhas.append(
+            [
+                f'<span class="num">{ordem}</span>',
+                f"<b>{layout.escapar(titulo)}</b>",
+                alvo,
+                modelos,
+            ]
+        )
+
     return deck.Slide(
         topico=TOPICO_CENARIOS,
-        titulo="Nove cenários, cada um mudando um parâmetro por vez",
-        corpo=(
-            "<p>⏳ <b>Rascunho.</b> Aqui entra a tabela dos nove cenários, com "
-            "o alvo de cada um — a mesma da página <i>Cenários testados</i>.</p>"
+        titulo=f"{len(resumo)} cenários, cada um mudando um parâmetro por vez",
+        corpo=layout.montar_tabela(cabecalhos, linhas),
+        nota=(
+            "Não ler a tabela. Dizer que cada cenário isola <b>uma</b> "
+            "mudança, e que por isso o algoritmo fica constante — exceto no "
+            "cenário 3, onde a escolha do algoritmo é justamente a pergunta."
         ),
-        nota="⏳ A fazer: trazer a tabela resumo dos 9 cenários.",
+        e_denso=True,
     )
 
 

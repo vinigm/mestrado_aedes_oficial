@@ -28,6 +28,8 @@ class Slide:
             mostra apenas a apresentação.
         e_figura: Quando True, o slide é desenhado para uma figura grande: o
             título encolhe e a imagem ocupa a altura que sobra.
+        e_denso: Quando True, o slide encolhe fonte e respiro — para tabela
+            longa que de outro modo não caberia no palco.
     """
 
     topico: str
@@ -35,6 +37,7 @@ class Slide:
     corpo: str
     nota: str = ""
     e_figura: bool = False
+    e_denso: bool = False
 
 
 FOLHA_DE_ESTILO_DO_DECK = """
@@ -91,6 +94,13 @@ FOLHA_DE_ESTILO_DO_DECK = """
 /* Crédito da fonte, no pé do slide: presente para quem procurar, discreto
    para quem não estiver procurando. */
 .fonteDoSlide{color:var(--faint); font-size:.78rem; margin:10px 0 0}
+
+/* Tabela longa num slide: fonte e respiro menores, para nove linhas caberem
+   no palco sem rolagem. */
+.deckSlide.densa .deckTitulo{font-size:1.4rem; margin-bottom:14px}
+.deckSlide.densa table.tabela{font-size:.82rem}
+.deckSlide.densa table.tabela td{padding:5px 12px}
+.deckSlide.densa table.tabela th{padding:5px 12px 6px}
 
 /* Agenda: um tópico por linha, numeração destacada. */
 .listaAgenda{list-style:none; margin:0; padding:0}
@@ -277,6 +287,8 @@ def montar(slides: list[Slide]) -> str:
             classe += " capa"
         if slide.e_figura:
             classe += " figura"
+        if slide.e_denso:
+            classe += " densa"
 
         rotulo = ""
         if slide.topico:
