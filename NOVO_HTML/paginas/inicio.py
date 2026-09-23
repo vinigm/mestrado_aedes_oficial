@@ -246,11 +246,12 @@ def _secao_atributos_do_modelo() -> str:
     não estão gravadas no arquivo, porque nascem em tempo de execução.
     """
     intro = (
-        f"<p>O arquivo guarda <b>{numeros.TABELA.colunas} colunas</b>, e "
-        "nenhuma delas é defasada: cada uma traz o valor da própria semana. "
-        "As defasagens <b>existem</b>, mas nascem quando o modelo roda, em "
-        "<code>dominio/features.py</code>, e por isso não aparecem numa "
-        "listagem do arquivo.</p>"
+        f"<p>As <b>{numeros.TABELA.colunas} colunas</b> da seção anterior são "
+        "o que o arquivo guarda, e nenhuma delas é defasada: cada uma traz o "
+        "valor da própria semana. As defasagens <b>existem</b>, mas nascem "
+        "quando o modelo roda, em <code>dominio/features.py</code>, e por "
+        "isso não aparecem numa listagem do arquivo. Esta seção fecha a "
+        "conta: é o conjunto que chega ao modelo.</p>"
     )
 
     caminho = layout.montar_fluxo(
@@ -298,7 +299,7 @@ def _secao_dicionario() -> str:
         "<p>Cada linha abaixo é uma coluna do arquivo único que alimenta os "
         f"modelos — {numeros.TABELA.colunas} colunas ao todo, uma semana por "
         "linha. São os valores <b>como foram coletados</b>; as defasagens "
-        "derivadas deles estão na seção anterior.</p>"
+        "derivadas deles estão na seção seguinte.</p>"
     )
 
     return intro + _tabela_do_dicionario()
@@ -397,8 +398,8 @@ def montar_corpo() -> str:
         "o-caminho-dos-dados": _secao_caminho_dos_dados,
         "os-horizontes": _secao_os_horizontes,
         "walk-forward": _secao_walk_forward,
-        "atributos-do-modelo": _secao_atributos_do_modelo,
         "dicionario": _secao_dicionario,
+        "atributos-do-modelo": _secao_atributos_do_modelo,
     }
 
     blocos = []

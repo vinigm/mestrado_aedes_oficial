@@ -81,14 +81,14 @@ PAGINA_INICIO = PaginaDoSite(
         ),
         SecaoDaPagina("walk-forward", "Validação walk-forward", "Como validamos"),
         SecaoDaPagina(
-            "atributos-do-modelo",
-            "Os atributos que o modelo vê",
-            "O que o modelo vê",
-        ),
-        SecaoDaPagina(
             "dicionario",
             "As colunas do arquivo de modelagem",
             "Colunas do arquivo",
+        ),
+        SecaoDaPagina(
+            "atributos-do-modelo",
+            "Tabela de atributos final",
+            "Atributos finais",
         ),
     ),
 )
