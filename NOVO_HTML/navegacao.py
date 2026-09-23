@@ -70,10 +70,7 @@ PAGINA_INICIO = PaginaDoSite(
     titulo_no_menu="Início",
     icone="casa",
     titulo="Modelo preditivo de casos de dengue em Porto Alegre",
-    resumo=(
-        "Pesquisa de mestrado no PPGC/UFRGS. A pergunta por trás do trabalho: "
-        "quanto vale a rede de armadilhas para a vigilância da dengue na cidade?"
-    ),
+    resumo="Pesquisa de mestrado no PPGC/UFRGS.",
     rotulo_do_submenu="A pesquisa",
     secoes=(
         SecaoDaPagina("o-caminho-dos-dados", "O caminho dos dados", "O caminho"),
