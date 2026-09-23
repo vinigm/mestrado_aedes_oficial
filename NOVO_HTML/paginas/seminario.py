@@ -74,6 +74,7 @@ def _slide_agenda() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_AGENDA,
         titulo="Agenda",
+        rotulo_curto="Roteiro",
         corpo=f'<ul class="listaAgenda">{"".join(itens)}</ul>',
         nota="Passar rápido. Serve para a banca saber onde a fala vai chegar.",
     )
@@ -84,6 +85,7 @@ def _slide_objetivo() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_OBJETIVO,
         titulo="Medir se a rede de armadilhas antecipa a dengue — e com quanto tempo",
+        rotulo_curto="A pergunta",
         corpo=(
             layout.montar_fluxo(
                 [
@@ -121,6 +123,7 @@ def _slide_o_que_o_projeto_faz() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_OBJETIVO,
         titulo="Construir um modelo que preveja quantos casos de dengue virão",
+        rotulo_curto="O modelo",
         corpo=(
             layout.montar_fluxo(
                 [
@@ -153,6 +156,7 @@ def _slide_vetor_e_casos() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_DADOS,
         titulo="A curva do mosquito e a curva da doença, no mesmo eixo de tempo",
+        rotulo_curto="Mosquito e casos",
         corpo=(
             '<div class="deckFiguraCheia">'
             '<img src="imagens/slide_vetor_e_casos.png" '
@@ -173,6 +177,7 @@ def _slide_clima() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_DADOS,
         titulo="E o clima, que é o que faz o mosquito proliferar",
+        rotulo_curto="Clima",
         corpo=(
             '<div class="deckFiguraCheia">'
             '<img src="imagens/slide_clima.png" '
@@ -205,6 +210,7 @@ def _slide_colunas_de_clima() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_DADOS,
         titulo=f"O clima entra como {total_de_colunas} variáveis, não como uma",
+        rotulo_curto="As variáveis",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
             + '<p class="fonteDoSlide">Fonte: NASA POWER</p>'
@@ -236,6 +242,7 @@ def _slide_cenarios() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_CENARIOS,
         titulo=f"{len(resumo)} cenários, cada um mudando um parâmetro por vez",
+        rotulo_curto="Os nove",
         corpo=layout.montar_tabela(cabecalhos, linhas),
         nota=(
             "Não ler a tabela. Dizer que cada cenário isola <b>uma</b> "
@@ -251,6 +258,7 @@ def _slide_adotado() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_ADOTADO,
         titulo="A configuração de referência, e como ela foi escolhida",
+        rotulo_curto="A configuração",
         corpo=(
             "<p>⏳ <b>Rascunho.</b> HistGradientBoosting, perda quantílica em "
             "0,85, com vetor — vencedora entre as "
@@ -280,6 +288,7 @@ def _slide_resultados() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
         titulo="O modelo é honesto até um mês, e perde força em três",
+        rotulo_curto="A previsão",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
             + layout.montar_aviso(
@@ -316,6 +325,7 @@ def _slide_alarme() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
         titulo="Como alarme de surto, ele acerta 97% das semanas a um mês",
+        rotulo_curto="O alarme",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
             + layout.montar_aviso(
@@ -360,6 +370,7 @@ def _slide_o_vetor() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
         titulo="A armadilha não adiciona sobre clima e histórico — e isso pede explicação",
+        rotulo_curto="O vetor",
         corpo=(
             contraste
             + layout.montar_aviso(
@@ -405,6 +416,7 @@ def _slide_proximos_passos() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_PROXIMOS,
         titulo="Deslocar a pergunta da consequência para a causa",
+        rotulo_curto="A direção",
         corpo=layout.montar_tabela(cabecalhos, linhas),
         nota=(
             "Fechar aqui. Este slide saiu da reunião de "

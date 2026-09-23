@@ -30,6 +30,8 @@ class Slide:
             título encolhe e a imagem ocupa a altura que sobra.
         e_denso: Quando True, o slide encolhe fonte e respiro — para tabela
             longa que de outro modo não caberia no palco.
+        rotulo_curto: Nome do slide na trilha de progresso, em duas ou três
+            palavras. Vazio repete o tópico.
     """
 
     topico: str
@@ -38,6 +40,7 @@ class Slide:
     nota: str = ""
     e_figura: bool = False
     e_denso: bool = False
+    rotulo_curto: str = ""
 
 
 FOLHA_DE_ESTILO_DO_DECK = """
@@ -59,19 +62,19 @@ FOLHA_DE_ESTILO_DO_DECK = """
    cinza atravessa tudo; a linha azul por cima cresce conforme a apresentação
    avança, e é o JS que mede a largura dela. Tópico já visto fica com o
    marcador cheio; os que ainda vêm ficam esmaecidos. */
-.deckIndice{position:relative; display:flex; padding:16px 48px 12px;
+.deckIndice{position:relative; display:flex; gap:2px; padding:14px 40px 10px;
   background:var(--elevado); border-bottom:1px solid var(--borda)}
 
-.deckIndiceTrilha{position:absolute; left:48px; right:48px; top:23px; height:2px;
+.deckIndiceTrilha{position:absolute; top:21px; height:2px; left:0; width:0;
   background:var(--borda); border-radius:2px}
-.deckIndiceProgresso{position:absolute; left:48px; top:23px; height:2px; width:0;
+.deckIndiceProgresso{position:absolute; top:21px; height:2px; left:0; width:0;
   background:var(--acento); border-radius:2px;
   transition:width .22s ease}
 
 .deckIndiceItem{position:relative; z-index:1; flex:1 1 0; min-width:0;
-  display:flex; flex-direction:column; align-items:center; gap:9px}
+  display:flex; flex-direction:column; align-items:center; gap:8px}
 
-.deckIndiceMarca{width:11px; height:11px; border-radius:50%;
+.deckIndiceMarca{width:10px; height:10px; border-radius:50%;
   background:var(--fundo); border:2px solid var(--borda-forte);
   transition:background .18s ease, border-color .18s ease, transform .18s ease}
 .deckIndiceItem.passado .deckIndiceMarca{background:var(--acento);
@@ -80,10 +83,17 @@ FOLHA_DE_ESTILO_DO_DECK = """
   border-color:var(--acento); transform:scale(1.35);
   box-shadow:0 0 0 4px rgba(27,110,243,.16)}
 
-.deckIndiceTexto{font-size:.7rem; font-weight:600; letter-spacing:.015em;
-  color:#B6C2D0; text-align:center; white-space:nowrap; overflow:hidden;
+.deckIndiceRotulos{display:flex; flex-direction:column; align-items:center;
+  gap:1px; max-width:100%; min-width:0}
+.deckIndiceTopico{font-size:.58rem; font-weight:600; letter-spacing:.06em;
+  text-transform:uppercase; color:#C6D0DB; white-space:nowrap; overflow:hidden;
   text-overflow:ellipsis; max-width:100%; transition:color .18s ease}
+.deckIndiceTexto{font-size:.67rem; font-weight:650; color:#B6C2D0;
+  text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  max-width:100%; transition:color .18s ease}
+.deckIndiceItem.passado .deckIndiceTopico{color:#AEBAC7}
 .deckIndiceItem.passado .deckIndiceTexto{color:var(--muted)}
+.deckIndiceItem.atual .deckIndiceTopico{color:var(--acento)}
 .deckIndiceItem.atual .deckIndiceTexto{color:var(--acento-escuro); font-weight:700}
 
 .deckNumero{position:absolute; right:22px; bottom:16px; color:var(--faint);
@@ -181,6 +191,14 @@ SCRIPT_DO_DECK = """
     document.querySelectorAll('.deckIndiceItem')
   );
   var progressoDoIndice = document.getElementById('deckIndiceProgresso');
+  var trilhaDoIndice = document.querySelector('.deckIndiceTrilha');
+
+  // Centro horizontal de um marcador, medido em relação à barra do índice.
+  function centroDoMarcador(item){
+    var barra = item.parentElement.getBoundingClientRect();
+    var marca = item.querySelector('.deckIndiceMarca').getBoundingClientRect();
+    return (marca.left + marca.width / 2) - barra.left;
+  }
   var anterior = document.getElementById('deckAnterior');
   var proximo = document.getElementById('deckProximo');
   var atual = 0;
@@ -194,10 +212,9 @@ SCRIPT_DO_DECK = """
     for (var j = 0; j < pontos.length; j++) {
       pontos[j].classList.toggle('ativo', j === atual);
     }
-    var topicoAtual = slides[atual].dataset.topico || '';
     var posicaoDoTopico = -1;
     for (var t = 0; t < itensDoIndice.length; t++) {
-      if (itensDoIndice[t].dataset.topico === topicoAtual) { posicaoDoTopico = t; }
+      if (parseInt(itensDoIndice[t].dataset.slide, 10) === atual) { posicaoDoTopico = t; }
     }
     for (var u = 0; u < itensDoIndice.length; u++) {
       itensDoIndice[u].classList.toggle('atual', u === posicaoDoTopico);
@@ -206,13 +223,25 @@ SCRIPT_DO_DECK = """
       );
     }
 
-    // A linha azul vai do centro do primeiro marcador ao centro do atual.
-    if (progressoDoIndice && posicaoDoTopico >= 0 && itensDoIndice.length) {
-      var primeiro = itensDoIndice[0].getBoundingClientRect();
-      var alcancado = itensDoIndice[posicaoDoTopico].getBoundingClientRect();
-      var larguraPercorrida =
-        (alcancado.left + alcancado.width / 2) - (primeiro.left + primeiro.width / 2);
-      progressoDoIndice.style.width = Math.max(0, larguraPercorrida) + 'px';
+    // As duas linhas vão de marcador a marcador: a cinza do primeiro ao
+    // último, a azul do primeiro até o atual. Ancorar no centro da bolinha, e
+    // não na borda da barra, é o que faz a linha terminar exatamente nela.
+    if (itensDoIndice.length) {
+      var centroDoPrimeiro = centroDoMarcador(itensDoIndice[0]);
+      var centroDoUltimo = centroDoMarcador(itensDoIndice[itensDoIndice.length - 1]);
+
+      if (trilhaDoIndice) {
+        trilhaDoIndice.style.left = centroDoPrimeiro + 'px';
+        trilhaDoIndice.style.width = (centroDoUltimo - centroDoPrimeiro) + 'px';
+      }
+
+      if (progressoDoIndice) {
+        progressoDoIndice.style.left = centroDoPrimeiro + 'px';
+        var ateOnde = posicaoDoTopico >= 0
+          ? centroDoMarcador(itensDoIndice[posicaoDoTopico]) - centroDoPrimeiro
+          : 0;
+        progressoDoIndice.style.width = Math.max(0, ateOnde) + 'px';
+      }
     }
 
     contador.textContent = (atual + 1) + ' / ' + slides.length;
@@ -249,47 +278,37 @@ SCRIPT_DO_DECK = """
 """
 
 
-def _topicos_em_ordem(slides: list[Slide]) -> list[str]:
-    """Lista os tópicos na ordem em que aparecem, sem repetir.
+def _indice_horizontal(slides: list[Slide]) -> str:
+    """A trilha de progresso no topo do palco, com um marcador por slide.
+
+    Cada marcador traz o tópico em cima e o nome curto do slide embaixo, para
+    que a trilha diga não só em que parte a apresentação está, mas em que
+    slide daquela parte. A capa fica de fora: ela não é conteúdo.
 
     Args:
-        slides: Os slides do deck.
+        slides: Os slides, na ordem da apresentação.
 
     Returns:
-        Os nomes dos tópicos, uma vez cada. Slide sem tópico (a capa) não
-        entra.
+        O HTML da trilha, ou string vazia se nenhum slide tiver tópico.
     """
-    topicos: list[str] = []
-    for slide in slides:
-        if slide.topico and slide.topico not in topicos:
-            topicos.append(slide.topico)
-
-    return topicos
-
-
-def _indice_horizontal(topicos: list[str]) -> str:
-    """A barra de tópicos no topo do palco.
-
-    O item de cada tópico ganha um `data-topico`, e o JS é quem marca qual
-    está atual — assim o índice não precisa ser redesenhado a cada slide.
-
-    Args:
-        topicos: Os tópicos, na ordem da apresentação.
-
-    Returns:
-        O HTML do índice, ou string vazia se não houver tópico.
-    """
-    if not topicos:
-        return ""
-
     itens = []
-    for topico in topicos:
+    for posicao, slide in enumerate(slides):
+        if not slide.topico:
+            continue
+
+        nome_curto = slide.rotulo_curto if slide.rotulo_curto else slide.topico
+
         itens.append(
-            f'<div class="deckIndiceItem" data-topico="{layout.escapar(topico)}">'
+            f'<div class="deckIndiceItem" data-slide="{posicao}">'
             '<span class="deckIndiceMarca"></span>'
-            f'<span class="deckIndiceTexto">{layout.escapar(topico)}</span>'
-            "</div>"
+            '<span class="deckIndiceRotulos">'
+            f'<span class="deckIndiceTopico">{layout.escapar(slide.topico)}</span>'
+            f'<span class="deckIndiceTexto">{layout.escapar(nome_curto)}</span>'
+            "</span></div>"
         )
+
+    if not itens:
+        return ""
 
     return (
         '<div class="deckIndice">'
@@ -314,8 +333,6 @@ def montar(slides: list[Slide]) -> str:
     """
     if not slides:
         raise ValueError("Um deck precisa de pelo menos um slide.")
-
-    topicos = _topicos_em_ordem(slides)
 
     blocos_de_slide = []
     pontos = []
@@ -366,7 +383,7 @@ def montar(slides: list[Slide]) -> str:
     return (
         '<div class="deck">'
         '<div class="deckPalco">'
-        f"{_indice_horizontal(topicos)}"
+        f"{_indice_horizontal(slides)}"
         f'<div class="deckTela">{"".join(blocos_de_slide)}</div>'
         "</div>"
         f"{barra}"

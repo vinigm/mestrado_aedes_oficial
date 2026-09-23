@@ -374,19 +374,19 @@ code.nomeColuna{white-space:nowrap}
    cinza atravessa tudo; a linha azul por cima cresce conforme a apresentação
    avança, e é o JS que mede a largura dela. Tópico já visto fica com o
    marcador cheio; os que ainda vêm ficam esmaecidos. */
-.deckIndice{position:relative; display:flex; padding:16px 48px 12px;
+.deckIndice{position:relative; display:flex; gap:2px; padding:14px 40px 10px;
   background:var(--elevado); border-bottom:1px solid var(--borda)}
 
-.deckIndiceTrilha{position:absolute; left:48px; right:48px; top:23px; height:2px;
+.deckIndiceTrilha{position:absolute; top:21px; height:2px; left:0; width:0;
   background:var(--borda); border-radius:2px}
-.deckIndiceProgresso{position:absolute; left:48px; top:23px; height:2px; width:0;
+.deckIndiceProgresso{position:absolute; top:21px; height:2px; left:0; width:0;
   background:var(--acento); border-radius:2px;
   transition:width .22s ease}
 
 .deckIndiceItem{position:relative; z-index:1; flex:1 1 0; min-width:0;
-  display:flex; flex-direction:column; align-items:center; gap:9px}
+  display:flex; flex-direction:column; align-items:center; gap:8px}
 
-.deckIndiceMarca{width:11px; height:11px; border-radius:50%;
+.deckIndiceMarca{width:10px; height:10px; border-radius:50%;
   background:var(--fundo); border:2px solid var(--borda-forte);
   transition:background .18s ease, border-color .18s ease, transform .18s ease}
 .deckIndiceItem.passado .deckIndiceMarca{background:var(--acento);
@@ -395,10 +395,17 @@ code.nomeColuna{white-space:nowrap}
   border-color:var(--acento); transform:scale(1.35);
   box-shadow:0 0 0 4px rgba(27,110,243,.16)}
 
-.deckIndiceTexto{font-size:.7rem; font-weight:600; letter-spacing:.015em;
-  color:#B6C2D0; text-align:center; white-space:nowrap; overflow:hidden;
+.deckIndiceRotulos{display:flex; flex-direction:column; align-items:center;
+  gap:1px; max-width:100%; min-width:0}
+.deckIndiceTopico{font-size:.58rem; font-weight:600; letter-spacing:.06em;
+  text-transform:uppercase; color:#C6D0DB; white-space:nowrap; overflow:hidden;
   text-overflow:ellipsis; max-width:100%; transition:color .18s ease}
+.deckIndiceTexto{font-size:.67rem; font-weight:650; color:#B6C2D0;
+  text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  max-width:100%; transition:color .18s ease}
+.deckIndiceItem.passado .deckIndiceTopico{color:#AEBAC7}
 .deckIndiceItem.passado .deckIndiceTexto{color:var(--muted)}
+.deckIndiceItem.atual .deckIndiceTopico{color:var(--acento)}
 .deckIndiceItem.atual .deckIndiceTexto{color:var(--acento-escuro); font-weight:700}
 
 .deckNumero{position:absolute; right:22px; bottom:16px; color:var(--faint);
@@ -528,6 +535,14 @@ code.nomeColuna{white-space:nowrap}
     document.querySelectorAll('.deckIndiceItem')
   );
   var progressoDoIndice = document.getElementById('deckIndiceProgresso');
+  var trilhaDoIndice = document.querySelector('.deckIndiceTrilha');
+
+  // Centro horizontal de um marcador, medido em relação à barra do índice.
+  function centroDoMarcador(item){
+    var barra = item.parentElement.getBoundingClientRect();
+    var marca = item.querySelector('.deckIndiceMarca').getBoundingClientRect();
+    return (marca.left + marca.width / 2) - barra.left;
+  }
   var anterior = document.getElementById('deckAnterior');
   var proximo = document.getElementById('deckProximo');
   var atual = 0;
@@ -541,10 +556,9 @@ code.nomeColuna{white-space:nowrap}
     for (var j = 0; j < pontos.length; j++) {
       pontos[j].classList.toggle('ativo', j === atual);
     }
-    var topicoAtual = slides[atual].dataset.topico || '';
     var posicaoDoTopico = -1;
     for (var t = 0; t < itensDoIndice.length; t++) {
-      if (itensDoIndice[t].dataset.topico === topicoAtual) { posicaoDoTopico = t; }
+      if (parseInt(itensDoIndice[t].dataset.slide, 10) === atual) { posicaoDoTopico = t; }
     }
     for (var u = 0; u < itensDoIndice.length; u++) {
       itensDoIndice[u].classList.toggle('atual', u === posicaoDoTopico);
@@ -553,13 +567,25 @@ code.nomeColuna{white-space:nowrap}
       );
     }
 
-    // A linha azul vai do centro do primeiro marcador ao centro do atual.
-    if (progressoDoIndice && posicaoDoTopico >= 0 && itensDoIndice.length) {
-      var primeiro = itensDoIndice[0].getBoundingClientRect();
-      var alcancado = itensDoIndice[posicaoDoTopico].getBoundingClientRect();
-      var larguraPercorrida =
-        (alcancado.left + alcancado.width / 2) - (primeiro.left + primeiro.width / 2);
-      progressoDoIndice.style.width = Math.max(0, larguraPercorrida) + 'px';
+    // As duas linhas vão de marcador a marcador: a cinza do primeiro ao
+    // último, a azul do primeiro até o atual. Ancorar no centro da bolinha, e
+    // não na borda da barra, é o que faz a linha terminar exatamente nela.
+    if (itensDoIndice.length) {
+      var centroDoPrimeiro = centroDoMarcador(itensDoIndice[0]);
+      var centroDoUltimo = centroDoMarcador(itensDoIndice[itensDoIndice.length - 1]);
+
+      if (trilhaDoIndice) {
+        trilhaDoIndice.style.left = centroDoPrimeiro + 'px';
+        trilhaDoIndice.style.width = (centroDoUltimo - centroDoPrimeiro) + 'px';
+      }
+
+      if (progressoDoIndice) {
+        progressoDoIndice.style.left = centroDoPrimeiro + 'px';
+        var ateOnde = posicaoDoTopico >= 0
+          ? centroDoMarcador(itensDoIndice[posicaoDoTopico]) - centroDoPrimeiro
+          : 0;
+        progressoDoIndice.style.width = Math.max(0, ateOnde) + 'px';
+      }
     }
 
     contador.textContent = (atual + 1) + ' / ' + slides.length;
