@@ -90,12 +90,14 @@ SEMANAS_DA_SUAVIZACAO_DA_RAMPA = 5
 FRACAO_DE_INICIO_DA_RAMPA = 0.35
 FRACAO_DE_FIM_DA_RAMPA = 0.80
 
-# Quanto a seta sobe acima da curva, em fração do topo do eixo, para não ficar
-# escondida dentro das barras.
-FOLGA_VERTICAL_DA_SETA = 0.03
+# Quanto a BASE da seta flutua acima do ponto mais alto que a série alcança
+# debaixo dela, em fração do topo do eixo.
+FOLGA_VERTICAL_DA_SETA = 0.07
 
-# Curvatura da seta. Negativo inclina para a direita, acompanhando a subida.
-CURVATURA_DA_SETA = -0.12
+# Curvatura da seta. Positivo faz a barriga cair para a esquerda de quem anda
+# da base para a ponta: a seta sobe firme e só vira para a direita no fim,
+# que é o gesto de "isto aqui disparou".
+CURVATURA_DA_SETA = 0.16
 
 # Todas as setas têm o mesmo tamanho, medido em fração do eixo nos dois
 # sentidos. Deixar cada seta crescer junto com a rampa que ela comenta faria o
@@ -105,7 +107,7 @@ CURVATURA_DA_SETA = -0.12
 # ⚠️ O comprimento horizontal é fração da JANELA, não um número de semanas:
 # seis semanas somem numa figura de catorze anos e viram uma seta deitada numa
 # figura de duas temporadas. Em fração, a seta tem o mesmo aspecto nas duas.
-COMPRIMENTO_DA_SETA_EM_FRACAO_DA_LARGURA = 0.022
+COMPRIMENTO_DA_SETA_EM_FRACAO_DA_LARGURA = 0.030
 COMPRIMENTO_DA_SETA_EM_FRACAO_DA_ALTURA = 0.16
 
 # Quanto o topo do eixo sobe antes das setas serem desenhadas. Sem essa folga,
@@ -380,22 +382,66 @@ def _abrir_espaco_no_topo(eixo) -> None:
     )
 
 
-def _desenhar_seta_de_subida(eixo, rampa: RampaDeSubida, cor: str) -> None:
+def _teto_da_serie_no_trecho(
+    datas: pd.Series,
+    valores: pd.Series,
+    inicio: pd.Timestamp,
+    fim: pd.Timestamp,
+) -> float:
+    """Diz até onde a série sobe dentro de um intervalo de semanas.
+
+    É o piso a partir do qual uma anotação pode ser desenhada sem cobrir a
+    série. O intervalo é fechado nos dois lados, para incluir a semana do
+    início da rampa.
+
+    Args:
+        datas: As semanas da série.
+        valores: Os valores da série, alinhados com `datas`.
+        inicio: Primeira semana do trecho.
+        fim: Última semana do trecho.
+
+    Returns:
+        O maior valor do trecho. Devolve 0.0 quando o trecho não tem nenhuma
+        semana com valor — caso em que nada há para cobrir.
+    """
+    dentro_do_trecho = (datas >= inicio) & (datas <= fim)
+    valores_do_trecho = valores[dentro_do_trecho].dropna()
+
+    if valores_do_trecho.empty:
+        return 0.0
+
+    return float(valores_do_trecho.max())
+
+
+def _desenhar_seta_de_subida(
+    eixo,
+    rampa: RampaDeSubida,
+    cor: str,
+    datas_desenhadas: pd.Series,
+    valores_desenhados: pd.Series,
+) -> None:
     """Desenha a seta curta que marca onde uma série começou a subir.
 
-    A seta nasce na semana medida de início da rampa e tem tamanho fixo em
-    relação à janela desenhada, igual para todas. O que ela comunica é a
+    A seta termina na semana medida de início da rampa e chega de baixo e da
+    esquerda, do trecho em que a série ainda está achatada. Tem tamanho fixo
+    em relação à janela desenhada, igual para todas: o que ela comunica é a
     posição no tempo — em que semana aquela curva começou a subir — e não a
     intensidade da subida, que já está desenhada pela própria série.
 
-    A base fica deslocada para cima em relação à curva, por uma fração do topo
-    do eixo, para não se perder dentro das barras ou da linha que comenta.
+    A altura NÃO é uma folga fixa sobre o valor do início da rampa. Ela é
+    medida contra o ponto mais alto que a série alcança debaixo da própria
+    seta, e só então acrescida da folga. A diferença importa na curva de
+    casos, que salta de dezenas para centenas em duas semanas: ali uma folga
+    fixa deixava a linha atravessando a seta de lado a lado.
 
     Args:
         eixo: O painel em que a série está desenhada — o eixo da esquerda para
             o mosquito, o da direita para os casos, já que a figura usa dois.
         rampa: Os extremos medidos da subida.
         cor: A cor da série comentada, para a seta se identificar sozinha.
+        datas_desenhadas: As semanas efetivamente desenhadas no painel.
+        valores_desenhados: A série efetivamente desenhada — a original, não a
+            suavizada, porque é dela que a seta precisa se afastar na tela.
     """
     topo_do_eixo = eixo.get_ylim()[1]
     folga = topo_do_eixo * FOLGA_VERTICAL_DA_SETA
@@ -408,10 +454,15 @@ def _desenhar_seta_de_subida(eixo, rampa: RampaDeSubida, cor: str) -> None:
         largura_da_janela_em_dias * COMPRIMENTO_DA_SETA_EM_FRACAO_DA_LARGURA
     )
 
-    data_da_base = rampa.data_de_inicio
-    altura_da_base = rampa.valor_de_inicio + folga
+    # A PONTA fica no início medido da rampa; a base recua no tempo e desce.
+    # Assim a seta ocupa o espaço vazio que antecede a subida, em vez de se
+    # deitar sobre o trecho íngreme da curva.
+    data_da_ponta = rampa.data_de_inicio
+    data_da_base = data_da_ponta - pd.Timedelta(days=avanco_em_dias)
 
-    data_da_ponta = data_da_base + pd.Timedelta(days=avanco_em_dias)
+    altura_da_base = _teto_da_serie_no_trecho(
+        datas_desenhadas, valores_desenhados, data_da_base, data_da_ponta
+    ) + folga
     altura_da_ponta = altura_da_base + (
         topo_do_eixo * COMPRIMENTO_DA_SETA_EM_FRACAO_DA_ALTURA
     )
@@ -516,8 +567,20 @@ def desenhar_zoom_das_subidas(tabela: pd.DataFrame) -> pathlib.Path:
         rampa_do_vetor = localizar_rampa_de_subida(temporada, "aedes_aegypti")
         rampa_dos_casos = localizar_rampa_de_subida(temporada, "casos_confirmados")
 
-        _desenhar_seta_de_subida(eixo_do_vetor, rampa_do_vetor, COR_VETOR_EM_BARRA)
-        _desenhar_seta_de_subida(eixo_dos_casos, rampa_dos_casos, COR_CASOS)
+        _desenhar_seta_de_subida(
+            eixo_do_vetor,
+            rampa_do_vetor,
+            COR_VETOR_EM_BARRA,
+            datas,
+            recorte["aedes_aegypti"],
+        )
+        _desenhar_seta_de_subida(
+            eixo_dos_casos,
+            rampa_dos_casos,
+            COR_CASOS,
+            datas,
+            recorte["casos_confirmados"],
+        )
 
     marcas_do_vetor, rotulos_do_vetor = eixo_do_vetor.get_legend_handles_labels()
     marcas_dos_casos, rotulos_dos_casos = eixo_dos_casos.get_legend_handles_labels()
