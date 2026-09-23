@@ -137,7 +137,9 @@ code{font-family:var(--fonte-dados); font-size:.86em; background:var(--elevado);
 
 .navFilho{padding-left:28px; font-size:.855rem}
 
-.navDivisor{height:1px; background:var(--nav-borda); margin:12px 18px}
+/* Filete que separa grupos no menu. O respiro é generoso de propósito: é
+   ele que diz que o que vem depois é de outra natureza. */
+.navDivisor{height:1px; background:var(--nav-borda); margin:34px 18px}
 
 .navRodape{
   border-top:1px solid var(--nav-borda); padding:11px 18px;

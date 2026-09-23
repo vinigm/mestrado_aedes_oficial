@@ -46,6 +46,10 @@ class PaginaDoSite:
         resumo: Uma frase logo abaixo do título, dizendo o que a página responde.
         rotulo_do_submenu: Versalete no topo do menu secundário.
         secoes: Seções da página, na ordem em que aparecem.
+        abre_grupo: Quando True, um filete com respiro aparece antes deste item
+            no menu, separando-o do bloco anterior.
+        oculta_cabecalho: Quando True, a página não mostra trilha nem título —
+            para páginas que SÃO o próprio conteúdo, como a apresentação.
     """
 
     chave: str
@@ -56,6 +60,8 @@ class PaginaDoSite:
     resumo: str
     rotulo_do_submenu: str
     secoes: tuple[SecaoDaPagina, ...]
+    abre_grupo: bool = False
+    oculta_cabecalho: bool = False
 
 
 PAGINA_INICIO = PaginaDoSite(
@@ -63,10 +69,10 @@ PAGINA_INICIO = PaginaDoSite(
     arquivo="index.html",
     titulo_no_menu="Início",
     icone="casa",
-    titulo="Quanto vale a rede de armadilhas para a vigilância de dengue em Porto Alegre?",
+    titulo="Modelo preditivo de casos de dengue em Porto Alegre",
     resumo=(
-        "Pesquisa de mestrado no PPGC/UFRGS. Este painel reúne a série de captura "
-        "de mosquito da cidade, o método de avaliação e o que já foi medido."
+        "Pesquisa de mestrado no PPGC/UFRGS. A pergunta por trás do trabalho: "
+        "quanto vale a rede de armadilhas para a vigilância da dengue na cidade?"
     ),
     rotulo_do_submenu="A pesquisa",
     secoes=(
@@ -158,6 +164,20 @@ PAGINA_PROXIMOS_PASSOS = PaginaDoSite(
 )
 
 
+PAGINA_SEMINARIO = PaginaDoSite(
+    chave="seminario",
+    arquivo="seminario.html",
+    titulo_no_menu="Seminário de Andamento",
+    icone="grafico",
+    titulo="Seminário de Andamento",
+    resumo="",
+    rotulo_do_submenu="A apresentação",
+    secoes=(),
+    abre_grupo=True,
+    oculta_cabecalho=True,
+)
+
+
 # Ordem dos itens no menu primário.
 PAGINAS_DO_SITE: tuple[PaginaDoSite, ...] = (
     PAGINA_INICIO,
@@ -165,6 +185,7 @@ PAGINAS_DO_SITE: tuple[PaginaDoSite, ...] = (
     PAGINA_CENARIOS,
     PAGINA_CENARIO_ADOTADO,
     PAGINA_PROXIMOS_PASSOS,
+    PAGINA_SEMINARIO,
 )
 
 

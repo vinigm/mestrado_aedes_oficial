@@ -11,6 +11,7 @@ import html
 
 import icones
 import navegacao
+import deck
 import tema
 
 
@@ -73,6 +74,8 @@ def montar_menu_primario(chave_ativa: str) -> str:
 
     linhas_de_menu = []
     for pagina in navegacao.PAGINAS_DO_SITE:
+        if pagina.abre_grupo:
+            linhas_de_menu.append('<div class="navDivisor"></div>')
         linhas_de_menu.append(_item_do_menu_primario(pagina, chave_ativa))
 
     return (
@@ -432,6 +435,19 @@ def montar_documento(
     if pagina.resumo:
         resumo = f'<p class="resumo">{escapar(pagina.resumo)}</p>'
 
+    # Página que É o próprio conteúdo (a apresentação) dispensa trilha e
+    # título: eles roubariam altura do palco dos slides.
+    cabecalho = ""
+    if not pagina.oculta_cabecalho:
+        cabecalho = (
+            '<p class="trilha">Mestrado PPGC · UFRGS &nbsp;·&nbsp; Porto Alegre, RS '
+            f"&nbsp;·&nbsp; <b>{escapar(pagina.titulo_no_menu)}</b></p>"
+            '<header class="cabecalhoPagina">'
+            f"<h1>{escapar(pagina.titulo)}</h1>"
+            f"{resumo}"
+            "</header>"
+        )
+
     return (
         "<!doctype html>"
         '<html lang="pt-BR"><head>'
@@ -444,22 +460,16 @@ def montar_documento(
         '<meta http-equiv="Pragma" content="no-cache">'
         '<meta http-equiv="Expires" content="0">'
         f"<title>{escapar(pagina.titulo_no_menu)} — Aedes aegypti e dengue em Porto Alegre</title>"
-        f"<style>{tema.FOLHA_DE_ESTILO}</style>"
+        f"<style>{tema.FOLHA_DE_ESTILO}{deck.FOLHA_DE_ESTILO_DO_DECK}</style>"
         "</head><body>"
         '<div id="casca">'
         f"{menu_primario}"
         '<main id="areaConteudo"><div class="conteudoInterno">'
-        '<p class="trilha">Mestrado PPGC · UFRGS &nbsp;·&nbsp; Porto Alegre, RS '
-        f"&nbsp;·&nbsp; <b>{escapar(pagina.titulo_no_menu)}</b></p>"
-        '<header class="cabecalhoPagina">'
-        f"<h1>{escapar(pagina.titulo)}</h1>"
-        f"{resumo}"
-        "</header>"
-        f"{regua}{corpo}"
+        f"{cabecalho}{regua}{corpo}"
         "</div>"
         f'<footer class="rodape">Painel de acompanhamento da pesquisa · '
         f"gerado em {escapar(gerado_em)}</footer>"
         "</main></div>"
-        f"<script>{tema.SCRIPT_DE_NAVEGACAO}</script>"
+        f"<script>{tema.SCRIPT_DE_NAVEGACAO}{deck.SCRIPT_DO_DECK}</script>"
         "</body></html>"
     )

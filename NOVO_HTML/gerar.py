@@ -28,6 +28,7 @@ import cenarios as pagina_cenarios  # noqa: E402
 import dados as pagina_dados  # noqa: E402
 import inicio as pagina_inicio  # noqa: E402
 import proximos_passos as pagina_proximos_passos  # noqa: E402
+import seminario as pagina_seminario  # noqa: E402
 
 
 PASTA_DE_SAIDA = PASTA_DESTE_ARQUIVO / "saida"
@@ -51,6 +52,7 @@ MODULOS_POR_PAGINA = {
     navegacao.PAGINA_DADOS.chave: pagina_dados,
     navegacao.PAGINA_CENARIO_ADOTADO.chave: pagina_cenario_adotado,
     navegacao.PAGINA_PROXIMOS_PASSOS.chave: pagina_proximos_passos,
+    navegacao.PAGINA_SEMINARIO.chave: pagina_seminario,
     navegacao.PAGINA_CENARIOS.chave: pagina_cenarios,
 }
 
