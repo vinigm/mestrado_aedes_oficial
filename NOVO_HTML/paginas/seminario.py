@@ -109,7 +109,7 @@ def _slide_o_que_o_projeto_faz() -> deck.Slide:
             layout.montar_cartao(
                 rotulo="Horizonte",
                 titulo=desempenho.rotulo,
-                corpo="<p>à frente</p>",
+                corpo="",
             )
         )
 
@@ -123,7 +123,14 @@ def _slide_o_que_o_projeto_faz() -> deck.Slide:
                     ("Clima", "chuva, temperatura, umidade e mais"),
                     ("Histórico de casos", "o que já foi notificado"),
                     ("Previsão", "quantos casos na semana-alvo"),
-                ]
+                ],
+                # As três primeiras são fontes que entram juntas; só a última é
+                # consequência delas. Daí a soma entre elas e a seta no fim.
+                conectores=[
+                    layout.CONECTOR_DE_SOMA,
+                    layout.CONECTOR_DE_SOMA,
+                    layout.CONECTOR_DE_SEQUENCIA,
+                ],
             )
             + layout.montar_grade(horizontes, colunas=4)
         ),

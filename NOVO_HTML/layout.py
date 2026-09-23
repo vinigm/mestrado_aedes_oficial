@@ -363,29 +363,52 @@ def montar_faixa(titulo: str) -> str:
     return f'<div class="faixa"><p class="faixaTitulo">{escapar(titulo)}</p></div>'
 
 
-def montar_fluxo(etapas: list[tuple[str, str]]) -> str:
-    """Diagrama de etapas em sequência, ligadas por setas.
+# Conector padrão entre etapas de um fluxo: uma seta, indicando sequência.
+CONECTOR_DE_SEQUENCIA = "&rarr;"
+
+# Conector de soma, para quando as etapas não se sucedem no tempo e sim se
+# somam — várias fontes que entram juntas num mesmo lugar.
+CONECTOR_DE_SOMA = "+"
+
+
+def montar_fluxo(
+    etapas: list[tuple[str, str]],
+    conectores: list[str] | None = None,
+) -> str:
+    """Diagrama de etapas em sequência, ligadas por conectores.
 
     Serve para mostrar um caminho — de onde o dado vem até onde ele chega —
     sem exigir que o leitor monte a sequência a partir de texto corrido.
 
     Args:
         etapas: Uma tupla `(nome, descricao)` por etapa, na ordem do caminho.
+        conectores: O símbolo entre cada par de etapas, com um item a menos que
+            `etapas`. Quando não vem, todos são seta. Use `CONECTOR_DE_SOMA`
+            onde as etapas se somam em vez de se sucederem.
 
     Returns:
         O HTML do diagrama.
 
     Raises:
-        ValueError: Se vier menos de duas etapas, caso em que não há caminho
-            a desenhar.
+        ValueError: Se vier menos de duas etapas, ou se a lista de conectores
+            não tiver exatamente um item a menos que a de etapas.
     """
     if len(etapas) < 2:
         raise ValueError(f"Um fluxo precisa de 2 etapas ou mais; vieram {len(etapas)}.")
 
+    if conectores is None:
+        conectores = [CONECTOR_DE_SEQUENCIA] * (len(etapas) - 1)
+
+    if len(conectores) != len(etapas) - 1:
+        raise ValueError(
+            f"{len(etapas)} etapas pedem {len(etapas) - 1} conectores; "
+            f"vieram {len(conectores)}."
+        )
+
     blocos = []
     for posicao, (nome, descricao) in enumerate(etapas):
         if posicao > 0:
-            blocos.append('<div class="fluxoSeta">&rarr;</div>')
+            blocos.append(f'<div class="fluxoSeta">{conectores[posicao - 1]}</div>')
 
         blocos.append(
             '<div class="fluxoEtapa">'
