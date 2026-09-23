@@ -309,7 +309,17 @@ def montar_etiqueta(texto: str, familia: str) -> str:
     return f'<span class="etiqueta {familia}">{escapar(texto)}</span>'
 
 
-def montar_tabela(cabecalhos: list[str], linhas: list[list[str]]) -> str:
+# Classes que tingem uma coluna inteira. Existem para os casos em que a cor é
+# informação, e não enfeite — separar dois cenários que a tabela compara.
+COLUNA_AZUL = "colunaAzul"
+COLUNA_VERDE = "colunaVerde"
+
+
+def montar_tabela(
+    cabecalhos: list[str],
+    linhas: list[list[str]],
+    classes_das_colunas: list[str] | None = None,
+) -> str:
     """Tabela com cabeçalho fixo na rolagem.
 
     As células entram como HTML já montado, porque várias delas carregam
@@ -318,15 +328,29 @@ def montar_tabela(cabecalhos: list[str], linhas: list[list[str]]) -> str:
     Args:
         cabecalhos: Títulos das colunas.
         linhas: Uma lista por linha, com uma célula por coluna.
+        classes_das_colunas: Uma classe CSS por coluna, aplicada ao cabeçalho
+            e a todas as células dela. Use `COLUNA_AZUL` e `COLUNA_VERDE` onde
+            a cor distingue cenários. Vazio em coluna sem cor. Quando não vem,
+            nenhuma coluna é tingida.
 
     Returns:
         O HTML da tabela dentro do envelope rolável.
 
     Raises:
         ValueError: Se alguma linha não tiver o mesmo número de colunas do
-            cabeçalho, o que indicaria tabela desalinhada.
+            cabeçalho, o que indicaria tabela desalinhada. Ou se a lista de
+            classes vier com tamanho diferente do cabeçalho.
     """
     quantidade_de_colunas = len(cabecalhos)
+
+    if classes_das_colunas is None:
+        classes_das_colunas = [""] * quantidade_de_colunas
+
+    if len(classes_das_colunas) != quantidade_de_colunas:
+        raise ValueError(
+            f"{quantidade_de_colunas} colunas pedem {quantidade_de_colunas} "
+            f"classes; vieram {len(classes_das_colunas)}."
+        )
 
     for posicao, linha in enumerate(linhas):
         if len(linha) != quantidade_de_colunas:
@@ -339,14 +363,18 @@ def montar_tabela(cabecalhos: list[str], linhas: list[list[str]]) -> str:
     # que a cor da coluna faz parte da informação (ver a página do cenário
     # adotado, onde a cor liga a coluna ao gráfico correspondente).
     celulas_de_cabecalho = []
-    for titulo in cabecalhos:
-        celulas_de_cabecalho.append(f"<th>{titulo}</th>")
+    for posicao, titulo in enumerate(cabecalhos):
+        classe = classes_das_colunas[posicao]
+        atributo = f' class="{classe}"' if classe else ""
+        celulas_de_cabecalho.append(f"<th{atributo}>{titulo}</th>")
 
     linhas_montadas = []
     for linha in linhas:
         celulas = []
-        for celula in linha:
-            celulas.append(f"<td>{celula}</td>")
+        for posicao, celula in enumerate(linha):
+            classe = classes_das_colunas[posicao]
+            atributo = f' class="{classe}"' if classe else ""
+            celulas.append(f"<td{atributo}>{celula}</td>")
         linhas_montadas.append(f'<tr>{"".join(celulas)}</tr>')
 
     return (
@@ -418,73 +446,6 @@ def montar_fluxo(
         )
 
     return f'<div class="fluxo">{"".join(blocos)}</div>'
-
-
-# Cotovelo que liga a caixa do futuro à do insumo: desce, dobra à direita e
-# aponta para dentro da caixa. É SVG, e não um caractere de seta, porque a
-# glifo de seta não dobra — ela obrigava um filete de CSS para o trecho
-# vertical, e os dois pedaços nunca encostavam direito.
-_CONECTOR_DO_RAMO = (
-    '<svg class="viradaRamoSeta" viewBox="0 0 46 52" aria-hidden="true">'
-    '<path d="M5 0 V29 a11 11 0 0 0 11 11 H27" fill="none" '
-    'stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>'
-    '<path d="M25 31.5 L40 40 L25 48.5 Z" fill="currentColor"/>'
-    "</svg>"
-)
-
-
-def montar_virada(
-    hoje: tuple[str, str],
-    futuro: tuple[str, str],
-    insumo: tuple[str, str],
-) -> str:
-    """Diagrama de mudança de escopo, com o insumo pendurado no destino.
-
-    Diferente de `montar_fluxo`, que põe tudo na mesma linha, aqui a terceira
-    caixa desce da segunda. A distinção é de significado: `hoje` e `futuro` se
-    sucedem no tempo, enquanto `insumo` é o que entra para tornar o futuro
-    possível — desenhá-lo em fila sugeriria uma terceira etapa que não existe.
-
-    Args:
-        hoje: Par `(rotulo, texto)` do que o projeto é hoje.
-        futuro: Par `(rotulo, texto)` do que ele passa a ser.
-        insumo: Par `(rotulo, texto)` do que entra junto na virada.
-
-    Returns:
-        O HTML do diagrama.
-    """
-    rotulo_de_hoje, texto_de_hoje = hoje
-    rotulo_do_futuro, texto_do_futuro = futuro
-    rotulo_do_insumo, texto_do_insumo = insumo
-
-    linha_principal = (
-        '<div class="virada">'
-        '<div class="viradaCaixa">'
-        f'<p class="viradaRotulo">{escapar(rotulo_de_hoje)}</p>'
-        f'<p class="viradaTexto">{texto_de_hoje}</p>'
-        "</div>"
-        f'<div class="viradaSeta">{CONECTOR_DE_SEQUENCIA}</div>'
-        '<div class="viradaCaixa eFuturo">'
-        f'<p class="viradaRotulo">{escapar(rotulo_do_futuro)}</p>'
-        f'<p class="viradaTexto">{texto_do_futuro}</p>'
-        "</div>"
-        "</div>"
-    )
-
-    ramo = (
-        '<div class="viradaDerivacao">'
-        '<div class="viradaRamo">'
-        + _CONECTOR_DO_RAMO
-        + 
-        '<div class="viradaCaixa eInsumo">'
-        f'<p class="viradaRotulo">{escapar(rotulo_do_insumo)}</p>'
-        f'<p class="viradaTexto">{texto_do_insumo}</p>'
-        "</div>"
-        "</div>"
-        "</div>"
-    )
-
-    return linha_principal + ramo
 
 
 def montar_lista(itens: list[str]) -> str:

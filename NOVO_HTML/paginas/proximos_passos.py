@@ -109,6 +109,9 @@ def _secao_por_que_a_questao_segue_aberta() -> str:
 def _secao_o_que_muda() -> str:
     """O novo desenho, em tabela de antes e depois."""
     cabecalhos = ["", "Hoje", "Próxima etapa"]
+    # Mesma leitura por cor do slide: azul é o que o projeto faz hoje,
+    # verde é para onde ele vai.
+    CORES_DAS_COLUNAS = ["", layout.COLUNA_AZUL, layout.COLUNA_VERDE]
     linhas = [
         [
             "<b>Alvo primário</b>",
@@ -151,7 +154,7 @@ def _secao_o_que_muda() -> str:
         ),
     )
 
-    return layout.montar_tabela(cabecalhos, linhas) + justificativa
+    return layout.montar_tabela(cabecalhos, linhas, CORES_DAS_COLUNAS) + justificativa
 
 
 def _secao_literatura_a_buscar() -> str:

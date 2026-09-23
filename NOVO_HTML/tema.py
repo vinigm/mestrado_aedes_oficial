@@ -307,40 +307,18 @@ code.nomeColuna{white-space:nowrap}
   .fluxoEtapa{flex:1 1 100%}
 }
 
-/* Virada de escopo: o que o projeto é hoje, o que ele passa a ser, e o que
-   entra junto na virada. A terceira caixa PENDE da segunda em vez de vir
-   depois dela na linha: ela não é a etapa seguinte no tempo, é o insumo que
-   torna a segunda possível. Desenhar as três em fila diria a coisa errada. */
-.virada{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch;
-  gap:14px; margin:0}
-.viradaCaixa{background:var(--fundo); border:1px solid var(--borda);
-  border-radius:var(--raio); padding:15px 17px; box-shadow:var(--sombra)}
-.viradaCaixa.eFuturo{border-color:var(--acento); border-width:1.5px}
-.viradaCaixa.eInsumo{border-color:var(--bom); border-width:1.5px;
-  background:var(--bom-suave); box-shadow:none}
-.viradaRotulo{font-size:.72rem; font-weight:700; letter-spacing:.07em;
-  text-transform:uppercase; color:var(--faint); margin:0 0 6px}
-.viradaCaixa.eFuturo .viradaRotulo{color:var(--acento)}
-.viradaCaixa.eInsumo .viradaRotulo{color:var(--bom)}
-.viradaTexto{font-size:.95rem; font-weight:640; color:var(--tinta);
-  line-height:1.35; margin:0}
-.viradaSeta{display:flex; align-items:center; color:var(--acento);
-  font-size:1.35rem; font-weight:700}
+/* Coluna tingida: usada onde a cor separa dois cenários que a tabela compara,
+   e por isso é informação, não enfeite. A regra global de `b` força a cor da
+   tinta, então dentro da coluna ela precisa herdar, senão o negrito volta a
+   preto e quebra a leitura por cor. */
+.tabela th.colunaAzul,.tabela td.colunaAzul{color:var(--acento);
+  background:var(--acento-suave)}
+.tabela th.colunaVerde,.tabela td.colunaVerde{color:var(--bom);
+  background:var(--bom-suave)}
+.tabela td.colunaAzul b,.tabela td.colunaVerde b,
+.tabela td.colunaAzul code,.tabela td.colunaVerde code{color:inherit}
+.tabela th.colunaAzul,.tabela th.colunaVerde{font-weight:750}
 
-/* O ramo repete a grade de três colunas da linha de cima só para herdar o
-   alinhamento: a caixa do insumo precisa nascer sob a caixa do futuro. */
-.viradaDerivacao{display:grid; grid-template-columns:1fr auto 1fr; gap:14px}
-.viradaRamo{grid-column:3; display:flex; align-items:flex-start; gap:2px;
-  padding-left:20px}
-.viradaRamoSeta{flex:0 0 auto; width:52px; height:58px; color:var(--bom)}
-.viradaRamo .viradaCaixa{flex:1 1 auto; margin-top:18px}
-
-/* Em tela estreita a derivação lateral vira empilhamento: manter a coluna 3
-   num espaço que não existe jogaria a caixa para fora da vista. */
-@media (max-width:820px){
-  .virada,.viradaDerivacao{grid-template-columns:1fr}
-  .viradaSeta{justify-content:center}
-  .viradaRamo{grid-column:1; padding-left:0}
 }
 
 /* Gráfico de linhas. O SVG só tem viewBox, então sem um teto de largura ele

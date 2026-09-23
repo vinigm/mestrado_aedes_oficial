@@ -345,6 +345,9 @@ def _slide_o_vetor() -> deck.Slide:
 def _slide_proximos_passos() -> deck.Slide:
     """O último slide, como o orientador pediu."""
     cabecalhos = ["", "Hoje", "Próxima etapa"]
+    # A cor separa os dois cenários que a tabela compara: azul é o que o
+    # projeto faz hoje, verde é para onde ele vai.
+    CORES_DAS_COLUNAS = ["", layout.COLUNA_AZUL, layout.COLUNA_VERDE]
     linhas = [
         [
             "<b>Alvo primário</b>",
@@ -368,24 +371,7 @@ def _slide_proximos_passos() -> deck.Slide:
         topico=TOPICO_PROXIMOS,
         titulo="Deslocar a pergunta da consequência para a causa",
         rotulo_curto="A direção",
-        corpo=(
-            layout.montar_tabela(cabecalhos, linhas)
-            + layout.montar_virada(
-                (
-                    "Atual",
-                    "Modelo de previsão de <b>surto de dengue</b>",
-                ),
-                (
-                    "Futuro",
-                    "Modelo de previsão de <b>doenças transmitidas "
-                    "pelo mesmo vetor</b>",
-                ),
-                (
-                    "O que entra junto",
-                    "Dados das <b>outras arboviroses</b>, agregados ao modelo",
-                ),
-            )
-        ),
+        corpo=layout.montar_tabela(cabecalhos, linhas, CORES_DAS_COLUNAS),
         nota=(
             "Fechar aqui. Este slide saiu da reunião de "
             f"{numeros.DATA_DA_REUNIAO_DE_ALINHAMENTO}."

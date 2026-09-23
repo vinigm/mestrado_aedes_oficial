@@ -113,15 +113,7 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckCorpo table.tabela{font-size:.92rem}
 .deckCorpo .aviso{padding:11px 14px; margin-bottom:12px}
 
-/* A virada divide o palco com uma tabela de quatro linhas. Sem encolher, o
-   ramo pendurado cai fora do slide e o palco ganha barra de rolagem. */
-.deckCorpo .virada{gap:10px}
-.deckCorpo .viradaCaixa{padding:10px 13px}
-.deckCorpo .viradaTexto{font-size:.85rem}
-.deckCorpo .viradaRotulo{font-size:.63rem; margin-bottom:4px}
-.deckCorpo .viradaRamo .viradaCaixa{margin-top:12px}
-.deckCorpo .viradaRamoSeta{width:46px; height:52px}
-.deckCorpo table.tabela + .virada{margin-top:4px}
+
 
 /* Card ancorado ao pé de uma figura: cada pixel que ele economiza vira altura
    para a imagem que ele comenta. */
