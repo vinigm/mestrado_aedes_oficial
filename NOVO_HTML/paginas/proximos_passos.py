@@ -24,12 +24,7 @@ def _secao_o_que_os_dados_mostram() -> str:
         arquivo="imagens/vetor_vs_casos.png",
         titulo="",
         subtitulo="",
-        legenda=(
-            "Barras azuis: mosquitos capturados. Linha vermelha: casos "
-            "confirmados. Em <b>2022, 2023, 2024 e 2025</b> a subida do "
-            "mosquito vem <b>antes</b>. ⚠️ Leitura de gráfico — a defasagem "
-            "ainda não foi medida."
-        ),
+        legenda="",
     )
 
     return figura
