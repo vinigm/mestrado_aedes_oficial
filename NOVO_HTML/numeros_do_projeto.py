@@ -74,6 +74,44 @@ TABELA = TabelaDeModelagem()
 
 
 @dataclasses.dataclass(frozen=True)
+class AtributosDoModelo:
+    """O que o modelo recebe, que não é o mesmo que o arquivo guarda.
+
+    A distinção existe porque o arquivo `tabela_final.csv` guarda o valor de
+    cada grandeza NA SEMANA, e só. Nenhuma defasagem está gravada ali: elas
+    nascem em tempo de execução, em `dominio/features.py`, e por isso não
+    aparecem numa listagem das colunas do arquivo.
+
+    Medido rodando o próprio pipeline do cenário adotado em 23/09/2026:
+    `fontes.carregar_tabela_final` seguido de
+    `features.construir_features_temporais` e
+    `selecao_features.separar_grupos_de_features`.
+
+    Attributes:
+        derivados: Atributos criados em tempo de execução.
+        lags_por_coluna: Quantas defasagens cada coluna elegível recebe.
+        colunas_com_lag: Quantas colunas recebem defasagem.
+        atributos_no_modelo: Quantos chegam ao modelo do cenário adotado.
+        nucleo: Atributos do grupo núcleo — histórico do alvo e sazonalidade.
+        vetor: Atributos do grupo vetor.
+        clima_candidatos: Atributos de clima disponíveis para escolha.
+        clima_escolhidos: Quantos de clima entram, escolhidos por ganho.
+    """
+
+    derivados: int = 32
+    lags_por_coluna: int = 4
+    colunas_com_lag: int = 7
+    atributos_no_modelo: int = 20
+    nucleo: int = 8
+    vetor: int = 6
+    clima_candidatos: int = 42
+    clima_escolhidos: int = 6
+
+
+ATRIBUTOS = AtributosDoModelo()
+
+
+@dataclasses.dataclass(frozen=True)
 class DesempenhoDoAlarme:
     """O modelo lido como alarme: cruzou o limiar ou não.
 

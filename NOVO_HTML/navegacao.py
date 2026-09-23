@@ -80,7 +80,16 @@ PAGINA_INICIO = PaginaDoSite(
             "Os horizontes",
         ),
         SecaoDaPagina("walk-forward", "Validação walk-forward", "Como validamos"),
-        SecaoDaPagina("dicionario", "Tabela de Atributos Final", "Atributos"),
+        SecaoDaPagina(
+            "atributos-do-modelo",
+            "Os atributos que o modelo vê",
+            "O que o modelo vê",
+        ),
+        SecaoDaPagina(
+            "dicionario",
+            "As colunas do arquivo de modelagem",
+            "Colunas do arquivo",
+        ),
     ),
 )
 

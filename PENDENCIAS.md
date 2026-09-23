@@ -101,6 +101,12 @@ Definido na reunião de 21/09/2026 com o orientador.
   **primários**, previstos a partir do vetor; prever o vetor é **secundário** (transcrição, linhas 913–921).
 - ✅ **Slides do seminário montados** na página Seminário de Andamento do site: 13 slides, trilha
   horizontal de progresso, figuras próprias em formato largo (`NOVO_HTML/figuras_slides.py`).
+- ✅ **Site listava só as 36 colunas do arquivo sob o título "Tabela de Atributos Final"** — quem lia
+  concluía que o modelo prevê a 3 meses com valores da própria semana. Seção nova separa as colunas do
+  arquivo dos **20 atributos** que o modelo recebe (núcleo 8 · vetor 6 · clima 6 de 42 candidatas).
+- ✅ **Janela de treino certificada** (15 agentes Sonnet, 2 céticos por dimensão): treino começa mesmo
+  em 18/02/2018, por `dropna` no alvo deslocado, não por filtro de data. Lag máximo é **4 semanas**,
+  então 2012-2017 não alimenta o cenário adotado nem como insumo.
 - ⏳ **Leitura de gráfico, não medição:** em 2022-2025 a subida do vetor vem antes da dos casos.
   ⚠️ Pelo **pico**, 2025 empata — a defasagem segue sem estimativa.
 - ⏳ **Rodada da noite, não disparada:** re-rodar `cidade_regressao_com_enso`, `_sem_enso` e

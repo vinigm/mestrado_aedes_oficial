@@ -165,12 +165,140 @@ def _tabela_do_dicionario() -> str:
     return layout.montar_tabela(cabecalhos, linhas)
 
 
+def _tabela_dos_derivados() -> str:
+    """De onde vem cada um dos atributos criados em tempo de execução."""
+    cabecalhos = ["Coluna de origem", "Atributos que ela gera", "Quantos"]
+
+    lags = ", ".join(
+        f"<code>_lag{semana}</code>" for semana in range(1, numeros.ATRIBUTOS.lags_por_coluna + 1)
+    )
+
+    linhas = [
+        [
+            "<code>casos</code>",
+            f"{lags} e <code>casos_mm4</code> (média de 4 semanas)",
+            "<b>5</b>",
+        ],
+        [
+            "<code>aedes_aegypti_por_armadilha</code>",
+            f"{lags} e <code>vetor_mm4</code> (média de 4 semanas)",
+            "<b>5</b>",
+        ],
+        [
+            "<code>temp_media</code>, <code>precip_total_mm</code>, "
+            "<code>orvalho_media</code>, <code>umid_media</code>, "
+            "<code>pressao_media</code>",
+            f"{lags} para cada uma das cinco",
+            "<b>20</b>",
+        ],
+        [
+            "semana do ano",
+            "<code>sem_sin</code> e <code>sem_cos</code>, a sazonalidade "
+            "escrita como seno e cosseno",
+            "<b>2</b>",
+        ],
+        ["", "<b>Total</b>", f"<b>{numeros.ATRIBUTOS.derivados}</b>"],
+    ]
+
+    return layout.montar_tabela(cabecalhos, linhas)
+
+
+def _tabela_do_conjunto_final() -> str:
+    """Quantos atributos de cada grupo chegam ao modelo do cenário adotado."""
+    cabecalhos = ["Grupo", "O que entra", "Quantos"]
+
+    linhas = [
+        [
+            layout.montar_etiqueta("Núcleo", "alvo"),
+            "o próprio <code>casos</code> da semana, suas 4 defasagens, a "
+            "média de 4 semanas e os 2 termos de sazonalidade",
+            f"<b>{numeros.ATRIBUTOS.nucleo}</b>",
+        ],
+        [
+            layout.montar_etiqueta("Vetor", "vetor"),
+            "a densidade da semana, suas 4 defasagens e a média de 4 semanas",
+            f"<b>{numeros.ATRIBUTOS.vetor}</b>",
+        ],
+        [
+            layout.montar_etiqueta("Clima", "clima"),
+            f"as <b>{numeros.ATRIBUTOS.clima_escolhidos} melhores</b> entre "
+            f"{numeros.ATRIBUTOS.clima_candidatos} candidatas, escolhidas "
+            "pelo ganho que trazem ao modelo",
+            f"<b>{numeros.ATRIBUTOS.clima_escolhidos}</b>",
+        ],
+        [
+            "",
+            "<b>Total que o modelo recebe</b>",
+            f"<b>{numeros.ATRIBUTOS.atributos_no_modelo}</b>",
+        ],
+    ]
+
+    return layout.montar_tabela(cabecalhos, linhas)
+
+
+def _secao_atributos_do_modelo() -> str:
+    """Separa as colunas do arquivo dos atributos que chegam ao modelo.
+
+    ⚠️ Esta seção existe para corrigir uma omissão. A página listava as
+    colunas do arquivo sob o título "Tabela de Atributos Final", e quem lia
+    concluía que o modelo prevê casos a três meses usando apenas valores da
+    própria semana — o que não faria sentido. As defasagens existem; elas só
+    não estão gravadas no arquivo, porque nascem em tempo de execução.
+    """
+    intro = (
+        f"<p>O arquivo guarda <b>{numeros.TABELA.colunas} colunas</b>, e "
+        "nenhuma delas é defasada: cada uma traz o valor da própria semana. "
+        "As defasagens <b>existem</b>, mas nascem quando o modelo roda, em "
+        "<code>dominio/features.py</code>, e por isso não aparecem numa "
+        "listagem do arquivo.</p>"
+    )
+
+    caminho = layout.montar_fluxo(
+        [
+            (f"{numeros.TABELA.colunas} colunas", "o que o arquivo guarda"),
+            (f"+{numeros.ATRIBUTOS.derivados} derivados", "criados ao rodar"),
+            (
+                f"{numeros.ATRIBUTOS.atributos_no_modelo} atributos",
+                "o que o modelo recebe",
+            ),
+        ]
+    )
+
+    titulo_derivados = (
+        f"<h3>Os {numeros.ATRIBUTOS.derivados} atributos criados em tempo "
+        "de execução</h3>"
+    )
+    titulo_final = "<h3>O que chega ao modelo do cenário adotado</h3>"
+
+    ressalva = layout.montar_aviso(
+        tom="atencao",
+        rotulo="Dívida técnica conhecida",
+        texto=(
+            "As <b>6 colunas de clima</b> são escolhidas fora do "
+            "walk-forward, olhando a série inteira. É vazamento remanescente, "
+            "não corrigido na revisão de 13/09/2026 — e o ranking é instável: "
+            "recortando em 2023, <b>4 das 6 mudam</b>."
+        ),
+    )
+
+    return (
+        intro
+        + caminho
+        + titulo_derivados
+        + _tabela_dos_derivados()
+        + titulo_final
+        + _tabela_do_conjunto_final()
+        + ressalva
+    )
+
+
 def _secao_dicionario() -> str:
     """Introduz e monta a tabela do dicionário de dados."""
     intro = (
         "<p>Cada linha abaixo é uma coluna do arquivo único que alimenta os "
         f"modelos — {numeros.TABELA.colunas} colunas ao todo, uma semana por "
-        "linha.</p>"
+        "linha. São os valores <b>como foram coletados</b>; as defasagens "
+        "derivadas deles estão na seção anterior.</p>"
     )
 
     return intro + _tabela_do_dicionario()
@@ -269,6 +397,7 @@ def montar_corpo() -> str:
         "o-caminho-dos-dados": _secao_caminho_dos_dados,
         "os-horizontes": _secao_os_horizontes,
         "walk-forward": _secao_walk_forward,
+        "atributos-do-modelo": _secao_atributos_do_modelo,
         "dicionario": _secao_dicionario,
     }
 
