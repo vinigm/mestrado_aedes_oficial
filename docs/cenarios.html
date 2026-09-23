@@ -374,8 +374,10 @@ code.nomeColuna{white-space:nowrap}
    cinza atravessa tudo; a linha azul por cima cresce conforme a apresentação
    avança, e é o JS que mede a largura dela. Tópico já visto fica com o
    marcador cheio; os que ainda vêm ficam esmaecidos. */
+/* Sem borda inferior: o fundo mais claro já separa o índice do slide, e a
+   borda encontrava o canto arredondado do palco deixando um degrau à vista. */
 .deckIndice{position:relative; display:flex; gap:2px; padding:14px 40px 10px;
-  background:var(--elevado); border-bottom:1px solid var(--borda)}
+  background:var(--elevado)}
 
 .deckIndiceTrilha{position:absolute; top:0; height:2px; left:0; width:0;
   background:var(--borda); border-radius:2px}
