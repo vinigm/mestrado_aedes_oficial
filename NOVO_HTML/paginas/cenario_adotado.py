@@ -30,8 +30,12 @@ ANOS_APROXIMADOS_DE_TREINO = 8
 ANOS_DA_SERIE_DE_CAPTURA = 14
 
 
-def _secao_a_configuracao() -> str:
-    """Tabela com a configuração de referência e o que é a perda quantílica."""
+def tabela_da_configuracao() -> str:
+    """A ficha da configuração de referência: o que ela é, e como foi escolhida.
+
+    Pública porque a apresentação mostra a mesma ficha. Responde a pergunta
+    "qual modelo?"; o desempenho dele é outra pergunta, em `tabela_do_desempenho`.
+    """
     cabecalhos = ["Característica", "Valor"]
     linhas = [
         ["Algoritmo", "<b>HistGradientBoostingRegressor</b> (scikit-learn)"],
@@ -49,7 +53,12 @@ def _secao_a_configuracao() -> str:
             "frente, repete",
         ],
     ]
-    tabela = layout.montar_tabela(cabecalhos, linhas)
+    return layout.montar_tabela(cabecalhos, linhas)
+
+
+def _secao_a_configuracao() -> str:
+    """A ficha da configuração, o que é perda quantílica e o período usado."""
+    tabela = tabela_da_configuracao()
 
     explicacao_do_quantil = layout.montar_aviso(
         tom="info",
@@ -163,6 +172,47 @@ def _celula_colorida(texto: str, cor: str) -> str:
     return f'<span style="color:{cor}"><b style="color:{cor}">{texto}</b></span>'
 
 
+def tabela_do_desempenho() -> str:
+    """A tabela dos quatro horizontes, com cada coluna na cor do seu gráfico.
+
+    Pública porque a apresentação monta o mesmo bloco. Os dois lendo daqui,
+    não há como a página e o slide mostrarem números diferentes.
+    """
+    rotulo_r2, _, _, cor_r2 = MEDIDAS_DO_DESEMPENHO[0]
+    rotulo_erro, _, _, cor_erro = MEDIDAS_DO_DESEMPENHO[1]
+    rotulo_captura, _, _, cor_captura = MEDIDAS_DO_DESEMPENHO[2]
+
+    cabecalhos = [
+        "Horizonte",
+        _celula_colorida(rotulo_r2, cor_r2),
+        _celula_colorida(rotulo_erro, cor_erro),
+        _celula_colorida(rotulo_captura, cor_captura),
+    ]
+
+    linhas = []
+    for desempenho in numeros.DESEMPENHO_DO_MODELO:
+        linhas.append(
+            [
+                f"<b>{layout.escapar(desempenho.rotulo)}</b>",
+                _celula_colorida(numeros.formatar_decimal(desempenho.r2, 3), cor_r2),
+                _celula_colorida(
+                    numeros.formatar_decimal(desempenho.erro_medio_absoluto, 1), cor_erro
+                ),
+                _celula_colorida(
+                    numeros.formatar_percentual(desempenho.captura_do_pico, 1),
+                    cor_captura,
+                ),
+            ]
+        )
+
+    return layout.montar_tabela(cabecalhos, linhas)
+
+
+def graficos_do_desempenho() -> str:
+    """Os três gráficos de desempenho, lado a lado. Pública pelo mesmo motivo."""
+    return _montar_graficos_do_desempenho()
+
+
 def _secao_o_desempenho() -> str:
     """Tabela dos quatro horizontes, os três gráficos e a causa da degradação.
 
@@ -230,25 +280,67 @@ def _secao_o_desempenho() -> str:
     return tabela + grafico + leitura + causa_da_degradacao
 
 
+# As três medidas do alarme, uma por gráfico. Mesmas cores das medidas de
+# desempenho, pelo mesmo motivo: ligar coluna da tabela a curva do gráfico.
+MEDIDAS_DO_ALARME = (
+    ("Sensibilidade", "sensibilidade", "Sensibilidade", "#1B6EF3"),
+    ("Precisão", "precisao", "Precisão", "#1F7A4D"),
+    ("Alarmes falsos por ano", "falsos_por_ano", "Falsos por ano", "#C0392B"),
+)
+
+
+def tabela_do_alarme() -> str:
+    """O alarme nos quatro horizontes, com cada coluna na cor do seu gráfico."""
+    cabecalhos = ["Horizonte"]
+    for rotulo, _atributo, _serie, cor in MEDIDAS_DO_ALARME:
+        cabecalhos.append(_celula_colorida(rotulo, cor))
+
+    linhas = []
+    for alarme in numeros.ALARME_POR_HORIZONTE:
+        _rotulo_sensib, _a, _s, cor_sensib = MEDIDAS_DO_ALARME[0]
+        _rotulo_prec, _b, _t, cor_precisao = MEDIDAS_DO_ALARME[1]
+        _rotulo_falsos, _c, _u, cor_falsos = MEDIDAS_DO_ALARME[2]
+
+        linhas.append(
+            [
+                f"<b>{layout.escapar(alarme.rotulo)}</b>",
+                _celula_colorida(
+                    numeros.formatar_percentual(alarme.sensibilidade), cor_sensib
+                ),
+                _celula_colorida(
+                    numeros.formatar_percentual(alarme.precisao), cor_precisao
+                ),
+                _celula_colorida(
+                    numeros.formatar_decimal(alarme.falsos_por_ano, 1), cor_falsos
+                ),
+            ]
+        )
+
+    return layout.montar_tabela(cabecalhos, linhas)
+
+
+def graficos_do_alarme() -> str:
+    """Os três gráficos do alarme por horizonte, lado a lado."""
+    blocos = []
+    for rotulo_do_eixo, atributo, nome_da_serie, cor in MEDIDAS_DO_ALARME:
+        pontos = []
+        for alarme in numeros.ALARME_POR_HORIZONTE:
+            pontos.append((float(alarme.semanas), getattr(alarme, atributo)))
+
+        blocos.append(
+            graficos.montar_grafico_de_linhas(
+                {nome_da_serie: pontos},
+                "horizonte (semanas)",
+                rotulo_do_eixo,
+                cores=[cor],
+            )
+        )
+
+    return f'<div class="graficosLadoALado">{"".join(blocos)}</div>'
+
+
 def _secao_como_alarme() -> str:
     """A leitura do modelo como alarme de surto, com a ressalva de amostra."""
-    cabecalhos = ["Horizonte", "Sensibilidade", "Precisão", "Falsos por ano"]
-    linhas = [
-        [
-            "<b>1 mês</b>",
-            numeros.formatar_percentual(numeros.ALARME.sensibilidade_um_mes),
-            numeros.formatar_percentual(numeros.ALARME.precisao_um_mes),
-            numeros.formatar_decimal(numeros.ALARME.falsos_por_ano_um_mes, 1),
-        ],
-        [
-            "<b>3 meses</b>",
-            numeros.formatar_percentual(numeros.ALARME.sensibilidade_tres_meses),
-            numeros.formatar_percentual(numeros.ALARME.precisao_tres_meses),
-            numeros.formatar_decimal(numeros.ALARME.falsos_por_ano_tres_meses, 1),
-        ],
-    ]
-    tabela = layout.montar_tabela(cabecalhos, linhas)
-
     porque_importa = layout.montar_aviso(
         tom="bom",
         rotulo="Por que isto importa mais que a captura do pico",
@@ -265,12 +357,13 @@ def _secao_como_alarme() -> str:
         rotulo="Ressalva · poucos episódios",
         texto=(
             f"Só há <b>{numeros.ALARME.episodios_na_avaliacao}</b> episódios de "
-            "surto no período avaliado. Nenhum número por episódio pode ser "
-            "citado como estatisticamente estável."
+            f"surto em {numeros.SEMANAS_NA_AVALIACAO_DO_ALARME} semanas "
+            "avaliadas. Nenhum número por episódio pode ser citado como "
+            "estatisticamente estável."
         ),
     )
 
-    return tabela + porque_importa + ressalva
+    return tabela_do_alarme() + graficos_do_alarme() + porque_importa + ressalva
 
 
 def _secao_o_vetor() -> str:

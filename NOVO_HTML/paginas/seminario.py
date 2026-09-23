@@ -23,6 +23,7 @@ import numeros_do_projeto as numeros
 
 # A lista de temas climáticos vive na página de dados. Importar de lá evita
 # que o slide e a página divirjam quando uma coluna for acrescentada.
+import cenario_adotado as pagina_do_cenario_adotado
 import cenarios as pagina_de_cenarios
 import dados as pagina_de_dados
 
@@ -252,90 +253,73 @@ def _slide_cenarios() -> deck.Slide:
 
 
 def _slide_adotado() -> deck.Slide:
-    """A configuração que ficou."""
+    """Qual configuração ficou, e por quê.
+
+    Este slide responde "qual modelo?". O desempenho dele é outra pergunta, e
+    vive no tópico de resultados.
+    """
     return deck.Slide(
         topico=TOPICO_CENARIOS,
-        titulo="A configuração de referência, e como ela foi escolhida",
+        titulo="A configuração adotada, e como ela foi escolhida",
         rotulo_curto="Adotado",
         corpo=(
-            "<p>⏳ <b>Rascunho.</b> HistGradientBoosting, perda quantílica em "
-            "0,85, com vetor — vencedora entre as "
-            f"<b>{numeros.TOTAL_DE_CONFIGURACOES_TESTADAS}</b> testadas pelo "
-            "menor erro de calibração.</p>"
-            "<p>Falta aqui: a validação walk-forward e o período efetivamente "
-            "usado no treino.</p>"
+            pagina_do_cenario_adotado.tabela_da_configuracao()
+            + layout.montar_aviso(
+                tom="info",
+                rotulo="O que é perda quantílica em 0,85",
+                texto=(
+                    "A previsão não é a <b>média esperada</b> de casos: é um "
+                    "<b>patamar ultrapassado em cerca de 15% das semanas</b>. "
+                    "Enviesado para cima de propósito, porque subestimar um "
+                    "surto custa mais caro do que superestimar."
+                ),
+            )
         ),
-        nota="⏳ A fazer: tabela da configuração + figura do walk-forward.",
+        nota=(
+            "Aqui é <b>qual modelo</b>, não quanto ele acerta. O desempenho vem "
+            "no próximo tópico. A frase que importa: 'a melhor entre as "
+            f"{numeros.TOTAL_DE_CONFIGURACOES_TESTADAS} testadas', nunca 'a "
+            "melhor possível'."
+        ),
     )
 
 
 def _slide_resultados() -> deck.Slide:
-    """O desempenho da configuração adotada."""
-    cabecalhos = ["Horizonte", "R²", "Erro médio", "Captura do pico"]
-    linhas = []
-    for desempenho in numeros.DESEMPENHO_DO_MODELO:
-        linhas.append(
-            [
-                f"<b>{layout.escapar(desempenho.rotulo)}</b>",
-                f"<b>{numeros.formatar_decimal(desempenho.r2, 3)}</b>",
-                numeros.formatar_decimal(desempenho.erro_medio_absoluto, 1),
-                numeros.formatar_percentual(desempenho.captura_do_pico, 0),
-            ]
-        )
-
+    """O desempenho da configuração adotada na previsão de casos."""
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="O modelo é honesto até um mês, e perde força em três",
+        titulo="Prevendo o número de casos",
         rotulo_curto="Casos de dengue",
         corpo=(
-            layout.montar_tabela(cabecalhos, linhas)
-            + layout.montar_aviso(
-                tom="bom",
-                rotulo="A degradação tem causa medida",
-                texto=(
-                    "A memória da própria série de casos explica <b>91%</b> do "
-                    "acerto em uma semana e <b>0%</b> em três meses."
-                ),
-            )
+            pagina_do_cenario_adotado.tabela_do_desempenho()
+            + pagina_do_cenario_adotado.graficos_do_desempenho()
         ),
-        nota="⏳ Refinar junto com os dois slides seguintes deste tópico.",
+        nota=(
+            "Apontar o formato das três curvas: o erro sobe, o R² cai, a "
+            "captura do pico cai. E a causa é medida — a memória da própria "
+            "série explica <b>91%</b> em uma semana e <b>0%</b> em três meses."
+        ),
+        e_denso=True,
     )
 
 
 def _slide_alarme() -> deck.Slide:
-    """O mesmo modelo lido como alarme de surto."""
-    cabecalhos = ["Horizonte", "Sensibilidade", "Precisão", "Falsos por ano"]
-    linhas = [
-        [
-            "<b>1 mês</b>",
-            f"<b>{numeros.formatar_percentual(numeros.ALARME.sensibilidade_um_mes)}</b>",
-            numeros.formatar_percentual(numeros.ALARME.precisao_um_mes),
-            numeros.formatar_decimal(numeros.ALARME.falsos_por_ano_um_mes, 1),
-        ],
-        [
-            "<b>3 meses</b>",
-            f"<b>{numeros.formatar_percentual(numeros.ALARME.sensibilidade_tres_meses)}</b>",
-            numeros.formatar_percentual(numeros.ALARME.precisao_tres_meses),
-            numeros.formatar_decimal(numeros.ALARME.falsos_por_ano_tres_meses, 1),
-        ],
-    ]
-
+    """O mesmo modelo lido como alarme de surto, nos quatro horizontes."""
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="Como alarme de surto, ele acerta 97% das semanas a um mês",
+        titulo="O modelo como alarme de surto",
         rotulo_curto="Alarme de surto",
         corpo=(
-            layout.montar_tabela(cabecalhos, linhas)
-            + layout.montar_aviso(
-                tom="atencao",
-                rotulo="Ressalva que limita a leitura",
-                texto=(
-                    f"A avaliação contém apenas <b>{numeros.ALARME.episodios_na_avaliacao} "
-                    "episódios</b> de surto."
-                ),
-            )
+            pagina_do_cenario_adotado.tabela_do_alarme()
+            + pagina_do_cenario_adotado.graficos_do_alarme()
         ),
-        nota="Aqui a pergunta muda: não é o tamanho, é se a epidemia chegou.",
+        nota=(
+            "A pergunta muda: não é acertar o tamanho, é acertar se a epidemia "
+            "<b>chegou</b>. Dizer <b>alarme de surto</b>, nunca 'alarme de "
+            f"pico'. Ressalva: só {numeros.ALARME.episodios_na_avaliacao} "
+            "episódios na avaliação."
+        ),
+        e_denso=True,
     )
 
 

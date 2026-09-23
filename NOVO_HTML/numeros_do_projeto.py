@@ -94,6 +94,42 @@ ALARME = DesempenhoDoAlarme()
 
 
 @dataclasses.dataclass(frozen=True)
+class AlarmePorHorizonte:
+    """O alarme de surto medido em um horizonte.
+
+    Attributes:
+        semanas: Quantas semanas à frente a previsão olha.
+        rotulo: Como o horizonte é dito em texto.
+        sensibilidade: Fração das semanas de surto que o alarme sinaliza.
+        precisao: Fração dos alarmes disparados que eram surto de verdade.
+        falsos_por_ano: Quantos alarmes falsos por ano, em média.
+    """
+
+    semanas: int
+    rotulo: str
+    sensibilidade: float
+    precisao: float
+    falsos_por_ano: float
+
+
+# Lido de `analises/2026-09-13_metrica_de_alarme/saidas/
+# alarme_configuracao_de_referencia.csv`, medido em 102 semanas com 2 episódios
+# de surto.
+#
+# ⚠️ O ESTADO.md §3.4 cita só 1 mês e 3 meses; os outros dois horizontes vêm do
+# CSV da mesma medição. A avaliação tem apenas 2 episódios, então nada por
+# episódio pode ser afirmado a partir deles.
+ALARME_POR_HORIZONTE: tuple[AlarmePorHorizonte, ...] = (
+    AlarmePorHorizonte(1, "1 semana", 0.969, 0.912, 1.0),
+    AlarmePorHorizonte(4, "1 mês", 0.971, 0.943, 0.7),
+    AlarmePorHorizonte(8, "2 meses", 0.816, 0.861, 1.7),
+    AlarmePorHorizonte(12, "3 meses", 0.769, 0.811, 2.3),
+)
+
+SEMANAS_NA_AVALIACAO_DO_ALARME = 102
+
+
+@dataclasses.dataclass(frozen=True)
 class EfeitoDoVetor:
     """O que foi medido sobre a contribuição da armadilha.
 
