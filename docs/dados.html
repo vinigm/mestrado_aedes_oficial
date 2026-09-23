@@ -361,11 +361,29 @@ code.nomeColuna{white-space:nowrap}
 .deckPalco{position:relative; background:var(--fundo);
   border:1px solid var(--borda); border-radius:var(--raio-g);
   box-shadow:var(--sombra); overflow:hidden;
-  aspect-ratio:16/9; min-height:420px}
+  aspect-ratio:16/9; min-height:440px;
+  display:flex; flex-direction:column}
 
-.deckSlide{position:absolute; inset:0; padding:40px 48px;
+.deckTela{position:relative; flex:1 1 auto; min-height:0}
+
+.deckSlide{position:absolute; inset:0; padding:32px 48px 40px;
   display:none; flex-direction:column; overflow:auto}
 .deckSlide.ativo{display:flex}
+
+/* Índice horizontal: mostra os tópicos e onde a apresentação está. O tópico
+   atual fica azul e com a barrinha cheia; os já passados ficam em cinza médio,
+   e os que ainda vêm, em cinza claro. */
+.deckIndice{display:flex; gap:0; border-bottom:1px solid var(--borda);
+  padding:0 48px; background:var(--elevado)}
+.deckIndiceItem{flex:1 1 0; min-width:0; padding:11px 10px 9px;
+  border-bottom:2px solid transparent; font-size:.7rem; font-weight:650;
+  letter-spacing:.02em; color:var(--faint); text-align:center;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.deckIndiceItem.passado{color:var(--muted)}
+.deckIndiceItem.atual{color:var(--acento-escuro); border-bottom-color:var(--acento)}
+
+.deckNumero{position:absolute; right:22px; bottom:16px; color:var(--faint);
+  font-size:.78rem; font-variant-numeric:tabular-nums}
 
 .deckRotulo{color:var(--acento-escuro); font-size:.72rem; font-weight:700;
   letter-spacing:.15em; text-transform:uppercase; margin:0 0 10px}
@@ -378,6 +396,13 @@ code.nomeColuna{white-space:nowrap}
 .deckCorpo .grade{gap:12px; margin-bottom:12px}
 .deckCorpo table.tabela{font-size:.92rem}
 .deckCorpo .aviso{padding:11px 14px; margin-bottom:12px}
+
+/* Agenda: um tópico por linha, numeração destacada. */
+.listaAgenda{list-style:none; margin:0; padding:0}
+.listaAgenda li{font-size:1.18rem; color:var(--tinta-suave); padding:7px 0;
+  border-bottom:1px solid var(--borda)}
+.listaAgenda li:last-child{border-bottom:none}
+.listaAgenda b{color:var(--acento); font-variant-numeric:tabular-nums}
 
 /* Capa: sem versalete, título ocupando o palco. */
 .deckSlide.capa{justify-content:center}
@@ -416,6 +441,7 @@ code.nomeColuna{white-space:nowrap}
   .deckSlide:not(.ativo){display:none}
   .deckTitulo{font-size:1.32rem}
   .deckSlide.capa .deckTitulo{font-size:1.7rem}
+  .deckIndice{display:none}
 }
 </style></head><body><div id="casca"><nav id="navPrimaria"><div class="marca"><div class="marcaSelo"><svg class="marcaMosquito" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 8.2 L7 10.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="8.4" cy="11" r="1.9" fill="currentColor"/><path d="M10 12.2 Q14 13.4 20.4 19.4 Q16.4 16.6 11.4 14.6 Z" fill="currentColor"/><ellipse cx="11.6" cy="13.4" rx="2.5" ry="1.9" fill="currentColor" transform="rotate(38 11.6 13.4)"/><ellipse cx="14.6" cy="8.2" rx="4.6" ry="1.7" fill="currentColor" opacity=".78" transform="rotate(-22 14.6 8.2)"/><ellipse cx="15.4" cy="11.4" rx="4.9" ry="1.6" fill="currentColor" opacity=".55" transform="rotate(6 15.4 11.4)"/><g stroke="currentColor" stroke-width="1.15" fill="none" stroke-linecap="round"><path d="M10.6 14.4 Q8.4 18 4.6 18.6"/><path d="M12.8 15.4 Q12 19.4 8.8 21.2"/><path d="M15 16.8 Q16.4 20 14.6 22"/></g></svg></div><div class="marcaTexto"><div class="marcaNome">Aedes aegypti · POA</div><div class="marcaSub">PPGC · UFRGS</div></div></div><div class="navRolagem"><div class="navRotulo">Navegação</div><a class="navItem" href="index.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.2 8.5 3.4a1 1 0 0 1 1.3 0L15 8.2"/><path d="M4.6 7.6V15a.8.8 0 0 0 .8.8h7.2a.8.8 0 0 0 .8-.8V7.6"/></svg><span class="navRotuloItem">Início</span></a><a class="navItem ativo" href="dados.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.4 2.6 5.6 9 8.8l6.4-3.2L9 2.4Z"/><path d="M2.6 9.2 9 12.4l6.4-3.2"/><path d="M2.6 12.6 9 15.8l6.4-3.2"/></svg><span class="navRotuloItem">Dados</span></a><a class="navItem" href="cenarios.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Cenários testados</span></a><a class="navItem" href="cenario-adotado.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Cenário adotado</span></a><a class="navItem" href="proximos-passos.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.2 2.4v3.9L3.4 13a1.6 1.6 0 0 0 1.4 2.4h8.4A1.6 1.6 0 0 0 14.6 13l-3.8-6.7V2.4"/><path d="M6.4 2.4h5.2"/><path d="M5.4 10.6h7.2"/></svg><span class="navRotuloItem">Próximos passos</span></a><div class="navDivisor"></div><a class="navItem" href="seminario.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Seminário de Andamento</span></a></div><div class="navRodape" id="navRodape">&laquo; Recolher menu</div></nav><main id="areaConteudo"><div class="conteudoInterno"><p class="trilha">Mestrado PPGC · UFRGS &nbsp;·&nbsp; Porto Alegre, RS &nbsp;·&nbsp; <b>Dados</b></p><header class="cabecalhoPagina"><h1>Os dados</h1></header><div class="regua"><div class="metrica"><div class="metricaRotulo">Semanas de série</div><div class="metricaValor">718</div><div class="metricaNota">23/09/2012 a 09/08/2026</div></div><div class="metrica"><div class="metricaRotulo">Inspeções de armadilha</div><div class="metricaValor">636.587</div><div class="metricaNota">2.742 armadilhas · 81 bairros</div></div><div class="metrica"><div class="metricaRotulo">Fêmeas de Aedes aegypti</div><div class="metricaValor">236.166</div><div class="metricaNota">capturadas e contadas em campo</div></div><div class="metrica"><div class="metricaRotulo">Colunas da tabela final</div><div class="metricaValor">36</div><div class="metricaNota">725 linhas, uma por semana</div></div></div><section class="secao" id="as-series"><div class="secaoTitulo"><span class="secaoOrdem">01</span><h2>As séries lado a lado</h2></div><figure class="figura"><img src="imagens/series_para_modelar.png" alt="" loading="lazy"></figure></section><section class="secao" id="as-fontes"><div class="secaoTitulo"><span class="secaoOrdem">02</span><h2>As fontes</h2></div><div class="tabelaEnvelope"><div class="tabelaRolavel"><table class="tabela"><thead><tr><th>Fonte</th><th>Período</th><th>Cadência</th><th>O que é</th><th>Origem e ressalva</th></tr></thead><tbody><tr><td><span class="etiqueta vetor">Captura de mosquito</span></td><td>23/09/2012 a 2025</td><td>semanal</td><td>Fêmeas de <i>Aedes aegypti</i> por armadilha inspecionada. Densidade, não contagem bruta. Só fêmeas, porque só a fêmea transmite.</td><td>Secretaria Municipal de Saúde. Série histórica oficial do MI-Aedes.</td></tr><tr><td><span class="etiqueta vetor">Captura de mosquito</span></td><td>2026 a 09/08/2026</td><td>semanal</td><td>A mesma medida, continuando a série sem vão.</td><td>Raspagem própria do portal MI-Aedes. <b>É manual, e o portal só expõe a semana corrente</b> — semana perdida é irrecuperável.</td></tr><tr><td><span class="etiqueta alvo">Casos confirmados de dengue</span></td><td>18/02/2018 em diante</td><td>semanal</td><td>O alvo da previsão: casos confirmados em Porto Alegre. 428 semanas.</td><td>SINAN, via Open Data SUS. <b>Ruidoso</b> por latência de atendimento e subnotificação.</td></tr><tr><td><span class="etiqueta clima">Clima</span></td><td>série longa</td><td>diária, agregada para semanal</td><td>Chuva, temperatura, orvalho, umidade, pressão, radiação e vento. Detalhe na tabela da seção seguinte.</td><td>NASA POWER (satélite e reanálise).</td></tr><tr><td><span class="etiqueta clima">Índice ENSO</span></td><td>série longa</td><td>mensal</td><td>A fase El Niño / La Niña do Pacífico, que empurra o clima da região para mais quente ou mais chuvoso.</td><td>NOAA. Cadência mensal, diferente das demais.</td></tr></tbody></table></div></div></section><section class="secao" id="o-clima"><div class="secaoTitulo"><span class="secaoOrdem">03</span><h2>O clima</h2></div><div class="tabelaEnvelope"><div class="tabelaRolavel"><table class="tabela"><thead><tr><th>Tema</th><th>Colunas geradas</th><th>O que resume</th></tr></thead><tbody><tr><td><b>Chuva</b></td><td><code class="nomeColuna">precip_total_mm</code> <code class="nomeColuna">precip_max_dia_mm</code> <code class="nomeColuna">precip_media_dia_mm</code> <code class="nomeColuna">dias_de_chuva</code></td><td>Total da semana e dias com chuva dizem mais sobre criadouro do que uma média diária diria.</td></tr><tr><td><b>Temperatura</b></td><td><code class="nomeColuna">temp_media</code> <code class="nomeColuna">temp_min</code> <code class="nomeColuna">temp_max</code> <code class="nomeColuna">temp_amplitude_media</code></td><td>Mínimo, média, máximo e a amplitude média do dia.</td></tr><tr><td><b>Ponto de orvalho</b></td><td><code class="nomeColuna">orvalho_min</code> <code class="nomeColuna">orvalho_media</code> <code class="nomeColuna">orvalho_max</code></td><td>Mínimo, média e máximo.</td></tr><tr><td><b>Umidade</b></td><td><code class="nomeColuna">umid_min</code> <code class="nomeColuna">umid_media</code> <code class="nomeColuna">umid_max</code></td><td>Mínimo, média e máximo.</td></tr><tr><td><b>Pressão</b></td><td><code class="nomeColuna">pressao_min</code> <code class="nomeColuna">pressao_media</code> <code class="nomeColuna">pressao_max</code></td><td>Mínimo, média e máximo.</td></tr><tr><td><b>Radiação solar</b></td><td><code class="nomeColuna">radiacao_min</code> <code class="nomeColuna">radiacao_media</code> <code class="nomeColuna">radiacao_max</code></td><td>Mínimo, média e máximo.</td></tr><tr><td><b>Vento</b></td><td><code class="nomeColuna">vento_media</code> <code class="nomeColuna">vento_max</code></td><td>Só média e máximo; a mínima não é usada.</td></tr></tbody></table></div></div></section><section class="secao" id="a-janela-util"><div class="secaoTitulo"><span class="secaoOrdem">04</span><h2>A janela útil</h2></div><p>Apesar de <b>718 semanas</b> de captura do vetor, a janela usada para relacionar vetor e doença é <b>2022 a 2025</b>.</p><ul class="lista"><li><b>Casos só existem desde 2018</b> — sem série de casos, não há o que comparar.</li><li><b>2020 e 2021 foram pandemia</b> — a vigilância se voltou para a COVID-19, distorcendo notificação e rotina de campo.</li><li><b>2026 ainda está incompleto</b> na fonte federal de casos.</li></ul><div class="aviso atencao"><div class="avisoRotulo">Fato · limitação estrutural</div><p>O recorte deixa <b>poucos ciclos epidemiológicos completos</b> para treinar e testar. Não é detalhe de implementação.</p></div><div class="aviso bom"><div class="avisoRotulo">Fato · a série longa vale para outro alvo</div><p>Para prever o <b>próprio vetor</b>, e não os casos, treinar desde 2012 vence em <b>3 de 4</b> horizontes — e a vantagem cresce com o horizonte.</p></div></section></div><footer class="rodape">Painel de acompanhamento da pesquisa · gerado em 23/09/2026</footer></main></div><script>
 (function(){
@@ -459,6 +485,9 @@ code.nomeColuna{white-space:nowrap}
 
   var pontos = Array.prototype.slice.call(document.querySelectorAll('.deckPonto'));
   var contador = document.getElementById('deckContador');
+  var itensDoIndice = Array.prototype.slice.call(
+    document.querySelectorAll('.deckIndiceItem')
+  );
   var anterior = document.getElementById('deckAnterior');
   var proximo = document.getElementById('deckProximo');
   var atual = 0;
@@ -472,6 +501,18 @@ code.nomeColuna{white-space:nowrap}
     for (var j = 0; j < pontos.length; j++) {
       pontos[j].classList.toggle('ativo', j === atual);
     }
+    var topicoAtual = slides[atual].dataset.topico || '';
+    var posicaoDoTopico = -1;
+    for (var t = 0; t < itensDoIndice.length; t++) {
+      if (itensDoIndice[t].dataset.topico === topicoAtual) { posicaoDoTopico = t; }
+    }
+    for (var u = 0; u < itensDoIndice.length; u++) {
+      itensDoIndice[u].classList.toggle('atual', u === posicaoDoTopico);
+      itensDoIndice[u].classList.toggle(
+        'passado', posicaoDoTopico >= 0 && u < posicaoDoTopico
+      );
+    }
+
     contador.textContent = (atual + 1) + ' / ' + slides.length;
     anterior.disabled = (atual === 0);
     proximo.disabled = (atual === slides.length - 1);

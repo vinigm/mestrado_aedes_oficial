@@ -19,14 +19,16 @@ class Slide:
     """Um slide do deck.
 
     Attributes:
-        rotulo: Versalete no topo, que situa o slide dentro da apresentação.
+        topico: A que parte da apresentação o slide pertence. É o que o índice
+            horizontal destaca. Vazio deixa o slide fora do índice — é o caso
+            da capa. Vários slides podem compartilhar o mesmo tópico.
         titulo: A frase que o slide defende. Uma por slide.
         corpo: HTML do miolo, já montado com os blocos de `layout`.
         nota: Lembrete para quem apresenta. Fica só no código — a página
             mostra apenas a apresentação.
     """
 
-    rotulo: str
+    topico: str
     titulo: str
     corpo: str
     nota: str = ""
@@ -38,11 +40,29 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckPalco{position:relative; background:var(--fundo);
   border:1px solid var(--borda); border-radius:var(--raio-g);
   box-shadow:var(--sombra); overflow:hidden;
-  aspect-ratio:16/9; min-height:420px}
+  aspect-ratio:16/9; min-height:440px;
+  display:flex; flex-direction:column}
 
-.deckSlide{position:absolute; inset:0; padding:40px 48px;
+.deckTela{position:relative; flex:1 1 auto; min-height:0}
+
+.deckSlide{position:absolute; inset:0; padding:32px 48px 40px;
   display:none; flex-direction:column; overflow:auto}
 .deckSlide.ativo{display:flex}
+
+/* Índice horizontal: mostra os tópicos e onde a apresentação está. O tópico
+   atual fica azul e com a barrinha cheia; os já passados ficam em cinza médio,
+   e os que ainda vêm, em cinza claro. */
+.deckIndice{display:flex; gap:0; border-bottom:1px solid var(--borda);
+  padding:0 48px; background:var(--elevado)}
+.deckIndiceItem{flex:1 1 0; min-width:0; padding:11px 10px 9px;
+  border-bottom:2px solid transparent; font-size:.7rem; font-weight:650;
+  letter-spacing:.02em; color:var(--faint); text-align:center;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.deckIndiceItem.passado{color:var(--muted)}
+.deckIndiceItem.atual{color:var(--acento-escuro); border-bottom-color:var(--acento)}
+
+.deckNumero{position:absolute; right:22px; bottom:16px; color:var(--faint);
+  font-size:.78rem; font-variant-numeric:tabular-nums}
 
 .deckRotulo{color:var(--acento-escuro); font-size:.72rem; font-weight:700;
   letter-spacing:.15em; text-transform:uppercase; margin:0 0 10px}
@@ -55,6 +75,13 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckCorpo .grade{gap:12px; margin-bottom:12px}
 .deckCorpo table.tabela{font-size:.92rem}
 .deckCorpo .aviso{padding:11px 14px; margin-bottom:12px}
+
+/* Agenda: um tópico por linha, numeração destacada. */
+.listaAgenda{list-style:none; margin:0; padding:0}
+.listaAgenda li{font-size:1.18rem; color:var(--tinta-suave); padding:7px 0;
+  border-bottom:1px solid var(--borda)}
+.listaAgenda li:last-child{border-bottom:none}
+.listaAgenda b{color:var(--acento); font-variant-numeric:tabular-nums}
 
 /* Capa: sem versalete, título ocupando o palco. */
 .deckSlide.capa{justify-content:center}
@@ -93,6 +120,7 @@ FOLHA_DE_ESTILO_DO_DECK = """
   .deckSlide:not(.ativo){display:none}
   .deckTitulo{font-size:1.32rem}
   .deckSlide.capa .deckTitulo{font-size:1.7rem}
+  .deckIndice{display:none}
 }
 """
 
@@ -104,6 +132,9 @@ SCRIPT_DO_DECK = """
 
   var pontos = Array.prototype.slice.call(document.querySelectorAll('.deckPonto'));
   var contador = document.getElementById('deckContador');
+  var itensDoIndice = Array.prototype.slice.call(
+    document.querySelectorAll('.deckIndiceItem')
+  );
   var anterior = document.getElementById('deckAnterior');
   var proximo = document.getElementById('deckProximo');
   var atual = 0;
@@ -117,6 +148,18 @@ SCRIPT_DO_DECK = """
     for (var j = 0; j < pontos.length; j++) {
       pontos[j].classList.toggle('ativo', j === atual);
     }
+    var topicoAtual = slides[atual].dataset.topico || '';
+    var posicaoDoTopico = -1;
+    for (var t = 0; t < itensDoIndice.length; t++) {
+      if (itensDoIndice[t].dataset.topico === topicoAtual) { posicaoDoTopico = t; }
+    }
+    for (var u = 0; u < itensDoIndice.length; u++) {
+      itensDoIndice[u].classList.toggle('atual', u === posicaoDoTopico);
+      itensDoIndice[u].classList.toggle(
+        'passado', posicaoDoTopico >= 0 && u < posicaoDoTopico
+      );
+    }
+
     contador.textContent = (atual + 1) + ' / ' + slides.length;
     anterior.disabled = (atual === 0);
     proximo.disabled = (atual === slides.length - 1);
@@ -149,6 +192,49 @@ SCRIPT_DO_DECK = """
 """
 
 
+def _topicos_em_ordem(slides: list[Slide]) -> list[str]:
+    """Lista os tópicos na ordem em que aparecem, sem repetir.
+
+    Args:
+        slides: Os slides do deck.
+
+    Returns:
+        Os nomes dos tópicos, uma vez cada. Slide sem tópico (a capa) não
+        entra.
+    """
+    topicos: list[str] = []
+    for slide in slides:
+        if slide.topico and slide.topico not in topicos:
+            topicos.append(slide.topico)
+
+    return topicos
+
+
+def _indice_horizontal(topicos: list[str]) -> str:
+    """A barra de tópicos no topo do palco.
+
+    O item de cada tópico ganha um `data-topico`, e o JS é quem marca qual
+    está atual — assim o índice não precisa ser redesenhado a cada slide.
+
+    Args:
+        topicos: Os tópicos, na ordem da apresentação.
+
+    Returns:
+        O HTML do índice, ou string vazia se não houver tópico.
+    """
+    if not topicos:
+        return ""
+
+    itens = []
+    for topico in topicos:
+        itens.append(
+            f'<div class="deckIndiceItem" data-topico="{layout.escapar(topico)}">'
+            f"{layout.escapar(topico)}</div>"
+        )
+
+    return f'<div class="deckIndice">{"".join(itens)}</div>'
+
+
 def montar(slides: list[Slide]) -> str:
     """Monta o deck inteiro: palco, slides e barra de navegação.
 
@@ -164,24 +250,31 @@ def montar(slides: list[Slide]) -> str:
     if not slides:
         raise ValueError("Um deck precisa de pelo menos um slide.")
 
+    topicos = _topicos_em_ordem(slides)
+
     blocos_de_slide = []
     pontos = []
 
     for posicao, slide in enumerate(slides):
         classe = "deckSlide ativo" if posicao == 0 else "deckSlide"
-        if not slide.rotulo:
+        if not slide.topico:
             classe += " capa"
 
         rotulo = ""
-        if slide.rotulo:
-            rotulo = f'<p class="deckRotulo">{layout.escapar(slide.rotulo)}</p>'
+        if slide.topico:
+            rotulo = f'<p class="deckRotulo">{layout.escapar(slide.topico)}</p>'
+
+        numero = (
+            f'<div class="deckNumero">{posicao + 1}</div>' if slide.topico else ""
+        )
 
         blocos_de_slide.append(
-            f'<section class="{classe}" id="slide-{posicao + 1}">'
+            f'<section class="{classe}" id="slide-{posicao + 1}" '
+            f'data-topico="{layout.escapar(slide.topico)}">'
             f"{rotulo}"
             f'<h2 class="deckTitulo">{layout.escapar(slide.titulo)}</h2>'
             f'<div class="deckCorpo">{slide.corpo}</div>'
-            "</section>"
+            f"{numero}</section>"
         )
 
         classe_do_ponto = "deckPonto ativo" if posicao == 0 else "deckPonto"
@@ -203,7 +296,10 @@ def montar(slides: list[Slide]) -> str:
 
     return (
         '<div class="deck">'
-        f'<div class="deckPalco">{"".join(blocos_de_slide)}</div>'
+        '<div class="deckPalco">'
+        f"{_indice_horizontal(topicos)}"
+        f'<div class="deckTela">{"".join(blocos_de_slide)}</div>'
+        "</div>"
         f"{barra}"
         "</div>"
     )

@@ -1,17 +1,20 @@
 """Página do Seminário de Andamento: a apresentação em slides.
 
-O formato foi pedido pelo orientador em 21/09/2026: **até 10 minutos**,
-cobrindo problema, importância, metodologia, resultados e próximos passos, com
-o **último slide de direcionamentos**.
+Formato pedido pelo orientador em 21/09/2026: **até 10 minutos**, cobrindo
+problema, importância, metodologia, resultados e próximos passos, com o
+**último slide de direcionamentos**.
 
-Dez slides, um minuto cada. Cada slide defende uma frase só — a frase está no
-título, e o corpo existe para sustentá-la.
+A apresentação é organizada em **tópicos**, que o índice horizontal no topo do
+palco destaca conforme ela avança. Um tópico pode ocupar mais de um slide — é
+só repetir o nome do tópico no slide seguinte.
 
-⚠️ Instrução direta do orientador, que manda no tom dos slides 7 e 8: não
-chegar à banca dizendo "não teve correlação com mosquito ou clima". O achado
-negativo aparece, porque escondê-lo seria desonesto, mas enquadrado pelo que
-ele de fato significa — e seguido da leitura de que o desenho atual
-provavelmente não captura um efeito que existe.
+⚠️ Instrução direta do orientador, que manda no tom do bloco de resultados:
+não chegar à banca dizendo "não teve correlação com mosquito ou clima". O
+achado negativo aparece, porque escondê-lo seria desonesto, mas enquadrado
+pelo que de fato significa.
+
+⏳ ESTADO: rascunho de estrutura. Os tópicos e a ordem estão fechados; o
+conteúdo de cada slide ainda vai ser refinado com o autor.
 """
 
 import deck
@@ -19,10 +22,33 @@ import layout
 import numeros_do_projeto as numeros
 
 
+# Os tópicos da apresentação, na ordem. Ficam nomeados aqui porque a agenda e o
+# índice horizontal precisam da mesma lista — e uma lista só evita que os dois
+# divirjam quando um tópico for renomeado.
+TOPICO_AGENDA = "Agenda"
+TOPICO_OBJETIVO = "Objetivo"
+TOPICO_DADOS = "Dados"
+TOPICO_CENARIOS = "Cenários testados"
+TOPICO_ADOTADO = "Cenário adotado"
+TOPICO_RESULTADOS = "Resultados parciais"
+TOPICO_PROXIMOS = "Próximos passos"
+
+# O que a agenda lista. A capa e a própria agenda ficam de fora: elas situam a
+# apresentação, não fazem parte do conteúdo dela.
+TOPICOS_DA_AGENDA = (
+    TOPICO_OBJETIVO,
+    TOPICO_DADOS,
+    TOPICO_CENARIOS,
+    TOPICO_ADOTADO,
+    TOPICO_RESULTADOS,
+    TOPICO_PROXIMOS,
+)
+
+
 def _slide_capa() -> deck.Slide:
-    """Abertura: a pergunta da pesquisa e a identificação."""
+    """Abertura. Sem tópico, então fica fora do índice."""
     return deck.Slide(
-        rotulo="",
+        topico="",
         titulo="Modelo preditivo de casos de dengue em Porto Alegre",
         corpo=(
             "<p>A partir da captura de mosquito das armadilhas municipais, "
@@ -30,81 +56,91 @@ def _slide_capa() -> deck.Slide:
             "<p><b>Vinicius Guerra</b> · Seminário de Andamento<br>"
             "PPGC — UFRGS · Orientação: Prof. Weverton Cordeiro</p>"
         ),
-        nota=(
-            "Abrir dizendo que a rede existe, custa caro e ninguém tinha medido "
-            "se ela antecipa a doença. <b>Dez minutos, dez slides.</b>"
-        ),
+        nota="Dez minutos.",
     )
 
 
-def _slide_o_problema() -> deck.Slide:
-    """O que a cidade faz hoje, e o que ninguém tinha medido."""
-    cartoes = [
-        layout.montar_cartao(
-            rotulo="A rede",
-            titulo=f"{numeros.formatar_inteiro(numeros.BASE.armadilhas)} armadilhas",
-            corpo=f"<p>em {numeros.BASE.bairros} bairros, lidas toda semana</p>",
-        ),
-        layout.montar_cartao(
-            rotulo="O custo",
-            titulo="Campo semanal",
-            corpo="<p>agentes recolhem e contam, há mais de uma década</p>",
-        ),
-        layout.montar_cartao(
-            rotulo="A pergunta",
-            titulo="Ela antecipa?",
-            corpo="<p>e, se antecipa, com quanto tempo?</p>",
-        ),
-    ]
+def _slide_agenda() -> deck.Slide:
+    """O roteiro da apresentação, numerado."""
+    itens = []
+    for ordem, topico in enumerate(TOPICOS_DA_AGENDA, start=1):
+        itens.append(f"<li><b>{ordem}.</b>&nbsp;&nbsp;{layout.escapar(topico)}</li>")
 
     return deck.Slide(
-        rotulo="O problema",
-        titulo="Porto Alegre mede o mosquito toda semana — e nunca mediu se isso antecipa a dengue",
-        corpo=layout.montar_grade(cartoes, colunas=3),
-        nota=(
-            "Um minuto. O ponto é que a rede <b>já existe e já custa</b>: a "
-            "pergunta não é se vale a pena criá-la, é o que ela entrega."
-        ),
+        topico=TOPICO_AGENDA,
+        titulo="Agenda",
+        corpo=f'<ul class="listaAgenda">{"".join(itens)}</ul>',
+        nota="Passar rápido. Serve para a banca saber onde a fala vai chegar.",
     )
 
 
-def _slide_por_que_importa() -> deck.Slide:
-    """A latência do caso, e o que ela impõe à vigilância."""
+def _slide_objetivo() -> deck.Slide:
+    """A pergunta da pesquisa e por que ela importa."""
     return deck.Slide(
-        rotulo="Por que importa",
-        titulo="Quando a curva de casos sobe, a transmissão já aconteceu",
+        topico=TOPICO_OBJETIVO,
+        titulo="Medir se a rede de armadilhas antecipa a dengue — e com quanto tempo",
         corpo=(
             layout.montar_fluxo(
                 [
                     ("Picada", "a transmissão acontece"),
                     ("Sintoma", "dias depois"),
                     ("Atendimento", "se a pessoa procurar"),
-                    ("Notificação", "e só então o caso existe no sistema"),
+                    ("Notificação", "só então o caso existe"),
                 ]
             )
             + layout.montar_aviso(
                 tom="atencao",
-                rotulo="A consequência prática",
+                rotulo="Por que antecipar importa mais do que acertar o tamanho",
                 texto=(
-                    "Agir quando o surto aparece é <b>agir tarde</b>. O valor de "
-                    "uma previsão está em avisar cedo o bastante para que a "
-                    "resposta ainda mude o resultado."
+                    "Quando a curva de casos sobe, a transmissão <b>já "
+                    "aconteceu</b>. Agir nesse momento é agir tarde."
                 ),
             )
         ),
+        nota="⏳ Refinar: falta dizer o custo da rede e que ela já existe.",
+    )
+
+
+def _slide_o_que_o_projeto_faz() -> deck.Slide:
+    """O que o projeto se propõe a construir, depois do porquê."""
+    horizontes = []
+    for desempenho in numeros.DESEMPENHO_DO_MODELO:
+        horizontes.append(
+            layout.montar_cartao(
+                rotulo="Horizonte",
+                titulo=desempenho.rotulo,
+                corpo="<p>à frente</p>",
+            )
+        )
+
+    return deck.Slide(
+        topico=TOPICO_OBJETIVO,
+        titulo="Construir um modelo que preveja quantos casos de dengue virão",
+        corpo=(
+            layout.montar_fluxo(
+                [
+                    ("Captura de mosquito", "as armadilhas da cidade, toda semana"),
+                    ("Clima", "chuva, temperatura, umidade e mais"),
+                    ("Histórico de casos", "o que já foi notificado"),
+                    ("Previsão", "quantos casos na semana-alvo"),
+                ]
+            )
+            + layout.montar_grade(horizontes, colunas=4)
+        ),
         nota=(
-            "Este slide justifica a tese inteira. Sem ele, a banca não entende "
-            "por que antecipar importa mais do que acertar o tamanho."
+            "O slide anterior diz <b>por quê</b>; este diz <b>o quê</b>. "
+            "Entradas à esquerda, previsão à direita, e os quatro horizontes "
+            "que o trabalho avalia."
         ),
     )
 
 
-def _slide_os_dados() -> deck.Slide:
-    """A contribuição mais sólida: a série reunida e certificada."""
+def _slide_dados() -> deck.Slide:
+    """A série reunida — a contribuição mais sólida do trabalho."""
     intervalo = f"{numeros.BASE.primeira_semana} a {numeros.BASE.ultima_semana}"
 
     return deck.Slide(
-        rotulo="Contribuição · dados",
+        topico=TOPICO_DADOS,
         titulo="14 anos de captura reunidos, corrigidos e certificados",
         corpo=(
             layout.montar_regua(
@@ -128,52 +164,48 @@ def _slide_os_dados() -> deck.Slide:
                 tom="bom",
                 rotulo="Por que isso é contribuição, e não preparação",
                 texto=(
-                    f"Faltam <b>{numeros.BASE.semanas_faltantes} semanas em 14 "
-                    f"anos</b>, {numeros.BASE.semanas_perdidas_na_enchente} delas "
-                    "a enchente de maio de 2024. A série não existia reunida: "
-                    "foi recuperada junto à Secretaria, corrigida e documentada."
+                    "A série não existia reunida. Foi recuperada junto à "
+                    "Secretaria, corrigida e documentada — faltam "
+                    f"<b>{numeros.BASE.semanas_faltantes} semanas em 14 anos</b>."
                 ),
             )
         ),
-        nota=(
-            "Se a banca só levar uma coisa, que seja esta. É o que o trabalho "
-            "entrega <b>independentemente</b> do resultado da modelagem."
-        ),
+        nota="⏳ Refinar: cabe a figura das séries lado a lado.",
     )
 
 
-def _slide_o_metodo() -> deck.Slide:
-    """Como a avaliação simula o uso real."""
+def _slide_cenarios() -> deck.Slide:
+    """O mapa dos experimentos."""
     return deck.Slide(
-        rotulo="Metodologia",
-        titulo="O modelo nunca vê o futuro que tenta prever",
+        topico=TOPICO_CENARIOS,
+        titulo="Nove cenários, cada um mudando um parâmetro por vez",
         corpo=(
-            layout.montar_figura(
-                arquivo="imagens/walkforward.png",
-                titulo="",
-                subtitulo="",
-                legenda="",
-            )
-            + layout.montar_aviso(
-                tom="info",
-                rotulo="E nada vira afirmação sem sobreviver à correção",
-                texto=(
-                    "Toda rodada é <b>pré-declarada por escrito antes</b>, e "
-                    "nenhum resultado é chamado de significativo sem passar pela "
-                    "correção de múltiplas comparações."
-                ),
-            )
+            "<p>⏳ <b>Rascunho.</b> Aqui entra a tabela dos nove cenários, com "
+            "o alvo de cada um — a mesma da página <i>Cenários testados</i>.</p>"
         ),
-        nota=(
-            "Falar rápido: treina só com o passado, avança no tempo, repete. "
-            "A parte que importa é a <b>pré-declaração</b> — é o que separa "
-            "achado de garimpo."
-        ),
+        nota="⏳ A fazer: trazer a tabela resumo dos 9 cenários.",
     )
 
 
-def _slide_desempenho() -> deck.Slide:
-    """Até onde a previsão alcança."""
+def _slide_adotado() -> deck.Slide:
+    """A configuração que ficou."""
+    return deck.Slide(
+        topico=TOPICO_ADOTADO,
+        titulo="A configuração de referência, e como ela foi escolhida",
+        corpo=(
+            "<p>⏳ <b>Rascunho.</b> HistGradientBoosting, perda quantílica em "
+            "0,85, com vetor — vencedora entre as "
+            f"<b>{numeros.TOTAL_DE_CONFIGURACOES_TESTADAS}</b> testadas pelo "
+            "menor erro de calibração.</p>"
+            "<p>Falta aqui: a validação walk-forward e o período efetivamente "
+            "usado no treino.</p>"
+        ),
+        nota="⏳ A fazer: tabela da configuração + figura do walk-forward.",
+    )
+
+
+def _slide_resultados() -> deck.Slide:
+    """O desempenho da configuração adotada."""
     cabecalhos = ["Horizonte", "R²", "Erro médio", "Captura do pico"]
     linhas = []
     for desempenho in numeros.DESEMPENHO_DO_MODELO:
@@ -187,7 +219,7 @@ def _slide_desempenho() -> deck.Slide:
         )
 
     return deck.Slide(
-        rotulo="Resultados · previsão",
+        topico=TOPICO_RESULTADOS,
         titulo="O modelo é honesto até um mês, e perde força em três",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
@@ -196,21 +228,16 @@ def _slide_desempenho() -> deck.Slide:
                 rotulo="A degradação tem causa medida",
                 texto=(
                     "A memória da própria série de casos explica <b>91%</b> do "
-                    "acerto em uma semana e <b>0%</b> em três meses. Não é "
-                    "defeito de ajuste: em três meses o passado recente não "
-                    "informa mais."
+                    "acerto em uma semana e <b>0%</b> em três meses."
                 ),
             )
         ),
-        nota=(
-            "Não pedir desculpa pela queda — <b>explicá-la</b>. A causa medida "
-            "é o que transforma um número ruim em achado."
-        ),
+        nota="⏳ Refinar junto com os dois slides seguintes deste tópico.",
     )
 
 
 def _slide_alarme() -> deck.Slide:
-    """O modelo lido como alarme, que é o uso operacional."""
+    """O mesmo modelo lido como alarme de surto."""
     cabecalhos = ["Horizonte", "Sensibilidade", "Precisão", "Falsos por ano"]
     linhas = [
         [
@@ -228,7 +255,7 @@ def _slide_alarme() -> deck.Slide:
     ]
 
     return deck.Slide(
-        rotulo="Resultados · alarme",
+        topico=TOPICO_RESULTADOS,
         titulo="Como alarme de surto, ele acerta 97% das semanas a um mês",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
@@ -237,14 +264,11 @@ def _slide_alarme() -> deck.Slide:
                 rotulo="Ressalva que limita a leitura",
                 texto=(
                     f"A avaliação contém apenas <b>{numeros.ALARME.episodios_na_avaliacao} "
-                    "episódios</b> de surto. Nada por episódio pode ser afirmado."
+                    "episódios</b> de surto."
                 ),
             )
         ),
-        nota=(
-            "Aqui muda a pergunta: não é acertar o tamanho, é acertar que a "
-            "epidemia <b>chegou</b>. Para vigilância, é a segunda que importa."
-        ),
+        nota="Aqui a pergunta muda: não é o tamanho, é se a epidemia chegou.",
     )
 
 
@@ -257,9 +281,8 @@ def _slide_o_vetor() -> deck.Slide:
                 titulo="",
                 corpo=(
                     "<p>Sobre um modelo que <b>já tem clima e histórico de "
-                    "casos</b>, a contagem de armadilha não melhora a previsão "
-                    f"em nenhuma das {numeros.VETOR.comparacoes_pareadas} "
-                    "comparações que sobrevivem à correção.</p>"
+                    "casos</b>, a armadilha não melhora a previsão em nenhuma "
+                    "comparação que sobreviva à correção.</p>"
                 ),
             ),
             layout.montar_cartao(
@@ -268,8 +291,7 @@ def _slide_o_vetor() -> deck.Slide:
                 corpo=(
                     "<p>Que o mosquito não importa. <b>Sem vetor não há "
                     "transmissão</b> — e a subida da captura aparece "
-                    "<b>antes</b> da subida dos casos, temporada após "
-                    "temporada.</p>"
+                    "<b>antes</b> da subida dos casos.</p>"
                 ),
             ),
         ],
@@ -277,8 +299,8 @@ def _slide_o_vetor() -> deck.Slide:
     )
 
     return deck.Slide(
-        rotulo="Resultados · o vetor",
-        titulo="A armadilha não adiciona sobre clima e histórico — e isso pede explicação, não conclusão",
+        topico=TOPICO_RESULTADOS,
+        titulo="A armadilha não adiciona sobre clima e histórico — e isso pede explicação",
         corpo=(
             contraste
             + layout.montar_aviso(
@@ -286,49 +308,20 @@ def _slide_o_vetor() -> deck.Slide:
                 rotulo="A leitura mais provável",
                 texto=(
                     "Um resultado nulo diante de um padrão visível e "
-                    "biologicamente esperado aponta menos para ausência de "
-                    "efeito e mais para <b>um efeito que o desenho atual não "
-                    "captura</b>: o alvo é a consequência, o horizonte para em "
-                    "três meses, e o histórico de casos ocupa o lugar do vetor."
+                    "biologicamente esperado aponta mais para <b>um efeito que "
+                    "o desenho atual não captura</b> do que para ausência de "
+                    "efeito."
                 ),
             )
         ),
         nota=(
             "⚠️ <b>O slide mais delicado.</b> Nunca dizer 'não deu correlação'. "
-            "Dizer: medimos isto, sob estas condições, e a explicação mais "
-            "provável é que o desenho não alcança o efeito. O próximo slide "
-            "mostra o que fazer a respeito."
+            "Dizer: medimos isto, sob estas condições."
         ),
     )
 
 
-def _slide_limites() -> deck.Slide:
-    """O que o trabalho não pode afirmar, dito antes que perguntem."""
-    return deck.Slide(
-        rotulo="Honestidade",
-        titulo="O que este trabalho ainda não pode afirmar",
-        corpo=layout.montar_lista(
-            [
-                "Que <b>o vetor melhora</b> a previsão de casos — 0 de "
-                f"{numeros.VETOR.comparacoes_pareadas} sobrevivem à correção.",
-                "Que <b>clima e vetor são equivalentes</b> — fecha "
-                f"{numeros.LIMITES.equivalencia_clima_vetor_fechada} de "
-                f"{numeros.LIMITES.equivalencia_clima_vetor_testada}.",
-                "Que <b>estas variáveis de clima são as que importam</b> — "
-                f"recortando a série, {numeros.LIMITES.colunas_de_clima_que_mudam_ao_recortar} "
-                f"das {numeros.LIMITES.colunas_de_clima_total} mudam.",
-                "Nada <b>por episódio de surto</b> — só há "
-                f"{numeros.ALARME.episodios_na_avaliacao} na avaliação.",
-            ]
-        ),
-        nota=(
-            "Dizer isto <b>antes</b> que a banca pergunte. Mostra domínio do "
-            "próprio limite, e tira da mesa a pergunta difícil."
-        ),
-    )
-
-
-def _slide_direcionamentos() -> deck.Slide:
+def _slide_proximos_passos() -> deck.Slide:
     """O último slide, como o orientador pediu."""
     cabecalhos = ["", "Hoje", "Próxima etapa"]
     linhas = [
@@ -351,46 +344,35 @@ def _slide_direcionamentos() -> deck.Slide:
     ]
 
     return deck.Slide(
-        rotulo="Direcionamentos",
+        topico=TOPICO_PROXIMOS,
         titulo="Deslocar a pergunta da consequência para a causa",
-        corpo=(
-            layout.montar_tabela(cabecalhos, linhas)
-            + layout.montar_aviso(
-                tom="bom",
-                rotulo="E um teste guardado",
-                texto=(
-                    "Prever agora a curva de captura da temporada "
-                    "<b>2026-2027</b> e conferir contra o real em <b>julho de "
-                    "2027</b> — previsão registrada antes, sem ajuste posterior."
-                ),
-            )
-        ),
+        corpo=layout.montar_tabela(cabecalhos, linhas),
         nota=(
             "Fechar aqui. Este slide saiu da reunião de "
-            f"{numeros.DATA_DA_REUNIAO_DE_ALINHAMENTO} e é o que a banca vai "
-            "comentar."
+            f"{numeros.DATA_DA_REUNIAO_DE_ALINHAMENTO}."
         ),
     )
 
 
 def montar_slides() -> list[deck.Slide]:
-    """Os dez slides da apresentação, na ordem."""
+    """Os slides da apresentação, na ordem."""
     return [
         _slide_capa(),
-        _slide_o_problema(),
-        _slide_por_que_importa(),
-        _slide_os_dados(),
-        _slide_o_metodo(),
-        _slide_desempenho(),
+        _slide_agenda(),
+        _slide_objetivo(),
+        _slide_o_que_o_projeto_faz(),
+        _slide_dados(),
+        _slide_cenarios(),
+        _slide_adotado(),
+        _slide_resultados(),
         _slide_alarme(),
         _slide_o_vetor(),
-        _slide_limites(),
-        _slide_direcionamentos(),
+        _slide_proximos_passos(),
     ]
 
 
 def montar_metricas() -> list[layout.Metrica]:
-    """Sem régua: o palco do deck começa logo abaixo do título."""
+    """Sem régua: o palco do deck ocupa a página."""
     return []
 
 
