@@ -96,6 +96,12 @@ class AtributosDoModelo:
         vetor: Atributos do grupo vetor.
         clima_candidatos: Atributos de clima disponíveis para escolha.
         clima_escolhidos: Quantos de clima entram, escolhidos por ganho.
+        fracao_da_selecao_de_clima: Que fatia inicial da série a escolha das
+            colunas de clima usa como treino.
+        inicio_da_selecao_de_clima: Primeira semana dessa fatia.
+        fim_da_selecao_de_clima: Última semana dessa fatia, medida no
+            horizonte de 1 semana. Nos horizontes 4 e 8 ela recua algumas
+            semanas, porque há menos linhas válidas.
     """
 
     derivados: int = 32
@@ -106,6 +112,9 @@ class AtributosDoModelo:
     vetor: int = 6
     clima_candidatos: int = 42
     clima_escolhidos: int = 6
+    fracao_da_selecao_de_clima: str = "60%"
+    inicio_da_selecao_de_clima: str = "18/03/2018"
+    fim_da_selecao_de_clima: str = "27/11/2022"
 
 
 ATRIBUTOS = AtributosDoModelo()

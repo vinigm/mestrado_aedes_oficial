@@ -70,8 +70,10 @@ Definido na reunião de 21/09/2026 com o orientador.
 ## ⏳ Dívida técnica
 
 - **`cidade_referencia.py` desatualizado** — aponta para quantil 0,80; a vencedora agora é 0,85.
-- **Seleção das 6 colunas de clima fica fora do walk-forward** — vazamento remanescente, não corrigido
-  em 13/09. E o ranking é instável: recortando em 2023, 4 das 6 colunas mudam.
+- **Seleção das 6 colunas de clima fica fora do walk-forward** — escolhida uma vez só, treinando nos
+  **60% mais antigos** (18/03/2018 a 27/11/2022, medido em 23/09). Contamina só as semanas avaliadas
+  DENTRO desse período; depois de 12/2022 a avaliação está limpa nesse aspecto. Ranking instável:
+  recortando em 2023, 4 das 6 mudam.
 - **`rodar_regressao_selecao_clima` não pareia M0 e M1** — a diferença mistura efeito do vetor com
   efeito de avaliar em semanas diferentes.
 - **A pasta `../Contexto/` está fora do git**, sem histórico. Os 4 documentos vivos entraram no

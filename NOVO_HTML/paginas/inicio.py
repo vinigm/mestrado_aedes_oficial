@@ -275,10 +275,17 @@ def _secao_atributos_do_modelo() -> str:
         tom="atencao",
         rotulo="Dívida técnica conhecida",
         texto=(
-            "As <b>6 colunas de clima</b> são escolhidas fora do "
-            "walk-forward, olhando a série inteira. É vazamento remanescente, "
-            "não corrigido na revisão de 13/09/2026 — e o ranking é instável: "
-            "recortando em 2023, <b>4 das 6 mudam</b>."
+            f"As <b>{numeros.ATRIBUTOS.clima_escolhidos} colunas de clima</b> "
+            "são escolhidas <b>uma vez só, antes</b> do walk-forward, "
+            f"treinando nos {numeros.ATRIBUTOS.fracao_da_selecao_de_clima} "
+            f"mais antigos da série "
+            f"({numeros.ATRIBUTOS.inicio_da_selecao_de_clima} a "
+            f"{numeros.ATRIBUTOS.fim_da_selecao_de_clima}). O walk-forward "
+            "depois avalia semanas <b>dentro</b> desse período — e para "
+            "essas, a escolha das colunas já tinha visto o futuro. É "
+            "vazamento remanescente, não corrigido na revisão de 13/09/2026. "
+            "O ranking também é instável: recortando em 2023, <b>4 das 6 "
+            "mudam</b>."
         ),
     )
 
