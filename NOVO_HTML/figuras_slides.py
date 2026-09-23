@@ -104,10 +104,13 @@ FOLGA_VERTICAL_DA_SETA = 0.07
 # dos casos em 2023: a linha vai a 250 na semana final do trecho e passa o
 # resto dele perto de 60.
 #
-# Só entram aqui anotações que o olho reprovou. A seta continua acima da série
-# em toda a sua extensão depois do ajuste — a correção consome folga, não
-# clearance.
+# As duas setas de casos levam o mesmo ajuste, de propósito: com uma abaixada
+# e a outra não, as temporadas ficavam assimétricas na tela e o olho lia a
+# diferença de altura como se fosse diferença nos dados. A seta continua acima
+# da série em toda a sua extensão depois do ajuste — a correção consome folga,
+# não clearance.
 AJUSTES_MANUAIS_DA_SETA = {
+    ("casos_confirmados", 2022): -0.05,
     ("casos_confirmados", 2023): -0.05,
 }
 
