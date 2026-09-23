@@ -21,6 +21,10 @@ import deck
 import layout
 import numeros_do_projeto as numeros
 
+# A lista de temas climáticos vive na página de dados. Importar de lá evita
+# que o slide e a página divirjam quando uma coluna for acrescentada.
+import dados as pagina_de_dados
+
 
 # Os tópicos da apresentação, na ordem. Ficam nomeados aqui porque a agenda e o
 # índice horizontal precisam da mesma lista — e uma lista só evita que os dois
@@ -179,6 +183,43 @@ def _slide_clima() -> deck.Slide:
             "diferente dos casos."
         ),
         e_figura=True,
+    )
+
+
+def _slide_colunas_de_clima() -> deck.Slide:
+    """De quantas variáveis o clima é feito, e como cada uma é resumida."""
+    cabecalhos = ["Tema", "Colunas geradas"]
+
+    linhas = []
+    total_de_colunas = 0
+    for tema, colunas, _resumo in pagina_de_dados.TEMAS_CLIMATICOS:
+        total_de_colunas += len(colunas)
+
+        nomes = []
+        for coluna in colunas:
+            nomes.append(f'<code class="nomeColuna">{coluna}</code>')
+
+        linhas.append([f"<b>{tema}</b>", " ".join(nomes)])
+
+    return deck.Slide(
+        topico=TOPICO_DADOS,
+        titulo=f"O clima entra como {total_de_colunas} variáveis, não como uma",
+        corpo=(
+            layout.montar_tabela(cabecalhos, linhas)
+            + layout.montar_aviso(
+                tom="info",
+                rotulo="Tudo da NASA POWER",
+                texto=(
+                    "Agregado de diário para semanal. Algumas dessas colunas "
+                    "ganham ainda versões <b>defasadas de 1 a 4 semanas</b>, "
+                    "para o modelo olhar o clima das semanas anteriores."
+                ),
+            )
+        ),
+        nota=(
+            "Só situar a dimensão: o modelo não recebe 'o clima', recebe "
+            f"<b>{total_de_colunas} colunas</b>. Não ler a tabela."
+        ),
     )
 
 
@@ -371,6 +412,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_o_que_o_projeto_faz(),
         _slide_vetor_e_casos(),
         _slide_clima(),
+        _slide_colunas_de_clima(),
         _slide_cenarios(),
         _slide_adotado(),
         _slide_resultados(),
