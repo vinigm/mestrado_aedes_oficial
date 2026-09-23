@@ -72,7 +72,10 @@ def _slide_agenda() -> deck.Slide:
 
     return deck.Slide(
         topico=TOPICO_AGENDA,
-        titulo="Agenda",
+        # O rótulo do slide já diz "Agenda": repetir a palavra no título
+        # gastaria a linha mais visível do slide com uma informação que o
+        # leitor acabou de ler.
+        titulo="O percurso desta apresentação",
         rotulo_curto="Roteiro",
         corpo=f'<ul class="listaAgenda">{"".join(itens)}</ul>',
         nota="Passar rápido. Serve para a banca saber onde a fala vai chegar.",
@@ -343,12 +346,17 @@ def _slide_o_vetor() -> deck.Slide:
         rotulo_curto="O vetor",
         corpo=(
             '<div class="deckFiguraCheia">'
-            '<img src="imagens/vetor_vs_casos.png" '
-            'alt="Aedes aegypti capturados e casos confirmados de dengue, semana a semana">'
-            '<p class="deckFiguraLegenda">Em <b>2022, 2023, 2024 e 2025</b> a '
-            "subida do mosquito vem <b>antes</b> da subida dos casos. "
-            "⚠️ Leitura de gráfico — a defasagem ainda não foi medida.</p>"
-            "</div>"
+            '<img src="imagens/slide_vetor_vs_casos_anotado.png" '
+            'alt="Aedes aegypti capturados e casos confirmados de dengue, '
+            'com a subida de cada série marcada por seta">'
+            + layout.montar_aviso(
+                "atencao",
+                "Limitação do modelo",
+                "Setas azuis: subida do <b>mosquito</b>. Vermelhas: subida "
+                "dos <b>casos</b>. O padrão está nas quatro temporadas — e o "
+                "modelo <b>ainda não consegue agregar essa relação</b>.",
+            )
+            + "</div>"
         ),
         nota=(
             "⚠️ <b>O slide mais delicado.</b> Dizer: o padrão está no gráfico, o "
@@ -388,7 +396,24 @@ def _slide_proximos_passos() -> deck.Slide:
         topico=TOPICO_PROXIMOS,
         titulo="Deslocar a pergunta da consequência para a causa",
         rotulo_curto="A direção",
-        corpo=layout.montar_tabela(cabecalhos, linhas),
+        corpo=(
+            layout.montar_tabela(cabecalhos, linhas)
+            + layout.montar_virada(
+                (
+                    "Atual",
+                    "Modelo de previsão de <b>surto de dengue</b>",
+                ),
+                (
+                    "Futuro",
+                    "Modelo de previsão de <b>doenças transmitidas "
+                    "pelo mesmo vetor</b>",
+                ),
+                (
+                    "O que entra junto",
+                    "Dados das <b>outras arboviroses</b>, agregados ao modelo",
+                ),
+            )
+        ),
         nota=(
             "Fechar aqui. Este slide saiu da reunião de "
             f"{numeros.DATA_DA_REUNIAO_DE_ALINHAMENTO}."

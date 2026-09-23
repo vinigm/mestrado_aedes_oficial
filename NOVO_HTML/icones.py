@@ -29,6 +29,10 @@ _MIOLO_POR_NOME = {
                     '<path d="M9 10.4v2.4"/>'
                     '<path d="M6.4 15.2 9 12.8l2.6 2.4"/>',
     "lupa": '<circle cx="7.2" cy="7.2" r="4.4"/><path d="m10.6 10.6 3 3"/>',
+    # Calendário: a folha, as duas argolas e a linha que separa o cabeçalho.
+    "calendario": '<rect x="2.8" y="4" width="12.4" height="11.2" rx="1.4"/>'
+                  '<path d="M2.8 7.6h12.4"/>'
+                  '<path d="M6.2 2.6v2.6"/><path d="M11.8 2.6v2.6"/>',
 }
 
 

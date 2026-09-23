@@ -307,6 +307,46 @@ code.nomeColuna{white-space:nowrap}
   .fluxoEtapa{flex:1 1 100%}
 }
 
+/* Virada de escopo: o que o projeto é hoje, o que ele passa a ser, e o que
+   entra junto na virada. A terceira caixa PENDE da segunda em vez de vir
+   depois dela na linha: ela não é a etapa seguinte no tempo, é o insumo que
+   torna a segunda possível. Desenhar as três em fila diria a coisa errada. */
+.virada{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch;
+  gap:14px; margin:0}
+.viradaCaixa{background:var(--fundo); border:1px solid var(--borda);
+  border-radius:var(--raio); padding:15px 17px; box-shadow:var(--sombra)}
+.viradaCaixa.eFuturo{border-color:var(--acento); border-width:1.5px}
+.viradaCaixa.eInsumo{border-color:var(--bom); border-width:1.5px;
+  background:var(--bom-suave); box-shadow:none}
+.viradaRotulo{font-size:.72rem; font-weight:700; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--faint); margin:0 0 6px}
+.viradaCaixa.eFuturo .viradaRotulo{color:var(--acento)}
+.viradaCaixa.eInsumo .viradaRotulo{color:var(--bom)}
+.viradaTexto{font-size:.95rem; font-weight:640; color:var(--tinta);
+  line-height:1.35; margin:0}
+.viradaSeta{display:flex; align-items:center; color:var(--acento);
+  font-size:1.35rem; font-weight:700}
+
+/* O ramo repete a grade de três colunas da linha de cima só para herdar o
+   alinhamento: a caixa do insumo precisa nascer sob a caixa do futuro. */
+.viradaDerivacao{display:grid; grid-template-columns:1fr auto 1fr; gap:14px}
+.viradaRamo{grid-column:3; display:flex; align-items:flex-start; gap:10px;
+  padding-left:22px; position:relative}
+.viradaRamo::before{content:""; position:absolute; left:22px; top:0; bottom:50%;
+  width:2px; background:var(--bom)}
+.viradaRamoSeta{color:var(--bom); font-size:1.2rem; line-height:1;
+  padding-top:14px}
+.viradaRamo .viradaCaixa{flex:1 1 auto; margin-top:14px}
+
+/* Em tela estreita a derivação lateral vira empilhamento: manter a coluna 3
+   num espaço que não existe jogaria a caixa para fora da vista. */
+@media (max-width:820px){
+  .virada,.viradaDerivacao{grid-template-columns:1fr}
+  .viradaSeta{justify-content:center}
+  .viradaRamo{grid-column:1; padding-left:0}
+  .viradaRamo::before{display:none}
+}
+
 /* Gráfico de linhas. O SVG só tem viewBox, então sem um teto de largura ele
    estica até a página inteira e as linhas ficam esparramadas. */
 .grafico{max-width:620px; margin:0 0 22px}

@@ -92,7 +92,11 @@ def copiar_figuras() -> list[str]:
 
 # As figuras que `figuras_slides.py` desenha. O gerador não as cria, mas avisa
 # quando faltam, para o deck não sair com imagem quebrada.
-FIGURAS_DOS_SLIDES = ("slide_vetor_e_casos.png", "slide_clima.png")
+FIGURAS_DOS_SLIDES = (
+    "slide_vetor_e_casos.png",
+    "slide_clima.png",
+    "slide_vetor_vs_casos_anotado.png",
+)
 
 
 def _figuras_de_slide_ausentes() -> list[str]:

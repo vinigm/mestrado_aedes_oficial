@@ -420,6 +420,59 @@ def montar_fluxo(
     return f'<div class="fluxo">{"".join(blocos)}</div>'
 
 
+def montar_virada(
+    hoje: tuple[str, str],
+    futuro: tuple[str, str],
+    insumo: tuple[str, str],
+) -> str:
+    """Diagrama de mudança de escopo, com o insumo pendurado no destino.
+
+    Diferente de `montar_fluxo`, que põe tudo na mesma linha, aqui a terceira
+    caixa desce da segunda. A distinção é de significado: `hoje` e `futuro` se
+    sucedem no tempo, enquanto `insumo` é o que entra para tornar o futuro
+    possível — desenhá-lo em fila sugeriria uma terceira etapa que não existe.
+
+    Args:
+        hoje: Par `(rotulo, texto)` do que o projeto é hoje.
+        futuro: Par `(rotulo, texto)` do que ele passa a ser.
+        insumo: Par `(rotulo, texto)` do que entra junto na virada.
+
+    Returns:
+        O HTML do diagrama.
+    """
+    rotulo_de_hoje, texto_de_hoje = hoje
+    rotulo_do_futuro, texto_do_futuro = futuro
+    rotulo_do_insumo, texto_do_insumo = insumo
+
+    linha_principal = (
+        '<div class="virada">'
+        '<div class="viradaCaixa">'
+        f'<p class="viradaRotulo">{escapar(rotulo_de_hoje)}</p>'
+        f'<p class="viradaTexto">{texto_de_hoje}</p>'
+        "</div>"
+        f'<div class="viradaSeta">{CONECTOR_DE_SEQUENCIA}</div>'
+        '<div class="viradaCaixa eFuturo">'
+        f'<p class="viradaRotulo">{escapar(rotulo_do_futuro)}</p>'
+        f'<p class="viradaTexto">{texto_do_futuro}</p>'
+        "</div>"
+        "</div>"
+    )
+
+    ramo = (
+        '<div class="viradaDerivacao">'
+        '<div class="viradaRamo">'
+        '<span class="viradaRamoSeta">&#8618;</span>'
+        '<div class="viradaCaixa eInsumo">'
+        f'<p class="viradaRotulo">{escapar(rotulo_do_insumo)}</p>'
+        f'<p class="viradaTexto">{texto_do_insumo}</p>'
+        "</div>"
+        "</div>"
+        "</div>"
+    )
+
+    return linha_principal + ramo
+
+
 def montar_lista(itens: list[str]) -> str:
     """Lista de tópicos. Cada item entra como HTML já montado."""
     itens_montados = []

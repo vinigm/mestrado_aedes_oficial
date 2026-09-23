@@ -21,14 +21,14 @@ import numeros_do_projeto as numeros
 def _secao_o_que_os_dados_mostram() -> str:
     """A defasagem visível entre a curva do vetor e a curva dos casos."""
     figura = layout.montar_figura(
-        arquivo="imagens/vetor_vs_casos.png",
+        arquivo="imagens/slide_vetor_vs_casos_anotado.png",
         titulo="",
         subtitulo="",
         legenda=(
             "Barras azuis: mosquitos capturados. Linha vermelha: casos "
-            "confirmados. Em <b>2022, 2023, 2024 e 2025</b> a subida do "
-            "mosquito vem <b>antes</b>. ⚠️ Leitura de gráfico — a defasagem "
-            "ainda não foi medida."
+            "confirmados. As setas marcam onde cada série começa a subir — em "
+            "<b>2022, 2023, 2024 e 2025</b> a do mosquito vem <b>antes</b>. "
+            "⚠️ Leitura de gráfico — a defasagem ainda não foi medida."
         ),
     )
 
