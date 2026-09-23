@@ -437,6 +437,12 @@ def montar_documento(
         '<html lang="pt-BR"><head>'
         '<meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
+        # O painel é republicado a cada rodada, e quem já visitou uma versão
+        # anterior recebia a cópia em cache ao voltar pela página inicial. Estas
+        # três linhas mandam o navegador revalidar antes de reusar.
+        '<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">'
+        '<meta http-equiv="Pragma" content="no-cache">'
+        '<meta http-equiv="Expires" content="0">'
         f"<title>{escapar(pagina.titulo_no_menu)} — Aedes aegypti e dengue em Porto Alegre</title>"
         f"<style>{tema.FOLHA_DE_ESTILO}</style>"
         "</head><body>"
