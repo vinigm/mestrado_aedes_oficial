@@ -142,44 +142,6 @@ def _slide_o_que_o_projeto_faz() -> deck.Slide:
     )
 
 
-def _slide_dados() -> deck.Slide:
-    """A série reunida — a contribuição mais sólida do trabalho."""
-    intervalo = f"{numeros.BASE.primeira_semana} a {numeros.BASE.ultima_semana}"
-
-    return deck.Slide(
-        topico=TOPICO_DADOS,
-        titulo="14 anos de captura reunidos, corrigidos e certificados",
-        corpo=(
-            layout.montar_regua(
-                [
-                    layout.Metrica(
-                        "Semanas", str(numeros.BASE.semanas_com_dado), intervalo
-                    ),
-                    layout.Metrica(
-                        "Inspeções",
-                        numeros.formatar_inteiro(numeros.BASE.inspecoes),
-                        "conferidas célula a célula",
-                    ),
-                    layout.Metrica(
-                        "Fêmeas de Aedes aegypti",
-                        numeros.formatar_inteiro(numeros.BASE.femeas_de_aedes_aegypti),
-                        "a medida que o modelo usa",
-                    ),
-                ]
-            )
-            + layout.montar_aviso(
-                tom="bom",
-                rotulo="Por que isso é contribuição, e não preparação",
-                texto=(
-                    "A série não existia reunida. Foi recuperada junto à "
-                    "Secretaria, corrigida e documentada — faltam "
-                    f"<b>{numeros.BASE.semanas_faltantes} semanas em 14 anos</b>."
-                ),
-            )
-        ),
-        nota="Os números. A figura vem no slide seguinte.",
-    )
-
 
 def _slide_vetor_e_casos() -> deck.Slide:
     """O par que sustenta a pergunta: vetor em cima, casos embaixo."""
@@ -407,7 +369,6 @@ def montar_slides() -> list[deck.Slide]:
         _slide_agenda(),
         _slide_objetivo(),
         _slide_o_que_o_projeto_faz(),
-        _slide_dados(),
         _slide_vetor_e_casos(),
         _slide_clima(),
         _slide_cenarios(),
