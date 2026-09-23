@@ -361,52 +361,6 @@ def _slide_o_vetor() -> deck.Slide:
     )
 
 
-def _slide_o_que_falta_no_modelo() -> deck.Slide:
-    """Por que o modelo ainda não alcança a relação — em hipóteses."""
-    cartoes = [
-        layout.montar_cartao(
-            rotulo="Hipótese 01",
-            titulo="O alvo é a consequência",
-            corpo=(
-                "<p>Prever o surto é prever algo que <b>já aconteceu</b>. A "
-                "causa é a proliferação do vetor.</p>"
-            ),
-        ),
-        layout.montar_cartao(
-            rotulo="Hipótese 02",
-            titulo="O histórico satura o modelo",
-            corpo=(
-                f"<p>Os casos recentes explicam <b>"
-                f"{numeros.formatar_percentual(numeros.DEGRADACAO.fracao_explicada_em_uma_semana, 0)}"
-                "</b> do acerto em uma semana.</p>"
-            ),
-        ),
-        layout.montar_cartao(
-            rotulo="Hipótese 03",
-            titulo="O horizonte para em 3 meses",
-            corpo="<p>A defasagem do gráfico parece maior do que isso.</p>",
-        ),
-        layout.montar_cartao(
-            rotulo="Hipótese 04",
-            titulo="Mosquito não é vírus",
-            corpo=(
-                "<p>A armadilha conta mosquito, não mosquito "
-                "<b>infectado</b>.</p>"
-            ),
-        ),
-    ]
-
-    return deck.Slide(
-        topico=TOPICO_RESULTADOS,
-        titulo="Quatro hipóteses para o que o modelo ainda não alcança",
-        rotulo_curto="O que falta",
-        corpo=layout.montar_grade(cartoes, colunas=4),
-        nota=(
-            "Estas são as quatro frentes que a próxima etapa ataca. Rotular "
-            "como <b>hipótese</b>, não como conclusão."
-        ),
-    )
-
 
 def _slide_proximos_passos() -> deck.Slide:
     """O último slide, como o orientador pediu."""
@@ -457,7 +411,6 @@ def montar_slides() -> list[deck.Slide]:
         _slide_resultados(),
         _slide_alarme(),
         _slide_o_vetor(),
-        _slide_o_que_falta_no_modelo(),
         _slide_proximos_passos(),
     ]
 
