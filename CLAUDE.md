@@ -74,8 +74,9 @@ série de captura de mosquitos das armadilhas do MI-Aedes em Porto Alegre.
 - **Rodada longa de CPU (>15–30 min): avisar antes, com estimativa, e esperar o ok do Vinicius.**
   Estimar medindo uma célula, nunca por analogia com outra rodada.
 - Processo demorado roda com `nohup` + log + polling. Nunca em foreground.
-- Publicar o site após mexer no painel é pré-autorizado (commit restrito a `pagina_web/` + `docs/`).
-  ⚠️ **Suspenso desde 13/09/2026:** o painel tem números errados — ver [ESTADO.md](ESTADO.md) §5.
+- Publicar o site após mexer no painel é pré-autorizado (commit restrito a `NOVO_HTML/` + `docs/`).
+  ✅ **Retomado em 23/09/2026**, com o painel reconstruído: todo número sai de
+  `NOVO_HTML/numeros_do_projeto.py`, e cenário anterior à correção aparece com aviso.
 - Código Python segue `~/.claude/PADRAO-CODIGO-PYTHON.md` (leitura obrigatória antes de escrever código).
 
 ---
@@ -83,7 +84,8 @@ série de captura de mosquitos das armadilhas do MI-Aedes em Porto Alegre.
 ## Mapa rápido
 
 - `modelagem_aedes/` — o pipeline (config, acesso, dominio, motor, avaliacao, preparo, tests).
-- `pagina_web/` → gera `docs/` — o painel do GitHub Pages.
+- `NOVO_HTML/` → gera `docs/` — o painel do GitHub Pages (desde 23/09/2026).
+- `pagina_web/` — o gerador antigo, **aposentado em 23/09/2026**. Não alimenta mais o site.
 - `Raspagem/` — o scraper semanal (manual) e seus arquivos brutos.
 - `analises/` — uma pasta datada por teste, cada uma com README e pré-declaração.
 - `../Contexto/` — o contexto organizado para IA.

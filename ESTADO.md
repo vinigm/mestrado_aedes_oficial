@@ -162,9 +162,16 @@ poder: são 576 a 587 semanas pareadas.
 
 Reunião de 1h06, transcrição em `../Reunioes de andamento/`. **Vale para depois do seminário.**
 
-**A inversão:** deixar de prever o surto e passar a prever **a causa dele** — a proliferação do vetor.
-Segundo a transcrição: *"quando começa a dar surto de dengue, o problema já aconteceu"*. Se a previsão
-for da causa, com 1 a 6 meses, a vigilância pode agir no mês 0 para evitar o surto do mês 4.
+**A inversão:** prever os casos **a partir da proliferação do vetor**, que é a causa. Segundo a
+transcrição: *"quando começa a dar surto de dengue, o problema já aconteceu"*. Se a previsão parte da
+causa, com 1 a 6 meses, a vigilância pode agir no mês 0 para evitar o surto do mês 4.
+
+⚠️ **Correção de 23/09/2026 — a hierarquia dos alvos estava invertida aqui.** Esta seção dizia "deixar
+de prever o surto e passar a prever a causa", como se o alvo trocasse. A transcrição diz o oposto, nas
+linhas 913–921: *"Coloca como um secundário, mas faz isso também. Prever a ocorrência de mosquitos"* e
+*"esse seria um secundário. **O primário seriam os casos de dengue**"*.
+- **alvo primário:** casos das arboviroses agregadas, previstos a partir do vetor;
+- **alvo secundário:** a própria proliferação do vetor, a partir de clima e captura.
 
 Isso reenquadra os quatro pontos acima sem descartá-los, e **reconcilia o resultado negativo**: o vetor
 é redundante com o histórico recente de casos em horizonte curto, que é onde medimos. No horizonte e no
@@ -188,24 +195,21 @@ por escrito antes de rodar.
 ## 5. O painel publicado
 
 - No ar: **https://vinigm.github.io/mestrado_aedes_oficial/**
-- Gerado por `pagina_web/gerar.py` → `docs/`.
+- Gerado por `NOVO_HTML/gerar.py` → `docs/`.
 
-🔴 **O painel publica hoje quatro números que sabemos estarem errados**, todos anteriores à correção:
+✅ **23/09/2026 — o painel foi reconstruído e republicado.** O site antigo, que exibia quatro números
+anteriores à correção do vazamento, saiu do ar. O `git log` preserva ele inteiro.
 
-| No site | Correto |
-|---|---|
-| R² 0,758 em h=12 | **0,437** |
-| Trocar a perda custa +20,2% | **+9,9%** |
-| "A melhor entre as 30" (quantil 0,80) | Agora é quantil 0,85; a antiga é 3ª |
-| Captura do pico 98/92/70/62% | 89/70/42/39 |
+O painel novo tem **5 páginas**: Início · Dados · Cenários testados · Cenário adotado · Próximos passos.
 
-⚠️ **Risco adicional:** o painel lê a execução **mais recente de cada nome** no MLflow. Como só parte
-dos experimentos foi refeita, gerar o site agora **mistura números corrigidos e não corrigidos** sem
-aviso ao leitor.
+- Todo número visível sai de `NOVO_HTML/numeros_do_projeto.py`, que copia este documento.
+- Cenário cuja execução é anterior a 13/09/2026 aparece com **aviso de número superado** na própria
+  página. Hoje isso atinge 5 dos 9 cenários.
+- O gerador antigo (`pagina_web/`) segue no repositório, mas **não alimenta mais o site**.
 
-⏳ **Nada foi publicado.** O gerador não foi rodado. Ver [PENDENCIAS.md](PENDENCIAS.md).
-
----
+⏳ **Dívida:** `cidade_lift_vetor` foi re-rodado em 23/09 e o CSV novo está em disco, mas a execução
+**não registrou run no MLflow** — o painel lê do MLflow, então ainda mostra os números de 29/08.
+Causa não investigada.
 
 ## 6. Fonte da verdade (ordem por pergunta)
 

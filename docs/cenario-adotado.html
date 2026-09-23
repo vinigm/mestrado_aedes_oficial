@@ -1,0 +1,391 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cenário adotado — Aedes aegypti e dengue em Porto Alegre</title><style>
+*{box-sizing:border-box}
+
+:root{
+  /* Navegação — o azul-marinho das duas colunas da esquerda. */
+  --nav1-fundo:#0E2033;
+  --nav2-fundo:#142A42;
+  --nav-texto:#C3CFDE;
+  --nav-texto-forte:#FFFFFF;
+  --nav-rotulo:#77899E;
+  --nav-borda:rgba(255,255,255,.09);
+  --nav-hover:rgba(255,255,255,.07);
+
+  /* Conteúdo — fundo branco, tinta escura, cinzas de apoio. */
+  --fundo:#FFFFFF;
+  --elevado:#F7F9FB;
+  --tinta:#16202C;
+  --tinta-suave:#3E4C5C;
+  --muted:#6B7A8C;
+  --faint:#93A2B3;
+  --borda:#E3E8EE;
+  --borda-forte:#CBD4DE;
+
+  /* Acento e semântica. */
+  --acento:#1B6EF3;
+  --acento-escuro:#1559C9;
+  --acento-suave:#EAF2FE;
+  --bom:#1F7A4D;
+  --bom-suave:#E8F5EE;
+  --atencao:#B4761C;
+  --atencao-suave:#FDF3E3;
+  --critico:#C0392B;
+  --critico-suave:#FCECEA;
+  --serie:#C94F60;
+
+  --raio:10px;
+  --raio-g:14px;
+  --sombra:0 1px 2px rgba(16,32,51,.05), 0 8px 24px -16px rgba(16,32,51,.22);
+
+  --fonte:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --fonte-dados:"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--fundo);
+  color:var(--tinta);
+  font-family:var(--fonte);
+  font-size:15.5px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+h1,h2,h3,h4{font-family:var(--fonte); font-weight:650; line-height:1.2; color:var(--tinta); margin:0}
+h1{font-size:1.85rem; letter-spacing:-.02em}
+h2{font-size:1.28rem; letter-spacing:-.012em}
+h3{font-size:1.03rem; letter-spacing:-.006em}
+p{margin:0 0 .9rem; max-width:74ch}
+a{color:var(--acento); text-decoration:none}
+a:hover{text-decoration:underline; text-underline-offset:2px}
+strong,b{font-weight:640; color:var(--tinta)}
+code{font-family:var(--fonte-dados); font-size:.86em; background:var(--elevado);
+  border:1px solid var(--borda); border-radius:5px; padding:.1em .38em; color:var(--tinta-suave)}
+
+/* ------------------------------------------------------------------ casca */
+
+#casca{display:flex; align-items:stretch; min-height:100vh}
+
+/* ------------------------------------------------- coluna de navegação 1 */
+
+#navPrimaria{
+  flex:0 0 256px;
+  width:256px;
+  background:var(--nav1-fundo);
+  position:sticky; top:0; align-self:flex-start; height:100vh;
+  display:flex; flex-direction:column; overflow:hidden;
+  transition:flex-basis .16s ease, width .16s ease;
+  z-index:6;
+}
+
+.marca{display:flex; gap:10px; align-items:center; padding:18px 16px 14px}
+.marcaSelo{
+  flex:0 0 30px; width:30px; height:30px; border-radius:8px;
+  background:var(--acento); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+}
+.marcaMosquito{width:21px; height:21px; display:block}
+.marcaTexto{min-width:0}
+.marcaNome{color:var(--nav-texto-forte); font-weight:640; font-size:.93rem; line-height:1.25;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.marcaSub{color:var(--nav-rotulo); font-size:.73rem; line-height:1.3;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+.navRolagem{flex:1 1 auto; overflow-y:auto; overflow-x:hidden; padding:2px 0 10px}
+
+.navRotulo{
+  color:var(--nav-rotulo); font-size:.685rem; font-weight:700;
+  letter-spacing:.13em; text-transform:uppercase;
+  padding:14px 18px 7px;
+}
+
+.navItem{
+  display:flex; align-items:center; gap:10px;
+  margin:1px 10px; padding:8px 10px; border-radius:9px;
+  color:var(--nav-texto); font-size:.885rem; font-weight:500;
+  text-decoration:none; white-space:nowrap; overflow:hidden;
+}
+.navItem:hover{background:var(--nav-hover); color:var(--nav-texto-forte); text-decoration:none}
+.navItem.ativo{background:var(--acento); color:#fff; font-weight:600}
+.navItem.ativo:hover{background:var(--acento)}
+.navIcone{flex:0 0 17px; width:17px; height:17px; opacity:.85}
+.navItem.ativo .navIcone{opacity:1}
+.navRotuloItem{overflow:hidden; text-overflow:ellipsis}
+
+.navFilho{padding-left:28px; font-size:.855rem}
+
+.navDivisor{height:1px; background:var(--nav-borda); margin:12px 18px}
+
+.navRodape{
+  border-top:1px solid var(--nav-borda); padding:11px 18px;
+  color:var(--nav-rotulo); font-size:.8rem; cursor:pointer; user-select:none;
+  white-space:nowrap; overflow:hidden;
+}
+.navRodape:hover{color:var(--nav-texto)}
+
+/* --------------------------------------------------- coluna de navegação 2 */
+
+#navSecundaria{
+  flex:0 0 236px;
+  width:236px;
+  background:var(--nav2-fundo);
+  position:sticky; top:0; align-self:flex-start; height:100vh;
+  display:flex; flex-direction:column; overflow:hidden; z-index:5;
+}
+.nav2Rolagem{flex:1 1 auto; overflow-y:auto; padding:22px 0 16px}
+.nav2Rotulo{
+  color:var(--nav-rotulo); font-size:.685rem; font-weight:700;
+  letter-spacing:.13em; text-transform:uppercase; padding:0 18px 9px;
+}
+.nav2Item{
+  display:flex; align-items:center; gap:10px;
+  margin:1px 10px; padding:8px 11px; border-radius:9px;
+  color:var(--nav-texto); font-size:.885rem; font-weight:500;
+  text-decoration:none; white-space:nowrap; overflow:hidden;
+}
+.nav2Item:hover{background:var(--nav-hover); color:var(--nav-texto-forte); text-decoration:none}
+.nav2Item.ativo{background:var(--acento); color:#fff; font-weight:600}
+.nav2Icone{flex:0 0 15px; width:15px; height:15px; opacity:.8}
+.nav2Item.ativo .nav2Icone{opacity:1}
+.nav2Texto{overflow:hidden; text-overflow:ellipsis}
+
+/* ------------------------------------------------------ área de conteúdo */
+
+#areaConteudo{flex:1 1 auto; min-width:0; background:var(--fundo);
+  display:flex; flex-direction:column; min-height:100vh}
+.conteudoInterno{flex:1 1 auto; width:100%;
+  max-width:1320px; padding:26px 38px 64px}
+
+.trilha{color:var(--muted); font-size:.83rem; margin:0 0 20px}
+.trilha b{color:var(--tinta-suave); font-weight:600}
+
+.cabecalhoPagina{margin:0 0 24px}
+.cabecalhoPagina h1{margin:0 0 8px}
+.cabecalhoPagina .resumo{color:var(--tinta-suave); font-size:1.02rem; max-width:78ch; margin:0}
+
+/* Régua de números no topo da página, como no painel de referência:
+   rótulo pequeno em versalete, número grande, nota fina embaixo. */
+.regua{display:flex; flex-wrap:wrap; gap:38px; padding:20px 0 24px;
+  border-top:1px solid var(--borda); border-bottom:1px solid var(--borda); margin:0 0 30px}
+.metrica{min-width:0}
+.metricaRotulo{color:var(--muted); font-size:.685rem; font-weight:700;
+  letter-spacing:.11em; text-transform:uppercase; margin:0 0 6px}
+.metricaValor{font-size:1.6rem; font-weight:680; letter-spacing:-.022em;
+  font-variant-numeric:tabular-nums; line-height:1.15; color:var(--tinta)}
+.metricaNota{color:var(--muted); font-size:.79rem; margin-top:4px}
+
+/* O respiro entre seções é o dobro do original: com poucas seções por página,
+   o vão é o que diz onde um assunto acaba e outro começa. */
+.secao{scroll-margin-top:22px; padding:8px 0 68px}
+.secao:last-child{padding-bottom:40px}
+.secaoTitulo{display:flex; align-items:baseline; gap:11px; margin:0 0 6px}
+.secaoTitulo h2{margin:0}
+.secaoOrdem{color:var(--faint); font-size:.78rem; font-weight:700;
+  font-variant-numeric:tabular-nums}
+.secaoIntro{color:var(--tinta-suave); margin:0 0 18px; max-width:78ch}
+
+.cartao{background:var(--fundo); border:1px solid var(--borda); border-radius:var(--raio-g);
+  padding:18px 20px; box-shadow:var(--sombra)}
+.cartaoRotulo{color:var(--muted); font-size:.685rem; font-weight:700;
+  letter-spacing:.11em; text-transform:uppercase; margin:0 0 8px}
+.cartao h3{margin:0 0 6px}
+.cartao p:last-child{margin-bottom:0}
+
+.grade{display:grid; gap:16px; margin:0 0 18px}
+.grade2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grade3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grade4{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+/* Faixa de aviso — separa o que é fato medido do que é hipótese ou ressalva. */
+.aviso{border-left:3px solid var(--borda-forte); background:var(--elevado);
+  border-radius:0 var(--raio) var(--raio) 0; padding:13px 16px; margin:0 0 18px}
+.aviso .avisoRotulo{font-size:.685rem; font-weight:700; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--muted); margin:0 0 5px}
+.aviso p{margin:0; max-width:78ch}
+.aviso.bom{border-left-color:var(--bom); background:var(--bom-suave)}
+.aviso.bom .avisoRotulo{color:var(--bom)}
+.aviso.atencao{border-left-color:var(--atencao); background:var(--atencao-suave)}
+.aviso.atencao .avisoRotulo{color:var(--atencao)}
+.aviso.critico{border-left-color:var(--critico); background:var(--critico-suave)}
+.aviso.critico .avisoRotulo{color:var(--critico)}
+.aviso.info{border-left-color:var(--acento); background:var(--acento-suave)}
+.aviso.info .avisoRotulo{color:var(--acento-escuro)}
+
+.figura{margin:0 0 20px; border:1px solid var(--borda); border-radius:var(--raio-g);
+  overflow:hidden; background:var(--fundo); box-shadow:var(--sombra)}
+.figuraTopo{padding:14px 18px 0}
+.figuraTopo h3{margin:0 0 3px}
+.figuraTopo .figuraSub{color:var(--muted); font-size:.85rem; margin:0}
+.figura img{display:block; width:100%; height:auto; padding:10px 14px 0}
+.figuraLegenda{color:var(--muted); font-size:.83rem; padding:10px 18px 15px; margin:0;
+  border-top:1px solid var(--borda); margin-top:10px; background:var(--elevado)}
+
+/* Tabela sem moldura: o dado é a moldura. Nada de caixa arredondada com
+   sombra em volta, nada de rolagem interna — a tabela ocupa a largura toda e
+   cresce até onde precisar, e quem rola é a página. */
+.tabelaEnvelope{margin:0 0 26px}
+.tabelaRolavel{overflow-x:auto}
+table.tabela{border-collapse:collapse; width:100%; font-size:.86rem}
+table.tabela th{background:transparent; color:var(--muted); text-align:left;
+  font-weight:600; font-size:.74rem; letter-spacing:.04em;
+  padding:7px 14px 9px; border-bottom:1px solid var(--borda-forte); white-space:nowrap}
+table.tabela td{padding:8px 14px; border-bottom:1px solid var(--borda);
+  color:var(--tinta-suave); vertical-align:top}
+table.tabela tbody tr:last-child td{border-bottom:1px solid var(--borda-forte)}
+table.tabela tbody tr:hover{background:var(--elevado)}
+table.tabela td:first-child{color:var(--tinta)}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums; font-family:var(--fonte-dados)}
+td.ordem{color:var(--faint); font-variant-numeric:tabular-nums; width:38px}
+code.nomeColuna{white-space:nowrap}
+
+/* Célula com a lista de algoritmos, em duas colunas: um cenário tem nove, e
+   em linha única eles atravessariam a tabela inteira. Com duas colunas os
+   nove caem em quatro linhas cheias mais uma. */
+.celulaModelos{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:2px 14px; font-size:.8rem; color:var(--muted); line-height:1.5}
+
+/* Etiqueta de grupo: diz de qual família a coluna ou a fonte vem. */
+.etiqueta{display:inline-block; font-size:.7rem; font-weight:650; padding:2px 8px;
+  border-radius:20px; white-space:nowrap; border:1px solid transparent}
+.etiqueta.vetor{background:var(--acento-suave); color:var(--acento-escuro); border-color:#CFE1FD}
+.etiqueta.alvo{background:var(--critico-suave); color:var(--critico); border-color:#F6D5D1}
+.etiqueta.clima{background:var(--bom-suave); color:var(--bom); border-color:#CFE8DA}
+.etiqueta.contexto{background:var(--elevado); color:var(--muted); border-color:var(--borda)}
+
+/* Faixa de título entre filetes, para abrir um diagrama de largura cheia. */
+.faixa{border-top:2px solid var(--acento); border-bottom:2px solid var(--acento);
+  padding:13px 0; margin:0 0 20px; text-align:center}
+/* max-width:none anula o limite de 74ch que todo <p> herda: sem isso o título
+   centraliza dentro do parágrafo estreito, e não dentro da faixa. */
+.faixaTitulo{color:var(--acento-escuro); font-size:.9rem; font-weight:700;
+  letter-spacing:.17em; text-transform:uppercase; margin:0; max-width:none}
+
+/* Diagrama do caminho dos dados: etapas em cartão, ligadas por setas. */
+.fluxo{display:flex; align-items:stretch; gap:10px; margin:0 0 26px; flex-wrap:nowrap}
+.fluxoEtapa{flex:1 1 0; min-width:0; background:var(--fundo);
+  border:1px solid var(--borda); border-left:4px solid var(--acento);
+  border-radius:var(--raio); padding:14px 16px; box-shadow:var(--sombra)}
+.fluxoNome{font-weight:680; font-size:.97rem; color:var(--tinta); margin:0 0 5px}
+.fluxoTexto{color:var(--muted); font-size:.85rem; line-height:1.45}
+.fluxoSeta{flex:0 0 auto; display:flex; align-items:center; color:var(--acento);
+  font-size:1.15rem; font-weight:700}
+
+/* Quatro etapas lado a lado só cabem em tela larga. Abaixo disso viram duas
+   linhas de duas, e no celular uma coluna só — a seta some junto, porque
+   apontar para baixo confundiria a leitura do caminho. */
+@media (max-width:1180px){
+  .fluxo{flex-wrap:wrap; gap:12px}
+  .fluxoEtapa{flex:1 1 calc(50% - 24px)}
+  .fluxoSeta{display:none}
+}
+@media (max-width:640px){
+  .fluxoEtapa{flex:1 1 100%}
+}
+
+/* Gráfico de linhas. O SVG só tem viewBox, então sem um teto de largura ele
+   estica até a página inteira e as linhas ficam esparramadas. */
+.grafico{max-width:620px; margin:0 0 22px}
+.graficoTitulo{font-weight:640; font-size:.9rem; margin:0 0 6px; color:var(--tinta)}
+.grafico svg{display:block; width:100%; height:auto}
+.graficoLegenda{margin-top:6px; font-size:.8rem; color:var(--muted);
+  display:flex; flex-wrap:wrap; gap:4px 14px}
+
+/* Cartão de horizonte: o prazo em versalete no topo, o R² grande no meio e
+   as outras duas medidas embaixo, em linha. A barra colorida no topo indica
+   de relance se aquele prazo ainda é confiável. */
+.cardHorizonte{position:relative; background:var(--fundo); border:1px solid var(--borda);
+  border-radius:var(--raio-g); padding:18px 18px 16px; box-shadow:var(--sombra); overflow:hidden}
+.cardHorizonte::before{content:""; position:absolute; top:0; left:0; right:0; height:4px;
+  background:var(--faixa, var(--acento))}
+.cardPrazo{color:var(--tinta); font-size:1.62rem; font-weight:690;
+  letter-spacing:-.02em; margin:2px 0 14px; line-height:1.1}
+.cardR2{font-size:1.45rem; font-weight:650; letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums; line-height:1; color:var(--tinta-suave)}
+.cardR2Rotulo{color:var(--muted); font-size:.78rem; margin:5px 0 14px}
+.cardMedidas{display:flex; gap:18px; border-top:1px solid var(--borda); padding-top:11px}
+.cardMedida{min-width:0}
+.cardMedidaValor{font-weight:650; font-size:.97rem; font-variant-numeric:tabular-nums;
+  color:var(--tinta-suave)}
+.cardMedidaRotulo{color:var(--faint); font-size:.71rem; margin-top:1px}
+
+/* Vários gráficos lado a lado: cada um perde o teto de 620px e divide a
+   largura disponível, para que as curvas sejam comparadas de relance. */
+.graficosLadoALado{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px; margin:0 0 22px}
+.graficosLadoALado .grafico{max-width:none; margin:0}
+.graficosLadoALado .graficoTitulo{font-size:.83rem}
+.graficosLadoALado .graficoLegenda{font-size:.75rem}
+
+@media (max-width:1100px){
+  .graficosLadoALado{grid-template-columns:1fr; gap:14px}
+  .graficosLadoALado .grafico{max-width:620px}
+}
+
+/* Linha do tempo do que entrou no treino: barra segmentada + legenda. */
+.linhaDoTreino{max-width:760px; margin:0 0 24px}
+.linhaDoTreino svg{display:block; width:100%; height:auto}
+.legendaDaLinhaDoTreino{display:grid; gap:5px; margin-top:8px;
+  font-size:.82rem; color:var(--tinta-suave)}
+.itemDaLinhaDoTreino{display:flex; align-items:baseline; gap:8px}
+.marcaDaLinhaDoTreino{flex:0 0 11px; width:11px; height:11px; border-radius:3px;
+  border:1px solid rgba(16,32,51,.12); transform:translateY(1px)}
+
+.lista{margin:0 0 16px; padding-left:20px}
+.lista li{margin:0 0 7px; color:var(--tinta-suave); max-width:76ch}
+.lista li::marker{color:var(--faint)}
+
+.rodape{border-top:1px solid var(--borda); color:var(--muted); font-size:.81rem;
+  padding:16px 38px 26px; margin-top:auto}
+
+/* ------------------------------------------------------------ responsivo */
+
+@media (max-width:1100px){
+  .grade3,.grade4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  #casca{flex-direction:column}
+  #navPrimaria,#navSecundaria{position:static; height:auto; width:100%; flex:none}
+  .navRolagem,.nav2Rolagem{max-height:none}
+  .conteudoInterno{padding:20px 18px 48px}
+  .grade2,.grade3,.grade4{grid-template-columns:1fr}
+  .regua{gap:24px}
+}
+</style></head><body><div id="casca"><nav id="navPrimaria"><div class="marca"><div class="marcaSelo"><svg class="marcaMosquito" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 8.2 L7 10.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="8.4" cy="11" r="1.9" fill="currentColor"/><path d="M10 12.2 Q14 13.4 20.4 19.4 Q16.4 16.6 11.4 14.6 Z" fill="currentColor"/><ellipse cx="11.6" cy="13.4" rx="2.5" ry="1.9" fill="currentColor" transform="rotate(38 11.6 13.4)"/><ellipse cx="14.6" cy="8.2" rx="4.6" ry="1.7" fill="currentColor" opacity=".78" transform="rotate(-22 14.6 8.2)"/><ellipse cx="15.4" cy="11.4" rx="4.9" ry="1.6" fill="currentColor" opacity=".55" transform="rotate(6 15.4 11.4)"/><g stroke="currentColor" stroke-width="1.15" fill="none" stroke-linecap="round"><path d="M10.6 14.4 Q8.4 18 4.6 18.6"/><path d="M12.8 15.4 Q12 19.4 8.8 21.2"/><path d="M15 16.8 Q16.4 20 14.6 22"/></g></svg></div><div class="marcaTexto"><div class="marcaNome">Aedes aegypti · POA</div><div class="marcaSub">PPGC · UFRGS</div></div></div><div class="navRolagem"><div class="navRotulo">Navegação</div><a class="navItem" href="index.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.2 8.5 3.4a1 1 0 0 1 1.3 0L15 8.2"/><path d="M4.6 7.6V15a.8.8 0 0 0 .8.8h7.2a.8.8 0 0 0 .8-.8V7.6"/></svg><span class="navRotuloItem">Início</span></a><a class="navItem" href="dados.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.4 2.6 5.6 9 8.8l6.4-3.2L9 2.4Z"/><path d="M2.6 9.2 9 12.4l6.4-3.2"/><path d="M2.6 12.6 9 15.8l6.4-3.2"/></svg><span class="navRotuloItem">Dados</span></a><a class="navItem" href="cenarios.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Cenários testados</span></a><a class="navItem ativo" href="cenario-adotado.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Cenário adotado</span></a><a class="navItem" href="proximos-passos.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.2 2.4v3.9L3.4 13a1.6 1.6 0 0 0 1.4 2.4h8.4A1.6 1.6 0 0 0 14.6 13l-3.8-6.7V2.4"/><path d="M6.4 2.4h5.2"/><path d="M5.4 10.6h7.2"/></svg><span class="navRotuloItem">Próximos passos</span></a></div><div class="navRodape" id="navRodape">&laquo; Recolher menu</div></nav><main id="areaConteudo"><div class="conteudoInterno"><p class="trilha">Mestrado PPGC · UFRGS &nbsp;·&nbsp; Porto Alegre, RS &nbsp;·&nbsp; <b>Cenário adotado</b></p><header class="cabecalhoPagina"><h1>O cenário adotado</h1><p class="resumo">A configuração de referência do projeto e os resultados que ela produz hoje — a leitura que vale, sem o histórico de como chegamos aqui.</p></header><div class="regua"><div class="metrica"><div class="metricaRotulo">Configuração vencedora</div><div class="metricaValor">1ª de 30</div><div class="metricaNota">menor erro de calibração</div></div><div class="metrica"><div class="metricaRotulo">R² em 1 mês</div><div class="metricaValor">0,628</div><div class="metricaNota">MAE de 219,7 casos/semana</div></div><div class="metrica"><div class="metricaRotulo">Sensibilidade do alarme, 1 mês</div><div class="metricaValor">97,1%</div><div class="metricaNota">0,7 falsos/ano</div></div><div class="metrica"><div class="metricaRotulo">Vetor no alarme, 3 meses</div><div class="metricaValor">piora</div><div class="metricaNota">p de Holm 0,037</div></div></div><section class="secao" id="a-configuracao"><div class="secaoTitulo"><span class="secaoOrdem">01</span><h2>A configuração de referência</h2></div><div class="tabelaEnvelope"><div class="tabelaRolavel"><table class="tabela"><thead><tr><th>Característica</th><th>Valor</th></tr></thead><tbody><tr><td>Algoritmo</td><td><b>HistGradientBoostingRegressor</b> (scikit-learn)</td></tr><tr><td>Função de perda</td><td>perda quantílica, quantil <b>0,85</b></td></tr><tr><td>Variáveis</td><td>núcleo + clima + <b>variáveis do vetor</b> (mosquito)</td></tr><tr><td>Alvo</td><td>casos de dengue <b>confirmados</b> (SINAN), nível cidade</td></tr><tr><td>Selecionada por</td><td>menor erro de calibração entre <b>30</b> configurações testadas</td></tr><tr><td>Validação</td><td><b>walk-forward</b>: treina só com o passado, prevê uma semana à frente, repete</td></tr></tbody></table></div></div><div class="aviso info"><div class="avisoRotulo">O que é perda quantílica em 0,85</div><p>A previsão não é a <b>média esperada</b> de casos: é um <b>patamar ultrapassado em cerca de 15% das semanas</b>. O viés é para cima de propósito, porque para a vigilância <b>subestimar um surto custa mais caro</b> do que superestimar.</p></div><div class="linhaDoTreino"><div class="graficoTitulo">O período que o modelo usou</div><svg viewBox="0 0 720 132" role="img" aria-label="Período usado para treinar e avaliar o modelo"><rect x="8.0" y="28" width="266.6" height="34" fill="#E3E8EE"><title>Fora do treino</title></rect><rect x="274.6" y="28" width="98.3" height="34" fill="#AFC9F2"><title>Só treino</title></rect><rect x="373.0" y="28" width="294.1" height="34" fill="#1B6EF3"><title>Treino e avaliação</title></rect><rect x="667.0" y="28" width="11.3" height="34" fill="#E8B96A"><title>Corte de maturidade</title></rect><line x1="21.5" y1="62" x2="21.5" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="21.5" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2013</text><line x1="70.8" y1="62" x2="70.8" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="70.8" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2014</text><line x1="120.1" y1="62" x2="120.1" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="120.1" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2015</text><line x1="169.4" y1="62" x2="169.4" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="169.4" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2016</text><line x1="218.8" y1="62" x2="218.8" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="218.8" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2017</text><line x1="268.2" y1="62" x2="268.2" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="268.2" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2018</text><line x1="317.5" y1="62" x2="317.5" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="317.5" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2019</text><line x1="366.8" y1="62" x2="366.8" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="366.8" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2020</text><line x1="416.2" y1="62" x2="416.2" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="416.2" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2021</text><line x1="465.5" y1="62" x2="465.5" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="465.5" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2022</text><line x1="514.8" y1="62" x2="514.8" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="514.8" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2023</text><line x1="564.1" y1="62" x2="564.1" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="564.1" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2024</text><line x1="613.5" y1="62" x2="613.5" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="613.5" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2025</text><line x1="662.8" y1="62" x2="662.8" y2="66" stroke="#CBD4DE" stroke-width="1"/><text x="662.8" y="78" text-anchor="middle" font-size="9.5" fill="#93A2B3">2026</text></svg><div class="legendaDaLinhaDoTreino"><div class="itemDaLinhaDoTreino"><span class="marcaDaLinhaDoTreino" style="background:#E3E8EE"></span><b>Fora do treino</b> — há mosquito e clima, mas não há casos para aprender</div><div class="itemDaLinhaDoTreino"><span class="marcaDaLinhaDoTreino" style="background:#AFC9F2"></span><b>Só treino</b> — as 104 semanas de histórico mínimo, antes da 1ª previsão</div><div class="itemDaLinhaDoTreino"><span class="marcaDaLinhaDoTreino" style="background:#1B6EF3"></span><b>Treino e avaliação</b> — o walk-forward avança aqui, semana a semana</div><div class="itemDaLinhaDoTreino"><span class="marcaDaLinhaDoTreino" style="background:#E8B96A"></span><b>Corte de maturidade</b> — casos apagados do treino: o número ainda não fechou</div></div></div><div class="aviso atencao"><div class="avisoRotulo">O que isso significa para o tamanho da evidência</div><p>O modelo aprendeu de uma janela de pouco mais de <b>8 anos</b>, não dos <b>14 anos</b> da série de captura. Nesse período cabem poucos ciclos epidêmicos completos, e é essa escassez — não o algoritmo — que limita o quanto se pode afirmar.</p></div></section><section class="secao" id="o-desempenho"><div class="secaoTitulo"><span class="secaoOrdem">02</span><h2>O desempenho do modelo</h2></div><div class="tabelaEnvelope"><div class="tabelaRolavel"><table class="tabela"><thead><tr><th>Horizonte</th><th><span style="color:#1B6EF3"><b style="color:#1B6EF3">R² (o quanto explica)</b></span></th><th><span style="color:#C0392B"><b style="color:#C0392B">Erro médio (casos/semana)</b></span></th><th><span style="color:#1F7A4D"><b style="color:#1F7A4D">Captura do pico</b></span></th></tr></thead><tbody><tr><td><b>1 semana</b></td><td><span style="color:#1B6EF3"><b style="color:#1B6EF3">0,898</b></span></td><td><span style="color:#C0392B"><b style="color:#C0392B">98,0</b></span></td><td><span style="color:#1F7A4D"><b style="color:#1F7A4D">88,6%</b></span></td></tr><tr><td><b>1 mês</b></td><td><span style="color:#1B6EF3"><b style="color:#1B6EF3">0,628</b></span></td><td><span style="color:#C0392B"><b style="color:#C0392B">219,7</b></span></td><td><span style="color:#1F7A4D"><b style="color:#1F7A4D">70,2%</b></span></td></tr><tr><td><b>2 meses</b></td><td><span style="color:#1B6EF3"><b style="color:#1B6EF3">0,450</b></span></td><td><span style="color:#C0392B"><b style="color:#C0392B">272,6</b></span></td><td><span style="color:#1F7A4D"><b style="color:#1F7A4D">41,7%</b></span></td></tr><tr><td><b>3 meses</b></td><td><span style="color:#1B6EF3"><b style="color:#1B6EF3">0,437</b></span></td><td><span style="color:#C0392B"><b style="color:#C0392B">278,7</b></span></td><td><span style="color:#1F7A4D"><b style="color:#1F7A4D">38,8%</b></span></td></tr></tbody></table></div></div><div class="graficosLadoALado"><div class="grafico"><div class="graficoTitulo">R² (o quanto explica) por horizonte (semanas)</div><svg viewBox="0 0 720 250" role="img" aria-label="R² (o quanto explica) por horizonte (semanas)"><line x1="56" y1="206.0" x2="704" y2="206.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="209.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.400</text><line x1="56" y1="159.0" x2="704" y2="159.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="162.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.534</text><line x1="56" y1="112.0" x2="704" y2="112.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="115.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.667</text><line x1="56" y1="65.0" x2="704" y2="65.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="68.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.801</text><line x1="56" y1="18.0" x2="704" y2="18.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="21.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.935</text><text x="56.0" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">1</text><text x="232.7" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">4</text><text x="468.4" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">8</text><text x="704.0" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">12</text><text x="380.0" y="244" text-anchor="middle" fill="#6B7A8C" font-size="11">horizonte (semanas)</text><polyline fill="none" stroke="#1B6EF3" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" points="56.0,31.0 232.7,125.9 468.4,188.5 704.0,193.0"/><circle cx="56.0" cy="31.0" r="2.6" fill="#1B6EF3"/><circle cx="232.7" cy="125.9" r="2.6" fill="#1B6EF3"/><circle cx="468.4" cy="188.5" r="2.6" fill="#1B6EF3"/><circle cx="704.0" cy="193.0" r="2.6" fill="#1B6EF3"/><circle cx="704.0" cy="193.0" r="4.4" fill="#1B6EF3" stroke="#FFFFFF" stroke-width="2"/></svg><div class="graficoLegenda"><span style="display:inline-flex;align-items:center;gap:6px;margin-right:16px"><i style="width:10px;height:10px;border-radius:50%;background:#1B6EF3;display:inline-block"></i>R² do modelo</span></div></div><div class="grafico"><div class="graficoTitulo">Erro médio (casos/semana) por horizonte (semanas)</div><svg viewBox="0 0 720 250" role="img" aria-label="Erro médio (casos/semana) por horizonte (semanas)"><line x1="56" y1="206.0" x2="704" y2="206.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="209.0" text-anchor="end" fill="#6B7A8C" font-size="11">83.54</text><line x1="56" y1="159.0" x2="704" y2="159.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="162.0" text-anchor="end" fill="#6B7A8C" font-size="11">135.9</text><line x1="56" y1="112.0" x2="704" y2="112.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="115.0" text-anchor="end" fill="#6B7A8C" font-size="11">188.4</text><line x1="56" y1="65.0" x2="704" y2="65.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="68.0" text-anchor="end" fill="#6B7A8C" font-size="11">240.8</text><line x1="56" y1="18.0" x2="704" y2="18.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="21.0" text-anchor="end" fill="#6B7A8C" font-size="11">293.2</text><text x="56.0" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">1</text><text x="232.7" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">4</text><text x="468.4" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">8</text><text x="704.0" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">12</text><text x="380.0" y="244" text-anchor="middle" fill="#6B7A8C" font-size="11">horizonte (semanas)</text><polyline fill="none" stroke="#C0392B" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" points="56.0,193.0 232.7,83.9 468.4,36.4 704.0,31.0"/><circle cx="56.0" cy="193.0" r="2.6" fill="#C0392B"/><circle cx="232.7" cy="83.9" r="2.6" fill="#C0392B"/><circle cx="468.4" cy="36.4" r="2.6" fill="#C0392B"/><circle cx="704.0" cy="31.0" r="2.6" fill="#C0392B"/><circle cx="704.0" cy="31.0" r="4.4" fill="#C0392B" stroke="#FFFFFF" stroke-width="2"/></svg><div class="graficoLegenda"><span style="display:inline-flex;align-items:center;gap:6px;margin-right:16px"><i style="width:10px;height:10px;border-radius:50%;background:#C0392B;display:inline-block"></i>Erro médio</span></div></div><div class="grafico"><div class="graficoTitulo">Captura do pico por horizonte (semanas)</div><svg viewBox="0 0 720 250" role="img" aria-label="Captura do pico por horizonte (semanas)"><line x1="56" y1="206.0" x2="704" y2="206.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="209.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.348</text><line x1="56" y1="159.0" x2="704" y2="159.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="162.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.493</text><line x1="56" y1="112.0" x2="704" y2="112.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="115.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.637</text><line x1="56" y1="65.0" x2="704" y2="65.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="68.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.781</text><line x1="56" y1="18.0" x2="704" y2="18.0" stroke="#E3E8EE" stroke-width="1"/><text x="48" y="21.0" text-anchor="end" fill="#6B7A8C" font-size="11">0.926</text><text x="56.0" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">1</text><text x="232.7" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">4</text><text x="468.4" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">8</text><text x="704.0" y="224" text-anchor="middle" fill="#6B7A8C" font-size="11">12</text><text x="380.0" y="244" text-anchor="middle" fill="#6B7A8C" font-size="11">horizonte (semanas)</text><polyline fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" points="56.0,31.0 232.7,90.8 468.4,183.6 704.0,193.0"/><circle cx="56.0" cy="31.0" r="2.6" fill="#1F7A4D"/><circle cx="232.7" cy="90.8" r="2.6" fill="#1F7A4D"/><circle cx="468.4" cy="183.6" r="2.6" fill="#1F7A4D"/><circle cx="704.0" cy="193.0" r="2.6" fill="#1F7A4D"/><circle cx="704.0" cy="193.0" r="4.4" fill="#1F7A4D" stroke="#FFFFFF" stroke-width="2"/></svg><div class="graficoLegenda"><span style="display:inline-flex;align-items:center;gap:6px;margin-right:16px"><i style="width:10px;height:10px;border-radius:50%;background:#1F7A4D;display:inline-block"></i>Captura do pico</span></div></div></div><div class="aviso atencao"><div class="avisoRotulo">Como ler</div><p>O modelo é honesto até <b>um mês</b>: explica 63% da variação dos casos. Em <b>três meses</b> explica 44%.</p></div><div class="aviso bom"><div class="avisoRotulo">Fato · a causa da degradação é medida</div><p>O histórico recente da própria série de casos explica 91% do acerto em uma semana, e 0% em doze semanas. Não é defeito de ajuste do modelo: em três meses o passado recente simplesmente não informa mais.</p></div></section><section class="secao" id="como-alarme"><div class="secaoTitulo"><span class="secaoOrdem">03</span><h2>O modelo como alarme de surto</h2></div><div class="tabelaEnvelope"><div class="tabelaRolavel"><table class="tabela"><thead><tr><th>Horizonte</th><th>Sensibilidade</th><th>Precisão</th><th>Falsos por ano</th></tr></thead><tbody><tr><td><b>1 mês</b></td><td>97,1%</td><td>94,3%</td><td>0,7</td></tr><tr><td><b>3 meses</b></td><td>76,9%</td><td>81,1%</td><td>2,3</td></tr></tbody></table></div></div><div class="aviso bom"><div class="avisoRotulo">Por que isto importa mais que a captura do pico</div><p>A captura do pico mede se o modelo acerta o <b>tamanho</b> da epidemia. Para a vigilância, o que importa é se o <b>alarme toca</b> a tempo. São perguntas diferentes, e a operacional é a segunda.</p></div><div class="aviso critico"><div class="avisoRotulo">Ressalva · poucos episódios</div><p>Só há <b>2</b> episódios de surto no período avaliado. Nenhum número por episódio pode ser citado como estatisticamente estável.</p></div></section><section class="secao" id="o-vetor"><div class="secaoTitulo"><span class="secaoOrdem">04</span><h2>O que a armadilha realmente muda</h2></div><div class="grade grade2"><div class="cartao"><div class="cartaoRotulo">Fato · na previsão de casos</div><h3>Sem efeito demonstrável</h3><p>Em <b>27 de 60</b> comparações pareadas, o modelo com vetor erra menos que o modelo só com clima. <b>Nenhuma</b> das 60 sobrevive à correção para múltiplas comparações.</p></div><div class="cartao"><div class="cartaoRotulo">Fato · no alarme de surto, três meses</div><h3>O vetor piora</h3><p>Em <b>553</b> semanas avaliadas, o modelo só com clima acerta onde o modelo com vetor erra em <b>23</b> semanas, contra <b>7</b> no sentido inverso. É o <b>único</b> resultado do projeto que sobrevive à correção múltipla (p de Holm = 0,037).</p></div></div><div class="aviso atencao"><div class="avisoRotulo">Enquadramento obrigatório</div><p>Isto <b>não</b> diz que o mosquito não importa — sem vetor não há doença. Diz que, para <b>este alvo</b>, <b>neste horizonte</b> e sobre <b>estas variáveis</b>, a contagem de armadilha é redundante: o histórico recente de casos já carrega a informação.</p></div></section><section class="secao" id="limitacoes"><div class="secaoTitulo"><span class="secaoOrdem">05</span><h2>O que não se pode afirmar</h2></div><p class="secaoIntro">Quatro leituras que os números não sustentam, mesmo tomadas com a interpretação mais favorável possível.</p><div class="grade grade2"><div class="cartao"><div class="cartaoRotulo">Não se pode afirmar</div><h3>Que o vetor melhora a previsão de casos</h3><p><b>0 de 60</b> comparações sobrevivem à correção múltipla.</p></div><div class="cartao"><div class="cartaoRotulo">Não se pode afirmar</div><h3>Que clima e vetor são equivalentes</h3><p>Com a margem pré-declarada e o alvo decidido, a equivalência fecha em <b>1 de 8</b> comparações.</p></div><div class="cartao"><div class="cartaoRotulo">Não se pode afirmar</div><h3>Que a perda importa mais que o algoritmo</h3><p>A função de perda pesa 9,9%, o algoritmo pesa 11,8%. A ordem entre os dois se inverteu.</p></div><div class="cartao"><div class="cartaoRotulo">Não se pode afirmar</div><h3>Que estas 6 variáveis de clima são as que importam</h3><p>Recortando a série em 2023, <b>4 das 6</b> colunas escolhidas mudam.</p></div></div></section></div><footer class="rodape">Painel de acompanhamento da pesquisa · gerado em 23/09/2026</footer></main></div><script>
+(function(){
+  var itensSecundarios = Array.prototype.slice.call(
+    document.querySelectorAll('#navSecundaria .nav2Item[data-ancora]')
+  );
+  var secoes = itensSecundarios
+    .map(function(item){ return document.getElementById(item.dataset.ancora); })
+    .filter(Boolean);
+
+  function marcarSecaoVisivel(){
+    if (!secoes.length) { return; }
+    var limite = window.scrollY + 140;
+    var indiceAtivo = 0;
+    for (var i = 0; i < secoes.length; i++) {
+      if (secoes[i].offsetTop <= limite) { indiceAtivo = i; }
+    }
+    for (var j = 0; j < itensSecundarios.length; j++) {
+      itensSecundarios[j].classList.toggle('ativo', j === indiceAtivo);
+    }
+  }
+
+  window.addEventListener('scroll', marcarSecaoVisivel, {passive:true});
+  window.addEventListener('resize', marcarSecaoVisivel);
+  marcarSecaoVisivel();
+
+  var rodapeMenu = document.getElementById('navRodape');
+  if (rodapeMenu) {
+    rodapeMenu.addEventListener('click', function(){
+      var primaria = document.getElementById('navPrimaria');
+      var recolhida = primaria.style.flexBasis === '62px';
+      primaria.style.flexBasis = recolhida ? '256px' : '62px';
+      primaria.style.width = recolhida ? '256px' : '62px';
+    });
+  }
+})();
+</script></body></html>

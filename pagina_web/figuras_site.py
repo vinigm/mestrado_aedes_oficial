@@ -134,7 +134,14 @@ def _titular_painel(eixo, titulo, rotulo_do_eixo_y) -> None:
         rotulo_do_eixo_y: O nome da grandeza, em duas linhas, no eixo vertical.
 
     """
-    eixo.set_title(titulo, fontsize=10, loc="left", pad=6, color="#2b2b2b")
+    eixo.set_title(
+        titulo,
+        fontsize=10.5,
+        loc="center",
+        pad=14,
+        color="#2b2b2b",
+        fontweight="bold",
+    )
     eixo.set_ylabel(rotulo_do_eixo_y, fontsize=8.5)
 
 
@@ -171,9 +178,9 @@ def desenhar_series_para_modelar(tabela: pd.DataFrame) -> None:
     """
     datas = tabela["data_inicio_semana_epidemi"]
     figura, eixos = plt.subplots(
-        6, 1, figsize=(15.5, 11.2), sharex=True,
+        6, 1, figsize=(15.5, 13.6), sharex=True,
         gridspec_kw={"height_ratios": [1.35, 1.35, 0.82, 0.82, 0.82, 0.82],
-                     "hspace": 0.55},
+                     "hspace": 1.10},
     )
 
     # --- 1. densidade do vetor (o protagonista entomologico) ---

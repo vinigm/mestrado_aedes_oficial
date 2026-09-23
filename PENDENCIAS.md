@@ -22,10 +22,14 @@ Definido na reunião de 21/09/2026 com o orientador.
   **último slide é de direcionamentos**, com o que saiu da reunião. Ideal até o fim de semana.
 - ⚠️ **Escopo do seminário é SÓ DENGUE.** As outras arboviroses ficam para depois. Instrução direta
   dele: não chegar na apresentação dizendo "não teve correlação com mosquito ou clima".
-- **Dar push no site + criar uma página-roteiro** dizendo onde os professores clicam e o que veem. Ele
-  vai mandar o link para **Mariana e Rodrigo Mansilha**, com o Vinicius em cópia.
-- **Enviar os dados de mosquito** a ele, sem nome, telefone e endereço.
-- **Enviar a lista de modelos** usados, para ele conferir sobreposição com o Bruno.
+- ✅ **Site reconstruído e publicado** (23/09): 5 páginas, números pós-correção, avisos em todo
+  cenário ainda contaminado. 🚫 Página-roteiro **descartada** — decisão do Vinicius em 23/09: o site
+  novo é navegável sem tutorial. ⏳ Falta o orientador mandar o link a Mariana e Mansilha.
+- ✅ **Dados de mosquito prontos para envio** (21/09): `brutos_secretarias_limpos/`, 12 arquivos,
+  460 mil inspeções, com `LEIA.md`. ⏳ Falta o Vinicius mandar. ⚠️ **Sem coordenada, então ele não
+  consegue fazer análise espacial** com esses arquivos.
+- ✅ **Lista de modelos publicada** na página **Cenários testados** do site, com a coluna "modelos
+  testados" por cenário, para ele conferir sobreposição com o Bruno.
 
 **Depois do seminário a pesquisa CONGELA** e o foco passa a ser o artigo para periódico.
 
@@ -82,14 +86,36 @@ Definido na reunião de 21/09/2026 com o orientador.
 
 ## Registro cronológico
 
+### 23/09/2026 — o site é reconstruído do zero e republicado
+
+- ✅ **Painel novo no ar**, gerado por `NOVO_HTML/` em vez de `pagina_web/`. Cinco páginas: Início ·
+  Dados · Cenários testados · Cenário adotado · Próximos passos. O site antigo saiu do ar (vive no git).
+- ✅ **Todo número sai de um arquivo só** (`numeros_do_projeto.py`), e cenário com execução anterior a
+  13/09 aparece com aviso de número superado — hoje 5 dos 9.
+- 🔴 **Achado: só `cidade_regressao` rodou com os 9 algoritmos.** Os outros 8 cenários usam LightGBM
+  apenas, por desenho. Confirmado por 3 varreduras independentes contra MLflow, config e git log.
+- ✅ **`cidade_lift_vetor` re-rodado** (43 min). Conclusão se mantém, números caem muito: só-clima em
+  12 semanas vai de R² 0,595 para **0,014**. ⏳ Não registrou run no MLflow — o painel ainda mostra
+  29/08. Causa não investigada.
+- 🔴 **Correção no [ESTADO.md](ESTADO.md) §4:** a hierarquia dos alvos estava invertida. Casos seguem
+  **primários**, previstos a partir do vetor; prever o vetor é **secundário** (transcrição, linhas 913–921).
+- ⏳ **Rodada da noite, não disparada:** re-rodar `cidade_regressao_com_enso`, `_sem_enso` e
+  `bairro_surto` (~5h). Exige pré-declaração antes.
+
+
 ### 21/09/2026 — reunião com o orientador, e a pesquisa ganha eixo novo
 
-- 🔄 **Eixo novo, para depois do seminário:** prever a **proliferação do vetor** como antecedente causal
-  do surto, e não o surto. Agregar as arboviroses de vetor único, quantificar a defasagem entre as duas
-  curvas, incluir horizonte de 6 meses, janela 2022–2025. Detalhe e ressalvas em [ESTADO.md](ESTADO.md) §4.
+- 🔄 **Eixo novo, para depois do seminário:** prever os casos **a partir da** proliferação do vetor.
+  ⚠️ Corrigido em 23/09: casos seguem **primários**; prever o vetor é **secundário**. Agregar as
+  arboviroses de vetor único, quantificar a defasagem entre as duas curvas, incluir horizonte de
+  6 meses, janela 2022–2025. Detalhe e ressalvas em [ESTADO.md](ESTADO.md) §4.
 - ⚠️ **A preocupação dele:** o vetor não impactar *"indica que deve ter algum problema na metodologia"*.
 - ✅ Seminário destravado; banca provável com Mariana e Anderson. Pesquisa **congela** depois dele.
 - 🎯 Desafio sem valer nota: prever a curva de mosquito 2026-2027 e comparar em julho/2027.
+- ✅ **Dados da Secretaria limpos para envio.** `OCOR` saiu porque tinha nome, celular e endereço
+  digitados à mão — achado pela varredura, não por precaução. 16,5 mi de células conferidas contra
+  o original: 55 divergem, todas explicadas. O datalake não foi tocado.
+- ✅ Site ganhou página-roteiro e página de modelos testados.
 - Transcrição em `../Reunioes de andamento/2026-09-21 - Alinhamento com o professor...md`.
   ⚠️ **Rótulos de quem fala estão trocados** em vários trechos — atribuir pelo conteúdo.
 
