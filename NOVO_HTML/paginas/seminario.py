@@ -33,9 +33,8 @@ import dados as pagina_de_dados
 TOPICO_AGENDA = "Agenda"
 TOPICO_OBJETIVO = "Objetivo"
 TOPICO_DADOS = "Dados"
-TOPICO_CENARIOS = "Cenários testados"
-TOPICO_ADOTADO = "Cenário adotado"
-TOPICO_RESULTADOS = "Resultados parciais"
+TOPICO_CENARIOS = "Cenários"
+TOPICO_RESULTADOS = "Resultados"
 TOPICO_PROXIMOS = "Próximos passos"
 
 # O que a agenda lista. A capa e a própria agenda ficam de fora: elas situam a
@@ -44,7 +43,6 @@ TOPICOS_DA_AGENDA = (
     TOPICO_OBJETIVO,
     TOPICO_DADOS,
     TOPICO_CENARIOS,
-    TOPICO_ADOTADO,
     TOPICO_RESULTADOS,
     TOPICO_PROXIMOS,
 )
@@ -242,7 +240,7 @@ def _slide_cenarios() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_CENARIOS,
         titulo=f"{len(resumo)} cenários, cada um mudando um parâmetro por vez",
-        rotulo_curto="Os nove",
+        rotulo_curto="9 testados",
         corpo=layout.montar_tabela(cabecalhos, linhas),
         nota=(
             "Não ler a tabela. Dizer que cada cenário isola <b>uma</b> "
@@ -256,9 +254,9 @@ def _slide_cenarios() -> deck.Slide:
 def _slide_adotado() -> deck.Slide:
     """A configuração que ficou."""
     return deck.Slide(
-        topico=TOPICO_ADOTADO,
+        topico=TOPICO_CENARIOS,
         titulo="A configuração de referência, e como ela foi escolhida",
-        rotulo_curto="A configuração",
+        rotulo_curto="Adotado",
         corpo=(
             "<p>⏳ <b>Rascunho.</b> HistGradientBoosting, perda quantílica em "
             "0,85, com vetor — vencedora entre as "
@@ -288,7 +286,7 @@ def _slide_resultados() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
         titulo="O modelo é honesto até um mês, e perde força em três",
-        rotulo_curto="A previsão",
+        rotulo_curto="Casos de dengue",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
             + layout.montar_aviso(
@@ -325,7 +323,7 @@ def _slide_alarme() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
         titulo="Como alarme de surto, ele acerta 97% das semanas a um mês",
-        rotulo_curto="O alarme",
+        rotulo_curto="Alarme de surto",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
             + layout.montar_aviso(
