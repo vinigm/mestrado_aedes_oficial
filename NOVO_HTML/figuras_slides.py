@@ -94,6 +94,23 @@ FRACAO_DE_FIM_DA_RAMPA = 0.80
 # debaixo dela, em fração do topo do eixo.
 FOLGA_VERTICAL_DA_SETA = 0.07
 
+# Correção vertical declarada, por (série, temporada), em fração do topo do
+# eixo. Negativo abaixa a seta.
+#
+# A regra automática garante que a seta não cubra a série, mas é conservadora:
+# ela usa o ponto MAIS ALTO de todo o trecho sob a seta, e esse ponto costuma
+# ser a última semana, já dentro da subida. Quando o resto do trecho é bem
+# mais baixo, a seta fica com folga de sobra e parece solta no ar. É o caso
+# dos casos em 2023: a linha vai a 250 na semana final do trecho e passa o
+# resto dele perto de 60.
+#
+# Só entram aqui anotações que o olho reprovou. A seta continua acima da série
+# em toda a sua extensão depois do ajuste — a correção consome folga, não
+# clearance.
+AJUSTES_MANUAIS_DA_SETA = {
+    ("casos_confirmados", 2023): -0.05,
+}
+
 # Curvatura da seta. Positivo faz a barriga cair para a esquerda de quem anda
 # da base para a ponta: a seta sobe firme e só vira para a direita no fim,
 # que é o gesto de "isto aqui disparou".
@@ -419,6 +436,7 @@ def _desenhar_seta_de_subida(
     cor: str,
     datas_desenhadas: pd.Series,
     valores_desenhados: pd.Series,
+    ajuste_vertical: float = 0.0,
 ) -> None:
     """Desenha a seta curta que marca onde uma série começou a subir.
 
@@ -442,6 +460,9 @@ def _desenhar_seta_de_subida(
         datas_desenhadas: As semanas efetivamente desenhadas no painel.
         valores_desenhados: A série efetivamente desenhada — a original, não a
             suavizada, porque é dela que a seta precisa se afastar na tela.
+        ajuste_vertical: Correção declarada, em fração do topo do eixo, somada
+            à altura calculada. Negativo abaixa a seta. Vem de
+            `AJUSTES_MANUAIS_DA_SETA`.
     """
     topo_do_eixo = eixo.get_ylim()[1]
     folga = topo_do_eixo * FOLGA_VERTICAL_DA_SETA
@@ -460,9 +481,13 @@ def _desenhar_seta_de_subida(
     data_da_ponta = rampa.data_de_inicio
     data_da_base = data_da_ponta - pd.Timedelta(days=avanco_em_dias)
 
-    altura_da_base = _teto_da_serie_no_trecho(
-        datas_desenhadas, valores_desenhados, data_da_base, data_da_ponta
-    ) + folga
+    altura_da_base = (
+        _teto_da_serie_no_trecho(
+            datas_desenhadas, valores_desenhados, data_da_base, data_da_ponta
+        )
+        + folga
+        + topo_do_eixo * ajuste_vertical
+    )
     altura_da_ponta = altura_da_base + (
         topo_do_eixo * COMPRIMENTO_DA_SETA_EM_FRACAO_DA_ALTURA
     )
@@ -573,6 +598,7 @@ def desenhar_zoom_das_subidas(tabela: pd.DataFrame) -> pathlib.Path:
             COR_VETOR_EM_BARRA,
             datas,
             recorte["aedes_aegypti"],
+            AJUSTES_MANUAIS_DA_SETA.get(("aedes_aegypti", ano_do_verao), 0.0),
         )
         _desenhar_seta_de_subida(
             eixo_dos_casos,
@@ -580,6 +606,7 @@ def desenhar_zoom_das_subidas(tabela: pd.DataFrame) -> pathlib.Path:
             COR_CASOS,
             datas,
             recorte["casos_confirmados"],
+            AJUSTES_MANUAIS_DA_SETA.get(("casos_confirmados", ano_do_verao), 0.0),
         )
 
     marcas_do_vetor, rotulos_do_vetor = eixo_do_vetor.get_legend_handles_labels()
