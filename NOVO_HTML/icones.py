@@ -23,6 +23,11 @@ _MIOLO_POR_NOME = {
     "grafico": '<path d="M3 15V7.4"/><path d="M7.3 15V3.6"/>'
                '<path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/>',
     "relogio": '<circle cx="8" cy="8" r="5.6"/><path d="M8 4.9V8l2.1 1.5"/>',
+    # Tela de projeção: o retângulo da tela, o tripé embaixo e a barra de cima.
+    "apresentacao": '<path d="M2.6 2.8h12.8"/>'
+                    '<rect x="3.4" y="2.8" width="11.2" height="7.6" rx="1"/>'
+                    '<path d="M9 10.4v2.4"/>'
+                    '<path d="M6.4 15.2 9 12.8l2.6 2.4"/>',
     "lupa": '<circle cx="7.2" cy="7.2" r="4.4"/><path d="m10.6 10.6 3 3"/>',
 }
 

@@ -324,51 +324,86 @@ def _slide_alarme() -> deck.Slide:
 
 
 def _slide_o_vetor() -> deck.Slide:
-    """O achado central, com o enquadramento que ele exige."""
-    contraste = layout.montar_grade(
-        [
-            layout.montar_cartao(
-                rotulo="O que foi medido",
-                titulo="",
-                corpo=(
-                    "<p>Sobre um modelo que <b>já tem clima e histórico de "
-                    "casos</b>, a armadilha não melhora a previsão em nenhuma "
-                    "comparação que sobreviva à correção.</p>"
-                ),
-            ),
-            layout.montar_cartao(
-                rotulo="O que isso NÃO significa",
-                titulo="",
-                corpo=(
-                    "<p>Que o mosquito não importa. <b>Sem vetor não há "
-                    "transmissão</b> — e a subida da captura aparece "
-                    "<b>antes</b> da subida dos casos.</p>"
-                ),
-            ),
-        ],
-        colunas=2,
+    """A relação vetor-casos que se vê no gráfico, e que o modelo ainda não capta.
+
+    ⚠️ Este é o slide mais delicado da apresentação, e o enquadramento é
+    deliberado. O que foi medido é que as comparações feitas até aqui não
+    capturaram ganho do vetor. Daí NÃO se deduz que o mosquito não ajude —
+    sem vetor não há transmissão, e o padrão está visível no gráfico. A leitura
+    honesta é que o desenho atual não alcança a relação, e isso é limitação do
+    modelo, não ausência do fenômeno.
+
+    Nunca dizer "o vetor não ajuda" nem "não deu correlação": as duas frases
+    afirmam mais do que a medição sustenta, e é justamente o que o orientador
+    pediu para evitar em 21/09/2026.
+    """
+    return deck.Slide(
+        topico=TOPICO_RESULTADOS,
+        titulo="A relação existe no gráfico — o modelo ainda não a captura",
+        rotulo_curto="O vetor",
+        corpo=(
+            '<div class="deckFiguraCheia">'
+            '<img src="imagens/vetor_vs_casos.png" '
+            'alt="Aedes aegypti capturados e casos confirmados de dengue, semana a semana">'
+            '<p class="deckFiguraLegenda">Em <b>2022, 2023, 2024 e 2025</b> a '
+            "subida do mosquito vem <b>antes</b> da subida dos casos. "
+            "⚠️ Leitura de gráfico — a defasagem ainda não foi medida.</p>"
+            "</div>"
+        ),
+        nota=(
+            "⚠️ <b>O slide mais delicado.</b> Dizer: o padrão está no gráfico, o "
+            "modelo ainda não o alcança, e isso é <b>limitação do desenho</b> — "
+            "alvo na consequência, horizonte curto, histórico de casos ocupando "
+            "o lugar do vetor. <b>Nunca</b> dizer 'não ajuda' ou 'não deu "
+            "correlação'."
+        ),
+        e_figura=True,
     )
+
+
+def _slide_o_que_falta_no_modelo() -> deck.Slide:
+    """Por que o modelo ainda não alcança a relação — em hipóteses."""
+    cartoes = [
+        layout.montar_cartao(
+            rotulo="Hipótese 01",
+            titulo="O alvo é a consequência",
+            corpo=(
+                "<p>Prever o surto é prever algo que <b>já aconteceu</b>. A "
+                "causa é a proliferação do vetor.</p>"
+            ),
+        ),
+        layout.montar_cartao(
+            rotulo="Hipótese 02",
+            titulo="O histórico satura o modelo",
+            corpo=(
+                f"<p>Os casos recentes explicam <b>"
+                f"{numeros.formatar_percentual(numeros.DEGRADACAO.fracao_explicada_em_uma_semana, 0)}"
+                "</b> do acerto em uma semana.</p>"
+            ),
+        ),
+        layout.montar_cartao(
+            rotulo="Hipótese 03",
+            titulo="O horizonte para em 3 meses",
+            corpo="<p>A defasagem do gráfico parece maior do que isso.</p>",
+        ),
+        layout.montar_cartao(
+            rotulo="Hipótese 04",
+            titulo="Mosquito não é vírus",
+            corpo=(
+                "<p>A armadilha conta mosquito, não mosquito "
+                "<b>infectado</b>.</p>"
+            ),
+        ),
+    ]
 
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="A armadilha não adiciona sobre clima e histórico — e isso pede explicação",
-        rotulo_curto="O vetor",
-        corpo=(
-            contraste
-            + layout.montar_aviso(
-                tom="info",
-                rotulo="A leitura mais provável",
-                texto=(
-                    "Um resultado nulo diante de um padrão visível e "
-                    "biologicamente esperado aponta mais para <b>um efeito que "
-                    "o desenho atual não captura</b> do que para ausência de "
-                    "efeito."
-                ),
-            )
-        ),
+        titulo="Quatro hipóteses para o que o modelo ainda não alcança",
+        rotulo_curto="O que falta",
+        corpo=layout.montar_grade(cartoes, colunas=4),
         nota=(
-            "⚠️ <b>O slide mais delicado.</b> Nunca dizer 'não deu correlação'. "
-            "Dizer: medimos isto, sob estas condições."
+            "Estas são as quatro frentes que a próxima etapa ataca. Rotular "
+            "como <b>hipótese</b>, não como conclusão."
         ),
     )
 
@@ -422,6 +457,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_resultados(),
         _slide_alarme(),
         _slide_o_vetor(),
+        _slide_o_que_falta_no_modelo(),
         _slide_proximos_passos(),
     ]
 
