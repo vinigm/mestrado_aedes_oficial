@@ -87,10 +87,10 @@ FOLHA_DE_ESTILO_DO_DECK = """
 
 .deckIndiceRotulos{display:flex; flex-direction:column; align-items:center;
   gap:1px; max-width:100%; min-width:0}
-.deckIndiceTopico{font-size:.58rem; font-weight:600; letter-spacing:.06em;
+.deckIndiceTopico{font-size:.5rem; font-weight:600; letter-spacing:.05em;
   text-transform:uppercase; color:#C6D0DB; white-space:nowrap; overflow:hidden;
   text-overflow:ellipsis; max-width:100%; transition:color .18s ease}
-.deckIndiceTexto{font-size:.67rem; font-weight:650; color:#B6C2D0;
+.deckIndiceTexto{font-size:.58rem; font-weight:650; color:#B6C2D0;
   text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   max-width:100%; transition:color .18s ease}
 .deckIndiceItem.passado .deckIndiceTopico{color:#AEBAC7}
