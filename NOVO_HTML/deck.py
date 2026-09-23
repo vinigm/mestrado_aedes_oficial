@@ -55,17 +55,36 @@ FOLHA_DE_ESTILO_DO_DECK = """
   display:none; flex-direction:column; overflow:auto}
 .deckSlide.ativo{display:flex}
 
-/* Índice horizontal: mostra os tópicos e onde a apresentação está. O tópico
-   atual fica azul e com a barrinha cheia; os já passados ficam em cinza médio,
-   e os que ainda vêm, em cinza claro. */
-.deckIndice{display:flex; gap:0; border-bottom:1px solid var(--borda);
-  padding:0 48px; background:var(--elevado)}
-.deckIndiceItem{flex:1 1 0; min-width:0; padding:11px 10px 9px;
-  border-bottom:2px solid transparent; font-size:.7rem; font-weight:650;
-  letter-spacing:.02em; color:var(--faint); text-align:center;
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.deckIndiceItem.passado{color:var(--muted)}
-.deckIndiceItem.atual{color:var(--acento-escuro); border-bottom-color:var(--acento)}
+/* Índice horizontal: uma trilha contínua com um marcador por tópico. A linha
+   cinza atravessa tudo; a linha azul por cima cresce conforme a apresentação
+   avança, e é o JS que mede a largura dela. Tópico já visto fica com o
+   marcador cheio; os que ainda vêm ficam esmaecidos. */
+.deckIndice{position:relative; display:flex; padding:16px 48px 12px;
+  background:var(--elevado); border-bottom:1px solid var(--borda)}
+
+.deckIndiceTrilha{position:absolute; left:48px; right:48px; top:23px; height:2px;
+  background:var(--borda); border-radius:2px}
+.deckIndiceProgresso{position:absolute; left:48px; top:23px; height:2px; width:0;
+  background:var(--acento); border-radius:2px;
+  transition:width .22s ease}
+
+.deckIndiceItem{position:relative; z-index:1; flex:1 1 0; min-width:0;
+  display:flex; flex-direction:column; align-items:center; gap:9px}
+
+.deckIndiceMarca{width:11px; height:11px; border-radius:50%;
+  background:var(--fundo); border:2px solid var(--borda-forte);
+  transition:background .18s ease, border-color .18s ease, transform .18s ease}
+.deckIndiceItem.passado .deckIndiceMarca{background:var(--acento);
+  border-color:var(--acento)}
+.deckIndiceItem.atual .deckIndiceMarca{background:var(--acento);
+  border-color:var(--acento); transform:scale(1.35);
+  box-shadow:0 0 0 4px rgba(27,110,243,.16)}
+
+.deckIndiceTexto{font-size:.7rem; font-weight:600; letter-spacing:.015em;
+  color:#B6C2D0; text-align:center; white-space:nowrap; overflow:hidden;
+  text-overflow:ellipsis; max-width:100%; transition:color .18s ease}
+.deckIndiceItem.passado .deckIndiceTexto{color:var(--muted)}
+.deckIndiceItem.atual .deckIndiceTexto{color:var(--acento-escuro); font-weight:700}
 
 .deckNumero{position:absolute; right:22px; bottom:16px; color:var(--faint);
   font-size:.78rem; font-variant-numeric:tabular-nums}
@@ -161,6 +180,7 @@ SCRIPT_DO_DECK = """
   var itensDoIndice = Array.prototype.slice.call(
     document.querySelectorAll('.deckIndiceItem')
   );
+  var progressoDoIndice = document.getElementById('deckIndiceProgresso');
   var anterior = document.getElementById('deckAnterior');
   var proximo = document.getElementById('deckProximo');
   var atual = 0;
@@ -184,6 +204,15 @@ SCRIPT_DO_DECK = """
       itensDoIndice[u].classList.toggle(
         'passado', posicaoDoTopico >= 0 && u < posicaoDoTopico
       );
+    }
+
+    // A linha azul vai do centro do primeiro marcador ao centro do atual.
+    if (progressoDoIndice && posicaoDoTopico >= 0 && itensDoIndice.length) {
+      var primeiro = itensDoIndice[0].getBoundingClientRect();
+      var alcancado = itensDoIndice[posicaoDoTopico].getBoundingClientRect();
+      var larguraPercorrida =
+        (alcancado.left + alcancado.width / 2) - (primeiro.left + primeiro.width / 2);
+      progressoDoIndice.style.width = Math.max(0, larguraPercorrida) + 'px';
     }
 
     contador.textContent = (atual + 1) + ' / ' + slides.length;
@@ -211,6 +240,8 @@ SCRIPT_DO_DECK = """
       mostrar(atual - 1, true);
     }
   });
+
+  window.addEventListener('resize', function(){ mostrar(atual, false); });
 
   var pedido = parseInt((location.hash.match(/slide-(\\d+)/) || [])[1], 10);
   mostrar(isNaN(pedido) ? 0 : pedido - 1, false);
@@ -255,10 +286,18 @@ def _indice_horizontal(topicos: list[str]) -> str:
     for topico in topicos:
         itens.append(
             f'<div class="deckIndiceItem" data-topico="{layout.escapar(topico)}">'
-            f"{layout.escapar(topico)}</div>"
+            '<span class="deckIndiceMarca"></span>'
+            f'<span class="deckIndiceTexto">{layout.escapar(topico)}</span>'
+            "</div>"
         )
 
-    return f'<div class="deckIndice">{"".join(itens)}</div>'
+    return (
+        '<div class="deckIndice">'
+        '<div class="deckIndiceTrilha"></div>'
+        '<div class="deckIndiceProgresso" id="deckIndiceProgresso"></div>'
+        f'{"".join(itens)}'
+        "</div>"
+    )
 
 
 def montar(slides: list[Slide]) -> str:
