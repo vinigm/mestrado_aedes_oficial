@@ -82,34 +82,6 @@ def _slide_agenda() -> deck.Slide:
     )
 
 
-def _slide_objetivo() -> deck.Slide:
-    """A pergunta da pesquisa e por que ela importa."""
-    return deck.Slide(
-        topico=TOPICO_OBJETIVO,
-        titulo="Medir se a rede de armadilhas antecipa a dengue — e com quanto tempo",
-        rotulo_curto="A pergunta",
-        corpo=(
-            layout.montar_fluxo(
-                [
-                    ("Picada", "a transmissão acontece"),
-                    ("Sintoma", "dias depois"),
-                    ("Atendimento", "se a pessoa procurar"),
-                    ("Notificação", "só então o caso existe"),
-                ]
-            )
-            + layout.montar_aviso(
-                tom="atencao",
-                rotulo="Por que antecipar importa mais do que acertar o tamanho",
-                texto=(
-                    "Quando a curva de casos sobe, a transmissão <b>já "
-                    "aconteceu</b>. Agir nesse momento é agir tarde."
-                ),
-            )
-        ),
-        nota="⏳ Refinar: falta dizer o custo da rede e que ela já existe.",
-    )
-
-
 def _slide_o_que_o_projeto_faz() -> deck.Slide:
     """O que o projeto se propõe a construir, depois do porquê."""
     horizontes = []
@@ -426,7 +398,6 @@ def montar_slides() -> list[deck.Slide]:
     return [
         _slide_capa(),
         _slide_agenda(),
-        _slide_objetivo(),
         _slide_o_que_o_projeto_faz(),
         _slide_vetor_e_casos(),
         _slide_clima(),
