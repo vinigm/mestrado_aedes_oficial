@@ -26,12 +26,15 @@ class Slide:
         corpo: HTML do miolo, já montado com os blocos de `layout`.
         nota: Lembrete para quem apresenta. Fica só no código — a página
             mostra apenas a apresentação.
+        e_figura: Quando True, o slide é desenhado para uma figura grande: o
+            título encolhe e a imagem ocupa a altura que sobra.
     """
 
     topico: str
     titulo: str
     corpo: str
     nota: str = ""
+    e_figura: bool = False
 
 
 FOLHA_DE_ESTILO_DO_DECK = """
@@ -75,6 +78,15 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckCorpo .grade{gap:12px; margin-bottom:12px}
 .deckCorpo table.tabela{font-size:.92rem}
 .deckCorpo .aviso{padding:11px 14px; margin-bottom:12px}
+
+/* Slide cuja mensagem É a figura: ela ocupa o corpo inteiro e encolhe junto
+   com o palco, para caber na altura sem rolagem. */
+.deckSlide.figura .deckTitulo{font-size:1.32rem; margin-bottom:12px}
+.deckFiguraCheia{height:100%; display:flex; flex-direction:column; min-height:0}
+.deckFiguraCheia img{flex:1 1 auto; min-height:0; width:100%;
+  object-fit:contain; object-position:top}
+.deckFiguraCheia .deckFiguraLegenda{flex:0 0 auto; color:var(--muted);
+  font-size:.82rem; padding-top:8px}
 
 /* Agenda: um tópico por linha, numeração destacada. */
 .listaAgenda{list-style:none; margin:0; padding:0}
@@ -259,6 +271,8 @@ def montar(slides: list[Slide]) -> str:
         classe = "deckSlide ativo" if posicao == 0 else "deckSlide"
         if not slide.topico:
             classe += " capa"
+        if slide.e_figura:
+            classe += " figura"
 
         rotulo = ""
         if slide.topico:

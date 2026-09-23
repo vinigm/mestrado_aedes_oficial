@@ -35,8 +35,11 @@ PASTA_DE_SAIDA = PASTA_DESTE_ARQUIVO / "saida"
 PASTA_DE_IMAGENS_ORIGEM = PASTA_DESTE_ARQUIVO.parent / "pagina_web" / "imagens"
 PASTA_DE_IMAGENS_DESTINO = PASTA_DE_SAIDA / "imagens"
 
-# Figuras que o site novo usa hoje. Copiar só o necessário evita arrastar para a
-# saída imagens de páginas que ainda não foram migradas.
+# Figuras herdadas do gerador antigo, copiadas de `pagina_web/imagens/`.
+#
+# ⚠️ As figuras dos slides NÃO entram aqui: `figuras_slides.py` já as escreve
+# direto em `saida/imagens/`, e listá-las faria o gerador procurá-las na pasta
+# do site antigo, onde elas não existem — nem devem existir.
 FIGURAS_USADAS = (
     "series_para_modelar.png",
     "walkforward.png",
@@ -85,6 +88,25 @@ def copiar_figuras() -> list[str]:
         shutil.copyfile(caminho_de_origem, caminho_de_destino)
 
     return figuras_ausentes
+
+
+# As figuras que `figuras_slides.py` desenha. O gerador não as cria, mas avisa
+# quando faltam, para o deck não sair com imagem quebrada.
+FIGURAS_DOS_SLIDES = ("slide_vetor_e_casos.png", "slide_clima.png")
+
+
+def _figuras_de_slide_ausentes() -> list[str]:
+    """Diz quais figuras de slide ainda não foram desenhadas.
+
+    Returns:
+        Os nomes que faltam em `saida/imagens/`. Lista vazia quando está tudo lá.
+    """
+    ausentes = []
+    for nome_do_arquivo in FIGURAS_DOS_SLIDES:
+        if not (PASTA_DE_IMAGENS_DESTINO / nome_do_arquivo).is_file():
+            ausentes.append(nome_do_arquivo)
+
+    return ausentes
 
 
 def gerar_pagina(
@@ -139,6 +161,13 @@ def gerar_site(gerado_em: str) -> None:
     figuras_ausentes = copiar_figuras()
     if figuras_ausentes:
         print(f"  aviso: figuras não encontradas: {figuras_ausentes}")
+
+    figuras_de_slide_faltando = _figuras_de_slide_ausentes()
+    if figuras_de_slide_faltando:
+        print(
+            "  aviso: figura de slide ausente "
+            f"({figuras_de_slide_faltando}) — rode `python3 figuras_slides.py`"
+        )
 
     for pagina in navegacao.PAGINAS_DO_SITE:
         caminho_gravado = gerar_pagina(pagina, gerado_em)

@@ -177,7 +177,46 @@ def _slide_dados() -> deck.Slide:
                 ),
             )
         ),
-        nota="⏳ Refinar: cabe a figura das séries lado a lado.",
+        nota="Os números. A figura vem no slide seguinte.",
+    )
+
+
+def _slide_vetor_e_casos() -> deck.Slide:
+    """O par que sustenta a pergunta: vetor em cima, casos embaixo."""
+    return deck.Slide(
+        topico=TOPICO_DADOS,
+        titulo="A curva do mosquito e a curva da doença, no mesmo eixo de tempo",
+        corpo=(
+            '<div class="deckFiguraCheia">'
+            '<img src="imagens/slide_vetor_e_casos.png" '
+            'alt="Densidade de Aedes aegypti e casos confirmados, semana a semana">'
+            "</div>"
+        ),
+        nota=(
+            "Apontar: o vetor é <b>cíclico</b> ano a ano; os casos só existem "
+            "de 2018; e a subida do mosquito vem <b>antes</b> da subida dos "
+            "casos em 2022, 2023, 2024 e 2025."
+        ),
+        e_figura=True,
+    )
+
+
+def _slide_clima() -> deck.Slide:
+    """O contexto climático que alimenta o modelo."""
+    return deck.Slide(
+        topico=TOPICO_DADOS,
+        titulo="E o clima, que é o que faz o mosquito proliferar",
+        corpo=(
+            '<div class="deckFiguraCheia">'
+            '<img src="imagens/slide_clima.png" '
+            'alt="Chuva, temperatura, umidade e índice ENSO, semana a semana">'
+            "</div>"
+        ),
+        nota=(
+            "Passar rápido. Só situar que o clima cobre os 14 anos inteiros, "
+            "diferente dos casos."
+        ),
+        e_figura=True,
     )
 
 
@@ -369,6 +408,8 @@ def montar_slides() -> list[deck.Slide]:
         _slide_objetivo(),
         _slide_o_que_o_projeto_faz(),
         _slide_dados(),
+        _slide_vetor_e_casos(),
+        _slide_clima(),
         _slide_cenarios(),
         _slide_adotado(),
         _slide_resultados(),
