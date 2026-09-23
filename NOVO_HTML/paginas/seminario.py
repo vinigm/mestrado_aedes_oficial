@@ -370,38 +370,6 @@ def _slide_o_vetor() -> deck.Slide:
 
 
 
-def _slide_zoom_das_subidas() -> deck.Slide:
-    """A mesma relação vista de perto, em duas temporadas.
-
-    Existe para mostrar com o dedo o que o slide anterior afirma no conjunto:
-    a barra azul começa a subir, e só depois a linha vermelha sobe. A leitura
-    aqui é deliberadamente **visual** — nenhum número de defasagem aparece,
-    porque nenhum foi estimado com intervalo.
-    """
-    return deck.Slide(
-        topico=TOPICO_RESULTADOS,
-        titulo="De perto: o mosquito sobe primeiro, o caso sobe depois",
-        rotulo_curto="De perto",
-        corpo=(
-            '<div class="deckFiguraCheia">'
-            '<img src="imagens/slide_zoom_das_subidas.png" '
-            'alt="Recorte das temporadas 2022 e 2023, com setas marcando '
-            'a subida do mosquito e a subida dos casos">'
-            '<p class="deckFiguraLegenda">Temporadas <b>2022</b> e '
-            "<b>2023</b>. ⚠️ Leitura de gráfico — a defasagem ainda não foi "
-            "medida.</p>"
-            "</div>"
-        ),
-        nota=(
-            "Slide de apoio ao anterior. Apontar a ordem na tela e seguir — "
-            "se perguntarem <b>quantas semanas</b>, a resposta honesta é que "
-            "isso ainda não foi estimado, e é justamente a primeira pergunta "
-            "da próxima etapa."
-        ),
-        e_figura=True,
-    )
-
-
 def _slide_proximos_passos() -> deck.Slide:
     """O último slide, como o orientador pediu."""
     cabecalhos = ["", "Hoje", "Próxima etapa"]
@@ -468,7 +436,6 @@ def montar_slides() -> list[deck.Slide]:
         _slide_resultados(),
         _slide_alarme(),
         _slide_o_vetor(),
-        _slide_zoom_das_subidas(),
         _slide_proximos_passos(),
     ]
 

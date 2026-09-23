@@ -119,9 +119,8 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckCorpo .viradaCaixa{padding:10px 13px}
 .deckCorpo .viradaTexto{font-size:.85rem}
 .deckCorpo .viradaRotulo{font-size:.63rem; margin-bottom:4px}
-.deckCorpo .viradaRamo .viradaCaixa{margin-top:8px}
-.deckCorpo .viradaRamo::before{bottom:52%}
-.deckCorpo .viradaRamoSeta{padding-top:8px}
+.deckCorpo .viradaRamo .viradaCaixa{margin-top:12px}
+.deckCorpo .viradaRamoSeta{width:46px; height:52px}
 .deckCorpo table.tabela + .virada{margin-top:4px}
 
 /* Card ancorado ao pé de uma figura: cada pixel que ele economiza vira altura

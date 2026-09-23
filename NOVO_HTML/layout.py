@@ -420,6 +420,19 @@ def montar_fluxo(
     return f'<div class="fluxo">{"".join(blocos)}</div>'
 
 
+# Cotovelo que liga a caixa do futuro à do insumo: desce, dobra à direita e
+# aponta para dentro da caixa. É SVG, e não um caractere de seta, porque a
+# glifo de seta não dobra — ela obrigava um filete de CSS para o trecho
+# vertical, e os dois pedaços nunca encostavam direito.
+_CONECTOR_DO_RAMO = (
+    '<svg class="viradaRamoSeta" viewBox="0 0 46 52" aria-hidden="true">'
+    '<path d="M5 0 V29 a11 11 0 0 0 11 11 H27" fill="none" '
+    'stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>'
+    '<path d="M25 31.5 L40 40 L25 48.5 Z" fill="currentColor"/>'
+    "</svg>"
+)
+
+
 def montar_virada(
     hoje: tuple[str, str],
     futuro: tuple[str, str],
@@ -461,7 +474,8 @@ def montar_virada(
     ramo = (
         '<div class="viradaDerivacao">'
         '<div class="viradaRamo">'
-        '<span class="viradaRamoSeta">&#8618;</span>'
+        + _CONECTOR_DO_RAMO
+        + 
         '<div class="viradaCaixa eInsumo">'
         f'<p class="viradaRotulo">{escapar(rotulo_do_insumo)}</p>'
         f'<p class="viradaTexto">{texto_do_insumo}</p>'

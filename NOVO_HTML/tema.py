@@ -330,13 +330,10 @@ code.nomeColuna{white-space:nowrap}
 /* O ramo repete a grade de três colunas da linha de cima só para herdar o
    alinhamento: a caixa do insumo precisa nascer sob a caixa do futuro. */
 .viradaDerivacao{display:grid; grid-template-columns:1fr auto 1fr; gap:14px}
-.viradaRamo{grid-column:3; display:flex; align-items:flex-start; gap:10px;
-  padding-left:22px; position:relative}
-.viradaRamo::before{content:""; position:absolute; left:22px; top:0; bottom:50%;
-  width:2px; background:var(--bom)}
-.viradaRamoSeta{color:var(--bom); font-size:1.2rem; line-height:1;
-  padding-top:14px}
-.viradaRamo .viradaCaixa{flex:1 1 auto; margin-top:14px}
+.viradaRamo{grid-column:3; display:flex; align-items:flex-start; gap:2px;
+  padding-left:20px}
+.viradaRamoSeta{flex:0 0 auto; width:52px; height:58px; color:var(--bom)}
+.viradaRamo .viradaCaixa{flex:1 1 auto; margin-top:18px}
 
 /* Em tela estreita a derivação lateral vira empilhamento: manter a coluna 3
    num espaço que não existe jogaria a caixa para fora da vista. */
@@ -344,7 +341,6 @@ code.nomeColuna{white-space:nowrap}
   .virada,.viradaDerivacao{grid-template-columns:1fr}
   .viradaSeta{justify-content:center}
   .viradaRamo{grid-column:1; padding-left:0}
-  .viradaRamo::before{display:none}
 }
 
 /* Gráfico de linhas. O SVG só tem viewBox, então sem um teto de largura ele
