@@ -87,8 +87,18 @@ PAGINA_INICIO = PaginaDoSite(
         ),
         SecaoDaPagina(
             "atributos-do-modelo",
-            "Tabela de atributos final",
-            "Atributos finais",
+            "Criação de Lag Features",
+            "Lag features",
+        ),
+        SecaoDaPagina(
+            "decisao-de-clima",
+            "Decisão de colunas de clima",
+            "Decisão do clima",
+        ),
+        SecaoDaPagina(
+            "features-finais",
+            "Tabela final de features",
+            "Features finais",
         ),
     ),
 )

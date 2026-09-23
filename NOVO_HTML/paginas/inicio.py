@@ -203,41 +203,8 @@ def _tabela_dos_derivados() -> str:
     return layout.montar_tabela(cabecalhos, linhas)
 
 
-def _tabela_do_conjunto_final() -> str:
-    """Quantos atributos de cada grupo chegam ao modelo do cenário adotado."""
-    cabecalhos = ["Grupo", "O que entra", "Quantos"]
-
-    linhas = [
-        [
-            layout.montar_etiqueta("Núcleo", "alvo"),
-            "o próprio <code>casos</code> da semana, suas 4 defasagens, a "
-            "média de 4 semanas e os 2 termos de sazonalidade",
-            f"<b>{numeros.ATRIBUTOS.nucleo}</b>",
-        ],
-        [
-            layout.montar_etiqueta("Vetor", "vetor"),
-            "a densidade da semana, suas 4 defasagens e a média de 4 semanas",
-            f"<b>{numeros.ATRIBUTOS.vetor}</b>",
-        ],
-        [
-            layout.montar_etiqueta("Clima", "clima"),
-            f"as <b>{numeros.ATRIBUTOS.clima_escolhidos} melhores</b> entre "
-            f"{numeros.ATRIBUTOS.clima_candidatos} candidatas, escolhidas "
-            "pelo ganho que trazem ao modelo",
-            f"<b>{numeros.ATRIBUTOS.clima_escolhidos}</b>",
-        ],
-        [
-            "",
-            "<b>Total que o modelo recebe</b>",
-            f"<b>{numeros.ATRIBUTOS.atributos_no_modelo}</b>",
-        ],
-    ]
-
-    return layout.montar_tabela(cabecalhos, linhas)
-
-
 def _secao_atributos_do_modelo() -> str:
-    """Separa as colunas do arquivo dos atributos que chegam ao modelo.
+    """Mostra as defasagens que o pipeline cria em tempo de execução.
 
     ⚠️ Esta seção existe para corrigir uma omissão. A página listava as
     colunas do arquivo sob o título "Tabela de Atributos Final", e quem lia
@@ -245,19 +212,13 @@ def _secao_atributos_do_modelo() -> str:
     própria semana — o que não faria sentido. As defasagens existem; elas só
     não estão gravadas no arquivo, porque nascem em tempo de execução.
     """
-    intro = (
-        f"<p>As <b>{numeros.TABELA.colunas} colunas</b> da seção anterior são "
-        "o que o arquivo guarda, e nenhuma delas é defasada: cada uma traz o "
-        "valor da própria semana. As defasagens <b>existem</b>, mas nascem "
-        "quando o modelo roda, em <code>dominio/features.py</code>, e por "
-        "isso não aparecem numa listagem do arquivo. Esta seção fecha a "
-        "conta: é o conjunto que chega ao modelo.</p>"
-    )
-
     caminho = layout.montar_fluxo(
         [
             (f"{numeros.TABELA.colunas} colunas", "o que o arquivo guarda"),
-            (f"+{numeros.ATRIBUTOS.derivados} derivados", "criados ao rodar"),
+            (
+                f"+{numeros.ATRIBUTOS.derivados} lag features",
+                "criadas ao rodar",
+            ),
             (
                 f"{numeros.ATRIBUTOS.atributos_no_modelo} atributos",
                 "o que o modelo recebe",
@@ -266,38 +227,11 @@ def _secao_atributos_do_modelo() -> str:
     )
 
     titulo_derivados = (
-        f"<h3>Os {numeros.ATRIBUTOS.derivados} atributos criados em tempo "
+        f"<h3>As {numeros.ATRIBUTOS.derivados} lag features criadas em tempo "
         "de execução</h3>"
     )
-    titulo_final = "<h3>O que chega ao modelo do cenário adotado</h3>"
 
-    ressalva = layout.montar_aviso(
-        tom="atencao",
-        rotulo="Dívida técnica conhecida",
-        texto=(
-            f"As <b>{numeros.ATRIBUTOS.clima_escolhidos} colunas de clima</b> "
-            "são escolhidas <b>uma vez só, antes</b> do walk-forward, "
-            f"treinando nos {numeros.ATRIBUTOS.fracao_da_selecao_de_clima} "
-            f"mais antigos da série "
-            f"({numeros.ATRIBUTOS.inicio_da_selecao_de_clima} a "
-            f"{numeros.ATRIBUTOS.fim_da_selecao_de_clima}). O walk-forward "
-            "depois avalia semanas <b>dentro</b> desse período — e para "
-            "essas, a escolha das colunas já tinha visto o futuro. É "
-            "vazamento remanescente, não corrigido na revisão de 13/09/2026. "
-            "O ranking também é instável: recortando em 2023, <b>4 das 6 "
-            "mudam</b>."
-        ),
-    )
-
-    return (
-        intro
-        + caminho
-        + titulo_derivados
-        + _tabela_dos_derivados()
-        + titulo_final
-        + _tabela_do_conjunto_final()
-        + ressalva
-    )
+    return caminho + titulo_derivados + _tabela_dos_derivados()
 
 
 def _secao_dicionario() -> str:
@@ -310,6 +244,101 @@ def _secao_dicionario() -> str:
     )
 
     return intro + _tabela_do_dicionario()
+
+def _secao_decisao_de_clima() -> str:
+    """Como as seis colunas de clima são escolhidas entre as 42 candidatas.
+
+    A escolha não é manual nem teórica: um LightGBM é treinado só para isso, e
+    o critério é o ganho que cada coluna trouxe. A seção mostra o ranking para
+    que a escolha possa ser conferida, em vez de aceita.
+    """
+    passos = layout.montar_fluxo(
+        [
+            (
+                f"{numeros.ATRIBUTOS.clima_candidatos} candidatas",
+                "todo o clima, bruto e defasado",
+            ),
+            ("LightGBM interno", "treinado só para ranquear"),
+            (
+                f"{numeros.ATRIBUTOS.clima_escolhidos} escolhidas",
+                "as de maior ganho entram",
+            ),
+        ]
+    )
+
+    como = layout.montar_lista(
+        [
+            f"Um <b>LightGBM</b> é treinado com o núcleo mais <b>todas</b> as "
+            f"{numeros.ATRIBUTOS.clima_candidatos} colunas de clima.",
+            "Ele reporta o <b>ganho</b> de cada coluna, que é o quanto ela "
+            "reduziu o erro nas divisões da árvore.",
+            f"Isso é repetido nos horizontes de "
+            f"<b>{numeros.HORIZONTES_DA_SELECAO_DE_CLIMA}</b>, e os ganhos "
+            "são somados.",
+            f"As <b>{numeros.ATRIBUTOS.clima_escolhidos} maiores</b> entram no "
+            "modelo. As outras ficam de fora.",
+            f"O treino dessa escolha usa os "
+            f"<b>{numeros.ATRIBUTOS.fracao_da_selecao_de_clima} mais "
+            f"antigos</b> da série, de "
+            f"{numeros.ATRIBUTOS.inicio_da_selecao_de_clima} a "
+            f"{numeros.ATRIBUTOS.fim_da_selecao_de_clima}.",
+        ]
+    )
+
+    cabecalhos = ["#", "Coluna", "Fatia do ganho", "Entra?"]
+    linhas = []
+    for posicao, candidata in enumerate(numeros.RANKING_DE_CLIMA, start=1):
+        if candidata.entra:
+            veredito = layout.montar_etiqueta("entra", "clima")
+        else:
+            veredito = '<span class="apagado">fica de fora</span>'
+
+        linhas.append(
+            [
+                f'<span class="num">{posicao}</span>',
+                f'<code class="nomeColuna">{layout.escapar(candidata.nome)}</code>',
+                f"<b>{candidata.ganho:.2f}%".replace(".", ",") + "</b>",
+                veredito,
+            ]
+        )
+
+    titulo = "<h3>O ranking, do topo para baixo</h3>"
+    rodape = (
+        f"<p>As {numeros.ATRIBUTOS.clima_escolhidos} escolhidas somam "
+        f"<b>{numeros.GANHO_DAS_SEIS_ESCOLHIDAS:.1f}%".replace(".", ",")
+        + "</b> do ganho de clima. A tabela mostra as 10 primeiras de "
+        f"{numeros.ATRIBUTOS.clima_candidatos}.</p>"
+    )
+
+    return passos + como + titulo + layout.montar_tabela(cabecalhos, linhas) + rodape
+
+
+def _secao_features_finais() -> str:
+    """A lista fechada do que o modelo do cenário adotado recebe."""
+    cabecalhos = ["#", "Coluna", "Grupo", "O que carrega"]
+
+    familia_por_grupo = {"Núcleo": "alvo", "Clima": "clima", "Vetor": "vetor"}
+
+    linhas = []
+    for posicao, feature in enumerate(numeros.FEATURES_FINAIS, start=1):
+        linhas.append(
+            [
+                f'<span class="num">{posicao}</span>',
+                f'<code class="nomeColuna">{layout.escapar(feature.nome)}</code>',
+                layout.montar_etiqueta(feature.grupo, familia_por_grupo[feature.grupo]),
+                layout.escapar(feature.descricao),
+            ]
+        )
+
+    intro = (
+        f"<p>São <b>{numeros.ATRIBUTOS.atributos_no_modelo} colunas</b>: "
+        f"{numeros.ATRIBUTOS.nucleo} de núcleo, "
+        f"{numeros.ATRIBUTOS.clima_escolhidos} de clima e "
+        f"{numeros.ATRIBUTOS.vetor} de vetor.</p>"
+    )
+
+    return intro + layout.montar_tabela(cabecalhos, linhas)
+
 
 def _secao_caminho_dos_dados() -> str:
     """O trajeto do dado, da fonte ao painel, em etapas ligadas por setas."""
@@ -407,6 +436,8 @@ def montar_corpo() -> str:
         "walk-forward": _secao_walk_forward,
         "dicionario": _secao_dicionario,
         "atributos-do-modelo": _secao_atributos_do_modelo,
+        "decisao-de-clima": _secao_decisao_de_clima,
+        "features-finais": _secao_features_finais,
     }
 
     blocos = []

@@ -121,6 +121,93 @@ ATRIBUTOS = AtributosDoModelo()
 
 
 @dataclasses.dataclass(frozen=True)
+class ColunaDeClimaCandidata:
+    """Uma coluna de clima na disputa por uma das seis vagas.
+
+    Attributes:
+        nome: Nome da coluna na tabela de modelagem.
+        ganho: Fatia do ganho total que ela levou, em porcento.
+        entra: Se ficou entre as seis escolhidas.
+    """
+
+    nome: str
+    ganho: float
+    entra: bool
+
+
+# Ranking medido em 23/09/2026 rodando `selecao_features.selecionar_clima_por_ganho`
+# com a configuração do cenário adotado. Só o topo aparece no site; são 42
+# candidatas ao todo. O ganho é somado nos horizontes de 1, 4 e 8 semanas.
+RANKING_DE_CLIMA: tuple[ColunaDeClimaCandidata, ...] = (
+    ColunaDeClimaCandidata("temp_media_lag4", 14.69, True),
+    ColunaDeClimaCandidata("umid_media", 13.54, True),
+    ColunaDeClimaCandidata("temp_media_lag3", 10.82, True),
+    ColunaDeClimaCandidata("temp_max", 8.90, True),
+    ColunaDeClimaCandidata("pressao_media_lag3", 8.03, True),
+    ColunaDeClimaCandidata("pressao_media_lag4", 6.16, True),
+    ColunaDeClimaCandidata("temp_amplitude_media", 5.29, False),
+    ColunaDeClimaCandidata("umid_media_lag2", 4.75, False),
+    ColunaDeClimaCandidata("umid_media_lag1", 4.28, False),
+    ColunaDeClimaCandidata("umid_media_lag3", 4.24, False),
+)
+
+GANHO_DAS_SEIS_ESCOLHIDAS = 62.1
+HORIZONTES_DA_SELECAO_DE_CLIMA = "1, 4 e 8 semanas"
+
+
+@dataclasses.dataclass(frozen=True)
+class FeatureDoModelo:
+    """Uma coluna que chega ao modelo do cenário adotado.
+
+    Attributes:
+        nome: Nome da coluna.
+        grupo: Núcleo, Clima ou Vetor.
+        descricao: O que ela carrega, em uma linha.
+    """
+
+    nome: str
+    grupo: str
+    descricao: str
+
+
+# As 20 colunas que o cenário adotado entrega ao modelo, na ordem em que o
+# pipeline as monta: núcleo, depois o clima escolhido, depois o vetor.
+# Medido em 23/09/2026.
+FEATURES_FINAIS: tuple[FeatureDoModelo, ...] = (
+    FeatureDoModelo("casos", "Núcleo", "Casos confirmados na própria semana."),
+    FeatureDoModelo("casos_lag1", "Núcleo", "Casos de 1 semana atrás."),
+    FeatureDoModelo("casos_lag2", "Núcleo", "Casos de 2 semanas atrás."),
+    FeatureDoModelo("casos_lag3", "Núcleo", "Casos de 3 semanas atrás."),
+    FeatureDoModelo("casos_lag4", "Núcleo", "Casos de 4 semanas atrás."),
+    FeatureDoModelo("casos_mm4", "Núcleo", "Média dos casos nas últimas 4 semanas."),
+    FeatureDoModelo("sem_sin", "Núcleo", "Seno da semana do ano: onde estamos no ciclo."),
+    FeatureDoModelo("sem_cos", "Núcleo", "Cosseno da semana do ano, par do anterior."),
+    FeatureDoModelo("temp_media_lag4", "Clima", "Temperatura média de 4 semanas atrás."),
+    FeatureDoModelo("umid_media", "Clima", "Umidade relativa média da própria semana."),
+    FeatureDoModelo("temp_media_lag3", "Clima", "Temperatura média de 3 semanas atrás."),
+    FeatureDoModelo("temp_max", "Clima", "Temperatura máxima da própria semana."),
+    FeatureDoModelo("pressao_media_lag3", "Clima", "Pressão média de 3 semanas atrás."),
+    FeatureDoModelo("pressao_media_lag4", "Clima", "Pressão média de 4 semanas atrás."),
+    FeatureDoModelo(
+        "aedes_aegypti_por_armadilha", "Vetor", "Densidade do vetor na própria semana."
+    ),
+    FeatureDoModelo(
+        "aedes_aegypti_por_armadilha_lag1", "Vetor", "Densidade de 1 semana atrás."
+    ),
+    FeatureDoModelo(
+        "aedes_aegypti_por_armadilha_lag2", "Vetor", "Densidade de 2 semanas atrás."
+    ),
+    FeatureDoModelo(
+        "aedes_aegypti_por_armadilha_lag3", "Vetor", "Densidade de 3 semanas atrás."
+    ),
+    FeatureDoModelo(
+        "aedes_aegypti_por_armadilha_lag4", "Vetor", "Densidade de 4 semanas atrás."
+    ),
+    FeatureDoModelo("vetor_mm4", "Vetor", "Média da densidade nas últimas 4 semanas."),
+)
+
+
+@dataclasses.dataclass(frozen=True)
 class DesempenhoDoAlarme:
     """O modelo lido como alarme: cruzou o limiar ou não.
 
