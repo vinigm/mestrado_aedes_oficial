@@ -1,0 +1,75 @@
+==============================================================================
+BLOCO 7 — o vetor no HistGB com folha minima 20
+==============================================================================
+
+[referencia] cenario adotado, folha minima 5
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · hist_gradient_boosting_quantil
+  h= 1  295 sem  116.5s
+  h= 2  294 sem   97.5s
+  h= 3  293 sem   96.2s
+  h= 4  292 sem   96.5s
+  h= 5  291 sem  108.5s
+  h= 6  290 sem   92.6s
+  h= 7  289 sem   95.1s
+  h= 8  288 sem   94.1s
+  h= 9  287 sem   92.1s
+  h=10  286 sem   93.3s
+  h=11  285 sem   93.7s
+  h=12  284 sem   93.0s
+[referencia] 19.5 min
+
+[HistGB_folha20_M1] folha 20, com vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · histgb_folha20
+  h= 1  295 sem   63.1s
+  h= 2  294 sem   62.8s
+  h= 3  293 sem   60.8s
+  h= 4  292 sem   60.5s
+  h= 5  291 sem   59.5s
+  h= 6  290 sem   58.6s
+  h= 7  289 sem   58.9s
+  h= 8  288 sem   57.0s
+  h= 9  287 sem   56.4s
+  h=10  286 sem   55.5s
+  h=11  285 sem   55.3s
+  h=12  284 sem   56.7s
+[HistGB_folha20_M1] 11.8 min
+
+[HistGB_folha20_M0] folha 20, sem vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 14 features · histgb_folha20
+  h= 1  307 sem   65.2s
+  h= 2  306 sem   64.1s
+  h= 3  305 sem   63.1s
+  h= 4  304 sem   63.3s
+  h= 5  303 sem   62.8s
+  h= 6  302 sem   62.4s
+  h= 7  301 sem   61.9s
+  h= 8  300 sem   61.7s
+  h= 9  299 sem   60.2s
+  h=10  298 sem   59.2s
+  h=11  297 sem   59.8s
+  h=12  296 sem   59.3s
+[HistGB_folha20_M0] 12.4 min
+
+  TRAVA DE VALIDACAO — referencia contra o painel publicado
+    h= 1  MAE    98.0 (painel   98.0)  R2  0.898 (painel 0.898)  ok
+    h= 4  MAE   219.7 (painel  219.7)  R2  0.628 (painel 0.628)  ok
+    h= 8  MAE   272.6 (painel  272.6)  R2  0.450 (painel 0.450)  ok
+    h=12  MAE   278.8 (painel  278.7)  R2  0.437 (painel 0.437)  ok
+    veredito: VALIDO
+
+  TRAVA 2 — folha 20 com vetor contra o bloco 6
+    h= 1  bloco 6    75.63  agora    75.63  ok
+    h= 4  bloco 6   108.67  agora   108.67  ok
+    h= 8  bloco 6   119.71  agora   119.71  ok
+    h=12  bloco 6   122.18  agora   122.18  ok
+    veredito: VALIDO
+
+  familia: 4 comparacoes, Holm · avaliacao a partir de 2024-01-01
+                   braco   h   MAE ref   MAE var      red   R2 var   p Holm    n
+       HistGB_folha20_M0   1     133.6     115.5   13.57%    0.878   0.4654   102
+       HistGB_folha20_M0   4     199.6     208.3   -4.33%    0.666   0.8295   102
+       HistGB_folha20_M0   8     223.2     242.8   -8.78%    0.569   0.0056*  102
+       HistGB_folha20_M0  12     243.8     278.0  -14.05%    0.430   0.0151*  102
+
+  VEREDITO pelo criterio pre-declarado:
+         HistGB_folha20_M0: NAO entra

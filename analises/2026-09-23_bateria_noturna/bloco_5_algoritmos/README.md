@@ -190,6 +190,24 @@ Os dois resultados sobrevivem a três testes diferentes e à retirada dos casos 
 
 ---
 
+## 6b. Emenda de 24/09/2026, ~03h20 — separação por temporada
+
+Depois deste bloco ser documentado, o [bloco 7](../bloco_7_vetor_com_folha_20/) separou a avaliação por
+ano, e a mesma separação foi aplicada aqui. Ela **tempera** o "robusto" do §5:
+
+| LightGBM, vetor | h=8 | h=9 | h=10 | h=11 | h=12 |
+|---|---|---|---|---|---|
+| 2024 | ajuda, p < 0,0001 | ajuda, p < 0,0001 | ajuda, p < 0,0001 | ajuda, p = 0,0001 | ajuda, p = 0,0001 |
+| 2025 | **atrapalha**, p = 0,31 | ajuda, p = 0,29 | **atrapalha**, p = 0,81 | ajuda, **p = 0,011** | ajuda, **p = 0,016** |
+
+p bruto do Wilcoxon dentro de cada ano.
+
+- **FATO:** a maior parte do efeito vem de 2024. Em 2025, ele se repete com significância só em 11 e 12
+  semanas.
+- **Consequência:** "robusto" no §5 quer dizer robusto a testes e a semanas extremas **dentro** do período
+  de avaliação. Não quer dizer robusto entre temporadas. Com duas temporadas, isso não tem como ser
+  afirmado.
+
 ## 7. Limitações
 
 - **Algoritmo e hiperparâmetros andam juntos.** Não dá para dizer se é o LightGBM ou a folha mínima 20.

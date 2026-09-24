@@ -1,3 +1,62 @@
 ==============================================================================
 BLOCO 6 — hiperparametros do HistGB, escolha pela calibracao
 ==============================================================================
+  [ 1/18] lr0.05_it250_folhas15_min5        7.1 min
+  [ 2/18] lr0.05_it250_folhas15_min20       4.0 min
+  [ 3/18] lr0.05_it250_folhas7_min5         3.8 min
+  [ 4/18] lr0.05_it250_folhas7_min20        3.3 min
+  [ 5/18] lr0.05_it250_folhas31_min5        7.9 min
+  [ 6/18] lr0.05_it250_folhas31_min20       4.0 min
+  [ 7/18] lr0.03_it400_folhas15_min5        9.9 min
+  [ 8/18] lr0.03_it400_folhas15_min20       6.1 min
+  [ 9/18] lr0.03_it400_folhas7_min5         5.9 min
+  [10/18] lr0.03_it400_folhas7_min20        5.1 min
+  [11/18] lr0.03_it400_folhas31_min5       12.7 min
+  [12/18] lr0.03_it400_folhas31_min20       6.1 min
+  [13/18] lr0.1_it150_folhas15_min5         4.1 min
+  [14/18] lr0.1_it150_folhas15_min20        2.6 min
+  [15/18] lr0.1_it150_folhas7_min5          2.4 min
+  [16/18] lr0.1_it150_folhas7_min20         2.2 min
+  [17/18] lr0.1_it150_folhas31_min5         5.2 min
+  [18/18] lr0.1_it150_folhas31_min20        2.6 min
+
+  TRAVA DE VALIDACAO — lr0.05_it250_folhas15_min5 contra o painel publicado
+    h= 1  MAE    98.0 (painel   98.0)  R2  0.898 (painel 0.898)  ok
+    h= 4  MAE   219.7 (painel  219.7)  R2  0.628 (painel 0.628)  ok
+    h= 8  MAE   272.6 (painel  272.6)  R2  0.450 (painel 0.450)  ok
+    h=12  MAE   278.8 (painel  278.7)  R2  0.437 (painel 0.437)  ok
+    veredito: VALIDO
+
+  ranking pela calibracao (criterio de escolha):
+     1. lr0.03_it400_folhas15_min5       MAE   41.66
+     2. lr0.03_it400_folhas31_min5       MAE   41.72
+     3. lr0.05_it250_folhas31_min5       MAE   41.90
+     4. lr0.05_it250_folhas15_min5       MAE   42.02  <= referencia
+     5. lr0.03_it400_folhas7_min5        MAE   42.63
+     6. lr0.05_it250_folhas7_min5        MAE   42.77
+     7. lr0.1_it150_folhas31_min5        MAE   42.90
+     8. lr0.1_it150_folhas15_min5        MAE   43.00
+     9. lr0.1_it150_folhas7_min5         MAE   44.03
+    10. lr0.1_it150_folhas15_min20       MAE   54.68
+    11. lr0.1_it150_folhas31_min20       MAE   54.68
+    12. lr0.1_it150_folhas7_min20        MAE   55.00
+    13. lr0.05_it250_folhas31_min20      MAE   55.45
+    14. lr0.05_it250_folhas15_min20      MAE   55.45
+    15. lr0.03_it400_folhas7_min20       MAE   55.49
+    16. lr0.03_it400_folhas15_min20      MAE   55.49
+    17. lr0.03_it400_folhas31_min20      MAE   55.49
+    18. lr0.05_it250_folhas7_min20       MAE   55.69
+
+  vencedora: lr0.03_it400_folhas15_min5
+
+  TESTE UNICO na avaliacao: vencedora contra referencia
+
+  familia: 4 comparacoes, Holm · avaliacao a partir de 2024-01-01
+                   braco   h   MAE ref   MAE var      red   R2 var   p Holm    n
+  lr0.03_it400_folhas15_min5   1      98.0     105.4   -7.52%    0.884   1.0000   102
+  lr0.03_it400_folhas15_min5   4     219.7     212.4    3.31%    0.653   1.0000   102
+  lr0.03_it400_folhas15_min5   8     272.6     272.3    0.13%    0.443   1.0000   102
+  lr0.03_it400_folhas15_min5  12     278.8     278.4    0.15%    0.435   1.0000   102
+
+  VEREDITO pelo criterio pre-declarado:
+    lr0.03_it400_folhas15_min5: NAO entra

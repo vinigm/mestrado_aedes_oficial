@@ -68,10 +68,16 @@ Definido na reunião de 21/09/2026 com o orientador.
 
 - **Janela de lag nunca foi ablacionada.** `[1,2,3,4]` veio hardcoded do código pré-refatoração, sem
   comentário (único commit: `355795a`, migração byte a byte). Estender a janela curta para 5-12
-  semanas **nunca foi testado**; só se testou *adicionar* lag52/104 em 30/08, que piorou h=8 e h=12
-  — com vazamento, e está entre os não refeitos.
+  semanas: ✅ testado em 23/09, não ajuda — nem em todas as colunas, nem só no vetor. Lag52/104 refeito
+  sem vazamento em 24/09: também não ajuda.
 
-- **Validar o ENSO dentro do grid** — passou isolado (+7% em h=8), nunca no protocolo completo.
+- 🚫 **Validar o ENSO** — descartado em 24/09/2026: o "+7% em h=8" era vazamento. Refeito limpo, o ENSO
+  não muda h=8 e piora h=12 em 11,6%. Ver `analises/2026-09-23_bateria_noturna/bloco_2_features_longas/`.
+- ⏳ **Rodada confirmatória do vetor com folha mínima 20** — exploratório na bateria noturna: com folha 20,
+  o vetor reduz o erro de h=12 em 12-16% (HistGB e LightGBM, p Holm ≤ 0,015), mas carregado por 2024.
+  Pré-declarar e testar na temporada 2026-2027. Ver o dossiê da bateria noturna.
+- ⏳ **Corte de maturidade só é testável com dados vintage** — o corte age uma vez no fim da série; o
+  walk-forward atual é cego a ele.
 - **Confirmar que o vetor piora o alarme** — só a temporada 2026-2027 torna o achado confirmatório.
 - ⏳ Janelas curtas parecem melhorar o **alarme** em h=12 (sensib. 0,846 × 0,769) — exploratório, exige
   pré-declaração própria. Ablação de janela e métrica de alarme: feitas em 13/09.
@@ -98,6 +104,15 @@ Definido na reunião de 21/09/2026 com o orientador.
   `data_origem`/`data_alvo` · deck de `../Apresentacao_andamento/2026-06-19/` conta a história antiga.
 
 ## Registro cronológico
+
+### 24/09/2026 — bateria noturna: o resultado negativo do vetor era de um hiperparâmetro
+
+- 🔴 **Com folha mínima 20, o vetor reduz o erro de 3 meses** em dois algoritmos (p Holm 0,015 e 0,0001).
+  No cenário adotado, folha 5, não reduz. ⚠️ Efeito carregado por 2024; exploratório.
+- ✅ Modelo adotado depende mais do vetor que do histórico de casos de 1 a 3 meses à frente.
+- 🚫 ENSO de agosto era vazamento. Referência **não muda**: nada passou no critério de troca.
+- ⚠️ **Não repetir "o vetor não melhora a previsão"** sem "do HistGB com folha mínima 5".
+- Dossiê: `analises/2026-09-23_bateria_noturna/README.md`. Site e slides não foram mexidos.
 
 ### 23/09/2026 — o site é reconstruído do zero e republicado
 

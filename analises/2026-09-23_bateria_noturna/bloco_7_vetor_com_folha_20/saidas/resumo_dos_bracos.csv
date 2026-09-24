@@ -1,0 +1,4 @@
+braco,descricao,corte_maturidade,lags,modelo,n_features,clima_escolhido,colunas_extras,sem_vetor
+referencia,"cenario adotado, folha minima 5",12,"[1, 2, 3, 4]",hist_gradient_boosting_quantil,20,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,False
+HistGB_folha20_M1,"folha 20, com vetor",12,"[1, 2, 3, 4]",histgb_folha20,20,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,False
+HistGB_folha20_M0,"folha 20, sem vetor",12,"[1, 2, 3, 4]",histgb_folha20,14,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,True
