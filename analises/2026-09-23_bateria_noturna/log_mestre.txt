@@ -1,0 +1,11 @@
+INICIO 23/09 20:41:15
+COMECOU bloco_2_features_longas 20:41:15
+TERMINOU bloco_2_features_longas codigo=0 22:00:50
+COMECOU bloco_3_importancia_por_bloco 22:00:50
+TERMINOU bloco_3_importancia_por_bloco codigo=0 22:21:21
+COMECOU bloco_5_algoritmos 22:21:21
+TERMINOU bloco_5_algoritmos codigo=0 23:50:54
+COMECOU bloco_4_lag_do_vetor 23:50:54
+TERMINOU bloco_4_lag_do_vetor codigo=0 00:47:36
+FIM_DA_BATERIA 24/09 00:47:36
+COMECOU bloco_6_hiperparametros 00:47:51

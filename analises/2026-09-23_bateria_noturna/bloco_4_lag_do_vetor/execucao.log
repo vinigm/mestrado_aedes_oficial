@@ -1,0 +1,73 @@
+==============================================================================
+BLOCO 4 — janela de lag longa so no vetor
+==============================================================================
+
+[A_referencia] as 20 colunas do cenario adotado
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · hist_gradient_boosting_quantil
+  h= 1  295 sem  112.0s
+  h= 2  294 sem  107.7s
+  h= 3  293 sem  103.1s
+  h= 4  292 sem  106.4s
+  h= 5  291 sem   97.0s
+  h= 6  290 sem   94.7s
+  h= 7  289 sem   95.8s
+  h= 8  288 sem   95.5s
+  h= 9  287 sem   92.6s
+  h=10  286 sem   93.8s
+  h=11  285 sem   94.5s
+  h=12  284 sem   92.8s
+[A_referencia] 19.8 min
+
+[B_vetor_ate_8] vetor com lags 6 e 8; casos e clima com 1 a 4
+  corte 12 sem · lags [1, 2, 3, 4] · 22 features · hist_gradient_boosting_quantil
+  h= 1  289 sem   97.3s
+  h= 2  288 sem   94.2s
+  h= 3  287 sem  101.6s
+  h= 4  286 sem   97.6s
+  h= 5  285 sem   95.2s
+  h= 6  284 sem   96.9s
+  h= 7  283 sem   92.7s
+  h= 8  282 sem   91.3s
+  h= 9  281 sem   89.2s
+  h=10  280 sem   90.6s
+  h=11  279 sem   91.0s
+  h=12  278 sem   89.5s
+[B_vetor_ate_8] 18.8 min
+
+[C_vetor_ate_12] vetor com lags 6, 8, 10 e 12; casos e clima com 1 a 4
+  corte 12 sem · lags [1, 2, 3, 4] · 24 features · hist_gradient_boosting_quantil
+  h= 1  280 sem   92.3s
+  h= 2  279 sem   90.0s
+  h= 3  278 sem   88.8s
+  h= 4  277 sem   91.4s
+  h= 5  276 sem   90.2s
+  h= 6  275 sem   85.2s
+  h= 7  274 sem   89.6s
+  h= 8  273 sem   87.9s
+  h= 9  272 sem   86.2s
+  h=10  271 sem   85.7s
+  h=11  270 sem   88.8s
+  h=12  269 sem  107.7s
+[C_vetor_ate_12] 18.1 min
+
+  TRAVA DE VALIDACAO — A_referencia contra o painel publicado
+    h= 1  MAE    98.0 (painel   98.0)  R2  0.898 (painel 0.898)  ok
+    h= 4  MAE   219.7 (painel  219.7)  R2  0.628 (painel 0.628)  ok
+    h= 8  MAE   272.6 (painel  272.6)  R2  0.450 (painel 0.450)  ok
+    h=12  MAE   278.8 (painel  278.7)  R2  0.437 (painel 0.437)  ok
+    veredito: VALIDO
+
+  familia: 8 comparacoes, Holm · avaliacao a partir de 2024-01-01
+                   braco   h   MAE ref   MAE var      red   R2 var   p Holm    n
+           B_vetor_ate_8   1     100.7     103.9   -3.16%    0.892   1.0000    98
+           B_vetor_ate_8   4     228.3     231.9   -1.58%    0.610   1.0000    98
+           B_vetor_ate_8   8     283.4     285.7   -0.79%    0.429   1.0000    98
+           B_vetor_ate_8  12     290.0     294.8   -1.64%    0.399   0.6344    98
+          C_vetor_ate_12   1     104.9     108.7   -3.63%    0.894   1.0000    94
+          C_vetor_ate_12   4     237.8     225.7    5.09%    0.646   1.0000    94
+          C_vetor_ate_12   8     295.4     302.0   -2.25%    0.399   1.0000    94
+          C_vetor_ate_12  12     302.3     311.6   -3.09%    0.373   0.1559    94
+
+  VEREDITO pelo criterio pre-declarado:
+             B_vetor_ate_8: NAO entra
+            C_vetor_ate_12: NAO entra

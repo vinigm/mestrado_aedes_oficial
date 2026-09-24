@@ -1,0 +1,115 @@
+==============================================================================
+BLOCO 2 — features longas, refeito sem vazamento e com quantil 0,85
+==============================================================================
+
+[A_referencia] as 20 colunas do cenario adotado
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · hist_gradient_boosting_quantil
+  h= 1  295 sem  108.8s
+  h= 2  294 sem   96.4s
+  h= 3  293 sem   98.3s
+  h= 4  292 sem   98.6s
+  h= 5  291 sem   96.7s
+  h= 6  290 sem  103.9s
+  h= 7  289 sem   96.3s
+  h= 8  288 sem   94.6s
+  h= 9  287 sem   91.8s
+  h=10  286 sem   94.1s
+  h=11  285 sem   93.8s
+  h=12  284 sem   93.5s
+[A_referencia] 19.5 min
+
+[A+B_lags_anuais] memoria de 1 e 2 anos atras
+  corte 12 sem · lags [1, 2, 3, 4] · 23 features · hist_gradient_boosting_quantil
+  h= 1  191 sem   57.4s
+  h= 2  190 sem   68.8s
+  h= 3  189 sem   72.3s
+  h= 4  188 sem   54.5s
+  h= 5  187 sem   54.1s
+  h= 6  186 sem   57.6s
+  h= 7  185 sem   56.4s
+  h= 8  184 sem   50.0s
+  h= 9  183 sem   50.3s
+  h=10  182 sem   49.3s
+  h=11  181 sem   49.6s
+  h=12  180 sem   50.9s
+[A+B_lags_anuais] 11.2 min
+
+[A+C+D_clima_longo] anomalia contra a norma e acumulo de 2-3 meses
+  corte 12 sem · lags [1, 2, 3, 4] · 27 features · hist_gradient_boosting_quantil
+  h= 1  295 sem   99.3s
+  h= 2  294 sem   97.4s
+  h= 3  293 sem  105.2s
+  h= 4  292 sem   98.9s
+  h= 5  291 sem   98.1s
+  h= 6  290 sem   95.1s
+  h= 7  289 sem   95.6s
+  h= 8  288 sem   95.0s
+  h= 9  287 sem   93.6s
+  h=10  286 sem   94.3s
+  h=11  285 sem   96.1s
+  h=12  284 sem   94.8s
+[A+C+D_clima_longo] 19.4 min
+
+[A+E_enso] El Nino e La Nina
+  corte 12 sem · lags [1, 2, 3, 4] · 22 features · hist_gradient_boosting_quantil
+  h= 1  295 sem  102.0s
+  h= 2  294 sem   97.2s
+  h= 3  293 sem   98.2s
+  h= 4  292 sem   97.2s
+  h= 5  291 sem   96.3s
+  h= 6  290 sem   92.8s
+  h= 7  289 sem   94.5s
+  h= 8  288 sem   93.9s
+  h= 9  287 sem   95.9s
+  h=10  286 sem   91.7s
+  h=11  285 sem   92.0s
+  h=12  284 sem   91.5s
+[A+E_enso] 19.1 min
+
+[A+TUDO] os quatro grupos juntos
+  corte 12 sem · lags [1, 2, 3, 4] · 32 features · hist_gradient_boosting_quantil
+  h= 1  191 sem   54.3s
+  h= 2  190 sem   53.3s
+  h= 3  189 sem   53.1s
+  h= 4  188 sem   52.9s
+  h= 5  187 sem   51.8s
+  h= 6  186 sem   49.5s
+  h= 7  185 sem   51.8s
+  h= 8  184 sem   51.0s
+  h= 9  183 sem   57.0s
+  h=10  182 sem   49.4s
+  h=11  181 sem   48.4s
+  h=12  180 sem   49.6s
+[A+TUDO] 10.4 min
+
+  TRAVA DE VALIDACAO — A_referencia contra o painel publicado
+    h= 1  MAE    98.0 (painel   98.0)  R2  0.898 (painel 0.898)  ok
+    h= 4  MAE   219.7 (painel  219.7)  R2  0.628 (painel 0.628)  ok
+    h= 8  MAE   272.6 (painel  272.6)  R2  0.450 (painel 0.450)  ok
+    h=12  MAE   278.8 (painel  278.7)  R2  0.437 (painel 0.437)  ok
+    veredito: VALIDO
+
+  familia: 16 comparacoes, Holm · avaliacao a partir de 2024-01-01
+                   braco   h   MAE ref   MAE var      red   R2 var   p Holm    n
+         A+B_lags_anuais   1      96.5      89.4    7.37%    0.903   1.0000    99
+         A+B_lags_anuais   4     206.4     194.6    5.70%    0.696   1.0000    99
+         A+B_lags_anuais   8     273.8     273.6    0.09%    0.425   1.0000    99
+         A+B_lags_anuais  12     283.4     292.8   -3.30%    0.395   1.0000    99
+       A+C+D_clima_longo   1      98.0      98.8   -0.85%    0.901   1.0000   102
+       A+C+D_clima_longo   4     219.7     206.6    5.96%    0.654   1.0000   102
+       A+C+D_clima_longo   8     272.6     294.9   -8.18%    0.346   1.0000   102
+       A+C+D_clima_longo  12     278.8     292.5   -4.90%    0.404   1.0000   102
+                A+E_enso   1      98.0      99.9   -1.91%    0.894   1.0000   102
+                A+E_enso   4     219.7     217.4    1.03%    0.615   1.0000   102
+                A+E_enso   8     272.6     272.8   -0.06%    0.437   1.0000   102
+                A+E_enso  12     278.8     311.2  -11.60%    0.269   1.0000   102
+                  A+TUDO   1      96.5      95.7    0.86%    0.886   1.0000    99
+                  A+TUDO   4     206.4     209.4   -1.45%    0.630   1.0000    99
+                  A+TUDO   8     273.8     311.8  -13.87%    0.268   0.0303*   99
+                  A+TUDO  12     283.4     320.2  -12.96%    0.277   0.4183    99
+
+  VEREDITO pelo criterio pre-declarado:
+           A+B_lags_anuais: NAO entra
+         A+C+D_clima_longo: NAO entra
+                  A+E_enso: NAO entra
+                    A+TUDO: NAO entra

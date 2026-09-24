@@ -1,0 +1,7 @@
+braco,descricao,corte_maturidade,lags,modelo,n_features,clima_escolhido,colunas_extras,sem_vetor
+HistGB_M1,referencia: HistGB com vetor,12,"[1, 2, 3, 4]",hist_gradient_boosting_quantil,20,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,False
+HistGB_M0,HistGB sem vetor,12,"[1, 2, 3, 4]",hist_gradient_boosting_quantil,14,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,True
+GradBoost_M1,GradBoost com vetor,12,"[1, 2, 3, 4]",gradient_boosting_quantil,20,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,False
+GradBoost_M0,GradBoost sem vetor,12,"[1, 2, 3, 4]",gradient_boosting_quantil,14,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,True
+LightGBM_M1,LightGBM com vetor,12,"[1, 2, 3, 4]",lightgbm_quantil,20,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,False
+LightGBM_M0,LightGBM sem vetor,12,"[1, 2, 3, 4]",lightgbm_quantil,14,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,True

@@ -1,0 +1,4 @@
+braco,descricao,corte_maturidade,lags,modelo,n_features,clima_escolhido,colunas_extras,sem_vetor
+A_referencia,as 20 colunas do cenario adotado,12,"[1, 2, 3, 4]",hist_gradient_boosting_quantil,20,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,,False
+B_vetor_ate_8,vetor com lags 6 e 8; casos e clima com 1 a 4,12,"[1, 2, 3, 4]",hist_gradient_boosting_quantil,22,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,aedes_aegypti_por_armadilha_lag6 | aedes_aegypti_por_armadilha_lag8,False
+C_vetor_ate_12,"vetor com lags 6, 8, 10 e 12; casos e clima com 1 a 4",12,"[1, 2, 3, 4]",hist_gradient_boosting_quantil,24,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,aedes_aegypti_por_armadilha_lag6 | aedes_aegypti_por_armadilha_lag8 | aedes_aegypti_por_armadilha_lag10 | aedes_aegypti_por_armadilha_lag12,False

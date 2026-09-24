@@ -1,0 +1,132 @@
+==============================================================================
+BLOCO 5 — tres algoritmos com quantil 0,85, com e sem vetor
+==============================================================================
+
+[HistGB_M1] referencia: HistGB com vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · hist_gradient_boosting_quantil
+  h= 1  295 sem  115.2s
+  h= 2  294 sem   97.2s
+  h= 3  293 sem   97.5s
+  h= 4  292 sem   96.6s
+  h= 5  291 sem   95.8s
+  h= 6  290 sem   93.2s
+  h= 7  289 sem   97.2s
+  h= 8  288 sem   95.0s
+  h= 9  287 sem   92.2s
+  h=10  286 sem   94.0s
+  h=11  285 sem   94.1s
+  h=12  284 sem   92.3s
+[HistGB_M1] 19.4 min
+
+[HistGB_M0] HistGB sem vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 14 features · hist_gradient_boosting_quantil
+  h= 1  307 sem  103.8s
+  h= 2  306 sem   99.2s
+  h= 3  305 sem  114.9s
+  h= 4  304 sem  101.6s
+  h= 5  303 sem  101.2s
+  h= 6  302 sem   98.9s
+  h= 7  301 sem  100.4s
+  h= 8  300 sem  108.3s
+  h= 9  299 sem   99.2s
+  h=10  298 sem  102.0s
+  h=11  297 sem  101.3s
+  h=12  296 sem   99.4s
+[HistGB_M0] 20.5 min
+
+[GradBoost_M1] GradBoost com vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · gradient_boosting_quantil
+  h= 1  295 sem   53.2s
+  h= 2  294 sem   51.9s
+  h= 3  293 sem   51.7s
+  h= 4  292 sem   51.5s
+  h= 5  291 sem   51.1s
+  h= 6  290 sem   50.9s
+  h= 7  289 sem   49.8s
+  h= 8  288 sem   49.2s
+  h= 9  287 sem   48.7s
+  h=10  286 sem   48.2s
+  h=11  285 sem   48.1s
+  h=12  284 sem   48.0s
+[GradBoost_M1] 10.1 min
+
+[GradBoost_M0] GradBoost sem vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 14 features · gradient_boosting_quantil
+  h= 1  307 sem   45.2s
+  h= 2  306 sem   44.9s
+  h= 3  305 sem   44.3s
+  h= 4  304 sem   44.1s
+  h= 5  303 sem   44.5s
+  h= 6  302 sem   43.7s
+  h= 7  301 sem   43.5s
+  h= 8  300 sem   42.9s
+  h= 9  299 sem   42.4s
+  h=10  298 sem   42.2s
+  h=11  297 sem   41.8s
+  h=12  296 sem   41.1s
+[GradBoost_M0] 8.7 min
+
+[LightGBM_M1] LightGBM com vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · lightgbm_quantil
+  h= 1  295 sem   79.4s
+  h= 2  294 sem   74.5s
+  h= 3  293 sem   77.3s
+  h= 4  292 sem   77.4s
+  h= 5  291 sem   76.7s
+  h= 6  290 sem   75.3s
+  h= 7  289 sem   74.0s
+  h= 8  288 sem   73.0s
+  h= 9  287 sem   72.0s
+  h=10  286 sem   70.8s
+  h=11  285 sem   70.9s
+  h=12  284 sem   70.8s
+[LightGBM_M1] 14.9 min
+
+[LightGBM_M0] LightGBM sem vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 14 features · lightgbm_quantil
+  h= 1  307 sem   83.4s
+  h= 2  306 sem   82.7s
+  h= 3  305 sem   81.9s
+  h= 4  304 sem   81.9s
+  h= 5  303 sem   81.3s
+  h= 6  302 sem   80.4s
+  h= 7  301 sem   79.5s
+  h= 8  300 sem   79.0s
+  h= 9  299 sem   77.6s
+  h=10  298 sem   76.6s
+  h=11  297 sem   77.5s
+  h=12  296 sem   76.7s
+[LightGBM_M0] 16.0 min
+
+  TRAVA DE VALIDACAO — HistGB_M1 contra o painel publicado
+    h= 1  MAE    98.0 (painel   98.0)  R2  0.898 (painel 0.898)  ok
+    h= 4  MAE   219.7 (painel  219.7)  R2  0.628 (painel 0.628)  ok
+    h= 8  MAE   272.6 (painel  272.6)  R2  0.450 (painel 0.450)  ok
+    h=12  MAE   278.8 (painel  278.7)  R2  0.437 (painel 0.437)  ok
+    veredito: VALIDO
+
+  PERGUNTA 1: outro algoritmo bate o HistGB? — 8 comparacoes, Holm
+       controle      variante   h  MAE ctrl   MAE var      red   p Holm
+      HistGB_M1  GradBoost_M1   1      98.0     108.1  -10.34%   0.5803 
+      HistGB_M1  GradBoost_M1   4     219.7     205.9    6.27%   0.9438 
+      HistGB_M1  GradBoost_M1   8     272.6     262.7    3.65%   0.5399 
+      HistGB_M1  GradBoost_M1  12     278.8     271.3    2.71%   0.7546 
+      HistGB_M1   LightGBM_M1   1      98.0     132.9  -35.60%   0.0618 
+      HistGB_M1   LightGBM_M1   4     219.7     203.1    7.56%   0.9438 
+      HistGB_M1   LightGBM_M1   8     272.6     231.9   14.93%   0.0869 
+      HistGB_M1   LightGBM_M1  12     278.8     247.2   11.33%   0.0005*
+
+  PERGUNTA 2: tirar o vetor muda o erro? (variante = SEM vetor) — 12 comparacoes, Holm
+       controle      variante   h  MAE ctrl   MAE var      red   p Holm
+      HistGB_M1     HistGB_M0   1      98.0      92.0    6.13%   1.0000 
+      HistGB_M1     HistGB_M0   4     219.7     219.4    0.13%   1.0000 
+      HistGB_M1     HistGB_M0   8     272.6     253.1    7.18%   1.0000 
+      HistGB_M1     HistGB_M0  12     278.8     285.0   -2.22%   1.0000 
+   GradBoost_M1  GradBoost_M0   1     108.1      91.9   14.97%   0.9718 
+   GradBoost_M1  GradBoost_M0   4     205.9     229.1  -11.28%   0.5702 
+   GradBoost_M1  GradBoost_M0   8     262.7     247.0    5.96%   1.0000 
+   GradBoost_M1  GradBoost_M0  12     271.3     271.9   -0.23%   1.0000 
+    LightGBM_M1   LightGBM_M0   1     132.9     125.2    5.79%   1.0000 
+    LightGBM_M1   LightGBM_M0   4     203.1     214.5   -5.63%   1.0000 
+    LightGBM_M1   LightGBM_M0   8     231.9     237.9   -2.56%   0.5996 
+    LightGBM_M1   LightGBM_M0  12     247.2     292.4  -18.28%   0.0001*
