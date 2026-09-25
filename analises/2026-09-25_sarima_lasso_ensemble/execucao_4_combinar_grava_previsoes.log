@@ -1,0 +1,58 @@
+
+  TRAVA 1 — pareamento com o B0 (102 pares por horizonte na avaliacao)
+    h= 1            B0  n=102 (esperado 102)  ok
+    h= 1      c2_casos  n=102 (esperado 102)  ok
+    h= 1     ens_media  n=102 (esperado 102)  ok
+    h= 1     ens_pesos  n=102 (esperado 102)  ok
+    h= 1         lasso  n=102 (esperado 102)  ok
+    h= 1  regua_sazonal  n=102 (esperado 102)  ok
+    h= 1    sarima_log  n=102 (esperado 102)  ok
+    h= 4            B0  n=102 (esperado 102)  ok
+    h= 4      c2_casos  n=102 (esperado 102)  ok
+    h= 4     ens_media  n=102 (esperado 102)  ok
+    h= 4     ens_pesos  n=102 (esperado 102)  ok
+    h= 4         lasso  n=102 (esperado 102)  ok
+    h= 4  regua_sazonal  n=102 (esperado 102)  ok
+    h= 4    sarima_log  n=102 (esperado 102)  ok
+    h= 8            B0  n=102 (esperado 102)  ok
+    h= 8      c2_casos  n=102 (esperado 102)  ok
+    h= 8     ens_media  n=102 (esperado 102)  ok
+    h= 8     ens_pesos  n=102 (esperado 102)  ok
+    h= 8         lasso  n=102 (esperado 102)  ok
+    h= 8  regua_sazonal  n=102 (esperado 102)  ok
+    h= 8    sarima_log  n=102 (esperado 102)  ok
+    h=12            B0  n=102 (esperado 102)  ok
+    h=12      c2_casos  n=102 (esperado 102)  ok
+    h=12     ens_media  n=102 (esperado 102)  ok
+    h=12     ens_pesos  n=102 (esperado 102)  ok
+    h=12         lasso  n=102 (esperado 102)  ok
+    h=12  regua_sazonal  n=102 (esperado 102)  ok
+    h=12    sarima_log  n=102 (esperado 102)  ok
+    veredito: VALIDO
+
+  TRAVA 2 (SARIMA) — ultima_data_ajuste == data_alvo - h semanas, em todas as linhas
+    veredito: VALIDO
+
+  TRAVA 3 — ancoras de MAE na avaliacao
+              B0  h= 1  MAE   133.6 (esperado  133.6)  ok
+              B0  h= 4  MAE   199.6 (esperado  199.6)  ok
+              B0  h= 8  MAE   223.2 (esperado  223.2)  ok
+              B0  h=12  MAE   243.8 (esperado  243.8)  ok
+    regua_sazonal  h= 1  MAE   202.1 (esperado  202.1)  ok
+    regua_sazonal  h= 4  MAE   213.2 (esperado  213.2)  ok
+    regua_sazonal  h= 8  MAE   216.2 (esperado  216.2)  ok
+    regua_sazonal  h=12  MAE   217.8 (esperado  217.8)  ok
+        c2_casos  h= 1  MAE   193.6 (esperado  193.6)  ok
+        c2_casos  h= 4  MAE   255.8 (esperado  255.8)  ok
+        c2_casos  h= 8  MAE   256.1 (esperado  256.1)  ok
+        c2_casos  h=12  MAE   227.2 (esperado  227.2)  ok
+    veredito: VALIDO
+
+  CRITERIOS DE DECISAO (secao 5), h=12
+      sarima_log  bate_a_regua=False  melhora_o_b0=False  candidato_2026_2027=False
+           lasso  bate_a_regua=False  melhora_o_b0=False  candidato_2026_2027=False
+       ens_media  bate_a_regua=False  melhora_o_b0=False  candidato_2026_2027=False
+       ens_pesos  bate_a_regua=False  melhora_o_b0=False  candidato_2026_2027=False
+    vetor_vale_no_lasso=False
+
+Consolidacao concluida. CSVs e figura gravados em saidas/.

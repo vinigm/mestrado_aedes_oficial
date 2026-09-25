@@ -83,6 +83,8 @@ vencedora entre as 30 testadas pelo menor erro de calibração.
 - ✅ **O modelo é honesto até um mês.** Em três meses explica 44% da variação.
 - ⚠️ **A previsão quantílica estima um patamar**, ultrapassado em 15% das vezes, não a média. Precisa
   estar declarado em qualquer texto que cite uma previsão.
+  - 🔴 **FATO (25/09): na avaliação 2024+ ela não cumpre isso.** Em h=12 o patamar é ultrapassado em **65%**
+    das semanas, não em 15%. Ver `analises/2026-09-25_sarima_lasso_ensemble/` §5.
 - ⚠️ Escrever **"a melhor entre as 30 testadas"**, nunca "a melhor possível".
 - ✅ **A degradação tem causa medida:** a autocorrelação dos casos explica 91% em h=1 e **0%** em h=12.
 - 🔴 ✅ **FATO (25/09) — em 2 e 3 meses o modelo perde para "a mesma semana do ano passado".** MAE em h=12:

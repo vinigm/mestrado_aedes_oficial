@@ -16,6 +16,11 @@ efeito só aparece em 2024-2025.
 
 ![MAE por horizonte](saidas/figura_mae_por_horizonte.png)
 
+> 🔴 **Adendo de 25/09/2026, depois da rodada SARIMA + LASSO:** o veredito acima é **pelo MAE**, a métrica
+> pré-declarada. Na **perda quantílica 0,85**, que é coerente com a escolha do quantil pelo projeto, o
+> Chronos-2 só com casos tem perda **47% menor que o B0** em h=12, 100,9 contra 191,2. É leitura pós-hoc.
+> Ver [`../2026-09-25_sarima_lasso_ensemble/`](../2026-09-25_sarima_lasso_ensemble/) §5.
+
 ---
 
 ## 1. Propósito

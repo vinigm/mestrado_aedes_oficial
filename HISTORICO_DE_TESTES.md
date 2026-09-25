@@ -65,6 +65,7 @@
 | 25/09/2026 | Varredura de literatura | ✅ perder para régua em 3 meses é comum |
 | 25/09/2026 | Bateria de formulação do alvo | 🚫 seis variantes, nenhuma melhora nem bate a régua |
 | 25/09/2026 | Modelos de fundação zero-shot | 🚫 não batem a régua; ⚠️ o vetor ajuda o Chronos-2 só em 2024-2025 |
+| 25/09/2026 | SARIMA, LASSO e ensemble | 🚫 explodem ou não batem a régua; 🔴 pela perda quantílica, o Chronos-2 vence o B0 |
 
 ---
 
@@ -182,6 +183,25 @@ que 4 temporadas não dão.
   2022-2023 e ajuda em 2024-2025, o mesmo padrão da folha 20.
 - ✅ A mediana do Chronos-2 bate as duas regras em h=1 e h=4, na leitura descritiva: 67,0 e 136,7.
 - Detalhe: `analises/2026-09-25_modelos_de_fundacao/`.
+
+---
+
+### 1.7 🚫 SARIMA e LASSO explodem; 🔴 a métrica muda o vencedor (25/09/2026)
+
+**O que deu, pelo critério pré-declarado (MAE):**
+
+- 🚫 SARIMA(2,0,0)(0,1,0)₅₂ e LASSO quantílico **explodem** no começo da epidemia de 2024: até 43 mil casos
+  previstos para uma semana com 1.347. AR perto da raiz unitária e extrapolação linear em log.
+- 🚫 O ensemble com pesos aprendidos não bate a régua: 254,3 contra 217,8 em h=12.
+
+**O que a leitura descritiva mostrou, pós-hoc:**
+
+- 🔴 **Pela perda quantílica 0,85**, a métrica coerente com o quantil escolhido pelo projeto, o Chronos-2 tem
+  perda **47% menor que o B0** em h=12: 100,9 contra 191,2.
+- 🔴 **O q0,85 do cenário adotado cobre só 35% das semanas em h=12**, contra o nominal de 85%.
+- ⏳ Exige pré-declaração com a perda quantílica como métrica primária, e decisão sobre qual métrica
+  representa o custo da vigilância.
+- Detalhe: `analises/2026-09-25_sarima_lasso_ensemble/` §5.
 
 ---
 
@@ -602,6 +622,7 @@ Ideias medidas e enterradas. Ficam aqui para não voltarem.
 | Regressão quantílica linear em log | 25/09/2026 | Explode: lags de casos colineares sem penalização; 27 mil previstos contra 1.855. |
 | Taxa de crescimento do vetor | 25/09/2026 | −0,7% em h=12; os lags já carregam a informação. |
 | Modelo de fundação zero-shot para bater a régua em 3 meses | 25/09/2026 | Chronos-2 227,2 e Chronos-Bolt 289,5 contra 217,8 da régua. |
+| SARIMA e LASSO nesta série | 25/09/2026 | Explodem no começo de epidemia: modelo linear ou AR em log sem saturação não serve. |
 
 ---
 

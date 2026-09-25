@@ -33,6 +33,8 @@
   Entra no seminário? Ver `analises/2026-09-25_regua_regras_simples/`.
 - **Automatizar a raspagem** — hoje manual; em 2026 é a única fonte, semana perdida é irrecuperável.
 - **Folha 5 como controle** nas rodadas com folha 20 — recomendado, sem resposta.
+- 🔴 **Métrica primária: MAE × perda quantílica 0,85.** Pelo MAE, a régua vence tudo em 3 meses; pela
+  perda quantílica, o Chronos-2 vence o B0 por 47%. É definição de produto: quanto custa subestimar surto?
 
 ---
 
@@ -54,6 +56,8 @@
   - o vetor piora o alarme (único resultado que sobrevive a Holm, 13/09).
 - ⏳ **Métrica de alarme com folha 20** — nunca medida.
 - ⏳ **Mistura modelo + régua** — a única direção consistente em 4 anos (+5,5%, sem significância).
+- ⏳ **Pré-declarar teste pela perda quantílica** (Chronos-2 × B0) — pós-hoc hoje; e o **q0,85 do cenário
+  adotado cobre só 35%** das semanas em h=12 (nominal 85%). Ver `analises/2026-09-25_sarima_lasso_ensemble/` §5.
 - ⏳ **Vetor ajuda em 2024-2025 e atrapalha em 2022-2023** em três famílias de modelo (HistGB, LightGBM,
   Chronos-2). Explicar antes de 2026-2027. Chronos-2 com casos + vetor, sem clima, não rodou.
 - ⏳ Janelas curtas parecem melhorar o **alarme** em h=12 (0,846 × 0,769) — exploratório.
@@ -90,6 +94,8 @@
   `analises/2026-09-25_bateria_formulacao_do_alvo/`
 - 🚫 **Modelos de fundação zero-shot** (Chronos-Bolt, Chronos-2) não batem a régua em 3 meses; o vetor
   melhora o Chronos-2 (p Holm 0,007), só em 2024-2025. `analises/2026-09-25_modelos_de_fundacao/`
+- 🚫 **SARIMA e LASSO explodem** no começo da epidemia de 2024 (até 43 mil previstos); ensemble não bate a
+  régua pelo MAE. 🔴 Pela perda quantílica, o quadro inverte. `analises/2026-09-25_sarima_lasso_ensemble/`
 - ✅ **Catálogo de modelos prontos:** 34 itens, 26 confirmados. Em 27 capitais, POA foi a pior (R² −0,21 em
   4 semanas); não há modelo preditivo publicado no RS. `analises/2026-09-25_catalogo_modelos_prontos/`
 - ✅ **Novas fontes oficiais** (CEVS 2015-2026, TabNet, IBGE): 2015-2017 não trazem temporada epidêmica.

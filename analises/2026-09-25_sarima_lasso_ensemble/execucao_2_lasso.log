@@ -1,0 +1,9 @@
+[lasso] h= 1  alpha=0.001  5/20 colunas zeradas     7.8s
+[lasso] h= 4  alpha=0.001  5/20 colunas zeradas     7.4s
+[lasso] h= 8  alpha=0.001  3/20 colunas zeradas     7.1s
+[lasso] h=12  alpha=0.001  2/20 colunas zeradas     6.8s
+[lasso_M0] h= 1  alpha=0.001  4/14 colunas zeradas     6.7s
+[lasso_M0] h= 4  alpha=0.001  2/14 colunas zeradas     6.9s
+[lasso_M0] h= 8  alpha=0.001  4/14 colunas zeradas     6.3s
+[lasso_M0] h=12  alpha=0.001  5/14 colunas zeradas     6.0s
+Gravado: previsoes_lasso.csv (2366 linhas)
