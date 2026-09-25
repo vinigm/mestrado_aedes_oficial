@@ -64,6 +64,7 @@
 | 25/09/2026 | Régua das regras simples | ✅ o modelo perde para a regra sazonal em h=8 e h=12 |
 | 25/09/2026 | Varredura de literatura | ✅ perder para régua em 3 meses é comum |
 | 25/09/2026 | Bateria de formulação do alvo | 🚫 seis variantes, nenhuma melhora nem bate a régua |
+| 25/09/2026 | Modelos de fundação zero-shot | 🚫 não batem a régua; ⚠️ o vetor ajuda o Chronos-2 só em 2024-2025 |
 
 ---
 
@@ -163,6 +164,24 @@ feito depois de ver a avaliação. Certificado por reimplementação independent
 - 🚫 Resíduo sobre o ano anterior e regressão linear em log **explodem**: previsões de 10 a 27 mil casos.
 - ⚠️ A mistura 50/50 com a régua é a única direção consistente em 4 anos: +5,5%, sem significância.
 - Detalhe: `analises/2026-09-25_bateria_formulacao_do_alvo/`.
+
+---
+
+### 1.6 🚫 Modelos de fundação não batem a régua (25/09/2026)
+
+**Por quê.** Testar se o limite é de dado: um modelo pré-treinado em milhões de séries traz conhecimento
+que 4 temporadas não dão.
+
+**Como.** Chronos-Bolt e Chronos-2, sem treinar nos nossos dados, contexto até a origem, pré-declarado.
+
+**O que deu.**
+
+- 🚫 **Nenhum bate a régua nem melhora o B0 em h=12.** O melhor, Chronos-2 só com casos, erra 227,2
+  contra 217,8 da régua.
+- ⚠️ **O vetor melhora o Chronos-2 com clima** em h=4, 8 e 12, p Holm ≤ 0,007. Mas atrapalha em
+  2022-2023 e ajuda em 2024-2025, o mesmo padrão da folha 20.
+- ✅ A mediana do Chronos-2 bate as duas regras em h=1 e h=4, na leitura descritiva: 67,0 e 136,7.
+- Detalhe: `analises/2026-09-25_modelos_de_fundacao/`.
 
 ---
 
@@ -582,6 +601,7 @@ Ideias medidas e enterradas. Ficam aqui para não voltarem.
 | Resíduo sobre o ano anterior como alvo | 25/09/2026 | Explode: âncora acima do treino (1.109 × máx. 879) vezes crescimento de 9,5×. |
 | Regressão quantílica linear em log | 25/09/2026 | Explode: lags de casos colineares sem penalização; 27 mil previstos contra 1.855. |
 | Taxa de crescimento do vetor | 25/09/2026 | −0,7% em h=12; os lags já carregam a informação. |
+| Modelo de fundação zero-shot para bater a régua em 3 meses | 25/09/2026 | Chronos-2 227,2 e Chronos-Bolt 289,5 contra 217,8 da régua. |
 
 ---
 

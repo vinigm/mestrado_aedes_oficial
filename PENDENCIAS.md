@@ -31,7 +31,6 @@
   −0,07 do clima. Muda o diferencial da tese. Ver `analises/2026-09-25_varredura_literatura/` §2.
 - **Como apresentar a régua sazonal:** o modelo perde para "mesma semana do ano passado" em 2 e 3 meses.
   Entra no seminário? Ver `analises/2026-09-25_regua_regras_simples/`.
-- **Modelos de fundação zero-shot** (Chronos, TimesFM): exigem instalar pacote e baixar pesos. Autorizar?
 - **Automatizar a raspagem** — hoje manual; em 2026 é a única fonte, semana perdida é irrecuperável.
 - **Folha 5 como controle** nas rodadas com folha 20 — recomendado, sem resposta.
 
@@ -55,6 +54,8 @@
   - o vetor piora o alarme (único resultado que sobrevive a Holm, 13/09).
 - ⏳ **Métrica de alarme com folha 20** — nunca medida.
 - ⏳ **Mistura modelo + régua** — a única direção consistente em 4 anos (+5,5%, sem significância).
+- ⏳ **Vetor ajuda em 2024-2025 e atrapalha em 2022-2023** em três famílias de modelo (HistGB, LightGBM,
+  Chronos-2). Explicar antes de 2026-2027. Chronos-2 com casos + vetor, sem clima, não rodou.
 - ⏳ Janelas curtas parecem melhorar o **alarme** em h=12 (0,846 × 0,769) — exploratório.
 - ⏳ **Defasagem vetor → casos nunca estimada no projeto.** da Silva 2026 mede τ 0,27 · 0,50 · 0,59 nos
   lags 0 · 4 · 8 semanas; replicar com os nossos dados.
@@ -87,6 +88,8 @@
 - 🚫 **Seis formulações novas reprovadas** — log, âncora como atributo, resíduo, crescimento do vetor,
   linear, mistura. Nenhuma melhora nem bate a régua; resíduo e linear explodem.
   `analises/2026-09-25_bateria_formulacao_do_alvo/`
+- 🚫 **Modelos de fundação zero-shot** (Chronos-Bolt, Chronos-2) não batem a régua em 3 meses; o vetor
+  melhora o Chronos-2 (p Holm 0,007), só em 2024-2025. `analises/2026-09-25_modelos_de_fundacao/`
 - ✅ **Novas fontes oficiais** (CEVS 2015-2026, TabNet, IBGE): 2015-2017 não trazem temporada epidêmica.
   `analises/2026-09-25_novas_fontes_oficiais/`
 

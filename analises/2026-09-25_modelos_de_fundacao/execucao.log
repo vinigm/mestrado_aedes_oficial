@@ -1,0 +1,29 @@
+[hub] amazon/chronos-2@29ec3766 — created_at=2025-10-30 14:54:39+00:00 last_modified=2026-06-05 11:55:42+00:00
+[hub] amazon/chronos-bolt-base@5d9f166d — created_at=2024-11-25 09:47:43+00:00 last_modified=2025-11-21 12:53:22+00:00
+[travas] Travas 1 e 5 OK — pareamento e âncoras conferem.
+Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 9576.69it/s]
+[carga] Chronos-Bolt (amazon/chronos-bolt-base@5d9f166d) carregado em 0.1s.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/170 [00:00<?, ?it/s]Loading weights: 100%|██████████| 170/170 [00:00<00:00, 5566.65it/s]
+[carga] Chronos-2 (amazon/chronos-2@29ec3766) carregado em 0.2s.
+[previsao] 295 origens distintas a prever, 4 braços cada.
+    25/295 origens previstas (0.11s a última).
+    50/295 origens previstas (0.23s a última).
+    75/295 origens previstas (0.10s a última).
+    100/295 origens previstas (0.10s a última).
+    125/295 origens previstas (0.13s a última).
+    150/295 origens previstas (0.11s a última).
+    175/295 origens previstas (0.12s a última).
+    200/295 origens previstas (0.12s a última).
+    225/295 origens previstas (0.12s a última).
+    250/295 origens previstas (0.12s a última).
+    275/295 origens previstas (0.14s a última).
+    295/295 origens previstas (0.13s a última).
+[travas] Trava 3 OK — 5 origens repetidas deram resultado idêntico.
+[gravação] /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_modelos_de_fundacao/saidas/previsoes_por_braco.csv gravado (4636 linhas).
+[gravação] /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_modelos_de_fundacao/saidas/familia_h1_bate_regua.csv gravado (12 linhas).
+[gravação] /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_modelos_de_fundacao/saidas/familia_h2_melhora_b0.csv gravado (16 linhas).
+[gravação] /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_modelos_de_fundacao/saidas/familia_h3_vetor_no_chronos2.csv gravado (4 linhas).
+[gravação] /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_modelos_de_fundacao/saidas/leituras_descritivas.csv gravado (128 linhas).
+[gravação] /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_modelos_de_fundacao/saidas/figura_mae_por_horizonte.png gravado.
+[fim] Bateria completa em 43.1s.

@@ -101,6 +101,8 @@ configurações de LightGBM; o HistGradientBoosting fica entre +8,9 e −11,2.
 ⚠️ **EXPLORATÓRIO (24/09) — com folha mínima 20, o vetor reduz o erro de 3 meses em 12-16%**, no HistGB e no
 LightGBM (p Holm 0,015 e 0,0001). Com a folha 5 do cenário adotado, não reduz. Efeito carregado por 2024.
 Ver `analises/2026-09-23_bateria_noturna/`.
+O mesmo padrão aparece no Chronos-2, um modelo de fundação (25/09): o vetor ajuda em 2024-2025 e atrapalha
+em 2022-2023. Ver `analises/2026-09-25_modelos_de_fundacao/`.
 
 ### 3.3 O vetor no alarme de surto
 
