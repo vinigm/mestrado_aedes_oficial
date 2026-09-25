@@ -1,0 +1,3 @@
+braco,descricao,n_features,clima_escolhido,sem_vetor
+B0,"HistGB folha minima 20, com vetor (trava 2, base de tudo)",20.0,temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4,False
+V6_mistura,"media 0,5/0,5 entre B0 e a regra sazonal, sem treino",,,False

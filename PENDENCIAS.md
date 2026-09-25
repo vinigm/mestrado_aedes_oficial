@@ -1,183 +1,115 @@
 # PENDENCIAS — fila viva do projeto
 
-> Leitura de 3 minutos. Este arquivo é `@importado` em toda sessão, então **tamanho é custo**: teto de
-> ~100 linhas, item de 1 a 2 linhas, zero detalhe de mecânica.
->
-> Retrato do sistema: [ESTADO.md](ESTADO.md) · O que já foi testado e por quê:
-> [HISTORICO_DE_TESTES.md](HISTORICO_DE_TESTES.md) · Eixo fino: `git log`.
->
-> Status: ✅ resolvido · ⏳ em aberto · 🚫 descartado (com data e quem decidiu).
-> **Regra de 29/08/2026:** não existe item "aguarda o orientador". Método é decisão nossa,
-> pré-declarada por escrito antes de rodar.
+> Leitura de 3 minutos. `@importado` em toda sessão: **tamanho é custo**, teto de ~100 linhas, item de 1 a
+> 2 linhas. Retrato do sistema: [ESTADO.md](ESTADO.md) · Testes: [HISTORICO_DE_TESTES.md](HISTORICO_DE_TESTES.md)
+> · Eixo fino: `git log`. Status: ✅ resolvido · ⏳ em aberto · 🚫 descartado (com data e quem decidiu).
+> **Regra de 29/08/2026:** não existe "aguarda o orientador". Método é decisão nossa, pré-declarada.
 
 ---
 
-## 🔴 SEMINÁRIO DE ANDAMENTO — prazo curto
+## 🔴 SEMINÁRIO DE ANDAMENTO — prazo curto (reunião de 21/09/2026)
 
-Definido na reunião de 21/09/2026 com o orientador.
-
-- **Preencher título, resumo, palavras-chave e enquadramento** no sistema do PPGC, para ele agendar a
-  banca (provável: Mariana e Anderson). ⚠️ O PDF do trabalho é **opcional** — ele disse para esquecer.
-- **Slides de até 10 minutos**: problema, importância, metodologia, resultados, próximos passos. O
-  **último slide é de direcionamentos**, com o que saiu da reunião. Ideal até o fim de semana.
-- ⚠️ **Escopo do seminário é SÓ DENGUE.** As outras arboviroses ficam para depois. Instrução direta
-  dele: não chegar na apresentação dizendo "não teve correlação com mosquito ou clima".
-- ✅ **Site reconstruído e publicado** (23/09): 5 páginas, números pós-correção, avisos em todo
-  cenário ainda contaminado. 🚫 Página-roteiro **descartada** — decisão do Vinicius em 23/09: o site
-  novo é navegável sem tutorial. ⏳ Falta o orientador mandar o link a Mariana e Mansilha.
-- ✅ **Dados de mosquito prontos para envio** (21/09): `brutos_secretarias_limpos/`, 12 arquivos,
-  460 mil inspeções, com `LEIA.md`. ⏳ Falta o Vinicius mandar. ⚠️ **Sem coordenada, então ele não
-  consegue fazer análise espacial** com esses arquivos.
-- ✅ **Lista de modelos publicada** na página **Cenários testados** do site, com a coluna "modelos
-  testados" por cenário, para ele conferir sobreposição com o Bruno.
-
-**Depois do seminário a pesquisa CONGELA** e o foco passa a ser o artigo para periódico.
-
-- ✅ **Esqueleto LaTeX do artigo** em `../artigo_oficial/` (23/09), compilando com `tectonic`. ⏳ Falta
-  escolher **periódico-alvo** e idioma; ⚠️ a pasta está **fora do git**. Ver `../artigo_oficial/README.md`.
+- ⏳ **Preencher título, resumo, palavras-chave e enquadramento** no sistema do PPGC. Banca provável: Mariana
+  e Anderson. O PDF é opcional.
+- ⏳ **Slides de até 10 min**, último slide de direcionamentos. **Escopo só dengue.** Não dizer "não teve
+  correlação com mosquito ou clima".
+- ⏳ Orientador mandar o link do site a Mariana e Mansilha · Vinicius mandar `brutos_secretarias_limpos/`
+  (sem coordenada: não serve para análise espacial).
+- 🧭 **Dois marcos, definidos pelo Vinicius em 25/09:** **pré-montagem** = site no ar, commit `710b411`,
+  o que os professores viram · **pós-montagem** = de `22b70a6` em diante, só local. ⚠️ Os professores
+  não sabem da folha 20 nem da régua sazonal.
+- 📩 **Mansilha, 24/09:** textos com tom de "IA marqueteira", dupla negação, site que *"depõe contra quem
+  nos forneceu os dados"*; propõe hipótese de subnotificação 2013-2021.
+- **Depois do seminário a pesquisa CONGELA** e o foco vira o artigo (`../artigo_oficial/`, fora do git).
 
 ---
 
 ## ⏳ Destrava com o VINICIUS
 
-- **Escolher o eixo da tese.** A de 29/08 caiu em 13/09; o orientador propôs outra em 21/09. Candidatos
-  e ressalvas medidas em [ESTADO.md](ESTADO.md) §4.
-
-- **Automatizar a raspagem** — hoje 100% manual. Em 2026 a raspagem é a única fonte, então uma semana
-  perdida é irrecuperável.
+- **Escolher o eixo da tese.** Candidatos em [ESTADO.md](ESTADO.md) §4.
+- 🔴 **Ler da Silva et al. 2026, PLOS NTD** — mesma cidade e mesma armadilha, vetor com R² 0,46 contra
+  −0,07 do clima. Muda o diferencial da tese. Ver `analises/2026-09-25_varredura_literatura/` §2.
+- **Como apresentar a régua sazonal:** o modelo perde para "mesma semana do ano passado" em 2 e 3 meses.
+  Entra no seminário? Ver `analises/2026-09-25_regua_regras_simples/`.
+- **Modelos de fundação zero-shot** (Chronos, TimesFM): exigem instalar pacote e baixar pesos. Autorizar?
+- **Automatizar a raspagem** — hoje manual; em 2026 é a única fonte, semana perdida é irrecuperável.
+- **Folha 5 como controle** nas rodadas com folha 20 — recomendado, sem resposta.
 
 ---
 
 ## ⏳ Decisões NOSSAS a pré-declarar
 
-- **Recorte da tese** — depende do eixo acima. Redigir a pré-declaração formal (hipóteses, métricas,
-  correção múltipla) **antes** de rodar qualquer coisa nova.
-
-- **Alvo da predição**: abundância do vetor (letra do PEP) × casos (o que o código faz). Aberto desde
-  jun/2026. ⚠️ O PEP declara o vetor; a direção atual prevê casos. É inversão do objeto, não ajuste.
-
-- **Corte de maturidade**: hoje 12 semanas no config; medido real em 22.470 casos de 2025 =
-  mediana 10,4 · p75 22,7 · p90 31,6.
+- **Recorte da tese** — depende do eixo. Pré-declaração formal antes de qualquer rodada nova.
+- **Alvo:** vetor (letra do PEP) × casos (o código). O PEP também erra o horizonte: é **3 meses**
+  (decisão do Vinicius, 23/09), não 1-4 semanas.
+- **Residência × notificação** — o Estado usa residência; o projeto usa notificação, ~10% maior em POA.
+- **Corte de maturidade** 12 semanas; medido em 2025: mediana 10,4 · p90 31,6. Só testável com dado vintage.
 
 ---
 
-## ⏳ Rodadas candidatas (nenhuma pré-declarada ainda)
+## ⏳ Rodadas candidatas
 
-- ✅ **Horizonte é 3 meses. Decisão do Vinicius em 23/09/2026.** O PEP declara 1 a 4 semanas e está
-  **errado** — corrigir o PEP, não o código. Era a origem provável do `LAGS_SEMANAS=[1,2,3,4]`.
-
-- **Janela de lag nunca foi ablacionada.** `[1,2,3,4]` veio hardcoded do código pré-refatoração, sem
-  comentário (único commit: `355795a`, migração byte a byte). Estender a janela curta para 5-12
-  semanas: ✅ testado em 23/09, não ajuda — nem em todas as colunas, nem só no vetor. Lag52/104 refeito
-  sem vazamento em 24/09: também não ajuda.
-
-- 🚫 **Validar o ENSO** — descartado em 24/09/2026: o "+7% em h=8" era vazamento. Refeito limpo, o ENSO
-  não muda h=8 e piora h=12 em 11,6%. Ver `analises/2026-09-23_bateria_noturna/bloco_2_features_longas/`.
-- ⏳ **Rodada confirmatória do vetor com folha mínima 20** — exploratório na bateria noturna: com folha 20,
-  o vetor reduz o erro de h=12 em 12-16% (HistGB e LightGBM, p Holm ≤ 0,015), mas carregado por 2024.
-  Pré-declarar e testar na temporada 2026-2027. Ver o dossiê da bateria noturna.
-- ⏳ **Corte de maturidade só é testável com dados vintage** — o corte age uma vez no fim da série; o
-  walk-forward atual é cego a ele.
-- **Confirmar que o vetor piora o alarme** — só a temporada 2026-2027 torna o achado confirmatório.
-- ⏳ Janelas curtas parecem melhorar o **alarme** em h=12 (sensib. 0,846 × 0,769) — exploratório, exige
-  pré-declaração própria. Ablação de janela e métrica de alarme: feitas em 13/09.
+- **Confirmatória em 2026-2027** — o único juiz que resta. Pré-declarar antes da temporada:
+  - vetor com folha 20 em 3 meses (exploratório: −12 a −16% de erro, carregado por 2024);
+  - modelo contra a régua sazonal, por skill score;
+  - o vetor piora o alarme (único resultado que sobrevive a Holm, 13/09).
+- ⏳ **Métrica de alarme com folha 20** — nunca medida.
+- ⏳ **Mistura modelo + régua** — a única direção consistente em 4 anos (+5,5%, sem significância).
+- ⏳ Janelas curtas parecem melhorar o **alarme** em h=12 (0,846 × 0,769) — exploratório.
+- ⏳ **Defasagem vetor → casos nunca estimada no projeto.** da Silva 2026 mede τ 0,27 · 0,50 · 0,59 nos
+  lags 0 · 4 · 8 semanas; replicar com os nossos dados.
 
 ---
 
 ## ⏳ Dívida técnica
 
-- **`cidade_referencia.py` desatualizado** — aponta para quantil 0,80; a vencedora agora é 0,85.
-- **Seleção das 6 colunas de clima fica fora do walk-forward** — escolhida uma vez só, treinando nos
-  **60% mais antigos** (18/03/2018 a 27/11/2022, medido em 23/09). Contamina só as semanas avaliadas
-  DENTRO desse período; depois de 12/2022 a avaliação está limpa nesse aspecto. Ranking instável:
-  recortando em 2023, 4 das 6 mudam.
-- **`rodar_regressao_selecao_clima` não pareia M0 e M1** — a diferença mistura efeito do vetor com
-  efeito de avaliar em semanas diferentes.
-- **A pasta `../Contexto/` está fora do git**, sem histórico. Os 4 documentos vivos entraram no
-  repositório em 13/09/2026.
-- **`bairro_surto` recebeu a correção mas não foi re-rodado** — segue contaminado no painel.
-- **Corrigir o docstring de `modelagem_aedes/acesso/fontes.py`**: ele afirma taxa de confirmação de
-  99,6% em 2023, e o medido é **69,3%**. A direção da alegação se sustenta, o número não.
-- **`testar_remedios.py` usa hiperparâmetros diferentes do cenário 1** (300/31/20 contra 250/15/5),
-  apesar do comentário dizer que são iguais.
-- Miúdos: testes das funções de bairro · `linha_do_tempo_dados()` é código morto · CSVs de previsão sem
-  `data_origem`/`data_alvo` · deck de `../Apresentacao_andamento/2026-06-19/` conta a história antiga.
+- **Seleção das 6 colunas de clima fora do walk-forward** — treina nos 60% mais antigos (até 27/11/2022);
+  contamina só a avaliação até 12/2022. Ranking instável.
+- **`rodar_regressao_selecao_clima` não pareia M0 e M1.**
+- **`bairro_surto` corrigido mas não re-rodado** — segue contaminado no painel.
+- **`cidade_lift_vetor` não registrou run no MLflow** em 23/09 — causa não investigada.
+- **Docstring de `acesso/fontes.py`** afirma 99,6% de confirmação em 2023; o medido é **69,3%**.
+- **`testar_remedios.py`** usa hiperparâmetros diferentes do cenário 1 apesar do comentário.
+- **`provar_sinal_da_ancora`** da bateria de 25/09 é tautológica — a garantia veio da revisão.
+- **`../Contexto/` e `../artigo_oficial/` fora do git**, sem histórico.
+- Miúdos: testes de bairro · `linha_do_tempo_dados()` morto · CSVs sem `data_origem` · deck de 19/06 antigo.
+
+---
 
 ## Registro cronológico
 
-### 24/09/2026 — bateria noturna: o resultado negativo do vetor era de um hiperparâmetro
+### 25/09/2026 — a régua sazonal, a literatura e a bateria de formulação
 
-- 🔴 **Com folha mínima 20, o vetor reduz o erro de 3 meses** em dois algoritmos (p Holm 0,015 e 0,0001).
-  No cenário adotado, folha 5, não reduz. ⚠️ Efeito carregado por 2024; exploratório.
-- ✅ Modelo adotado depende mais do vetor que do histórico de casos de 1 a 3 meses à frente.
-- 🚫 ENSO de agosto era vazamento. Referência **não muda**: nada passou no critério de troca.
-- ⚠️ **Não repetir "o vetor não melhora a previsão"** sem "do HistGB com folha mínima 5".
-- Dossiê: `analises/2026-09-23_bateria_noturna/README.md`. Site e slides não foram mexidos.
+- 🔴 **O modelo perde para "mesma semana do ano passado"** em h=8 e h=12 (MAE 217,8 × 243,8 a 278,8),
+  inclusive na perda quantílica. Certificado por reimplementação. `analises/2026-09-25_regua_regras_simples/`
+- ✅ **Varredura de literatura:** 40 achados, 32 confirmados na fonte, 0 refutados. Perder para régua em
+  3 meses é comum. `analises/2026-09-25_varredura_literatura/`
+- 🚫 **Seis formulações novas reprovadas** — log, âncora como atributo, resíduo, crescimento do vetor,
+  linear, mistura. Nenhuma melhora nem bate a régua; resíduo e linear explodem.
+  `analises/2026-09-25_bateria_formulacao_do_alvo/`
+- ✅ **Novas fontes oficiais** (CEVS 2015-2026, TabNet, IBGE): 2015-2017 não trazem temporada epidêmica.
+  `analises/2026-09-25_novas_fontes_oficiais/`
 
-### 23/09/2026 — o site é reconstruído do zero e republicado
+### 24/09/2026 — bateria noturna
 
-- ✅ **Artigo oficial iniciado:** esqueleto em `../artigo_oficial/`, conteúdo separado da casca do periódico.
-- ✅ **Painel novo no ar**, gerado por `NOVO_HTML/` em vez de `pagina_web/`. Cinco páginas: Início ·
-  Dados · Cenários testados · Cenário adotado · Próximos passos. O site antigo saiu do ar (vive no git).
-- ✅ **Todo número sai de um arquivo só** (`numeros_do_projeto.py`), e cenário com execução anterior a
-  13/09 aparece com aviso de número superado — hoje 5 dos 9.
-- 🔴 **Achado: só `cidade_regressao` rodou com os 9 algoritmos.** Os outros 8 cenários usam LightGBM
-  apenas, por desenho. Confirmado por 3 varreduras independentes contra MLflow, config e git log.
-- ✅ **`cidade_lift_vetor` re-rodado** (43 min). Conclusão se mantém, números caem muito: só-clima em
-  12 semanas vai de R² 0,595 para **0,014**. ⏳ Não registrou run no MLflow — o painel ainda mostra
-  29/08. Causa não investigada.
-- 🔴 **Correção no [ESTADO.md](ESTADO.md) §4:** a hierarquia dos alvos estava invertida. Casos seguem
-  **primários**, previstos a partir do vetor; prever o vetor é **secundário** (transcrição, linhas 913–921).
-- ✅ **Slides do seminário montados** na página Seminário de Andamento do site: 13 slides, trilha
-  horizontal de progresso, figuras próprias em formato largo (`NOVO_HTML/figuras_slides.py`).
-- ✅ **Site listava só as 36 colunas do arquivo sob o título "Tabela de Atributos Final"** — quem lia
-  concluía que o modelo prevê a 3 meses com valores da própria semana. Seção nova separa as colunas do
-  arquivo dos **20 atributos** que o modelo recebe (núcleo 8 · vetor 6 · clima 6 de 42 candidatas).
-- ✅ **Janela de treino certificada** (15 agentes Sonnet, 2 céticos por dimensão): treino começa mesmo
-  em 18/02/2018, por `dropna` no alvo deslocado, não por filtro de data. Lag máximo é **4 semanas**,
-  então 2012-2017 não alimenta o cenário adotado nem como insumo.
-- ⏳ **Leitura de gráfico, não medição:** em 2022-2025 a subida do vetor vem antes da dos casos.
-  ⚠️ Pelo **pico**, 2025 empata — a defasagem segue sem estimativa.
-- ⏳ **Rodada da noite, não disparada:** re-rodar `cidade_regressao_com_enso`, `_sem_enso` e
-  `bairro_surto` (~5h). Exige pré-declaração antes.
+- 🔴 **Com folha mínima 20, o vetor reduz o erro de 3 meses** (p Holm 0,015 e 0,0001); com folha 5, não.
+  Carregado por 2024. Não repetir "o vetor não melhora" sem "do HistGB com folha 5".
+- 🚫 ENSO de agosto era vazamento. Lags de 5-12 e 52/104 semanas não ajudam. `analises/2026-09-23_bateria_noturna/`
+- ✅ `cidade_referencia.py` corrigido para quantil **0,85** (commit `22b70a6`, 23/09).
 
+### 23/09/2026 — site reconstruído e publicado (`710b411`)
 
-### 21/09/2026 — reunião com o orientador, e a pesquisa ganha eixo novo
+- ✅ Painel novo por `NOVO_HTML/` e slides do seminário. 🔴 Só `cidade_regressao` rodou os 9 algoritmos.
+  ✅ Treino certificado: começa em 18/02/2018; 2012-2017 não alimenta o cenário adotado.
 
-- 🔄 **Eixo novo, para depois do seminário:** prever os casos **a partir da** proliferação do vetor.
-  ⚠️ Corrigido em 23/09: casos seguem **primários**; prever o vetor é **secundário**. Agregar as
-  arboviroses de vetor único, quantificar a defasagem entre as duas curvas, incluir horizonte de
-  6 meses, janela 2022–2025. Detalhe e ressalvas em [ESTADO.md](ESTADO.md) §4.
-- ⚠️ **A preocupação dele:** o vetor não impactar *"indica que deve ter algum problema na metodologia"*.
-- ✅ Seminário destravado; banca provável com Mariana e Anderson. Pesquisa **congela** depois dele.
-- 🎯 Desafio sem valer nota: prever a curva de mosquito 2026-2027 e comparar em julho/2027.
-- ✅ **Dados da Secretaria limpos para envio.** `OCOR` saiu porque tinha nome, celular e endereço
-  digitados à mão — achado pela varredura, não por precaução. 16,5 mi de células conferidas contra
-  o original: 55 divergem, todas explicadas. O datalake não foi tocado.
-- ✅ Site ganhou página-roteiro e página de modelos testados.
-- Transcrição em `../Reunioes de andamento/2026-09-21 - Alinhamento com o professor...md`.
-  ⚠️ **Rótulos de quem fala estão trocados** em vários trechos — atribuir pelo conteúdo.
+### 21/09/2026 — reunião com o orientador
+
+- 🔄 Eixo pós-seminário: casos a partir do vetor. ⚠️ Ele: o vetor não impactar *"indica que deve ter algum
+  problema na metodologia"*. ✅ Dados da Secretaria limpos. ⚠️ Rótulos de quem fala trocados na transcrição.
 
 ### 13/09/2026 — o dia do vazamento
 
-- 🔴 **Vazamento temporal descoberto e corrigido.** O treino era cortado pela data da pergunta, não pela
-  da resposta. Custo medido: **+52% de MAE em h=12**, R² de 0,758 → **0,437**. 152 células re-rodadas,
-  6 controles independentes com diferença zero.
-- 🚫 **Núcleo da tese refutado** — a equivalência clima × vetor fecha 1 de 8, não 4 de 8.
-- 🚫 **"A perda importa mais que o algoritmo" refutado** — a ordem inverteu.
-- 🔴 **Único resultado do projeto que sobrevive a Holm:** o vetor **piora** o alarme de surto em h=12
-  (p Holm 0,037, n=553). E o achado positivo de 29/08 que sobrevivia a Holm era vazamento.
-- ✅ **Camada espacial ficou mais forte:** a regra simples vence o ML em **8 de 8**.
-- ✅ Nova configuração de referência: HistGB · quantil **0,85** · com vetor.
-- ✅ Script perdido do ranking do grid reconstruído e validado.
-- Detalhe: `analises/2026-09-13_auditoria_mecanica_resultados/` e `.../2026-09-13_correcao_vazamento_treino/`.
+- 🔴 Treino cortado pela data da pergunta: +52% de MAE em h=12 ao corrigir. 🚫 Núcleo da tese refutado.
+- 🔴 Único resultado que sobrevive a Holm: o vetor **piora** o alarme em h=12 (p 0,037).
 
-### Antes de 13/09/2026
-
-- **30/08** — grid de 120 execuções escolheu a configuração de referência; alvo decidido (confirmados);
-  viés de pico tratado com perda quantílica. ⚠️ Quase tudo refeito em 13/09.
-- **29/08** — clima recapturado desde 2012 (388 → 727 semanas); painel publicado; escopo podado
-  (casos por bairro descartados por Comitê de Ética).
-- **16/08** — base corrigida e certificada, validada contra a Marília com diferença zero.
-
-> Detalhe de cada teste, com pergunta, método e conclusão: [HISTORICO_DE_TESTES.md](HISTORICO_DE_TESTES.md).
+### Antes: 30/08 grid de 120 execuções · 29/08 clima desde 2012 · 16/08 base certificada contra a Marília.

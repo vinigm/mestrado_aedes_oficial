@@ -1,0 +1,27 @@
+
+  TRAVA DE VALIDACAO — referencia contra o painel publicado
+    h= 1  MAE    98.0 (painel   98.0)  R2  0.898 (painel 0.898)  ok
+    h= 4  MAE   219.7 (painel  219.7)  R2  0.628 (painel 0.628)  ok
+    h= 8  MAE   272.6 (painel  272.6)  R2  0.450 (painel 0.450)  ok
+    h=12  MAE   278.8 (painel  278.7)  R2  0.437 (painel 0.437)  ok
+    veredito: VALIDO
+
+  TRAVA 2 — B0 contra o HistGB_folha20_M1 do bloco 7
+    h= 1  MAE   133.6 (esperado  133.6)  n=102 (esperado 102)  ok
+    h= 4  MAE   199.6 (esperado  199.6)  n=102 (esperado 102)  ok
+    h= 8  MAE   223.2 (esperado  223.2)  n=102 (esperado 102)  ok
+    h=12  MAE   243.8 (esperado  243.8)  n=102 (esperado 102)  ok
+    veredito: VALIDO
+
+  TRAVE 3 — clima escolhido, por braço
+                referencia: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+                        B0: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+               V1_alvo_log: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+        V2_ancora_atributo: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+         V3_ancora_residuo: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+      V3_ancora_residuo_M0: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+      V4_crescimento_vetor: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+             V5_linear_log: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+    veredito: VALIDO
+
+Consolidacao concluida. CSVs e figura gravados em saidas/.

@@ -1,0 +1,75 @@
+[referencia] h= 1  295 sem    38.6s
+[referencia] h= 4  292 sem    40.4s
+[referencia] h= 8  288 sem    39.9s
+[referencia] h=12  284 sem    35.8s
+[B0] h= 1  295 sem    24.5s
+[B0] h= 4  292 sem    23.5s
+[B0] h= 8  288 sem    21.0s
+[B0] h=12  284 sem    20.6s
+[V1_alvo_log] h= 1  295 sem    26.3s
+[V1_alvo_log] h= 4  292 sem    25.1s
+[V1_alvo_log] h= 8  288 sem    24.7s
+[V1_alvo_log] h=12  284 sem    24.4s
+[V2_ancora_atributo] h= 1  248 sem    19.0s
+[V2_ancora_atributo] h= 4  248 sem    18.3s
+[V2_ancora_atributo] h= 8  248 sem    18.8s
+[V2_ancora_atributo] h=12  248 sem    19.2s
+[V3_ancora_residuo] h= 1  248 sem    20.5s
+[V3_ancora_residuo] h= 4  248 sem    21.1s
+[V3_ancora_residuo] h= 8  248 sem    20.4s
+[V3_ancora_residuo] h=12  248 sem    21.1s
+[V3_ancora_residuo_M0] h= 1  260 sem    21.6s
+[V3_ancora_residuo_M0] h= 4  260 sem    21.7s
+[V3_ancora_residuo_M0] h= 8  260 sem    20.2s
+[V3_ancora_residuo_M0] h=12  260 sem    19.7s
+[V4_crescimento_vetor] h= 1  295 sem    24.7s
+[V4_crescimento_vetor] h= 4  292 sem    23.6s
+[V4_crescimento_vetor] h= 8  288 sem    22.8s
+[V4_crescimento_vetor] h=12  284 sem    20.6s
+[V5_linear_log] h= 1  295 sem     3.6s
+[V5_linear_log] h= 4  292 sem     3.0s
+[V5_linear_log] h= 8  288 sem     3.2s
+[V5_linear_log] h=12  284 sem     2.7s
+Gravado: previsoes_parcial__referencia_B0_V1_alvo_log_V2_ancora_atributo_V3_ancora_residuo_V3_ancora_residuo_M0_V4_crescimento_vetor_V5_linear_log.csv (8819 linhas)
+
+  TRAVA DE VALIDACAO — referencia contra o painel publicado
+    h= 1  MAE    98.0 (painel   98.0)  R2  0.898 (painel 0.898)  ok
+    h= 4  MAE   219.7 (painel  219.7)  R2  0.628 (painel 0.628)  ok
+    h= 8  MAE   272.6 (painel  272.6)  R2  0.450 (painel 0.450)  ok
+    h=12  MAE   278.8 (painel  278.7)  R2  0.437 (painel 0.437)  ok
+    veredito: VALIDO
+
+  TRAVA 2 — B0 contra o HistGB_folha20_M1 do bloco 7
+    h= 1  MAE   133.6 (esperado  133.6)  n=102 (esperado 102)  ok
+    h= 4  MAE   199.6 (esperado  199.6)  n=102 (esperado 102)  ok
+    h= 8  MAE   223.2 (esperado  223.2)  n=102 (esperado 102)  ok
+    h=12  MAE   243.8 (esperado  243.8)  n=102 (esperado 102)  ok
+    veredito: VALIDO
+
+  TRAVE 3 — clima escolhido, por braço
+                referencia: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+                        B0: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+               V1_alvo_log: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+        V2_ancora_atributo: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+         V3_ancora_residuo: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+      V3_ancora_residuo_M0: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+      V4_crescimento_vetor: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+             V5_linear_log: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+    veredito: VALIDO
+Traceback (most recent call last):
+  File "/Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_bateria_formulacao_do_alvo/rodar.py", line 1128, in <module>
+    main()
+    ~~~~^^
+  File "/Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_bateria_formulacao_do_alvo/rodar.py", line 1093, in main
+    consolidar_e_analisar()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_bateria_formulacao_do_alvo/rodar.py", line 1050, in consolidar_e_analisar
+    familia_f1 = montar_familia_f1(avaliacao)
+  File "/Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_bateria_formulacao_do_alvo/rodar.py", line 870, in montar_familia_f1
+    comparacoes.append(harness.comparar_pareado(previsoes_avaliacao, "B0", nome_da_variante, horizonte))
+                       ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-23_bateria_noturna/harness.py", line 353, in comparar_pareado
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Nenhuma semana em comum entre B0 e V6_mistura em h=1.

@@ -7,7 +7,7 @@
 > Retrato do sistema hoje: [ESTADO.md](ESTADO.md) · Fila viva: [PENDENCIAS.md](PENDENCIAS.md)
 > Detalhe de cada teste: pasta datada em `analises/`
 >
-> Atualizado em **13/09/2026**.
+> Atualizado em **25/09/2026**.
 
 ---
 
@@ -51,7 +51,7 @@
 | 30/08/2026 | Calibração quantílica — qual alpha | ✅ superado pelo grid |
 | 30/08/2026 | Vetor no modelo calibrado | ⚠️ 6 de 8, nada em Holm |
 | 30/08/2026 | Grid completo — 120 execuções | 🚫 refeito em 13/09 |
-| 30/08/2026 | Features de longo prazo | ⏳ só ENSO passou, não validado |
+| 30/08/2026 | Features de longo prazo | 🚫 o ENSO era vazamento, refeito em 24/09 |
 | 30/08/2026 | Alvo e features do InfoDengue | ✅ alvo = confirmados |
 | 30/08/2026 | Teste decisivo de alvos | ✅ janela equalizada derruba o achado |
 | 30/08/2026 | Teste focado em h=12 | ⚠️ 5 sementes, nada em Holm |
@@ -59,6 +59,11 @@
 | 13/09/2026 | Correção do vazamento — 152 células | ✅ tudo remedido |
 | 13/09/2026 | Métrica de alarme de verdade | ✅ 97% em h=4, 77% em h=12 |
 | 13/09/2026 | Janela de treino para o alvo casos | ✅ indeterminado, e pouco importa |
+| 23/09/2026 | Janela de lag de 4 para 8 ou 12 semanas | 🚫 não ajuda |
+| 24/09/2026 | Bateria noturna, blocos 2 a 7 | ⚠️ com folha 20 o vetor ajuda em 3 meses; exploratório |
+| 25/09/2026 | Régua das regras simples | ✅ o modelo perde para a regra sazonal em h=8 e h=12 |
+| 25/09/2026 | Varredura de literatura | ✅ perder para régua em 3 meses é comum |
+| 25/09/2026 | Bateria de formulação do alvo | 🚫 seis variantes, nenhuma melhora nem bate a régua |
 
 ---
 
@@ -120,6 +125,44 @@ algoritmo nem acrescentar feature — o sinal não está lá.
   quatro horizontes.
 
 ⚠️ A escolha do remédio foi leitura de tabela, sem pré-declaração nem teste formal.
+
+---
+
+### 1.4 🔴 O modelo contra regras simples (25/09/2026)
+
+**Por quê.** R² 0,44 em 3 meses parecia "algo", mas nunca tinha sido comparado com uma regra sem
+aprendizado de máquina.
+
+**Como.** As previsões já gravadas de 9 braços da bateria noturna contra três regras: repetir a semana
+de origem, repetir a mesma semana do ano anterior, média da mesma semana nos anos anteriores. Descritivo,
+feito depois de ver a avaliação. Certificado por reimplementação independente.
+
+**O que deu.** MAE na avaliação 2024+, 102 semanas:
+
+| h | cenário adotado | HistGB folha 20 | repetir a semana | mesma semana do ano anterior |
+|---|---|---|---|---|
+| 1 | 98,0 | 133,6 | **83,3** | 202,1 |
+| 8 | 272,6 | 223,2 | 531,0 | **216,2** |
+| 12 | 278,8 | 243,8 | 697,5 | **217,8** |
+
+- ✅ **FATO:** em 2 e 3 meses a regra sazonal vence todos os modelos, também na perda quantílica 0,85.
+  Os braços sem vetor perdem com significância em h=12; os com vetor perdem sem significância.
+- ✅ **FATO:** na calibração epidêmica 2022-2023, o cenário adotado bate a regra em h=4, 8 e 12.
+- Detalhe: `analises/2026-09-25_regua_regras_simples/`.
+
+### 1.5 🚫 Mudar a formulação do alvo não resolve (25/09/2026)
+
+**Por quê.** Hipótese: a informação sazonal chega desalinhada ao modelo.
+
+**Como.** Seis variantes sobre o HistGB folha 20 com vetor, pré-declaradas, Holm por família.
+
+**O que deu.**
+
+- 🚫 **Nenhuma melhora o modelo nem bate a régua** em h=12.
+- 🚫 A semana-alvo do ano anterior como atributo **piora** h=12: 243,8 → 300,9. A hipótese caiu.
+- 🚫 Resíduo sobre o ano anterior e regressão linear em log **explodem**: previsões de 10 a 27 mil casos.
+- ⚠️ A mistura 50/50 com a régua é a única direção consistente em 4 anos: +5,5%, sem significância.
+- Detalhe: `analises/2026-09-25_bateria_formulacao_do_alvo/`.
 
 ---
 
@@ -533,6 +576,12 @@ Ideias medidas e enterradas. Ficam aqui para não voltarem.
 | Rodar os 9 algoritmos como rotina | 30/08/2026 | Decisão do Vinicius: o foco passa a ser uma configuração. |
 | **Equivalência clima × vetor como núcleo** | **13/09/2026** | Margem errada e alvo errado. Com a margem pré-declarada e o alvo decidido: 1 de 8. |
 | **"A perda importa mais que o algoritmo"** | **13/09/2026** | Sem vazamento: perda +9,9% contra algoritmo +11,8%. A ordem inverteu. |
+| ENSO como atributo | 24/09/2026 | O ganho de agosto era vazamento; limpo, piora h=12 em 11,6%. |
+| Lags de 5 a 12 semanas e de 52/104 semanas | 23-24/09/2026 | Não reduzem o erro, nem em todas as colunas nem só no vetor. |
+| "A informação sazonal chega desalinhada" | 25/09/2026 | Alinhada como atributo, piora h=12 de 243,8 para 300,9. |
+| Resíduo sobre o ano anterior como alvo | 25/09/2026 | Explode: âncora acima do treino (1.109 × máx. 879) vezes crescimento de 9,5×. |
+| Regressão quantílica linear em log | 25/09/2026 | Explode: lags de casos colineares sem penalização; 27 mil previstos contra 1.855. |
+| Taxa de crescimento do vetor | 25/09/2026 | −0,7% em h=12; os lags já carregam a informação. |
 
 ---
 

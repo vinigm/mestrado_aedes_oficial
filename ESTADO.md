@@ -1,6 +1,7 @@
 # ESTADO — o que o projeto É hoje
 
-> Retrato honesto do sistema. **Atualizado em 13/09/2026**, depois da correção do vazamento temporal.
+> Retrato honesto do sistema. **Atualizado em 13/09/2026**, depois da correção do vazamento temporal;
+> §3.1, §3.2 e §3.7 revistos em **25/09/2026**, depois da bateria noturna e da régua das regras simples.
 >
 > Fila de trabalho: [PENDENCIAS.md](PENDENCIAS.md) · Por que cada teste foi feito e o que deu:
 > [HISTORICO_DE_TESTES.md](HISTORICO_DE_TESTES.md)
@@ -84,6 +85,10 @@ vencedora entre as 30 testadas pelo menor erro de calibração.
   estar declarado em qualquer texto que cite uma previsão.
 - ⚠️ Escrever **"a melhor entre as 30 testadas"**, nunca "a melhor possível".
 - ✅ **A degradação tem causa medida:** a autocorrelação dos casos explica 91% em h=1 e **0%** em h=12.
+- 🔴 ✅ **FATO (25/09) — em 2 e 3 meses o modelo perde para "a mesma semana do ano passado".** MAE em h=12:
+  regra **217,8**, cenário adotado 278,8, HistGB folha 20 243,8. Seis formulações novas não mudaram isso.
+  Em h=1, repetir a semana atual (83,3) também vence o cenário adotado. Ver
+  `analises/2026-09-25_regua_regras_simples/` e `analises/2026-09-25_bateria_formulacao_do_alvo/`.
 
 ### 3.2 O vetor na previsão de casos
 
@@ -92,6 +97,10 @@ o vetor erra menos em **27 de 60**, e **nenhuma sobrevive a Holm**.
 
 ⚠️ Onde ele ganha, ganha compensando algoritmo fraco: em h=12 os 5 maiores ganhos são as 5
 configurações de LightGBM; o HistGradientBoosting fica entre +8,9 e −11,2.
+
+⚠️ **EXPLORATÓRIO (24/09) — com folha mínima 20, o vetor reduz o erro de 3 meses em 12-16%**, no HistGB e no
+LightGBM (p Holm 0,015 e 0,0001). Com a folha 5 do cenário adotado, não reduz. Efeito carregado por 2024.
+Ver `analises/2026-09-23_bateria_noturna/`.
 
 ### 3.3 O vetor no alarme de surto
 
@@ -129,7 +138,11 @@ das duas treina, logo nenhuma tinha vazamento.
 
 ### 3.7 O que NÃO se pode afirmar
 
-- 🚫 **"O vetor melhora a previsão de casos."** 0 de 60 em Holm.
+- 🚫 **"O vetor não melhora a previsão de casos"**, sem o escopo: vale para o HistGB com folha 5. Com folha
+  20 ele melhora, de forma exploratória.
+- 🚫 **"O vetor melhora a previsão de casos"**, como fato: 0 de 60 em Holm no grid, e o ganho com folha 20
+  é exploratório.
+- 🚫 **"O modelo prevê bem a 3 meses."** A regra sazonal erra menos.
 - 🚫 **"A equivalência clima × vetor está demonstrada."** Com a margem pré-declarada e o alvo decidido:
   1 de 8.
 - 🚫 **"A função de perda importa mais que o algoritmo."** Sem vazamento: perda +9,9%, algoritmo +11,8%.

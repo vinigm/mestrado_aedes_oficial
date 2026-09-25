@@ -1,0 +1,14 @@
+Previsoes carregadas: 31842 linhas, 9 bracos distintos.
+Serie semanal validada: 725 semanas continuas de 2012-09-23 a 2026-08-09, 297 com casos_confirmados vazio.
+Conferencia HistGB_M1(bloco5) == referencia(bloco7): 3474 linhas em comum de 3474 (ref) / 3474 (dup), maior diff previsto=0.000000, maior diff real=0.000000 — DUPLICATA EXATA
+Consistencia real vs casos_confirmados: 0 divergencia(s) em 31842 linhas (esperado: 0).
+Regras simples calculadas para 3474 pares (h, data_alvo) unicos, 10422 linhas no total.
+Familia de Holm: 72 comparacoes (9 bracos x 2 regras x 4 horizontes).
+Conferencia de ancoras: 53 ancoras, 0 divergente(s).
+Figura gravada em /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_regua_regras_simples/saidas/figura_skill_score_por_horizonte.png
+
+Resumo final:
+  Duplicata HistGB_M1/referencia exata: True
+  Divergencias real vs casos_confirmados: 0
+  Ancoras fora da tolerancia: 0 de 53
+  CSVs e figura gravados em /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_regua_regras_simples/saidas
