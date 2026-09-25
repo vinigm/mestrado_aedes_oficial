@@ -1,0 +1,3736 @@
+municipio,ano_epidemiologico,semana_epidemiologica,confirmados
+Alvorada,2015,8,0
+Alvorada,2015,9,0
+Alvorada,2015,11,2
+Alvorada,2015,12,0
+Alvorada,2015,13,1
+Alvorada,2015,14,0
+Alvorada,2015,15,0
+Alvorada,2015,16,1
+Alvorada,2015,17,0
+Alvorada,2015,18,0
+Alvorada,2015,20,0
+Alvorada,2015,21,0
+Alvorada,2015,22,0
+Alvorada,2015,24,0
+Alvorada,2015,29,1
+Alvorada,2015,31,0
+Alvorada,2015,33,0
+Alvorada,2015,34,0
+Alvorada,2015,47,0
+Alvorada,2015,49,1
+Alvorada,2015,50,0
+Alvorada,2015,51,1
+Alvorada,2015,52,1
+Alvorada,2016,1,0
+Alvorada,2016,2,0
+Alvorada,2016,3,0
+Alvorada,2016,4,0
+Alvorada,2016,5,0
+Alvorada,2016,6,0
+Alvorada,2016,7,0
+Alvorada,2016,8,0
+Alvorada,2016,9,1
+Alvorada,2016,10,0
+Alvorada,2016,11,1
+Alvorada,2016,12,5
+Alvorada,2016,13,2
+Alvorada,2016,14,5
+Alvorada,2016,15,5
+Alvorada,2016,16,13
+Alvorada,2016,17,5
+Alvorada,2016,18,3
+Alvorada,2016,19,5
+Alvorada,2016,20,6
+Alvorada,2016,21,6
+Alvorada,2016,22,1
+Alvorada,2016,24,0
+Alvorada,2016,25,0
+Alvorada,2016,27,0
+Alvorada,2016,28,0
+Alvorada,2016,29,0
+Alvorada,2016,30,0
+Alvorada,2016,31,0
+Alvorada,2016,32,0
+Alvorada,2016,33,0
+Alvorada,2016,34,1
+Alvorada,2016,35,0
+Alvorada,2016,36,0
+Alvorada,2016,37,0
+Alvorada,2016,39,0
+Alvorada,2016,41,0
+Alvorada,2016,42,0
+Alvorada,2016,43,0
+Alvorada,2016,44,0
+Alvorada,2016,45,0
+Alvorada,2016,48,0
+Alvorada,2016,49,0
+Alvorada,2016,50,0
+Alvorada,2016,51,0
+Alvorada,2016,52,0
+Alvorada,2017,1,0
+Alvorada,2017,2,0
+Alvorada,2017,3,0
+Alvorada,2017,4,0
+Alvorada,2017,5,0
+Alvorada,2017,6,0
+Alvorada,2017,7,0
+Alvorada,2017,9,0
+Alvorada,2017,10,0
+Alvorada,2017,11,0
+Alvorada,2017,13,0
+Alvorada,2017,14,0
+Alvorada,2017,15,0
+Alvorada,2017,16,0
+Alvorada,2017,19,0
+Alvorada,2017,21,0
+Alvorada,2017,24,0
+Alvorada,2017,31,0
+Alvorada,2017,32,0
+Alvorada,2017,36,0
+Alvorada,2017,43,0
+Alvorada,2017,44,0
+Alvorada,2017,47,0
+Alvorada,2017,48,0
+Alvorada,2017,49,0
+Alvorada,2017,50,0
+Alvorada,2017,52,0
+Alvorada,2018,1,0
+Alvorada,2018,6,0
+Alvorada,2018,8,0
+Alvorada,2018,10,0
+Alvorada,2018,12,0
+Alvorada,2018,13,0
+Alvorada,2018,16,0
+Alvorada,2018,17,0
+Alvorada,2018,19,0
+Alvorada,2018,23,0
+Alvorada,2018,26,0
+Alvorada,2018,31,0
+Alvorada,2018,32,0
+Alvorada,2018,34,0
+Alvorada,2018,41,0
+Alvorada,2018,43,0
+Alvorada,2018,51,0
+Alvorada,2018,52,0
+Alvorada,2019,6,0
+Alvorada,2019,13,1
+Alvorada,2019,14,2
+Alvorada,2019,15,0
+Alvorada,2019,16,1
+Alvorada,2019,17,0
+Alvorada,2019,18,1
+Alvorada,2019,19,1
+Alvorada,2019,20,1
+Alvorada,2019,21,2
+Alvorada,2019,22,1
+Alvorada,2019,23,0
+Alvorada,2019,24,0
+Alvorada,2019,25,0
+Alvorada,2019,26,0
+Alvorada,2019,27,0
+Alvorada,2019,28,0
+Alvorada,2019,30,0
+Alvorada,2019,33,0
+Alvorada,2019,34,0
+Alvorada,2019,35,0
+Alvorada,2019,40,0
+Alvorada,2019,42,0
+Alvorada,2019,43,0
+Alvorada,2019,49,0
+Alvorada,2019,50,0
+Alvorada,2019,51,0
+Alvorada,2020,1,0
+Alvorada,2020,2,0
+Alvorada,2020,3,0
+Alvorada,2020,4,0
+Alvorada,2020,15,0
+Alvorada,2020,16,0
+Alvorada,2020,17,0
+Alvorada,2020,23,0
+Alvorada,2020,24,0
+Alvorada,2020,26,0
+Alvorada,2020,29,0
+Alvorada,2020,31,0
+Alvorada,2021,7,0
+Alvorada,2021,10,0
+Alvorada,2021,13,1
+Alvorada,2021,20,0
+Alvorada,2021,21,0
+Alvorada,2021,22,0
+Alvorada,2021,24,1
+Alvorada,2021,27,0
+Alvorada,2021,28,0
+Alvorada,2021,33,0
+Alvorada,2021,51,0
+Alvorada,2022,6,3
+Alvorada,2022,7,2
+Alvorada,2022,9,5
+Alvorada,2022,10,2
+Alvorada,2022,11,9
+Alvorada,2022,12,24
+Alvorada,2022,13,25
+Alvorada,2022,14,50
+Alvorada,2022,15,71
+Alvorada,2022,16,97
+Alvorada,2022,17,100
+Alvorada,2022,18,86
+Alvorada,2022,19,54
+Alvorada,2022,20,50
+Alvorada,2022,21,21
+Alvorada,2022,22,29
+Alvorada,2022,23,9
+Alvorada,2022,24,6
+Alvorada,2022,25,6
+Alvorada,2022,26,4
+Alvorada,2022,27,1
+Alvorada,2022,28,2
+Alvorada,2022,29,0
+Alvorada,2022,30,1
+Alvorada,2022,31,0
+Alvorada,2022,32,0
+Alvorada,2022,34,1
+Alvorada,2022,35,0
+Alvorada,2022,36,0
+Alvorada,2022,37,0
+Alvorada,2022,41,1
+Alvorada,2022,44,0
+Alvorada,2022,45,0
+Alvorada,2022,46,0
+Alvorada,2022,48,0
+Alvorada,2022,49,0
+Alvorada,2022,50,0
+Alvorada,2022,51,0
+Alvorada,2022,52,1
+Alvorada,2023,1,0
+Alvorada,2023,3,0
+Alvorada,2023,4,0
+Alvorada,2023,5,0
+Alvorada,2023,6,0
+Alvorada,2023,7,1
+Alvorada,2023,8,0
+Alvorada,2023,9,0
+Alvorada,2023,10,0
+Alvorada,2023,11,0
+Alvorada,2023,12,0
+Alvorada,2023,13,5
+Alvorada,2023,14,9
+Alvorada,2023,15,10
+Alvorada,2023,16,20
+Alvorada,2023,17,25
+Alvorada,2023,18,16
+Alvorada,2023,19,15
+Alvorada,2023,20,24
+Alvorada,2023,21,33
+Alvorada,2023,22,24
+Alvorada,2023,23,18
+Alvorada,2023,24,21
+Alvorada,2023,25,5
+Alvorada,2023,26,11
+Alvorada,2023,27,11
+Alvorada,2023,28,8
+Alvorada,2023,29,4
+Alvorada,2023,30,0
+Alvorada,2023,31,1
+Alvorada,2023,32,3
+Alvorada,2023,33,2
+Alvorada,2023,34,2
+Alvorada,2023,35,2
+Alvorada,2023,36,1
+Alvorada,2023,37,0
+Alvorada,2023,38,0
+Alvorada,2023,39,0
+Alvorada,2023,40,2
+Alvorada,2023,41,0
+Alvorada,2023,42,0
+Alvorada,2023,43,0
+Alvorada,2023,44,0
+Alvorada,2023,45,2
+Alvorada,2023,46,0
+Alvorada,2023,47,1
+Alvorada,2023,48,0
+Alvorada,2023,49,3
+Alvorada,2023,50,0
+Alvorada,2023,51,0
+Alvorada,2023,52,0
+Alvorada,2024,1,1
+Alvorada,2024,2,1
+Alvorada,2024,3,2
+Alvorada,2024,4,1
+Alvorada,2024,5,4
+Alvorada,2024,6,7
+Alvorada,2024,7,16
+Alvorada,2024,8,26
+Alvorada,2024,9,60
+Alvorada,2024,10,65
+Alvorada,2024,11,90
+Alvorada,2024,12,157
+Alvorada,2024,13,163
+Alvorada,2024,14,229
+Alvorada,2024,15,257
+Alvorada,2024,16,258
+Alvorada,2024,17,267
+Alvorada,2024,18,220
+Alvorada,2024,19,179
+Alvorada,2024,20,281
+Alvorada,2024,21,105
+Alvorada,2024,22,137
+Alvorada,2024,23,70
+Alvorada,2024,24,73
+Alvorada,2024,25,83
+Alvorada,2024,26,64
+Alvorada,2024,27,44
+Alvorada,2024,28,9
+Alvorada,2024,29,11
+Alvorada,2024,30,3
+Alvorada,2024,31,11
+Alvorada,2024,32,3
+Alvorada,2024,33,4
+Alvorada,2024,34,0
+Alvorada,2024,35,3
+Alvorada,2024,36,1
+Alvorada,2024,37,3
+Alvorada,2024,38,2
+Alvorada,2024,39,1
+Alvorada,2024,40,3
+Alvorada,2024,41,1
+Alvorada,2024,42,2
+Alvorada,2024,43,5
+Alvorada,2024,44,4
+Alvorada,2024,45,1
+Alvorada,2024,46,6
+Alvorada,2024,47,1
+Alvorada,2024,48,0
+Alvorada,2024,49,2
+Alvorada,2024,50,0
+Alvorada,2024,51,0
+Alvorada,2024,52,0
+Alvorada,2025,1,0
+Alvorada,2025,2,1
+Alvorada,2025,3,0
+Alvorada,2025,4,2
+Alvorada,2025,5,3
+Alvorada,2025,6,2
+Alvorada,2025,7,5
+Alvorada,2025,8,8
+Alvorada,2025,9,17
+Alvorada,2025,10,26
+Alvorada,2025,11,61
+Alvorada,2025,12,93
+Alvorada,2025,13,205
+Alvorada,2025,14,362
+Alvorada,2025,15,410
+Alvorada,2025,16,428
+Alvorada,2025,17,573
+Alvorada,2025,18,594
+Alvorada,2025,19,544
+Alvorada,2025,20,498
+Alvorada,2025,21,386
+Alvorada,2025,22,187
+Alvorada,2025,23,109
+Alvorada,2025,24,51
+Alvorada,2025,25,21
+Alvorada,2025,26,8
+Alvorada,2025,27,6
+Alvorada,2025,28,4
+Alvorada,2025,29,4
+Alvorada,2025,30,2
+Alvorada,2025,31,2
+Alvorada,2025,32,2
+Alvorada,2025,33,0
+Alvorada,2025,34,1
+Alvorada,2025,35,4
+Alvorada,2025,36,1
+Alvorada,2025,37,0
+Alvorada,2025,38,1
+Alvorada,2025,39,0
+Alvorada,2025,40,2
+Alvorada,2025,41,5
+Alvorada,2025,42,2
+Alvorada,2025,43,0
+Alvorada,2025,44,3
+Alvorada,2025,45,1
+Alvorada,2025,46,0
+Alvorada,2025,47,0
+Alvorada,2025,48,0
+Alvorada,2025,49,1
+Alvorada,2025,50,1
+Alvorada,2025,51,0
+Alvorada,2025,52,0
+Alvorada,2025,53,0
+Alvorada,2026,1,0
+Alvorada,2026,2,0
+Alvorada,2026,3,0
+Alvorada,2026,4,0
+Alvorada,2026,5,0
+Alvorada,2026,6,0
+Alvorada,2026,7,0
+Alvorada,2026,8,0
+Alvorada,2026,9,0
+Alvorada,2026,10,0
+Alvorada,2026,11,0
+Alvorada,2026,12,0
+Alvorada,2026,13,0
+Alvorada,2026,14,0
+Alvorada,2026,15,0
+Alvorada,2026,16,0
+Alvorada,2026,17,0
+Alvorada,2026,18,0
+Alvorada,2026,19,0
+Alvorada,2026,20,0
+Alvorada,2026,21,0
+Alvorada,2026,22,0
+Alvorada,2026,23,0
+Alvorada,2026,24,0
+Alvorada,2026,25,0
+Alvorada,2026,27,0
+Alvorada,2026,28,0
+Alvorada,2026,29,0
+Alvorada,2026,30,0
+Alvorada,2026,31,0
+Alvorada,2026,32,0
+Alvorada,2026,33,0
+Alvorada,2026,34,0
+Alvorada,2026,35,0
+Cachoeirinha,2015,4,0
+Cachoeirinha,2015,16,0
+Cachoeirinha,2015,19,0
+Cachoeirinha,2015,21,0
+Cachoeirinha,2015,22,0
+Cachoeirinha,2015,29,1
+Cachoeirinha,2015,41,0
+Cachoeirinha,2015,51,0
+Cachoeirinha,2015,52,0
+Cachoeirinha,2016,2,0
+Cachoeirinha,2016,6,0
+Cachoeirinha,2016,7,1
+Cachoeirinha,2016,8,0
+Cachoeirinha,2016,9,0
+Cachoeirinha,2016,10,1
+Cachoeirinha,2016,11,1
+Cachoeirinha,2016,12,0
+Cachoeirinha,2016,13,0
+Cachoeirinha,2016,14,0
+Cachoeirinha,2016,15,0
+Cachoeirinha,2016,16,1
+Cachoeirinha,2016,17,2
+Cachoeirinha,2016,19,1
+Cachoeirinha,2016,20,0
+Cachoeirinha,2016,21,0
+Cachoeirinha,2016,23,0
+Cachoeirinha,2016,25,0
+Cachoeirinha,2016,26,0
+Cachoeirinha,2016,27,0
+Cachoeirinha,2016,35,0
+Cachoeirinha,2016,43,0
+Cachoeirinha,2016,48,0
+Cachoeirinha,2016,51,0
+Cachoeirinha,2017,1,0
+Cachoeirinha,2017,2,0
+Cachoeirinha,2017,3,0
+Cachoeirinha,2017,4,0
+Cachoeirinha,2017,5,0
+Cachoeirinha,2017,9,0
+Cachoeirinha,2017,11,0
+Cachoeirinha,2017,22,0
+Cachoeirinha,2017,23,0
+Cachoeirinha,2017,27,0
+Cachoeirinha,2017,34,0
+Cachoeirinha,2017,37,0
+Cachoeirinha,2017,44,0
+Cachoeirinha,2017,48,0
+Cachoeirinha,2018,1,0
+Cachoeirinha,2018,2,0
+Cachoeirinha,2018,4,0
+Cachoeirinha,2018,5,0
+Cachoeirinha,2018,11,0
+Cachoeirinha,2018,13,0
+Cachoeirinha,2018,21,0
+Cachoeirinha,2018,22,0
+Cachoeirinha,2018,24,0
+Cachoeirinha,2018,30,0
+Cachoeirinha,2018,46,1
+Cachoeirinha,2018,48,1
+Cachoeirinha,2019,9,0
+Cachoeirinha,2019,12,0
+Cachoeirinha,2019,13,0
+Cachoeirinha,2019,15,1
+Cachoeirinha,2019,18,2
+Cachoeirinha,2019,20,0
+Cachoeirinha,2019,21,1
+Cachoeirinha,2019,23,0
+Cachoeirinha,2019,25,2
+Cachoeirinha,2019,26,0
+Cachoeirinha,2019,27,0
+Cachoeirinha,2019,40,0
+Cachoeirinha,2019,42,0
+Cachoeirinha,2019,45,0
+Cachoeirinha,2019,47,0
+Cachoeirinha,2020,1,0
+Cachoeirinha,2020,2,0
+Cachoeirinha,2020,11,0
+Cachoeirinha,2020,17,0
+Cachoeirinha,2020,19,0
+Cachoeirinha,2020,32,0
+Cachoeirinha,2021,6,1
+Cachoeirinha,2021,19,0
+Cachoeirinha,2021,21,0
+Cachoeirinha,2021,25,0
+Cachoeirinha,2021,29,0
+Cachoeirinha,2021,30,0
+Cachoeirinha,2021,32,0
+Cachoeirinha,2021,52,0
+Cachoeirinha,2022,9,1
+Cachoeirinha,2022,11,4
+Cachoeirinha,2022,12,3
+Cachoeirinha,2022,13,5
+Cachoeirinha,2022,14,7
+Cachoeirinha,2022,15,9
+Cachoeirinha,2022,16,24
+Cachoeirinha,2022,17,26
+Cachoeirinha,2022,18,28
+Cachoeirinha,2022,19,17
+Cachoeirinha,2022,20,14
+Cachoeirinha,2022,21,16
+Cachoeirinha,2022,22,12
+Cachoeirinha,2022,23,3
+Cachoeirinha,2022,24,8
+Cachoeirinha,2022,25,4
+Cachoeirinha,2022,26,0
+Cachoeirinha,2022,28,0
+Cachoeirinha,2022,29,0
+Cachoeirinha,2022,30,0
+Cachoeirinha,2022,31,0
+Cachoeirinha,2022,33,0
+Cachoeirinha,2022,37,0
+Cachoeirinha,2022,40,0
+Cachoeirinha,2022,41,0
+Cachoeirinha,2022,42,1
+Cachoeirinha,2022,43,0
+Cachoeirinha,2022,44,0
+Cachoeirinha,2022,45,0
+Cachoeirinha,2022,47,0
+Cachoeirinha,2022,49,0
+Cachoeirinha,2022,50,0
+Cachoeirinha,2022,51,0
+Cachoeirinha,2023,1,0
+Cachoeirinha,2023,3,1
+Cachoeirinha,2023,5,1
+Cachoeirinha,2023,6,0
+Cachoeirinha,2023,8,0
+Cachoeirinha,2023,9,6
+Cachoeirinha,2023,10,8
+Cachoeirinha,2023,11,15
+Cachoeirinha,2023,12,46
+Cachoeirinha,2023,13,48
+Cachoeirinha,2023,14,92
+Cachoeirinha,2023,15,79
+Cachoeirinha,2023,16,75
+Cachoeirinha,2023,17,67
+Cachoeirinha,2023,18,92
+Cachoeirinha,2023,19,63
+Cachoeirinha,2023,20,82
+Cachoeirinha,2023,21,70
+Cachoeirinha,2023,22,37
+Cachoeirinha,2023,23,26
+Cachoeirinha,2023,24,13
+Cachoeirinha,2023,25,7
+Cachoeirinha,2023,26,8
+Cachoeirinha,2023,27,6
+Cachoeirinha,2023,28,3
+Cachoeirinha,2023,29,1
+Cachoeirinha,2023,30,1
+Cachoeirinha,2023,31,1
+Cachoeirinha,2023,32,1
+Cachoeirinha,2023,33,2
+Cachoeirinha,2023,34,0
+Cachoeirinha,2023,35,1
+Cachoeirinha,2023,36,0
+Cachoeirinha,2023,37,0
+Cachoeirinha,2023,38,1
+Cachoeirinha,2023,39,0
+Cachoeirinha,2023,40,0
+Cachoeirinha,2023,41,0
+Cachoeirinha,2023,42,0
+Cachoeirinha,2023,43,0
+Cachoeirinha,2023,44,0
+Cachoeirinha,2023,45,0
+Cachoeirinha,2023,46,0
+Cachoeirinha,2023,48,0
+Cachoeirinha,2023,49,0
+Cachoeirinha,2023,50,0
+Cachoeirinha,2023,51,0
+Cachoeirinha,2023,52,1
+Cachoeirinha,2024,1,0
+Cachoeirinha,2024,2,1
+Cachoeirinha,2024,3,0
+Cachoeirinha,2024,4,1
+Cachoeirinha,2024,5,3
+Cachoeirinha,2024,6,3
+Cachoeirinha,2024,7,8
+Cachoeirinha,2024,8,24
+Cachoeirinha,2024,9,41
+Cachoeirinha,2024,10,87
+Cachoeirinha,2024,11,173
+Cachoeirinha,2024,12,148
+Cachoeirinha,2024,13,276
+Cachoeirinha,2024,14,349
+Cachoeirinha,2024,15,411
+Cachoeirinha,2024,16,435
+Cachoeirinha,2024,17,467
+Cachoeirinha,2024,18,246
+Cachoeirinha,2024,19,208
+Cachoeirinha,2024,20,369
+Cachoeirinha,2024,21,113
+Cachoeirinha,2024,22,113
+Cachoeirinha,2024,23,66
+Cachoeirinha,2024,24,73
+Cachoeirinha,2024,25,90
+Cachoeirinha,2024,26,41
+Cachoeirinha,2024,27,20
+Cachoeirinha,2024,28,8
+Cachoeirinha,2024,29,7
+Cachoeirinha,2024,30,3
+Cachoeirinha,2024,31,4
+Cachoeirinha,2024,32,0
+Cachoeirinha,2024,33,0
+Cachoeirinha,2024,34,0
+Cachoeirinha,2024,35,0
+Cachoeirinha,2024,36,2
+Cachoeirinha,2024,37,0
+Cachoeirinha,2024,38,0
+Cachoeirinha,2024,39,1
+Cachoeirinha,2024,40,3
+Cachoeirinha,2024,41,0
+Cachoeirinha,2024,42,3
+Cachoeirinha,2024,43,1
+Cachoeirinha,2024,44,0
+Cachoeirinha,2024,45,0
+Cachoeirinha,2024,46,0
+Cachoeirinha,2024,47,0
+Cachoeirinha,2024,48,0
+Cachoeirinha,2024,49,0
+Cachoeirinha,2024,50,0
+Cachoeirinha,2024,51,0
+Cachoeirinha,2024,52,1
+Cachoeirinha,2025,1,0
+Cachoeirinha,2025,2,0
+Cachoeirinha,2025,3,1
+Cachoeirinha,2025,4,0
+Cachoeirinha,2025,5,2
+Cachoeirinha,2025,6,1
+Cachoeirinha,2025,7,0
+Cachoeirinha,2025,8,1
+Cachoeirinha,2025,9,3
+Cachoeirinha,2025,10,6
+Cachoeirinha,2025,11,14
+Cachoeirinha,2025,12,20
+Cachoeirinha,2025,13,27
+Cachoeirinha,2025,14,65
+Cachoeirinha,2025,15,64
+Cachoeirinha,2025,16,84
+Cachoeirinha,2025,17,124
+Cachoeirinha,2025,18,92
+Cachoeirinha,2025,19,85
+Cachoeirinha,2025,20,102
+Cachoeirinha,2025,21,86
+Cachoeirinha,2025,22,61
+Cachoeirinha,2025,23,23
+Cachoeirinha,2025,24,19
+Cachoeirinha,2025,25,9
+Cachoeirinha,2025,26,8
+Cachoeirinha,2025,27,0
+Cachoeirinha,2025,28,1
+Cachoeirinha,2025,29,0
+Cachoeirinha,2025,30,3
+Cachoeirinha,2025,31,0
+Cachoeirinha,2025,32,0
+Cachoeirinha,2025,33,2
+Cachoeirinha,2025,34,0
+Cachoeirinha,2025,35,1
+Cachoeirinha,2025,36,0
+Cachoeirinha,2025,37,0
+Cachoeirinha,2025,38,0
+Cachoeirinha,2025,39,0
+Cachoeirinha,2025,40,0
+Cachoeirinha,2025,41,0
+Cachoeirinha,2025,42,0
+Cachoeirinha,2025,43,0
+Cachoeirinha,2025,44,0
+Cachoeirinha,2025,45,0
+Cachoeirinha,2025,46,0
+Cachoeirinha,2025,47,0
+Cachoeirinha,2025,48,1
+Cachoeirinha,2025,49,0
+Cachoeirinha,2025,50,1
+Cachoeirinha,2025,51,0
+Cachoeirinha,2025,52,0
+Cachoeirinha,2025,53,0
+Cachoeirinha,2026,1,0
+Cachoeirinha,2026,2,0
+Cachoeirinha,2026,3,0
+Cachoeirinha,2026,4,0
+Cachoeirinha,2026,5,0
+Cachoeirinha,2026,6,1
+Cachoeirinha,2026,7,0
+Cachoeirinha,2026,8,0
+Cachoeirinha,2026,9,1
+Cachoeirinha,2026,10,1
+Cachoeirinha,2026,11,1
+Cachoeirinha,2026,12,2
+Cachoeirinha,2026,13,1
+Cachoeirinha,2026,14,1
+Cachoeirinha,2026,15,0
+Cachoeirinha,2026,16,3
+Cachoeirinha,2026,17,1
+Cachoeirinha,2026,18,0
+Cachoeirinha,2026,19,2
+Cachoeirinha,2026,20,2
+Cachoeirinha,2026,21,1
+Cachoeirinha,2026,22,0
+Cachoeirinha,2026,23,0
+Cachoeirinha,2026,24,0
+Cachoeirinha,2026,25,0
+Cachoeirinha,2026,27,0
+Cachoeirinha,2026,28,0
+Cachoeirinha,2026,29,0
+Cachoeirinha,2026,30,0
+Cachoeirinha,2026,31,0
+Cachoeirinha,2026,32,0
+Cachoeirinha,2026,33,0
+Cachoeirinha,2026,34,0
+Cachoeirinha,2026,35,0
+Cachoeirinha,2026,36,0
+Cachoeirinha,2026,37,0
+Cachoeirinha,2026,38,0
+Canoas,2015,6,0
+Canoas,2015,7,1
+Canoas,2015,10,0
+Canoas,2015,11,0
+Canoas,2015,12,1
+Canoas,2015,13,0
+Canoas,2015,14,1
+Canoas,2015,15,1
+Canoas,2015,16,0
+Canoas,2015,17,0
+Canoas,2015,18,1
+Canoas,2015,19,1
+Canoas,2015,20,0
+Canoas,2015,23,0
+Canoas,2015,24,0
+Canoas,2015,25,0
+Canoas,2015,26,0
+Canoas,2015,27,0
+Canoas,2015,28,0
+Canoas,2015,29,0
+Canoas,2015,31,0
+Canoas,2015,33,0
+Canoas,2015,40,0
+Canoas,2015,41,0
+Canoas,2015,43,0
+Canoas,2015,48,0
+Canoas,2015,49,0
+Canoas,2015,50,0
+Canoas,2015,51,0
+Canoas,2015,52,0
+Canoas,2016,1,4
+Canoas,2016,2,2
+Canoas,2016,3,1
+Canoas,2016,4,1
+Canoas,2016,5,1
+Canoas,2016,6,1
+Canoas,2016,7,2
+Canoas,2016,8,0
+Canoas,2016,9,7
+Canoas,2016,10,7
+Canoas,2016,11,7
+Canoas,2016,12,11
+Canoas,2016,13,8
+Canoas,2016,14,15
+Canoas,2016,15,19
+Canoas,2016,16,10
+Canoas,2016,17,14
+Canoas,2016,18,9
+Canoas,2016,19,3
+Canoas,2016,20,2
+Canoas,2016,21,2
+Canoas,2016,22,0
+Canoas,2016,24,0
+Canoas,2016,25,0
+Canoas,2016,26,0
+Canoas,2016,27,0
+Canoas,2016,28,0
+Canoas,2016,29,0
+Canoas,2016,30,0
+Canoas,2016,32,0
+Canoas,2016,33,0
+Canoas,2016,34,0
+Canoas,2016,35,0
+Canoas,2016,37,0
+Canoas,2016,39,0
+Canoas,2016,40,0
+Canoas,2016,41,0
+Canoas,2016,42,0
+Canoas,2016,43,0
+Canoas,2016,44,0
+Canoas,2016,46,0
+Canoas,2016,47,0
+Canoas,2016,48,0
+Canoas,2016,49,0
+Canoas,2016,50,0
+Canoas,2016,51,0
+Canoas,2016,52,0
+Canoas,2017,1,0
+Canoas,2017,2,0
+Canoas,2017,3,0
+Canoas,2017,4,0
+Canoas,2017,5,0
+Canoas,2017,6,0
+Canoas,2017,7,0
+Canoas,2017,8,0
+Canoas,2017,9,0
+Canoas,2017,10,0
+Canoas,2017,11,0
+Canoas,2017,12,0
+Canoas,2017,13,0
+Canoas,2017,14,0
+Canoas,2017,15,0
+Canoas,2017,16,0
+Canoas,2017,17,0
+Canoas,2017,18,0
+Canoas,2017,19,0
+Canoas,2017,21,0
+Canoas,2017,24,0
+Canoas,2017,25,0
+Canoas,2017,27,0
+Canoas,2017,28,0
+Canoas,2017,31,0
+Canoas,2017,35,0
+Canoas,2017,36,0
+Canoas,2017,38,0
+Canoas,2017,39,0
+Canoas,2017,40,0
+Canoas,2017,41,0
+Canoas,2017,42,0
+Canoas,2017,43,0
+Canoas,2017,49,0
+Canoas,2017,50,0
+Canoas,2017,51,0
+Canoas,2017,52,0
+Canoas,2018,1,0
+Canoas,2018,2,0
+Canoas,2018,4,0
+Canoas,2018,5,0
+Canoas,2018,6,0
+Canoas,2018,7,0
+Canoas,2018,8,0
+Canoas,2018,9,0
+Canoas,2018,10,0
+Canoas,2018,11,0
+Canoas,2018,14,0
+Canoas,2018,16,0
+Canoas,2018,19,1
+Canoas,2018,20,0
+Canoas,2018,24,1
+Canoas,2018,26,0
+Canoas,2018,43,0
+Canoas,2018,46,0
+Canoas,2018,50,0
+Canoas,2018,52,0
+Canoas,2019,1,0
+Canoas,2019,3,0
+Canoas,2019,4,0
+Canoas,2019,5,0
+Canoas,2019,7,0
+Canoas,2019,9,0
+Canoas,2019,10,0
+Canoas,2019,11,3
+Canoas,2019,12,0
+Canoas,2019,13,1
+Canoas,2019,14,4
+Canoas,2019,15,1
+Canoas,2019,16,6
+Canoas,2019,17,22
+Canoas,2019,18,23
+Canoas,2019,19,8
+Canoas,2019,20,8
+Canoas,2019,21,13
+Canoas,2019,22,5
+Canoas,2019,23,4
+Canoas,2019,24,2
+Canoas,2019,25,3
+Canoas,2019,26,2
+Canoas,2019,27,0
+Canoas,2019,28,0
+Canoas,2019,29,0
+Canoas,2019,30,1
+Canoas,2019,31,0
+Canoas,2019,33,0
+Canoas,2019,34,0
+Canoas,2019,35,0
+Canoas,2019,39,0
+Canoas,2019,42,0
+Canoas,2019,43,0
+Canoas,2019,44,0
+Canoas,2019,47,0
+Canoas,2019,48,0
+Canoas,2019,50,0
+Canoas,2019,51,0
+Canoas,2019,52,1
+Canoas,2020,1,0
+Canoas,2020,2,0
+Canoas,2020,5,1
+Canoas,2020,6,1
+Canoas,2020,7,0
+Canoas,2020,8,0
+Canoas,2020,9,3
+Canoas,2020,10,4
+Canoas,2020,11,3
+Canoas,2020,12,6
+Canoas,2020,13,5
+Canoas,2020,14,8
+Canoas,2020,15,9
+Canoas,2020,16,5
+Canoas,2020,17,4
+Canoas,2020,18,3
+Canoas,2020,19,13
+Canoas,2020,20,2
+Canoas,2020,21,5
+Canoas,2020,22,0
+Canoas,2020,23,3
+Canoas,2020,24,0
+Canoas,2020,25,0
+Canoas,2020,26,0
+Canoas,2020,28,0
+Canoas,2020,30,0
+Canoas,2020,31,0
+Canoas,2020,33,1
+Canoas,2020,35,0
+Canoas,2020,37,0
+Canoas,2020,44,0
+Canoas,2020,45,0
+Canoas,2020,46,0
+Canoas,2020,47,0
+Canoas,2021,3,0
+Canoas,2021,4,1
+Canoas,2021,5,0
+Canoas,2021,7,0
+Canoas,2021,11,0
+Canoas,2021,15,0
+Canoas,2021,16,3
+Canoas,2021,17,2
+Canoas,2021,18,1
+Canoas,2021,19,0
+Canoas,2021,20,0
+Canoas,2021,21,0
+Canoas,2021,22,0
+Canoas,2021,24,0
+Canoas,2021,25,0
+Canoas,2021,26,0
+Canoas,2021,27,0
+Canoas,2021,28,0
+Canoas,2021,34,0
+Canoas,2021,44,0
+Canoas,2021,45,0
+Canoas,2021,49,0
+Canoas,2021,50,0
+Canoas,2022,2,0
+Canoas,2022,3,0
+Canoas,2022,5,0
+Canoas,2022,6,0
+Canoas,2022,7,0
+Canoas,2022,8,2
+Canoas,2022,9,2
+Canoas,2022,10,5
+Canoas,2022,11,11
+Canoas,2022,12,27
+Canoas,2022,13,44
+Canoas,2022,14,60
+Canoas,2022,15,109
+Canoas,2022,16,121
+Canoas,2022,17,141
+Canoas,2022,18,88
+Canoas,2022,19,78
+Canoas,2022,20,49
+Canoas,2022,21,17
+Canoas,2022,22,20
+Canoas,2022,23,7
+Canoas,2022,24,3
+Canoas,2022,25,1
+Canoas,2022,26,2
+Canoas,2022,27,0
+Canoas,2022,28,0
+Canoas,2022,29,0
+Canoas,2022,30,0
+Canoas,2022,31,0
+Canoas,2022,32,0
+Canoas,2022,33,0
+Canoas,2022,34,0
+Canoas,2022,35,0
+Canoas,2022,36,0
+Canoas,2022,37,1
+Canoas,2022,38,1
+Canoas,2022,39,0
+Canoas,2022,40,0
+Canoas,2022,41,0
+Canoas,2022,42,0
+Canoas,2022,43,0
+Canoas,2022,44,0
+Canoas,2022,45,1
+Canoas,2022,46,0
+Canoas,2022,47,0
+Canoas,2022,48,0
+Canoas,2022,49,0
+Canoas,2022,50,0
+Canoas,2022,51,0
+Canoas,2022,52,0
+Canoas,2023,1,0
+Canoas,2023,2,0
+Canoas,2023,3,0
+Canoas,2023,4,0
+Canoas,2023,5,0
+Canoas,2023,6,0
+Canoas,2023,7,0
+Canoas,2023,8,0
+Canoas,2023,9,2
+Canoas,2023,10,3
+Canoas,2023,11,4
+Canoas,2023,12,2
+Canoas,2023,13,3
+Canoas,2023,14,3
+Canoas,2023,15,24
+Canoas,2023,16,23
+Canoas,2023,17,7
+Canoas,2023,18,22
+Canoas,2023,19,18
+Canoas,2023,20,17
+Canoas,2023,21,14
+Canoas,2023,22,17
+Canoas,2023,23,17
+Canoas,2023,24,11
+Canoas,2023,25,3
+Canoas,2023,26,4
+Canoas,2023,27,3
+Canoas,2023,28,2
+Canoas,2023,29,0
+Canoas,2023,30,2
+Canoas,2023,31,1
+Canoas,2023,32,3
+Canoas,2023,33,0
+Canoas,2023,34,1
+Canoas,2023,35,0
+Canoas,2023,36,0
+Canoas,2023,37,0
+Canoas,2023,38,0
+Canoas,2023,39,2
+Canoas,2023,40,0
+Canoas,2023,41,0
+Canoas,2023,42,1
+Canoas,2023,43,0
+Canoas,2023,44,1
+Canoas,2023,45,0
+Canoas,2023,46,1
+Canoas,2023,47,2
+Canoas,2023,48,0
+Canoas,2023,49,4
+Canoas,2023,50,4
+Canoas,2023,51,3
+Canoas,2023,52,7
+Canoas,2024,1,11
+Canoas,2024,2,14
+Canoas,2024,3,38
+Canoas,2024,4,30
+Canoas,2024,5,55
+Canoas,2024,6,120
+Canoas,2024,7,190
+Canoas,2024,8,243
+Canoas,2024,9,314
+Canoas,2024,10,411
+Canoas,2024,11,514
+Canoas,2024,12,693
+Canoas,2024,13,699
+Canoas,2024,14,847
+Canoas,2024,15,1054
+Canoas,2024,16,840
+Canoas,2024,17,791
+Canoas,2024,18,513
+Canoas,2024,19,223
+Canoas,2024,20,343
+Canoas,2024,21,123
+Canoas,2024,22,169
+Canoas,2024,23,86
+Canoas,2024,24,110
+Canoas,2024,25,104
+Canoas,2024,26,58
+Canoas,2024,27,31
+Canoas,2024,28,13
+Canoas,2024,29,3
+Canoas,2024,30,5
+Canoas,2024,31,6
+Canoas,2024,32,1
+Canoas,2024,33,5
+Canoas,2024,34,3
+Canoas,2024,35,4
+Canoas,2024,36,3
+Canoas,2024,37,1
+Canoas,2024,38,0
+Canoas,2024,39,2
+Canoas,2024,40,2
+Canoas,2024,41,1
+Canoas,2024,42,0
+Canoas,2024,43,4
+Canoas,2024,44,2
+Canoas,2024,45,4
+Canoas,2024,46,0
+Canoas,2024,47,0
+Canoas,2024,48,2
+Canoas,2024,49,1
+Canoas,2024,50,5
+Canoas,2024,51,2
+Canoas,2024,52,2
+Canoas,2025,1,3
+Canoas,2025,2,2
+Canoas,2025,3,4
+Canoas,2025,4,3
+Canoas,2025,5,1
+Canoas,2025,6,1
+Canoas,2025,7,3
+Canoas,2025,8,3
+Canoas,2025,9,4
+Canoas,2025,10,6
+Canoas,2025,11,11
+Canoas,2025,12,11
+Canoas,2025,13,28
+Canoas,2025,14,34
+Canoas,2025,15,37
+Canoas,2025,16,63
+Canoas,2025,17,49
+Canoas,2025,18,58
+Canoas,2025,19,60
+Canoas,2025,20,76
+Canoas,2025,21,65
+Canoas,2025,22,54
+Canoas,2025,23,29
+Canoas,2025,24,17
+Canoas,2025,25,2
+Canoas,2025,26,1
+Canoas,2025,27,0
+Canoas,2025,28,2
+Canoas,2025,29,1
+Canoas,2025,30,0
+Canoas,2025,31,2
+Canoas,2025,32,0
+Canoas,2025,33,0
+Canoas,2025,34,0
+Canoas,2025,35,0
+Canoas,2025,36,1
+Canoas,2025,37,4
+Canoas,2025,38,2
+Canoas,2025,39,3
+Canoas,2025,40,2
+Canoas,2025,41,3
+Canoas,2025,42,2
+Canoas,2025,43,1
+Canoas,2025,44,0
+Canoas,2025,45,1
+Canoas,2025,46,2
+Canoas,2025,47,2
+Canoas,2025,48,0
+Canoas,2025,49,2
+Canoas,2025,50,1
+Canoas,2025,51,2
+Canoas,2025,52,1
+Canoas,2025,53,1
+Canoas,2026,1,2
+Canoas,2026,2,2
+Canoas,2026,3,0
+Canoas,2026,4,0
+Canoas,2026,5,0
+Canoas,2026,6,0
+Canoas,2026,7,0
+Canoas,2026,8,3
+Canoas,2026,9,1
+Canoas,2026,10,4
+Canoas,2026,11,1
+Canoas,2026,12,0
+Canoas,2026,13,0
+Canoas,2026,14,5
+Canoas,2026,15,0
+Canoas,2026,16,0
+Canoas,2026,17,3
+Canoas,2026,18,3
+Canoas,2026,19,3
+Canoas,2026,20,0
+Canoas,2026,21,1
+Canoas,2026,22,0
+Canoas,2026,23,0
+Canoas,2026,24,0
+Canoas,2026,25,0
+Canoas,2026,26,0
+Canoas,2026,27,1
+Canoas,2026,28,0
+Canoas,2026,29,0
+Canoas,2026,30,1
+Canoas,2026,31,0
+Canoas,2026,32,0
+Canoas,2026,33,0
+Canoas,2026,34,0
+Canoas,2026,35,0
+Canoas,2026,36,0
+Canoas,2026,37,0
+Eldorado do Sul,2015,10,1
+Eldorado do Sul,2015,12,0
+Eldorado do Sul,2015,19,0
+Eldorado do Sul,2015,20,0
+Eldorado do Sul,2015,21,0
+Eldorado do Sul,2015,22,0
+Eldorado do Sul,2015,31,0
+Eldorado do Sul,2015,51,0
+Eldorado do Sul,2016,5,0
+Eldorado do Sul,2016,7,0
+Eldorado do Sul,2016,8,0
+Eldorado do Sul,2016,9,0
+Eldorado do Sul,2016,10,0
+Eldorado do Sul,2016,11,1
+Eldorado do Sul,2016,12,0
+Eldorado do Sul,2016,13,1
+Eldorado do Sul,2016,14,1
+Eldorado do Sul,2016,15,0
+Eldorado do Sul,2016,16,1
+Eldorado do Sul,2016,18,0
+Eldorado do Sul,2016,20,0
+Eldorado do Sul,2016,22,0
+Eldorado do Sul,2016,40,0
+Eldorado do Sul,2016,50,0
+Eldorado do Sul,2017,1,0
+Eldorado do Sul,2017,3,0
+Eldorado do Sul,2017,4,0
+Eldorado do Sul,2017,7,0
+Eldorado do Sul,2017,20,0
+Eldorado do Sul,2017,22,0
+Eldorado do Sul,2017,37,1
+Eldorado do Sul,2018,3,0
+Eldorado do Sul,2018,43,0
+Eldorado do Sul,2018,46,0
+Eldorado do Sul,2018,49,0
+Eldorado do Sul,2019,2,0
+Eldorado do Sul,2019,19,0
+Eldorado do Sul,2019,20,0
+Eldorado do Sul,2019,21,0
+Eldorado do Sul,2019,25,0
+Eldorado do Sul,2020,6,0
+Eldorado do Sul,2021,16,0
+Eldorado do Sul,2022,12,0
+Eldorado do Sul,2022,13,2
+Eldorado do Sul,2022,14,1
+Eldorado do Sul,2022,15,7
+Eldorado do Sul,2022,16,9
+Eldorado do Sul,2022,17,9
+Eldorado do Sul,2022,18,8
+Eldorado do Sul,2022,19,15
+Eldorado do Sul,2022,20,7
+Eldorado do Sul,2022,21,2
+Eldorado do Sul,2022,22,1
+Eldorado do Sul,2022,23,2
+Eldorado do Sul,2022,24,0
+Eldorado do Sul,2022,25,0
+Eldorado do Sul,2022,28,0
+Eldorado do Sul,2022,32,0
+Eldorado do Sul,2023,3,1
+Eldorado do Sul,2023,7,0
+Eldorado do Sul,2023,9,0
+Eldorado do Sul,2023,10,0
+Eldorado do Sul,2023,12,0
+Eldorado do Sul,2023,13,0
+Eldorado do Sul,2023,14,3
+Eldorado do Sul,2023,15,6
+Eldorado do Sul,2023,16,6
+Eldorado do Sul,2023,17,2
+Eldorado do Sul,2023,18,5
+Eldorado do Sul,2023,19,7
+Eldorado do Sul,2023,20,3
+Eldorado do Sul,2023,21,3
+Eldorado do Sul,2023,22,4
+Eldorado do Sul,2023,23,6
+Eldorado do Sul,2023,24,3
+Eldorado do Sul,2023,25,1
+Eldorado do Sul,2023,26,0
+Eldorado do Sul,2023,30,0
+Eldorado do Sul,2023,34,0
+Eldorado do Sul,2023,37,1
+Eldorado do Sul,2023,40,1
+Eldorado do Sul,2023,42,0
+Eldorado do Sul,2023,44,1
+Eldorado do Sul,2023,49,0
+Eldorado do Sul,2023,50,1
+Eldorado do Sul,2024,1,0
+Eldorado do Sul,2024,3,0
+Eldorado do Sul,2024,4,0
+Eldorado do Sul,2024,5,1
+Eldorado do Sul,2024,6,1
+Eldorado do Sul,2024,7,1
+Eldorado do Sul,2024,8,8
+Eldorado do Sul,2024,9,2
+Eldorado do Sul,2024,10,3
+Eldorado do Sul,2024,11,2
+Eldorado do Sul,2024,12,5
+Eldorado do Sul,2024,13,9
+Eldorado do Sul,2024,14,8
+Eldorado do Sul,2024,15,13
+Eldorado do Sul,2024,16,12
+Eldorado do Sul,2024,17,4
+Eldorado do Sul,2024,18,2
+Eldorado do Sul,2024,19,0
+Eldorado do Sul,2024,20,3
+Eldorado do Sul,2024,21,2
+Eldorado do Sul,2024,22,3
+Eldorado do Sul,2024,23,0
+Eldorado do Sul,2024,24,1
+Eldorado do Sul,2024,25,2
+Eldorado do Sul,2024,26,1
+Eldorado do Sul,2024,27,2
+Eldorado do Sul,2024,28,2
+Eldorado do Sul,2024,29,1
+Eldorado do Sul,2024,30,0
+Eldorado do Sul,2024,31,0
+Eldorado do Sul,2024,32,0
+Eldorado do Sul,2024,35,0
+Eldorado do Sul,2024,36,0
+Eldorado do Sul,2024,37,0
+Eldorado do Sul,2024,38,1
+Eldorado do Sul,2024,41,0
+Eldorado do Sul,2024,46,1
+Eldorado do Sul,2024,47,0
+Eldorado do Sul,2024,48,0
+Eldorado do Sul,2024,49,0
+Eldorado do Sul,2024,50,0
+Eldorado do Sul,2024,51,0
+Eldorado do Sul,2024,52,0
+Eldorado do Sul,2025,1,0
+Eldorado do Sul,2025,2,1
+Eldorado do Sul,2025,3,0
+Eldorado do Sul,2025,4,0
+Eldorado do Sul,2025,6,0
+Eldorado do Sul,2025,7,0
+Eldorado do Sul,2025,8,0
+Eldorado do Sul,2025,9,0
+Eldorado do Sul,2025,10,0
+Eldorado do Sul,2025,11,3
+Eldorado do Sul,2025,12,0
+Eldorado do Sul,2025,13,0
+Eldorado do Sul,2025,14,7
+Eldorado do Sul,2025,15,1
+Eldorado do Sul,2025,16,4
+Eldorado do Sul,2025,17,5
+Eldorado do Sul,2025,18,3
+Eldorado do Sul,2025,19,1
+Eldorado do Sul,2025,20,4
+Eldorado do Sul,2025,21,4
+Eldorado do Sul,2025,22,3
+Eldorado do Sul,2025,23,0
+Eldorado do Sul,2025,24,0
+Eldorado do Sul,2025,25,1
+Eldorado do Sul,2025,26,0
+Eldorado do Sul,2025,28,0
+Eldorado do Sul,2025,29,0
+Eldorado do Sul,2025,35,0
+Eldorado do Sul,2025,36,0
+Eldorado do Sul,2025,39,0
+Eldorado do Sul,2025,40,0
+Eldorado do Sul,2025,41,0
+Eldorado do Sul,2025,43,0
+Eldorado do Sul,2025,45,0
+Eldorado do Sul,2025,47,0
+Eldorado do Sul,2025,49,0
+Eldorado do Sul,2025,50,0
+Eldorado do Sul,2025,52,0
+Eldorado do Sul,2025,53,0
+Eldorado do Sul,2026,1,0
+Eldorado do Sul,2026,2,0
+Eldorado do Sul,2026,4,0
+Eldorado do Sul,2026,6,0
+Eldorado do Sul,2026,7,0
+Eldorado do Sul,2026,8,0
+Eldorado do Sul,2026,9,0
+Eldorado do Sul,2026,10,0
+Eldorado do Sul,2026,11,0
+Eldorado do Sul,2026,12,0
+Eldorado do Sul,2026,13,0
+Eldorado do Sul,2026,15,0
+Eldorado do Sul,2026,16,0
+Eldorado do Sul,2026,17,0
+Eldorado do Sul,2026,18,0
+Eldorado do Sul,2026,20,0
+Eldorado do Sul,2026,23,0
+Eldorado do Sul,2026,24,0
+Eldorado do Sul,2026,25,0
+Esteio,2015,8,0
+Esteio,2015,10,0
+Esteio,2015,14,1
+Esteio,2015,18,0
+Esteio,2015,26,0
+Esteio,2015,40,0
+Esteio,2015,46,0
+Esteio,2015,49,0
+Esteio,2015,52,2
+Esteio,2016,1,0
+Esteio,2016,2,0
+Esteio,2016,3,0
+Esteio,2016,5,1
+Esteio,2016,7,0
+Esteio,2016,8,0
+Esteio,2016,9,0
+Esteio,2016,10,0
+Esteio,2016,11,0
+Esteio,2016,14,0
+Esteio,2016,15,0
+Esteio,2016,16,0
+Esteio,2016,17,1
+Esteio,2016,35,0
+Esteio,2016,42,0
+Esteio,2016,51,0
+Esteio,2016,52,0
+Esteio,2017,2,0
+Esteio,2017,21,0
+Esteio,2017,32,0
+Esteio,2017,34,0
+Esteio,2017,35,0
+Esteio,2017,40,0
+Esteio,2017,50,0
+Esteio,2018,3,0
+Esteio,2018,9,1
+Esteio,2018,20,1
+Esteio,2019,6,0
+Esteio,2019,12,7
+Esteio,2019,13,4
+Esteio,2019,14,1
+Esteio,2019,15,2
+Esteio,2019,16,5
+Esteio,2019,17,3
+Esteio,2019,18,3
+Esteio,2019,19,5
+Esteio,2019,20,6
+Esteio,2019,21,3
+Esteio,2019,22,3
+Esteio,2019,23,1
+Esteio,2019,24,1
+Esteio,2019,25,0
+Esteio,2019,26,1
+Esteio,2019,27,0
+Esteio,2019,29,0
+Esteio,2019,30,0
+Esteio,2019,31,0
+Esteio,2019,35,0
+Esteio,2019,36,1
+Esteio,2019,37,0
+Esteio,2019,39,0
+Esteio,2019,41,0
+Esteio,2019,42,0
+Esteio,2019,43,0
+Esteio,2019,46,0
+Esteio,2019,48,0
+Esteio,2019,49,0
+Esteio,2019,50,0
+Esteio,2019,51,0
+Esteio,2020,2,0
+Esteio,2020,3,0
+Esteio,2020,4,1
+Esteio,2020,12,1
+Esteio,2020,13,0
+Esteio,2020,14,0
+Esteio,2020,15,1
+Esteio,2020,18,1
+Esteio,2020,20,1
+Esteio,2020,24,1
+Esteio,2020,25,0
+Esteio,2020,29,0
+Esteio,2020,31,0
+Esteio,2020,36,0
+Esteio,2020,41,0
+Esteio,2021,4,0
+Esteio,2021,19,0
+Esteio,2021,30,0
+Esteio,2021,43,0
+Esteio,2021,49,0
+Esteio,2021,51,0
+Esteio,2022,6,1
+Esteio,2022,9,1
+Esteio,2022,10,2
+Esteio,2022,11,3
+Esteio,2022,12,18
+Esteio,2022,13,14
+Esteio,2022,14,12
+Esteio,2022,15,10
+Esteio,2022,16,18
+Esteio,2022,17,21
+Esteio,2022,18,17
+Esteio,2022,19,21
+Esteio,2022,20,6
+Esteio,2022,21,3
+Esteio,2022,22,4
+Esteio,2022,23,2
+Esteio,2022,24,2
+Esteio,2022,25,3
+Esteio,2022,26,0
+Esteio,2022,28,3
+Esteio,2022,29,0
+Esteio,2022,30,0
+Esteio,2022,31,1
+Esteio,2022,33,0
+Esteio,2022,34,0
+Esteio,2022,35,1
+Esteio,2022,36,0
+Esteio,2022,37,0
+Esteio,2022,39,0
+Esteio,2022,40,0
+Esteio,2022,43,0
+Esteio,2022,45,0
+Esteio,2022,46,0
+Esteio,2022,48,0
+Esteio,2022,52,0
+Esteio,2023,2,1
+Esteio,2023,3,0
+Esteio,2023,5,0
+Esteio,2023,6,0
+Esteio,2023,7,0
+Esteio,2023,8,0
+Esteio,2023,9,0
+Esteio,2023,10,0
+Esteio,2023,11,3
+Esteio,2023,12,4
+Esteio,2023,13,2
+Esteio,2023,14,1
+Esteio,2023,15,3
+Esteio,2023,16,4
+Esteio,2023,17,8
+Esteio,2023,18,7
+Esteio,2023,19,3
+Esteio,2023,20,7
+Esteio,2023,21,5
+Esteio,2023,22,4
+Esteio,2023,23,4
+Esteio,2023,24,8
+Esteio,2023,25,2
+Esteio,2023,26,0
+Esteio,2023,27,1
+Esteio,2023,28,2
+Esteio,2023,29,2
+Esteio,2023,30,4
+Esteio,2023,31,0
+Esteio,2023,32,0
+Esteio,2023,35,0
+Esteio,2023,36,0
+Esteio,2023,37,2
+Esteio,2023,38,0
+Esteio,2023,40,1
+Esteio,2023,43,0
+Esteio,2023,44,1
+Esteio,2023,45,0
+Esteio,2023,46,0
+Esteio,2023,48,0
+Esteio,2023,50,2
+Esteio,2023,51,0
+Esteio,2023,52,1
+Esteio,2024,1,0
+Esteio,2024,2,0
+Esteio,2024,3,1
+Esteio,2024,4,1
+Esteio,2024,5,1
+Esteio,2024,6,6
+Esteio,2024,7,9
+Esteio,2024,8,18
+Esteio,2024,9,18
+Esteio,2024,10,45
+Esteio,2024,11,64
+Esteio,2024,12,82
+Esteio,2024,13,118
+Esteio,2024,14,164
+Esteio,2024,15,235
+Esteio,2024,16,291
+Esteio,2024,17,314
+Esteio,2024,18,217
+Esteio,2024,19,139
+Esteio,2024,20,226
+Esteio,2024,21,93
+Esteio,2024,22,109
+Esteio,2024,23,62
+Esteio,2024,24,94
+Esteio,2024,25,108
+Esteio,2024,26,63
+Esteio,2024,27,27
+Esteio,2024,28,7
+Esteio,2024,29,5
+Esteio,2024,30,6
+Esteio,2024,31,4
+Esteio,2024,32,5
+Esteio,2024,33,1
+Esteio,2024,34,1
+Esteio,2024,35,3
+Esteio,2024,36,2
+Esteio,2024,37,1
+Esteio,2024,38,0
+Esteio,2024,39,2
+Esteio,2024,40,1
+Esteio,2024,41,2
+Esteio,2024,42,1
+Esteio,2024,43,2
+Esteio,2024,44,1
+Esteio,2024,45,0
+Esteio,2024,46,3
+Esteio,2024,47,1
+Esteio,2024,48,1
+Esteio,2024,49,0
+Esteio,2024,50,1
+Esteio,2024,51,1
+Esteio,2024,52,1
+Esteio,2025,1,0
+Esteio,2025,2,0
+Esteio,2025,3,0
+Esteio,2025,4,0
+Esteio,2025,5,0
+Esteio,2025,6,0
+Esteio,2025,7,1
+Esteio,2025,8,0
+Esteio,2025,9,0
+Esteio,2025,10,2
+Esteio,2025,11,1
+Esteio,2025,12,6
+Esteio,2025,13,0
+Esteio,2025,14,9
+Esteio,2025,15,10
+Esteio,2025,16,15
+Esteio,2025,17,14
+Esteio,2025,18,21
+Esteio,2025,19,14
+Esteio,2025,20,36
+Esteio,2025,21,27
+Esteio,2025,22,27
+Esteio,2025,23,10
+Esteio,2025,24,5
+Esteio,2025,25,2
+Esteio,2025,26,4
+Esteio,2025,27,1
+Esteio,2025,28,0
+Esteio,2025,29,1
+Esteio,2025,30,1
+Esteio,2025,31,0
+Esteio,2025,32,0
+Esteio,2025,33,1
+Esteio,2025,34,0
+Esteio,2025,35,0
+Esteio,2025,36,0
+Esteio,2025,37,0
+Esteio,2025,38,1
+Esteio,2025,39,0
+Esteio,2025,40,0
+Esteio,2025,41,1
+Esteio,2025,42,0
+Esteio,2025,43,0
+Esteio,2025,44,0
+Esteio,2025,45,0
+Esteio,2025,46,0
+Esteio,2025,47,0
+Esteio,2025,48,0
+Esteio,2025,49,0
+Esteio,2025,50,1
+Esteio,2025,51,0
+Esteio,2025,52,0
+Esteio,2026,1,1
+Esteio,2026,2,0
+Esteio,2026,3,0
+Esteio,2026,4,0
+Esteio,2026,5,0
+Esteio,2026,6,0
+Esteio,2026,7,0
+Esteio,2026,8,1
+Esteio,2026,9,0
+Esteio,2026,10,1
+Esteio,2026,11,1
+Esteio,2026,12,1
+Esteio,2026,13,1
+Esteio,2026,14,1
+Esteio,2026,15,0
+Esteio,2026,17,1
+Esteio,2026,18,1
+Esteio,2026,20,0
+Esteio,2026,21,1
+Esteio,2026,22,0
+Esteio,2026,23,1
+Esteio,2026,24,0
+Esteio,2026,25,0
+Esteio,2026,26,0
+Esteio,2026,27,0
+Esteio,2026,29,0
+Esteio,2026,30,0
+Esteio,2026,31,2
+Esteio,2026,33,0
+Esteio,2026,34,0
+Esteio,2026,35,1
+Esteio,2026,36,0
+Gravataí,2015,5,0
+Gravataí,2015,11,0
+Gravataí,2015,12,1
+Gravataí,2015,13,0
+Gravataí,2015,14,0
+Gravataí,2015,15,0
+Gravataí,2015,16,1
+Gravataí,2015,17,2
+Gravataí,2015,18,0
+Gravataí,2015,19,0
+Gravataí,2015,21,0
+Gravataí,2015,23,0
+Gravataí,2015,30,0
+Gravataí,2015,33,0
+Gravataí,2015,37,1
+Gravataí,2015,38,0
+Gravataí,2015,47,0
+Gravataí,2015,49,0
+Gravataí,2015,51,0
+Gravataí,2015,52,0
+Gravataí,2016,2,0
+Gravataí,2016,3,0
+Gravataí,2016,4,0
+Gravataí,2016,5,0
+Gravataí,2016,8,1
+Gravataí,2016,9,2
+Gravataí,2016,10,2
+Gravataí,2016,11,4
+Gravataí,2016,12,3
+Gravataí,2016,13,0
+Gravataí,2016,14,4
+Gravataí,2016,15,3
+Gravataí,2016,16,2
+Gravataí,2016,17,2
+Gravataí,2016,18,1
+Gravataí,2016,25,0
+Gravataí,2016,43,0
+Gravataí,2016,47,0
+Gravataí,2016,49,0
+Gravataí,2016,50,0
+Gravataí,2017,1,0
+Gravataí,2017,2,0
+Gravataí,2017,3,0
+Gravataí,2017,4,0
+Gravataí,2017,5,0
+Gravataí,2017,6,0
+Gravataí,2017,9,0
+Gravataí,2017,10,0
+Gravataí,2017,11,0
+Gravataí,2017,12,0
+Gravataí,2017,15,0
+Gravataí,2017,18,0
+Gravataí,2017,20,0
+Gravataí,2017,21,0
+Gravataí,2017,24,0
+Gravataí,2017,26,0
+Gravataí,2017,39,0
+Gravataí,2017,45,0
+Gravataí,2017,46,0
+Gravataí,2017,47,0
+Gravataí,2017,49,0
+Gravataí,2017,51,0
+Gravataí,2017,52,0
+Gravataí,2018,5,0
+Gravataí,2018,11,0
+Gravataí,2018,20,0
+Gravataí,2018,22,0
+Gravataí,2018,32,0
+Gravataí,2018,46,0
+Gravataí,2019,1,0
+Gravataí,2019,2,0
+Gravataí,2019,8,0
+Gravataí,2019,9,0
+Gravataí,2019,10,0
+Gravataí,2019,11,0
+Gravataí,2019,13,0
+Gravataí,2019,15,1
+Gravataí,2019,16,0
+Gravataí,2019,17,0
+Gravataí,2019,18,0
+Gravataí,2019,19,1
+Gravataí,2019,20,0
+Gravataí,2019,21,0
+Gravataí,2019,22,0
+Gravataí,2019,23,0
+Gravataí,2019,26,0
+Gravataí,2019,28,0
+Gravataí,2019,29,0
+Gravataí,2019,30,0
+Gravataí,2019,37,0
+Gravataí,2019,51,0
+Gravataí,2020,2,0
+Gravataí,2020,6,0
+Gravataí,2020,8,1
+Gravataí,2020,11,0
+Gravataí,2020,13,1
+Gravataí,2020,21,1
+Gravataí,2020,28,0
+Gravataí,2020,36,0
+Gravataí,2020,52,0
+Gravataí,2021,5,0
+Gravataí,2021,11,1
+Gravataí,2021,12,0
+Gravataí,2021,15,1
+Gravataí,2021,16,0
+Gravataí,2021,17,0
+Gravataí,2021,18,0
+Gravataí,2021,19,1
+Gravataí,2021,32,0
+Gravataí,2021,36,0
+Gravataí,2021,41,0
+Gravataí,2022,1,1
+Gravataí,2022,8,0
+Gravataí,2022,10,1
+Gravataí,2022,11,0
+Gravataí,2022,12,3
+Gravataí,2022,13,3
+Gravataí,2022,14,3
+Gravataí,2022,15,5
+Gravataí,2022,16,13
+Gravataí,2022,17,6
+Gravataí,2022,18,12
+Gravataí,2022,19,3
+Gravataí,2022,20,3
+Gravataí,2022,21,4
+Gravataí,2022,22,3
+Gravataí,2022,23,1
+Gravataí,2022,24,0
+Gravataí,2022,25,2
+Gravataí,2022,26,1
+Gravataí,2022,27,1
+Gravataí,2022,28,0
+Gravataí,2022,29,0
+Gravataí,2022,30,0
+Gravataí,2022,33,0
+Gravataí,2022,34,0
+Gravataí,2022,37,0
+Gravataí,2022,41,0
+Gravataí,2022,42,0
+Gravataí,2022,43,0
+Gravataí,2022,47,0
+Gravataí,2022,48,0
+Gravataí,2022,49,0
+Gravataí,2022,51,0
+Gravataí,2022,52,0
+Gravataí,2023,1,0
+Gravataí,2023,2,0
+Gravataí,2023,3,0
+Gravataí,2023,4,0
+Gravataí,2023,5,1
+Gravataí,2023,6,0
+Gravataí,2023,7,0
+Gravataí,2023,8,0
+Gravataí,2023,9,2
+Gravataí,2023,10,1
+Gravataí,2023,11,3
+Gravataí,2023,12,3
+Gravataí,2023,13,4
+Gravataí,2023,14,30
+Gravataí,2023,15,19
+Gravataí,2023,16,25
+Gravataí,2023,17,31
+Gravataí,2023,18,41
+Gravataí,2023,19,39
+Gravataí,2023,20,42
+Gravataí,2023,21,30
+Gravataí,2023,22,30
+Gravataí,2023,23,23
+Gravataí,2023,24,12
+Gravataí,2023,25,9
+Gravataí,2023,26,12
+Gravataí,2023,27,8
+Gravataí,2023,28,4
+Gravataí,2023,29,1
+Gravataí,2023,30,0
+Gravataí,2023,31,1
+Gravataí,2023,32,2
+Gravataí,2023,33,0
+Gravataí,2023,34,0
+Gravataí,2023,35,1
+Gravataí,2023,36,0
+Gravataí,2023,37,0
+Gravataí,2023,38,1
+Gravataí,2023,39,1
+Gravataí,2023,40,0
+Gravataí,2023,41,0
+Gravataí,2023,42,1
+Gravataí,2023,43,1
+Gravataí,2023,44,0
+Gravataí,2023,46,0
+Gravataí,2023,47,2
+Gravataí,2023,48,0
+Gravataí,2023,49,0
+Gravataí,2023,50,0
+Gravataí,2023,51,2
+Gravataí,2023,52,0
+Gravataí,2024,1,2
+Gravataí,2024,2,0
+Gravataí,2024,3,3
+Gravataí,2024,4,4
+Gravataí,2024,5,5
+Gravataí,2024,6,12
+Gravataí,2024,7,23
+Gravataí,2024,8,32
+Gravataí,2024,9,54
+Gravataí,2024,10,69
+Gravataí,2024,11,83
+Gravataí,2024,12,143
+Gravataí,2024,13,149
+Gravataí,2024,14,202
+Gravataí,2024,15,283
+Gravataí,2024,16,283
+Gravataí,2024,17,289
+Gravataí,2024,18,242
+Gravataí,2024,19,239
+Gravataí,2024,20,307
+Gravataí,2024,21,75
+Gravataí,2024,22,101
+Gravataí,2024,23,44
+Gravataí,2024,24,60
+Gravataí,2024,25,95
+Gravataí,2024,26,51
+Gravataí,2024,27,27
+Gravataí,2024,28,3
+Gravataí,2024,29,2
+Gravataí,2024,30,4
+Gravataí,2024,31,0
+Gravataí,2024,32,2
+Gravataí,2024,33,2
+Gravataí,2024,34,2
+Gravataí,2024,35,1
+Gravataí,2024,36,1
+Gravataí,2024,37,0
+Gravataí,2024,38,1
+Gravataí,2024,39,0
+Gravataí,2024,40,0
+Gravataí,2024,41,2
+Gravataí,2024,42,4
+Gravataí,2024,43,1
+Gravataí,2024,44,1
+Gravataí,2024,45,1
+Gravataí,2024,46,1
+Gravataí,2024,47,2
+Gravataí,2024,48,1
+Gravataí,2024,49,0
+Gravataí,2024,50,0
+Gravataí,2024,51,1
+Gravataí,2024,52,1
+Gravataí,2025,1,0
+Gravataí,2025,2,1
+Gravataí,2025,3,2
+Gravataí,2025,4,1
+Gravataí,2025,5,2
+Gravataí,2025,6,0
+Gravataí,2025,7,1
+Gravataí,2025,8,2
+Gravataí,2025,9,5
+Gravataí,2025,10,3
+Gravataí,2025,11,10
+Gravataí,2025,12,9
+Gravataí,2025,13,26
+Gravataí,2025,14,50
+Gravataí,2025,15,57
+Gravataí,2025,16,80
+Gravataí,2025,17,107
+Gravataí,2025,18,114
+Gravataí,2025,19,90
+Gravataí,2025,20,145
+Gravataí,2025,21,136
+Gravataí,2025,22,68
+Gravataí,2025,23,26
+Gravataí,2025,24,20
+Gravataí,2025,25,8
+Gravataí,2025,26,2
+Gravataí,2025,27,1
+Gravataí,2025,28,0
+Gravataí,2025,29,0
+Gravataí,2025,30,0
+Gravataí,2025,31,0
+Gravataí,2025,32,1
+Gravataí,2025,33,1
+Gravataí,2025,34,0
+Gravataí,2025,35,0
+Gravataí,2025,36,0
+Gravataí,2025,37,3
+Gravataí,2025,38,0
+Gravataí,2025,39,0
+Gravataí,2025,40,0
+Gravataí,2025,41,0
+Gravataí,2025,42,1
+Gravataí,2025,43,2
+Gravataí,2025,44,0
+Gravataí,2025,45,1
+Gravataí,2025,46,0
+Gravataí,2025,47,0
+Gravataí,2025,48,0
+Gravataí,2025,49,0
+Gravataí,2025,50,1
+Gravataí,2025,51,2
+Gravataí,2025,52,1
+Gravataí,2025,53,2
+Gravataí,2026,1,0
+Gravataí,2026,2,1
+Gravataí,2026,3,1
+Gravataí,2026,4,0
+Gravataí,2026,5,2
+Gravataí,2026,6,0
+Gravataí,2026,7,0
+Gravataí,2026,8,0
+Gravataí,2026,9,0
+Gravataí,2026,10,1
+Gravataí,2026,11,0
+Gravataí,2026,12,0
+Gravataí,2026,13,0
+Gravataí,2026,14,1
+Gravataí,2026,15,1
+Gravataí,2026,16,1
+Gravataí,2026,17,0
+Gravataí,2026,18,2
+Gravataí,2026,19,1
+Gravataí,2026,20,1
+Gravataí,2026,21,0
+Gravataí,2026,22,1
+Gravataí,2026,23,1
+Gravataí,2026,24,1
+Gravataí,2026,25,0
+Gravataí,2026,26,1
+Gravataí,2026,27,0
+Gravataí,2026,28,1
+Gravataí,2026,29,0
+Gravataí,2026,30,0
+Gravataí,2026,31,0
+Gravataí,2026,32,0
+Gravataí,2026,33,0
+Gravataí,2026,34,0
+Gravataí,2026,37,0
+Guaíba,2015,9,0
+Guaíba,2015,12,0
+Guaíba,2015,13,0
+Guaíba,2015,18,0
+Guaíba,2015,22,1
+Guaíba,2015,23,0
+Guaíba,2015,24,0
+Guaíba,2015,27,0
+Guaíba,2015,31,0
+Guaíba,2015,39,0
+Guaíba,2015,41,0
+Guaíba,2015,45,0
+Guaíba,2015,49,0
+Guaíba,2015,51,0
+Guaíba,2016,2,1
+Guaíba,2016,4,0
+Guaíba,2016,7,0
+Guaíba,2016,8,0
+Guaíba,2016,9,1
+Guaíba,2016,10,0
+Guaíba,2016,11,0
+Guaíba,2016,13,0
+Guaíba,2016,15,0
+Guaíba,2016,16,1
+Guaíba,2016,17,0
+Guaíba,2016,19,1
+Guaíba,2016,37,0
+Guaíba,2016,38,0
+Guaíba,2016,39,0
+Guaíba,2016,47,0
+Guaíba,2016,51,0
+Guaíba,2017,2,0
+Guaíba,2017,3,0
+Guaíba,2017,5,1
+Guaíba,2017,7,0
+Guaíba,2017,14,0
+Guaíba,2017,23,0
+Guaíba,2017,39,0
+Guaíba,2017,46,0
+Guaíba,2017,49,0
+Guaíba,2017,52,0
+Guaíba,2018,1,0
+Guaíba,2018,5,0
+Guaíba,2018,15,0
+Guaíba,2018,27,1
+Guaíba,2018,39,0
+Guaíba,2018,41,0
+Guaíba,2018,43,0
+Guaíba,2019,3,0
+Guaíba,2019,7,0
+Guaíba,2019,8,0
+Guaíba,2019,19,0
+Guaíba,2019,22,0
+Guaíba,2019,23,0
+Guaíba,2019,29,0
+Guaíba,2019,48,0
+Guaíba,2020,2,0
+Guaíba,2020,3,1
+Guaíba,2020,5,0
+Guaíba,2020,7,1
+Guaíba,2020,12,0
+Guaíba,2020,18,1
+Guaíba,2020,45,0
+Guaíba,2020,51,0
+Guaíba,2021,16,1
+Guaíba,2021,22,0
+Guaíba,2021,23,0
+Guaíba,2021,24,0
+Guaíba,2021,25,0
+Guaíba,2021,27,0
+Guaíba,2021,28,0
+Guaíba,2021,31,0
+Guaíba,2021,39,0
+Guaíba,2021,40,0
+Guaíba,2021,42,0
+Guaíba,2021,43,0
+Guaíba,2021,44,0
+Guaíba,2021,45,0
+Guaíba,2021,46,0
+Guaíba,2022,1,0
+Guaíba,2022,3,1
+Guaíba,2022,7,0
+Guaíba,2022,10,1
+Guaíba,2022,11,1
+Guaíba,2022,12,0
+Guaíba,2022,13,1
+Guaíba,2022,14,2
+Guaíba,2022,15,2
+Guaíba,2022,16,3
+Guaíba,2022,17,2
+Guaíba,2022,18,0
+Guaíba,2022,19,1
+Guaíba,2022,20,1
+Guaíba,2022,21,0
+Guaíba,2022,22,0
+Guaíba,2022,23,1
+Guaíba,2022,24,1
+Guaíba,2022,25,0
+Guaíba,2022,27,1
+Guaíba,2022,28,0
+Guaíba,2022,29,0
+Guaíba,2022,30,0
+Guaíba,2022,33,1
+Guaíba,2022,34,0
+Guaíba,2022,35,0
+Guaíba,2022,36,0
+Guaíba,2022,37,0
+Guaíba,2022,39,0
+Guaíba,2022,45,0
+Guaíba,2022,46,0
+Guaíba,2022,48,0
+Guaíba,2023,1,0
+Guaíba,2023,2,0
+Guaíba,2023,3,0
+Guaíba,2023,4,0
+Guaíba,2023,5,0
+Guaíba,2023,6,0
+Guaíba,2023,7,0
+Guaíba,2023,8,0
+Guaíba,2023,9,0
+Guaíba,2023,10,0
+Guaíba,2023,11,0
+Guaíba,2023,12,1
+Guaíba,2023,13,0
+Guaíba,2023,14,1
+Guaíba,2023,15,4
+Guaíba,2023,16,2
+Guaíba,2023,17,0
+Guaíba,2023,18,2
+Guaíba,2023,19,1
+Guaíba,2023,20,2
+Guaíba,2023,21,3
+Guaíba,2023,22,0
+Guaíba,2023,23,0
+Guaíba,2023,24,2
+Guaíba,2023,25,0
+Guaíba,2023,26,0
+Guaíba,2023,27,0
+Guaíba,2023,28,0
+Guaíba,2023,29,0
+Guaíba,2023,30,0
+Guaíba,2023,31,0
+Guaíba,2023,32,0
+Guaíba,2023,33,0
+Guaíba,2023,36,0
+Guaíba,2023,39,0
+Guaíba,2023,40,1
+Guaíba,2023,42,0
+Guaíba,2023,43,0
+Guaíba,2023,45,1
+Guaíba,2023,47,0
+Guaíba,2023,50,0
+Guaíba,2023,51,2
+Guaíba,2023,52,1
+Guaíba,2024,1,0
+Guaíba,2024,2,0
+Guaíba,2024,3,1
+Guaíba,2024,4,3
+Guaíba,2024,5,1
+Guaíba,2024,6,2
+Guaíba,2024,7,4
+Guaíba,2024,8,6
+Guaíba,2024,9,8
+Guaíba,2024,10,12
+Guaíba,2024,11,5
+Guaíba,2024,12,4
+Guaíba,2024,13,8
+Guaíba,2024,14,5
+Guaíba,2024,15,9
+Guaíba,2024,16,7
+Guaíba,2024,17,8
+Guaíba,2024,18,4
+Guaíba,2024,19,1
+Guaíba,2024,20,2
+Guaíba,2024,21,3
+Guaíba,2024,22,0
+Guaíba,2024,23,0
+Guaíba,2024,24,2
+Guaíba,2024,25,0
+Guaíba,2024,26,1
+Guaíba,2024,27,0
+Guaíba,2024,28,0
+Guaíba,2024,29,0
+Guaíba,2024,30,1
+Guaíba,2024,31,0
+Guaíba,2024,32,0
+Guaíba,2024,33,0
+Guaíba,2024,34,0
+Guaíba,2024,36,0
+Guaíba,2024,37,0
+Guaíba,2024,38,0
+Guaíba,2024,39,0
+Guaíba,2024,40,0
+Guaíba,2024,41,0
+Guaíba,2024,42,0
+Guaíba,2024,43,0
+Guaíba,2024,44,0
+Guaíba,2024,45,0
+Guaíba,2024,46,0
+Guaíba,2024,47,0
+Guaíba,2024,48,0
+Guaíba,2024,49,0
+Guaíba,2024,50,0
+Guaíba,2024,51,0
+Guaíba,2024,52,0
+Guaíba,2025,2,1
+Guaíba,2025,3,1
+Guaíba,2025,4,1
+Guaíba,2025,5,0
+Guaíba,2025,6,0
+Guaíba,2025,7,0
+Guaíba,2025,8,2
+Guaíba,2025,9,0
+Guaíba,2025,10,2
+Guaíba,2025,11,0
+Guaíba,2025,12,2
+Guaíba,2025,13,3
+Guaíba,2025,14,2
+Guaíba,2025,15,3
+Guaíba,2025,16,5
+Guaíba,2025,17,6
+Guaíba,2025,18,10
+Guaíba,2025,19,2
+Guaíba,2025,20,5
+Guaíba,2025,21,12
+Guaíba,2025,22,12
+Guaíba,2025,23,7
+Guaíba,2025,24,3
+Guaíba,2025,25,1
+Guaíba,2025,26,0
+Guaíba,2025,27,1
+Guaíba,2025,28,0
+Guaíba,2025,30,0
+Guaíba,2025,31,0
+Guaíba,2025,32,0
+Guaíba,2025,33,0
+Guaíba,2025,34,1
+Guaíba,2025,36,0
+Guaíba,2025,37,0
+Guaíba,2025,38,0
+Guaíba,2025,39,0
+Guaíba,2025,40,0
+Guaíba,2025,41,0
+Guaíba,2025,42,0
+Guaíba,2025,43,0
+Guaíba,2025,44,1
+Guaíba,2025,45,0
+Guaíba,2025,46,0
+Guaíba,2025,47,0
+Guaíba,2025,48,0
+Guaíba,2025,49,0
+Guaíba,2025,50,0
+Guaíba,2025,51,1
+Guaíba,2025,52,0
+Guaíba,2025,53,0
+Guaíba,2026,1,0
+Guaíba,2026,2,0
+Guaíba,2026,3,0
+Guaíba,2026,5,0
+Guaíba,2026,6,0
+Guaíba,2026,7,0
+Guaíba,2026,8,0
+Guaíba,2026,9,1
+Guaíba,2026,10,0
+Guaíba,2026,11,0
+Guaíba,2026,13,0
+Guaíba,2026,14,0
+Guaíba,2026,16,0
+Guaíba,2026,17,1
+Guaíba,2026,18,0
+Guaíba,2026,19,0
+Guaíba,2026,22,0
+Guaíba,2026,23,0
+Guaíba,2026,29,1
+Guaíba,2026,31,0
+Guaíba,2026,32,0
+Guaíba,2026,33,0
+Guaíba,2026,34,0
+Guaíba,2026,35,0
+Guaíba,2026,36,1
+Guaíba,2026,37,0
+Novo Hamburgo,2015,1,0
+Novo Hamburgo,2015,9,0
+Novo Hamburgo,2015,10,1
+Novo Hamburgo,2015,12,0
+Novo Hamburgo,2015,13,2
+Novo Hamburgo,2015,14,1
+Novo Hamburgo,2015,15,0
+Novo Hamburgo,2015,17,0
+Novo Hamburgo,2015,19,1
+Novo Hamburgo,2015,20,0
+Novo Hamburgo,2015,24,1
+Novo Hamburgo,2015,25,0
+Novo Hamburgo,2015,26,0
+Novo Hamburgo,2015,27,0
+Novo Hamburgo,2015,33,0
+Novo Hamburgo,2015,34,0
+Novo Hamburgo,2015,39,0
+Novo Hamburgo,2015,40,0
+Novo Hamburgo,2015,46,0
+Novo Hamburgo,2015,47,0
+Novo Hamburgo,2015,48,0
+Novo Hamburgo,2015,50,0
+Novo Hamburgo,2015,52,0
+Novo Hamburgo,2016,1,0
+Novo Hamburgo,2016,2,1
+Novo Hamburgo,2016,4,0
+Novo Hamburgo,2016,5,0
+Novo Hamburgo,2016,6,0
+Novo Hamburgo,2016,7,0
+Novo Hamburgo,2016,8,1
+Novo Hamburgo,2016,9,0
+Novo Hamburgo,2016,10,1
+Novo Hamburgo,2016,11,1
+Novo Hamburgo,2016,12,1
+Novo Hamburgo,2016,13,0
+Novo Hamburgo,2016,14,0
+Novo Hamburgo,2016,15,3
+Novo Hamburgo,2016,16,2
+Novo Hamburgo,2016,17,1
+Novo Hamburgo,2016,18,1
+Novo Hamburgo,2016,19,0
+Novo Hamburgo,2016,20,0
+Novo Hamburgo,2016,24,0
+Novo Hamburgo,2016,29,0
+Novo Hamburgo,2016,32,0
+Novo Hamburgo,2016,33,0
+Novo Hamburgo,2016,34,0
+Novo Hamburgo,2016,40,0
+Novo Hamburgo,2016,41,0
+Novo Hamburgo,2016,42,0
+Novo Hamburgo,2016,44,0
+Novo Hamburgo,2016,45,0
+Novo Hamburgo,2016,46,0
+Novo Hamburgo,2016,47,0
+Novo Hamburgo,2016,48,0
+Novo Hamburgo,2016,50,0
+Novo Hamburgo,2016,51,0
+Novo Hamburgo,2016,52,0
+Novo Hamburgo,2017,1,0
+Novo Hamburgo,2017,2,0
+Novo Hamburgo,2017,3,0
+Novo Hamburgo,2017,4,0
+Novo Hamburgo,2017,5,0
+Novo Hamburgo,2017,6,0
+Novo Hamburgo,2017,8,0
+Novo Hamburgo,2017,10,0
+Novo Hamburgo,2017,11,0
+Novo Hamburgo,2017,14,0
+Novo Hamburgo,2017,16,0
+Novo Hamburgo,2017,20,0
+Novo Hamburgo,2017,34,0
+Novo Hamburgo,2017,37,0
+Novo Hamburgo,2017,39,0
+Novo Hamburgo,2017,42,0
+Novo Hamburgo,2017,45,0
+Novo Hamburgo,2017,46,0
+Novo Hamburgo,2018,1,0
+Novo Hamburgo,2018,2,0
+Novo Hamburgo,2018,3,0
+Novo Hamburgo,2018,6,0
+Novo Hamburgo,2018,8,0
+Novo Hamburgo,2018,10,1
+Novo Hamburgo,2018,11,0
+Novo Hamburgo,2018,12,0
+Novo Hamburgo,2018,14,0
+Novo Hamburgo,2018,30,0
+Novo Hamburgo,2018,52,0
+Novo Hamburgo,2019,1,0
+Novo Hamburgo,2019,3,0
+Novo Hamburgo,2019,4,0
+Novo Hamburgo,2019,5,1
+Novo Hamburgo,2019,6,0
+Novo Hamburgo,2019,7,0
+Novo Hamburgo,2019,8,0
+Novo Hamburgo,2019,10,0
+Novo Hamburgo,2019,11,0
+Novo Hamburgo,2019,13,0
+Novo Hamburgo,2019,14,1
+Novo Hamburgo,2019,15,0
+Novo Hamburgo,2019,16,0
+Novo Hamburgo,2019,17,2
+Novo Hamburgo,2019,18,0
+Novo Hamburgo,2019,19,0
+Novo Hamburgo,2019,20,0
+Novo Hamburgo,2019,21,1
+Novo Hamburgo,2019,22,1
+Novo Hamburgo,2019,23,0
+Novo Hamburgo,2019,24,3
+Novo Hamburgo,2019,25,1
+Novo Hamburgo,2019,27,0
+Novo Hamburgo,2019,28,0
+Novo Hamburgo,2019,30,0
+Novo Hamburgo,2019,35,0
+Novo Hamburgo,2019,39,0
+Novo Hamburgo,2019,44,0
+Novo Hamburgo,2019,45,0
+Novo Hamburgo,2019,49,0
+Novo Hamburgo,2019,51,0
+Novo Hamburgo,2020,2,0
+Novo Hamburgo,2020,3,2
+Novo Hamburgo,2020,4,0
+Novo Hamburgo,2020,6,1
+Novo Hamburgo,2020,7,1
+Novo Hamburgo,2020,8,1
+Novo Hamburgo,2020,10,0
+Novo Hamburgo,2020,11,0
+Novo Hamburgo,2020,14,0
+Novo Hamburgo,2020,16,1
+Novo Hamburgo,2020,17,0
+Novo Hamburgo,2020,18,0
+Novo Hamburgo,2020,19,3
+Novo Hamburgo,2020,20,0
+Novo Hamburgo,2020,21,0
+Novo Hamburgo,2020,24,1
+Novo Hamburgo,2020,25,0
+Novo Hamburgo,2020,40,0
+Novo Hamburgo,2020,41,0
+Novo Hamburgo,2020,42,0
+Novo Hamburgo,2020,44,0
+Novo Hamburgo,2020,45,0
+Novo Hamburgo,2020,51,0
+Novo Hamburgo,2021,7,0
+Novo Hamburgo,2021,8,0
+Novo Hamburgo,2021,10,0
+Novo Hamburgo,2021,11,0
+Novo Hamburgo,2021,12,0
+Novo Hamburgo,2021,14,1
+Novo Hamburgo,2021,15,1
+Novo Hamburgo,2021,16,0
+Novo Hamburgo,2021,17,0
+Novo Hamburgo,2021,19,0
+Novo Hamburgo,2021,21,0
+Novo Hamburgo,2021,22,1
+Novo Hamburgo,2021,25,0
+Novo Hamburgo,2021,34,0
+Novo Hamburgo,2021,41,0
+Novo Hamburgo,2021,45,0
+Novo Hamburgo,2021,48,0
+Novo Hamburgo,2021,51,0
+Novo Hamburgo,2022,1,0
+Novo Hamburgo,2022,3,1
+Novo Hamburgo,2022,5,2
+Novo Hamburgo,2022,6,2
+Novo Hamburgo,2022,7,2
+Novo Hamburgo,2022,8,9
+Novo Hamburgo,2022,9,31
+Novo Hamburgo,2022,10,85
+Novo Hamburgo,2022,11,240
+Novo Hamburgo,2022,12,409
+Novo Hamburgo,2022,13,436
+Novo Hamburgo,2022,14,557
+Novo Hamburgo,2022,15,802
+Novo Hamburgo,2022,16,933
+Novo Hamburgo,2022,17,974
+Novo Hamburgo,2022,18,795
+Novo Hamburgo,2022,19,611
+Novo Hamburgo,2022,20,473
+Novo Hamburgo,2022,21,248
+Novo Hamburgo,2022,22,226
+Novo Hamburgo,2022,23,113
+Novo Hamburgo,2022,24,57
+Novo Hamburgo,2022,25,39
+Novo Hamburgo,2022,26,50
+Novo Hamburgo,2022,27,35
+Novo Hamburgo,2022,28,31
+Novo Hamburgo,2022,29,13
+Novo Hamburgo,2022,30,8
+Novo Hamburgo,2022,31,0
+Novo Hamburgo,2022,32,1
+Novo Hamburgo,2022,33,0
+Novo Hamburgo,2022,34,0
+Novo Hamburgo,2022,35,0
+Novo Hamburgo,2022,36,1
+Novo Hamburgo,2022,37,0
+Novo Hamburgo,2022,38,1
+Novo Hamburgo,2022,39,0
+Novo Hamburgo,2022,40,0
+Novo Hamburgo,2022,41,0
+Novo Hamburgo,2022,42,0
+Novo Hamburgo,2022,43,0
+Novo Hamburgo,2022,44,0
+Novo Hamburgo,2022,45,0
+Novo Hamburgo,2022,46,0
+Novo Hamburgo,2022,47,0
+Novo Hamburgo,2022,48,0
+Novo Hamburgo,2022,49,0
+Novo Hamburgo,2022,50,0
+Novo Hamburgo,2022,51,0
+Novo Hamburgo,2022,52,1
+Novo Hamburgo,2023,1,0
+Novo Hamburgo,2023,2,1
+Novo Hamburgo,2023,3,0
+Novo Hamburgo,2023,4,2
+Novo Hamburgo,2023,5,4
+Novo Hamburgo,2023,6,0
+Novo Hamburgo,2023,7,5
+Novo Hamburgo,2023,8,4
+Novo Hamburgo,2023,9,10
+Novo Hamburgo,2023,10,24
+Novo Hamburgo,2023,11,39
+Novo Hamburgo,2023,12,77
+Novo Hamburgo,2023,13,78
+Novo Hamburgo,2023,14,126
+Novo Hamburgo,2023,15,171
+Novo Hamburgo,2023,16,198
+Novo Hamburgo,2023,17,166
+Novo Hamburgo,2023,18,276
+Novo Hamburgo,2023,19,240
+Novo Hamburgo,2023,20,188
+Novo Hamburgo,2023,21,163
+Novo Hamburgo,2023,22,124
+Novo Hamburgo,2023,23,84
+Novo Hamburgo,2023,24,59
+Novo Hamburgo,2023,25,42
+Novo Hamburgo,2023,26,30
+Novo Hamburgo,2023,27,40
+Novo Hamburgo,2023,28,22
+Novo Hamburgo,2023,29,11
+Novo Hamburgo,2023,30,8
+Novo Hamburgo,2023,31,4
+Novo Hamburgo,2023,32,5
+Novo Hamburgo,2023,33,6
+Novo Hamburgo,2023,34,4
+Novo Hamburgo,2023,35,3
+Novo Hamburgo,2023,36,1
+Novo Hamburgo,2023,37,1
+Novo Hamburgo,2023,38,1
+Novo Hamburgo,2023,39,1
+Novo Hamburgo,2023,40,0
+Novo Hamburgo,2023,41,1
+Novo Hamburgo,2023,42,1
+Novo Hamburgo,2023,43,0
+Novo Hamburgo,2023,44,0
+Novo Hamburgo,2023,45,1
+Novo Hamburgo,2023,46,1
+Novo Hamburgo,2023,47,2
+Novo Hamburgo,2023,48,1
+Novo Hamburgo,2023,49,2
+Novo Hamburgo,2023,50,8
+Novo Hamburgo,2023,51,4
+Novo Hamburgo,2023,52,11
+Novo Hamburgo,2024,1,26
+Novo Hamburgo,2024,2,36
+Novo Hamburgo,2024,3,50
+Novo Hamburgo,2024,4,94
+Novo Hamburgo,2024,5,153
+Novo Hamburgo,2024,6,326
+Novo Hamburgo,2024,7,625
+Novo Hamburgo,2024,8,804
+Novo Hamburgo,2024,9,851
+Novo Hamburgo,2024,10,1046
+Novo Hamburgo,2024,11,1124
+Novo Hamburgo,2024,12,1374
+Novo Hamburgo,2024,13,1175
+Novo Hamburgo,2024,14,1172
+Novo Hamburgo,2024,15,1192
+Novo Hamburgo,2024,16,1262
+Novo Hamburgo,2024,17,1084
+Novo Hamburgo,2024,18,782
+Novo Hamburgo,2024,19,631
+Novo Hamburgo,2024,20,767
+Novo Hamburgo,2024,21,243
+Novo Hamburgo,2024,22,213
+Novo Hamburgo,2024,23,147
+Novo Hamburgo,2024,24,179
+Novo Hamburgo,2024,25,165
+Novo Hamburgo,2024,26,92
+Novo Hamburgo,2024,27,54
+Novo Hamburgo,2024,28,20
+Novo Hamburgo,2024,29,19
+Novo Hamburgo,2024,30,7
+Novo Hamburgo,2024,31,10
+Novo Hamburgo,2024,32,10
+Novo Hamburgo,2024,33,4
+Novo Hamburgo,2024,34,1
+Novo Hamburgo,2024,35,0
+Novo Hamburgo,2024,36,1
+Novo Hamburgo,2024,37,0
+Novo Hamburgo,2024,38,0
+Novo Hamburgo,2024,39,0
+Novo Hamburgo,2024,40,0
+Novo Hamburgo,2024,41,1
+Novo Hamburgo,2024,42,2
+Novo Hamburgo,2024,43,1
+Novo Hamburgo,2024,44,1
+Novo Hamburgo,2024,45,5
+Novo Hamburgo,2024,46,0
+Novo Hamburgo,2024,47,0
+Novo Hamburgo,2024,48,4
+Novo Hamburgo,2024,49,1
+Novo Hamburgo,2024,50,0
+Novo Hamburgo,2024,51,2
+Novo Hamburgo,2024,52,1
+Novo Hamburgo,2025,1,4
+Novo Hamburgo,2025,2,3
+Novo Hamburgo,2025,3,3
+Novo Hamburgo,2025,4,2
+Novo Hamburgo,2025,5,7
+Novo Hamburgo,2025,6,2
+Novo Hamburgo,2025,7,10
+Novo Hamburgo,2025,8,18
+Novo Hamburgo,2025,9,20
+Novo Hamburgo,2025,10,61
+Novo Hamburgo,2025,11,102
+Novo Hamburgo,2025,12,147
+Novo Hamburgo,2025,13,274
+Novo Hamburgo,2025,14,371
+Novo Hamburgo,2025,15,338
+Novo Hamburgo,2025,16,256
+Novo Hamburgo,2025,17,368
+Novo Hamburgo,2025,18,296
+Novo Hamburgo,2025,19,255
+Novo Hamburgo,2025,20,250
+Novo Hamburgo,2025,21,225
+Novo Hamburgo,2025,22,116
+Novo Hamburgo,2025,23,66
+Novo Hamburgo,2025,24,45
+Novo Hamburgo,2025,25,19
+Novo Hamburgo,2025,26,9
+Novo Hamburgo,2025,27,5
+Novo Hamburgo,2025,28,9
+Novo Hamburgo,2025,29,8
+Novo Hamburgo,2025,30,3
+Novo Hamburgo,2025,31,1
+Novo Hamburgo,2025,32,1
+Novo Hamburgo,2025,33,0
+Novo Hamburgo,2025,34,1
+Novo Hamburgo,2025,35,1
+Novo Hamburgo,2025,36,0
+Novo Hamburgo,2025,37,1
+Novo Hamburgo,2025,38,1
+Novo Hamburgo,2025,39,3
+Novo Hamburgo,2025,40,3
+Novo Hamburgo,2025,41,2
+Novo Hamburgo,2025,42,3
+Novo Hamburgo,2025,43,3
+Novo Hamburgo,2025,44,0
+Novo Hamburgo,2025,45,0
+Novo Hamburgo,2025,46,0
+Novo Hamburgo,2025,47,2
+Novo Hamburgo,2025,48,2
+Novo Hamburgo,2025,49,1
+Novo Hamburgo,2025,50,2
+Novo Hamburgo,2025,51,1
+Novo Hamburgo,2025,52,0
+Novo Hamburgo,2025,53,0
+Novo Hamburgo,2026,1,1
+Novo Hamburgo,2026,2,2
+Novo Hamburgo,2026,3,1
+Novo Hamburgo,2026,4,2
+Novo Hamburgo,2026,5,3
+Novo Hamburgo,2026,6,8
+Novo Hamburgo,2026,7,12
+Novo Hamburgo,2026,8,14
+Novo Hamburgo,2026,9,35
+Novo Hamburgo,2026,10,32
+Novo Hamburgo,2026,11,32
+Novo Hamburgo,2026,12,47
+Novo Hamburgo,2026,13,99
+Novo Hamburgo,2026,14,98
+Novo Hamburgo,2026,15,111
+Novo Hamburgo,2026,16,174
+Novo Hamburgo,2026,17,149
+Novo Hamburgo,2026,18,95
+Novo Hamburgo,2026,19,85
+Novo Hamburgo,2026,20,55
+Novo Hamburgo,2026,21,17
+Novo Hamburgo,2026,22,9
+Novo Hamburgo,2026,23,17
+Novo Hamburgo,2026,24,6
+Novo Hamburgo,2026,25,1
+Novo Hamburgo,2026,26,1
+Novo Hamburgo,2026,27,3
+Novo Hamburgo,2026,28,1
+Novo Hamburgo,2026,29,0
+Novo Hamburgo,2026,30,2
+Novo Hamburgo,2026,31,2
+Novo Hamburgo,2026,32,0
+Novo Hamburgo,2026,33,0
+Novo Hamburgo,2026,34,0
+Novo Hamburgo,2026,35,0
+Novo Hamburgo,2026,36,1
+Novo Hamburgo,2026,37,0
+Sapucaia do Sul,2015,2,0
+Sapucaia do Sul,2015,3,0
+Sapucaia do Sul,2015,4,0
+Sapucaia do Sul,2015,5,0
+Sapucaia do Sul,2015,10,0
+Sapucaia do Sul,2015,11,0
+Sapucaia do Sul,2015,14,0
+Sapucaia do Sul,2015,18,0
+Sapucaia do Sul,2015,21,1
+Sapucaia do Sul,2015,22,0
+Sapucaia do Sul,2015,23,0
+Sapucaia do Sul,2015,26,0
+Sapucaia do Sul,2015,27,0
+Sapucaia do Sul,2015,31,0
+Sapucaia do Sul,2015,46,0
+Sapucaia do Sul,2015,47,0
+Sapucaia do Sul,2015,49,0
+Sapucaia do Sul,2015,52,1
+Sapucaia do Sul,2016,1,0
+Sapucaia do Sul,2016,2,0
+Sapucaia do Sul,2016,4,0
+Sapucaia do Sul,2016,6,2
+Sapucaia do Sul,2016,7,0
+Sapucaia do Sul,2016,8,0
+Sapucaia do Sul,2016,9,0
+Sapucaia do Sul,2016,10,1
+Sapucaia do Sul,2016,11,0
+Sapucaia do Sul,2016,12,0
+Sapucaia do Sul,2016,13,1
+Sapucaia do Sul,2016,14,0
+Sapucaia do Sul,2016,15,0
+Sapucaia do Sul,2016,16,0
+Sapucaia do Sul,2016,26,0
+Sapucaia do Sul,2016,38,0
+Sapucaia do Sul,2016,44,0
+Sapucaia do Sul,2016,45,0
+Sapucaia do Sul,2016,49,0
+Sapucaia do Sul,2016,50,0
+Sapucaia do Sul,2016,51,0
+Sapucaia do Sul,2016,52,1
+Sapucaia do Sul,2017,2,1
+Sapucaia do Sul,2017,3,0
+Sapucaia do Sul,2017,5,0
+Sapucaia do Sul,2017,6,0
+Sapucaia do Sul,2017,7,0
+Sapucaia do Sul,2017,8,0
+Sapucaia do Sul,2017,9,0
+Sapucaia do Sul,2017,17,0
+Sapucaia do Sul,2017,32,0
+Sapucaia do Sul,2017,35,0
+Sapucaia do Sul,2017,38,0
+Sapucaia do Sul,2017,41,0
+Sapucaia do Sul,2017,45,0
+Sapucaia do Sul,2017,50,0
+Sapucaia do Sul,2018,1,0
+Sapucaia do Sul,2018,3,0
+Sapucaia do Sul,2018,16,0
+Sapucaia do Sul,2018,34,0
+Sapucaia do Sul,2018,42,1
+Sapucaia do Sul,2018,48,0
+Sapucaia do Sul,2018,50,0
+Sapucaia do Sul,2019,1,0
+Sapucaia do Sul,2019,2,0
+Sapucaia do Sul,2019,3,1
+Sapucaia do Sul,2019,7,0
+Sapucaia do Sul,2019,9,0
+Sapucaia do Sul,2019,11,0
+Sapucaia do Sul,2019,13,1
+Sapucaia do Sul,2019,14,0
+Sapucaia do Sul,2019,15,0
+Sapucaia do Sul,2019,16,1
+Sapucaia do Sul,2019,17,1
+Sapucaia do Sul,2019,18,4
+Sapucaia do Sul,2019,19,1
+Sapucaia do Sul,2019,20,0
+Sapucaia do Sul,2019,21,0
+Sapucaia do Sul,2019,23,0
+Sapucaia do Sul,2019,24,1
+Sapucaia do Sul,2019,26,0
+Sapucaia do Sul,2019,27,0
+Sapucaia do Sul,2019,28,1
+Sapucaia do Sul,2019,29,0
+Sapucaia do Sul,2019,34,0
+Sapucaia do Sul,2019,35,0
+Sapucaia do Sul,2019,41,0
+Sapucaia do Sul,2019,45,0
+Sapucaia do Sul,2019,46,0
+Sapucaia do Sul,2019,48,0
+Sapucaia do Sul,2019,52,1
+Sapucaia do Sul,2020,1,1
+Sapucaia do Sul,2020,6,1
+Sapucaia do Sul,2020,8,0
+Sapucaia do Sul,2020,9,0
+Sapucaia do Sul,2020,14,1
+Sapucaia do Sul,2020,17,0
+Sapucaia do Sul,2020,19,0
+Sapucaia do Sul,2020,20,1
+Sapucaia do Sul,2020,21,1
+Sapucaia do Sul,2020,22,0
+Sapucaia do Sul,2020,25,0
+Sapucaia do Sul,2020,28,0
+Sapucaia do Sul,2020,37,0
+Sapucaia do Sul,2020,44,0
+Sapucaia do Sul,2021,1,0
+Sapucaia do Sul,2021,2,1
+Sapucaia do Sul,2021,3,1
+Sapucaia do Sul,2021,5,0
+Sapucaia do Sul,2021,7,0
+Sapucaia do Sul,2021,12,0
+Sapucaia do Sul,2021,14,0
+Sapucaia do Sul,2021,15,0
+Sapucaia do Sul,2021,22,0
+Sapucaia do Sul,2021,28,0
+Sapucaia do Sul,2021,29,0
+Sapucaia do Sul,2021,34,0
+Sapucaia do Sul,2021,36,0
+Sapucaia do Sul,2021,43,0
+Sapucaia do Sul,2021,46,0
+Sapucaia do Sul,2021,47,0
+Sapucaia do Sul,2022,6,2
+Sapucaia do Sul,2022,7,1
+Sapucaia do Sul,2022,8,1
+Sapucaia do Sul,2022,10,3
+Sapucaia do Sul,2022,11,9
+Sapucaia do Sul,2022,12,25
+Sapucaia do Sul,2022,13,43
+Sapucaia do Sul,2022,14,51
+Sapucaia do Sul,2022,15,101
+Sapucaia do Sul,2022,16,143
+Sapucaia do Sul,2022,17,157
+Sapucaia do Sul,2022,18,179
+Sapucaia do Sul,2022,19,176
+Sapucaia do Sul,2022,20,136
+Sapucaia do Sul,2022,21,71
+Sapucaia do Sul,2022,22,60
+Sapucaia do Sul,2022,23,12
+Sapucaia do Sul,2022,24,14
+Sapucaia do Sul,2022,25,8
+Sapucaia do Sul,2022,26,3
+Sapucaia do Sul,2022,27,4
+Sapucaia do Sul,2022,28,1
+Sapucaia do Sul,2022,29,0
+Sapucaia do Sul,2022,30,2
+Sapucaia do Sul,2022,31,2
+Sapucaia do Sul,2022,32,2
+Sapucaia do Sul,2022,33,0
+Sapucaia do Sul,2022,35,1
+Sapucaia do Sul,2022,36,2
+Sapucaia do Sul,2022,37,0
+Sapucaia do Sul,2022,38,0
+Sapucaia do Sul,2022,39,0
+Sapucaia do Sul,2022,42,0
+Sapucaia do Sul,2022,43,1
+Sapucaia do Sul,2022,44,0
+Sapucaia do Sul,2022,45,0
+Sapucaia do Sul,2022,48,1
+Sapucaia do Sul,2022,49,0
+Sapucaia do Sul,2022,50,0
+Sapucaia do Sul,2022,51,1
+Sapucaia do Sul,2022,52,0
+Sapucaia do Sul,2023,1,1
+Sapucaia do Sul,2023,2,3
+Sapucaia do Sul,2023,3,3
+Sapucaia do Sul,2023,4,1
+Sapucaia do Sul,2023,5,4
+Sapucaia do Sul,2023,6,1
+Sapucaia do Sul,2023,7,1
+Sapucaia do Sul,2023,8,2
+Sapucaia do Sul,2023,9,6
+Sapucaia do Sul,2023,10,11
+Sapucaia do Sul,2023,11,8
+Sapucaia do Sul,2023,12,11
+Sapucaia do Sul,2023,13,13
+Sapucaia do Sul,2023,14,32
+Sapucaia do Sul,2023,15,26
+Sapucaia do Sul,2023,16,23
+Sapucaia do Sul,2023,17,24
+Sapucaia do Sul,2023,18,37
+Sapucaia do Sul,2023,19,52
+Sapucaia do Sul,2023,20,40
+Sapucaia do Sul,2023,21,43
+Sapucaia do Sul,2023,22,39
+Sapucaia do Sul,2023,23,26
+Sapucaia do Sul,2023,24,22
+Sapucaia do Sul,2023,25,13
+Sapucaia do Sul,2023,26,8
+Sapucaia do Sul,2023,27,5
+Sapucaia do Sul,2023,28,3
+Sapucaia do Sul,2023,29,3
+Sapucaia do Sul,2023,30,3
+Sapucaia do Sul,2023,31,2
+Sapucaia do Sul,2023,32,1
+Sapucaia do Sul,2023,33,1
+Sapucaia do Sul,2023,34,0
+Sapucaia do Sul,2023,35,0
+Sapucaia do Sul,2023,36,2
+Sapucaia do Sul,2023,37,2
+Sapucaia do Sul,2023,38,0
+Sapucaia do Sul,2023,40,1
+Sapucaia do Sul,2023,41,1
+Sapucaia do Sul,2023,42,1
+Sapucaia do Sul,2023,43,1
+Sapucaia do Sul,2023,44,2
+Sapucaia do Sul,2023,45,2
+Sapucaia do Sul,2023,46,1
+Sapucaia do Sul,2023,47,3
+Sapucaia do Sul,2023,48,3
+Sapucaia do Sul,2023,49,2
+Sapucaia do Sul,2023,50,3
+Sapucaia do Sul,2023,51,0
+Sapucaia do Sul,2023,52,3
+Sapucaia do Sul,2024,1,1
+Sapucaia do Sul,2024,2,2
+Sapucaia do Sul,2024,3,3
+Sapucaia do Sul,2024,4,3
+Sapucaia do Sul,2024,5,10
+Sapucaia do Sul,2024,6,23
+Sapucaia do Sul,2024,7,44
+Sapucaia do Sul,2024,8,79
+Sapucaia do Sul,2024,9,129
+Sapucaia do Sul,2024,10,167
+Sapucaia do Sul,2024,11,215
+Sapucaia do Sul,2024,12,291
+Sapucaia do Sul,2024,13,313
+Sapucaia do Sul,2024,14,444
+Sapucaia do Sul,2024,15,503
+Sapucaia do Sul,2024,16,564
+Sapucaia do Sul,2024,17,488
+Sapucaia do Sul,2024,18,312
+Sapucaia do Sul,2024,19,279
+Sapucaia do Sul,2024,20,342
+Sapucaia do Sul,2024,21,150
+Sapucaia do Sul,2024,22,177
+Sapucaia do Sul,2024,23,147
+Sapucaia do Sul,2024,24,177
+Sapucaia do Sul,2024,25,134
+Sapucaia do Sul,2024,26,112
+Sapucaia do Sul,2024,27,56
+Sapucaia do Sul,2024,28,20
+Sapucaia do Sul,2024,29,16
+Sapucaia do Sul,2024,30,20
+Sapucaia do Sul,2024,31,10
+Sapucaia do Sul,2024,32,10
+Sapucaia do Sul,2024,33,8
+Sapucaia do Sul,2024,34,3
+Sapucaia do Sul,2024,35,4
+Sapucaia do Sul,2024,36,5
+Sapucaia do Sul,2024,37,7
+Sapucaia do Sul,2024,38,4
+Sapucaia do Sul,2024,39,5
+Sapucaia do Sul,2024,40,3
+Sapucaia do Sul,2024,41,0
+Sapucaia do Sul,2024,42,1
+Sapucaia do Sul,2024,43,2
+Sapucaia do Sul,2024,44,0
+Sapucaia do Sul,2024,45,4
+Sapucaia do Sul,2024,46,3
+Sapucaia do Sul,2024,47,0
+Sapucaia do Sul,2024,48,2
+Sapucaia do Sul,2024,49,0
+Sapucaia do Sul,2024,50,4
+Sapucaia do Sul,2024,51,1
+Sapucaia do Sul,2024,52,0
+Sapucaia do Sul,2025,1,0
+Sapucaia do Sul,2025,2,0
+Sapucaia do Sul,2025,3,0
+Sapucaia do Sul,2025,4,1
+Sapucaia do Sul,2025,5,4
+Sapucaia do Sul,2025,6,4
+Sapucaia do Sul,2025,7,7
+Sapucaia do Sul,2025,8,13
+Sapucaia do Sul,2025,9,17
+Sapucaia do Sul,2025,10,18
+Sapucaia do Sul,2025,11,42
+Sapucaia do Sul,2025,12,66
+Sapucaia do Sul,2025,13,133
+Sapucaia do Sul,2025,14,177
+Sapucaia do Sul,2025,15,172
+Sapucaia do Sul,2025,16,207
+Sapucaia do Sul,2025,17,290
+Sapucaia do Sul,2025,18,194
+Sapucaia do Sul,2025,19,146
+Sapucaia do Sul,2025,20,198
+Sapucaia do Sul,2025,21,195
+Sapucaia do Sul,2025,22,118
+Sapucaia do Sul,2025,23,59
+Sapucaia do Sul,2025,24,32
+Sapucaia do Sul,2025,25,12
+Sapucaia do Sul,2025,26,4
+Sapucaia do Sul,2025,27,4
+Sapucaia do Sul,2025,28,2
+Sapucaia do Sul,2025,29,1
+Sapucaia do Sul,2025,30,0
+Sapucaia do Sul,2025,31,0
+Sapucaia do Sul,2025,32,1
+Sapucaia do Sul,2025,33,0
+Sapucaia do Sul,2025,34,0
+Sapucaia do Sul,2025,35,0
+Sapucaia do Sul,2025,36,1
+Sapucaia do Sul,2025,37,0
+Sapucaia do Sul,2025,38,0
+Sapucaia do Sul,2025,39,0
+Sapucaia do Sul,2025,40,2
+Sapucaia do Sul,2025,41,2
+Sapucaia do Sul,2025,42,0
+Sapucaia do Sul,2025,43,0
+Sapucaia do Sul,2025,44,0
+Sapucaia do Sul,2025,45,0
+Sapucaia do Sul,2025,46,0
+Sapucaia do Sul,2025,47,0
+Sapucaia do Sul,2025,48,0
+Sapucaia do Sul,2025,49,0
+Sapucaia do Sul,2025,50,2
+Sapucaia do Sul,2025,51,1
+Sapucaia do Sul,2025,52,1
+Sapucaia do Sul,2025,53,1
+Sapucaia do Sul,2026,1,1
+Sapucaia do Sul,2026,2,0
+Sapucaia do Sul,2026,3,1
+Sapucaia do Sul,2026,4,0
+Sapucaia do Sul,2026,5,0
+Sapucaia do Sul,2026,6,1
+Sapucaia do Sul,2026,7,0
+Sapucaia do Sul,2026,8,1
+Sapucaia do Sul,2026,9,1
+Sapucaia do Sul,2026,10,0
+Sapucaia do Sul,2026,11,0
+Sapucaia do Sul,2026,12,1
+Sapucaia do Sul,2026,13,0
+Sapucaia do Sul,2026,14,1
+Sapucaia do Sul,2026,15,2
+Sapucaia do Sul,2026,16,1
+Sapucaia do Sul,2026,17,3
+Sapucaia do Sul,2026,18,1
+Sapucaia do Sul,2026,19,0
+Sapucaia do Sul,2026,20,1
+Sapucaia do Sul,2026,21,0
+Sapucaia do Sul,2026,22,0
+Sapucaia do Sul,2026,23,0
+Sapucaia do Sul,2026,24,0
+Sapucaia do Sul,2026,25,0
+Sapucaia do Sul,2026,26,0
+Sapucaia do Sul,2026,27,0
+Sapucaia do Sul,2026,28,0
+Sapucaia do Sul,2026,29,0
+Sapucaia do Sul,2026,30,0
+Sapucaia do Sul,2026,31,0
+Sapucaia do Sul,2026,32,0
+Sapucaia do Sul,2026,33,0
+Sapucaia do Sul,2026,34,1
+Sapucaia do Sul,2026,35,0
+Sapucaia do Sul,2026,36,0
+Sapucaia do Sul,2026,37,0
+São Leopoldo,2015,8,1
+São Leopoldo,2015,11,0
+São Leopoldo,2015,13,0
+São Leopoldo,2015,15,0
+São Leopoldo,2015,16,1
+São Leopoldo,2015,18,0
+São Leopoldo,2015,20,0
+São Leopoldo,2015,39,0
+São Leopoldo,2015,46,0
+São Leopoldo,2015,48,0
+São Leopoldo,2015,51,0
+São Leopoldo,2016,1,0
+São Leopoldo,2016,2,0
+São Leopoldo,2016,4,0
+São Leopoldo,2016,5,0
+São Leopoldo,2016,7,1
+São Leopoldo,2016,8,0
+São Leopoldo,2016,9,0
+São Leopoldo,2016,10,1
+São Leopoldo,2016,11,0
+São Leopoldo,2016,12,0
+São Leopoldo,2016,15,0
+São Leopoldo,2016,16,0
+São Leopoldo,2016,17,0
+São Leopoldo,2016,18,0
+São Leopoldo,2016,19,0
+São Leopoldo,2016,25,0
+São Leopoldo,2016,32,0
+São Leopoldo,2016,52,0
+São Leopoldo,2017,4,0
+São Leopoldo,2017,6,0
+São Leopoldo,2017,9,0
+São Leopoldo,2017,11,0
+São Leopoldo,2017,14,0
+São Leopoldo,2017,17,0
+São Leopoldo,2017,38,0
+São Leopoldo,2017,41,0
+São Leopoldo,2018,1,0
+São Leopoldo,2018,2,0
+São Leopoldo,2018,6,0
+São Leopoldo,2018,15,0
+São Leopoldo,2018,29,0
+São Leopoldo,2019,2,0
+São Leopoldo,2019,11,0
+São Leopoldo,2019,13,1
+São Leopoldo,2019,14,0
+São Leopoldo,2019,17,0
+São Leopoldo,2019,18,0
+São Leopoldo,2019,20,0
+São Leopoldo,2019,22,0
+São Leopoldo,2019,24,0
+São Leopoldo,2019,25,0
+São Leopoldo,2019,28,0
+São Leopoldo,2019,38,0
+São Leopoldo,2019,41,0
+São Leopoldo,2019,48,1
+São Leopoldo,2019,49,0
+São Leopoldo,2019,50,0
+São Leopoldo,2019,52,0
+São Leopoldo,2020,1,0
+São Leopoldo,2020,2,0
+São Leopoldo,2020,3,0
+São Leopoldo,2020,7,0
+São Leopoldo,2020,8,1
+São Leopoldo,2020,9,1
+São Leopoldo,2020,10,1
+São Leopoldo,2020,13,1
+São Leopoldo,2020,17,0
+São Leopoldo,2020,19,0
+São Leopoldo,2020,32,0
+São Leopoldo,2020,44,0
+São Leopoldo,2021,1,0
+São Leopoldo,2021,3,0
+São Leopoldo,2021,14,1
+São Leopoldo,2021,16,1
+São Leopoldo,2021,18,1
+São Leopoldo,2021,22,0
+São Leopoldo,2021,23,0
+São Leopoldo,2021,25,1
+São Leopoldo,2021,40,0
+São Leopoldo,2022,6,2
+São Leopoldo,2022,7,1
+São Leopoldo,2022,8,7
+São Leopoldo,2022,9,13
+São Leopoldo,2022,10,35
+São Leopoldo,2022,11,87
+São Leopoldo,2022,12,187
+São Leopoldo,2022,13,184
+São Leopoldo,2022,14,210
+São Leopoldo,2022,15,274
+São Leopoldo,2022,16,382
+São Leopoldo,2022,17,277
+São Leopoldo,2022,18,276
+São Leopoldo,2022,19,226
+São Leopoldo,2022,20,160
+São Leopoldo,2022,21,109
+São Leopoldo,2022,22,55
+São Leopoldo,2022,23,18
+São Leopoldo,2022,24,9
+São Leopoldo,2022,25,13
+São Leopoldo,2022,26,6
+São Leopoldo,2022,27,7
+São Leopoldo,2022,28,6
+São Leopoldo,2022,29,4
+São Leopoldo,2022,30,1
+São Leopoldo,2022,31,0
+São Leopoldo,2022,33,0
+São Leopoldo,2022,34,0
+São Leopoldo,2022,35,0
+São Leopoldo,2022,36,1
+São Leopoldo,2022,38,0
+São Leopoldo,2022,39,3
+São Leopoldo,2022,41,0
+São Leopoldo,2022,42,0
+São Leopoldo,2022,43,0
+São Leopoldo,2022,46,0
+São Leopoldo,2022,48,0
+São Leopoldo,2022,50,0
+São Leopoldo,2022,52,0
+São Leopoldo,2023,1,0
+São Leopoldo,2023,2,1
+São Leopoldo,2023,3,0
+São Leopoldo,2023,4,0
+São Leopoldo,2023,5,1
+São Leopoldo,2023,6,0
+São Leopoldo,2023,7,1
+São Leopoldo,2023,8,2
+São Leopoldo,2023,9,4
+São Leopoldo,2023,10,0
+São Leopoldo,2023,11,2
+São Leopoldo,2023,12,5
+São Leopoldo,2023,13,3
+São Leopoldo,2023,14,6
+São Leopoldo,2023,15,6
+São Leopoldo,2023,16,5
+São Leopoldo,2023,17,6
+São Leopoldo,2023,18,9
+São Leopoldo,2023,19,8
+São Leopoldo,2023,20,9
+São Leopoldo,2023,21,9
+São Leopoldo,2023,22,7
+São Leopoldo,2023,23,10
+São Leopoldo,2023,24,5
+São Leopoldo,2023,25,0
+São Leopoldo,2023,26,1
+São Leopoldo,2023,27,2
+São Leopoldo,2023,28,2
+São Leopoldo,2023,29,2
+São Leopoldo,2023,30,0
+São Leopoldo,2023,31,0
+São Leopoldo,2023,32,0
+São Leopoldo,2023,33,0
+São Leopoldo,2023,34,0
+São Leopoldo,2023,35,2
+São Leopoldo,2023,36,1
+São Leopoldo,2023,37,1
+São Leopoldo,2023,38,1
+São Leopoldo,2023,39,1
+São Leopoldo,2023,40,1
+São Leopoldo,2023,41,0
+São Leopoldo,2023,42,0
+São Leopoldo,2023,43,0
+São Leopoldo,2023,44,2
+São Leopoldo,2023,45,0
+São Leopoldo,2023,46,0
+São Leopoldo,2023,47,2
+São Leopoldo,2023,48,1
+São Leopoldo,2023,49,4
+São Leopoldo,2023,50,0
+São Leopoldo,2023,51,1
+São Leopoldo,2023,52,1
+São Leopoldo,2024,1,9
+São Leopoldo,2024,2,17
+São Leopoldo,2024,3,29
+São Leopoldo,2024,4,85
+São Leopoldo,2024,5,150
+São Leopoldo,2024,6,269
+São Leopoldo,2024,7,445
+São Leopoldo,2024,8,439
+São Leopoldo,2024,9,807
+São Leopoldo,2024,10,1078
+São Leopoldo,2024,11,1209
+São Leopoldo,2024,12,1240
+São Leopoldo,2024,13,1135
+São Leopoldo,2024,14,1223
+São Leopoldo,2024,15,1202
+São Leopoldo,2024,16,1308
+São Leopoldo,2024,17,959
+São Leopoldo,2024,18,422
+São Leopoldo,2024,19,299
+São Leopoldo,2024,20,509
+São Leopoldo,2024,21,159
+São Leopoldo,2024,22,124
+São Leopoldo,2024,23,84
+São Leopoldo,2024,24,95
+São Leopoldo,2024,25,100
+São Leopoldo,2024,26,64
+São Leopoldo,2024,27,47
+São Leopoldo,2024,28,13
+São Leopoldo,2024,29,12
+São Leopoldo,2024,30,11
+São Leopoldo,2024,31,11
+São Leopoldo,2024,32,4
+São Leopoldo,2024,33,4
+São Leopoldo,2024,34,2
+São Leopoldo,2024,35,1
+São Leopoldo,2024,36,3
+São Leopoldo,2024,37,7
+São Leopoldo,2024,38,2
+São Leopoldo,2024,39,0
+São Leopoldo,2024,40,0
+São Leopoldo,2024,41,4
+São Leopoldo,2024,42,1
+São Leopoldo,2024,43,0
+São Leopoldo,2024,44,1
+São Leopoldo,2024,45,0
+São Leopoldo,2024,46,0
+São Leopoldo,2024,47,0
+São Leopoldo,2024,48,0
+São Leopoldo,2024,49,5
+São Leopoldo,2024,50,1
+São Leopoldo,2024,51,0
+São Leopoldo,2024,52,0
+São Leopoldo,2025,1,2
+São Leopoldo,2025,2,1
+São Leopoldo,2025,3,0
+São Leopoldo,2025,4,1
+São Leopoldo,2025,5,1
+São Leopoldo,2025,6,1
+São Leopoldo,2025,7,0
+São Leopoldo,2025,8,0
+São Leopoldo,2025,9,4
+São Leopoldo,2025,10,1
+São Leopoldo,2025,11,3
+São Leopoldo,2025,12,1
+São Leopoldo,2025,13,3
+São Leopoldo,2025,14,5
+São Leopoldo,2025,15,2
+São Leopoldo,2025,16,10
+São Leopoldo,2025,17,5
+São Leopoldo,2025,18,8
+São Leopoldo,2025,19,13
+São Leopoldo,2025,20,6
+São Leopoldo,2025,21,14
+São Leopoldo,2025,22,1
+São Leopoldo,2025,23,4
+São Leopoldo,2025,24,1
+São Leopoldo,2025,25,0
+São Leopoldo,2025,26,1
+São Leopoldo,2025,27,0
+São Leopoldo,2025,28,0
+São Leopoldo,2025,29,0
+São Leopoldo,2025,30,0
+São Leopoldo,2025,31,0
+São Leopoldo,2025,32,1
+São Leopoldo,2025,33,0
+São Leopoldo,2025,34,0
+São Leopoldo,2025,35,0
+São Leopoldo,2025,36,2
+São Leopoldo,2025,37,1
+São Leopoldo,2025,38,0
+São Leopoldo,2025,39,0
+São Leopoldo,2025,40,2
+São Leopoldo,2025,41,0
+São Leopoldo,2025,42,0
+São Leopoldo,2025,43,2
+São Leopoldo,2025,44,0
+São Leopoldo,2025,45,0
+São Leopoldo,2025,46,0
+São Leopoldo,2025,47,0
+São Leopoldo,2025,48,0
+São Leopoldo,2025,49,0
+São Leopoldo,2025,50,0
+São Leopoldo,2025,51,0
+São Leopoldo,2025,52,0
+São Leopoldo,2025,53,0
+São Leopoldo,2026,1,1
+São Leopoldo,2026,2,2
+São Leopoldo,2026,3,0
+São Leopoldo,2026,4,2
+São Leopoldo,2026,5,0
+São Leopoldo,2026,6,1
+São Leopoldo,2026,7,3
+São Leopoldo,2026,8,0
+São Leopoldo,2026,9,5
+São Leopoldo,2026,10,2
+São Leopoldo,2026,11,1
+São Leopoldo,2026,12,5
+São Leopoldo,2026,13,5
+São Leopoldo,2026,14,4
+São Leopoldo,2026,15,7
+São Leopoldo,2026,16,10
+São Leopoldo,2026,17,7
+São Leopoldo,2026,18,10
+São Leopoldo,2026,19,12
+São Leopoldo,2026,20,2
+São Leopoldo,2026,21,2
+São Leopoldo,2026,22,3
+São Leopoldo,2026,23,0
+São Leopoldo,2026,24,2
+São Leopoldo,2026,25,0
+São Leopoldo,2026,26,0
+São Leopoldo,2026,27,0
+São Leopoldo,2026,28,0
+São Leopoldo,2026,29,0
+São Leopoldo,2026,30,0
+São Leopoldo,2026,31,0
+São Leopoldo,2026,32,0
+São Leopoldo,2026,33,0
+São Leopoldo,2026,34,1
+São Leopoldo,2026,35,0
+São Leopoldo,2026,36,0
+São Leopoldo,2026,37,0
+Viamão,2015,1,0
+Viamão,2015,3,0
+Viamão,2015,5,0
+Viamão,2015,6,1
+Viamão,2015,8,0
+Viamão,2015,9,0
+Viamão,2015,10,0
+Viamão,2015,11,0
+Viamão,2015,12,1
+Viamão,2015,13,0
+Viamão,2015,14,1
+Viamão,2015,15,0
+Viamão,2015,17,0
+Viamão,2015,18,0
+Viamão,2015,19,0
+Viamão,2015,20,0
+Viamão,2015,21,0
+Viamão,2015,22,0
+Viamão,2015,23,1
+Viamão,2015,26,0
+Viamão,2015,31,0
+Viamão,2015,33,0
+Viamão,2015,43,0
+Viamão,2015,47,0
+Viamão,2015,48,0
+Viamão,2015,51,1
+Viamão,2015,52,0
+Viamão,2016,1,2
+Viamão,2016,2,0
+Viamão,2016,3,0
+Viamão,2016,5,0
+Viamão,2016,6,3
+Viamão,2016,7,4
+Viamão,2016,8,5
+Viamão,2016,9,4
+Viamão,2016,10,15
+Viamão,2016,11,5
+Viamão,2016,12,23
+Viamão,2016,13,30
+Viamão,2016,14,8
+Viamão,2016,15,13
+Viamão,2016,16,24
+Viamão,2016,17,12
+Viamão,2016,18,8
+Viamão,2016,19,1
+Viamão,2016,20,1
+Viamão,2016,21,2
+Viamão,2016,23,0
+Viamão,2016,26,0
+Viamão,2016,31,0
+Viamão,2016,33,0
+Viamão,2016,34,0
+Viamão,2016,35,0
+Viamão,2016,43,0
+Viamão,2016,44,0
+Viamão,2016,46,0
+Viamão,2016,47,0
+Viamão,2016,48,0
+Viamão,2016,49,0
+Viamão,2016,50,0
+Viamão,2016,51,0
+Viamão,2016,52,0
+Viamão,2017,1,0
+Viamão,2017,2,0
+Viamão,2017,3,0
+Viamão,2017,4,0
+Viamão,2017,5,0
+Viamão,2017,6,0
+Viamão,2017,7,0
+Viamão,2017,8,0
+Viamão,2017,9,1
+Viamão,2017,10,0
+Viamão,2017,11,0
+Viamão,2017,15,0
+Viamão,2017,16,0
+Viamão,2017,18,0
+Viamão,2017,25,0
+Viamão,2017,30,0
+Viamão,2017,34,0
+Viamão,2017,35,0
+Viamão,2017,41,0
+Viamão,2017,45,0
+Viamão,2017,46,0
+Viamão,2017,48,0
+Viamão,2017,49,0
+Viamão,2017,51,0
+Viamão,2018,2,0
+Viamão,2018,3,0
+Viamão,2018,5,0
+Viamão,2018,6,0
+Viamão,2018,9,0
+Viamão,2018,10,0
+Viamão,2018,11,0
+Viamão,2018,14,0
+Viamão,2018,15,0
+Viamão,2018,16,0
+Viamão,2018,18,1
+Viamão,2018,20,0
+Viamão,2018,29,0
+Viamão,2018,33,0
+Viamão,2018,35,0
+Viamão,2018,41,0
+Viamão,2018,50,0
+Viamão,2019,5,0
+Viamão,2019,11,0
+Viamão,2019,13,0
+Viamão,2019,14,1
+Viamão,2019,15,0
+Viamão,2019,16,1
+Viamão,2019,18,0
+Viamão,2019,19,0
+Viamão,2019,20,0
+Viamão,2019,21,0
+Viamão,2019,22,0
+Viamão,2019,23,0
+Viamão,2019,24,0
+Viamão,2019,25,0
+Viamão,2019,26,0
+Viamão,2019,27,0
+Viamão,2019,28,0
+Viamão,2019,29,1
+Viamão,2019,33,0
+Viamão,2019,38,0
+Viamão,2019,39,0
+Viamão,2019,43,0
+Viamão,2019,44,0
+Viamão,2019,46,0
+Viamão,2019,47,0
+Viamão,2019,49,0
+Viamão,2019,50,0
+Viamão,2019,51,0
+Viamão,2020,1,0
+Viamão,2020,3,0
+Viamão,2020,9,1
+Viamão,2020,10,1
+Viamão,2020,13,2
+Viamão,2020,14,1
+Viamão,2020,15,6
+Viamão,2020,16,5
+Viamão,2020,17,7
+Viamão,2020,18,2
+Viamão,2020,19,2
+Viamão,2020,20,3
+Viamão,2020,21,3
+Viamão,2020,22,1
+Viamão,2020,23,1
+Viamão,2020,25,0
+Viamão,2020,26,1
+Viamão,2020,30,0
+Viamão,2020,48,0
+Viamão,2021,7,0
+Viamão,2021,13,1
+Viamão,2021,18,0
+Viamão,2021,31,0
+Viamão,2022,5,0
+Viamão,2022,8,1
+Viamão,2022,9,5
+Viamão,2022,10,2
+Viamão,2022,11,11
+Viamão,2022,12,26
+Viamão,2022,13,39
+Viamão,2022,14,43
+Viamão,2022,15,70
+Viamão,2022,16,95
+Viamão,2022,17,94
+Viamão,2022,18,61
+Viamão,2022,19,36
+Viamão,2022,20,37
+Viamão,2022,21,14
+Viamão,2022,22,14
+Viamão,2022,23,9
+Viamão,2022,24,1
+Viamão,2022,25,3
+Viamão,2022,26,6
+Viamão,2022,27,4
+Viamão,2022,28,0
+Viamão,2022,29,0
+Viamão,2022,32,0
+Viamão,2022,33,0
+Viamão,2022,34,0
+Viamão,2022,35,0
+Viamão,2022,37,0
+Viamão,2022,39,0
+Viamão,2022,43,0
+Viamão,2022,46,0
+Viamão,2022,47,0
+Viamão,2022,48,0
+Viamão,2022,49,0
+Viamão,2022,50,0
+Viamão,2022,51,0
+Viamão,2022,52,0
+Viamão,2023,1,0
+Viamão,2023,2,1
+Viamão,2023,3,0
+Viamão,2023,4,0
+Viamão,2023,5,1
+Viamão,2023,6,0
+Viamão,2023,7,0
+Viamão,2023,8,1
+Viamão,2023,9,0
+Viamão,2023,10,0
+Viamão,2023,11,1
+Viamão,2023,12,5
+Viamão,2023,13,2
+Viamão,2023,14,5
+Viamão,2023,15,5
+Viamão,2023,16,15
+Viamão,2023,17,21
+Viamão,2023,18,20
+Viamão,2023,19,20
+Viamão,2023,20,27
+Viamão,2023,21,19
+Viamão,2023,22,17
+Viamão,2023,23,16
+Viamão,2023,24,10
+Viamão,2023,25,6
+Viamão,2023,26,10
+Viamão,2023,27,5
+Viamão,2023,28,2
+Viamão,2023,29,0
+Viamão,2023,30,2
+Viamão,2023,31,2
+Viamão,2023,32,4
+Viamão,2023,33,3
+Viamão,2023,34,0
+Viamão,2023,35,0
+Viamão,2023,36,0
+Viamão,2023,37,0
+Viamão,2023,38,1
+Viamão,2023,39,0
+Viamão,2023,40,0
+Viamão,2023,41,0
+Viamão,2023,42,0
+Viamão,2023,43,0
+Viamão,2023,44,0
+Viamão,2023,45,0
+Viamão,2023,46,0
+Viamão,2023,47,0
+Viamão,2023,48,0
+Viamão,2023,49,0
+Viamão,2023,50,1
+Viamão,2023,51,3
+Viamão,2023,52,0
+Viamão,2024,1,0
+Viamão,2024,2,1
+Viamão,2024,3,1
+Viamão,2024,4,0
+Viamão,2024,5,4
+Viamão,2024,6,3
+Viamão,2024,7,8
+Viamão,2024,8,7
+Viamão,2024,9,19
+Viamão,2024,10,21
+Viamão,2024,11,44
+Viamão,2024,12,50
+Viamão,2024,13,53
+Viamão,2024,14,85
+Viamão,2024,15,100
+Viamão,2024,16,92
+Viamão,2024,17,91
+Viamão,2024,18,96
+Viamão,2024,19,73
+Viamão,2024,20,136
+Viamão,2024,21,23
+Viamão,2024,22,36
+Viamão,2024,23,17
+Viamão,2024,24,23
+Viamão,2024,25,27
+Viamão,2024,26,17
+Viamão,2024,27,10
+Viamão,2024,28,3
+Viamão,2024,29,1
+Viamão,2024,30,4
+Viamão,2024,31,2
+Viamão,2024,32,0
+Viamão,2024,33,1
+Viamão,2024,34,1
+Viamão,2024,35,2
+Viamão,2024,36,0
+Viamão,2024,37,0
+Viamão,2024,38,0
+Viamão,2024,39,1
+Viamão,2024,40,1
+Viamão,2024,41,0
+Viamão,2024,42,0
+Viamão,2024,43,1
+Viamão,2024,44,0
+Viamão,2024,45,0
+Viamão,2024,46,0
+Viamão,2024,47,1
+Viamão,2024,48,1
+Viamão,2024,49,0
+Viamão,2024,50,0
+Viamão,2024,51,0
+Viamão,2024,52,0
+Viamão,2025,1,1
+Viamão,2025,2,0
+Viamão,2025,3,5
+Viamão,2025,4,13
+Viamão,2025,5,18
+Viamão,2025,6,23
+Viamão,2025,7,36
+Viamão,2025,8,91
+Viamão,2025,9,123
+Viamão,2025,10,169
+Viamão,2025,11,443
+Viamão,2025,12,375
+Viamão,2025,13,641
+Viamão,2025,14,929
+Viamão,2025,15,797
+Viamão,2025,16,703
+Viamão,2025,17,598
+Viamão,2025,18,408
+Viamão,2025,19,340
+Viamão,2025,20,251
+Viamão,2025,21,324
+Viamão,2025,22,142
+Viamão,2025,23,101
+Viamão,2025,24,33
+Viamão,2025,25,18
+Viamão,2025,26,7
+Viamão,2025,27,4
+Viamão,2025,28,2
+Viamão,2025,29,2
+Viamão,2025,30,2
+Viamão,2025,31,2
+Viamão,2025,32,2
+Viamão,2025,33,3
+Viamão,2025,34,2
+Viamão,2025,35,1
+Viamão,2025,36,2
+Viamão,2025,37,1
+Viamão,2025,38,4
+Viamão,2025,39,3
+Viamão,2025,40,5
+Viamão,2025,41,9
+Viamão,2025,42,9
+Viamão,2025,43,5
+Viamão,2025,44,1
+Viamão,2025,45,5
+Viamão,2025,46,4
+Viamão,2025,47,3
+Viamão,2025,48,5
+Viamão,2025,49,6
+Viamão,2025,50,4
+Viamão,2025,51,2
+Viamão,2025,52,0
+Viamão,2025,53,0
+Viamão,2026,1,0
+Viamão,2026,2,1
+Viamão,2026,3,1
+Viamão,2026,4,0
+Viamão,2026,5,0
+Viamão,2026,6,0
+Viamão,2026,7,0
+Viamão,2026,8,0
+Viamão,2026,9,1
+Viamão,2026,10,0
+Viamão,2026,11,1
+Viamão,2026,12,0
+Viamão,2026,13,0
+Viamão,2026,14,0
+Viamão,2026,15,0
+Viamão,2026,16,0
+Viamão,2026,17,0
+Viamão,2026,18,0
+Viamão,2026,19,0
+Viamão,2026,20,0
+Viamão,2026,22,0
+Viamão,2026,23,0
+Viamão,2026,24,0
+Viamão,2026,25,0
+Viamão,2026,26,0
+Viamão,2026,28,0
+Viamão,2026,30,0
+Viamão,2026,31,0
+Viamão,2026,32,0
+Viamão,2026,33,0
+Viamão,2026,34,0
+Viamão,2026,35,1
+Viamão,2026,36,0

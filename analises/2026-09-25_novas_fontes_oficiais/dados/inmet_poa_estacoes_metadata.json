@@ -1,0 +1,66 @@
+{
+  "fonte": "INMET apitempo.inmet.gov.br/estacoes/T (automaticas) e /estacoes/M (convencionais)",
+  "consultado_em": "2026-09-25",
+  "estacoes_automaticas_poa": [
+    {
+      "CD_OSCAR": null,
+      "DC_NOME": "PORTO ALEGRE - BELEM NOVO",
+      "FL_CAPITAL": "N",
+      "DT_FIM_OPERACAO": null,
+      "CD_SITUACAO": "Operante",
+      "TP_ESTACAO": "Automatica",
+      "VL_LATITUDE": "-30.1861111",
+      "CD_WSI": "0-76-0-4314902000000606",
+      "CD_DISTRITO": " 08",
+      "VL_ALTITUDE": "3.3",
+      "SG_ESTADO": "RS",
+      "SG_ENTIDADE": "INMET",
+      "CD_ESTACAO": "B825",
+      "VL_LONGITUDE": "-51.17833332",
+      "DT_INICIO_OPERACAO": "2025-04-30T21:00:00.000-03:00"
+    },
+    {
+      "CD_OSCAR": "0-2000-0-86988",
+      "DC_NOME": "PORTO ALEGRE - JARDIM BOTANICO",
+      "FL_CAPITAL": "N",
+      "DT_FIM_OPERACAO": null,
+      "CD_SITUACAO": "Operante",
+      "TP_ESTACAO": "Automatica",
+      "VL_LATITUDE": "-30.05361111",
+      "CD_WSI": "0-76-0-4314902000000005",
+      "CD_DISTRITO": " 08",
+      "VL_ALTITUDE": "41.18",
+      "SG_ESTADO": "RS",
+      "SG_ENTIDADE": "INMET",
+      "CD_ESTACAO": "A801",
+      "VL_LONGITUDE": "-51.17472221",
+      "DT_INICIO_OPERACAO": "2000-09-21T21:00:00.000-03:00"
+    }
+  ],
+  "estacoes_convencionais_poa": [
+    {
+      "CD_OSCAR": "0-2000-0-83967",
+      "DC_NOME": "PORTO ALEGRE",
+      "FL_CAPITAL": "S",
+      "DT_FIM_OPERACAO": null,
+      "CD_SITUACAO": "Operante",
+      "TP_ESTACAO": "Convencional",
+      "VL_LATITUDE": "-30.05361111",
+      "CD_WSI": "0-76-0-4314902000W83967",
+      "CD_DISTRITO": " 08",
+      "VL_ALTITUDE": "41.18",
+      "SG_ESTADO": "RS",
+      "SG_ENTIDADE": "INMET",
+      "CD_ESTACAO": "83967",
+      "VL_LONGITUDE": "-51.17472221",
+      "DT_INICIO_OPERACAO": "1909-12-08T21:25:56.000-02:34"
+    }
+  ],
+  "diagnostico_acesso_a_serie_temporal": {
+    "endpoint_publico_sem_token": "https://apitempo.inmet.gov.br/estacao/{dataInicial}/{dataFinal}/{codEstacao}",
+    "resultado": "HTTP 204 (sem conteudo) para QUALQUER estacao e QUALQUER periodo testado, inclusive A001 (Brasilia) e datas recentes -- rota parece desativada/sem dados publicos",
+    "endpoint_com_token": "https://apitempo.inmet.gov.br/token/estacao/{dataInicial}/{dataFinal}/{codEstacao}/{token}",
+    "resultado_sem_token_valido": "HTTP 200 com corpo CHAVE INVALIDA! -- confirma que serie historica via API exige token obtido por cadastro no BDMEP",
+    "bdmep_portal": "https://bdmep.inmet.gov.br -- SPA que so libera export via POST /requisicao (apibdmep.inmet.gov.br) pedindo e-mail, aguarda processamento assincrono e envia link por e-mail. Nao e consulta instantanea; NAO submetido nesta sessao por exigir e-mail em formulario e fluxo de espera -- decisao de nao seguir sem autorizacao explicita."
+  }
+}

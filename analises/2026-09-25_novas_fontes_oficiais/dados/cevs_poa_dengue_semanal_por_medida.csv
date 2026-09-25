@@ -1,0 +1,4005 @@
+ano_epidemiologico,semana_epidemiologica,medida,qt_casos
+2015,1,Autóctones,0
+2015,1,Confirmados,0
+2015,1,Descartados,7
+2015,1,Em investigação,0
+2015,1,Inconclusivo,0
+2015,1,Notificações,7
+2015,1,Óbitos,0
+2015,2,Autóctones,0
+2015,2,Confirmados,1
+2015,2,Descartados,3
+2015,2,Em investigação,0
+2015,2,Inconclusivo,0
+2015,2,Notificações,4
+2015,2,Óbitos,0
+2015,3,Autóctones,0
+2015,3,Confirmados,2
+2015,3,Descartados,7
+2015,3,Em investigação,0
+2015,3,Inconclusivo,0
+2015,3,Notificações,9
+2015,3,Óbitos,0
+2015,4,Autóctones,0
+2015,4,Confirmados,0
+2015,4,Descartados,2
+2015,4,Em investigação,0
+2015,4,Inconclusivo,0
+2015,4,Notificações,2
+2015,4,Óbitos,0
+2015,5,Autóctones,0
+2015,5,Confirmados,0
+2015,5,Descartados,3
+2015,5,Em investigação,0
+2015,5,Inconclusivo,0
+2015,5,Notificações,3
+2015,5,Óbitos,0
+2015,6,Autóctones,0
+2015,6,Confirmados,1
+2015,6,Descartados,7
+2015,6,Em investigação,0
+2015,6,Inconclusivo,0
+2015,6,Notificações,8
+2015,6,Óbitos,0
+2015,7,Autóctones,1
+2015,7,Confirmados,2
+2015,7,Descartados,6
+2015,7,Em investigação,0
+2015,7,Inconclusivo,0
+2015,7,Notificações,8
+2015,7,Óbitos,0
+2015,8,Autóctones,0
+2015,8,Confirmados,0
+2015,8,Descartados,12
+2015,8,Em investigação,0
+2015,8,Inconclusivo,0
+2015,8,Notificações,12
+2015,8,Óbitos,0
+2015,9,Autóctones,0
+2015,9,Confirmados,1
+2015,9,Descartados,17
+2015,9,Em investigação,0
+2015,9,Inconclusivo,0
+2015,9,Notificações,18
+2015,9,Óbitos,0
+2015,10,Autóctones,0
+2015,10,Confirmados,1
+2015,10,Descartados,13
+2015,10,Em investigação,0
+2015,10,Inconclusivo,0
+2015,10,Notificações,14
+2015,10,Óbitos,0
+2015,11,Autóctones,0
+2015,11,Confirmados,1
+2015,11,Descartados,9
+2015,11,Em investigação,0
+2015,11,Inconclusivo,0
+2015,11,Notificações,10
+2015,11,Óbitos,0
+2015,12,Autóctones,4
+2015,12,Confirmados,8
+2015,12,Descartados,15
+2015,12,Em investigação,0
+2015,12,Inconclusivo,0
+2015,12,Notificações,23
+2015,12,Óbitos,0
+2015,13,Autóctones,1
+2015,13,Confirmados,3
+2015,13,Descartados,9
+2015,13,Em investigação,0
+2015,13,Inconclusivo,0
+2015,13,Notificações,12
+2015,13,Óbitos,0
+2015,14,Autóctones,3
+2015,14,Confirmados,10
+2015,14,Descartados,30
+2015,14,Em investigação,0
+2015,14,Inconclusivo,0
+2015,14,Notificações,40
+2015,14,Óbitos,0
+2015,15,Autóctones,1
+2015,15,Confirmados,4
+2015,15,Descartados,34
+2015,15,Em investigação,0
+2015,15,Inconclusivo,0
+2015,15,Notificações,38
+2015,15,Óbitos,0
+2015,16,Autóctones,1
+2015,16,Confirmados,5
+2015,16,Descartados,20
+2015,16,Em investigação,0
+2015,16,Inconclusivo,0
+2015,16,Notificações,25
+2015,16,Óbitos,0
+2015,17,Autóctones,2
+2015,17,Confirmados,4
+2015,17,Descartados,29
+2015,17,Em investigação,0
+2015,17,Inconclusivo,0
+2015,17,Notificações,33
+2015,17,Óbitos,0
+2015,18,Autóctones,4
+2015,18,Confirmados,9
+2015,18,Descartados,28
+2015,18,Em investigação,0
+2015,18,Inconclusivo,0
+2015,18,Notificações,37
+2015,18,Óbitos,0
+2015,19,Autóctones,0
+2015,19,Confirmados,3
+2015,19,Descartados,35
+2015,19,Em investigação,0
+2015,19,Inconclusivo,0
+2015,19,Notificações,38
+2015,19,Óbitos,0
+2015,20,Autóctones,0
+2015,20,Confirmados,5
+2015,20,Descartados,31
+2015,20,Em investigação,0
+2015,20,Inconclusivo,0
+2015,20,Notificações,36
+2015,20,Óbitos,0
+2015,21,Autóctones,1
+2015,21,Confirmados,2
+2015,21,Descartados,14
+2015,21,Em investigação,0
+2015,21,Inconclusivo,0
+2015,21,Notificações,16
+2015,21,Óbitos,0
+2015,22,Autóctones,0
+2015,22,Confirmados,0
+2015,22,Descartados,15
+2015,22,Em investigação,0
+2015,22,Inconclusivo,0
+2015,22,Notificações,15
+2015,22,Óbitos,0
+2015,23,Autóctones,0
+2015,23,Confirmados,0
+2015,23,Descartados,13
+2015,23,Em investigação,0
+2015,23,Inconclusivo,1
+2015,23,Notificações,14
+2015,23,Óbitos,0
+2015,24,Autóctones,0
+2015,24,Confirmados,0
+2015,24,Descartados,4
+2015,24,Em investigação,0
+2015,24,Inconclusivo,0
+2015,24,Notificações,4
+2015,24,Óbitos,0
+2015,25,Autóctones,0
+2015,25,Confirmados,2
+2015,25,Descartados,4
+2015,25,Em investigação,0
+2015,25,Inconclusivo,0
+2015,25,Notificações,6
+2015,25,Óbitos,0
+2015,26,Autóctones,0
+2015,26,Confirmados,1
+2015,26,Descartados,3
+2015,26,Em investigação,0
+2015,26,Inconclusivo,0
+2015,26,Notificações,4
+2015,26,Óbitos,0
+2015,27,Autóctones,0
+2015,27,Confirmados,0
+2015,27,Descartados,3
+2015,27,Em investigação,0
+2015,27,Inconclusivo,0
+2015,27,Notificações,3
+2015,27,Óbitos,0
+2015,28,Autóctones,0
+2015,28,Confirmados,0
+2015,28,Descartados,2
+2015,28,Em investigação,0
+2015,28,Inconclusivo,0
+2015,28,Notificações,2
+2015,28,Óbitos,0
+2015,29,Autóctones,0
+2015,29,Confirmados,0
+2015,29,Descartados,4
+2015,29,Em investigação,0
+2015,29,Inconclusivo,0
+2015,29,Notificações,4
+2015,29,Óbitos,0
+2015,30,Autóctones,0
+2015,30,Confirmados,0
+2015,30,Descartados,4
+2015,30,Em investigação,0
+2015,30,Inconclusivo,0
+2015,30,Notificações,4
+2015,30,Óbitos,0
+2015,31,Autóctones,0
+2015,31,Confirmados,1
+2015,31,Descartados,5
+2015,31,Em investigação,0
+2015,31,Inconclusivo,0
+2015,31,Notificações,6
+2015,31,Óbitos,0
+2015,32,Autóctones,0
+2015,32,Confirmados,0
+2015,32,Descartados,5
+2015,32,Em investigação,0
+2015,32,Inconclusivo,0
+2015,32,Notificações,5
+2015,32,Óbitos,0
+2015,33,Autóctones,0
+2015,33,Confirmados,2
+2015,33,Descartados,3
+2015,33,Em investigação,0
+2015,33,Inconclusivo,0
+2015,33,Notificações,5
+2015,33,Óbitos,0
+2015,34,Autóctones,0
+2015,34,Confirmados,0
+2015,34,Descartados,4
+2015,34,Em investigação,0
+2015,34,Inconclusivo,0
+2015,34,Notificações,4
+2015,34,Óbitos,0
+2015,35,Autóctones,0
+2015,35,Confirmados,0
+2015,35,Descartados,3
+2015,35,Em investigação,0
+2015,35,Inconclusivo,0
+2015,35,Notificações,3
+2015,35,Óbitos,0
+2015,36,Autóctones,0
+2015,36,Confirmados,0
+2015,36,Descartados,2
+2015,36,Em investigação,0
+2015,36,Inconclusivo,0
+2015,36,Notificações,2
+2015,36,Óbitos,0
+2015,37,Autóctones,0
+2015,37,Confirmados,0
+2015,37,Descartados,2
+2015,37,Em investigação,0
+2015,37,Inconclusivo,0
+2015,37,Notificações,2
+2015,37,Óbitos,0
+2015,38,Autóctones,0
+2015,38,Confirmados,0
+2015,38,Descartados,3
+2015,38,Em investigação,0
+2015,38,Inconclusivo,0
+2015,38,Notificações,3
+2015,38,Óbitos,0
+2015,39,Autóctones,0
+2015,39,Confirmados,1
+2015,39,Descartados,2
+2015,39,Em investigação,0
+2015,39,Inconclusivo,0
+2015,39,Notificações,3
+2015,39,Óbitos,0
+2015,41,Autóctones,0
+2015,41,Confirmados,0
+2015,41,Descartados,2
+2015,41,Em investigação,0
+2015,41,Inconclusivo,0
+2015,41,Notificações,2
+2015,41,Óbitos,0
+2015,42,Autóctones,0
+2015,42,Confirmados,0
+2015,42,Descartados,5
+2015,42,Em investigação,0
+2015,42,Inconclusivo,0
+2015,42,Notificações,5
+2015,42,Óbitos,0
+2015,43,Autóctones,0
+2015,43,Confirmados,0
+2015,43,Descartados,5
+2015,43,Em investigação,0
+2015,43,Inconclusivo,0
+2015,43,Notificações,5
+2015,43,Óbitos,0
+2015,44,Autóctones,0
+2015,44,Confirmados,0
+2015,44,Descartados,1
+2015,44,Em investigação,0
+2015,44,Inconclusivo,0
+2015,44,Notificações,1
+2015,44,Óbitos,0
+2015,45,Autóctones,0
+2015,45,Confirmados,0
+2015,45,Descartados,3
+2015,45,Em investigação,0
+2015,45,Inconclusivo,0
+2015,45,Notificações,3
+2015,45,Óbitos,0
+2015,46,Autóctones,0
+2015,46,Confirmados,0
+2015,46,Descartados,7
+2015,46,Em investigação,0
+2015,46,Inconclusivo,0
+2015,46,Notificações,7
+2015,46,Óbitos,0
+2015,47,Autóctones,0
+2015,47,Confirmados,0
+2015,47,Descartados,11
+2015,47,Em investigação,0
+2015,47,Inconclusivo,0
+2015,47,Notificações,11
+2015,47,Óbitos,0
+2015,48,Autóctones,0
+2015,48,Confirmados,2
+2015,48,Descartados,10
+2015,48,Em investigação,0
+2015,48,Inconclusivo,0
+2015,48,Notificações,12
+2015,48,Óbitos,0
+2015,49,Autóctones,0
+2015,49,Confirmados,0
+2015,49,Descartados,16
+2015,49,Em investigação,0
+2015,49,Inconclusivo,0
+2015,49,Notificações,16
+2015,49,Óbitos,0
+2015,50,Autóctones,0
+2015,50,Confirmados,2
+2015,50,Descartados,21
+2015,50,Em investigação,0
+2015,50,Inconclusivo,1
+2015,50,Notificações,24
+2015,50,Óbitos,0
+2015,51,Autóctones,0
+2015,51,Confirmados,1
+2015,51,Descartados,12
+2015,51,Em investigação,0
+2015,51,Inconclusivo,0
+2015,51,Notificações,13
+2015,51,Óbitos,0
+2015,52,Autóctones,0
+2015,52,Confirmados,1
+2015,52,Descartados,20
+2015,52,Em investigação,0
+2015,52,Inconclusivo,0
+2015,52,Notificações,21
+2015,52,Óbitos,0
+2016,1,Autóctones,0
+2016,1,Confirmados,7
+2016,1,Descartados,34
+2016,1,Em investigação,0
+2016,1,Inconclusivo,0
+2016,1,Notificações,41
+2016,1,Óbitos,0
+2016,2,Autóctones,2
+2016,2,Confirmados,5
+2016,2,Descartados,31
+2016,2,Em investigação,0
+2016,2,Inconclusivo,0
+2016,2,Notificações,36
+2016,2,Óbitos,0
+2016,3,Autóctones,3
+2016,3,Confirmados,7
+2016,3,Descartados,30
+2016,3,Em investigação,0
+2016,3,Inconclusivo,0
+2016,3,Notificações,37
+2016,3,Óbitos,0
+2016,4,Autóctones,2
+2016,4,Confirmados,5
+2016,4,Descartados,26
+2016,4,Em investigação,0
+2016,4,Inconclusivo,0
+2016,4,Notificações,31
+2016,4,Óbitos,0
+2016,5,Autóctones,12
+2016,5,Confirmados,13
+2016,5,Descartados,26
+2016,5,Em investigação,0
+2016,5,Inconclusivo,0
+2016,5,Notificações,39
+2016,5,Óbitos,0
+2016,6,Autóctones,13
+2016,6,Confirmados,15
+2016,6,Descartados,76
+2016,6,Em investigação,0
+2016,6,Inconclusivo,0
+2016,6,Notificações,91
+2016,6,Óbitos,0
+2016,7,Autóctones,20
+2016,7,Confirmados,23
+2016,7,Descartados,115
+2016,7,Em investigação,0
+2016,7,Inconclusivo,0
+2016,7,Notificações,138
+2016,7,Óbitos,0
+2016,8,Autóctones,17
+2016,8,Confirmados,22
+2016,8,Descartados,94
+2016,8,Em investigação,0
+2016,8,Inconclusivo,0
+2016,8,Notificações,116
+2016,8,Óbitos,0
+2016,9,Autóctones,8
+2016,9,Confirmados,11
+2016,9,Descartados,77
+2016,9,Em investigação,0
+2016,9,Inconclusivo,0
+2016,9,Notificações,88
+2016,9,Óbitos,0
+2016,10,Autóctones,25
+2016,10,Confirmados,29
+2016,10,Descartados,93
+2016,10,Em investigação,0
+2016,10,Inconclusivo,0
+2016,10,Notificações,122
+2016,10,Óbitos,0
+2016,11,Autóctones,38
+2016,11,Confirmados,38
+2016,11,Descartados,107
+2016,11,Em investigação,0
+2016,11,Inconclusivo,0
+2016,11,Notificações,145
+2016,11,Óbitos,0
+2016,12,Autóctones,27
+2016,12,Confirmados,31
+2016,12,Descartados,81
+2016,12,Em investigação,0
+2016,12,Inconclusivo,0
+2016,12,Notificações,112
+2016,12,Óbitos,0
+2016,13,Autóctones,17
+2016,13,Confirmados,17
+2016,13,Descartados,106
+2016,13,Em investigação,0
+2016,13,Inconclusivo,0
+2016,13,Notificações,123
+2016,13,Óbitos,0
+2016,14,Autóctones,21
+2016,14,Confirmados,23
+2016,14,Descartados,94
+2016,14,Em investigação,0
+2016,14,Inconclusivo,0
+2016,14,Notificações,117
+2016,14,Óbitos,0
+2016,15,Autóctones,22
+2016,15,Confirmados,23
+2016,15,Descartados,68
+2016,15,Em investigação,0
+2016,15,Inconclusivo,0
+2016,15,Notificações,91
+2016,15,Óbitos,0
+2016,16,Autóctones,28
+2016,16,Confirmados,29
+2016,16,Descartados,59
+2016,16,Em investigação,0
+2016,16,Inconclusivo,0
+2016,16,Notificações,88
+2016,16,Óbitos,0
+2016,17,Autóctones,29
+2016,17,Confirmados,31
+2016,17,Descartados,39
+2016,17,Em investigação,0
+2016,17,Inconclusivo,0
+2016,17,Notificações,70
+2016,17,Óbitos,0
+2016,18,Autóctones,9
+2016,18,Confirmados,11
+2016,18,Descartados,39
+2016,18,Em investigação,0
+2016,18,Inconclusivo,0
+2016,18,Notificações,50
+2016,18,Óbitos,0
+2016,19,Autóctones,6
+2016,19,Confirmados,6
+2016,19,Descartados,21
+2016,19,Em investigação,0
+2016,19,Inconclusivo,0
+2016,19,Notificações,27
+2016,19,Óbitos,0
+2016,20,Autóctones,3
+2016,20,Confirmados,3
+2016,20,Descartados,8
+2016,20,Em investigação,0
+2016,20,Inconclusivo,0
+2016,20,Notificações,11
+2016,20,Óbitos,0
+2016,21,Autóctones,3
+2016,21,Confirmados,3
+2016,21,Descartados,17
+2016,21,Em investigação,0
+2016,21,Inconclusivo,0
+2016,21,Notificações,20
+2016,21,Óbitos,0
+2016,22,Autóctones,1
+2016,22,Confirmados,1
+2016,22,Descartados,9
+2016,22,Em investigação,0
+2016,22,Inconclusivo,0
+2016,22,Notificações,10
+2016,22,Óbitos,0
+2016,23,Autóctones,0
+2016,23,Confirmados,0
+2016,23,Descartados,6
+2016,23,Em investigação,0
+2016,23,Inconclusivo,0
+2016,23,Notificações,6
+2016,23,Óbitos,0
+2016,24,Autóctones,0
+2016,24,Confirmados,1
+2016,24,Descartados,3
+2016,24,Em investigação,0
+2016,24,Inconclusivo,0
+2016,24,Notificações,4
+2016,24,Óbitos,0
+2016,25,Autóctones,0
+2016,25,Confirmados,0
+2016,25,Descartados,7
+2016,25,Em investigação,0
+2016,25,Inconclusivo,0
+2016,25,Notificações,7
+2016,25,Óbitos,0
+2016,26,Autóctones,0
+2016,26,Confirmados,0
+2016,26,Descartados,8
+2016,26,Em investigação,0
+2016,26,Inconclusivo,0
+2016,26,Notificações,8
+2016,26,Óbitos,0
+2016,27,Autóctones,0
+2016,27,Confirmados,0
+2016,27,Descartados,7
+2016,27,Em investigação,0
+2016,27,Inconclusivo,0
+2016,27,Notificações,7
+2016,27,Óbitos,0
+2016,28,Autóctones,0
+2016,28,Confirmados,0
+2016,28,Descartados,11
+2016,28,Em investigação,0
+2016,28,Inconclusivo,0
+2016,28,Notificações,11
+2016,28,Óbitos,0
+2016,29,Autóctones,0
+2016,29,Confirmados,0
+2016,29,Descartados,5
+2016,29,Em investigação,0
+2016,29,Inconclusivo,0
+2016,29,Notificações,5
+2016,29,Óbitos,0
+2016,30,Autóctones,0
+2016,30,Confirmados,0
+2016,30,Descartados,4
+2016,30,Em investigação,0
+2016,30,Inconclusivo,0
+2016,30,Notificações,4
+2016,30,Óbitos,0
+2016,31,Autóctones,0
+2016,31,Confirmados,0
+2016,31,Descartados,7
+2016,31,Em investigação,0
+2016,31,Inconclusivo,0
+2016,31,Notificações,7
+2016,31,Óbitos,0
+2016,32,Autóctones,0
+2016,32,Confirmados,0
+2016,32,Descartados,16
+2016,32,Em investigação,0
+2016,32,Inconclusivo,0
+2016,32,Notificações,16
+2016,32,Óbitos,0
+2016,33,Autóctones,0
+2016,33,Confirmados,0
+2016,33,Descartados,13
+2016,33,Em investigação,0
+2016,33,Inconclusivo,0
+2016,33,Notificações,13
+2016,33,Óbitos,0
+2016,34,Autóctones,0
+2016,34,Confirmados,0
+2016,34,Descartados,8
+2016,34,Em investigação,0
+2016,34,Inconclusivo,0
+2016,34,Notificações,8
+2016,34,Óbitos,0
+2016,35,Autóctones,0
+2016,35,Confirmados,0
+2016,35,Descartados,4
+2016,35,Em investigação,0
+2016,35,Inconclusivo,0
+2016,35,Notificações,4
+2016,35,Óbitos,0
+2016,36,Autóctones,0
+2016,36,Confirmados,0
+2016,36,Descartados,4
+2016,36,Em investigação,0
+2016,36,Inconclusivo,0
+2016,36,Notificações,4
+2016,36,Óbitos,0
+2016,37,Autóctones,0
+2016,37,Confirmados,0
+2016,37,Descartados,9
+2016,37,Em investigação,0
+2016,37,Inconclusivo,0
+2016,37,Notificações,9
+2016,37,Óbitos,0
+2016,38,Autóctones,0
+2016,38,Confirmados,0
+2016,38,Descartados,7
+2016,38,Em investigação,0
+2016,38,Inconclusivo,0
+2016,38,Notificações,7
+2016,38,Óbitos,0
+2016,39,Autóctones,0
+2016,39,Confirmados,0
+2016,39,Descartados,6
+2016,39,Em investigação,0
+2016,39,Inconclusivo,0
+2016,39,Notificações,6
+2016,39,Óbitos,0
+2016,40,Autóctones,0
+2016,40,Confirmados,1
+2016,40,Descartados,8
+2016,40,Em investigação,0
+2016,40,Inconclusivo,0
+2016,40,Notificações,9
+2016,40,Óbitos,0
+2016,41,Autóctones,0
+2016,41,Confirmados,0
+2016,41,Descartados,6
+2016,41,Em investigação,0
+2016,41,Inconclusivo,0
+2016,41,Notificações,6
+2016,41,Óbitos,0
+2016,42,Autóctones,0
+2016,42,Confirmados,0
+2016,42,Descartados,8
+2016,42,Em investigação,0
+2016,42,Inconclusivo,0
+2016,42,Notificações,8
+2016,42,Óbitos,0
+2016,43,Autóctones,0
+2016,43,Confirmados,0
+2016,43,Descartados,12
+2016,43,Em investigação,0
+2016,43,Inconclusivo,0
+2016,43,Notificações,12
+2016,43,Óbitos,0
+2016,44,Autóctones,0
+2016,44,Confirmados,0
+2016,44,Descartados,9
+2016,44,Em investigação,0
+2016,44,Inconclusivo,0
+2016,44,Notificações,9
+2016,44,Óbitos,0
+2016,45,Autóctones,0
+2016,45,Confirmados,0
+2016,45,Descartados,9
+2016,45,Em investigação,0
+2016,45,Inconclusivo,0
+2016,45,Notificações,9
+2016,45,Óbitos,0
+2016,46,Autóctones,0
+2016,46,Confirmados,0
+2016,46,Descartados,7
+2016,46,Em investigação,0
+2016,46,Inconclusivo,0
+2016,46,Notificações,7
+2016,46,Óbitos,0
+2016,47,Autóctones,0
+2016,47,Confirmados,0
+2016,47,Descartados,11
+2016,47,Em investigação,0
+2016,47,Inconclusivo,0
+2016,47,Notificações,11
+2016,47,Óbitos,0
+2016,48,Autóctones,0
+2016,48,Confirmados,0
+2016,48,Descartados,7
+2016,48,Em investigação,0
+2016,48,Inconclusivo,0
+2016,48,Notificações,7
+2016,48,Óbitos,0
+2016,49,Autóctones,0
+2016,49,Confirmados,0
+2016,49,Descartados,18
+2016,49,Em investigação,0
+2016,49,Inconclusivo,0
+2016,49,Notificações,18
+2016,49,Óbitos,0
+2016,50,Autóctones,0
+2016,50,Confirmados,0
+2016,50,Descartados,13
+2016,50,Em investigação,0
+2016,50,Inconclusivo,0
+2016,50,Notificações,13
+2016,50,Óbitos,0
+2016,51,Autóctones,0
+2016,51,Confirmados,0
+2016,51,Descartados,26
+2016,51,Em investigação,0
+2016,51,Inconclusivo,0
+2016,51,Notificações,26
+2016,51,Óbitos,0
+2016,52,Autóctones,0
+2016,52,Confirmados,1
+2016,52,Descartados,23
+2016,52,Em investigação,0
+2016,52,Inconclusivo,0
+2016,52,Notificações,24
+2016,52,Óbitos,0
+2017,1,Autóctones,0
+2017,1,Confirmados,0
+2017,1,Descartados,29
+2017,1,Em investigação,0
+2017,1,Inconclusivo,0
+2017,1,Notificações,29
+2017,1,Óbitos,0
+2017,2,Autóctones,0
+2017,2,Confirmados,0
+2017,2,Descartados,32
+2017,2,Em investigação,0
+2017,2,Inconclusivo,0
+2017,2,Notificações,32
+2017,2,Óbitos,0
+2017,3,Autóctones,0
+2017,3,Confirmados,0
+2017,3,Descartados,24
+2017,3,Em investigação,0
+2017,3,Inconclusivo,0
+2017,3,Notificações,24
+2017,3,Óbitos,0
+2017,4,Autóctones,0
+2017,4,Confirmados,1
+2017,4,Descartados,21
+2017,4,Em investigação,0
+2017,4,Inconclusivo,0
+2017,4,Notificações,22
+2017,4,Óbitos,0
+2017,5,Autóctones,0
+2017,5,Confirmados,0
+2017,5,Descartados,19
+2017,5,Em investigação,0
+2017,5,Inconclusivo,0
+2017,5,Notificações,19
+2017,5,Óbitos,0
+2017,6,Autóctones,0
+2017,6,Confirmados,0
+2017,6,Descartados,10
+2017,6,Em investigação,0
+2017,6,Inconclusivo,0
+2017,6,Notificações,10
+2017,6,Óbitos,0
+2017,7,Autóctones,0
+2017,7,Confirmados,0
+2017,7,Descartados,18
+2017,7,Em investigação,0
+2017,7,Inconclusivo,0
+2017,7,Notificações,18
+2017,7,Óbitos,0
+2017,8,Autóctones,0
+2017,8,Confirmados,0
+2017,8,Descartados,7
+2017,8,Em investigação,0
+2017,8,Inconclusivo,0
+2017,8,Notificações,7
+2017,8,Óbitos,0
+2017,9,Autóctones,0
+2017,9,Confirmados,0
+2017,9,Descartados,21
+2017,9,Em investigação,0
+2017,9,Inconclusivo,0
+2017,9,Notificações,21
+2017,9,Óbitos,0
+2017,10,Autóctones,0
+2017,10,Confirmados,0
+2017,10,Descartados,17
+2017,10,Em investigação,0
+2017,10,Inconclusivo,0
+2017,10,Notificações,17
+2017,10,Óbitos,0
+2017,11,Autóctones,0
+2017,11,Confirmados,0
+2017,11,Descartados,12
+2017,11,Em investigação,0
+2017,11,Inconclusivo,0
+2017,11,Notificações,12
+2017,11,Óbitos,0
+2017,12,Autóctones,0
+2017,12,Confirmados,0
+2017,12,Descartados,10
+2017,12,Em investigação,0
+2017,12,Inconclusivo,0
+2017,12,Notificações,10
+2017,12,Óbitos,0
+2017,13,Autóctones,0
+2017,13,Confirmados,0
+2017,13,Descartados,6
+2017,13,Em investigação,0
+2017,13,Inconclusivo,0
+2017,13,Notificações,6
+2017,13,Óbitos,0
+2017,14,Autóctones,0
+2017,14,Confirmados,0
+2017,14,Descartados,3
+2017,14,Em investigação,0
+2017,14,Inconclusivo,0
+2017,14,Notificações,3
+2017,14,Óbitos,0
+2017,15,Autóctones,0
+2017,15,Confirmados,0
+2017,15,Descartados,5
+2017,15,Em investigação,0
+2017,15,Inconclusivo,0
+2017,15,Notificações,5
+2017,15,Óbitos,0
+2017,16,Autóctones,0
+2017,16,Confirmados,0
+2017,16,Descartados,8
+2017,16,Em investigação,0
+2017,16,Inconclusivo,0
+2017,16,Notificações,8
+2017,16,Óbitos,0
+2017,17,Autóctones,0
+2017,17,Confirmados,1
+2017,17,Descartados,7
+2017,17,Em investigação,0
+2017,17,Inconclusivo,0
+2017,17,Notificações,8
+2017,17,Óbitos,0
+2017,18,Autóctones,0
+2017,18,Confirmados,0
+2017,18,Descartados,6
+2017,18,Em investigação,0
+2017,18,Inconclusivo,0
+2017,18,Notificações,6
+2017,18,Óbitos,0
+2017,19,Autóctones,0
+2017,19,Confirmados,0
+2017,19,Descartados,5
+2017,19,Em investigação,0
+2017,19,Inconclusivo,0
+2017,19,Notificações,5
+2017,19,Óbitos,0
+2017,20,Autóctones,0
+2017,20,Confirmados,0
+2017,20,Descartados,4
+2017,20,Em investigação,0
+2017,20,Inconclusivo,0
+2017,20,Notificações,4
+2017,20,Óbitos,0
+2017,21,Autóctones,0
+2017,21,Confirmados,0
+2017,21,Descartados,2
+2017,21,Em investigação,0
+2017,21,Inconclusivo,0
+2017,21,Notificações,2
+2017,21,Óbitos,0
+2017,22,Autóctones,0
+2017,22,Confirmados,0
+2017,22,Descartados,11
+2017,22,Em investigação,0
+2017,22,Inconclusivo,0
+2017,22,Notificações,11
+2017,22,Óbitos,0
+2017,23,Autóctones,0
+2017,23,Confirmados,0
+2017,23,Descartados,3
+2017,23,Em investigação,0
+2017,23,Inconclusivo,0
+2017,23,Notificações,3
+2017,23,Óbitos,0
+2017,24,Autóctones,0
+2017,24,Confirmados,0
+2017,24,Descartados,1
+2017,24,Em investigação,0
+2017,24,Inconclusivo,0
+2017,24,Notificações,1
+2017,24,Óbitos,0
+2017,25,Autóctones,0
+2017,25,Confirmados,0
+2017,25,Descartados,2
+2017,25,Em investigação,0
+2017,25,Inconclusivo,0
+2017,25,Notificações,2
+2017,25,Óbitos,0
+2017,26,Autóctones,0
+2017,26,Confirmados,0
+2017,26,Descartados,4
+2017,26,Em investigação,0
+2017,26,Inconclusivo,0
+2017,26,Notificações,4
+2017,26,Óbitos,0
+2017,27,Autóctones,0
+2017,27,Confirmados,0
+2017,27,Descartados,4
+2017,27,Em investigação,0
+2017,27,Inconclusivo,0
+2017,27,Notificações,4
+2017,27,Óbitos,0
+2017,28,Autóctones,0
+2017,28,Confirmados,0
+2017,28,Descartados,3
+2017,28,Em investigação,0
+2017,28,Inconclusivo,0
+2017,28,Notificações,3
+2017,28,Óbitos,0
+2017,29,Autóctones,0
+2017,29,Confirmados,0
+2017,29,Descartados,2
+2017,29,Em investigação,0
+2017,29,Inconclusivo,0
+2017,29,Notificações,2
+2017,29,Óbitos,0
+2017,31,Autóctones,0
+2017,31,Confirmados,0
+2017,31,Descartados,1
+2017,31,Em investigação,0
+2017,31,Inconclusivo,0
+2017,31,Notificações,1
+2017,31,Óbitos,0
+2017,32,Autóctones,0
+2017,32,Confirmados,0
+2017,32,Descartados,3
+2017,32,Em investigação,0
+2017,32,Inconclusivo,0
+2017,32,Notificações,3
+2017,32,Óbitos,0
+2017,33,Autóctones,0
+2017,33,Confirmados,0
+2017,33,Descartados,2
+2017,33,Em investigação,0
+2017,33,Inconclusivo,0
+2017,33,Notificações,2
+2017,33,Óbitos,0
+2017,34,Autóctones,0
+2017,34,Confirmados,0
+2017,34,Descartados,5
+2017,34,Em investigação,0
+2017,34,Inconclusivo,0
+2017,34,Notificações,5
+2017,34,Óbitos,0
+2017,35,Autóctones,0
+2017,35,Confirmados,0
+2017,35,Descartados,5
+2017,35,Em investigação,0
+2017,35,Inconclusivo,0
+2017,35,Notificações,5
+2017,35,Óbitos,0
+2017,36,Autóctones,0
+2017,36,Confirmados,0
+2017,36,Descartados,2
+2017,36,Em investigação,0
+2017,36,Inconclusivo,0
+2017,36,Notificações,2
+2017,36,Óbitos,0
+2017,37,Autóctones,0
+2017,37,Confirmados,0
+2017,37,Descartados,4
+2017,37,Em investigação,0
+2017,37,Inconclusivo,0
+2017,37,Notificações,4
+2017,37,Óbitos,0
+2017,38,Autóctones,0
+2017,38,Confirmados,0
+2017,38,Descartados,5
+2017,38,Em investigação,0
+2017,38,Inconclusivo,0
+2017,38,Notificações,5
+2017,38,Óbitos,0
+2017,39,Autóctones,0
+2017,39,Confirmados,0
+2017,39,Descartados,3
+2017,39,Em investigação,0
+2017,39,Inconclusivo,0
+2017,39,Notificações,3
+2017,39,Óbitos,0
+2017,40,Autóctones,0
+2017,40,Confirmados,0
+2017,40,Descartados,3
+2017,40,Em investigação,0
+2017,40,Inconclusivo,0
+2017,40,Notificações,3
+2017,40,Óbitos,0
+2017,41,Autóctones,0
+2017,41,Confirmados,0
+2017,41,Descartados,5
+2017,41,Em investigação,0
+2017,41,Inconclusivo,0
+2017,41,Notificações,5
+2017,41,Óbitos,0
+2017,42,Autóctones,0
+2017,42,Confirmados,0
+2017,42,Descartados,4
+2017,42,Em investigação,0
+2017,42,Inconclusivo,0
+2017,42,Notificações,4
+2017,42,Óbitos,0
+2017,43,Autóctones,0
+2017,43,Confirmados,0
+2017,43,Descartados,5
+2017,43,Em investigação,0
+2017,43,Inconclusivo,0
+2017,43,Notificações,5
+2017,43,Óbitos,0
+2017,44,Autóctones,0
+2017,44,Confirmados,0
+2017,44,Descartados,3
+2017,44,Em investigação,0
+2017,44,Inconclusivo,0
+2017,44,Notificações,3
+2017,44,Óbitos,0
+2017,45,Autóctones,0
+2017,45,Confirmados,0
+2017,45,Descartados,6
+2017,45,Em investigação,0
+2017,45,Inconclusivo,0
+2017,45,Notificações,6
+2017,45,Óbitos,0
+2017,46,Autóctones,0
+2017,46,Confirmados,0
+2017,46,Descartados,5
+2017,46,Em investigação,0
+2017,46,Inconclusivo,1
+2017,46,Notificações,6
+2017,46,Óbitos,0
+2017,47,Autóctones,0
+2017,47,Confirmados,0
+2017,47,Descartados,6
+2017,47,Em investigação,0
+2017,47,Inconclusivo,0
+2017,47,Notificações,6
+2017,47,Óbitos,0
+2017,48,Autóctones,0
+2017,48,Confirmados,0
+2017,48,Descartados,6
+2017,48,Em investigação,0
+2017,48,Inconclusivo,0
+2017,48,Notificações,6
+2017,48,Óbitos,0
+2017,49,Autóctones,0
+2017,49,Confirmados,0
+2017,49,Descartados,2
+2017,49,Em investigação,0
+2017,49,Inconclusivo,0
+2017,49,Notificações,2
+2017,49,Óbitos,0
+2017,50,Autóctones,0
+2017,50,Confirmados,0
+2017,50,Descartados,11
+2017,50,Em investigação,0
+2017,50,Inconclusivo,0
+2017,50,Notificações,11
+2017,50,Óbitos,0
+2017,51,Autóctones,0
+2017,51,Confirmados,0
+2017,51,Descartados,7
+2017,51,Em investigação,0
+2017,51,Inconclusivo,0
+2017,51,Notificações,7
+2017,51,Óbitos,0
+2017,52,Autóctones,0
+2017,52,Confirmados,0
+2017,52,Descartados,9
+2017,52,Em investigação,0
+2017,52,Inconclusivo,0
+2017,52,Notificações,9
+2017,52,Óbitos,0
+2018,1,Autóctones,0
+2018,1,Confirmados,0
+2018,1,Descartados,12
+2018,1,Em investigação,0
+2018,1,Inconclusivo,0
+2018,1,Notificações,12
+2018,1,Óbitos,0
+2018,2,Autóctones,0
+2018,2,Confirmados,0
+2018,2,Descartados,6
+2018,2,Em investigação,0
+2018,2,Inconclusivo,0
+2018,2,Notificações,6
+2018,2,Óbitos,0
+2018,3,Autóctones,0
+2018,3,Confirmados,0
+2018,3,Descartados,14
+2018,3,Em investigação,0
+2018,3,Inconclusivo,0
+2018,3,Notificações,14
+2018,3,Óbitos,0
+2018,4,Autóctones,0
+2018,4,Confirmados,0
+2018,4,Descartados,8
+2018,4,Em investigação,0
+2018,4,Inconclusivo,0
+2018,4,Notificações,8
+2018,4,Óbitos,0
+2018,5,Autóctones,0
+2018,5,Confirmados,0
+2018,5,Descartados,5
+2018,5,Em investigação,0
+2018,5,Inconclusivo,0
+2018,5,Notificações,5
+2018,5,Óbitos,0
+2018,6,Autóctones,0
+2018,6,Confirmados,0
+2018,6,Descartados,3
+2018,6,Em investigação,0
+2018,6,Inconclusivo,0
+2018,6,Notificações,3
+2018,6,Óbitos,0
+2018,7,Autóctones,0
+2018,7,Confirmados,0
+2018,7,Descartados,6
+2018,7,Em investigação,0
+2018,7,Inconclusivo,0
+2018,7,Notificações,6
+2018,7,Óbitos,0
+2018,8,Autóctones,0
+2018,8,Confirmados,1
+2018,8,Descartados,9
+2018,8,Em investigação,0
+2018,8,Inconclusivo,0
+2018,8,Notificações,10
+2018,8,Óbitos,0
+2018,9,Autóctones,0
+2018,9,Confirmados,0
+2018,9,Descartados,9
+2018,9,Em investigação,0
+2018,9,Inconclusivo,0
+2018,9,Notificações,9
+2018,9,Óbitos,0
+2018,10,Autóctones,0
+2018,10,Confirmados,0
+2018,10,Descartados,5
+2018,10,Em investigação,0
+2018,10,Inconclusivo,0
+2018,10,Notificações,5
+2018,10,Óbitos,0
+2018,11,Autóctones,0
+2018,11,Confirmados,0
+2018,11,Descartados,3
+2018,11,Em investigação,0
+2018,11,Inconclusivo,0
+2018,11,Notificações,3
+2018,11,Óbitos,0
+2018,12,Autóctones,0
+2018,12,Confirmados,0
+2018,12,Descartados,4
+2018,12,Em investigação,0
+2018,12,Inconclusivo,0
+2018,12,Notificações,4
+2018,12,Óbitos,0
+2018,13,Autóctones,0
+2018,13,Confirmados,0
+2018,13,Descartados,3
+2018,13,Em investigação,0
+2018,13,Inconclusivo,0
+2018,13,Notificações,3
+2018,13,Óbitos,0
+2018,14,Autóctones,0
+2018,14,Confirmados,0
+2018,14,Descartados,2
+2018,14,Em investigação,0
+2018,14,Inconclusivo,0
+2018,14,Notificações,2
+2018,14,Óbitos,0
+2018,16,Autóctones,0
+2018,16,Confirmados,0
+2018,16,Descartados,2
+2018,16,Em investigação,0
+2018,16,Inconclusivo,0
+2018,16,Notificações,2
+2018,16,Óbitos,0
+2018,17,Autóctones,0
+2018,17,Confirmados,0
+2018,17,Descartados,4
+2018,17,Em investigação,0
+2018,17,Inconclusivo,0
+2018,17,Notificações,4
+2018,17,Óbitos,0
+2018,18,Autóctones,0
+2018,18,Confirmados,0
+2018,18,Descartados,1
+2018,18,Em investigação,0
+2018,18,Inconclusivo,0
+2018,18,Notificações,1
+2018,18,Óbitos,0
+2018,19,Autóctones,0
+2018,19,Confirmados,0
+2018,19,Descartados,5
+2018,19,Em investigação,0
+2018,19,Inconclusivo,0
+2018,19,Notificações,5
+2018,19,Óbitos,0
+2018,20,Autóctones,0
+2018,20,Confirmados,0
+2018,20,Descartados,1
+2018,20,Em investigação,0
+2018,20,Inconclusivo,0
+2018,20,Notificações,1
+2018,20,Óbitos,0
+2018,21,Autóctones,0
+2018,21,Confirmados,0
+2018,21,Descartados,4
+2018,21,Em investigação,0
+2018,21,Inconclusivo,0
+2018,21,Notificações,4
+2018,21,Óbitos,0
+2018,23,Autóctones,0
+2018,23,Confirmados,0
+2018,23,Descartados,1
+2018,23,Em investigação,0
+2018,23,Inconclusivo,0
+2018,23,Notificações,1
+2018,23,Óbitos,0
+2018,25,Autóctones,0
+2018,25,Confirmados,0
+2018,25,Descartados,2
+2018,25,Em investigação,0
+2018,25,Inconclusivo,0
+2018,25,Notificações,2
+2018,25,Óbitos,0
+2018,26,Autóctones,0
+2018,26,Confirmados,0
+2018,26,Descartados,2
+2018,26,Em investigação,0
+2018,26,Inconclusivo,0
+2018,26,Notificações,2
+2018,26,Óbitos,0
+2018,29,Autóctones,0
+2018,29,Confirmados,0
+2018,29,Descartados,2
+2018,29,Em investigação,0
+2018,29,Inconclusivo,0
+2018,29,Notificações,2
+2018,29,Óbitos,0
+2018,30,Autóctones,0
+2018,30,Confirmados,0
+2018,30,Descartados,2
+2018,30,Em investigação,0
+2018,30,Inconclusivo,0
+2018,30,Notificações,2
+2018,30,Óbitos,0
+2018,31,Autóctones,0
+2018,31,Confirmados,0
+2018,31,Descartados,2
+2018,31,Em investigação,0
+2018,31,Inconclusivo,0
+2018,31,Notificações,2
+2018,31,Óbitos,0
+2018,33,Autóctones,0
+2018,33,Confirmados,0
+2018,33,Descartados,2
+2018,33,Em investigação,0
+2018,33,Inconclusivo,0
+2018,33,Notificações,2
+2018,33,Óbitos,0
+2018,35,Autóctones,0
+2018,35,Confirmados,0
+2018,35,Descartados,1
+2018,35,Em investigação,0
+2018,35,Inconclusivo,0
+2018,35,Notificações,1
+2018,35,Óbitos,0
+2018,37,Autóctones,0
+2018,37,Confirmados,0
+2018,37,Descartados,2
+2018,37,Em investigação,0
+2018,37,Inconclusivo,0
+2018,37,Notificações,2
+2018,37,Óbitos,0
+2018,39,Autóctones,0
+2018,39,Confirmados,0
+2018,39,Descartados,2
+2018,39,Em investigação,0
+2018,39,Inconclusivo,0
+2018,39,Notificações,2
+2018,39,Óbitos,0
+2018,40,Autóctones,0
+2018,40,Confirmados,0
+2018,40,Descartados,4
+2018,40,Em investigação,0
+2018,40,Inconclusivo,0
+2018,40,Notificações,4
+2018,40,Óbitos,0
+2018,42,Autóctones,0
+2018,42,Confirmados,0
+2018,42,Descartados,3
+2018,42,Em investigação,0
+2018,42,Inconclusivo,0
+2018,42,Notificações,3
+2018,42,Óbitos,0
+2018,43,Autóctones,0
+2018,43,Confirmados,0
+2018,43,Descartados,3
+2018,43,Em investigação,0
+2018,43,Inconclusivo,0
+2018,43,Notificações,3
+2018,43,Óbitos,0
+2018,44,Autóctones,0
+2018,44,Confirmados,0
+2018,44,Descartados,5
+2018,44,Em investigação,0
+2018,44,Inconclusivo,0
+2018,44,Notificações,5
+2018,44,Óbitos,0
+2018,45,Autóctones,0
+2018,45,Confirmados,0
+2018,45,Descartados,2
+2018,45,Em investigação,0
+2018,45,Inconclusivo,0
+2018,45,Notificações,2
+2018,45,Óbitos,0
+2018,46,Autóctones,0
+2018,46,Confirmados,0
+2018,46,Descartados,1
+2018,46,Em investigação,0
+2018,46,Inconclusivo,1
+2018,46,Notificações,2
+2018,46,Óbitos,0
+2018,47,Autóctones,0
+2018,47,Confirmados,0
+2018,47,Descartados,1
+2018,47,Em investigação,0
+2018,47,Inconclusivo,0
+2018,47,Notificações,1
+2018,47,Óbitos,0
+2018,48,Autóctones,0
+2018,48,Confirmados,0
+2018,48,Descartados,2
+2018,48,Em investigação,0
+2018,48,Inconclusivo,0
+2018,48,Notificações,2
+2018,48,Óbitos,0
+2018,49,Autóctones,0
+2018,49,Confirmados,0
+2018,49,Descartados,1
+2018,49,Em investigação,0
+2018,49,Inconclusivo,0
+2018,49,Notificações,1
+2018,49,Óbitos,0
+2018,50,Autóctones,0
+2018,50,Confirmados,0
+2018,50,Descartados,0
+2018,50,Em investigação,1
+2018,50,Inconclusivo,0
+2018,50,Notificações,1
+2018,50,Óbitos,0
+2018,51,Autóctones,0
+2018,51,Confirmados,0
+2018,51,Descartados,1
+2018,51,Em investigação,0
+2018,51,Inconclusivo,0
+2018,51,Notificações,1
+2018,51,Óbitos,0
+2019,1,Autóctones,0
+2019,1,Confirmados,0
+2019,1,Descartados,4
+2019,1,Em investigação,0
+2019,1,Inconclusivo,0
+2019,1,Notificações,4
+2019,1,Óbitos,0
+2019,2,Autóctones,0
+2019,2,Confirmados,0
+2019,2,Descartados,2
+2019,2,Em investigação,0
+2019,2,Inconclusivo,0
+2019,2,Notificações,2
+2019,2,Óbitos,0
+2019,3,Autóctones,0
+2019,3,Confirmados,2
+2019,3,Descartados,1
+2019,3,Em investigação,0
+2019,3,Inconclusivo,0
+2019,3,Notificações,3
+2019,3,Óbitos,0
+2019,4,Autóctones,0
+2019,4,Confirmados,0
+2019,4,Descartados,4
+2019,4,Em investigação,0
+2019,4,Inconclusivo,0
+2019,4,Notificações,4
+2019,4,Óbitos,0
+2019,5,Autóctones,0
+2019,5,Confirmados,0
+2019,5,Descartados,1
+2019,5,Em investigação,0
+2019,5,Inconclusivo,0
+2019,5,Notificações,1
+2019,5,Óbitos,0
+2019,6,Autóctones,0
+2019,6,Confirmados,0
+2019,6,Descartados,1
+2019,6,Em investigação,0
+2019,6,Inconclusivo,0
+2019,6,Notificações,1
+2019,6,Óbitos,0
+2019,7,Autóctones,0
+2019,7,Confirmados,1
+2019,7,Descartados,4
+2019,7,Em investigação,0
+2019,7,Inconclusivo,1
+2019,7,Notificações,6
+2019,7,Óbitos,0
+2019,8,Autóctones,1
+2019,8,Confirmados,1
+2019,8,Descartados,4
+2019,8,Em investigação,0
+2019,8,Inconclusivo,1
+2019,8,Notificações,6
+2019,8,Óbitos,0
+2019,9,Autóctones,0
+2019,9,Confirmados,1
+2019,9,Descartados,5
+2019,9,Em investigação,0
+2019,9,Inconclusivo,0
+2019,9,Notificações,6
+2019,9,Óbitos,0
+2019,10,Autóctones,5
+2019,10,Confirmados,5
+2019,10,Descartados,4
+2019,10,Em investigação,0
+2019,10,Inconclusivo,0
+2019,10,Notificações,9
+2019,10,Óbitos,0
+2019,11,Autóctones,6
+2019,11,Confirmados,7
+2019,11,Descartados,4
+2019,11,Em investigação,0
+2019,11,Inconclusivo,0
+2019,11,Notificações,11
+2019,11,Óbitos,0
+2019,12,Autóctones,5
+2019,12,Confirmados,6
+2019,12,Descartados,14
+2019,12,Em investigação,0
+2019,12,Inconclusivo,0
+2019,12,Notificações,20
+2019,12,Óbitos,0
+2019,13,Autóctones,17
+2019,13,Confirmados,19
+2019,13,Descartados,19
+2019,13,Em investigação,0
+2019,13,Inconclusivo,1
+2019,13,Notificações,39
+2019,13,Óbitos,0
+2019,14,Autóctones,19
+2019,14,Confirmados,19
+2019,14,Descartados,26
+2019,14,Em investigação,0
+2019,14,Inconclusivo,1
+2019,14,Notificações,46
+2019,14,Óbitos,0
+2019,15,Autóctones,19
+2019,15,Confirmados,19
+2019,15,Descartados,32
+2019,15,Em investigação,0
+2019,15,Inconclusivo,5
+2019,15,Notificações,56
+2019,15,Óbitos,0
+2019,16,Autóctones,49
+2019,16,Confirmados,50
+2019,16,Descartados,28
+2019,16,Em investigação,0
+2019,16,Inconclusivo,1
+2019,16,Notificações,79
+2019,16,Óbitos,0
+2019,17,Autóctones,42
+2019,17,Confirmados,44
+2019,17,Descartados,52
+2019,17,Em investigação,0
+2019,17,Inconclusivo,0
+2019,17,Notificações,96
+2019,17,Óbitos,0
+2019,18,Autóctones,34
+2019,18,Confirmados,36
+2019,18,Descartados,53
+2019,18,Em investigação,0
+2019,18,Inconclusivo,1
+2019,18,Notificações,90
+2019,18,Óbitos,0
+2019,19,Autóctones,46
+2019,19,Confirmados,46
+2019,19,Descartados,48
+2019,19,Em investigação,0
+2019,19,Inconclusivo,0
+2019,19,Notificações,94
+2019,19,Óbitos,0
+2019,20,Autóctones,61
+2019,20,Confirmados,61
+2019,20,Descartados,66
+2019,20,Em investigação,0
+2019,20,Inconclusivo,4
+2019,20,Notificações,131
+2019,20,Óbitos,0
+2019,21,Autóctones,42
+2019,21,Confirmados,43
+2019,21,Descartados,60
+2019,21,Em investigação,0
+2019,21,Inconclusivo,2
+2019,21,Notificações,105
+2019,21,Óbitos,0
+2019,22,Autóctones,17
+2019,22,Confirmados,18
+2019,22,Descartados,50
+2019,22,Em investigação,0
+2019,22,Inconclusivo,0
+2019,22,Notificações,68
+2019,22,Óbitos,0
+2019,23,Autóctones,9
+2019,23,Confirmados,10
+2019,23,Descartados,39
+2019,23,Em investigação,0
+2019,23,Inconclusivo,8
+2019,23,Notificações,57
+2019,23,Óbitos,0
+2019,24,Autóctones,15
+2019,24,Confirmados,15
+2019,24,Descartados,34
+2019,24,Em investigação,0
+2019,24,Inconclusivo,0
+2019,24,Notificações,49
+2019,24,Óbitos,0
+2019,25,Autóctones,21
+2019,25,Confirmados,22
+2019,25,Descartados,21
+2019,25,Em investigação,0
+2019,25,Inconclusivo,4
+2019,25,Notificações,47
+2019,25,Óbitos,0
+2019,26,Autóctones,19
+2019,26,Confirmados,20
+2019,26,Descartados,23
+2019,26,Em investigação,0
+2019,26,Inconclusivo,0
+2019,26,Notificações,43
+2019,26,Óbitos,0
+2019,27,Autóctones,10
+2019,27,Confirmados,11
+2019,27,Descartados,11
+2019,27,Em investigação,0
+2019,27,Inconclusivo,1
+2019,27,Notificações,23
+2019,27,Óbitos,0
+2019,28,Autóctones,1
+2019,28,Confirmados,1
+2019,28,Descartados,8
+2019,28,Em investigação,0
+2019,28,Inconclusivo,0
+2019,28,Notificações,9
+2019,28,Óbitos,0
+2019,29,Autóctones,1
+2019,29,Confirmados,2
+2019,29,Descartados,11
+2019,29,Em investigação,0
+2019,29,Inconclusivo,0
+2019,29,Notificações,13
+2019,29,Óbitos,0
+2019,30,Autóctones,0
+2019,30,Confirmados,0
+2019,30,Descartados,10
+2019,30,Em investigação,0
+2019,30,Inconclusivo,0
+2019,30,Notificações,10
+2019,30,Óbitos,0
+2019,31,Autóctones,0
+2019,31,Confirmados,0
+2019,31,Descartados,11
+2019,31,Em investigação,0
+2019,31,Inconclusivo,2
+2019,31,Notificações,13
+2019,31,Óbitos,0
+2019,32,Autóctones,0
+2019,32,Confirmados,0
+2019,32,Descartados,8
+2019,32,Em investigação,0
+2019,32,Inconclusivo,2
+2019,32,Notificações,10
+2019,32,Óbitos,0
+2019,33,Autóctones,0
+2019,33,Confirmados,0
+2019,33,Descartados,4
+2019,33,Em investigação,0
+2019,33,Inconclusivo,3
+2019,33,Notificações,7
+2019,33,Óbitos,0
+2019,34,Autóctones,0
+2019,34,Confirmados,0
+2019,34,Descartados,4
+2019,34,Em investigação,0
+2019,34,Inconclusivo,1
+2019,34,Notificações,5
+2019,34,Óbitos,0
+2019,35,Autóctones,0
+2019,35,Confirmados,0
+2019,35,Descartados,3
+2019,35,Em investigação,0
+2019,35,Inconclusivo,2
+2019,35,Notificações,5
+2019,35,Óbitos,0
+2019,36,Autóctones,0
+2019,36,Confirmados,0
+2019,36,Descartados,2
+2019,36,Em investigação,0
+2019,36,Inconclusivo,1
+2019,36,Notificações,3
+2019,36,Óbitos,0
+2019,37,Autóctones,0
+2019,37,Confirmados,0
+2019,37,Descartados,3
+2019,37,Em investigação,0
+2019,37,Inconclusivo,0
+2019,37,Notificações,3
+2019,37,Óbitos,0
+2019,38,Autóctones,0
+2019,38,Confirmados,0
+2019,38,Descartados,5
+2019,38,Em investigação,0
+2019,38,Inconclusivo,0
+2019,38,Notificações,5
+2019,38,Óbitos,0
+2019,39,Autóctones,0
+2019,39,Confirmados,0
+2019,39,Descartados,4
+2019,39,Em investigação,0
+2019,39,Inconclusivo,0
+2019,39,Notificações,4
+2019,39,Óbitos,0
+2019,40,Autóctones,1
+2019,40,Confirmados,1
+2019,40,Descartados,5
+2019,40,Em investigação,0
+2019,40,Inconclusivo,2
+2019,40,Notificações,8
+2019,40,Óbitos,0
+2019,41,Autóctones,0
+2019,41,Confirmados,0
+2019,41,Descartados,3
+2019,41,Em investigação,0
+2019,41,Inconclusivo,0
+2019,41,Notificações,3
+2019,41,Óbitos,0
+2019,42,Autóctones,0
+2019,42,Confirmados,0
+2019,42,Descartados,1
+2019,42,Em investigação,0
+2019,42,Inconclusivo,1
+2019,42,Notificações,2
+2019,42,Óbitos,0
+2019,43,Autóctones,0
+2019,43,Confirmados,0
+2019,43,Descartados,3
+2019,43,Em investigação,0
+2019,43,Inconclusivo,0
+2019,43,Notificações,3
+2019,43,Óbitos,0
+2019,44,Autóctones,0
+2019,44,Confirmados,0
+2019,44,Descartados,4
+2019,44,Em investigação,0
+2019,44,Inconclusivo,0
+2019,44,Notificações,4
+2019,44,Óbitos,0
+2019,45,Autóctones,0
+2019,45,Confirmados,0
+2019,45,Descartados,6
+2019,45,Em investigação,0
+2019,45,Inconclusivo,0
+2019,45,Notificações,6
+2019,45,Óbitos,0
+2019,46,Autóctones,0
+2019,46,Confirmados,0
+2019,46,Descartados,3
+2019,46,Em investigação,0
+2019,46,Inconclusivo,0
+2019,46,Notificações,3
+2019,46,Óbitos,0
+2019,47,Autóctones,0
+2019,47,Confirmados,0
+2019,47,Descartados,9
+2019,47,Em investigação,0
+2019,47,Inconclusivo,0
+2019,47,Notificações,9
+2019,47,Óbitos,0
+2019,48,Autóctones,0
+2019,48,Confirmados,0
+2019,48,Descartados,6
+2019,48,Em investigação,0
+2019,48,Inconclusivo,0
+2019,48,Notificações,6
+2019,48,Óbitos,0
+2019,49,Autóctones,0
+2019,49,Confirmados,0
+2019,49,Descartados,4
+2019,49,Em investigação,0
+2019,49,Inconclusivo,0
+2019,49,Notificações,4
+2019,49,Óbitos,0
+2019,50,Autóctones,1
+2019,50,Confirmados,1
+2019,50,Descartados,4
+2019,50,Em investigação,0
+2019,50,Inconclusivo,0
+2019,50,Notificações,5
+2019,50,Óbitos,0
+2019,51,Autóctones,0
+2019,51,Confirmados,0
+2019,51,Descartados,8
+2019,51,Em investigação,0
+2019,51,Inconclusivo,0
+2019,51,Notificações,8
+2019,51,Óbitos,0
+2019,52,Autóctones,0
+2019,52,Confirmados,1
+2019,52,Descartados,5
+2019,52,Em investigação,2
+2019,52,Inconclusivo,0
+2019,52,Notificações,8
+2019,52,Óbitos,0
+2020,1,Autóctones,0
+2020,1,Confirmados,1
+2020,1,Descartados,6
+2020,1,Em investigação,1
+2020,1,Inconclusivo,0
+2020,1,Notificações,8
+2020,1,Óbitos,0
+2020,2,Autóctones,1
+2020,2,Confirmados,2
+2020,2,Descartados,9
+2020,2,Em investigação,0
+2020,2,Inconclusivo,0
+2020,2,Notificações,11
+2020,2,Óbitos,0
+2020,3,Autóctones,0
+2020,3,Confirmados,2
+2020,3,Descartados,7
+2020,3,Em investigação,0
+2020,3,Inconclusivo,0
+2020,3,Notificações,9
+2020,3,Óbitos,0
+2020,4,Autóctones,1
+2020,4,Confirmados,4
+2020,4,Descartados,7
+2020,4,Em investigação,0
+2020,4,Inconclusivo,0
+2020,4,Notificações,11
+2020,4,Óbitos,0
+2020,5,Autóctones,2
+2020,5,Confirmados,3
+2020,5,Descartados,6
+2020,5,Em investigação,0
+2020,5,Inconclusivo,0
+2020,5,Notificações,9
+2020,5,Óbitos,0
+2020,6,Autóctones,0
+2020,6,Confirmados,4
+2020,6,Descartados,9
+2020,6,Em investigação,0
+2020,6,Inconclusivo,0
+2020,6,Notificações,13
+2020,6,Óbitos,0
+2020,7,Autóctones,0
+2020,7,Confirmados,3
+2020,7,Descartados,11
+2020,7,Em investigação,0
+2020,7,Inconclusivo,0
+2020,7,Notificações,14
+2020,7,Óbitos,0
+2020,8,Autóctones,0
+2020,8,Confirmados,1
+2020,8,Descartados,7
+2020,8,Em investigação,0
+2020,8,Inconclusivo,0
+2020,8,Notificações,8
+2020,8,Óbitos,0
+2020,9,Autóctones,2
+2020,9,Confirmados,4
+2020,9,Descartados,4
+2020,9,Em investigação,0
+2020,9,Inconclusivo,0
+2020,9,Notificações,8
+2020,9,Óbitos,0
+2020,10,Autóctones,1
+2020,10,Confirmados,2
+2020,10,Descartados,5
+2020,10,Em investigação,0
+2020,10,Inconclusivo,0
+2020,10,Notificações,7
+2020,10,Óbitos,0
+2020,11,Autóctones,0
+2020,11,Confirmados,2
+2020,11,Descartados,6
+2020,11,Em investigação,0
+2020,11,Inconclusivo,0
+2020,11,Notificações,8
+2020,11,Óbitos,0
+2020,12,Autóctones,0
+2020,12,Confirmados,1
+2020,12,Descartados,2
+2020,12,Em investigação,0
+2020,12,Inconclusivo,0
+2020,12,Notificações,3
+2020,12,Óbitos,0
+2020,13,Autóctones,1
+2020,13,Confirmados,2
+2020,13,Descartados,1
+2020,13,Em investigação,0
+2020,13,Inconclusivo,0
+2020,13,Notificações,3
+2020,13,Óbitos,0
+2020,14,Autóctones,1
+2020,14,Confirmados,2
+2020,14,Descartados,3
+2020,14,Em investigação,0
+2020,14,Inconclusivo,0
+2020,14,Notificações,5
+2020,14,Óbitos,0
+2020,15,Autóctones,2
+2020,15,Confirmados,2
+2020,15,Descartados,1
+2020,15,Em investigação,0
+2020,15,Inconclusivo,0
+2020,15,Notificações,3
+2020,15,Óbitos,0
+2020,16,Autóctones,2
+2020,16,Confirmados,3
+2020,16,Descartados,2
+2020,16,Em investigação,0
+2020,16,Inconclusivo,0
+2020,16,Notificações,5
+2020,16,Óbitos,0
+2020,17,Autóctones,1
+2020,17,Confirmados,1
+2020,17,Descartados,1
+2020,17,Em investigação,0
+2020,17,Inconclusivo,0
+2020,17,Notificações,2
+2020,17,Óbitos,0
+2020,18,Autóctones,0
+2020,18,Confirmados,0
+2020,18,Descartados,2
+2020,18,Em investigação,0
+2020,18,Inconclusivo,0
+2020,18,Notificações,2
+2020,18,Óbitos,0
+2020,19,Autóctones,0
+2020,19,Confirmados,0
+2020,19,Descartados,1
+2020,19,Em investigação,0
+2020,19,Inconclusivo,0
+2020,19,Notificações,1
+2020,19,Óbitos,0
+2020,20,Autóctones,0
+2020,20,Confirmados,0
+2020,20,Descartados,2
+2020,20,Em investigação,0
+2020,20,Inconclusivo,0
+2020,20,Notificações,2
+2020,20,Óbitos,0
+2020,21,Autóctones,0
+2020,21,Confirmados,0
+2020,21,Descartados,2
+2020,21,Em investigação,0
+2020,21,Inconclusivo,0
+2020,21,Notificações,2
+2020,21,Óbitos,0
+2020,24,Autóctones,0
+2020,24,Confirmados,0
+2020,24,Descartados,2
+2020,24,Em investigação,0
+2020,24,Inconclusivo,0
+2020,24,Notificações,2
+2020,24,Óbitos,0
+2020,25,Autóctones,0
+2020,25,Confirmados,0
+2020,25,Descartados,4
+2020,25,Em investigação,0
+2020,25,Inconclusivo,0
+2020,25,Notificações,4
+2020,25,Óbitos,0
+2020,26,Autóctones,0
+2020,26,Confirmados,0
+2020,26,Descartados,1
+2020,26,Em investigação,0
+2020,26,Inconclusivo,0
+2020,26,Notificações,1
+2020,26,Óbitos,0
+2020,27,Autóctones,0
+2020,27,Confirmados,1
+2020,27,Descartados,0
+2020,27,Em investigação,0
+2020,27,Inconclusivo,0
+2020,27,Notificações,1
+2020,27,Óbitos,0
+2020,28,Autóctones,0
+2020,28,Confirmados,0
+2020,28,Descartados,1
+2020,28,Em investigação,0
+2020,28,Inconclusivo,0
+2020,28,Notificações,1
+2020,28,Óbitos,0
+2020,29,Autóctones,0
+2020,29,Confirmados,0
+2020,29,Descartados,1
+2020,29,Em investigação,0
+2020,29,Inconclusivo,0
+2020,29,Notificações,1
+2020,29,Óbitos,0
+2020,33,Autóctones,0
+2020,33,Confirmados,0
+2020,33,Descartados,2
+2020,33,Em investigação,0
+2020,33,Inconclusivo,0
+2020,33,Notificações,2
+2020,33,Óbitos,0
+2020,38,Autóctones,0
+2020,38,Confirmados,0
+2020,38,Descartados,1
+2020,38,Em investigação,0
+2020,38,Inconclusivo,1
+2020,38,Notificações,2
+2020,38,Óbitos,0
+2020,39,Autóctones,0
+2020,39,Confirmados,0
+2020,39,Descartados,1
+2020,39,Em investigação,0
+2020,39,Inconclusivo,0
+2020,39,Notificações,1
+2020,39,Óbitos,0
+2020,41,Autóctones,0
+2020,41,Confirmados,0
+2020,41,Descartados,1
+2020,41,Em investigação,0
+2020,41,Inconclusivo,0
+2020,41,Notificações,1
+2020,41,Óbitos,0
+2020,42,Autóctones,0
+2020,42,Confirmados,0
+2020,42,Descartados,1
+2020,42,Em investigação,0
+2020,42,Inconclusivo,0
+2020,42,Notificações,1
+2020,42,Óbitos,0
+2020,43,Autóctones,0
+2020,43,Confirmados,0
+2020,43,Descartados,2
+2020,43,Em investigação,0
+2020,43,Inconclusivo,0
+2020,43,Notificações,2
+2020,43,Óbitos,0
+2020,45,Autóctones,0
+2020,45,Confirmados,0
+2020,45,Descartados,1
+2020,45,Em investigação,0
+2020,45,Inconclusivo,0
+2020,45,Notificações,1
+2020,45,Óbitos,0
+2020,46,Autóctones,0
+2020,46,Confirmados,0
+2020,46,Descartados,2
+2020,46,Em investigação,0
+2020,46,Inconclusivo,0
+2020,46,Notificações,2
+2020,46,Óbitos,0
+2020,48,Autóctones,0
+2020,48,Confirmados,0
+2020,48,Descartados,1
+2020,48,Em investigação,0
+2020,48,Inconclusivo,0
+2020,48,Notificações,1
+2020,48,Óbitos,0
+2020,49,Autóctones,0
+2020,49,Confirmados,0
+2020,49,Descartados,2
+2020,49,Em investigação,0
+2020,49,Inconclusivo,0
+2020,49,Notificações,2
+2020,49,Óbitos,0
+2020,52,Autóctones,0
+2020,52,Confirmados,0
+2020,52,Descartados,1
+2020,52,Em investigação,0
+2020,52,Inconclusivo,0
+2020,52,Notificações,1
+2020,52,Óbitos,0
+2020,53,Autóctones,1
+2020,53,Confirmados,1
+2020,53,Descartados,0
+2020,53,Em investigação,0
+2020,53,Inconclusivo,0
+2020,53,Notificações,1
+2020,53,Óbitos,0
+2021,2,Autóctones,0
+2021,2,Confirmados,0
+2021,2,Descartados,3
+2021,2,Em investigação,0
+2021,2,Inconclusivo,0
+2021,2,Notificações,3
+2021,2,Óbitos,0
+2021,3,Autóctones,0
+2021,3,Confirmados,0
+2021,3,Descartados,2
+2021,3,Em investigação,0
+2021,3,Inconclusivo,0
+2021,3,Notificações,2
+2021,3,Óbitos,0
+2021,4,Autóctones,0
+2021,4,Confirmados,0
+2021,4,Descartados,1
+2021,4,Em investigação,0
+2021,4,Inconclusivo,0
+2021,4,Notificações,1
+2021,4,Óbitos,0
+2021,6,Autóctones,0
+2021,6,Confirmados,1
+2021,6,Descartados,0
+2021,6,Em investigação,0
+2021,6,Inconclusivo,1
+2021,6,Notificações,2
+2021,6,Óbitos,0
+2021,7,Autóctones,0
+2021,7,Confirmados,0
+2021,7,Descartados,2
+2021,7,Em investigação,0
+2021,7,Inconclusivo,0
+2021,7,Notificações,2
+2021,7,Óbitos,0
+2021,8,Autóctones,2
+2021,8,Confirmados,3
+2021,8,Descartados,2
+2021,8,Em investigação,0
+2021,8,Inconclusivo,0
+2021,8,Notificações,5
+2021,8,Óbitos,0
+2021,9,Autóctones,0
+2021,9,Confirmados,0
+2021,9,Descartados,1
+2021,9,Em investigação,0
+2021,9,Inconclusivo,0
+2021,9,Notificações,1
+2021,9,Óbitos,0
+2021,10,Autóctones,1
+2021,10,Confirmados,1
+2021,10,Descartados,1
+2021,10,Em investigação,0
+2021,10,Inconclusivo,1
+2021,10,Notificações,3
+2021,10,Óbitos,0
+2021,11,Autóctones,1
+2021,11,Confirmados,1
+2021,11,Descartados,2
+2021,11,Em investigação,0
+2021,11,Inconclusivo,0
+2021,11,Notificações,3
+2021,11,Óbitos,0
+2021,12,Autóctones,0
+2021,12,Confirmados,1
+2021,12,Descartados,1
+2021,12,Em investigação,0
+2021,12,Inconclusivo,0
+2021,12,Notificações,2
+2021,12,Óbitos,0
+2021,13,Autóctones,1
+2021,13,Confirmados,1
+2021,13,Descartados,2
+2021,13,Em investigação,0
+2021,13,Inconclusivo,0
+2021,13,Notificações,3
+2021,13,Óbitos,0
+2021,14,Autóctones,9
+2021,14,Confirmados,9
+2021,14,Descartados,1
+2021,14,Em investigação,0
+2021,14,Inconclusivo,0
+2021,14,Notificações,10
+2021,14,Óbitos,0
+2021,15,Autóctones,11
+2021,15,Confirmados,11
+2021,15,Descartados,4
+2021,15,Em investigação,0
+2021,15,Inconclusivo,0
+2021,15,Notificações,15
+2021,15,Óbitos,0
+2021,16,Autóctones,10
+2021,16,Confirmados,10
+2021,16,Descartados,4
+2021,16,Em investigação,0
+2021,16,Inconclusivo,0
+2021,16,Notificações,14
+2021,16,Óbitos,0
+2021,17,Autóctones,11
+2021,17,Confirmados,11
+2021,17,Descartados,5
+2021,17,Em investigação,0
+2021,17,Inconclusivo,2
+2021,17,Notificações,18
+2021,17,Óbitos,0
+2021,18,Autóctones,10
+2021,18,Confirmados,11
+2021,18,Descartados,3
+2021,18,Em investigação,0
+2021,18,Inconclusivo,0
+2021,18,Notificações,14
+2021,18,Óbitos,0
+2021,19,Autóctones,10
+2021,19,Confirmados,11
+2021,19,Descartados,5
+2021,19,Em investigação,0
+2021,19,Inconclusivo,1
+2021,19,Notificações,17
+2021,19,Óbitos,0
+2021,20,Autóctones,5
+2021,20,Confirmados,7
+2021,20,Descartados,6
+2021,20,Em investigação,1
+2021,20,Inconclusivo,1
+2021,20,Notificações,15
+2021,20,Óbitos,0
+2021,21,Autóctones,0
+2021,21,Confirmados,0
+2021,21,Descartados,3
+2021,21,Em investigação,0
+2021,21,Inconclusivo,1
+2021,21,Notificações,4
+2021,21,Óbitos,0
+2021,22,Autóctones,1
+2021,22,Confirmados,1
+2021,22,Descartados,1
+2021,22,Em investigação,0
+2021,22,Inconclusivo,0
+2021,22,Notificações,2
+2021,22,Óbitos,0
+2021,23,Autóctones,1
+2021,23,Confirmados,1
+2021,23,Descartados,1
+2021,23,Em investigação,0
+2021,23,Inconclusivo,1
+2021,23,Notificações,3
+2021,23,Óbitos,0
+2021,24,Autóctones,0
+2021,24,Confirmados,0
+2021,24,Descartados,2
+2021,24,Em investigação,0
+2021,24,Inconclusivo,0
+2021,24,Notificações,2
+2021,24,Óbitos,0
+2021,25,Autóctones,0
+2021,25,Confirmados,0
+2021,25,Descartados,5
+2021,25,Em investigação,0
+2021,25,Inconclusivo,0
+2021,25,Notificações,5
+2021,25,Óbitos,0
+2021,26,Autóctones,1
+2021,26,Confirmados,1
+2021,26,Descartados,2
+2021,26,Em investigação,0
+2021,26,Inconclusivo,0
+2021,26,Notificações,3
+2021,26,Óbitos,0
+2021,27,Autóctones,1
+2021,27,Confirmados,1
+2021,27,Descartados,1
+2021,27,Em investigação,0
+2021,27,Inconclusivo,0
+2021,27,Notificações,2
+2021,27,Óbitos,0
+2021,28,Autóctones,0
+2021,28,Confirmados,0
+2021,28,Descartados,3
+2021,28,Em investigação,0
+2021,28,Inconclusivo,0
+2021,28,Notificações,3
+2021,28,Óbitos,0
+2021,29,Autóctones,0
+2021,29,Confirmados,1
+2021,29,Descartados,1
+2021,29,Em investigação,0
+2021,29,Inconclusivo,2
+2021,29,Notificações,4
+2021,29,Óbitos,0
+2021,30,Autóctones,0
+2021,30,Confirmados,0
+2021,30,Descartados,1
+2021,30,Em investigação,0
+2021,30,Inconclusivo,0
+2021,30,Notificações,1
+2021,30,Óbitos,0
+2021,31,Autóctones,0
+2021,31,Confirmados,0
+2021,31,Descartados,1
+2021,31,Em investigação,0
+2021,31,Inconclusivo,0
+2021,31,Notificações,1
+2021,31,Óbitos,0
+2021,33,Autóctones,0
+2021,33,Confirmados,0
+2021,33,Descartados,1
+2021,33,Em investigação,0
+2021,33,Inconclusivo,0
+2021,33,Notificações,1
+2021,33,Óbitos,0
+2021,38,Autóctones,0
+2021,38,Confirmados,0
+2021,38,Descartados,2
+2021,38,Em investigação,0
+2021,38,Inconclusivo,0
+2021,38,Notificações,2
+2021,38,Óbitos,0
+2021,39,Autóctones,0
+2021,39,Confirmados,0
+2021,39,Descartados,2
+2021,39,Em investigação,0
+2021,39,Inconclusivo,0
+2021,39,Notificações,2
+2021,39,Óbitos,0
+2021,40,Autóctones,0
+2021,40,Confirmados,0
+2021,40,Descartados,1
+2021,40,Em investigação,0
+2021,40,Inconclusivo,0
+2021,40,Notificações,1
+2021,40,Óbitos,0
+2021,41,Autóctones,0
+2021,41,Confirmados,0
+2021,41,Descartados,0
+2021,41,Em investigação,0
+2021,41,Inconclusivo,1
+2021,41,Notificações,1
+2021,41,Óbitos,0
+2021,42,Autóctones,0
+2021,42,Confirmados,0
+2021,42,Descartados,3
+2021,42,Em investigação,0
+2021,42,Inconclusivo,0
+2021,42,Notificações,3
+2021,42,Óbitos,0
+2021,44,Autóctones,0
+2021,44,Confirmados,0
+2021,44,Descartados,1
+2021,44,Em investigação,0
+2021,44,Inconclusivo,0
+2021,44,Notificações,1
+2021,44,Óbitos,0
+2021,45,Autóctones,0
+2021,45,Confirmados,0
+2021,45,Descartados,1
+2021,45,Em investigação,0
+2021,45,Inconclusivo,0
+2021,45,Notificações,1
+2021,45,Óbitos,0
+2021,46,Autóctones,0
+2021,46,Confirmados,0
+2021,46,Descartados,3
+2021,46,Em investigação,0
+2021,46,Inconclusivo,1
+2021,46,Notificações,4
+2021,46,Óbitos,0
+2021,47,Autóctones,0
+2021,47,Confirmados,0
+2021,47,Descartados,1
+2021,47,Em investigação,0
+2021,47,Inconclusivo,0
+2021,47,Notificações,1
+2021,47,Óbitos,0
+2021,48,Autóctones,0
+2021,48,Confirmados,0
+2021,48,Descartados,1
+2021,48,Em investigação,0
+2021,48,Inconclusivo,0
+2021,48,Notificações,1
+2021,48,Óbitos,0
+2021,49,Autóctones,0
+2021,49,Confirmados,1
+2021,49,Descartados,0
+2021,49,Em investigação,0
+2021,49,Inconclusivo,1
+2021,49,Notificações,2
+2021,49,Óbitos,0
+2021,51,Autóctones,0
+2021,51,Confirmados,0
+2021,51,Descartados,1
+2021,51,Em investigação,0
+2021,51,Inconclusivo,1
+2021,51,Notificações,2
+2021,51,Óbitos,0
+2021,52,Autóctones,0
+2021,52,Confirmados,1
+2021,52,Descartados,3
+2021,52,Em investigação,0
+2021,52,Inconclusivo,1
+2021,52,Notificações,5
+2021,52,Óbitos,0
+2022,1,Autóctones,0
+2022,1,Confirmados,0
+2022,1,Descartados,6
+2022,1,Em investigação,0
+2022,1,Inconclusivo,0
+2022,1,Notificações,6
+2022,1,Óbitos,0
+2022,2,Autóctones,0
+2022,2,Confirmados,0
+2022,2,Descartados,3
+2022,2,Em investigação,0
+2022,2,Inconclusivo,0
+2022,2,Notificações,3
+2022,2,Óbitos,0
+2022,3,Autóctones,1
+2022,3,Confirmados,1
+2022,3,Descartados,5
+2022,3,Em investigação,0
+2022,3,Inconclusivo,0
+2022,3,Notificações,6
+2022,3,Óbitos,0
+2022,4,Autóctones,0
+2022,4,Confirmados,0
+2022,4,Descartados,2
+2022,4,Em investigação,0
+2022,4,Inconclusivo,0
+2022,4,Notificações,2
+2022,4,Óbitos,0
+2022,5,Autóctones,0
+2022,5,Confirmados,0
+2022,5,Descartados,5
+2022,5,Em investigação,0
+2022,5,Inconclusivo,0
+2022,5,Notificações,5
+2022,5,Óbitos,0
+2022,6,Autóctones,0
+2022,6,Confirmados,0
+2022,6,Descartados,2
+2022,6,Em investigação,0
+2022,6,Inconclusivo,0
+2022,6,Notificações,2
+2022,6,Óbitos,0
+2022,7,Autóctones,6
+2022,7,Confirmados,7
+2022,7,Descartados,4
+2022,7,Em investigação,0
+2022,7,Inconclusivo,0
+2022,7,Notificações,11
+2022,7,Óbitos,0
+2022,8,Autóctones,18
+2022,8,Confirmados,20
+2022,8,Descartados,6
+2022,8,Em investigação,0
+2022,8,Inconclusivo,0
+2022,8,Notificações,26
+2022,8,Óbitos,0
+2022,9,Autóctones,43
+2022,9,Confirmados,45
+2022,9,Descartados,9
+2022,9,Em investigação,0
+2022,9,Inconclusivo,0
+2022,9,Notificações,54
+2022,9,Óbitos,0
+2022,10,Autóctones,188
+2022,10,Confirmados,196
+2022,10,Descartados,19
+2022,10,Em investigação,0
+2022,10,Inconclusivo,0
+2022,10,Notificações,215
+2022,10,Óbitos,1
+2022,11,Autóctones,244
+2022,11,Confirmados,256
+2022,11,Descartados,78
+2022,11,Em investigação,0
+2022,11,Inconclusivo,0
+2022,11,Notificações,334
+2022,11,Óbitos,0
+2022,12,Autóctones,395
+2022,12,Confirmados,411
+2022,12,Descartados,178
+2022,12,Em investigação,0
+2022,12,Inconclusivo,0
+2022,12,Notificações,589
+2022,12,Óbitos,0
+2022,13,Autóctones,429
+2022,13,Confirmados,448
+2022,13,Descartados,174
+2022,13,Em investigação,0
+2022,13,Inconclusivo,0
+2022,13,Notificações,622
+2022,13,Óbitos,0
+2022,14,Autóctones,417
+2022,14,Confirmados,471
+2022,14,Descartados,225
+2022,14,Em investigação,0
+2022,14,Inconclusivo,0
+2022,14,Notificações,696
+2022,14,Óbitos,0
+2022,15,Autóctones,610
+2022,15,Confirmados,688
+2022,15,Descartados,268
+2022,15,Em investigação,0
+2022,15,Inconclusivo,0
+2022,15,Notificações,956
+2022,15,Óbitos,0
+2022,16,Autóctones,725
+2022,16,Confirmados,810
+2022,16,Descartados,210
+2022,16,Em investigação,0
+2022,16,Inconclusivo,1
+2022,16,Notificações,1021
+2022,16,Óbitos,0
+2022,17,Autóctones,494
+2022,17,Confirmados,531
+2022,17,Descartados,143
+2022,17,Em investigação,0
+2022,17,Inconclusivo,0
+2022,17,Notificações,674
+2022,17,Óbitos,1
+2022,18,Autóctones,258
+2022,18,Confirmados,319
+2022,18,Descartados,102
+2022,18,Em investigação,0
+2022,18,Inconclusivo,0
+2022,18,Notificações,421
+2022,18,Óbitos,0
+2022,19,Autóctones,169
+2022,19,Confirmados,209
+2022,19,Descartados,72
+2022,19,Em investigação,0
+2022,19,Inconclusivo,0
+2022,19,Notificações,281
+2022,19,Óbitos,1
+2022,20,Autóctones,109
+2022,20,Confirmados,298
+2022,20,Descartados,62
+2022,20,Em investigação,0
+2022,20,Inconclusivo,0
+2022,20,Notificações,360
+2022,20,Óbitos,0
+2022,21,Autóctones,67
+2022,21,Confirmados,108
+2022,21,Descartados,84
+2022,21,Em investigação,0
+2022,21,Inconclusivo,0
+2022,21,Notificações,192
+2022,21,Óbitos,1
+2022,22,Autóctones,63
+2022,22,Confirmados,77
+2022,22,Descartados,42
+2022,22,Em investigação,0
+2022,22,Inconclusivo,0
+2022,22,Notificações,119
+2022,22,Óbitos,0
+2022,23,Autóctones,21
+2022,23,Confirmados,50
+2022,23,Descartados,32
+2022,23,Em investigação,0
+2022,23,Inconclusivo,0
+2022,23,Notificações,82
+2022,23,Óbitos,0
+2022,24,Autóctones,10
+2022,24,Confirmados,17
+2022,24,Descartados,16
+2022,24,Em investigação,0
+2022,24,Inconclusivo,0
+2022,24,Notificações,33
+2022,24,Óbitos,0
+2022,25,Autóctones,14
+2022,25,Confirmados,26
+2022,25,Descartados,26
+2022,25,Em investigação,0
+2022,25,Inconclusivo,0
+2022,25,Notificações,52
+2022,25,Óbitos,0
+2022,26,Autóctones,16
+2022,26,Confirmados,17
+2022,26,Descartados,56
+2022,26,Em investigação,0
+2022,26,Inconclusivo,0
+2022,26,Notificações,73
+2022,26,Óbitos,0
+2022,27,Autóctones,13
+2022,27,Confirmados,15
+2022,27,Descartados,41
+2022,27,Em investigação,0
+2022,27,Inconclusivo,0
+2022,27,Notificações,56
+2022,27,Óbitos,0
+2022,28,Autóctones,19
+2022,28,Confirmados,23
+2022,28,Descartados,24
+2022,28,Em investigação,0
+2022,28,Inconclusivo,0
+2022,28,Notificações,47
+2022,28,Óbitos,0
+2022,29,Autóctones,12
+2022,29,Confirmados,13
+2022,29,Descartados,30
+2022,29,Em investigação,0
+2022,29,Inconclusivo,0
+2022,29,Notificações,43
+2022,29,Óbitos,0
+2022,30,Autóctones,10
+2022,30,Confirmados,11
+2022,30,Descartados,24
+2022,30,Em investigação,0
+2022,30,Inconclusivo,0
+2022,30,Notificações,35
+2022,30,Óbitos,0
+2022,31,Autóctones,5
+2022,31,Confirmados,11
+2022,31,Descartados,12
+2022,31,Em investigação,0
+2022,31,Inconclusivo,0
+2022,31,Notificações,23
+2022,31,Óbitos,0
+2022,32,Autóctones,1
+2022,32,Confirmados,3
+2022,32,Descartados,11
+2022,32,Em investigação,0
+2022,32,Inconclusivo,0
+2022,32,Notificações,14
+2022,32,Óbitos,0
+2022,33,Autóctones,2
+2022,33,Confirmados,3
+2022,33,Descartados,12
+2022,33,Em investigação,0
+2022,33,Inconclusivo,0
+2022,33,Notificações,15
+2022,33,Óbitos,0
+2022,34,Autóctones,3
+2022,34,Confirmados,4
+2022,34,Descartados,8
+2022,34,Em investigação,0
+2022,34,Inconclusivo,0
+2022,34,Notificações,12
+2022,34,Óbitos,0
+2022,35,Autóctones,1
+2022,35,Confirmados,1
+2022,35,Descartados,8
+2022,35,Em investigação,0
+2022,35,Inconclusivo,0
+2022,35,Notificações,9
+2022,35,Óbitos,0
+2022,36,Autóctones,0
+2022,36,Confirmados,0
+2022,36,Descartados,11
+2022,36,Em investigação,0
+2022,36,Inconclusivo,0
+2022,36,Notificações,11
+2022,36,Óbitos,0
+2022,37,Autóctones,0
+2022,37,Confirmados,0
+2022,37,Descartados,7
+2022,37,Em investigação,0
+2022,37,Inconclusivo,0
+2022,37,Notificações,7
+2022,37,Óbitos,0
+2022,38,Autóctones,3
+2022,38,Confirmados,4
+2022,38,Descartados,3
+2022,38,Em investigação,0
+2022,38,Inconclusivo,0
+2022,38,Notificações,7
+2022,38,Óbitos,0
+2022,39,Autóctones,0
+2022,39,Confirmados,0
+2022,39,Descartados,6
+2022,39,Em investigação,0
+2022,39,Inconclusivo,0
+2022,39,Notificações,6
+2022,39,Óbitos,0
+2022,40,Autóctones,1
+2022,40,Confirmados,1
+2022,40,Descartados,9
+2022,40,Em investigação,0
+2022,40,Inconclusivo,0
+2022,40,Notificações,10
+2022,40,Óbitos,0
+2022,41,Autóctones,0
+2022,41,Confirmados,0
+2022,41,Descartados,10
+2022,41,Em investigação,0
+2022,41,Inconclusivo,0
+2022,41,Notificações,10
+2022,41,Óbitos,0
+2022,42,Autóctones,0
+2022,42,Confirmados,1
+2022,42,Descartados,5
+2022,42,Em investigação,0
+2022,42,Inconclusivo,0
+2022,42,Notificações,6
+2022,42,Óbitos,0
+2022,43,Autóctones,0
+2022,43,Confirmados,0
+2022,43,Descartados,8
+2022,43,Em investigação,0
+2022,43,Inconclusivo,0
+2022,43,Notificações,8
+2022,43,Óbitos,0
+2022,44,Autóctones,0
+2022,44,Confirmados,0
+2022,44,Descartados,7
+2022,44,Em investigação,0
+2022,44,Inconclusivo,0
+2022,44,Notificações,7
+2022,44,Óbitos,0
+2022,45,Autóctones,5
+2022,45,Confirmados,6
+2022,45,Descartados,5
+2022,45,Em investigação,0
+2022,45,Inconclusivo,0
+2022,45,Notificações,11
+2022,45,Óbitos,0
+2022,46,Autóctones,10
+2022,46,Confirmados,10
+2022,46,Descartados,5
+2022,46,Em investigação,0
+2022,46,Inconclusivo,0
+2022,46,Notificações,15
+2022,46,Óbitos,0
+2022,47,Autóctones,7
+2022,47,Confirmados,7
+2022,47,Descartados,7
+2022,47,Em investigação,0
+2022,47,Inconclusivo,0
+2022,47,Notificações,14
+2022,47,Óbitos,0
+2022,48,Autóctones,8
+2022,48,Confirmados,8
+2022,48,Descartados,7
+2022,48,Em investigação,0
+2022,48,Inconclusivo,0
+2022,48,Notificações,15
+2022,48,Óbitos,0
+2022,49,Autóctones,9
+2022,49,Confirmados,10
+2022,49,Descartados,4
+2022,49,Em investigação,0
+2022,49,Inconclusivo,0
+2022,49,Notificações,14
+2022,49,Óbitos,0
+2022,50,Autóctones,4
+2022,50,Confirmados,4
+2022,50,Descartados,6
+2022,50,Em investigação,0
+2022,50,Inconclusivo,0
+2022,50,Notificações,10
+2022,50,Óbitos,0
+2022,51,Autóctones,0
+2022,51,Confirmados,1
+2022,51,Descartados,9
+2022,51,Em investigação,0
+2022,51,Inconclusivo,0
+2022,51,Notificações,10
+2022,51,Óbitos,0
+2022,52,Autóctones,1
+2022,52,Confirmados,1
+2022,52,Descartados,12
+2022,52,Em investigação,0
+2022,52,Inconclusivo,0
+2022,52,Notificações,13
+2022,52,Óbitos,0
+2023,1,Autóctones,0
+2023,1,Confirmados,1
+2023,1,Descartados,24
+2023,1,Em investigação,0
+2023,1,Inconclusivo,0
+2023,1,Notificações,25
+2023,1,Óbitos,0
+2023,2,Autóctones,0
+2023,2,Confirmados,3
+2023,2,Descartados,19
+2023,2,Em investigação,0
+2023,2,Inconclusivo,0
+2023,2,Notificações,22
+2023,2,Óbitos,0
+2023,3,Autóctones,0
+2023,3,Confirmados,0
+2023,3,Descartados,18
+2023,3,Em investigação,0
+2023,3,Inconclusivo,0
+2023,3,Notificações,18
+2023,3,Óbitos,0
+2023,4,Autóctones,1
+2023,4,Confirmados,1
+2023,4,Descartados,12
+2023,4,Em investigação,0
+2023,4,Inconclusivo,0
+2023,4,Notificações,13
+2023,4,Óbitos,0
+2023,5,Autóctones,1
+2023,5,Confirmados,1
+2023,5,Descartados,17
+2023,5,Em investigação,0
+2023,5,Inconclusivo,0
+2023,5,Notificações,18
+2023,5,Óbitos,0
+2023,6,Autóctones,1
+2023,6,Confirmados,1
+2023,6,Descartados,15
+2023,6,Em investigação,0
+2023,6,Inconclusivo,1
+2023,6,Notificações,17
+2023,6,Óbitos,0
+2023,7,Autóctones,8
+2023,7,Confirmados,12
+2023,7,Descartados,12
+2023,7,Em investigação,0
+2023,7,Inconclusivo,0
+2023,7,Notificações,24
+2023,7,Óbitos,0
+2023,8,Autóctones,3
+2023,8,Confirmados,7
+2023,8,Descartados,26
+2023,8,Em investigação,0
+2023,8,Inconclusivo,1
+2023,8,Notificações,34
+2023,8,Óbitos,0
+2023,9,Autóctones,21
+2023,9,Confirmados,26
+2023,9,Descartados,52
+2023,9,Em investigação,0
+2023,9,Inconclusivo,0
+2023,9,Notificações,78
+2023,9,Óbitos,0
+2023,10,Autóctones,34
+2023,10,Confirmados,36
+2023,10,Descartados,90
+2023,10,Em investigação,0
+2023,10,Inconclusivo,2
+2023,10,Notificações,128
+2023,10,Óbitos,0
+2023,11,Autóctones,86
+2023,11,Confirmados,91
+2023,11,Descartados,114
+2023,11,Em investigação,0
+2023,11,Inconclusivo,2
+2023,11,Notificações,207
+2023,11,Óbitos,0
+2023,12,Autóctones,178
+2023,12,Confirmados,188
+2023,12,Descartados,164
+2023,12,Em investigação,0
+2023,12,Inconclusivo,0
+2023,12,Notificações,352
+2023,12,Óbitos,0
+2023,13,Autóctones,233
+2023,13,Confirmados,245
+2023,13,Descartados,227
+2023,13,Em investigação,1
+2023,13,Inconclusivo,0
+2023,13,Notificações,473
+2023,13,Óbitos,0
+2023,14,Autóctones,325
+2023,14,Confirmados,343
+2023,14,Descartados,216
+2023,14,Em investigação,0
+2023,14,Inconclusivo,0
+2023,14,Notificações,559
+2023,14,Óbitos,0
+2023,15,Autóctones,491
+2023,15,Confirmados,523
+2023,15,Descartados,360
+2023,15,Em investigação,1
+2023,15,Inconclusivo,2
+2023,15,Notificações,886
+2023,15,Óbitos,0
+2023,16,Autóctones,537
+2023,16,Confirmados,571
+2023,16,Descartados,311
+2023,16,Em investigação,0
+2023,16,Inconclusivo,2
+2023,16,Notificações,884
+2023,16,Óbitos,0
+2023,17,Autóctones,510
+2023,17,Confirmados,555
+2023,17,Descartados,336
+2023,17,Em investigação,0
+2023,17,Inconclusivo,0
+2023,17,Notificações,891
+2023,17,Óbitos,1
+2023,18,Autóctones,669
+2023,18,Confirmados,734
+2023,18,Descartados,286
+2023,18,Em investigação,5
+2023,18,Inconclusivo,0
+2023,18,Notificações,1025
+2023,18,Óbitos,1
+2023,19,Autóctones,685
+2023,19,Confirmados,741
+2023,19,Descartados,138
+2023,19,Em investigação,0
+2023,19,Inconclusivo,0
+2023,19,Notificações,879
+2023,19,Óbitos,0
+2023,20,Autóctones,473
+2023,20,Confirmados,522
+2023,20,Descartados,119
+2023,20,Em investigação,0
+2023,20,Inconclusivo,3
+2023,20,Notificações,644
+2023,20,Óbitos,1
+2023,21,Autóctones,404
+2023,21,Confirmados,444
+2023,21,Descartados,62
+2023,21,Em investigação,1
+2023,21,Inconclusivo,0
+2023,21,Notificações,507
+2023,21,Óbitos,0
+2023,22,Autóctones,406
+2023,22,Confirmados,432
+2023,22,Descartados,51
+2023,22,Em investigação,0
+2023,22,Inconclusivo,1
+2023,22,Notificações,484
+2023,22,Óbitos,0
+2023,23,Autóctones,205
+2023,23,Confirmados,214
+2023,23,Descartados,42
+2023,23,Em investigação,0
+2023,23,Inconclusivo,0
+2023,23,Notificações,256
+2023,23,Óbitos,0
+2023,24,Autóctones,209
+2023,24,Confirmados,214
+2023,24,Descartados,20
+2023,24,Em investigação,1
+2023,24,Inconclusivo,0
+2023,24,Notificações,235
+2023,24,Óbitos,0
+2023,25,Autóctones,56
+2023,25,Confirmados,64
+2023,25,Descartados,33
+2023,25,Em investigação,0
+2023,25,Inconclusivo,0
+2023,25,Notificações,97
+2023,25,Óbitos,0
+2023,26,Autóctones,58
+2023,26,Confirmados,64
+2023,26,Descartados,37
+2023,26,Em investigação,0
+2023,26,Inconclusivo,0
+2023,26,Notificações,101
+2023,26,Óbitos,0
+2023,27,Autóctones,64
+2023,27,Confirmados,68
+2023,27,Descartados,18
+2023,27,Em investigação,0
+2023,27,Inconclusivo,0
+2023,27,Notificações,86
+2023,27,Óbitos,0
+2023,28,Autóctones,47
+2023,28,Confirmados,48
+2023,28,Descartados,15
+2023,28,Em investigação,0
+2023,28,Inconclusivo,2
+2023,28,Notificações,65
+2023,28,Óbitos,0
+2023,29,Autóctones,18
+2023,29,Confirmados,26
+2023,29,Descartados,35
+2023,29,Em investigação,0
+2023,29,Inconclusivo,0
+2023,29,Notificações,61
+2023,29,Óbitos,0
+2023,30,Autóctones,21
+2023,30,Confirmados,22
+2023,30,Descartados,36
+2023,30,Em investigação,0
+2023,30,Inconclusivo,0
+2023,30,Notificações,58
+2023,30,Óbitos,0
+2023,31,Autóctones,12
+2023,31,Confirmados,15
+2023,31,Descartados,48
+2023,31,Em investigação,0
+2023,31,Inconclusivo,0
+2023,31,Notificações,63
+2023,31,Óbitos,0
+2023,32,Autóctones,11
+2023,32,Confirmados,15
+2023,32,Descartados,51
+2023,32,Em investigação,0
+2023,32,Inconclusivo,0
+2023,32,Notificações,66
+2023,32,Óbitos,0
+2023,33,Autóctones,9
+2023,33,Confirmados,14
+2023,33,Descartados,46
+2023,33,Em investigação,0
+2023,33,Inconclusivo,0
+2023,33,Notificações,60
+2023,33,Óbitos,0
+2023,34,Autóctones,6
+2023,34,Confirmados,9
+2023,34,Descartados,40
+2023,34,Em investigação,0
+2023,34,Inconclusivo,0
+2023,34,Notificações,49
+2023,34,Óbitos,0
+2023,35,Autóctones,4
+2023,35,Confirmados,8
+2023,35,Descartados,28
+2023,35,Em investigação,0
+2023,35,Inconclusivo,0
+2023,35,Notificações,36
+2023,35,Óbitos,0
+2023,36,Autóctones,1
+2023,36,Confirmados,1
+2023,36,Descartados,28
+2023,36,Em investigação,0
+2023,36,Inconclusivo,0
+2023,36,Notificações,29
+2023,36,Óbitos,0
+2023,37,Autóctones,4
+2023,37,Confirmados,7
+2023,37,Descartados,23
+2023,37,Em investigação,0
+2023,37,Inconclusivo,0
+2023,37,Notificações,30
+2023,37,Óbitos,0
+2023,38,Autóctones,2
+2023,38,Confirmados,3
+2023,38,Descartados,27
+2023,38,Em investigação,0
+2023,38,Inconclusivo,0
+2023,38,Notificações,30
+2023,38,Óbitos,0
+2023,39,Autóctones,0
+2023,39,Confirmados,0
+2023,39,Descartados,14
+2023,39,Em investigação,0
+2023,39,Inconclusivo,0
+2023,39,Notificações,14
+2023,39,Óbitos,0
+2023,40,Autóctones,1
+2023,40,Confirmados,2
+2023,40,Descartados,14
+2023,40,Em investigação,0
+2023,40,Inconclusivo,0
+2023,40,Notificações,16
+2023,40,Óbitos,0
+2023,41,Autóctones,1
+2023,41,Confirmados,5
+2023,41,Descartados,12
+2023,41,Em investigação,0
+2023,41,Inconclusivo,0
+2023,41,Notificações,17
+2023,41,Óbitos,0
+2023,42,Autóctones,1
+2023,42,Confirmados,3
+2023,42,Descartados,13
+2023,42,Em investigação,0
+2023,42,Inconclusivo,0
+2023,42,Notificações,16
+2023,42,Óbitos,0
+2023,43,Autóctones,1
+2023,43,Confirmados,2
+2023,43,Descartados,14
+2023,43,Em investigação,0
+2023,43,Inconclusivo,1
+2023,43,Notificações,17
+2023,43,Óbitos,0
+2023,44,Autóctones,5
+2023,44,Confirmados,6
+2023,44,Descartados,11
+2023,44,Em investigação,0
+2023,44,Inconclusivo,0
+2023,44,Notificações,17
+2023,44,Óbitos,0
+2023,45,Autóctones,5
+2023,45,Confirmados,6
+2023,45,Descartados,13
+2023,45,Em investigação,0
+2023,45,Inconclusivo,0
+2023,45,Notificações,19
+2023,45,Óbitos,0
+2023,46,Autóctones,0
+2023,46,Confirmados,1
+2023,46,Descartados,16
+2023,46,Em investigação,0
+2023,46,Inconclusivo,0
+2023,46,Notificações,17
+2023,46,Óbitos,0
+2023,47,Autóctones,1
+2023,47,Confirmados,2
+2023,47,Descartados,22
+2023,47,Em investigação,0
+2023,47,Inconclusivo,1
+2023,47,Notificações,25
+2023,47,Óbitos,0
+2023,48,Autóctones,3
+2023,48,Confirmados,3
+2023,48,Descartados,10
+2023,48,Em investigação,0
+2023,48,Inconclusivo,0
+2023,48,Notificações,13
+2023,48,Óbitos,0
+2023,49,Autóctones,0
+2023,49,Confirmados,3
+2023,49,Descartados,11
+2023,49,Em investigação,0
+2023,49,Inconclusivo,0
+2023,49,Notificações,14
+2023,49,Óbitos,0
+2023,50,Autóctones,2
+2023,50,Confirmados,2
+2023,50,Descartados,16
+2023,50,Em investigação,0
+2023,50,Inconclusivo,0
+2023,50,Notificações,18
+2023,50,Óbitos,0
+2023,51,Autóctones,0
+2023,51,Confirmados,0
+2023,51,Descartados,19
+2023,51,Em investigação,1
+2023,51,Inconclusivo,0
+2023,51,Notificações,20
+2023,51,Óbitos,0
+2023,52,Autóctones,11
+2023,52,Confirmados,14
+2023,52,Descartados,32
+2023,52,Em investigação,0
+2023,52,Inconclusivo,0
+2023,52,Notificações,46
+2023,52,Óbitos,0
+2024,1,Autóctones,5
+2024,1,Confirmados,8
+2024,1,Descartados,47
+2024,1,Em investigação,0
+2024,1,Inconclusivo,24
+2024,1,Notificações,79
+2024,1,Óbitos,0
+2024,2,Autóctones,3
+2024,2,Confirmados,8
+2024,2,Descartados,18
+2024,2,Em investigação,0
+2024,2,Inconclusivo,60
+2024,2,Notificações,86
+2024,2,Óbitos,0
+2024,3,Autóctones,7
+2024,3,Confirmados,8
+2024,3,Descartados,11
+2024,3,Em investigação,0
+2024,3,Inconclusivo,56
+2024,3,Notificações,75
+2024,3,Óbitos,0
+2024,4,Autóctones,15
+2024,4,Confirmados,23
+2024,4,Descartados,29
+2024,4,Em investigação,0
+2024,4,Inconclusivo,72
+2024,4,Notificações,124
+2024,4,Óbitos,0
+2024,5,Autóctones,25
+2024,5,Confirmados,32
+2024,5,Descartados,52
+2024,5,Em investigação,0
+2024,5,Inconclusivo,118
+2024,5,Notificações,202
+2024,5,Óbitos,0
+2024,6,Autóctones,64
+2024,6,Confirmados,77
+2024,6,Descartados,76
+2024,6,Em investigação,1
+2024,6,Inconclusivo,237
+2024,6,Notificações,391
+2024,6,Óbitos,0
+2024,7,Autóctones,120
+2024,7,Confirmados,133
+2024,7,Descartados,99
+2024,7,Em investigação,1
+2024,7,Inconclusivo,243
+2024,7,Notificações,476
+2024,7,Óbitos,0
+2024,8,Autóctones,159
+2024,8,Confirmados,194
+2024,8,Descartados,174
+2024,8,Em investigação,2
+2024,8,Inconclusivo,306
+2024,8,Notificações,676
+2024,8,Óbitos,0
+2024,9,Autóctones,382
+2024,9,Confirmados,421
+2024,9,Descartados,231
+2024,9,Em investigação,2
+2024,9,Inconclusivo,279
+2024,9,Notificações,933
+2024,9,Óbitos,0
+2024,10,Autóctones,875
+2024,10,Confirmados,967
+2024,10,Descartados,354
+2024,10,Em investigação,1
+2024,10,Inconclusivo,150
+2024,10,Notificações,1472
+2024,10,Óbitos,0
+2024,11,Autóctones,711
+2024,11,Confirmados,768
+2024,11,Descartados,255
+2024,11,Em investigação,1
+2024,11,Inconclusivo,561
+2024,11,Notificações,1585
+2024,11,Óbitos,1
+2024,12,Autóctones,825
+2024,12,Confirmados,886
+2024,12,Descartados,225
+2024,12,Em investigação,1
+2024,12,Inconclusivo,701
+2024,12,Notificações,1813
+2024,12,Óbitos,0
+2024,13,Autóctones,902
+2024,13,Confirmados,981
+2024,13,Descartados,218
+2024,13,Em investigação,1
+2024,13,Inconclusivo,708
+2024,13,Notificações,1908
+2024,13,Óbitos,0
+2024,14,Autóctones,1309
+2024,14,Confirmados,1445
+2024,14,Descartados,218
+2024,14,Em investigação,2
+2024,14,Inconclusivo,530
+2024,14,Notificações,2195
+2024,14,Óbitos,1
+2024,15,Autóctones,1566
+2024,15,Confirmados,1675
+2024,15,Descartados,167
+2024,15,Em investigação,2
+2024,15,Inconclusivo,752
+2024,15,Notificações,2596
+2024,15,Óbitos,1
+2024,16,Autóctones,1536
+2024,16,Confirmados,1647
+2024,16,Descartados,223
+2024,16,Em investigação,1
+2024,16,Inconclusivo,870
+2024,16,Notificações,2741
+2024,16,Óbitos,1
+2024,17,Autóctones,1643
+2024,17,Confirmados,1743
+2024,17,Descartados,183
+2024,17,Em investigação,1
+2024,17,Inconclusivo,946
+2024,17,Notificações,2873
+2024,17,Óbitos,2
+2024,18,Autóctones,1193
+2024,18,Confirmados,1265
+2024,18,Descartados,82
+2024,18,Em investigação,2
+2024,18,Inconclusivo,723
+2024,18,Notificações,2072
+2024,18,Óbitos,1
+2024,19,Autóctones,871
+2024,19,Confirmados,900
+2024,19,Descartados,75
+2024,19,Em investigação,1
+2024,19,Inconclusivo,439
+2024,19,Notificações,1415
+2024,19,Óbitos,1
+2024,20,Autóctones,1338
+2024,20,Confirmados,1464
+2024,20,Descartados,64
+2024,20,Em investigação,2
+2024,20,Inconclusivo,465
+2024,20,Notificações,1995
+2024,20,Óbitos,0
+2024,21,Autóctones,504
+2024,21,Confirmados,605
+2024,21,Descartados,79
+2024,21,Em investigação,0
+2024,21,Inconclusivo,215
+2024,21,Notificações,899
+2024,21,Óbitos,1
+2024,22,Autóctones,436
+2024,22,Confirmados,475
+2024,22,Descartados,41
+2024,22,Em investigação,1
+2024,22,Inconclusivo,220
+2024,22,Notificações,737
+2024,22,Óbitos,1
+2024,23,Autóctones,153
+2024,23,Confirmados,184
+2024,23,Descartados,56
+2024,23,Em investigação,0
+2024,23,Inconclusivo,248
+2024,23,Notificações,488
+2024,23,Óbitos,0
+2024,24,Autóctones,204
+2024,24,Confirmados,236
+2024,24,Descartados,47
+2024,24,Em investigação,0
+2024,24,Inconclusivo,303
+2024,24,Notificações,586
+2024,24,Óbitos,0
+2024,25,Autóctones,207
+2024,25,Confirmados,244
+2024,25,Descartados,26
+2024,25,Em investigação,2
+2024,25,Inconclusivo,249
+2024,25,Notificações,521
+2024,25,Óbitos,1
+2024,26,Autóctones,115
+2024,26,Confirmados,152
+2024,26,Descartados,17
+2024,26,Em investigação,0
+2024,26,Inconclusivo,154
+2024,26,Notificações,323
+2024,26,Óbitos,0
+2024,27,Autóctones,59
+2024,27,Confirmados,70
+2024,27,Descartados,11
+2024,27,Em investigação,0
+2024,27,Inconclusivo,91
+2024,27,Notificações,172
+2024,27,Óbitos,0
+2024,28,Autóctones,11
+2024,28,Confirmados,21
+2024,28,Descartados,8
+2024,28,Em investigação,0
+2024,28,Inconclusivo,66
+2024,28,Notificações,95
+2024,28,Óbitos,0
+2024,29,Autóctones,4
+2024,29,Confirmados,9
+2024,29,Descartados,5
+2024,29,Em investigação,0
+2024,29,Inconclusivo,97
+2024,29,Notificações,111
+2024,29,Óbitos,0
+2024,30,Autóctones,3
+2024,30,Confirmados,9
+2024,30,Descartados,3
+2024,30,Em investigação,1
+2024,30,Inconclusivo,82
+2024,30,Notificações,95
+2024,30,Óbitos,0
+2024,31,Autóctones,9
+2024,31,Confirmados,13
+2024,31,Descartados,6
+2024,31,Em investigação,0
+2024,31,Inconclusivo,86
+2024,31,Notificações,105
+2024,31,Óbitos,0
+2024,32,Autóctones,8
+2024,32,Confirmados,11
+2024,32,Descartados,23
+2024,32,Em investigação,0
+2024,32,Inconclusivo,62
+2024,32,Notificações,96
+2024,32,Óbitos,0
+2024,33,Autóctones,2
+2024,33,Confirmados,12
+2024,33,Descartados,6
+2024,33,Em investigação,0
+2024,33,Inconclusivo,52
+2024,33,Notificações,70
+2024,33,Óbitos,0
+2024,34,Autóctones,3
+2024,34,Confirmados,6
+2024,34,Descartados,1
+2024,34,Em investigação,0
+2024,34,Inconclusivo,57
+2024,34,Notificações,64
+2024,34,Óbitos,0
+2024,35,Autóctones,6
+2024,35,Confirmados,11
+2024,35,Descartados,4
+2024,35,Em investigação,0
+2024,35,Inconclusivo,52
+2024,35,Notificações,67
+2024,35,Óbitos,0
+2024,36,Autóctones,1
+2024,36,Confirmados,5
+2024,36,Descartados,3
+2024,36,Em investigação,0
+2024,36,Inconclusivo,49
+2024,36,Notificações,57
+2024,36,Óbitos,0
+2024,37,Autóctones,2
+2024,37,Confirmados,5
+2024,37,Descartados,4
+2024,37,Em investigação,0
+2024,37,Inconclusivo,52
+2024,37,Notificações,61
+2024,37,Óbitos,0
+2024,38,Autóctones,2
+2024,38,Confirmados,8
+2024,38,Descartados,4
+2024,38,Em investigação,0
+2024,38,Inconclusivo,44
+2024,38,Notificações,56
+2024,38,Óbitos,0
+2024,39,Autóctones,2
+2024,39,Confirmados,4
+2024,39,Descartados,5
+2024,39,Em investigação,0
+2024,39,Inconclusivo,49
+2024,39,Notificações,58
+2024,39,Óbitos,0
+2024,40,Autóctones,1
+2024,40,Confirmados,2
+2024,40,Descartados,1
+2024,40,Em investigação,0
+2024,40,Inconclusivo,56
+2024,40,Notificações,59
+2024,40,Óbitos,0
+2024,41,Autóctones,1
+2024,41,Confirmados,5
+2024,41,Descartados,1
+2024,41,Em investigação,0
+2024,41,Inconclusivo,43
+2024,41,Notificações,49
+2024,41,Óbitos,0
+2024,42,Autóctones,1
+2024,42,Confirmados,1
+2024,42,Descartados,5
+2024,42,Em investigação,0
+2024,42,Inconclusivo,65
+2024,42,Notificações,71
+2024,42,Óbitos,0
+2024,43,Autóctones,1
+2024,43,Confirmados,1
+2024,43,Descartados,4
+2024,43,Em investigação,0
+2024,43,Inconclusivo,61
+2024,43,Notificações,66
+2024,43,Óbitos,0
+2024,44,Autóctones,1
+2024,44,Confirmados,3
+2024,44,Descartados,8
+2024,44,Em investigação,0
+2024,44,Inconclusivo,55
+2024,44,Notificações,66
+2024,44,Óbitos,0
+2024,45,Autóctones,1
+2024,45,Confirmados,1
+2024,45,Descartados,3
+2024,45,Em investigação,0
+2024,45,Inconclusivo,59
+2024,45,Notificações,63
+2024,45,Óbitos,0
+2024,46,Autóctones,1
+2024,46,Confirmados,1
+2024,46,Descartados,2
+2024,46,Em investigação,0
+2024,46,Inconclusivo,44
+2024,46,Notificações,47
+2024,46,Óbitos,0
+2024,47,Autóctones,0
+2024,47,Confirmados,0
+2024,47,Descartados,4
+2024,47,Em investigação,0
+2024,47,Inconclusivo,50
+2024,47,Notificações,54
+2024,47,Óbitos,0
+2024,48,Autóctones,2
+2024,48,Confirmados,6
+2024,48,Descartados,6
+2024,48,Em investigação,0
+2024,48,Inconclusivo,69
+2024,48,Notificações,81
+2024,48,Óbitos,0
+2024,49,Autóctones,2
+2024,49,Confirmados,4
+2024,49,Descartados,6
+2024,49,Em investigação,0
+2024,49,Inconclusivo,48
+2024,49,Notificações,58
+2024,49,Óbitos,0
+2024,50,Autóctones,3
+2024,50,Confirmados,5
+2024,50,Descartados,6
+2024,50,Em investigação,0
+2024,50,Inconclusivo,33
+2024,50,Notificações,44
+2024,50,Óbitos,0
+2024,51,Autóctones,1
+2024,51,Confirmados,1
+2024,51,Descartados,4
+2024,51,Em investigação,0
+2024,51,Inconclusivo,35
+2024,51,Notificações,40
+2024,51,Óbitos,0
+2024,52,Autóctones,9
+2024,52,Confirmados,9
+2024,52,Descartados,8
+2024,52,Em investigação,0
+2024,52,Inconclusivo,18
+2024,52,Notificações,35
+2024,52,Óbitos,0
+2025,1,Autóctones,14
+2025,1,Confirmados,16
+2025,1,Descartados,41
+2025,1,Em investigação,0
+2025,1,Inconclusivo,41
+2025,1,Notificações,98
+2025,1,Óbitos,0
+2025,2,Autóctones,18
+2025,2,Confirmados,22
+2025,2,Descartados,71
+2025,2,Em investigação,0
+2025,2,Inconclusivo,55
+2025,2,Notificações,148
+2025,2,Óbitos,0
+2025,3,Autóctones,28
+2025,3,Confirmados,30
+2025,3,Descartados,60
+2025,3,Em investigação,0
+2025,3,Inconclusivo,58
+2025,3,Notificações,148
+2025,3,Óbitos,0
+2025,4,Autóctones,31
+2025,4,Confirmados,36
+2025,4,Descartados,52
+2025,4,Em investigação,0
+2025,4,Inconclusivo,88
+2025,4,Notificações,176
+2025,4,Óbitos,0
+2025,5,Autóctones,41
+2025,5,Confirmados,42
+2025,5,Descartados,55
+2025,5,Em investigação,0
+2025,5,Inconclusivo,64
+2025,5,Notificações,161
+2025,5,Óbitos,0
+2025,6,Autóctones,66
+2025,6,Confirmados,71
+2025,6,Descartados,97
+2025,6,Em investigação,0
+2025,6,Inconclusivo,57
+2025,6,Notificações,225
+2025,6,Óbitos,0
+2025,7,Autóctones,147
+2025,7,Confirmados,156
+2025,7,Descartados,64
+2025,7,Em investigação,0
+2025,7,Inconclusivo,62
+2025,7,Notificações,282
+2025,7,Óbitos,0
+2025,8,Autóctones,232
+2025,8,Confirmados,237
+2025,8,Descartados,98
+2025,8,Em investigação,0
+2025,8,Inconclusivo,82
+2025,8,Notificações,417
+2025,8,Óbitos,0
+2025,9,Autóctones,328
+2025,9,Confirmados,356
+2025,9,Descartados,89
+2025,9,Em investigação,0
+2025,9,Inconclusivo,110
+2025,9,Notificações,555
+2025,9,Óbitos,0
+2025,10,Autóctones,433
+2025,10,Confirmados,468
+2025,10,Descartados,90
+2025,10,Em investigação,0
+2025,10,Inconclusivo,135
+2025,10,Notificações,693
+2025,10,Óbitos,0
+2025,11,Autóctones,775
+2025,11,Confirmados,841
+2025,11,Descartados,123
+2025,11,Em investigação,0
+2025,11,Inconclusivo,269
+2025,11,Notificações,1233
+2025,11,Óbitos,2
+2025,12,Autóctones,1001
+2025,12,Confirmados,1106
+2025,12,Descartados,164
+2025,12,Em investigação,0
+2025,12,Inconclusivo,431
+2025,12,Notificações,1701
+2025,12,Óbitos,1
+2025,13,Autóctones,1528
+2025,13,Confirmados,1681
+2025,13,Descartados,229
+2025,13,Em investigação,0
+2025,13,Inconclusivo,942
+2025,13,Notificações,2852
+2025,13,Óbitos,1
+2025,14,Autóctones,2098
+2025,14,Confirmados,2174
+2025,14,Descartados,222
+2025,14,Em investigação,0
+2025,14,Inconclusivo,1536
+2025,14,Notificações,3932
+2025,14,Óbitos,0
+2025,15,Autóctones,1855
+2025,15,Confirmados,2037
+2025,15,Descartados,328
+2025,15,Em investigação,0
+2025,15,Inconclusivo,1882
+2025,15,Notificações,4247
+2025,15,Óbitos,1
+2025,16,Autóctones,1954
+2025,16,Confirmados,2096
+2025,16,Descartados,310
+2025,16,Em investigação,1
+2025,16,Inconclusivo,1990
+2025,16,Notificações,4397
+2025,16,Óbitos,5
+2025,17,Autóctones,1934
+2025,17,Confirmados,2037
+2025,17,Descartados,183
+2025,17,Em investigação,1
+2025,17,Inconclusivo,3265
+2025,17,Notificações,5486
+2025,17,Óbitos,3
+2025,18,Autóctones,1973
+2025,18,Confirmados,2056
+2025,18,Descartados,258
+2025,18,Em investigação,0
+2025,18,Inconclusivo,2610
+2025,18,Notificações,4924
+2025,18,Óbitos,1
+2025,19,Autóctones,1837
+2025,19,Confirmados,1981
+2025,19,Descartados,337
+2025,19,Em investigação,0
+2025,19,Inconclusivo,2774
+2025,19,Notificações,5092
+2025,19,Óbitos,3
+2025,20,Autóctones,1524
+2025,20,Confirmados,1672
+2025,20,Descartados,147
+2025,20,Em investigação,0
+2025,20,Inconclusivo,3642
+2025,20,Notificações,5461
+2025,20,Óbitos,2
+2025,21,Autóctones,1568
+2025,21,Confirmados,1699
+2025,21,Descartados,127
+2025,21,Em investigação,1
+2025,21,Inconclusivo,2992
+2025,21,Notificações,4819
+2025,21,Óbitos,4
+2025,22,Autóctones,681
+2025,22,Confirmados,763
+2025,22,Descartados,78
+2025,22,Em investigação,0
+2025,22,Inconclusivo,1786
+2025,22,Notificações,2627
+2025,22,Óbitos,0
+2025,23,Autóctones,438
+2025,23,Confirmados,478
+2025,23,Descartados,68
+2025,23,Em investigação,0
+2025,23,Inconclusivo,1394
+2025,23,Notificações,1940
+2025,23,Óbitos,0
+2025,24,Autóctones,197
+2025,24,Confirmados,212
+2025,24,Descartados,52
+2025,24,Em investigação,0
+2025,24,Inconclusivo,888
+2025,24,Notificações,1152
+2025,24,Óbitos,1
+2025,25,Autóctones,83
+2025,25,Confirmados,88
+2025,25,Descartados,36
+2025,25,Em investigação,0
+2025,25,Inconclusivo,452
+2025,25,Notificações,576
+2025,25,Óbitos,0
+2025,26,Autóctones,36
+2025,26,Confirmados,38
+2025,26,Descartados,21
+2025,26,Em investigação,0
+2025,26,Inconclusivo,255
+2025,26,Notificações,314
+2025,26,Óbitos,0
+2025,27,Autóctones,17
+2025,27,Confirmados,18
+2025,27,Descartados,19
+2025,27,Em investigação,0
+2025,27,Inconclusivo,153
+2025,27,Notificações,190
+2025,27,Óbitos,0
+2025,28,Autóctones,8
+2025,28,Confirmados,8
+2025,28,Descartados,28
+2025,28,Em investigação,0
+2025,28,Inconclusivo,142
+2025,28,Notificações,178
+2025,28,Óbitos,0
+2025,29,Autóctones,4
+2025,29,Confirmados,5
+2025,29,Descartados,24
+2025,29,Em investigação,0
+2025,29,Inconclusivo,123
+2025,29,Notificações,152
+2025,29,Óbitos,0
+2025,30,Autóctones,3
+2025,30,Confirmados,4
+2025,30,Descartados,17
+2025,30,Em investigação,0
+2025,30,Inconclusivo,105
+2025,30,Notificações,126
+2025,30,Óbitos,0
+2025,31,Autóctones,1
+2025,31,Confirmados,2
+2025,31,Descartados,11
+2025,31,Em investigação,0
+2025,31,Inconclusivo,85
+2025,31,Notificações,98
+2025,31,Óbitos,0
+2025,32,Autóctones,1
+2025,32,Confirmados,3
+2025,32,Descartados,11
+2025,32,Em investigação,0
+2025,32,Inconclusivo,69
+2025,32,Notificações,83
+2025,32,Óbitos,0
+2025,33,Autóctones,9
+2025,33,Confirmados,9
+2025,33,Descartados,8
+2025,33,Em investigação,0
+2025,33,Inconclusivo,89
+2025,33,Notificações,106
+2025,33,Óbitos,0
+2025,34,Autóctones,3
+2025,34,Confirmados,7
+2025,34,Descartados,6
+2025,34,Em investigação,0
+2025,34,Inconclusivo,84
+2025,34,Notificações,97
+2025,34,Óbitos,0
+2025,35,Autóctones,2
+2025,35,Confirmados,2
+2025,35,Descartados,6
+2025,35,Em investigação,0
+2025,35,Inconclusivo,83
+2025,35,Notificações,91
+2025,35,Óbitos,0
+2025,36,Autóctones,4
+2025,36,Confirmados,5
+2025,36,Descartados,4
+2025,36,Em investigação,0
+2025,36,Inconclusivo,91
+2025,36,Notificações,100
+2025,36,Óbitos,0
+2025,37,Autóctones,4
+2025,37,Confirmados,4
+2025,37,Descartados,4
+2025,37,Em investigação,0
+2025,37,Inconclusivo,74
+2025,37,Notificações,82
+2025,37,Óbitos,1
+2025,38,Autóctones,1
+2025,38,Confirmados,3
+2025,38,Descartados,8
+2025,38,Em investigação,0
+2025,38,Inconclusivo,104
+2025,38,Notificações,115
+2025,38,Óbitos,0
+2025,39,Autóctones,6
+2025,39,Confirmados,6
+2025,39,Descartados,7
+2025,39,Em investigação,0
+2025,39,Inconclusivo,104
+2025,39,Notificações,117
+2025,39,Óbitos,0
+2025,40,Autóctones,4
+2025,40,Confirmados,4
+2025,40,Descartados,10
+2025,40,Em investigação,0
+2025,40,Inconclusivo,137
+2025,40,Notificações,151
+2025,40,Óbitos,0
+2025,41,Autóctones,2
+2025,41,Confirmados,6
+2025,41,Descartados,5
+2025,41,Em investigação,0
+2025,41,Inconclusivo,145
+2025,41,Notificações,156
+2025,41,Óbitos,0
+2025,42,Autóctones,1
+2025,42,Confirmados,2
+2025,42,Descartados,3
+2025,42,Em investigação,0
+2025,42,Inconclusivo,144
+2025,42,Notificações,149
+2025,42,Óbitos,0
+2025,43,Autóctones,0
+2025,43,Confirmados,3
+2025,43,Descartados,6
+2025,43,Em investigação,0
+2025,43,Inconclusivo,158
+2025,43,Notificações,167
+2025,43,Óbitos,0
+2025,44,Autóctones,2
+2025,44,Confirmados,5
+2025,44,Descartados,8
+2025,44,Em investigação,0
+2025,44,Inconclusivo,140
+2025,44,Notificações,153
+2025,44,Óbitos,0
+2025,45,Autóctones,2
+2025,45,Confirmados,5
+2025,45,Descartados,5
+2025,45,Em investigação,0
+2025,45,Inconclusivo,127
+2025,45,Notificações,137
+2025,45,Óbitos,0
+2025,46,Autóctones,1
+2025,46,Confirmados,1
+2025,46,Descartados,0
+2025,46,Em investigação,0
+2025,46,Inconclusivo,114
+2025,46,Notificações,115
+2025,46,Óbitos,0
+2025,47,Autóctones,2
+2025,47,Confirmados,2
+2025,47,Descartados,1
+2025,47,Em investigação,0
+2025,47,Inconclusivo,102
+2025,47,Notificações,105
+2025,47,Óbitos,1
+2025,48,Autóctones,0
+2025,48,Confirmados,1
+2025,48,Descartados,8
+2025,48,Em investigação,0
+2025,48,Inconclusivo,143
+2025,48,Notificações,152
+2025,48,Óbitos,0
+2025,49,Autóctones,3
+2025,49,Confirmados,3
+2025,49,Descartados,12
+2025,49,Em investigação,0
+2025,49,Inconclusivo,133
+2025,49,Notificações,148
+2025,49,Óbitos,0
+2025,50,Autóctones,2
+2025,50,Confirmados,2
+2025,50,Descartados,9
+2025,50,Em investigação,0
+2025,50,Inconclusivo,168
+2025,50,Notificações,179
+2025,50,Óbitos,0
+2025,51,Autóctones,0
+2025,51,Confirmados,0
+2025,51,Descartados,10
+2025,51,Em investigação,0
+2025,51,Inconclusivo,134
+2025,51,Notificações,144
+2025,51,Óbitos,0
+2025,52,Autóctones,1
+2025,52,Confirmados,1
+2025,52,Descartados,9
+2025,52,Em investigação,0
+2025,52,Inconclusivo,101
+2025,52,Notificações,111
+2025,52,Óbitos,0
+2025,53,Autóctones,0
+2025,53,Confirmados,0
+2025,53,Descartados,9
+2025,53,Em investigação,0
+2025,53,Inconclusivo,100
+2025,53,Notificações,109
+2025,53,Óbitos,0
+2026,1,Autóctones,0
+2026,1,Confirmados,0
+2026,1,Descartados,15
+2026,1,Em investigação,0
+2026,1,Inconclusivo,183
+2026,1,Notificações,198
+2026,1,Óbitos,0
+2026,2,Autóctones,0
+2026,2,Confirmados,0
+2026,2,Descartados,22
+2026,2,Em investigação,1
+2026,2,Inconclusivo,210
+2026,2,Notificações,233
+2026,2,Óbitos,0
+2026,3,Autóctones,0
+2026,3,Confirmados,0
+2026,3,Descartados,18
+2026,3,Em investigação,0
+2026,3,Inconclusivo,171
+2026,3,Notificações,189
+2026,3,Óbitos,0
+2026,4,Autóctones,1
+2026,4,Confirmados,1
+2026,4,Descartados,22
+2026,4,Em investigação,0
+2026,4,Inconclusivo,194
+2026,4,Notificações,217
+2026,4,Óbitos,0
+2026,5,Autóctones,0
+2026,5,Confirmados,0
+2026,5,Descartados,16
+2026,5,Em investigação,0
+2026,5,Inconclusivo,198
+2026,5,Notificações,214
+2026,5,Óbitos,0
+2026,6,Autóctones,1
+2026,6,Confirmados,1
+2026,6,Descartados,9
+2026,6,Em investigação,0
+2026,6,Inconclusivo,169
+2026,6,Notificações,179
+2026,6,Óbitos,0
+2026,7,Autóctones,0
+2026,7,Confirmados,0
+2026,7,Descartados,11
+2026,7,Em investigação,0
+2026,7,Inconclusivo,163
+2026,7,Notificações,174
+2026,7,Óbitos,0
+2026,8,Autóctones,0
+2026,8,Confirmados,0
+2026,8,Descartados,12
+2026,8,Em investigação,0
+2026,8,Inconclusivo,211
+2026,8,Notificações,223
+2026,8,Óbitos,0
+2026,9,Autóctones,0
+2026,9,Confirmados,0
+2026,9,Descartados,7
+2026,9,Em investigação,0
+2026,9,Inconclusivo,232
+2026,9,Notificações,239
+2026,9,Óbitos,0
+2026,10,Autóctones,0
+2026,10,Confirmados,0
+2026,10,Descartados,10
+2026,10,Em investigação,0
+2026,10,Inconclusivo,219
+2026,10,Notificações,229
+2026,10,Óbitos,0
+2026,11,Autóctones,0
+2026,11,Confirmados,0
+2026,11,Descartados,15
+2026,11,Em investigação,0
+2026,11,Inconclusivo,243
+2026,11,Notificações,258
+2026,11,Óbitos,0
+2026,12,Autóctones,0
+2026,12,Confirmados,0
+2026,12,Descartados,11
+2026,12,Em investigação,0
+2026,12,Inconclusivo,255
+2026,12,Notificações,266
+2026,12,Óbitos,0
+2026,13,Autóctones,0
+2026,13,Confirmados,0
+2026,13,Descartados,11
+2026,13,Em investigação,0
+2026,13,Inconclusivo,278
+2026,13,Notificações,289
+2026,13,Óbitos,0
+2026,14,Autóctones,0
+2026,14,Confirmados,1
+2026,14,Descartados,15
+2026,14,Em investigação,0
+2026,14,Inconclusivo,257
+2026,14,Notificações,273
+2026,14,Óbitos,0
+2026,15,Autóctones,0
+2026,15,Confirmados,0
+2026,15,Descartados,5
+2026,15,Em investigação,0
+2026,15,Inconclusivo,219
+2026,15,Notificações,224
+2026,15,Óbitos,0
+2026,16,Autóctones,1
+2026,16,Confirmados,2
+2026,16,Descartados,1
+2026,16,Em investigação,0
+2026,16,Inconclusivo,130
+2026,16,Notificações,133
+2026,16,Óbitos,0
+2026,17,Autóctones,0
+2026,17,Confirmados,0
+2026,17,Descartados,0
+2026,17,Em investigação,0
+2026,17,Inconclusivo,101
+2026,17,Notificações,101
+2026,17,Óbitos,0
+2026,18,Autóctones,0
+2026,18,Confirmados,0
+2026,18,Descartados,0
+2026,18,Em investigação,0
+2026,18,Inconclusivo,93
+2026,18,Notificações,93
+2026,18,Óbitos,0
+2026,19,Autóctones,0
+2026,19,Confirmados,0
+2026,19,Descartados,0
+2026,19,Em investigação,0
+2026,19,Inconclusivo,74
+2026,19,Notificações,74
+2026,19,Óbitos,0
+2026,20,Autóctones,0
+2026,20,Confirmados,0
+2026,20,Descartados,1
+2026,20,Em investigação,0
+2026,20,Inconclusivo,49
+2026,20,Notificações,50
+2026,20,Óbitos,0
+2026,21,Autóctones,0
+2026,21,Confirmados,0
+2026,21,Descartados,1
+2026,21,Em investigação,0
+2026,21,Inconclusivo,51
+2026,21,Notificações,52
+2026,21,Óbitos,0
+2026,22,Autóctones,2
+2026,22,Confirmados,2
+2026,22,Descartados,3
+2026,22,Em investigação,1
+2026,22,Inconclusivo,26
+2026,22,Notificações,32
+2026,22,Óbitos,0
+2026,23,Autóctones,0
+2026,23,Confirmados,1
+2026,23,Descartados,0
+2026,23,Em investigação,0
+2026,23,Inconclusivo,34
+2026,23,Notificações,35
+2026,23,Óbitos,0
+2026,24,Autóctones,0
+2026,24,Confirmados,0
+2026,24,Descartados,1
+2026,24,Em investigação,0
+2026,24,Inconclusivo,32
+2026,24,Notificações,33
+2026,24,Óbitos,0
+2026,25,Autóctones,0
+2026,25,Confirmados,0
+2026,25,Descartados,0
+2026,25,Em investigação,0
+2026,25,Inconclusivo,19
+2026,25,Notificações,19
+2026,25,Óbitos,0
+2026,26,Autóctones,0
+2026,26,Confirmados,0
+2026,26,Descartados,2
+2026,26,Em investigação,0
+2026,26,Inconclusivo,19
+2026,26,Notificações,21
+2026,26,Óbitos,0
+2026,28,Autóctones,0
+2026,28,Confirmados,1
+2026,28,Descartados,0
+2026,28,Em investigação,0
+2026,28,Inconclusivo,2
+2026,28,Notificações,3
+2026,28,Óbitos,0
+2026,29,Autóctones,1
+2026,29,Confirmados,1
+2026,29,Descartados,1
+2026,29,Em investigação,0
+2026,29,Inconclusivo,0
+2026,29,Notificações,2
+2026,29,Óbitos,0
+2026,30,Autóctones,0
+2026,30,Confirmados,0
+2026,30,Descartados,0
+2026,30,Em investigação,1
+2026,30,Inconclusivo,0
+2026,30,Notificações,1
+2026,30,Óbitos,0
+2026,31,Autóctones,0
+2026,31,Confirmados,0
+2026,31,Descartados,0
+2026,31,Em investigação,2
+2026,31,Inconclusivo,0
+2026,31,Notificações,2
+2026,31,Óbitos,0
+2026,34,Autóctones,0
+2026,34,Confirmados,0
+2026,34,Descartados,0
+2026,34,Em investigação,2
+2026,34,Inconclusivo,0
+2026,34,Notificações,2
+2026,34,Óbitos,0
+2026,35,Autóctones,0
+2026,35,Confirmados,1
+2026,35,Descartados,0
+2026,35,Em investigação,13
+2026,35,Inconclusivo,0
+2026,35,Notificações,14
+2026,35,Óbitos,0
+2026,36,Autóctones,0
+2026,36,Confirmados,0
+2026,36,Descartados,0
+2026,36,Em investigação,8
+2026,36,Inconclusivo,0
+2026,36,Notificações,8
+2026,36,Óbitos,0
+2026,37,Autóctones,0
+2026,37,Confirmados,0
+2026,37,Descartados,0
+2026,37,Em investigação,5
+2026,37,Inconclusivo,0
+2026,37,Notificações,5
+2026,37,Óbitos,0
