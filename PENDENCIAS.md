@@ -94,6 +94,8 @@
   `analises/2026-09-25_bateria_formulacao_do_alvo/`
 - 🚫 **Modelos de fundação zero-shot** (Chronos-Bolt, Chronos-2) não batem a régua em 3 meses; o vetor
   melhora o Chronos-2 (p Holm 0,007), só em 2024-2025. `analises/2026-09-25_modelos_de_fundacao/`
+- ✅ **Página "Comparações" no site, só local** (`NOVO_HTML/saida/comparacoes.html`), entre Cenário adotado e
+  Próximos passos. ⚠️ Não publicada. ⏳ Unificar 278,7 (painel) × 278,8 (régua) do cenário adotado em 3 meses.
 - ✅ **Comparação direta com a literatura:** acima dos estudos de pesquisa em POA e no Brasil; abaixo dos
   sistemas operacionais da Ásia em 3 meses. `analises/2026-09-25_comparacao_direta_literatura/`
 - 🚫 **SARIMA e LASSO explodem** no começo da epidemia de 2024 (até 43 mil previstos); ensemble não bate a

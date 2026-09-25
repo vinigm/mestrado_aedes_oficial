@@ -362,6 +362,264 @@ JANELA_UTIL_DE_TRABALHO = "2022 a 2025"
 TOTAL_DE_CONFIGURACOES_TESTADAS = 30
 
 
+# --------------------------------------------------- página Comparações ----
+#
+# Período de avaliação comum a toda a página: 2024 a fev/2026, 102 semanas por
+# horizonte — a mesma grade de `data_alvo` do braço `referencia` (ver
+# `analises/2026-09-25_regua_regras_simples/README.md`).
+PERIODO_DE_AVALIACAO_DAS_COMPARACOES = "2024 a fev/2026"
+SEMANAS_POR_HORIZONTE_NAS_COMPARACOES = 102
+
+
+@dataclasses.dataclass(frozen=True)
+class ErroPorHorizonteEMetodo:
+    """MAE (casos confirmados por semana) de um método, nos quatro horizontes.
+
+    Fonte: `analises/2026-09-25_regua_regras_simples/README.md` e `saidas/`,
+    medido nas mesmas 102 semanas de avaliação do braço `referencia`.
+
+    Attributes:
+        metodo: Nome do método ou modelo.
+        uma_semana: MAE em 1 semana.
+        um_mes: MAE em 1 mês (4 semanas).
+        dois_meses: MAE em 2 meses (8 semanas).
+        tres_meses: MAE em 3 meses (12 semanas).
+    """
+
+    metodo: str
+    uma_semana: float
+    um_mes: float
+    dois_meses: float
+    tres_meses: float
+
+
+REGUA_DE_METODOS_SIMPLES: tuple[ErroPorHorizonteEMetodo, ...] = (
+    ErroPorHorizonteEMetodo("Cenário adotado", 98.0, 219.7, 272.6, 278.8),
+    ErroPorHorizonteEMetodo("HistGB, folha mínima 20", 133.6, 199.6, 223.2, 243.8),
+    ErroPorHorizonteEMetodo("Repetir a semana atual", 83.3, 279.0, 531.0, 697.5),
+    ErroPorHorizonteEMetodo("Mesma semana do ano passado", 202.1, 213.2, 216.2, 217.8),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class ErroDeMetodoDaLiteratura:
+    """MAE em 3 meses de um método aplicado aos dados do projeto.
+
+    Fonte: `analises/2026-09-25_modelos_de_fundacao/README.md`,
+    `analises/2026-09-25_sarima_lasso_ensemble/README.md` e
+    `analises/2026-09-25_bateria_formulacao_do_alvo/README.md` — mesmas 102
+    semanas de avaliação de `REGUA_DE_METODOS_SIMPLES`.
+
+    Attributes:
+        nome: Nome do método.
+        origem: De onde o método vem (projeto, artigo ou fornecedor).
+        erro_em_tres_meses: MAE em 3 meses.
+        este_projeto: Se o método é deste projeto (para destacar na tabela).
+        entra_no_grafico: Se entra no gráfico de barras da seção. O SARIMA
+            fica de fora: seu erro (1.971,0) achataria a escala das demais.
+    """
+
+    nome: str
+    origem: str
+    erro_em_tres_meses: float
+    este_projeto: bool
+    entra_no_grafico: bool
+
+
+METODOS_DA_LITERATURA_NOS_DADOS: tuple[ErroDeMetodoDaLiteratura, ...] = (
+    ErroDeMetodoDaLiteratura("Mesma semana do ano passado", "régua", 217.8, False, True),
+    ErroDeMetodoDaLiteratura(
+        "Chronos-2, só casos", "modelo pré-treinado, Amazon, 2025", 227.2, False, True
+    ),
+    ErroDeMetodoDaLiteratura("HistGB, folha mínima 20", "este projeto", 243.8, True, True),
+    # O ensemble é construção deste projeto (5 componentes, pesos aprendidos no
+    # walk-forward local), inspirada nos ensembles de Wu et al. 2025 e de
+    # Colón-González et al. 2021 — não é a reprodução do método deles.
+    ErroDeMetodoDaLiteratura(
+        "Ensemble com pesos aprendidos",
+        "este projeto, inspirado em Wu et al. 2025",
+        254.3,
+        True,
+        True,
+    ),
+    ErroDeMetodoDaLiteratura(
+        "Chronos-2, casos + clima + vetor",
+        "modelo pré-treinado, Amazon, 2025",
+        265.2,
+        False,
+        True,
+    ),
+    ErroDeMetodoDaLiteratura("Cenário adotado", "este projeto", 278.8, True, True),
+    ErroDeMetodoDaLiteratura(
+        "Chronos-Bolt, só casos", "modelo pré-treinado, Amazon, 2024", 289.5, False, True
+    ),
+    ErroDeMetodoDaLiteratura("LASSO", "método de Shi et al. 2016, Singapura", 291.5, False, True),
+    ErroDeMetodoDaLiteratura(
+        "SARIMA", "clássico; Johansson et al. 2019", 1_971.0, False, False
+    ),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class ErroPercentualPublicado:
+    """MAPE (erro percentual médio) publicado, em 1 semana e em 3 meses.
+
+    Fonte: `analises/2026-09-25_comparacao_direta_literatura/README.md` e
+    `metricas_do_projeto.csv`; definições conferidas em `grupo_1.md`. As
+    linhas do projeto usam só semanas com 100 casos confirmados ou mais, para
+    o percentual não estourar perto de zero.
+
+    Attributes:
+        modelo: Nome do modelo ou sistema.
+        uso: Onde e como ele é usado.
+        uma_semana: MAPE em 1 semana, já formatado ("—" quando não publicado).
+        tres_meses: MAPE em 3 meses, já formatado.
+        este_projeto: Se a linha é deste projeto.
+    """
+
+    modelo: str
+    uso: str
+    uma_semana: str
+    tres_meses: str
+    este_projeto: bool
+
+
+MAPE_PUBLICADO: tuple[ErroPercentualPublicado, ...] = (
+    ErroPercentualPublicado("LASSO, Shi et al. 2016", "operacional, Singapura", "17%", "24%", False),
+    ErroPercentualPublicado("SARIMA, mesmo artigo", "régua do artigo", "—", "29%", False),
+    ErroPercentualPublicado("Cenário adotado", "este projeto", "27%", "65%", True),
+    ErroPercentualPublicado("HistGB, folha mínima 20", "este projeto", "49%", "58%", True),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class ErroRelativoAoTotalPublicado:
+    """Erro como fração do total de casos, em 1 mês e em 3 meses.
+
+    Fonte: mesma origem de `MAPE_PUBLICADO`.
+    """
+
+    modelo: str
+    uso: str
+    um_mes: str
+    tres_meses: str
+    este_projeto: bool
+
+
+ERRO_RELATIVO_AO_TOTAL_PUBLICADO: tuple[ErroRelativoAoTotalPublicado, ...] = (
+    ErroRelativoAoTotalPublicado(
+        "Ensemble, Wu et al. 2025",
+        "operacional, 5 países, mensal por estado",
+        "38,5%",
+        "62,7%",
+        False,
+    ),
+    ErroRelativoAoTotalPublicado("Cenário adotado", "este projeto", "53%", "65%", True),
+    ErroRelativoAoTotalPublicado("HistGB, folha mínima 20", "este projeto", "48%", "57%", True),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class R2Publicado:
+    """R² publicado, no horizonte que cada artigo declara.
+
+    Fonte: mesma origem de `MAPE_PUBLICADO`.
+
+    Attributes:
+        modelo: Nome do modelo ou artigo.
+        onde: Cidade e período dos dados.
+        um_mes: R² em 1 mês (ou o horizonte mais próximo declarado), já
+            formatado, com a ressalva entre parênteses quando o horizonte
+            difere de 1 mês.
+        tres_meses: R² em 3 meses, já formatado. "—" quando o artigo não
+            declara esse horizonte.
+        este_projeto: Se a linha é deste projeto.
+    """
+
+    modelo: str
+    onde: str
+    um_mes: str
+    tres_meses: str
+    este_projeto: bool
+
+
+R2_PUBLICADO: tuple[R2Publicado, ...] = (
+    R2Publicado("CatBoost, Aleixo et al. 2022", "Rio, distrito e mês", "0,47", "0,38", False),
+    R2Publicado(
+        "CatBoost, 27 capitais, 2026",
+        "Porto Alegre, 1999-2021",
+        "−0,21 (até 4 semanas)",
+        "—",
+        False,
+    ),
+    R2Publicado(
+        "da Silva et al. 2026",
+        "Porto Alegre",
+        "0,46 (escala log, horizonte não declarado)",
+        "—",
+        False,
+    ),
+    R2Publicado("Cenário adotado", "Porto Alegre", "0,63", "0,44", True),
+    R2Publicado("HistGB, folha mínima 20", "Porto Alegre", "0,72", "0,56", True),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class VantagemSobreARegua:
+    """Vantagem percentual de um sistema sobre "a mesma época do ano anterior".
+
+    Positivo é o sistema errar MENOS que essa régua sazonal; negativo é errar
+    mais. Fonte: `analises/2026-09-25_comparacao_direta_literatura/README.md`.
+
+    Attributes:
+        sistema: Nome do sistema, modelo ou artigo.
+        uso: Onde e como ele é usado.
+        rotulo_curto_prazo: Horizonte do valor de curto prazo, em texto.
+        valor_curto_prazo: A vantagem percentual nesse horizonte.
+        rotulo_horizonte_longo: Horizonte mais longo declarado, em texto.
+        valor_horizonte_longo: A vantagem percentual nesse horizonte, ou
+            `None` quando o artigo só relata que ela desaparece, sem número
+            (o caso do Superensemble em 4-6 meses).
+        este_projeto: Se a linha é deste projeto.
+    """
+
+    sistema: str
+    uso: str
+    rotulo_curto_prazo: str
+    valor_curto_prazo: float
+    rotulo_horizonte_longo: str
+    valor_horizonte_longo: float | None
+    este_projeto: bool
+
+
+VANTAGEM_SOBRE_A_REGUA: tuple[VantagemSobreARegua, ...] = (
+    VantagemSobreARegua(
+        "D-MOSS",
+        "operacional, Ministério da Saúde do Vietnã, desde 2019",
+        "1 mês",
+        15.0,
+        "6 meses",
+        27.0,
+        False,
+    ),
+    VantagemSobreARegua(
+        "Superensemble, Colón-González et al. 2021",
+        "Vietnã",
+        "1 a 3 meses",
+        16.0,
+        "4 a 6 meses",
+        None,
+        False,
+    ),
+    VantagemSobreARegua(
+        "HistGB, folha mínima 20", "este projeto", "1 mês", 13.0, "3 meses", -7.0, True
+    ),
+    VantagemSobreARegua(
+        "Cenário adotado", "este projeto", "1 mês", 1.0, "3 meses", -21.0, True
+    ),
+)
+
+
 def formatar_inteiro(valor: int) -> str:
     """Formata um inteiro no padrão brasileiro, com ponto de milhar."""
     return f"{valor:,}".replace(",", ".")

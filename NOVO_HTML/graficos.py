@@ -21,6 +21,12 @@ CORES_DAS_SERIES = ["#1B6EF3", "#C0392B", "#1F7A4D", "#B4761C", "#6B7A8C", "#8E4
 # Cor da grade e do texto dos eixos, também do tema novo (--borda e --muted).
 COR_DA_GRADE = "#E3E8EE"
 COR_DO_TEXTO_DO_EIXO = "#6B7A8C"
+COR_DO_TEXTO_PRINCIPAL = "#16202C"  # mesma tinta de --tinta, em tema.py
+
+# Largura máxima do envelope de um gráfico de barras. Maior que a dos
+# gráficos de linhas (620px) porque as barras carregam rótulo de método, que
+# precisa de mais espaço horizontal para não cortar.
+LARGURA_MAXIMA_GRAFICO_DE_BARRAS = 760
 
 # Nomes de coluna aceitos para o eixo X (horizonte de previsão) e para a
 # métrica do eixo Y, na ordem de preferência. A busca ignora maiúsculas.
@@ -704,4 +710,257 @@ def montar_aviso_de_numero_superado_se_necessario(cenario: mlflow_leitor.Cenario
         tom="atencao",
         rotulo="Número anterior à correção do vazamento",
         texto=texto_do_aviso,
+    )
+
+
+def montar_grafico_de_barras_horizontais(
+    itens: list[tuple[str, str, float]],
+    titulo: str,
+    cores: list[str] | None = None,
+    nota: str = "",
+) -> str:
+    """Desenha barras horizontais, uma por item, na ordem em que `itens` vem.
+
+    O rótulo do item fica acima da barra, e o valor já formatado ao final
+    dela — em vez de um rótulo à esquerda de largura fixa, que cortaria nomes
+    de método mais longos que os do gráfico de linhas.
+
+    Args:
+        itens: Trincas (rótulo, valor_formatado, valor_numérico). O valor
+            numérico só decide o comprimento da barra; o texto mostrado é
+            sempre `valor_formatado`, para manter a vírgula decimal do site.
+        titulo: Título do gráfico, dizendo o que a barra mede.
+        cores: Uma cor por item, para destacar barras específicas (ex.: os
+            resultados deste projeto). Quando não vem, todas usam a cor de
+            acento do tema.
+        nota: Nota de uma linha sob o gráfico, para avisar de um item deixado
+            de fora por estourar a escala. Vazia quando não há nota.
+
+    Returns:
+        O HTML do gráfico (SVG + nota), ou string vazia se `itens` vier vazio.
+    """
+    if not itens:
+        return ""
+
+    cor_de_acento_do_tema = "#1B6EF3"
+    if cores is None:
+        cores = [cor_de_acento_do_tema] * len(itens)
+
+    valores_numericos = [valor_numerico for _rotulo, _valor_formatado, valor_numerico in itens]
+    maior_valor = max(valores_numericos)
+
+    largura = 720
+    altura_por_item = 46
+    margem_esquerda = 4
+    margem_direita = 68
+    margem_topo = 6
+    altura_da_barra = 16
+    largura_util_da_barra = largura - margem_esquerda - margem_direita
+    altura = margem_topo + altura_por_item * len(itens)
+
+    partes_do_svg = [
+        f'<svg viewBox="0 0 {largura} {altura}" role="img" '
+        f'aria-label="{layout.escapar(titulo)}">'
+    ]
+
+    for indice, (rotulo, valor_formatado, valor_numerico) in enumerate(itens):
+        topo_do_item = margem_topo + indice * altura_por_item
+        y_do_rotulo = topo_do_item + 12
+        y_da_barra = topo_do_item + 18
+        cor_da_barra = cores[indice % len(cores)]
+
+        comprimento_da_barra = 0.0
+        if maior_valor > 0:
+            comprimento_da_barra = (valor_numerico / maior_valor) * largura_util_da_barra
+
+        partes_do_svg.append(
+            f'<text x="{margem_esquerda}" y="{y_do_rotulo:.1f}" '
+            f'fill="{COR_DO_TEXTO_DO_EIXO}" font-size="12">{layout.escapar(rotulo)}</text>'
+        )
+        partes_do_svg.append(
+            f'<rect x="{margem_esquerda}" y="{y_da_barra:.1f}" '
+            f'width="{comprimento_da_barra:.1f}" height="{altura_da_barra}" '
+            f'rx="3" fill="{cor_da_barra}"/>'
+        )
+        partes_do_svg.append(
+            f'<text x="{margem_esquerda + comprimento_da_barra + 8:.1f}" '
+            f'y="{y_da_barra + altura_da_barra - 3:.1f}" '
+            f'fill="{COR_DO_TEXTO_PRINCIPAL}" font-size="12" font-weight="650">'
+            f"{layout.escapar(valor_formatado)}</text>"
+        )
+
+    partes_do_svg.append("</svg>")
+
+    nota_html = ""
+    if nota:
+        nota_html = (
+            f'<p class="figuraLegenda" style="border:none;padding:8px 0 0;margin:0">{nota}</p>'
+        )
+
+    titulo_do_grafico = f'<div class="graficoTitulo">{layout.escapar(titulo)}</div>'
+
+    return (
+        f'<div class="grafico" style="max-width:{LARGURA_MAXIMA_GRAFICO_DE_BARRAS}px">'
+        f"{titulo_do_grafico}{''.join(partes_do_svg)}{nota_html}</div>"
+    )
+
+
+def _formatar_percentual_com_sinal(valor: float) -> str:
+    """Percentual inteiro com sinal explícito; o negativo usa o menos tipográfico."""
+    valor_absoluto = f"{abs(valor):.0f}"
+    if valor > 0:
+        return f"+{valor_absoluto}%"
+    if valor < 0:
+        return f"\u2212{valor_absoluto}%"
+    return f"{valor_absoluto}%"
+
+
+def montar_grafico_de_barras_agrupadas(
+    categorias: list[str],
+    series: dict[str, list[float]],
+    cores: list[str],
+    titulo: str,
+    nota: str = "",
+) -> str:
+    """Barras verticais agrupadas por categoria, com linha de base em zero.
+
+    Serve para comparar sistemas quando o valor pode ser positivo ou
+    negativo (vantagem ou desvantagem sobre uma régua): a linha de zero marca
+    onde a vantagem desaparece.
+
+    Args:
+        categorias: Nome de cada grupo, na ordem em que aparecem da esquerda
+            para a direita.
+        series: Um dicionário {nome_da_série: [um_valor_por_categoria]}. Toda
+            série precisa ter um valor para cada categoria, na mesma ordem de
+            `categorias`.
+        cores: Uma cor por série, na ordem em que `series` é percorrido.
+        titulo: Título do gráfico, dizendo o que o valor mede.
+        nota: Nota de uma linha sob o gráfico. Vazia quando não há nota.
+
+    Returns:
+        O HTML do gráfico (SVG + legenda), ou string vazia se `categorias`
+        vier vazio.
+
+    Raises:
+        ValueError: Se alguma série não tiver um valor por categoria.
+    """
+    if not categorias:
+        return ""
+
+    quantidade_de_categorias = len(categorias)
+    for nome_da_serie, valores_da_serie in series.items():
+        if len(valores_da_serie) != quantidade_de_categorias:
+            raise ValueError(
+                f"Série {nome_da_serie!r} tem {len(valores_da_serie)} valores; "
+                f"esperado {quantidade_de_categorias}."
+            )
+
+    todos_os_valores = []
+    for valores_da_serie in series.values():
+        todos_os_valores.extend(valores_da_serie)
+
+    menor_valor = min(0.0, min(todos_os_valores))
+    maior_valor = max(0.0, max(todos_os_valores))
+    folga = 1.0
+    if maior_valor != menor_valor:
+        folga = (maior_valor - menor_valor) * 0.12
+    menor_valor -= folga
+    maior_valor += folga
+
+    largura, altura = 720, 300
+    margem_esquerda, margem_direita, margem_topo, margem_base = 46, 16, 16, 40
+    area_util_largura = largura - margem_esquerda - margem_direita
+    area_util_altura = altura - margem_topo - margem_base
+
+    def posicao_y(valor: float) -> float:
+        fracao_do_topo = (maior_valor - valor) / (maior_valor - menor_valor)
+        return margem_topo + fracao_do_topo * area_util_altura
+
+    nomes_das_series = list(series.keys())
+    quantidade_de_series = len(nomes_das_series)
+    largura_do_grupo = area_util_largura / quantidade_de_categorias
+    espaco_entre_barras = 4.0
+    largura_da_barra = (largura_do_grupo * 0.62 - espaco_entre_barras * (quantidade_de_series - 1)) / quantidade_de_series
+
+    posicao_do_zero = posicao_y(0.0)
+
+    partes_do_svg = [
+        f'<svg viewBox="0 0 {largura} {altura}" role="img" aria-label="{layout.escapar(titulo)}">'
+    ]
+
+    partes_do_svg.append(
+        f'<line x1="{margem_esquerda}" y1="{posicao_do_zero:.1f}" '
+        f'x2="{largura - margem_direita}" y2="{posicao_do_zero:.1f}" '
+        f'stroke="{COR_DO_TEXTO_DO_EIXO}" stroke-width="1.4"/>'
+    )
+    partes_do_svg.append(
+        f'<text x="{margem_esquerda - 8}" y="{posicao_do_zero + 3:.1f}" text-anchor="end" '
+        f'fill="{COR_DO_TEXTO_DO_EIXO}" font-size="11">0%</text>'
+    )
+
+    for indice_da_categoria, nome_da_categoria in enumerate(categorias):
+        centro_do_grupo = margem_esquerda + largura_do_grupo * (indice_da_categoria + 0.5)
+        largura_total_das_barras = (
+            largura_da_barra * quantidade_de_series
+            + espaco_entre_barras * (quantidade_de_series - 1)
+        )
+        inicio_do_grupo = centro_do_grupo - largura_total_das_barras / 2
+
+        for indice_da_serie, nome_da_serie in enumerate(nomes_das_series):
+            valor_da_barra = series[nome_da_serie][indice_da_categoria]
+            cor_da_barra = cores[indice_da_serie % len(cores)]
+            x_da_barra = inicio_do_grupo + indice_da_serie * (largura_da_barra + espaco_entre_barras)
+            y_do_valor = posicao_y(valor_da_barra)
+            y_do_topo_da_barra = min(y_do_valor, posicao_do_zero)
+            altura_da_barra = max(abs(y_do_valor - posicao_do_zero), 1.0)
+
+            partes_do_svg.append(
+                f'<rect x="{x_da_barra:.1f}" y="{y_do_topo_da_barra:.1f}" '
+                f'width="{largura_da_barra:.1f}" height="{altura_da_barra:.1f}" '
+                f'fill="{cor_da_barra}"/>'
+            )
+
+            # O valor fica acima da barra positiva e abaixo da negativa, para
+            # nunca cair em cima da linha de zero.
+            if valor_da_barra >= 0:
+                y_do_rotulo = y_do_topo_da_barra - 5
+            else:
+                y_do_rotulo = y_do_topo_da_barra + altura_da_barra + 13
+            centro_da_barra = x_da_barra + largura_da_barra / 2
+            partes_do_svg.append(
+                f'<text x="{centro_da_barra:.1f}" y="{y_do_rotulo:.1f}" text-anchor="middle" '
+                f'fill="{COR_DO_TEXTO_DO_EIXO}" font-size="11" font-weight="600">'
+                f"{_formatar_percentual_com_sinal(valor_da_barra)}</text>"
+            )
+
+        partes_do_svg.append(
+            f'<text x="{centro_do_grupo:.1f}" y="{altura - margem_base + 16}" '
+            f'text-anchor="middle" fill="{COR_DO_TEXTO_DO_EIXO}" font-size="10.5">'
+            f"{layout.escapar(nome_da_categoria)}</text>"
+        )
+
+    partes_do_svg.append("</svg>")
+
+    itens_da_legenda = []
+    for indice_da_serie, nome_da_serie in enumerate(nomes_das_series):
+        cor_da_serie = cores[indice_da_serie % len(cores)]
+        itens_da_legenda.append(
+            f'<span style="display:inline-flex;align-items:center;gap:6px;margin-right:16px">'
+            f'<i style="width:10px;height:10px;border-radius:50%;background:{cor_da_serie};'
+            f'display:inline-block"></i>{layout.escapar(nome_da_serie)}</span>'
+        )
+    legenda_html = f'<div class="graficoLegenda">{"".join(itens_da_legenda)}</div>'
+
+    nota_html = ""
+    if nota:
+        nota_html = (
+            f'<p class="figuraLegenda" style="border:none;padding:8px 0 0;margin:0">{nota}</p>'
+        )
+
+    titulo_do_grafico = f'<div class="graficoTitulo">{layout.escapar(titulo)}</div>'
+
+    return (
+        '<div class="grafico">'
+        f"{titulo_do_grafico}{''.join(partes_do_svg)}{legenda_html}{nota_html}</div>"
     )

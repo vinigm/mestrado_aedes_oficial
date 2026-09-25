@@ -25,6 +25,7 @@ import navegacao  # noqa: E402
 
 import cenario_adotado as pagina_cenario_adotado  # noqa: E402
 import cenarios as pagina_cenarios  # noqa: E402
+import comparacoes as pagina_comparacoes  # noqa: E402
 import dados as pagina_dados  # noqa: E402
 import inicio as pagina_inicio  # noqa: E402
 import proximos_passos as pagina_proximos_passos  # noqa: E402
@@ -54,6 +55,7 @@ MODULOS_POR_PAGINA = {
     navegacao.PAGINA_INICIO.chave: pagina_inicio,
     navegacao.PAGINA_DADOS.chave: pagina_dados,
     navegacao.PAGINA_CENARIO_ADOTADO.chave: pagina_cenario_adotado,
+    navegacao.PAGINA_COMPARACOES.chave: pagina_comparacoes,
     navegacao.PAGINA_PROXIMOS_PASSOS.chave: pagina_proximos_passos,
     navegacao.PAGINA_SEMINARIO.chave: pagina_seminario,
     navegacao.PAGINA_CENARIOS.chave: pagina_cenarios,

@@ -161,6 +161,32 @@ PAGINA_CENARIOS = PaginaDoSite(
 )
 
 
+PAGINA_COMPARACOES = PaginaDoSite(
+    chave="comparacoes",
+    arquivo="comparacoes.html",
+    titulo_no_menu="Comparações",
+    icone="lupa",
+    titulo="Comparações",
+    resumo=(
+        "O modelo contra regras simples, contra métodos da literatura rodados "
+        "nos nossos dados e contra resultados publicados."
+    ),
+    rotulo_do_submenu="As comparações",
+    secoes=(
+        SecaoDaPagina(
+            "contra-regras-simples", "Contra as regras simples", "Regras simples"
+        ),
+        SecaoDaPagina(
+            "literatura-nos-dados",
+            "Métodos da literatura nos nossos dados",
+            "Literatura nos dados",
+        ),
+        SecaoDaPagina("resultados-publicados", "Resultados publicados"),
+        SecaoDaPagina("o-que-sustenta", "O que os números sustentam", "O que sustenta"),
+    ),
+)
+
+
 PAGINA_PROXIMOS_PASSOS = PaginaDoSite(
     chave="proximos-passos",
     arquivo="proximos-passos.html",
@@ -200,6 +226,7 @@ PAGINAS_DO_SITE: tuple[PaginaDoSite, ...] = (
     PAGINA_DADOS,
     PAGINA_CENARIOS,
     PAGINA_CENARIO_ADOTADO,
+    PAGINA_COMPARACOES,
     PAGINA_PROXIMOS_PASSOS,
     PAGINA_SEMINARIO,
 )
