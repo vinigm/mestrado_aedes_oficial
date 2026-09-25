@@ -10,7 +10,7 @@
 ## Em uma frase
 
 **Quem vence a régua em 3 meses faz isso com pouca margem, com mais dados ou com previsão climática do
-futuro — e o único estudo publicado que incluiu Porto Alegre falhou na cidade já em 4 semanas.**
+futuro — e o único estudo multicapitais que incluiu Porto Alegre teve na cidade um dos piores resultados, já em 4 semanas.**
 
 ---
 
@@ -38,7 +38,8 @@ futuro — e o único estudo publicado que incluiu Porto Alegre falhou na cidade
 **Int. J. Biometeorology 2026**, DOI `10.1007/s00484-026-03300-7`: CatBoost e GRU em 27 capitais,
 até 4 semanas.
 
-- **FATO:** Porto Alegre foi o **pior resultado das 27 capitais**: R² **−0,21**, sMAPE 160%, em até 4 semanas.
+- **FATO:** Porto Alegre ficou **entre os piores resultados das 27 capitais**: R² **−0,21**, sMAPE 160%, em até 4 semanas.
+  ⚠️ Corrigido em 25/09/2026: a primeira versão dizia "o pior"; a fonte diz "entre os piores".
 - **FATO:** as melhores capitais tiveram R² 0,87 a 0,92.
 - **Comparação, com cautela:** o nosso cenário adotado tem R² **0,63** em 4 semanas. O desenho é diferente, e
   isso não é teste, mas é a única referência publicada na mesma cidade.
