@@ -90,6 +90,8 @@
   `analises/2026-09-25_bateria_formulacao_do_alvo/`
 - 🚫 **Modelos de fundação zero-shot** (Chronos-Bolt, Chronos-2) não batem a régua em 3 meses; o vetor
   melhora o Chronos-2 (p Holm 0,007), só em 2024-2025. `analises/2026-09-25_modelos_de_fundacao/`
+- ✅ **Catálogo de modelos prontos:** 34 itens, 26 confirmados. Em 27 capitais, POA foi a pior (R² −0,21 em
+  4 semanas); não há modelo preditivo publicado no RS. `analises/2026-09-25_catalogo_modelos_prontos/`
 - ✅ **Novas fontes oficiais** (CEVS 2015-2026, TabNet, IBGE): 2015-2017 não trazem temporada epidêmica.
   `analises/2026-09-25_novas_fontes_oficiais/`
 
