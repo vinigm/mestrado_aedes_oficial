@@ -624,6 +624,7 @@ Ideias medidas e enterradas. Ficam aqui para não voltarem.
 | Taxa de crescimento do vetor | 25/09/2026 | −0,7% em h=12; os lags já carregam a informação. |
 | Modelo de fundação zero-shot para bater a régua em 3 meses | 25/09/2026 | Chronos-2 227,2 e Chronos-Bolt 289,5 contra 217,8 da régua. |
 | SARIMA e LASSO nesta série | 25/09/2026 | Explodem no começo de epidemia: modelo linear ou AR em log sem saturação não serve. |
+| Vírus no mosquito como atributo | 25/09/2026 | Decisão do Vinicius: exigiria dado de 2026 da Prefeitura, inviável. Existem 242 detecções em 2022-2025 (DENV-1: 237), primeira detecção mais cedo nos anos maiores; o zero de 2026 é limite da raspagem. |
 
 ---
 

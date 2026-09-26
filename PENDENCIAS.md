@@ -68,8 +68,8 @@
   com 4.085 notificações e 3.832 inconclusivos. A temporada 2026 ficou FORA da avaliação (dados até fev/26).
 - ⏳ **Plano municipal 2026:** testagem encolhe em Alerta/Epidemia; IMFA oficial (Crítico > 0,6). Conferir se
   `aedes_aegypti_por_armadilha` = IMFA. `analises/2026-09-25_limiar_oficial_de_surto/`
-- 🔴 **Vírus no mosquito:** os dados por armadilha têm 242 detecções de dengue, 2022-2025 (DENV-1: 237). 2026 tem
-  zero porque vem da nossa raspagem, que não coleta vírus: é artefato. ⏳ Pedir 2026 à SMS e ver se o portal mostra.
+- 🚫 **Vírus no mosquito como atributo** — descartado em 25/09/2026 pelo Vinicius: exigiria dado novo da Prefeitura,
+  inviável. ⏳ Seguem viáveis, com dado próprio: positividade das armadilhas e bairros em nível crítico.
 - ⏳ **Defasagem vetor → casos nunca estimada no projeto.** da Silva 2026 mede τ 0,27 · 0,50 · 0,59 nos
   lags 0 · 4 · 8 semanas; replicar com os nossos dados.
 
