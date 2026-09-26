@@ -28,3 +28,17 @@
   calendário, e ele valeu. Mas é hipótese, não conclusão.
 - ⚠️ **O clima escolhido difere entre os alvos**, porque a seleção de clima treina no próprio alvo, uma dívida
   técnica conhecida. `N1` e `C0` não diferem só no alvo.
+
+## O alarme em 2026, calculado depois
+
+Nenhuma semana de 2026 passou de 100 confirmados. Alarmes falsos em 20 semanas, de janeiro a maio:
+
+| Antecedência | Modelo de confirmados, `C0` | Régua "o ano passado passou de 100" |
+|---|---|---|
+| 1 semana | **0** | 15 |
+| 1 mês | **0** | 15 |
+| 2 meses | 9 | 15 |
+| 3 meses | 14 | 15 |
+
+- Em até 1 mês, o alarme não errou nenhuma vez. Em 3 meses, errou quase tanto quanto a régua: a previsão foi
+  4 vezes menor, mas ainda passou de 100 em 14 semanas.
