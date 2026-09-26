@@ -66,6 +66,8 @@
   de epidemia ainda. Considerar limiar fixo.
 - 🔴 **2026 descolou:** o vetor de out/25-mar/26 igual ao de 2024-25 (média 0,71), mas só 11 confirmados (CEVS) —
   com 4.085 notificações e 3.832 inconclusivos. A temporada 2026 ficou FORA da avaliação (dados até fev/26).
+- ⏳ **Plano municipal 2026:** testagem encolhe em Alerta/Epidemia; IMFA oficial (Crítico > 0,6). Conferir se
+  `aedes_aegypti_por_armadilha` = IMFA. `analises/2026-09-25_limiar_oficial_de_surto/`
 - ⏳ **Defasagem vetor → casos nunca estimada no projeto.** da Silva 2026 mede τ 0,27 · 0,50 · 0,59 nos
   lags 0 · 4 · 8 semanas; replicar com os nossos dados.
 
