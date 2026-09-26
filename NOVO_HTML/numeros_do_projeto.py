@@ -706,3 +706,49 @@ GANHO_DO_VETOR_NA_FOLHA_20: tuple[tuple[str, float, float], ...] = (
     ("2 meses", 8.1, 0.0056),
     ("3 meses", 12.3, 0.0151),
 )
+
+
+# Os 12 horizontes do composto e da regua, para os graficos do slide.
+#
+# ⚠️ POR QUE 12 E NAO 4: com so os quatro pontos do painel (1, 4, 8, 12) o
+# grafico liga 4 a 8 por uma reta, e essa reta cruza a da regua por volta de
+# 6,6 — enquanto o cruzamento REAL, medido semana a semana, e em 5. A reta
+# mentia sobre o que acontece no vao. Com os 12 pontos, o desenho mostra o
+# ziguezague que existe de fato e o marco cai onde as linhas se cruzam.
+#
+# Fonte: `analises/2026-09-26_modelo_composto/saidas/painel_12_horizontes.csv`.
+# Cada item e (semanas, erro absoluto medio, R2, captura do pico).
+COMPOSTO_NOS_12_HORIZONTES: tuple[tuple[int, float, float, float], ...] = (
+    (1, 98.0, 0.898, 0.886),
+    (2, 162.0, 0.746, 0.758),
+    (3, 185.2, 0.698, 0.717),
+    (4, 199.6, 0.717, 0.706),
+    (5, 225.4, 0.636, 0.606),
+    (6, 221.5, 0.609, 0.571),
+    (7, 232.4, 0.531, 0.508),
+    (8, 223.2, 0.576, 0.510),
+    (9, 234.8, 0.545, 0.484),
+    (10, 236.8, 0.559, 0.499),
+    (11, 241.6, 0.570, 0.479),
+    (12, 243.8, 0.558, 0.504),
+)
+
+REGUA_NOS_12_HORIZONTES: tuple[tuple[int, float, float, float], ...] = (
+    (1, 202.1, 0.633, 0.567),
+    (2, 202.4, 0.634, 0.574),
+    (3, 211.8, 0.624, 0.566),
+    (4, 213.2, 0.623, 0.569),
+    (5, 213.6, 0.622, 0.573),
+    (6, 213.8, 0.621, 0.575),
+    (7, 214.1, 0.620, 0.577),
+    (8, 216.2, 0.618, 0.575),
+    (9, 217.3, 0.617, 0.574),
+    (10, 217.4, 0.616, 0.574),
+    (11, 217.6, 0.616, 0.574),
+    (12, 217.8, 0.616, 0.574),
+)
+
+# Posicao de cada metrica dentro das tuplas acima.
+POSICAO_DO_MAE = 1
+POSICAO_DO_R2 = 2
+POSICAO_DA_CAPTURA = 3

@@ -108,6 +108,17 @@ Erro absoluto médio, horizonte a horizonte:
 | 11 | 241,6 | **217,6** | régua |
 | 12 | 243,8 | **217,8** | régua |
 
+### ⚠️ Uma armadilha de desenho que apareceu aqui
+
+O slide desenhava a curva com **quatro pontos** — 1, 4, 8 e 12 semanas — ligados por reta. Nesse desenho,
+as duas retas se cruzam por volta de **6,6 semanas**, enquanto o cruzamento real é em **5**.
+
+A reta estava mentindo sobre o que acontece entre 4 e 8, e não por pouco: naquele intervalo o erro do
+composto **ziguezagueia** (225,4 · 221,5 · 232,4 · 223,2) em vez de subir em linha. Interpolar por cima
+disso inventa um comportamento que não existe.
+
+**O gráfico passou a plotar os 12 horizontes.** Fica menos liso, e é isso mesmo: o ziguezague é o dado.
+
 **A fronteira é nítida e cai em cerca de um mês.** Até 4 semanas o composto vence nas três medidas; de 5
 em diante, não vence em nenhuma.
 

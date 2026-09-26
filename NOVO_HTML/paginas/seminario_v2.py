@@ -402,9 +402,9 @@ def _slide_folha_5_contra_folha_20() -> deck.Slide:
 # `analises/2026-09-26_modelo_composto/`. Ate 4 semanas o composto ganha nas
 # tres; depois disso, nao.
 MEDIDAS_DO_COMPOSTO = (
-    ("R² (o quanto explica)", "r2", 3, "#1B6EF3", 6),
-    ("Erro médio (casos/semana)", "erro_medio_absoluto", 1, "#C0392B", 5),
-    ("Captura do pico", "captura_do_pico", 3, "#1F7A4D", 6),
+    ("R² (o quanto explica)", "r2", 3, "#1B6EF3", 6, numeros.POSICAO_DO_R2),
+    ("Erro médio (casos/semana)", "erro_medio_absoluto", 1, "#C0392B", 5, numeros.POSICAO_DO_MAE),
+    ("Captura do pico", "captura_do_pico", 3, "#1F7A4D", 6, numeros.POSICAO_DA_CAPTURA),
 )
 COR_DA_REGUA_SAZONAL = "#8A94A6"
 NOME_DA_LINHA_DA_REGUA = "Régua sazonal"
@@ -420,7 +420,7 @@ def _grafico_de_uma_medida(
     atributo: str,
     cor: str,
     horizonte_em_que_a_regua_passa: int,
-    por_braco: dict,
+    posicao_da_medida: int,
 ) -> str:
     """Desenha uma medida ao longo dos horizontes, com a regua pontilhada.
 
@@ -431,18 +431,20 @@ def _grafico_de_uma_medida(
         horizonte_em_que_a_regua_passa: A partir de quantas semanas a regua
             sazonal passa a vencer o composto nesta medida. Vira uma linha
             vertical pontilhada no grafico.
-        por_braco: As medidas indexadas por braco e por rotulo de horizonte.
+        posicao_da_medida: Indice desta medida dentro das tuplas de 12
+            horizontes em `numeros_do_projeto`.
 
     Returns:
         O HTML do grafico.
     """
-    pontos_do_composto = []
-    pontos_da_regua = []
-    for rotulo in ROTULOS_DOS_HORIZONTES:
-        do_composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
-        da_regua = por_braco[numeros.NOME_DA_REGUA][rotulo]
-        pontos_do_composto.append((float(do_composto.semanas), getattr(do_composto, atributo)))
-        pontos_da_regua.append((float(da_regua.semanas), getattr(da_regua, atributo)))
+    pontos_do_composto = [
+        (float(linha[0]), linha[posicao_da_medida])
+        for linha in numeros.COMPOSTO_NOS_12_HORIZONTES
+    ]
+    pontos_da_regua = [
+        (float(linha[0]), linha[posicao_da_medida])
+        for linha in numeros.REGUA_NOS_12_HORIZONTES
+    ]
 
     return graficos.montar_grafico_de_linhas(
         {"Composto": pontos_do_composto, NOME_DA_LINHA_DA_REGUA: pontos_da_regua},
@@ -473,13 +475,13 @@ def _slide_modelo_composto() -> deck.Slide:
         por_braco.setdefault(linha.braco, {})[linha.rotulo] = linha
 
     cabecalhos = ["Horizonte"] + [
-        _celula_colorida(rotulo, cor) for rotulo, _, _, cor, _ in MEDIDAS_DO_COMPOSTO
+        _celula_colorida(rotulo, cor) for rotulo, _, _, cor, _, _ in MEDIDAS_DO_COMPOSTO
     ]
     linhas = []
     for rotulo in ROTULOS_DOS_HORIZONTES:
         do_composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
         celulas = [f"<b>{layout.escapar(rotulo)}</b>"]
-        for _, atributo, casas, cor, _ in MEDIDAS_DO_COMPOSTO:
+        for _, atributo, casas, cor, _, _ in MEDIDAS_DO_COMPOSTO:
             valor = getattr(do_composto, atributo)
             formatado = (
                 numeros.formatar_percentual(valor, 1)
@@ -490,8 +492,8 @@ def _slide_modelo_composto() -> deck.Slide:
         linhas.append(celulas)
 
     graficos_das_medidas = "".join(
-        _grafico_de_uma_medida(rotulo, atributo, cor, cruzamento, por_braco)
-        for rotulo, atributo, _, cor, cruzamento in MEDIDAS_DO_COMPOSTO
+        _grafico_de_uma_medida(rotulo, atributo, cor, cruzamento, posicao)
+        for rotulo, atributo, _, cor, cruzamento, posicao in MEDIDAS_DO_COMPOSTO
     )
 
     return deck.Slide(
