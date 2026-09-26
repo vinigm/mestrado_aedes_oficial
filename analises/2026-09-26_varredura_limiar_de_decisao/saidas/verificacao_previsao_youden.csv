@@ -1,0 +1,9 @@
+modelo,h,d_melhor_youden,melhor_youden,previsao_confirmada,observacao
+M_adotado,1,600.0,0.9583333333333335,True,
+M_adotado,4,421.0,0.96,False,
+M_adotado,8,200.0,0.9189189189189189,False,
+M_adotado,12,50.0,0.7837837837837838,False,
+M_folha20,1,600.0,0.9871794871794872,True,
+M_folha20,4,300.0,0.9199999999999999,False,
+M_folha20,8,300.0,1.0,False,
+M_folha20,12,100.0,0.8783783783783785,False,

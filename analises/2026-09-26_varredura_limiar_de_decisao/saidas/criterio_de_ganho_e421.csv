@@ -1,0 +1,5 @@
+modelo,h,youden_modelo,youden_r_ano_passado,vence_youden,p_valor_holm_vs_r_ano_passado,conta_como_ganho_e421
+M_adotado,4,0.96,0.7274074074074073,True,1.0,False
+M_folha20,4,0.9199999999999999,0.7274074074074073,True,1.0,False
+M_adotado,12,0.3928571428571428,0.7364864864864864,False,0.2039577153045678,False
+M_folha20,12,0.472972972972973,0.7364864864864864,False,0.1484375,False

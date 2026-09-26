@@ -60,13 +60,14 @@
 - 🟢 **Aceleração de transmissão como régua de alarme:** média móvel 4 ÷ 26 semanas, alarme acima de **1,33**. Em 8
   países: sensibilidade 100% × 30% do canal, antecedência 6,9 × 1,6 semanas. Precisa de 26 semanas, não de anos.
   ⚠️ Regra importada pode não transferir: a da Malásia foi a pior aqui (Youden −0,05).
-- 🔴 **Todo p de alarme do projeto é otimista:** as 39 semanas de surto são **2 blocos contíguos** (2024 e 2025),
-  não 39 observações independentes, e o McNemar trata semana como par independente. Vale inclusive para o p Holm
-  0,037 de 13/09, o único resultado que sobrevive a Holm. Estimar a inflação por bloco-bootstrap **antes** de
-  qualquer rodada nova de alarme. `analises/2026-09-26_limiar_para_serie_curta/`
-- ⏳ **Usar os 4 estágios oficiais** (140 · 421 · 702) no lugar do limiar 100. Rascunho de pré-declaração pronto;
-  cético deu **SÓ SE**, com escopo cortado. Falta o Vinicius decidir família e métrica.
-- ⏳ **Limiar de decisão do alarme nunca foi ajustado** — hoje dispara quando a previsão passa de 100, o mesmo número
+- ✅ **Inflação do p medida** (26/09): contra `R_hoje`, o resultado é robusto ao bloco; contra `R_ano_passado`, o p
+  nominal é otimista em até **3,4×**. Como o veredito contra a régua já é negativo, a inflação o reforça.
+  ⏳ **O p Holm 0,037 de 13/09 segue sem medir** — as previsões por semana nunca foram salvas em disco; só dá para
+  refazer retreinando o classificador. Citar com a ressalva até lá.
+- 🚫 **Alarme no estágio Alerta (421): o modelo NÃO vence a régua sazonal** — 0 de 4 combinações, 26/09,
+  pré-declarado. Vence `R_hoje` em 3 meses com folga (p Holm ≤ 0,00014).
+- ⏳ **Limiar de decisão: separar decisão de evento só ajuda em 1 semana.** Em h=4, 8 e 12 o melhor corte fica
+  ABAIXO de 421, contra a previsão declarada. Descritivo; nenhum D foi adotado. — hoje dispara quando a previsão passa de 100, o mesmo número
   do evento. Varredura + semanas consecutivas + alarme composto com a régua: recálculo sobre previsões salvas.
 - 🚫 **Vírus no mosquito como atributo** — descartado pelo Vinicius em 25/09: exigiria dado novo da Prefeitura.
 - 🚫 **Notificações como alvo ou entrada** (25/09): pioram em 3 meses. 🚫 **SARIMA e LASSO** (25/09): explodem.

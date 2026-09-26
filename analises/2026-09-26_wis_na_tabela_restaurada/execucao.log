@@ -1,0 +1,148 @@
+==============================================================================
+RODADA B — quantis multiplos e WIS (segunda bateria noturna)
+==============================================================================
+Disparando 60 combinacoes (ate 8 processos em paralelo)...
+  [ 1/60] cenario_adotado  h= 4  q=0.05  292 semanas  (  32.9s desde o inicio)
+  [ 2/60] cenario_adotado  h= 1  q=0.05  295 semanas  (  35.0s desde o inicio)
+  [ 3/60] cenario_adotado  h= 1  q=0.10  295 semanas  (  40.4s desde o inicio)
+  [ 4/60] cenario_adotado  h= 1  q=0.95  295 semanas  (  53.9s desde o inicio)
+  [ 5/60] cenario_adotado  h= 1  q=0.25  295 semanas  (  61.0s desde o inicio)
+  [ 6/60] cenario_adotado  h= 1  q=0.90  295 semanas  (  65.2s desde o inicio)
+  [ 7/60] cenario_adotado  h= 4  q=0.10  292 semanas  (  67.1s desde o inicio)
+  [ 8/60] cenario_adotado  h= 1  q=0.50  295 semanas  (  73.4s desde o inicio)
+  [ 9/60] cenario_adotado  h= 1  q=0.75  295 semanas  (  79.0s desde o inicio)
+  [10/60] cenario_adotado  h= 8  q=0.05  288 semanas  (  91.6s desde o inicio)
+  [11/60] cenario_adotado  h= 4  q=0.25  292 semanas  (  92.4s desde o inicio)
+  [12/60] cenario_adotado  h= 8  q=0.10  288 semanas  ( 101.7s desde o inicio)
+  [13/60] cenario_adotado  h= 4  q=0.50  292 semanas  ( 105.4s desde o inicio)
+  [14/60] cenario_adotado  h= 4  q=0.95  292 semanas  ( 113.7s desde o inicio)
+  [15/60] cenario_adotado  h= 8  q=0.25  288 semanas  ( 115.7s desde o inicio)
+  [16/60] cenario_adotado  h= 4  q=0.90  292 semanas  ( 120.3s desde o inicio)
+  [17/60] cenario_adotado  h= 4  q=0.75  292 semanas  ( 124.1s desde o inicio)
+  [18/60] cenario_adotado  h=12  q=0.05  284 semanas  ( 135.5s desde o inicio)
+  [19/60] cenario_adotado  h=12  q=0.10  284 semanas  ( 139.4s desde o inicio)
+  [20/60] cenario_adotado  h=12  q=0.25  284 semanas  ( 147.8s desde o inicio)
+  [21/60] cenario_adotado  h= 8  q=0.50  288 semanas  ( 153.3s desde o inicio)
+  [22/60] cenario_adotado  h= 8  q=0.95  288 semanas  ( 154.8s desde o inicio)
+  [23/60] cenario_adotado  h= 8  q=0.75  288 semanas  ( 159.2s desde o inicio)
+  [24/60] cenario_adotado  h= 8  q=0.90  288 semanas  ( 159.9s desde o inicio)
+  [25/60] cenario_adotado  h=12  q=0.50  284 semanas  ( 175.8s desde o inicio)
+  [26/60]  histgb_folha20  h= 1  q=0.05  295 semanas  ( 176.0s desde o inicio)
+  [27/60]  histgb_folha20  h= 1  q=0.10  295 semanas  ( 178.9s desde o inicio)
+  [28/60]  histgb_folha20  h= 1  q=0.25  295 semanas  ( 190.3s desde o inicio)
+  [29/60] cenario_adotado  h=12  q=0.95  284 semanas  ( 197.0s desde o inicio)
+  [30/60] cenario_adotado  h=12  q=0.90  284 semanas  ( 198.4s desde o inicio)
+  [31/60]  histgb_folha20  h= 1  q=0.50  295 semanas  ( 199.4s desde o inicio)
+  [32/60] cenario_adotado  h=12  q=0.75  284 semanas  ( 202.7s desde o inicio)
+  [33/60]  histgb_folha20  h= 1  q=0.95  295 semanas  ( 210.5s desde o inicio)
+  [34/60]  histgb_folha20  h= 4  q=0.05  292 semanas  ( 212.1s desde o inicio)
+  [35/60]  histgb_folha20  h= 1  q=0.90  295 semanas  ( 214.4s desde o inicio)
+  [36/60]  histgb_folha20  h= 4  q=0.10  292 semanas  ( 220.8s desde o inicio)
+  [37/60]  histgb_folha20  h= 1  q=0.75  295 semanas  ( 221.2s desde o inicio)
+  [38/60]  histgb_folha20  h= 4  q=0.25  292 semanas  ( 228.6s desde o inicio)
+  [39/60]  histgb_folha20  h= 8  q=0.05  288 semanas  ( 232.8s desde o inicio)
+  [40/60]  histgb_folha20  h= 4  q=0.50  292 semanas  ( 235.0s desde o inicio)
+  [41/60]  histgb_folha20  h= 4  q=0.95  292 semanas  ( 240.2s desde o inicio)
+  [42/60]  histgb_folha20  h= 8  q=0.10  288 semanas  ( 241.1s desde o inicio)
+  [43/60]  histgb_folha20  h= 4  q=0.75  292 semanas  ( 243.8s desde o inicio)
+  [44/60]  histgb_folha20  h= 8  q=0.25  288 semanas  ( 244.7s desde o inicio)
+  [45/60]  histgb_folha20  h= 4  q=0.90  292 semanas  ( 245.3s desde o inicio)
+  [46/60]  histgb_folha20  h=12  q=0.05  284 semanas  ( 258.6s desde o inicio)
+  [47/60]  histgb_folha20  h=12  q=0.10  284 semanas  ( 262.4s desde o inicio)
+  [48/60]  histgb_folha20  h= 8  q=0.50  288 semanas  ( 262.7s desde o inicio)
+  [49/60]  histgb_folha20  h=12  q=0.25  284 semanas  ( 264.9s desde o inicio)
+  [50/60]  histgb_folha20  h= 8  q=0.90  288 semanas  ( 267.9s desde o inicio)
+  [51/60]  histgb_folha20  h= 8  q=0.95  288 semanas  ( 268.2s desde o inicio)
+  [52/60]  histgb_folha20  h= 8  q=0.75  288 semanas  ( 271.1s desde o inicio)
+  [53/60]  histgb_folha20  h=12  q=0.50  284 semanas  ( 276.9s desde o inicio)
+  [54/60]  histgb_folha20  h=12  q=0.95  284 semanas  ( 290.5s desde o inicio)
+  [55/60]  histgb_folha20  h=12  q=0.90  284 semanas  ( 293.9s desde o inicio)
+  [56/60]  histgb_folha20  h=12  q=0.75  284 semanas  ( 294.5s desde o inicio)
+  [57/60] cenario_adotado  h= 8  q=0.85  288 semanas  ( 314.1s desde o inicio)
+  [58/60] cenario_adotado  h= 1  q=0.85  295 semanas  ( 314.2s desde o inicio)
+  [59/60] cenario_adotado  h= 4  q=0.85  292 semanas  ( 314.6s desde o inicio)
+  [60/60] cenario_adotado  h=12  q=0.85  284 semanas  ( 315.2s desde o inicio)
+Treino completo em 5.3 min.
+
+TRAVA — cenario adotado (q0,85) contra a tabela atualizada
+  janela: 2024-01-01 a 2026-02-01
+    h= 1  MAE   97.99  (esperado 98.0)  n=102  ok
+    h= 4  MAE  219.67  (esperado 219.7)  n=102  ok
+    h= 8  MAE  272.63  (esperado 272.6)  n=102  ok
+    h=12  MAE  278.82  (esperado 278.7)  n=102  ok
+  veredito: VALIDA
+
+Quantis cruzados: 1784 de 2318 origens (77.0%) precisaram de rearranjo isotonico.
+    cenario_adotado  h= 1  247/295 origens com cruzamento
+    cenario_adotado  h= 4  259/292 origens com cruzamento
+    cenario_adotado  h= 8  240/288 origens com cruzamento
+    cenario_adotado  h=12  222/284 origens com cruzamento
+     histgb_folha20  h= 1  211/295 origens com cruzamento
+     histgb_folha20  h= 4  212/292 origens com cruzamento
+     histgb_folha20  h= 8  199/288 origens com cruzamento
+     histgb_folha20  h=12  194/284 origens com cruzamento
+
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_wis_na_tabela_restaurada/saidas/previsoes_quantis.csv
+
+Regua climatologica: 258 de 307 datas-alvo com historico suficiente (>= 3 anos desde 2018).
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_wis_na_tabela_restaurada/saidas/wis_e_cobertura.csv
+
+WIS medio e cobertura, por modelo/h/recorte:
+             modelo  h   recorte  wis_medio  cobertura_50  cobertura_90   n
+    cenario_adotado  1 2024-2025 101.892961      0.412371      0.773196  97
+    cenario_adotado  1      2026   2.093813      0.600000      1.000000   5
+    cenario_adotado  4 2024-2025 215.377408      0.257732      0.690722  97
+    cenario_adotado  4      2026   3.657067      0.400000      1.000000   5
+    cenario_adotado  8 2024-2025 288.624668      0.247423      0.546392  97
+    cenario_adotado  8      2026  10.109788      0.400000      1.000000   5
+    cenario_adotado 12 2024-2025 300.692693      0.195876      0.515464  97
+    cenario_adotado 12      2026   7.658617      0.200000      1.000000   5
+     histgb_folha20  1 2024-2025 121.327136      0.340206      0.845361  97
+     histgb_folha20  1      2026   2.087651      0.800000      1.000000   5
+     histgb_folha20  4 2024-2025 199.002275      0.319588      0.680412  97
+     histgb_folha20  4      2026   4.171500      0.200000      1.000000   5
+     histgb_folha20  8 2024-2025 258.981139      0.195876      0.577320  97
+     histgb_folha20  8      2026  12.480792      0.400000      1.000000   5
+     histgb_folha20 12 2024-2025 278.573763      0.268041      0.567010  97
+     histgb_folha20 12      2026   7.414968      0.600000      1.000000   5
+regua_climatologica  1 2024-2025 292.684301      0.177083      0.395833  96
+regua_climatologica  1      2026   2.068571      0.800000      1.000000   5
+regua_climatologica  4 2024-2025 313.479911      0.177083      0.385417  96
+regua_climatologica  4      2026   2.068571      0.800000      1.000000   5
+regua_climatologica  8 2024-2025 322.173735      0.166667      0.354167  96
+regua_climatologica  8      2026   2.068571      0.800000      1.000000   5
+regua_climatologica 12 2024-2025 324.152976      0.177083      0.375000  96
+regua_climatologica 12      2026   2.068571      0.800000      1.000000   5
+    cenario_adotado  1      tudo  97.000846      0.421569      0.784314 102
+    cenario_adotado  4      tudo 204.998959      0.264706      0.705882 102
+    cenario_adotado  8      tudo 274.971978      0.254902      0.568627 102
+    cenario_adotado 12      tudo 286.328277      0.196078      0.539216 102
+     histgb_folha20  1      tudo 115.482063      0.362745      0.852941 102
+     histgb_folha20  4      tudo 189.451747      0.313725      0.696078 102
+     histgb_folha20  8      tudo 246.897789      0.205882      0.598039 102
+     histgb_folha20 12      tudo 265.281665      0.284314      0.588235 102
+regua_climatologica  1      tudo 278.297383      0.207921      0.425743 101
+regua_climatologica  4      tudo 298.063508      0.207921      0.415842 101
+regua_climatologica  8      tudo 306.326945      0.198020      0.386139 101
+regua_climatologica 12      tudo 308.208204      0.207921      0.405941 101
+
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_wis_na_tabela_restaurada/saidas/familia_b.csv
+
+WIS modelo x WIS regua climatologica, Wilcoxon pareado, Holm por recorte:
+  recorte          modelo  h  n_pares  wis_medio_modelo  wis_medio_regua  diferenca_media  estatistica_wilcoxon      p_bruto   p_holm  significativo
+2024-2025 cenario_adotado  4       96        217.583852       313.479911       -95.896059                1128.0 1.158936e-05 0.000035           True
+2024-2025 cenario_adotado 12       96        303.778694       324.152976       -20.374282                1872.0 9.564059e-02 0.095641          False
+2024-2025  histgb_folha20  4       96        201.041091       313.479911      -112.438819                 940.0 3.932771e-07 0.000002           True
+2024-2025  histgb_folha20 12       96        281.452282       324.152976       -42.700695                1428.0 1.005870e-03 0.002012           True
+     2026 cenario_adotado  4        5          3.657067         2.068571         1.588495                   2.0 1.875000e-01 0.250000          False
+     2026 cenario_adotado 12        5          7.658617         2.068571         5.590045                   0.0 6.250000e-02 0.250000          False
+     2026  histgb_folha20  4        5          4.171500         2.068571         2.102929                   1.0 1.250000e-01 0.250000          False
+     2026  histgb_folha20 12        5          7.414968         2.068571         5.346396                   0.0 6.250000e-02 0.250000          False
+     tudo cenario_adotado  4      101        206.993417       298.063508       -91.070091                1344.0 3.021039e-05 0.000091           True
+     tudo cenario_adotado 12      101        289.119284       308.208204       -19.088919                2211.0 2.169073e-01 0.216907          False
+     tudo  histgb_folha20  4      101        191.295072       298.063508      -106.768436                1166.0 1.798199e-06 0.000007           True
+     tudo  histgb_folha20 12      101        267.886078       308.208204       -40.322126                1733.0 4.316113e-03 0.008632           True
+
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_wis_na_tabela_restaurada/saidas/figura_intervalos_2026.png
+
+RODADA B CONCLUIDA.
