@@ -109,4 +109,9 @@ adotado, `random_state=42` e 1 thread.
 
 ## Emendas
 
-Nenhuma até agora.
+- **25/09/2026, 23h50, antes de rodar:** a trava do cenário adotado passa a usar **âncoras recalculadas na tabela
+  atualizada**, e não os números publicados. Até fev/2026, o adotado dá h=1 **97,4** e h=12 **280,0**, contra 98,0 e
+  278,7 publicados. A diferença vem da revisão dos casos de jan/2026 e da ordem das colunas de clima; ver o adendo
+  em `analises/2026-09-25_atualizacao_dados_2026/CERTIFICACAO.md`. A trava exige reproduzir esses valores com
+  tolerância de 0,2. Os de h=4 e h=8 são calculados e registrados pelo próprio script. Com a série maior, o
+  recorte 2026 vai até **19/04/2026**, a última semana válida depois do corte de maturidade.

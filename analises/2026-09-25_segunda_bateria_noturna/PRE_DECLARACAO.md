@@ -80,3 +80,10 @@ Se as semanas de jan-fev/2026 mudaram com a tabela nova, a diferença é explica
 - **25/09/2026, 23h30, antes de rodar:** o Vinicius conferiu o Quadro 1 do plano municipal no PDF. São **4
   estágios**, não 3. A3 passa a incluir também o limiar de **140** casos por semana, o piso de Mobilização
   (10 por 100 mil). Ficam 100, 140, 421 e 702.
+
+- **25/09/2026, 23h50, antes de rodar:** a trava do cenário adotado passa a usar **âncoras recalculadas na tabela
+  atualizada**, e não os números publicados. Até fev/2026, o adotado dá h=1 **97,4** e h=12 **280,0**, contra 98,0 e
+  278,7 publicados. A diferença vem da revisão dos casos de jan/2026 e da ordem das colunas de clima; ver o adendo
+  em `analises/2026-09-25_atualizacao_dados_2026/CERTIFICACAO.md`. A trava exige reproduzir esses valores com
+  tolerância de 0,2. Os de h=4 e h=8 são calculados e registrados pelo próprio script. Com a série maior, o
+  recorte 2026 vai até **19/04/2026**, a última semana válida depois do corte de maturidade.
