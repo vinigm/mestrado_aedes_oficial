@@ -502,6 +502,9 @@ def _slide_modelo_composto() -> deck.Slide:
         rotulo_curto="Composto",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
+            + '<p class="deckNotaDeGrafico">⚠️ O ponto de corte entre as duas '
+            "configurações foi escolhido olhando o período de avaliação — "
+            "adotá-lo exige pré-declarar o critério e repetir a medição.</p>"
             + f'<div class="graficosLadoALado">{graficos_das_medidas}</div>'
         ),
         nota=(
@@ -518,7 +521,21 @@ def _slide_modelo_composto() -> deck.Slide:
 
 
 def _slide_resultados() -> deck.Slide:
-    """O desempenho da configuração adotada na previsão de casos."""
+    """O desempenho da configuração adotada na previsão de casos.
+
+    🚫 **FORA DA APRESENTAÇÃO desde 26/09/2026, por decisão do Vinicius.**
+
+    Motivo: os professores já foram informados de que "as armadilhas não fazem
+    diferença", e depois disso a mudança de hiperparâmetro mostrou que fazem. O
+    que ele quer apresentar agora é o **modelo composto**, e este slide traz só
+    os números da folha 5 — a versão anterior à melhora.
+
+    A função continua aqui, fora da lista de `montar_slides()`, para o caso de
+    ele querer o slide de volta. O que se perde ao tirá-lo: o R² e a captura do
+    pico da configuração adotada sozinha. O erro médio dela continua visível no
+    slide da folha 5 × 20, e nos horizontes de 1 a 3 semanas o composto **é** a
+    configuração adotada.
+    """
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
         titulo="Prevendo o número de casos",
@@ -707,10 +724,6 @@ def montar_slides() -> list[deck.Slide]:
         _slide_colunas_de_clima(),
         _slide_cenarios(),
         _slide_adotado(),
-        # A ordem importa: os resultados da configuracao OFICIAL vem primeiro.
-        # O composto e ilustracao, e nao pode aparecer antes daquilo que ele
-        # se propoe a melhorar.
-        _slide_resultados(),
         _slide_folha_5_contra_folha_20(),
         _slide_modelo_composto(),
         _slide_alarme(),
