@@ -679,7 +679,10 @@ PAINEL_DO_COMPOSTO: tuple[DesempenhoDeUmBraco, ...] = (
     DesempenhoDeUmBraco(NOME_DO_ADOTADO, 1, "1 semana", 98.0, 0.898, 0.886),
     DesempenhoDeUmBraco(NOME_DO_ADOTADO, 4, "1 mês", 219.7, 0.628, 0.702),
     DesempenhoDeUmBraco(NOME_DO_ADOTADO, 8, "2 meses", 272.6, 0.450, 0.417),
-    DesempenhoDeUmBraco(NOME_DO_ADOTADO, 12, "3 meses", 278.8, 0.437, 0.388),
+    # 278,7 e o valor do painel publicado; o recalculo de 26/09 da 278,82, dentro
+    # da tolerancia de 0,2 da trava. O deck usa 278,7 em toda parte para nao
+    # mostrar dois arredondamentos do mesmo numero em slides vizinhos.
+    DesempenhoDeUmBraco(NOME_DO_ADOTADO, 12, "3 meses", 278.7, 0.437, 0.388),
     DesempenhoDeUmBraco(NOME_DA_FOLHA_20, 1, "1 semana", 133.6, 0.834, 0.938),
     DesempenhoDeUmBraco(NOME_DA_FOLHA_20, 4, "1 mês", 199.6, 0.717, 0.706),
     DesempenhoDeUmBraco(NOME_DA_FOLHA_20, 8, "2 meses", 223.2, 0.576, 0.510),

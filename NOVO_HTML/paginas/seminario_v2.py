@@ -707,9 +707,12 @@ def montar_slides() -> list[deck.Slide]:
         _slide_colunas_de_clima(),
         _slide_cenarios(),
         _slide_adotado(),
+        # A ordem importa: os resultados da configuracao OFICIAL vem primeiro.
+        # O composto e ilustracao, e nao pode aparecer antes daquilo que ele
+        # se propoe a melhorar.
+        _slide_resultados(),
         _slide_folha_5_contra_folha_20(),
         _slide_modelo_composto(),
-        _slide_resultados(),
         _slide_alarme(),
         _slide_o_vetor(),
         _slide_a_defasagem(),
