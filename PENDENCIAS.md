@@ -97,8 +97,13 @@
 
 - 🚫 **2026 não entra (Vinicius):** com séries crescentes é impossível prever um ano de 19 casos. A tabela oficial voltou à
   de antes (até SE 202617, avaliação até 01/02/2026); a versão com 2026 fica guardada em `atualizacao_dados_2026/`.
-- ⚠️ A busca de 120 e a segunda bateria rodaram na tabela com 2026 e ficam só como registro. Em 2024-25: WIS melhor que a
-  régua dos sprints em 1 mês; a melhor da busca perde para a régua em 3 meses (239,6 × 226,8). Refazer antes de citar.
+- ⚠️ A busca de 120 e a segunda bateria rodaram na tabela com 2026 e ficam só como registro; a melhor da busca perde
+  para a régua em 3 meses (239,6 × 226,8).
+- ✅ **WIS refeito na tabela oficial** (26/09): em 1 mês os dois modelos vencem a régua climatológica (p Holm < 0,0001);
+  em 3 meses só o **folha 20** vence (p Holm 0,0020) — o adotado **não** (p Holm 0,096).
+  ⏳ Cobertura segue ruim: o de 50% cobre de 20% a 41%, o de 90% de 52% a 85%; 77% dos quantis cruzaram.
+  ⚠️ Dívida: h=1 do adotado diverge **−2,75%** da rodada anterior, acima do teto de 1%; causa provável é a seleção de
+  clima nos 60% mais antigos, não confirmada. `analises/2026-09-26_wis_na_tabela_restaurada/`
   `analises/2026-09-25_segunda_bateria_noturna/` · `analises/2026-09-25_busca_de_hiperparametros/`
 
 ### 25/09/2026 — régua, literatura e novas tentativas
