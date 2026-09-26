@@ -1,0 +1,21 @@
+Previsoes lidas: 16226 linhas, 2 modelos.
+
+=== CRUZAMENTO DE QUANTIS, POR FAIXA ===
+                          origens  taxa_que_cruzou  linhas_corrigidas  correcao_mediana  correcao_p90  casos_reais_medianos
+faixa                                                                                                                      
+1. calmaria (0-20)           1628              0.8               4229               1.0          10.6                   2.0
+2. subida (21-140)            220              0.8                590              10.0          64.2                  39.0
+3. Mobilizacao (141-421)      144              0.7                345              27.6         111.6                 245.0
+4. Alerta ou mais (>421)      326              0.7                667              61.3         231.3                1109.0
+
+=== COBERTURA DOS INTERVALOS, POR FAIXA ===
+                                          semanas  cobertura_ic50  cobertura_ic90
+modelo          faixa                                                            
+cenario_adotado 1. calmaria (0-20)            814           0.592           0.905
+                2. subida (21-140)            110           0.182           0.636
+                3. Mobilizacao (141-421)       72           0.278           0.472
+                4. Alerta ou mais (>421)      163           0.080           0.178
+histgb_folha20  1. calmaria (0-20)            814           0.638           0.934
+                2. subida (21-140)            110           0.382           0.727
+                3. Mobilizacao (141-421)       72           0.292           0.569
+                4. Alerta ou mais (>421)      163           0.061           0.270
