@@ -61,6 +61,8 @@
 - ⏳ **Vetor ajuda em 2024-2025 e atrapalha em 2022-2023** em três famílias de modelo (HistGB, LightGBM,
   Chronos-2). Explicar antes de 2026-2027. Chronos-2 com casos + vetor, sem clima, não rodou.
 - ⏳ Janelas curtas parecem melhorar o **alarme** em h=12 (0,846 × 0,769) — exploratório.
+- ⏳ **Canal endêmico em POA:** limite 0 em semanas fora da temporada (2018-2021 sem casos); não serve de régua
+  de epidemia ainda. Considerar limiar fixo.
 - ⏳ **Defasagem vetor → casos nunca estimada no projeto.** da Silva 2026 mede τ 0,27 · 0,50 · 0,59 nos
   lags 0 · 4 · 8 semanas; replicar com os nossos dados.
 
@@ -94,6 +96,8 @@
   `analises/2026-09-25_bateria_formulacao_do_alvo/`
 - 🚫 **Modelos de fundação zero-shot** (Chronos-Bolt, Chronos-2) não batem a régua em 3 meses; o vetor
   melhora o Chronos-2 (p Holm 0,007), só em 2024-2025. `analises/2026-09-25_modelos_de_fundacao/`
+- ✅ **Alarme contra o canal endêmico:** em 1 mês o modelo vence; em 3 meses vence "esperar o surto" (p Holm
+  0,0006) e empata com "o ano passado passou de 100". `analises/2026-09-25_alarme_contra_canal_endemico/`
 - ✅ **Página "Comparações" no site, só local** (`NOVO_HTML/saida/comparacoes.html`), entre Cenário adotado e
   Próximos passos. ⚠️ Não publicada. ⏳ Unificar 278,7 (painel) × 278,8 (régua) do cenário adotado em 3 meses.
 - ✅ **Comparação direta com a literatura:** acima dos estudos de pesquisa em POA e no Brasil; abaixo dos

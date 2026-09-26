@@ -66,6 +66,7 @@
 | 25/09/2026 | Bateria de formulação do alvo | 🚫 seis variantes, nenhuma melhora nem bate a régua |
 | 25/09/2026 | Modelos de fundação zero-shot | 🚫 não batem a régua; ⚠️ o vetor ajuda o Chronos-2 só em 2024-2025 |
 | 25/09/2026 | SARIMA, LASSO e ensemble | 🚫 explodem ou não batem a régua; 🔴 pela perda quantílica, o Chronos-2 vence o B0 |
+| 25/09/2026 | Alarme contra o canal endêmico | ✅ 1 mês: modelo vence; 3 meses: empata com o ano passado |
 
 ---
 

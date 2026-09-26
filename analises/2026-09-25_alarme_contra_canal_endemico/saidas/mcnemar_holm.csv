@@ -1,0 +1,17 @@
+evento,canal,h,modelo,regra_base,n_pares,n_discordantes,n_modelo_acerta_base_erra,n_base_acerta_modelo_erra,p_valor_bruto,p_valor_holm,significativo_holm_005
+E_100,-,4,M_adotado,R_hoje,102,15,13,2,0.00738525390625,0.1033935546875,False
+E_100,-,4,M_adotado,R_ano_passado,102,7,5,2,0.453125,1.0,False
+E_100,-,4,M_folha20,R_hoje,102,16,12,4,0.076812744140625,0.844940185546875,False
+E_100,-,4,M_folha20,R_ano_passado,102,8,4,4,1.0,1.0,False
+E_100,-,12,M_adotado,R_hoje,102,37,31,6,4.12575900554657e-05,0.0006188638508319855,True
+E_100,-,12,M_adotado,R_ano_passado,102,16,4,12,0.076812744140625,0.844940185546875,False
+E_100,-,12,M_folha20,R_hoje,102,35,33,2,3.6729034036397934e-08,5.876645445823669e-07,True
+E_100,-,12,M_folha20,R_ano_passado,102,8,3,5,0.7265625,1.0,False
+E_canal,C_log,4,M_adotado,R_hoje,100,14,9,5,0.4239501953125,1.0,False
+E_canal,C_log,4,M_adotado,R_ano_passado,101,23,13,10,0.6776394844055176,1.0,False
+E_canal,C_log,4,M_folha20,R_hoje,100,16,10,6,0.454498291015625,1.0,False
+E_canal,C_log,4,M_folha20,R_ano_passado,101,23,13,10,0.6776394844055176,1.0,False
+E_canal,C_log,12,M_adotado,R_hoje,101,38,26,12,0.03355243967962451,0.40262927615549415,False
+E_canal,C_log,12,M_adotado,R_ano_passado,101,16,7,9,0.803619384765625,1.0,False
+E_canal,C_log,12,M_folha20,R_hoje,101,36,26,10,0.011330984183587134,0.14730279438663274,False
+E_canal,C_log,12,M_folha20,R_ano_passado,101,20,10,10,1.0,1.0,False
