@@ -310,23 +310,75 @@ def _slide_alarme() -> deck.Slide:
 
 
 def _slide_o_vetor() -> deck.Slide:
-    """A relação vetor-casos que se vê no gráfico, e que o modelo ainda não capta.
+    """A relação vetor-casos, e o que o modelo já faz com ela.
 
-    ⚠️ Este é o slide mais delicado da apresentação, e o enquadramento é
-    deliberado. O que foi medido é que as comparações feitas até aqui não
-    capturaram ganho do vetor. Daí NÃO se deduz que o mosquito não ajude —
-    sem vetor não há transmissão, e o padrão está visível no gráfico. A leitura
-    honesta é que o desenho atual não alcança a relação, e isso é limitação do
-    modelo, não ausência do fenômeno.
+    ⚠️ **Corrigido em 26/09/2026.** A versão anterior deste slide dizia que o
+    modelo "ainda não captura" a relação. A bateria de 24/09/2026 mostrou que
+    isso afirma menos do que a medição sustenta, em dois pontos:
+
+    1. O modelo adotado **usa** o vetor com peso — a partir de 1 mês à frente,
+       depende mais dele do que do próprio histórico de casos.
+    2. Trocando **um único hiperparâmetro** — a folha mínima, de 5 para 20 — o
+       vetor passa a **reduzir** o erro de 3 meses, com significância.
+
+    O que continua verdadeiro é que o cenário adotado, com folha 5, não extrai
+    ganho do vetor. Isso é escolha de configuração, não ausência do fenômeno.
 
     Nunca dizer "o vetor não ajuda" nem "não deu correlação": as duas frases
-    afirmam mais do que a medição sustenta, e é justamente o que o orientador
-    pediu para evitar em 21/09/2026.
+    afirmam mais do que a medição sustenta, e é o que o orientador pediu para
+    evitar em 21/09/2026.
+    """
+    cabecalhos = ["Configuração", "Queda do erro em 3 meses com o vetor", "p de Holm"]
+    linhas = [
+        ["HistGB, folha 5 — <b>o cenário adotado</b>", "+2,2%", "não significativo"],
+        ["HistGB, folha <b>20</b>", "<b>+12,3%</b>", "<b>0,015</b>"],
+        ["LightGBM, folha <b>20</b>", "<b>+15,5%</b>", "<b>0,0001</b>"],
+    ]
+    return deck.Slide(
+        topico=TOPICO_RESULTADOS,
+        titulo="O modelo usa o vetor — e com outro hiperparâmetro, ele reduz o erro",
+        rotulo_curto="O vetor",
+        corpo=(
+            layout.montar_tabela(cabecalhos, linhas)
+            + layout.montar_aviso(
+                "bom",
+                "Fato medido em 24/09/2026",
+                "A partir de <b>1 mês</b> à frente, o modelo adotado já depende "
+                "<b>mais do vetor</b> do que do histórico de casos: embaralhar as "
+                "colunas do mosquito aumenta o erro de <b>46% a 73%</b>; embaralhar "
+                "o histórico de casos, de <b>20% a 47%</b>.",
+            )
+            + layout.montar_aviso(
+                "atencao",
+                "Ressalva que vai junto",
+                "O ganho da folha 20 é <b>exploratório</b> e carregado pela "
+                "temporada de <b>2024</b>. Em 2025 ele só se repete com "
+                "significância no LightGBM, em 11 e 12 semanas.",
+            )
+        ),
+        nota=(
+            "⚠️ <b>O slide mais delicado, e ele mudou.</b> A mensagem agora é: o "
+            "modelo <b>usa</b> o mosquito, e a configuração adotada é que não "
+            "extrai ganho dele. <b>Nunca</b> dizer 'não ajuda' ou 'não deu "
+            "correlação'. Se perguntarem por que não adotamos a folha 20: porque "
+            "o critério de escolha do projeto olha a calibração de 2020-2023, e "
+            "ali a folha 20 é ~30% pior — é pendência declarada, não descuido."
+        ),
+        e_denso=True,
+    )
+
+
+def _slide_a_defasagem() -> deck.Slide:
+    """O atraso entre a curva do mosquito e a dos casos.
+
+    Slide novo, de 26/09/2026. Existe porque a figura do slide anterior
+    mostrava a defasagem a olho nu e a apresentação nunca a nomeava — e o
+    estudo da mesma cidade a mediu, enquanto nós não.
     """
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="A relação existe no gráfico — o modelo ainda não a captura",
-        rotulo_curto="O vetor",
+        titulo="A subida do mosquito vem antes da subida dos casos",
+        rotulo_curto="A defasagem",
         corpo=(
             '<div class="deckFiguraCheia">'
             '<img src="imagens/vetor_vs_casos.png" '
@@ -334,19 +386,19 @@ def _slide_o_vetor() -> deck.Slide:
             'semana a semana">'
             + layout.montar_aviso(
                 "atencao",
-                "Limitação do modelo",
-                "A subida do <b>mosquito</b> vem antes da subida dos "
-                "<b>casos</b> nas quatro temporadas — e o modelo <b>ainda "
-                "não consegue agregar essa relação</b> à previsão.",
+                "Leitura de gráfico, não medição nossa",
+                "A ordem entre as duas curvas se repete nas temporadas, mas "
+                "<b>nós não estimamos a defasagem</b>. Quem estimou foi o estudo "
+                "da mesma cidade e da mesma armadilha (da Silva et al. 2026): a "
+                "correlação com os casos sobe de <b>0,27</b> sem atraso para "
+                "<b>0,50</b> com <b>4 semanas</b> de atraso.",
             )
             + "</div>"
         ),
         nota=(
-            "⚠️ <b>O slide mais delicado.</b> Dizer: o padrão está no gráfico, o "
-            "modelo ainda não o alcança, e isso é <b>limitação do desenho</b> — "
-            "alvo na consequência, horizonte curto, histórico de casos ocupando "
-            "o lugar do vetor. <b>Nunca</b> dizer 'não ajuda' ou 'não deu "
-            "correlação'."
+            "Estender a memória do vetor para 6 a 12 semanas <b>não</b> ajudou "
+            "(bateria de 24/09) — o gargalo não é quanto passado do vetor o "
+            "modelo enxerga. Estimar a defasagem é próximo passo declarado."
         ),
         e_figura=True,
     )
@@ -404,6 +456,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_resultados(),
         _slide_alarme(),
         _slide_o_vetor(),
+        _slide_a_defasagem(),
         _slide_proximos_passos(),
     ]
 
