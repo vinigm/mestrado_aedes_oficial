@@ -67,8 +67,8 @@
 | 25/09/2026 | Modelos de fundação zero-shot | 🚫 não batem a régua; ⚠️ o vetor ajuda o Chronos-2 só em 2024-2025 |
 | 25/09/2026 | SARIMA, LASSO e ensemble | 🚫 explodem ou não batem a régua; 🔴 pela perda quantílica, o Chronos-2 vence o B0 |
 | 25/09/2026 | Alarme contra o canal endêmico | ✅ 1 mês: modelo vence; 3 meses: empata com o ano passado |
-| 26/09/2026 | Busca aleatória de hiperparâmetros, julgada em 2026 | 🚫 nenhuma das 120 passa |
-| 26/09/2026 | Segunda bateria noturna: resultados em 2026 | 🔴 o vetor inverte em 2026; ✅ WIS vence a régua dos sprints em 2024-25 |
+| 26/09/2026 | Busca aleatória de hiperparâmetros, julgada em 2026 | ⚠️ julgamento em 2026 é descritivo; em 2024-25 a melhor perde para a régua em 3 meses |
+| 26/09/2026 | Segunda bateria noturna: resultados em 2026 | ⚠️ 2026 fora do domínio, só descritivo; ✅ WIS vence a régua dos sprints em 2024-25 |
 
 ---
 
@@ -211,6 +211,10 @@ que 4 temporadas não dão.
 ### 1.8 🔴 Os resultados na temporada de 2026, o primeiro ano atípico (26/09/2026)
 
 **Por quê.** 2026 teve o mosquito em nível crítico e só 19 confirmados. Nenhuma decisão anterior o usou.
+
+🧭 **Leitura corrigida em 26/09, pelo Vinicius:** 2026 está **fora do domínio**, porque nenhuma série crescente prevê
+um ano de 19 casos. Os resultados abaixo **descrevem o método num ano calmo e não o julgam**. A metodologia se testa
+acumulando temporadas, julgadas por tipo.
 
 **O que deu**, 16 semanas de jan a abr/2026, pré-declarado e certificado:
 

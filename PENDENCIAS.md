@@ -33,6 +33,8 @@
 ## ⏳ Decisões NOSSAS a pré-declarar
 
 - **Recorte da tese** — depende do eixo.
+- ⏳ **Protocolo para testar a METODOLOGIA temporada a temporada** (Vinicius, 26/09): julgar por tipo de temporada,
+  com o critério de sucesso de cada tipo escrito antes; ano calmo não se julga pelo erro absoluto.
 - **Alvo:** vetor (letra do PEP) × casos (o código). O PEP também erra o horizonte: é **3 meses** (Vinicius, 23/09).
 - ✅ **Município de notificação mantido** (Vinicius, 25/09), para comparar; residência fica como cenário alternativo.
 - **Limiar de surto:** 100 casos/semana é convenção; o plano municipal usa 140 · 421 · 702. Ver
@@ -43,8 +45,8 @@
 
 ## ⏳ Rodadas candidatas
 
-- 🔴 **O vetor ajuda em anos de epidemia e atrapalha em 2026:** com folha 20, em 3 meses, 254 × 270 em 2024-25, mas
-  579 × 315 em 2026 (p Holm 0,0499 contra). No Chronos-2 o vetor também só ajudou em 2024-25. Explicar antes de 2027.
+- ⏳ **O vetor ajuda em ano de epidemia e empurra a previsão para cima em ano calmo:** folha 20, 3 meses, 254 × 270 em
+  2024-25; 579 × 315 em 2026, descritivo. No Chronos-2: ajuda em 2024-25, atrapalha em 2022-23.
 - **Confirmatória em 2027**, pré-declarar antes da temporada: modelo × régua por skill; o vetor piora o alarme (13/09).
 - ⏳ **Faixas de previsão estreitas demais:** o intervalo de 50% cobre 14%; a calibração conformal piora os alarmes.
 - ⏳ **Positividade das armadilhas e bairros em nível crítico** como atributos, com dado próprio de 2012 a 2026.
@@ -71,8 +73,10 @@
 ### 26/09/2026 — segunda bateria noturna: tudo medido em 2026, o ano atípico
 
 - ✅ **Dados de 2026 na tabela oficial** (19 confirmados); DENGBR26 lido uma vez só, com teste; 2018-2025 intactos.
-- 🔴 **Em 2026 o vetor atrapalha**, com significância. ✅ Modelo erra bem menos que "o ano passado" (p Holm 0,004).
-- ✅ **Pelo WIS, o modelo vence a régua dos sprints** em 1 mês em 2024-25. 🚫 Busca de 120 configurações: nenhuma passa.
+- 🧭 **2026 fora do domínio (Vinicius):** nenhuma série crescente prevê um ano de 19 casos; o erro de 2026 descreve o
+  método num ano calmo, não o julga. Vetor 579 × 315 e o julgamento da busca viram descritivos.
+- ✅ **Pelo WIS, o modelo vence a régua dos sprints** em 1 mês em 2024-25. ⚠️ Busca de 120: em 2024-25, a melhor
+  perde para a régua em 3 meses (239,6 × 226,8), mesmo com a escolha a seu favor.
   `analises/2026-09-25_segunda_bateria_noturna/` · `analises/2026-09-25_busca_de_hiperparametros/`
 
 ### 25/09/2026 — régua, literatura e novas tentativas

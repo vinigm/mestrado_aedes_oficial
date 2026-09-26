@@ -4,6 +4,12 @@
 > com emendas. Certificação em [CERTIFICACAO.md](CERTIFICACAO.md). A escolha usou só 2022-2025; o julgamento foi
 > em 2026, de janeiro a 19/04, 16 semanas.
 
+> 🧭 **Leitura corrigida em 26/09/2026, pelo Vinicius:** 2026 está fora do domínio, então o julgamento em 2026 não
+> escolhe configuração: ganha quem prevê baixo, como mostra o LightGBM com folhas lineares. **O dado que conta é
+> 2024-2025**, com a ressalva de que ele entrou na escolha. Em 3 meses, a melhor, `LGB_best`, erra **239,6**,
+> contra 293,3 do adotado, 254,1 do HistGB folha 20 e **226,8 da régua sazonal**
+> (`saidas/descritivo_2024_2025.csv`). **Mesmo com a escolha a seu favor, ela não bate a régua.**
+
 ## Em uma frase
 
 **Nenhuma das 120 configurações passou no critério.** A única que erra muito menos em 2026 é o LightGBM com

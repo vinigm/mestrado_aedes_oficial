@@ -10,10 +10,18 @@
 
 ---
 
+> 🧭 **Leitura corrigida em 26/09/2026, pelo Vinicius:** 2026 está **fora do domínio** do modelo. Nenhuma série de
+> temporadas crescentes permite prever um ano de 19 confirmados, então **o erro em 2026 não testa a metodologia**.
+> A metodologia se testa acumulando temporadas, julgadas por tipo. Os números abaixo seguem sendo fatos medidos,
+> mas as leituras de veredito (A1 "inverte", A2, D) passam a ser **descritivas**: mostram como o método se comporta
+> num ano calmo. O que não depende de 2026 continua valendo: a seção B em 2024-2025.
+
+---
+
 ## Em uma frase
 
-**Em 2026, o mosquito que ajudava o modelo nos anos de epidemia passou a atrapalhar, e com significância:** com
-vetor, o modelo previu temporada; sem vetor, acertou a calmaria.
+**Em 2026, um ano calmo com o mosquito em nível crítico, o vetor empurrou a previsão para cima:** com vetor, o
+modelo previu temporada; sem vetor, acertou a calmaria. É descritivo, porque 2026 está fora do domínio do modelo.
 
 ---
 
@@ -102,8 +110,8 @@ Nas duas, a média fica **pior** que o cenário adotado, 482,9.
 
 ## O que muda
 
-- 🔴 **O achado do vetor com folha 20, de 24/09, não se sustenta em 2026:** ele inverte, com significância. Não
-  pode ir para o seminário como resultado.
+- ⚠️ **O achado do vetor com folha 20, de 24/09, segue exploratório:** carregado por 2024. 2026, fora do domínio,
+  não o confirma nem o refuta. Continua fora do seminário como resultado, por ser exploratório.
 - ✅ **O que se sustenta:** até 1 mês o modelo é bom. E, pelo WIS de 2024-2025, ele vence a régua oficial dos sprints
   brasileiros.
 - 🔴 **O mosquito é necessário, mas não suficiente.** Em ano de epidemia ele ajuda a prever. Num ano com o
