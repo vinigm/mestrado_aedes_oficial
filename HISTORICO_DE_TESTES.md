@@ -231,7 +231,13 @@ um ano de 19 casos. A tabela oficial voltou à de antes. O que está abaixo fica
 
 ## 2. A armadilha ajuda a prever o número de casos?
 
-**Esta é a pergunta central da tese.** Foi atacada por quatro caminhos independentes de desenho.
+⚠️ **Correção de 26/09/2026, pelo Vinicius.** Esta seção dizia "esta é a pergunta central da tese". **Não é.**
+A pergunta da tese é *"quanto vale a rede de armadilhas para a **vigilância** de dengue em Porto Alegre?"*
+(CLAUDE.md). Prever o número de casos é **um** instrumento de vigilância entre vários — alarme de surto,
+medida de risco, priorização espacial e previsão do próprio vetor são os outros. Um resultado negativo aqui
+responde a este instrumento, **não** à pergunta da tese.
+
+Foi atacada por quatro caminhos independentes de desenho.
 
 ### 2.1 O teste decisivo — 60 comparações pareadas
 

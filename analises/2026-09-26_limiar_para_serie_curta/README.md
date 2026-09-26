@@ -53,6 +53,10 @@ Dois instrumentos que **não exigem histórico longo**:
   `s41467-024-48465-0`.
 - É a lógica do **Plano Municipal de Contingência de 2026** da SMS-POA, com os patamares de
   **140 · 421 · 702** casos/semana. A proposta do Vinicius cai aqui, e é a parte certa da ideia.
+- ⚠️ **Correção do mesmo dia, depois de ler o Quadro 1 linha a linha:** o plano é **híbrido**, não taxa fixa pura.
+  O número fixo sempre vem ligado por **E** ao Limite de Alerta ou ao Limite Superior Endêmico, que são canal
+  endêmico. A diferença que salva: esse canal é calculado sobre o **RS inteiro**, não sobre Porto Alegre, e por
+  isso não tem o problema de limite zero. Detalhe em `../2026-09-25_limiar_oficial_de_surto/README.md`.
 
 ### 3.2 🟢 Aceleração de transmissão — o achado da varredura
 

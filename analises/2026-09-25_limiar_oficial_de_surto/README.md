@@ -18,8 +18,42 @@
 
   - ✅ **Conferido pelo Vinicius no PDF**, em 25/09/2026. A primeira versão deste README listava 3 níveis e
     omitia a **Mobilização**.
-  - ⚠️ **O plano nunca declara a unidade dos limiares 10, 30 e 50.** Ler como "por 100 mil habitantes, por semana"
-    é a convenção nacional, e é **inferência**. A conversão em casos por semana depende dela.
+  - ⚠️ **O plano nunca declara a unidade dos limiares 10, 30 e 50.** Ler como "por 100 mil habitantes" é a
+    convenção nacional, e é **inferência**. A conversão em casos por semana depende dela.
+
+### 🔴 Adendo de 26/09/2026 — o Quadro 1 lido linha a linha (PDF p. 15, imagem)
+
+Três coisas que a tabela acima esconde, e que mudam como o número pode ser citado:
+
+- **O número fixo NUNCA aparece sozinho.** Em todo estágio ele vem ligado por **E** ao Limite de Alerta (LA) ou
+  ao Limite Superior Endêmico (LSE). Exemplo literal da Epidemia: *"acima do LSE nas últimas 4SE **E** taxa de
+  incidência de casos confirmados acima de 50,0 em pelo menos uma das 4SE"*.
+  - **Consequência:** tratar 140 · 421 · 702 como limiar puro de contagem é **simplificação declarada**, não o
+    critério oficial. Pega metade de um E.
+- **LA e LSE são canal endêmico, mas calculado no ESTADO, não na cidade.** Texto do plano: LSE = *"média móvel da
+  incidência de casos prováveis somada a dois desvios padrões (taxa de incidências no RS)"*; LA = 45% abaixo.
+  - **Corrige uma afirmação minha de 26/09:** eu disse que o plano não depende de histórico. Depende, em metade do
+    critério. Mas a base é o RS inteiro, com série e volume muito maiores que Porto Alegre, então **não sofre o
+    problema de limite zero** que medimos na cidade.
+- **Definições de caso diferentes dentro do mesmo quadro:** os cortes 10/30/50 são sobre **confirmados**; LA e LSE
+  são sobre **prováveis**.
+- **A unidade "por semana" fica confirmada pela estrutura:** a taxa é avaliada *em cada uma* das últimas 4 SE
+  ("em todas as últimas 4SE", "em pelo menos 1 das 4SE"). O que segue sem fonte é só a base 100 mil.
+- **Alerta e Epidemia também disparam por óbito e por sorotipo novo**, que o modelo não prevê.
+
+### Quantas semanas mudam de classe, medido
+
+Avaliação desde 2024, **121 semanas**, maior semana com **2.381** casos:
+
+| Limiar | Semanas acima | 2024 | 2025 |
+|---|---|---|---|
+| 100, convenção do projeto | 39 | 20 | 19 |
+| **140, Mobilização** | **38** | 20 | 18 |
+| 421, Alerta | 28 | 14 | 14 |
+| 702, Epidemia | 23 | 11 | 12 |
+
+- **Trocar 100 por 140 muda 1 semana em 121.** É troca praticamente sem custo, que ganha dono institucional.
+- 421 e 702 são eventos genuinamente diferentes, e mais raros.
   - **Limite Superior Endêmico:** média móvel da incidência de prováveis no RS + 2 desvios-padrão.
   - **Limite de Alerta:** 45% abaixo do Limite Superior Endêmico.
   - PDF local: `Artigos de referencia/2026_Plano_Municipal_de_Contingencia_Arboviroses.docx_0.pdf`.
