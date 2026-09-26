@@ -378,11 +378,26 @@ code.nomeColuna{white-space:nowrap}
   aspect-ratio:16/9; min-height:440px;
   display:flex; flex-direction:column}
 
-.deckTela{position:relative; flex:1 1 auto; min-height:0}
+.deckTela{position:relative; flex:1 1 auto; min-height:0; overflow:hidden}
 
-.deckSlide{position:absolute; inset:0; padding:32px 48px 40px;
-  display:none; flex-direction:column; overflow:auto}
+/* O slide e uma TELA FIXA de 1280x720, como um slide de apresentacao de
+   verdade. O tamanho nao muda com a janela: o que muda e a escala aplicada
+   pelo script, que encolhe tudo junto para caber no palco.
+
+   Por que assim: antes o slide era fluido e tinha `overflow:auto`. Numa janela
+   estreita o conteudo transbordava e virava rolagem — o que num PDF ou num
+   projetor significa conteudo cortado. Com tela fixa, o que cabe no desenho
+   cabe em qualquer tamanho, e o que nao cabe aparece como problema na hora de
+   montar o slide, nao na hora de apresentar. */
+.deckSlide{position:absolute; top:0; left:0;
+  width:1280px; height:720px; padding:40px 56px 48px;
+  transform-origin:top left;
+  display:none; flex-direction:column; overflow:hidden}
 .deckSlide.ativo{display:flex}
+
+/* Linha de legenda sob uma tabela, para explicar o que aparece no grafico
+   seguinte sem gastar a altura de um aviso inteiro. */
+.deckNotaDeGrafico{margin:6px 0 2px; font-size:.78rem; color:var(--muted)}
 
 /* Índice horizontal: uma trilha contínua com um marcador por tópico. A linha
    cinza atravessa tudo; a linha azul por cima cresce conforme a apresentação
@@ -546,6 +561,36 @@ code.nomeColuna{white-space:nowrap}
       primaria.style.width = recolhida ? '256px' : '62px';
     });
   }
+})();
+
+// Escala os slides para que a tela fixa de 1280x720 caiba no palco, do mesmo
+// jeito que um projetor encaixa um slide de apresentacao. Roda na carga, a
+// cada mudanca de tamanho da janela e quando o menu lateral recolhe.
+(function ajustarEscalaDosSlides() {
+  var LARGURA_DA_TELA = 1280;
+  var ALTURA_DA_TELA = 720;
+
+  function aplicar() {
+    var tela = document.querySelector(".deckTela");
+    if (!tela) return;
+    var escala = Math.min(
+      tela.clientWidth / LARGURA_DA_TELA,
+      tela.clientHeight / ALTURA_DA_TELA
+    );
+    var sobra = (tela.clientWidth - LARGURA_DA_TELA * escala) / 2;
+    var slides = document.querySelectorAll(".deckSlide");
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].style.transform =
+        "translateX(" + sobra.toFixed(1) + "px) scale(" + escala.toFixed(4) + ")";
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", aplicar);
+  } else {
+    aplicar();
+  }
+  window.addEventListener("resize", aplicar);
 })();
 
 (function(){

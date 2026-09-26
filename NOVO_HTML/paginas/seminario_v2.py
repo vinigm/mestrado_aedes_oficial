@@ -43,6 +43,9 @@ import dados as pagina_de_dados
 # Os tópicos da apresentação, na ordem. Ficam nomeados aqui porque a agenda e o
 # índice horizontal precisam da mesma lista — e uma lista só evita que os dois
 # divirjam quando um tópico for renomeado.
+ROTULOS_DOS_HORIZONTES = ("1 semana", "1 mês", "2 meses", "3 meses")
+
+
 def _destacar(texto_da_celula: str, em_destaque: bool) -> str:
     """Poe a celula em negrito quando ela e a melhor da comparacao.
 
@@ -341,7 +344,7 @@ def _slide_folha_5_contra_folha_20() -> deck.Slide:
     for linha in numeros.PAINEL_DO_COMPOSTO:
         por_braco.setdefault(linha.braco, {})[linha.rotulo] = linha
 
-    rotulos = ["1 semana", "1 mês", "2 meses", "3 meses"]
+    rotulos = list(ROTULOS_DOS_HORIZONTES)
     cabecalhos_do_erro = ["Horizonte", "Adotado · folha 5", "Folha 20, com vetor"]
     linhas_do_erro = []
     for rotulo in rotulos:
@@ -391,86 +394,108 @@ def _slide_folha_5_contra_folha_20() -> deck.Slide:
     )
 
 
+# As tres medidas do painel, cada uma com a sua cor — as mesmas do slide de
+# resultados, para que tabela e grafico se liguem sem legenda. A regua sazonal
+# tem cor propria, cinza, e linha pontilhada: ela e REFERENCIA, nao resultado.
+MEDIDAS_DO_COMPOSTO = (
+    ("R² (o quanto explica)", "r2", 3, "#1B6EF3"),
+    ("Erro médio (casos/semana)", "erro_medio_absoluto", 1, "#C0392B"),
+    ("Captura do pico", "captura_do_pico", 3, "#1F7A4D"),
+)
+COR_DA_REGUA_SAZONAL = "#8A94A6"
+NOME_DA_LINHA_DA_REGUA = "Régua sazonal"
+
+
+def _celula_colorida(conteudo: str, cor: str) -> str:
+    """Poe a celula na cor da medida, ligando coluna e grafico."""
+    return f'<span style="color:{cor}">{conteudo}</span>'
+
+
+def _grafico_de_uma_medida(
+    rotulo_do_eixo: str, atributo: str, cor: str, por_braco: dict
+) -> str:
+    """Desenha uma medida ao longo dos horizontes, com a regua pontilhada.
+
+    Args:
+        rotulo_do_eixo: Texto do eixo vertical, tambem usado no titulo.
+        atributo: Campo de `DesempenhoDeUmBraco` a ler.
+        cor: Cor da linha do composto, a mesma da coluna na tabela.
+        por_braco: As medidas indexadas por braco e por rotulo de horizonte.
+
+    Returns:
+        O HTML do grafico.
+    """
+    pontos_do_composto = []
+    pontos_da_regua = []
+    for rotulo in ROTULOS_DOS_HORIZONTES:
+        do_composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
+        da_regua = por_braco[numeros.NOME_DA_REGUA][rotulo]
+        pontos_do_composto.append((float(do_composto.semanas), getattr(do_composto, atributo)))
+        pontos_da_regua.append((float(da_regua.semanas), getattr(da_regua, atributo)))
+
+    return graficos.montar_grafico_de_linhas(
+        {"Composto": pontos_do_composto, NOME_DA_LINHA_DA_REGUA: pontos_da_regua},
+        "horizonte (semanas)",
+        rotulo_do_eixo,
+        cores=[cor, COR_DA_REGUA_SAZONAL],
+        series_tracejadas={NOME_DA_LINHA_DA_REGUA},
+    )
+
+
 def _slide_modelo_composto() -> deck.Slide:
-    """O composto, com a régua sazonal como linha de referência nos gráficos."""
+    """O composto, no mesmo formato do slide de resultados.
+
+    Tres medidas, tres cores, tres graficos lado a lado — e em cada grafico a
+    regua sazonal aparece na mesma medida, em cinza e pontilhada, para deixar
+    claro que ela e referencia e nao um quarto resultado.
+
+    ⚠️ Refeito em 26/09/2026: a versao anterior punha as tres linhas num
+    grafico so, todas medindo erro medio, e a coluna da regua na tabela ficava
+    ao lado do R2 como se fosse outra metrica. Confundia.
+    """
     por_braco = {}
     for linha in numeros.PAINEL_DO_COMPOSTO:
         por_braco.setdefault(linha.braco, {})[linha.rotulo] = linha
 
-    rotulos = ["1 semana", "1 mês", "2 meses", "3 meses"]
-    cabecalhos = [
-        "Horizonte",
-        "Erro médio",
-        "R² (o quanto explica)",
-        "Captura do pico",
-        "Régua sazonal (erro)",
+    cabecalhos = ["Horizonte"] + [
+        _celula_colorida(rotulo, cor) for rotulo, _, _, cor in MEDIDAS_DO_COMPOSTO
     ]
     linhas = []
-    for rotulo in rotulos:
-        composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
-        regua = por_braco[numeros.NOME_DA_REGUA][rotulo]
-        composto_vence = composto.erro_medio_absoluto < regua.erro_medio_absoluto
-        linhas.append(
-            [
-                f"<b>{layout.escapar(rotulo)}</b>",
-                _destacar(
-                    numeros.formatar_decimal(composto.erro_medio_absoluto, 1),
-                    composto_vence,
-                ),
-                numeros.formatar_decimal(composto.r2, 3),
-                numeros.formatar_percentual(composto.captura_do_pico, 1),
-                _destacar(
-                    numeros.formatar_decimal(regua.erro_medio_absoluto, 1),
-                    not composto_vence,
-                ),
-            ]
-        )
+    for rotulo in ROTULOS_DOS_HORIZONTES:
+        do_composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
+        celulas = [f"<b>{layout.escapar(rotulo)}</b>"]
+        for _, atributo, casas, cor in MEDIDAS_DO_COMPOSTO:
+            valor = getattr(do_composto, atributo)
+            formatado = (
+                numeros.formatar_percentual(valor, 1)
+                if atributo == "captura_do_pico"
+                else numeros.formatar_decimal(valor, casas)
+            )
+            celulas.append(_celula_colorida(formatado, cor))
+        linhas.append(celulas)
 
-    semanas_por_rotulo = {linha.rotulo: linha.semanas for linha in numeros.PAINEL_DO_COMPOSTO}
-    serie_do_composto = [
-        (semanas_por_rotulo[r], por_braco[numeros.NOME_DO_COMPOSTO][r].erro_medio_absoluto)
-        for r in rotulos
-    ]
-    serie_do_adotado = [
-        (semanas_por_rotulo[r], por_braco[numeros.NOME_DO_ADOTADO][r].erro_medio_absoluto)
-        for r in rotulos
-    ]
-    serie_da_regua = [
-        (semanas_por_rotulo[r], por_braco[numeros.NOME_DA_REGUA][r].erro_medio_absoluto)
-        for r in rotulos
-    ]
+    graficos_das_medidas = "".join(
+        _grafico_de_uma_medida(rotulo, atributo, cor, por_braco)
+        for rotulo, atributo, _, cor in MEDIDAS_DO_COMPOSTO
+    )
 
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="Um modelo composto fecha parte da distância — e não toda",
+        titulo="O modelo composto, e onde ele ainda perde",
         rotulo_curto="Composto",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
-            + graficos.montar_grafico_de_linhas(
-                {
-                    "Composto": serie_do_composto,
-                    "Adotado (folha 5)": serie_do_adotado,
-                    "Régua sazonal": serie_da_regua,
-                },
-                "horizonte (semanas)",
-                "erro médio (casos/semana)",
-                cores=["var(--acento)", "var(--texto-fraco)", "var(--critico)"],
-                series_tracejadas={"Régua sazonal"},
-            )
-            + layout.montar_aviso(
-                "atencao",
-                "Ainda não é adotável",
-                "O ponto de corte entre as duas configurações foi escolhido "
-                "<b>olhando o período de avaliação</b>, que é o mesmo que julga. "
-                "Adotar exige pré-declarar o critério e re-rodar.",
-            )
+            + f'<p class="deckNotaDeGrafico">Em cada gráfico, a linha <b style="color:'
+            f'{COR_DA_REGUA_SAZONAL}">pontilhada cinza</b> é a <b>régua sazonal</b> '
+            "na mesma medida — repetir o número da mesma semana do ano passado.</p>"
+            + f'<div class="graficosLadoALado">{graficos_das_medidas}</div>'
         ),
         nota=(
-            "O composto passa a vencer a régua também em <b>1 mês</b>, e a "
-            "captura do pico em 3 meses sobe de <b>38,8%</b> para <b>50,4%</b>. "
-            "Mas em 2 e 3 meses a régua ainda vence: a distância cai de 28% para "
-            "<b>12%</b>, e não fecha. A régua <b>não olha o mosquito nem o "
-            "clima</b> — só repete o ano anterior."
+            "O composto vence a régua em <b>1 semana</b> e <b>1 mês</b>. Em 2 e 3 "
+            "meses a régua ainda vence: a distância cai de 28% para <b>12%</b>, e "
+            "não fecha. ⚠️ <b>Dizer que ainda não é adotável</b>: o ponto de corte "
+            "entre as configurações foi escolhido olhando o período de avaliação, "
+            "que é o mesmo que julga. A régua <b>não olha o mosquito nem o clima</b>."
         ),
         e_denso=True,
     )
