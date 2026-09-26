@@ -1,5 +1,11 @@
 # Atualização dos casos confirmados de 2026 (DENGBR26 de setembro)
 
+> 🚫 **REVERTIDA em 26/09/2026, por decisão do Vinicius:** 2026 não entra na avaliação. `tabela_final.csv` e
+> `casos_confirmados_poa.csv` voltaram, por cópia dos backups, à versão anterior, idêntica ao commit `544263a`. A
+> versão com 2026 está guardada em `versao_com_2026_nao_usada/`. A correção de código continua: um arquivo por ano,
+> com teste. ⚠️ Por isso **não rodar `consolidar_sinan` nem `montar.py`**, que puxariam o DENGBR26 novo.
+> Certificação da reversão: [`CERTIFICACAO_REVERSAO.md`](CERTIFICACAO_REVERSAO.md).
+
 **Pergunta:** integrar o DENGBR26_atualizado_set26.csv.zip (baixado em 13/09/2026, nunca
 integrado) sem contar em dobro e sem mudar 2018-2025.
 

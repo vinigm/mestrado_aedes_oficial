@@ -1,0 +1,16 @@
+Colunas do modelo (n=20): ['casos', 'casos_lag1', 'casos_lag2', 'casos_lag3', 'casos_lag4', 'casos_mm4', 'sem_sin', 'sem_cos', 'temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4', 'aedes_aegypti_por_armadilha', 'aedes_aegypti_por_armadilha_lag1', 'aedes_aegypti_por_armadilha_lag2', 'aedes_aegypti_por_armadilha_lag3', 'aedes_aegypti_por_armadilha_lag4', 'vetor_mm4']
+Clima escolhido: ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4']
+INICIO_DA_AVALIACAO usado pela trava: 2024-01-01
+  h= 1: 295 previsoes
+  h= 4: 292 previsoes
+  h= 8: 288 previsoes
+  h=12: 284 previsoes
+
+  TRAVA DE VALIDACAO — referencia contra o painel publicado
+    h= 1  MAE    98.0 (painel   98.0)  R2  0.898 (painel 0.898)  ok
+    h= 4  MAE   219.7 (painel  219.7)  R2  0.628 (painel 0.628)  ok
+    h= 8  MAE   272.6 (painel  272.6)  R2  0.450 (painel 0.450)  ok
+    h=12  MAE   278.8 (painel  278.7)  R2  0.437 (painel 0.437)  ok
+    veredito: VALIDO
+
+VEREDITO FINAL DA TRAVA: VALIDO

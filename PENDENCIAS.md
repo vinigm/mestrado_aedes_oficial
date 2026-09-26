@@ -24,8 +24,8 @@
 - **Eixo da tese.** Candidatos em [ESTADO.md](ESTADO.md) §4.
 - 🔴 **Ler da Silva et al. 2026, PLOS NTD** — mesma cidade e armadilha; já está em `Artigos de referencia/`.
 - 🔴 **Métrica primária: MAE × perda quantílica/WIS.** Pelo MAE, a régua vence em 3 meses (2024-25); pelo WIS, o modelo
-  vence a régua oficial dos sprints em 1 mês. É definição de produto: quanto custa subestimar surto?
-- **O que levar ao seminário** da régua sazonal e de 2026. Ver `analises/2026-09-25_segunda_bateria_noturna/`.
+  vence a régua dos sprints em 1 mês (a refazer na tabela oficial). Definição de produto: quanto custa subestimar surto?
+- **O que levar ao seminário** da régua sazonal. Ver `analises/2026-09-25_regua_regras_simples/`.
 - **Automatizar a raspagem** — hoje manual; semana perdida é irrecuperável.
 
 ---
@@ -33,8 +33,8 @@
 ## ⏳ Decisões NOSSAS a pré-declarar
 
 - **Recorte da tese** — depende do eixo.
-- ⏳ **Protocolo para testar a METODOLOGIA temporada a temporada** (Vinicius, 26/09): julgar por tipo de temporada,
-  com o critério de sucesso de cada tipo escrito antes; ano calmo não se julga pelo erro absoluto.
+- ⏳ **Protocolo para testar a METODOLOGIA temporada a temporada** (Vinicius, 26/09): temporadas futuras julgadas
+  por tipo, com o critério de sucesso de cada tipo escrito antes; ano calmo não se julga pelo erro absoluto.
 - **Alvo:** vetor (letra do PEP) × casos (o código). O PEP também erra o horizonte: é **3 meses** (Vinicius, 23/09).
 - ✅ **Município de notificação mantido** (Vinicius, 25/09), para comparar; residência fica como cenário alternativo.
 - **Limiar de surto:** 100 casos/semana é convenção; o plano municipal usa 140 · 421 · 702. Ver
@@ -45,10 +45,10 @@
 
 ## ⏳ Rodadas candidatas
 
-- ⏳ **O vetor ajuda em ano de epidemia e empurra a previsão para cima em ano calmo:** folha 20, 3 meses, 254 × 270 em
-  2024-25; 579 × 315 em 2026, descritivo. No Chronos-2: ajuda em 2024-25, atrapalha em 2022-23.
+- ⏳ **Vetor com folha 20 reduz o erro de 3 meses em 12-16%** (24/09, exploratório, carregado por 2024). No Chronos-2:
+  ajuda em 2024-25, atrapalha em 2022-23.
 - **Confirmatória em 2027**, pré-declarar antes da temporada: modelo × régua por skill; o vetor piora o alarme (13/09).
-- ⏳ **Faixas de previsão estreitas demais:** o intervalo de 50% cobre 14%; a calibração conformal piora os alarmes.
+- ⏳ **Faixas de previsão estreitas demais:** o intervalo de 50% cobre 14%; a conformal piora os alarmes. Medido na tabela com 2026.
 - ⏳ **Positividade das armadilhas e bairros em nível crítico** como atributos, com dado próprio de 2012 a 2026.
 - ⏳ **Defasagem vetor → casos nunca estimada.** da Silva 2026: τ 0,27 · 0,50 · 0,59 nos lags 0 · 4 · 8.
 - ⏳ **Canal endêmico em POA** tem limite 0 fora da temporada, porque 2018-2021 quase não tiveram casos.
@@ -63,20 +63,20 @@
 - **`bairro_surto` não re-rodado** · **`cidade_lift_vetor` sem run no MLflow** · `rodar_regressao_selecao_clima` sem pareamento.
 - **Docstring de `acesso/fontes.py`:** 99,6% de confirmação em 2023; o medido é 69,3%.
 - **Trava da busca de 25/09** com erro de janela no script, corrigido só por emenda · `provar_sinal_da_ancora` tautológica.
-- **Nunca rodar `preparar_dados.py` inteiro:** ele rebaixa clima e ENSO. Para 2026, só `consolidar_sinan` + `montar.py`.
+- 🔴 **Não rodar `consolidar_sinan` nem `montar.py`:** com a correção de 25/09 eles puxam o DENGBR26 novo e trazem 2026
+  de volta. `preparar_dados.py` inteiro, nunca: rebaixa clima e ENSO.
 - `../Contexto/` e `../artigo_oficial/` fora do git · `testar_remedios.py` com hiperparâmetros trocados · miúdos de bairro.
 
 ---
 
 ## Registro cronológico
 
-### 26/09/2026 — segunda bateria noturna: tudo medido em 2026, o ano atípico
+### 26/09/2026 — 2026 sai da avaliação
 
-- ✅ **Dados de 2026 na tabela oficial** (19 confirmados); DENGBR26 lido uma vez só, com teste; 2018-2025 intactos.
-- 🧭 **2026 fora do domínio (Vinicius):** nenhuma série crescente prevê um ano de 19 casos; o erro de 2026 descreve o
-  método num ano calmo, não o julga. Vetor 579 × 315 e o julgamento da busca viram descritivos.
-- ✅ **Pelo WIS, o modelo vence a régua dos sprints** em 1 mês em 2024-25. ⚠️ Busca de 120: em 2024-25, a melhor
-  perde para a régua em 3 meses (239,6 × 226,8), mesmo com a escolha a seu favor.
+- 🚫 **2026 não entra (Vinicius):** com séries crescentes é impossível prever um ano de 19 casos. A tabela oficial voltou à
+  de antes (até SE 202617, avaliação até 01/02/2026); a versão com 2026 fica guardada em `atualizacao_dados_2026/`.
+- ⚠️ A busca de 120 e a segunda bateria rodaram na tabela com 2026 e ficam só como registro. Em 2024-25: WIS melhor que a
+  régua dos sprints em 1 mês; a melhor da busca perde para a régua em 3 meses (239,6 × 226,8). Refazer antes de citar.
   `analises/2026-09-25_segunda_bateria_noturna/` · `analises/2026-09-25_busca_de_hiperparametros/`
 
 ### 25/09/2026 — régua, literatura e novas tentativas

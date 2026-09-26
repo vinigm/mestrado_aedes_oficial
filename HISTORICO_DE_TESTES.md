@@ -67,8 +67,8 @@
 | 25/09/2026 | Modelos de fundação zero-shot | 🚫 não batem a régua; ⚠️ o vetor ajuda o Chronos-2 só em 2024-2025 |
 | 25/09/2026 | SARIMA, LASSO e ensemble | 🚫 explodem ou não batem a régua; 🔴 pela perda quantílica, o Chronos-2 vence o B0 |
 | 25/09/2026 | Alarme contra o canal endêmico | ✅ 1 mês: modelo vence; 3 meses: empata com o ano passado |
-| 26/09/2026 | Busca aleatória de hiperparâmetros, julgada em 2026 | ⚠️ julgamento em 2026 é descritivo; em 2024-25 a melhor perde para a régua em 3 meses |
-| 26/09/2026 | Segunda bateria noturna: resultados em 2026 | ⚠️ 2026 fora do domínio, só descritivo; ✅ WIS vence a régua dos sprints em 2024-25 |
+| 26/09/2026 | Busca aleatória de hiperparâmetros, julgada em 2026 | 🚫 rodada na tabela com 2026, só registro; em 2024-25 a melhor perde para a régua em 3 meses |
+| 26/09/2026 | Segunda bateria noturna: resultados em 2026 | 🚫 rodada na tabela com 2026, só registro; WIS em 2024-25 a refazer na tabela oficial |
 
 ---
 
@@ -208,13 +208,13 @@ que 4 temporadas não dão.
 
 ---
 
-### 1.8 🔴 Os resultados na temporada de 2026, o primeiro ano atípico (26/09/2026)
+### 1.8 🚫 Os resultados na temporada de 2026 — fora da avaliação (26/09/2026)
 
 **Por quê.** 2026 teve o mosquito em nível crítico e só 19 confirmados. Nenhuma decisão anterior o usou.
 
-🧭 **Leitura corrigida em 26/09, pelo Vinicius:** 2026 está **fora do domínio**, porque nenhuma série crescente prevê
-um ano de 19 casos. Os resultados abaixo **descrevem o método num ano calmo e não o julgam**. A metodologia se testa
-acumulando temporadas, julgadas por tipo.
+🚫 **Descartado pelo Vinicius em 26/09:** 2026 não entra na avaliação, porque com séries crescentes é impossível prever
+um ano de 19 casos. A tabela oficial voltou à de antes. O que está abaixo fica **só como registro**; os números de
+2024-2025 foram medidos na tabela com 2026 e precisam ser refeitos na oficial antes de citar.
 
 **O que deu**, 16 semanas de jan a abr/2026, pré-declarado e certificado:
 
@@ -648,6 +648,7 @@ Ideias medidas e enterradas. Ficam aqui para não voltarem.
 | Modelo de fundação zero-shot para bater a régua em 3 meses | 25/09/2026 | Chronos-2 227,2 e Chronos-Bolt 289,5 contra 217,8 da régua. |
 | SARIMA e LASSO nesta série | 25/09/2026 | Explodem no começo de epidemia: modelo linear ou AR em log sem saturação não serve. |
 | Vírus no mosquito como atributo | 25/09/2026 | Decisão do Vinicius: exigiria dado de 2026 da Prefeitura, inviável. Existem 242 detecções em 2022-2025 (DENV-1: 237), primeira detecção mais cedo nos anos maiores; o zero de 2026 é limite da raspagem. |
+| Avaliar o modelo em 2026 | 26/09/2026 | Decisão do Vinicius: com séries crescentes é impossível prever um ano de 19 casos. Segue a janela de antes, avaliação até 01/02/2026. |
 
 ---
 

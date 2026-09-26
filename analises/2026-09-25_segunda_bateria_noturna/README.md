@@ -10,11 +10,11 @@
 
 ---
 
-> 🧭 **Leitura corrigida em 26/09/2026, pelo Vinicius:** 2026 está **fora do domínio** do modelo. Nenhuma série de
-> temporadas crescentes permite prever um ano de 19 confirmados, então **o erro em 2026 não testa a metodologia**.
-> A metodologia se testa acumulando temporadas, julgadas por tipo. Os números abaixo seguem sendo fatos medidos,
-> mas as leituras de veredito (A1 "inverte", A2, D) passam a ser **descritivas**: mostram como o método se comporta
-> num ano calmo. O que não depende de 2026 continua valendo: a seção B em 2024-2025.
+> 🚫 **FORA DA AVALIAÇÃO — decisão do Vinicius em 26/09/2026:** 2026 não será usado. Com séries históricas
+> crescentes é impossível prever um ano de 19 confirmados. A tabela oficial voltou à de antes (até SE 202617,
+> avaliação até 01/02/2026). **Esta rodada usou a tabela com 2026 e fica só como registro.** Os números de 2024-2025
+> (seção B) foram medidos nessa tabela, em que a seleção de clima ficou com as mesmas 6 colunas em outra ordem;
+> a diferença esperada é de até 0,5%, mas **refazer na tabela oficial antes de citar**.
 
 ---
 
