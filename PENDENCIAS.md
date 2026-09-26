@@ -9,84 +9,60 @@
 
 ## 🔴 SEMINÁRIO DE ANDAMENTO — prazo curto (reunião de 21/09/2026)
 
-- ⏳ **Preencher título, resumo, palavras-chave e enquadramento** no sistema do PPGC. Banca provável: Mariana
-  e Anderson. O PDF é opcional.
-- ⏳ **Slides de até 10 min**, último slide de direcionamentos. **Escopo só dengue.** Não dizer "não teve
-  correlação com mosquito ou clima".
-- ⏳ Orientador mandar o link do site a Mariana e Mansilha · Vinicius mandar `brutos_secretarias_limpos/`
-  (sem coordenada: não serve para análise espacial).
-- 🧭 **Dois marcos, definidos pelo Vinicius em 25/09:** **pré-montagem** = site no ar, commit `710b411`,
-  o que os professores viram · **pós-montagem** = de `22b70a6` em diante, só local. ⚠️ Os professores
-  não sabem da folha 20 nem da régua sazonal.
-- 📩 **Mansilha, 24/09:** textos com tom de "IA marqueteira", dupla negação, site que *"depõe contra quem
-  nos forneceu os dados"*; propõe hipótese de subnotificação 2013-2021.
-- **Depois do seminário a pesquisa CONGELA** e o foco vira o artigo (`../artigo_oficial/`, fora do git).
+- ⏳ **Título, resumo, palavras-chave e enquadramento** no sistema do PPGC. Banca provável: Mariana e Anderson.
+- ⏳ **Slides de até 10 min**, último de direcionamentos. **Só dengue.** Não dizer "não teve correlação com mosquito".
+- ⏳ Orientador mandar o link a Mariana e Mansilha · Vinicius mandar `brutos_secretarias_limpos/`.
+- 🧭 **Marcos (Vinicius, 25/09):** pré-montagem = site no ar, `710b411`, o que a banca viu · pós-montagem = de
+  `22b70a6` em diante, só local. ⚠️ A banca não sabe da régua sazonal nem de 2026.
+- 📩 **Mansilha, 24/09:** sem tom de "IA marqueteira", sem dupla negação, sem depor contra quem cedeu os dados.
+- **Depois do seminário a pesquisa CONGELA**; foco no artigo (`../artigo_oficial/`, fora do git).
 
 ---
 
 ## ⏳ Destrava com o VINICIUS
 
-- **Escolher o eixo da tese.** Candidatos em [ESTADO.md](ESTADO.md) §4.
-- 🔴 **Ler da Silva et al. 2026, PLOS NTD** — mesma cidade e mesma armadilha, vetor com R² 0,46 contra
-  −0,07 do clima. Muda o diferencial da tese. Ver `analises/2026-09-25_varredura_literatura/` §2.
-- **Como apresentar a régua sazonal:** o modelo perde para "mesma semana do ano passado" em 2 e 3 meses.
-  Entra no seminário? Ver `analises/2026-09-25_regua_regras_simples/`.
-- **Automatizar a raspagem** — hoje manual; em 2026 é a única fonte, semana perdida é irrecuperável.
-- **Folha 5 como controle** nas rodadas com folha 20 — recomendado, sem resposta.
-- 🔴 **Métrica primária: MAE × perda quantílica 0,85.** Pelo MAE, a régua vence tudo em 3 meses; pela
-  perda quantílica, o Chronos-2 vence o B0 por 47%. É definição de produto: quanto custa subestimar surto?
+- **Eixo da tese.** Candidatos em [ESTADO.md](ESTADO.md) §4.
+- 🔴 **Ler da Silva et al. 2026, PLOS NTD** — mesma cidade e armadilha; já está em `Artigos de referencia/`.
+- 🔴 **Métrica primária: MAE × perda quantílica/WIS.** Pelo MAE, a régua vence em 3 meses (2024-25); pelo WIS, o modelo
+  vence a régua oficial dos sprints em 1 mês. É definição de produto: quanto custa subestimar surto?
+- **O que levar ao seminário** da régua sazonal e de 2026. Ver `analises/2026-09-25_segunda_bateria_noturna/`.
+- **Automatizar a raspagem** — hoje manual; semana perdida é irrecuperável.
 
 ---
 
 ## ⏳ Decisões NOSSAS a pré-declarar
 
-- **Recorte da tese** — depende do eixo. Pré-declaração formal antes de qualquer rodada nova.
-- **Alvo:** vetor (letra do PEP) × casos (o código). O PEP também erra o horizonte: é **3 meses**
-  (decisão do Vinicius, 23/09), não 1-4 semanas.
-- ✅ **Município de notificação mantido** — decisão do Vinicius em 25/09/2026, para comparar com os resultados já
-  medidos. Residência (CEVS) fica como cenário alternativo, se necessário.
-- **Corte de maturidade** 12 semanas; medido em 2025: mediana 10,4 · p90 31,6. Só testável com dado vintage.
+- **Recorte da tese** — depende do eixo.
+- **Alvo:** vetor (letra do PEP) × casos (o código). O PEP também erra o horizonte: é **3 meses** (Vinicius, 23/09).
+- ✅ **Município de notificação mantido** (Vinicius, 25/09), para comparar; residência fica como cenário alternativo.
+- **Limiar de surto:** 100 casos/semana é convenção; o plano municipal usa 140 · 421 · 702. Ver
+  `analises/2026-09-25_limiar_oficial_de_surto/`.
+- **Corte de maturidade** 12 semanas; medido em 2025: mediana 10,4 · p90 31,6.
 
 ---
 
 ## ⏳ Rodadas candidatas
 
-- **Confirmatória em 2026-2027** — o único juiz que resta. Pré-declarar antes da temporada:
-  - 🔴 vetor com folha 20 em 3 meses: ajudava em 2024-2025, **inverteu em 2026** (p Holm 0,0499 contra);
-  - modelo contra a régua sazonal, por skill score;
-  - o vetor piora o alarme (único resultado que sobrevive a Holm, 13/09).
-- ⏳ **Métrica de alarme com folha 20** — nunca medida.
-- ⏳ **Mistura modelo + régua** — a única direção consistente em 4 anos (+5,5%, sem significância).
-- ⏳ **Pré-declarar teste pela perda quantílica** (Chronos-2 × B0) — pós-hoc hoje; e o **q0,85 do cenário
-  adotado cobre só 35%** das semanas em h=12 (nominal 85%). Ver `analises/2026-09-25_sarima_lasso_ensemble/` §5.
-- ⏳ **Vetor ajuda em 2024-2025 e atrapalha em 2022-2023** em três famílias de modelo (HistGB, LightGBM,
-  Chronos-2). Explicar antes de 2026-2027. Chronos-2 com casos + vetor, sem clima, não rodou.
-- ⏳ Janelas curtas parecem melhorar o **alarme** em h=12 (0,846 × 0,769) — exploratório.
-- ⏳ **Canal endêmico em POA:** limite 0 em semanas fora da temporada (2018-2021 sem casos); não serve de régua
-  de epidemia ainda. Considerar limiar fixo.
-- 🔴 **2026 descolou:** o vetor de out/25-mar/26 igual ao de 2024-25 (média 0,71), mas só 11 confirmados (CEVS) —
-  com 4.085 notificações e 3.832 inconclusivos. A temporada 2026 ficou FORA da avaliação (dados até fev/26).
-- ⏳ **Plano municipal 2026:** testagem encolhe em Alerta/Epidemia; IMFA oficial (Crítico > 0,6). Conferir se
-  `aedes_aegypti_por_armadilha` = IMFA. `analises/2026-09-25_limiar_oficial_de_surto/`
-- 🚫 **Vírus no mosquito como atributo** — descartado em 25/09/2026 pelo Vinicius: exigiria dado novo da Prefeitura,
-  inviável. ⏳ Seguem viáveis, com dado próprio: positividade das armadilhas e bairros em nível crítico.
-- ⏳ **Defasagem vetor → casos nunca estimada no projeto.** da Silva 2026 mede τ 0,27 · 0,50 · 0,59 nos
-  lags 0 · 4 · 8 semanas; replicar com os nossos dados.
+- 🔴 **O vetor ajuda em anos de epidemia e atrapalha em 2026:** com folha 20, em 3 meses, 254 × 270 em 2024-25, mas
+  579 × 315 em 2026 (p Holm 0,0499 contra). O mesmo padrão aparece no Chronos-2. Explicar antes de 2027.
+- **Confirmatória em 2027**, pré-declarar antes da temporada: modelo × régua por skill; o vetor piora o alarme (13/09).
+- ⏳ **Faixas de previsão estreitas demais:** o intervalo de 50% cobre 14%; a calibração conformal piora os alarmes.
+- ⏳ **Positividade das armadilhas e bairros em nível crítico** como atributos, com dado próprio de 2012 a 2026.
+- ⏳ **Defasagem vetor → casos nunca estimada.** da Silva 2026: τ 0,27 · 0,50 · 0,59 nos lags 0 · 4 · 8.
+- ⏳ **Canal endêmico em POA** tem limite 0 fora da temporada, porque 2018-2021 quase não tiveram casos.
+- 🚫 **Vírus no mosquito como atributo** — descartado pelo Vinicius em 25/09: exigiria dado novo da Prefeitura.
+- 🚫 **Notificações como alvo ou entrada** (25/09): pioram em 3 meses. 🚫 **SARIMA e LASSO** (25/09): explodem.
 
 ---
 
 ## ⏳ Dívida técnica
 
-- **Seleção das 6 colunas de clima fora do walk-forward** — treina nos 60% mais antigos (até 27/11/2022);
-  contamina só a avaliação até 12/2022. Ranking instável.
-- **`rodar_regressao_selecao_clima` não pareia M0 e M1.**
-- **`bairro_surto` corrigido mas não re-rodado** — segue contaminado no painel.
-- **`cidade_lift_vetor` não registrou run no MLflow** em 23/09 — causa não investigada.
-- **Docstring de `acesso/fontes.py`** afirma 99,6% de confirmação em 2023; o medido é **69,3%**.
-- **`testar_remedios.py`** usa hiperparâmetros diferentes do cenário 1 apesar do comentário.
-- **`provar_sinal_da_ancora`** da bateria de 25/09 é tautológica — a garantia veio da revisão.
-- **`../Contexto/` e `../artigo_oficial/` fora do git**, sem histórico.
-- Miúdos: testes de bairro · `linha_do_tempo_dados()` morto · CSVs sem `data_origem` · deck de 19/06 antigo.
+- **Seleção das 6 colunas de clima fora do walk-forward**, com ranking instável e dependente do alvo.
+- **`bairro_surto` não re-rodado** · **`cidade_lift_vetor` sem run no MLflow** · `rodar_regressao_selecao_clima` sem pareamento.
+- **Docstring de `acesso/fontes.py`:** 99,6% de confirmação em 2023; o medido é 69,3%.
+- **Trava da busca de 25/09** com erro de janela no script, corrigido só por emenda · `provar_sinal_da_ancora` tautológica.
+- **Nunca rodar `preparar_dados.py` inteiro:** ele rebaixa clima e ENSO. Para 2026, só `consolidar_sinan` + `montar.py`.
+- `../Contexto/` e `../artigo_oficial/` fora do git · `testar_remedios.py` com hiperparâmetros trocados · miúdos de bairro.
 
 ---
 
@@ -95,57 +71,24 @@
 ### 26/09/2026 — segunda bateria noturna: tudo medido em 2026, o ano atípico
 
 - ✅ **Dados de 2026 na tabela oficial** (19 confirmados); DENGBR26 lido uma vez só, com teste; 2018-2025 intactos.
-- 🔴 **Em 2026 o vetor atrapalha:** 3 meses com vetor 579 × sem 315 (p Holm 0,0499). Mosquito crítico, sem epidemia.
-- ✅ Modelo erra bem menos que "o ano passado" em 2026 (p Holm 0,004); pelo WIS, vence a régua dos sprints em 2024-25.
-- 🚫 Busca de 120 configurações: nenhuma passa; faixas de previsão estreitas demais (IC 50% cobre 14%).
+- 🔴 **Em 2026 o vetor atrapalha**, com significância. ✅ Modelo erra bem menos que "o ano passado" (p Holm 0,004).
+- ✅ **Pelo WIS, o modelo vence a régua dos sprints** em 1 mês em 2024-25. 🚫 Busca de 120 configurações: nenhuma passa.
   `analises/2026-09-25_segunda_bateria_noturna/` · `analises/2026-09-25_busca_de_hiperparametros/`
 
-### 25/09/2026 — a régua sazonal, a literatura e a bateria de formulação
+### 25/09/2026 — régua, literatura e novas tentativas
 
-- 🔴 **O modelo perde para "mesma semana do ano passado"** em h=8 e h=12 (MAE 217,8 × 243,8 a 278,8),
-  inclusive na perda quantílica. Certificado por reimplementação. `analises/2026-09-25_regua_regras_simples/`
-- ✅ **Varredura de literatura:** 40 achados, 32 confirmados na fonte, 0 refutados. Perder para régua em
-  3 meses é comum. `analises/2026-09-25_varredura_literatura/`
-- 🚫 **Seis formulações novas reprovadas** — log, âncora como atributo, resíduo, crescimento do vetor,
-  linear, mistura. Nenhuma melhora nem bate a régua; resíduo e linear explodem.
-  `analises/2026-09-25_bateria_formulacao_do_alvo/`
-- 🚫 **Modelos de fundação zero-shot** (Chronos-Bolt, Chronos-2) não batem a régua em 3 meses; o vetor
-  melhora o Chronos-2 (p Holm 0,007), só em 2024-2025. `analises/2026-09-25_modelos_de_fundacao/`
-- ✅ **Alarme contra o canal endêmico:** em 1 mês o modelo vence; em 3 meses vence "esperar o surto" (p Holm
-  0,0006) e empata com "o ano passado passou de 100". `analises/2026-09-25_alarme_contra_canal_endemico/`
-- ✅ **Página "Comparações" no site, só local** (`NOVO_HTML/saida/comparacoes.html`), entre Cenário adotado e
-  Próximos passos. ⚠️ Não publicada. ⏳ Unificar 278,7 (painel) × 278,8 (régua) do cenário adotado em 3 meses.
-- ✅ **Comparação direta com a literatura:** acima dos estudos de pesquisa em POA e no Brasil; abaixo dos
-  sistemas operacionais da Ásia em 3 meses. `analises/2026-09-25_comparacao_direta_literatura/`
-- 🚫 **SARIMA e LASSO explodem** no começo da epidemia de 2024 (até 43 mil previstos); ensemble não bate a
-  régua pelo MAE. 🔴 Pela perda quantílica, o quadro inverte. `analises/2026-09-25_sarima_lasso_ensemble/`
-- ✅ **Catálogo de modelos prontos:** 34 itens, 26 confirmados. Em 27 capitais, POA ficou entre as piores (R² −0,21
-  em 4 semanas); não há modelo preditivo publicado no RS. `analises/2026-09-25_catalogo_modelos_prontos/`
-- ✅ **Novas fontes oficiais** (CEVS 2015-2026, TabNet, IBGE): 2015-2017 não trazem temporada epidêmica.
-  `analises/2026-09-25_novas_fontes_oficiais/`
-- ✅ **Notificações como alvo** (CEVS, até mai/2026): notificação como alvo ou entrada não ajuda; em 2026 o modelo
-  de confirmados erra muito menos que "o ano passado". Página local. `analises/2026-09-25_notificacoes_como_alvo/`
+- 🔴 **O modelo perde para "a mesma semana do ano passado"** em 2 e 3 meses (2024-25). `analises/2026-09-25_regua_regras_simples/`
+- ✅ Literatura, catálogo e comparação direta: perder para régua em 3 meses é comum; em POA, o projeto está acima dos
+  estudos publicados. 🚫 Formulações novas, modelos de fundação, SARIMA, LASSO e notificações: nenhum bate a régua.
+- ✅ Alarme: em 1 mês o modelo vence as regras simples. ✅ Plano municipal: limiares oficiais e testagem por estágio.
+- ✅ Páginas locais **Comparações** e **Notificações como alvo**, não publicadas.
 
 ### 24/09/2026 — bateria noturna
 
-- 🔴 **Com folha mínima 20, o vetor reduz o erro de 3 meses** (p Holm 0,015 e 0,0001); com folha 5, não.
-  Carregado por 2024. Não repetir "o vetor não melhora" sem "do HistGB com folha 5".
-- 🚫 ENSO de agosto era vazamento. Lags de 5-12 e 52/104 semanas não ajudam. `analises/2026-09-23_bateria_noturna/`
-- ✅ `cidade_referencia.py` corrigido para quantil **0,85** (commit `22b70a6`, 23/09).
+- 🔴 Com folha mínima 20, o vetor reduzia o erro de 3 meses em 2024-25; **em 2026 inverteu**. 🚫 ENSO era vazamento.
 
-### 23/09/2026 — site reconstruído e publicado (`710b411`)
+### Antes
 
-- ✅ Painel novo por `NOVO_HTML/` e slides do seminário. 🔴 Só `cidade_regressao` rodou os 9 algoritmos.
-  ✅ Treino certificado: começa em 18/02/2018; 2012-2017 não alimenta o cenário adotado.
-
-### 21/09/2026 — reunião com o orientador
-
-- 🔄 Eixo pós-seminário: casos a partir do vetor. ⚠️ Ele: o vetor não impactar *"indica que deve ter algum
-  problema na metodologia"*. ✅ Dados da Secretaria limpos. ⚠️ Rótulos de quem fala trocados na transcrição.
-
-### 13/09/2026 — o dia do vazamento
-
-- 🔴 Treino cortado pela data da pergunta: +52% de MAE em h=12 ao corrigir. 🚫 Núcleo da tese refutado.
-- 🔴 Único resultado que sobrevive a Holm: o vetor **piora** o alarme em h=12 (p 0,037).
-
-### Antes: 30/08 grid de 120 execuções · 29/08 clima desde 2012 · 16/08 base certificada contra a Marília.
+- **23/09** site reconstruído e publicado (`710b411`) · **21/09** reunião: eixo pós-seminário, casos a partir do vetor.
+- **13/09** vazamento corrigido (+52% de MAE em 3 meses); único resultado em Holm: o vetor piora o alarme (p 0,037).
+- **30/08** grid de 120 execuções · **29/08** clima desde 2012 · **16/08** base certificada contra a Marília.
