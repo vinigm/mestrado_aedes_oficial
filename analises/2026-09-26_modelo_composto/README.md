@@ -80,6 +80,44 @@ qualquer coisa que treinamos.
 
 ---
 
+## 2.1 🔴 Onde exatamente o modelo deixa de valer
+
+Medido nos **12 horizontes**, e não só nos quatro do painel. O horizonte em que a régua sazonal **passa a
+vencer** o composto:
+
+| Medida | A régua passa a vencer a partir de |
+|---|---|
+| Erro absoluto médio | **5 semanas** |
+| Coeficiente de determinação | **6 semanas** |
+| Captura do pico | **6 semanas** |
+
+Erro absoluto médio, horizonte a horizonte:
+
+| Semanas | Composto | Régua | Quem vence |
+|---|---|---|---|
+| 1 | **98,0** | 202,1 | composto |
+| 2 | **162,0** | 202,4 | composto |
+| 3 | **185,2** | 211,8 | composto |
+| 4 | **199,6** | 213,2 | composto |
+| 5 | 225,4 | **213,6** | régua |
+| 6 | 221,5 | **213,8** | régua |
+| 7 | 232,4 | **214,1** | régua |
+| 8 | 223,2 | **216,2** | régua |
+| 9 | 234,8 | **217,3** | régua |
+| 10 | 236,8 | **217,4** | régua |
+| 11 | 241,6 | **217,6** | régua |
+| 12 | 243,8 | **217,8** | régua |
+
+**A fronteira é nítida e cai em cerca de um mês.** Até 4 semanas o composto vence nas três medidas; de 5
+em diante, não vence em nenhuma.
+
+⚠️ **Repare no formato das duas curvas.** O erro da régua é quase plano — de 202,1 a 217,8 ao longo dos 12
+horizontes. Ela não se degrada com o horizonte, porque não depende dele: olhar o ano anterior custa o mesmo
+para prever 1 ou 12 semanas à frente. O erro do modelo sobe de 98,0 para 243,8. **O que acaba não é a régua
+melhorar; é o modelo perdendo a informação que tinha.**
+
+---
+
 ## 3. 🔴 Por que isto NÃO é adotável como está
 
 **O ponto de corte foi escolhido olhando o período de avaliação.** Vimos que a folha 5 ganha até 3 semanas

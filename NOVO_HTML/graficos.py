@@ -313,6 +313,7 @@ def montar_grafico_de_linhas(
     rotulo_y: str,
     cores: list[str] | None = None,
     series_tracejadas: set[str] | None = None,
+    marco_vertical: tuple[float, str] | None = None,
 ) -> str:
     """Desenha um gráfico de linhas em SVG a partir de várias séries de pontos.
 
@@ -331,6 +332,10 @@ def montar_grafico_de_linhas(
             sem bolinha nos pontos, para marcar que são **referência** e não
             resultado — o caso da régua sazonal. Quando não vem, todas as
             linhas são contínuas, que é o desenho de sempre.
+        marco_vertical: Um par (posição no eixo X, rótulo) que desenha uma
+            linha vertical pontilhada atravessando o gráfico, com o rótulo
+            acima dela. Serve para marcar onde algo muda — por exemplo, o
+            horizonte em que a régua passa a vencer o modelo.
 
     Returns:
         O HTML do gráfico (SVG + legenda), ou string vazia se não houver
@@ -391,6 +396,22 @@ def montar_grafico_de_linhas(
         f'<text x="{margem_esquerda + area_util_largura / 2:.1f}" y="{altura - 6}" text-anchor="middle" '
         f'fill="{COR_DO_TEXTO_DO_EIXO}" font-size="11">{layout.escapar(rotulo_x)}</text>'
     )
+
+    # Marco vertical, desenhado antes das linhas para ficar atrás delas.
+    if marco_vertical is not None:
+        posicao_do_marco, rotulo_do_marco = marco_vertical
+        x_do_marco = posicao_x(posicao_do_marco)
+        partes_do_svg.append(
+            f'<line x1="{x_do_marco:.1f}" y1="{margem_topo}" '
+            f'x2="{x_do_marco:.1f}" y2="{altura - margem_base}" '
+            f'stroke="{COR_DO_TEXTO_DO_EIXO}" stroke-width="1.4" '
+            'stroke-dasharray="4 4"/>'
+        )
+        partes_do_svg.append(
+            f'<text x="{x_do_marco + 4:.1f}" y="{margem_topo + 10}" '
+            f'fill="{COR_DO_TEXTO_DO_EIXO}" font-size="10" font-weight="600">'
+            f"{layout.escapar(rotulo_do_marco)}</text>"
+        )
 
     # As linhas de cada série, com bolinha no último ponto.
     nomes_tracejados = series_tracejadas or set()
