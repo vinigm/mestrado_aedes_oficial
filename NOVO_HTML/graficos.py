@@ -312,6 +312,7 @@ def montar_grafico_de_linhas(
     rotulo_x: str,
     rotulo_y: str,
     cores: list[str] | None = None,
+    series_tracejadas: set[str] | None = None,
 ) -> str:
     """Desenha um gráfico de linhas em SVG a partir de várias séries de pontos.
 
@@ -325,6 +326,11 @@ def montar_grafico_de_linhas(
             são descartadas antes de desenhar.
         rotulo_x: Nome do eixo X, mostrado abaixo dos números.
         rotulo_y: Nome do eixo Y, mostrado no título do gráfico.
+        cores: Uma cor por série, na ordem em que `series` é percorrido.
+        series_tracejadas: Nomes das séries desenhadas com linha pontilhada e
+            sem bolinha nos pontos, para marcar que são **referência** e não
+            resultado — o caso da régua sazonal. Quando não vem, todas as
+            linhas são contínuas, que é o desenho de sempre.
 
     Returns:
         O HTML do gráfico (SVG + legenda), ou string vazia se não houver
@@ -387,16 +393,22 @@ def montar_grafico_de_linhas(
     )
 
     # As linhas de cada série, com bolinha no último ponto.
+    nomes_tracejados = series_tracejadas or set()
     for indice_da_serie, (nome_da_serie, pontos_da_serie) in enumerate(series_com_dado.items()):
         cor_da_serie = paleta[indice_da_serie % len(paleta)]
         pontos_ordenados = sorted(pontos_da_serie)
         caminho_da_linha = " ".join(
             f"{posicao_x(x):.1f},{posicao_y(y):.1f}" for x, y in pontos_ordenados
         )
+        e_tracejada = nome_da_serie in nomes_tracejados
+        tracejado = ' stroke-dasharray="6 5"' if e_tracejada else ""
         partes_do_svg.append(
             f'<polyline fill="none" stroke="{cor_da_serie}" stroke-width="2.4" '
-            f'stroke-linejoin="round" stroke-linecap="round" points="{caminho_da_linha}"/>'
+            f'stroke-linejoin="round" stroke-linecap="round"{tracejado} '
+            f'points="{caminho_da_linha}"/>'
         )
+        if e_tracejada:
+            continue
         for x, y in pontos_ordenados:
             partes_do_svg.append(
                 f'<circle cx="{posicao_x(x):.1f}" cy="{posicao_y(y):.1f}" r="2.6" fill="{cor_da_serie}"/>'

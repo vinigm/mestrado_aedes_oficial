@@ -29,6 +29,7 @@ conteúdo de cada slide ainda vai ser refinado com o autor.
 """
 
 import deck
+import graficos
 import layout
 import numeros_do_projeto as numeros
 
@@ -42,6 +43,22 @@ import dados as pagina_de_dados
 # Os tópicos da apresentação, na ordem. Ficam nomeados aqui porque a agenda e o
 # índice horizontal precisam da mesma lista — e uma lista só evita que os dois
 # divirjam quando um tópico for renomeado.
+def _destacar(texto_da_celula: str, em_destaque: bool) -> str:
+    """Poe a celula em negrito quando ela e a melhor da comparacao.
+
+    Args:
+        texto_da_celula: O valor ja formatado.
+        em_destaque: True quando esta celula vence a comparacao da linha.
+
+    Returns:
+        A celula, com ou sem negrito.
+    """
+    if em_destaque:
+        return f"<b>{texto_da_celula}</b>"
+
+    return texto_da_celula
+
+
 TOPICO_AGENDA = "Agenda"
 TOPICO_OBJETIVO = "Objetivo"
 TOPICO_DADOS = "Dados"
@@ -312,6 +329,153 @@ def _slide_adotado() -> deck.Slide:
     )
 
 
+def _slide_folha_5_contra_folha_20() -> deck.Slide:
+    """As duas configurações lado a lado, e o ganho do vetor dentro da folha 20.
+
+    Slide novo de 26/09/2026. Existe porque a apresentação mostrava só a
+    configuração adotada, e a bateria de 23-24/09/2026 mediu uma segunda que
+    vai melhor em horizonte longo — e que é a única das duas que extrai ganho
+    das colunas do vetor.
+    """
+    por_braco = {}
+    for linha in numeros.PAINEL_DO_COMPOSTO:
+        por_braco.setdefault(linha.braco, {})[linha.rotulo] = linha
+
+    rotulos = ["1 semana", "1 mês", "2 meses", "3 meses"]
+    cabecalhos_do_erro = ["Horizonte", "Adotado · folha 5", "Folha 20, com vetor"]
+    linhas_do_erro = []
+    for rotulo in rotulos:
+        erro_adotado = por_braco[numeros.NOME_DO_ADOTADO][rotulo].erro_medio_absoluto
+        erro_folha20 = por_braco[numeros.NOME_DA_FOLHA_20][rotulo].erro_medio_absoluto
+        melhor_e_adotado = erro_adotado < erro_folha20
+        linhas_do_erro.append(
+            [
+                f"<b>{layout.escapar(rotulo)}</b>",
+                _destacar(numeros.formatar_decimal(erro_adotado, 1), melhor_e_adotado),
+                _destacar(
+                    numeros.formatar_decimal(erro_folha20, 1), not melhor_e_adotado
+                ),
+            ]
+        )
+
+    cabecalhos_do_vetor = ["Horizonte", "Ganho do vetor na folha 20", "p de Holm"]
+    linhas_do_vetor = []
+    for rotulo, ganho, p_holm in numeros.GANHO_DO_VETOR_NA_FOLHA_20:
+        significativo = p_holm < 0.05
+        linhas_do_vetor.append(
+            [
+                f"<b>{layout.escapar(rotulo)}</b>",
+                _destacar(f"{numeros.formatar_decimal(ganho, 1)}%", significativo),
+                _destacar(numeros.formatar_decimal(p_holm, 4), significativo),
+            ]
+        )
+
+    return deck.Slide(
+        topico=TOPICO_CENARIOS,
+        titulo="Um único hiperparâmetro troca qual horizonte o modelo acerta",
+        rotulo_curto="Folha 5 × 20",
+        corpo=(
+            "<p class='deckLegenda'><b>Erro médio, em casos por semana</b> — menor é melhor</p>"
+            + layout.montar_tabela(cabecalhos_do_erro, linhas_do_erro)
+            + "<p class='deckLegenda'><b>E o que o vetor rende dentro da folha 20</b></p>"
+            + layout.montar_tabela(cabecalhos_do_vetor, linhas_do_vetor)
+        ),
+        nota=(
+            "<b>Folha mínima</b> é o número mínimo de semanas por folha da "
+            "árvore. Folha 5 fica detalhista e acerta o curto prazo; folha 20 "
+            "é obrigada a achar padrão que se repete, e acerta o longo. É por "
+            "isso que só ela aproveita o vetor: o sinal do mosquito é "
+            "estrutural, não é ruído semanal."
+        ),
+        e_denso=True,
+    )
+
+
+def _slide_modelo_composto() -> deck.Slide:
+    """O composto, com a régua sazonal como linha de referência nos gráficos."""
+    por_braco = {}
+    for linha in numeros.PAINEL_DO_COMPOSTO:
+        por_braco.setdefault(linha.braco, {})[linha.rotulo] = linha
+
+    rotulos = ["1 semana", "1 mês", "2 meses", "3 meses"]
+    cabecalhos = [
+        "Horizonte",
+        "Erro médio",
+        "R² (o quanto explica)",
+        "Captura do pico",
+        "Régua sazonal (erro)",
+    ]
+    linhas = []
+    for rotulo in rotulos:
+        composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
+        regua = por_braco[numeros.NOME_DA_REGUA][rotulo]
+        composto_vence = composto.erro_medio_absoluto < regua.erro_medio_absoluto
+        linhas.append(
+            [
+                f"<b>{layout.escapar(rotulo)}</b>",
+                _destacar(
+                    numeros.formatar_decimal(composto.erro_medio_absoluto, 1),
+                    composto_vence,
+                ),
+                numeros.formatar_decimal(composto.r2, 3),
+                numeros.formatar_percentual(composto.captura_do_pico, 1),
+                _destacar(
+                    numeros.formatar_decimal(regua.erro_medio_absoluto, 1),
+                    not composto_vence,
+                ),
+            ]
+        )
+
+    semanas_por_rotulo = {linha.rotulo: linha.semanas for linha in numeros.PAINEL_DO_COMPOSTO}
+    serie_do_composto = [
+        (semanas_por_rotulo[r], por_braco[numeros.NOME_DO_COMPOSTO][r].erro_medio_absoluto)
+        for r in rotulos
+    ]
+    serie_do_adotado = [
+        (semanas_por_rotulo[r], por_braco[numeros.NOME_DO_ADOTADO][r].erro_medio_absoluto)
+        for r in rotulos
+    ]
+    serie_da_regua = [
+        (semanas_por_rotulo[r], por_braco[numeros.NOME_DA_REGUA][r].erro_medio_absoluto)
+        for r in rotulos
+    ]
+
+    return deck.Slide(
+        topico=TOPICO_RESULTADOS,
+        titulo="Um modelo composto fecha parte da distância — e não toda",
+        rotulo_curto="Composto",
+        corpo=(
+            layout.montar_tabela(cabecalhos, linhas)
+            + graficos.montar_grafico_de_linhas(
+                {
+                    "Composto": serie_do_composto,
+                    "Adotado (folha 5)": serie_do_adotado,
+                    "Régua sazonal": serie_da_regua,
+                },
+                "horizonte (semanas)",
+                "erro médio (casos/semana)",
+                cores=["var(--acento)", "var(--texto-fraco)", "var(--critico)"],
+                series_tracejadas={"Régua sazonal"},
+            )
+            + layout.montar_aviso(
+                "atencao",
+                "Ainda não é adotável",
+                "O ponto de corte entre as duas configurações foi escolhido "
+                "<b>olhando o período de avaliação</b>, que é o mesmo que julga. "
+                "Adotar exige pré-declarar o critério e re-rodar.",
+            )
+        ),
+        nota=(
+            "O composto passa a vencer a régua também em <b>1 mês</b>, e a "
+            "captura do pico em 3 meses sobe de <b>38,8%</b> para <b>50,4%</b>. "
+            "Mas em 2 e 3 meses a régua ainda vence: a distância cai de 28% para "
+            "<b>12%</b>, e não fecha. A régua <b>não olha o mosquito nem o "
+            "clima</b> — só repete o ano anterior."
+        ),
+        e_denso=True,
+    )
+
+
 def _slide_resultados() -> deck.Slide:
     """O desempenho da configuração adotada na previsão de casos."""
     return deck.Slide(
@@ -502,6 +666,8 @@ def montar_slides() -> list[deck.Slide]:
         _slide_colunas_de_clima(),
         _slide_cenarios(),
         _slide_adotado(),
+        _slide_folha_5_contra_folha_20(),
+        _slide_modelo_composto(),
         _slide_resultados(),
         _slide_alarme(),
         _slide_o_vetor(),

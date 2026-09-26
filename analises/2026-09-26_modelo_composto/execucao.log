@@ -1,0 +1,23 @@
+Previsoes lidas de previsoes_por_braco.csv
+Corte do composto: folha 5 ate h=3, folha 20 depois
+
+--- h = 1 semanas ---
+  Adotado (folha 5)      MAE    98.0 | R2  0.898 | captura 0.886 | n 102
+  Folha 20, com vetor    MAE   133.6 | R2  0.834 | captura 0.938 | n 102
+  Composto               MAE    98.0 | R2  0.898 | captura 0.886 | n 102
+  Regua sazonal          MAE   202.1 | R2  0.633 | captura 0.567 | n 102
+--- h = 4 semanas ---
+  Adotado (folha 5)      MAE   219.7 | R2  0.628 | captura 0.702 | n 102
+  Folha 20, com vetor    MAE   199.6 | R2  0.717 | captura 0.706 | n 102
+  Composto               MAE   199.6 | R2  0.717 | captura 0.706 | n 102
+  Regua sazonal          MAE   213.2 | R2  0.623 | captura 0.569 | n 102
+--- h = 8 semanas ---
+  Adotado (folha 5)      MAE   272.6 | R2  0.450 | captura 0.417 | n 102
+  Folha 20, com vetor    MAE   223.2 | R2  0.576 | captura 0.510 | n 102
+  Composto               MAE   223.2 | R2  0.576 | captura 0.510 | n 102
+  Regua sazonal          MAE   216.2 | R2  0.618 | captura 0.575 | n 102
+--- h = 12 semanas ---
+  Adotado (folha 5)      MAE   278.8 | R2  0.437 | captura 0.388 | n 102
+  Folha 20, com vetor    MAE   243.8 | R2  0.558 | captura 0.504 | n 102
+  Composto               MAE   243.8 | R2  0.558 | captura 0.504 | n 102
+  Regua sazonal          MAE   217.8 | R2  0.616 | captura 0.574 | n 102

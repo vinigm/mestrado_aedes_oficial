@@ -634,3 +634,75 @@ def formatar_decimal(valor: float, casas: int) -> str:
 def formatar_percentual(fracao: float, casas: int = 1) -> str:
     """Converte uma fração (0 a 1) em percentual escrito."""
     return f"{formatar_decimal(fracao * 100, casas)}%"
+
+
+# ---------------------------------------------------------------------------
+# MODELO COMPOSTO — medido em 26/09/2026
+#
+# ⚠️ DESCRITIVO E POSTERIOR AOS FATOS. O ponto de corte entre as duas
+# configuracoes foi escolhido olhando o periodo de avaliacao, que e o mesmo que
+# julga. Serve de ilustracao do que um composto renderia, NAO de configuracao
+# adotavel. Ver `analises/2026-09-26_modelo_composto/README.md`.
+# ---------------------------------------------------------------------------
+
+
+@dataclasses.dataclass(frozen=True)
+class DesempenhoDeUmBraco:
+    """As tres metricas do painel para um braco, num horizonte.
+
+    Fonte: `analises/2026-09-26_modelo_composto/saidas/painel_do_composto.csv`,
+    avaliacao de 2024 em diante, 102 semanas por horizonte.
+
+    Attributes:
+        braco: Nome do modelo ou da regua.
+        semanas: Quantas semanas a frente a previsao olha.
+        rotulo: Como o horizonte e dito em texto.
+        erro_medio_absoluto: MAE em casos confirmados por semana.
+        r2: Fracao da variacao dos casos que o braco explica.
+        captura_do_pico: Fracao da altura do pico que o braco alcanca.
+    """
+
+    braco: str
+    semanas: int
+    rotulo: str
+    erro_medio_absoluto: float
+    r2: float
+    captura_do_pico: float
+
+
+NOME_DO_ADOTADO = "Adotado (folha 5)"
+NOME_DA_FOLHA_20 = "Folha 20, com vetor"
+NOME_DO_COMPOSTO = "Composto"
+NOME_DA_REGUA = "Régua sazonal"
+
+PAINEL_DO_COMPOSTO: tuple[DesempenhoDeUmBraco, ...] = (
+    DesempenhoDeUmBraco(NOME_DO_ADOTADO, 1, "1 semana", 98.0, 0.898, 0.886),
+    DesempenhoDeUmBraco(NOME_DO_ADOTADO, 4, "1 mês", 219.7, 0.628, 0.702),
+    DesempenhoDeUmBraco(NOME_DO_ADOTADO, 8, "2 meses", 272.6, 0.450, 0.417),
+    DesempenhoDeUmBraco(NOME_DO_ADOTADO, 12, "3 meses", 278.8, 0.437, 0.388),
+    DesempenhoDeUmBraco(NOME_DA_FOLHA_20, 1, "1 semana", 133.6, 0.834, 0.938),
+    DesempenhoDeUmBraco(NOME_DA_FOLHA_20, 4, "1 mês", 199.6, 0.717, 0.706),
+    DesempenhoDeUmBraco(NOME_DA_FOLHA_20, 8, "2 meses", 223.2, 0.576, 0.510),
+    DesempenhoDeUmBraco(NOME_DA_FOLHA_20, 12, "3 meses", 243.8, 0.558, 0.504),
+    DesempenhoDeUmBraco(NOME_DO_COMPOSTO, 1, "1 semana", 98.0, 0.898, 0.886),
+    DesempenhoDeUmBraco(NOME_DO_COMPOSTO, 4, "1 mês", 199.6, 0.717, 0.706),
+    DesempenhoDeUmBraco(NOME_DO_COMPOSTO, 8, "2 meses", 223.2, 0.576, 0.510),
+    DesempenhoDeUmBraco(NOME_DO_COMPOSTO, 12, "3 meses", 243.8, 0.558, 0.504),
+    DesempenhoDeUmBraco(NOME_DA_REGUA, 1, "1 semana", 202.1, 0.633, 0.567),
+    DesempenhoDeUmBraco(NOME_DA_REGUA, 4, "1 mês", 213.2, 0.623, 0.569),
+    DesempenhoDeUmBraco(NOME_DA_REGUA, 8, "2 meses", 216.2, 0.618, 0.575),
+    DesempenhoDeUmBraco(NOME_DA_REGUA, 12, "3 meses", 217.8, 0.616, 0.574),
+)
+
+# O corte do composto: ate 3 semanas usa a folha 5; de 4 em diante, a folha 20.
+ULTIMO_HORIZONTE_DA_FOLHA_5 = 3
+
+# Ganho do vetor DENTRO da folha 20, por horizonte, com o p ja corrigido por
+# Holm. Fonte: `analises/2026-09-23_bateria_noturna/bloco_7_vetor_com_folha_20/
+# saidas/comparacoes.csv`.
+GANHO_DO_VETOR_NA_FOLHA_20: tuple[tuple[str, float, float], ...] = (
+    ("1 semana", -15.7, 0.4654),
+    ("1 mês", 4.1, 0.8295),
+    ("2 meses", 8.1, 0.0056),
+    ("3 meses", 12.3, 0.0151),
+)
