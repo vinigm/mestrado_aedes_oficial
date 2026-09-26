@@ -1,0 +1,135 @@
+==============================================================================
+TRANSFORMAÇÃO DE ESCALA — T_raiz e T_log, 26/09/2026
+==============================================================================
+
+TRAVA — B0 (q0,85), evidência do log já certificado (ver desvio 1)
+  janela: 2024-01-01 a 2026-02-01
+    h= 1  MAE certificado   97.99  (painel   98.0)  ok
+    h= 4  MAE certificado  219.67  (painel  219.7)  ok
+    h= 8  MAE certificado  272.63  (painel  272.6)  ok
+    h=12  MAE certificado  278.82  (painel  278.7)  ok
+  log de origem (execucao.log) confere: sim
+  veredito: VALIDA
+Disparando 64 combinações (até 8 processos em paralelo)...
+  [ 1/64]  T_raiz  h= 1  q=0.05  295 semanas  (  34.1s desde o início)
+  [ 2/64]  T_raiz  h= 1  q=0.10  295 semanas  (  38.6s desde o início)
+  [ 3/64]  T_raiz  h= 1  q=0.95  295 semanas  (  57.2s desde o início)
+  [ 4/64]  T_raiz  h= 1  q=0.25  295 semanas  (  57.2s desde o início)
+  [ 5/64]  T_raiz  h= 4  q=0.05  292 semanas  (  57.9s desde o início)
+  [ 6/64]  T_raiz  h= 1  q=0.90  295 semanas  (  64.1s desde o início)
+  [ 7/64]  T_raiz  h= 1  q=0.50  295 semanas  (  65.8s desde o início)
+  [ 8/64]  T_raiz  h= 4  q=0.10  292 semanas  (  67.5s desde o início)
+  [ 9/64]  T_raiz  h= 1  q=0.85  295 semanas  (  67.6s desde o início)
+  [10/64]  T_raiz  h= 1  q=0.75  295 semanas  (  71.3s desde o início)
+  [11/64]  T_raiz  h= 8  q=0.05  288 semanas  (  88.8s desde o início)
+  [12/64]  T_raiz  h= 8  q=0.10  288 semanas  (  97.0s desde o início)
+  [13/64]  T_raiz  h= 4  q=0.25  292 semanas  ( 109.1s desde o início)
+  [14/64]  T_raiz  h= 4  q=0.50  292 semanas  ( 114.3s desde o início)
+  [15/64]  T_raiz  h= 4  q=0.95  292 semanas  ( 115.5s desde o início)
+  [16/64]  T_raiz  h= 4  q=0.90  292 semanas  ( 120.5s desde o início)
+  [17/64]  T_raiz  h= 4  q=0.75  292 semanas  ( 121.7s desde o início)
+  [18/64]  T_raiz  h= 8  q=0.25  288 semanas  ( 122.4s desde o início)
+  [19/64]  T_raiz  h= 4  q=0.85  292 semanas  ( 126.3s desde o início)
+  [20/64]  T_raiz  h=12  q=0.05  284 semanas  ( 141.3s desde o início)
+  [21/64]  T_raiz  h=12  q=0.10  284 semanas  ( 144.1s desde o início)
+  [22/64]  T_raiz  h=12  q=0.25  284 semanas  ( 151.2s desde o início)
+  [23/64]  T_raiz  h= 8  q=0.50  288 semanas  ( 152.5s desde o início)
+  [24/64]  T_raiz  h= 8  q=0.95  288 semanas  ( 165.2s desde o início)
+  [25/64]  T_raiz  h= 8  q=0.90  288 semanas  ( 170.4s desde o início)
+  [26/64]  T_raiz  h= 8  q=0.75  288 semanas  ( 170.7s desde o início)
+  [27/64]  T_raiz  h= 8  q=0.85  288 semanas  ( 178.0s desde o início)
+  [28/64]  T_raiz  h=12  q=0.50  284 semanas  ( 187.2s desde o início)
+  [29/64]   T_log  h= 1  q=0.05  295 semanas  ( 195.8s desde o início)
+  [30/64]   T_log  h= 1  q=0.10  295 semanas  ( 200.9s desde o início)
+  [31/64]  T_raiz  h=12  q=0.95  284 semanas  ( 201.0s desde o início)
+  [32/64]  T_raiz  h=12  q=0.75  284 semanas  ( 204.1s desde o início)
+  [33/64]  T_raiz  h=12  q=0.90  284 semanas  ( 205.3s desde o início)
+  [34/64]  T_raiz  h=12  q=0.85  284 semanas  ( 220.1s desde o início)
+  [35/64]   T_log  h= 1  q=0.25  295 semanas  ( 227.2s desde o início)
+  [36/64]   T_log  h= 4  q=0.05  292 semanas  ( 228.8s desde o início)
+  [37/64]   T_log  h= 1  q=0.50  295 semanas  ( 245.1s desde o início)
+  [38/64]   T_log  h= 4  q=0.10  292 semanas  ( 249.8s desde o início)
+  [39/64]   T_log  h= 1  q=0.95  295 semanas  ( 252.9s desde o início)
+  [40/64]   T_log  h= 1  q=0.75  295 semanas  ( 259.0s desde o início)
+  [41/64]   T_log  h= 1  q=0.90  295 semanas  ( 259.2s desde o início)
+  [42/64]   T_log  h= 1  q=0.85  295 semanas  ( 263.9s desde o início)
+  [43/64]   T_log  h= 4  q=0.25  292 semanas  ( 278.3s desde o início)
+  [44/64]   T_log  h= 8  q=0.05  288 semanas  ( 280.1s desde o início)
+  [45/64]   T_log  h= 4  q=0.50  292 semanas  ( 285.5s desde o início)
+  [46/64]   T_log  h= 8  q=0.10  288 semanas  ( 289.4s desde o início)
+  [47/64]   T_log  h= 4  q=0.95  292 semanas  ( 305.5s desde o início)
+  [48/64]   T_log  h= 4  q=0.90  292 semanas  ( 307.8s desde o início)
+  [49/64]   T_log  h= 4  q=0.75  292 semanas  ( 308.0s desde o início)
+  [50/64]   T_log  h= 8  q=0.25  288 semanas  ( 311.5s desde o início)
+  [51/64]   T_log  h= 4  q=0.85  292 semanas  ( 317.7s desde o início)
+  [52/64]   T_log  h=12  q=0.05  284 semanas  ( 327.1s desde o início)
+  [53/64]   T_log  h=12  q=0.10  284 semanas  ( 332.3s desde o início)
+  [54/64]   T_log  h= 8  q=0.50  288 semanas  ( 335.3s desde o início)
+  [55/64]   T_log  h=12  q=0.25  284 semanas  ( 342.2s desde o início)
+  [56/64]   T_log  h= 8  q=0.90  288 semanas  ( 346.1s desde o início)
+  [57/64]   T_log  h= 8  q=0.75  288 semanas  ( 346.6s desde o início)
+  [58/64]   T_log  h= 8  q=0.95  288 semanas  ( 355.8s desde o início)
+  [59/64]   T_log  h= 8  q=0.85  288 semanas  ( 364.2s desde o início)
+  [60/64]   T_log  h=12  q=0.50  284 semanas  ( 369.3s desde o início)
+  [61/64]   T_log  h=12  q=0.90  284 semanas  ( 382.7s desde o início)
+  [62/64]   T_log  h=12  q=0.75  284 semanas  ( 383.3s desde o início)
+  [63/64]   T_log  h=12  q=0.95  284 semanas  ( 384.0s desde o início)
+  [64/64]   T_log  h=12  q=0.85  284 semanas  ( 389.7s desde o início)
+Treino completo em 6.5 min.
+
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_transformacao_de_escala/saidas/previsoes_completas.csv
+
+Cruzamentos brutos (escala transformada, antes do rearranjo): 1796 de 2318 origens (77.5%).
+Cruzamentos restantes em CASOS, após rearranjo + volta monótona: 0 (esperado: 0).
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_transformacao_de_escala/saidas/diagnostico_cruzamento.csv
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_transformacao_de_escala/saidas/mae_por_h.csv e mae_por_faixa.csv
+
+MAE por (braço, h), janela 2024-01-01 a 2026-02-01:
+ braco  h        mae  n_semanas
+ T_log  1 114.476679        102
+ T_log  4 212.853550        102
+ T_log  8 284.555359        102
+ T_log 12 299.043121        102
+T_raiz  1 103.181758        102
+T_raiz  4 205.022919        102
+T_raiz  8 277.984968        102
+T_raiz 12 289.213328        102
+
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_transformacao_de_escala/saidas/cobertura_por_faixa.csv
+
+Cobertura por (braço, faixa), série completa, h agrupados:
+ braco                    faixa  semanas  cobertura_ic50  cobertura_ic90
+ T_log       1. calmaria (0-20)      814        0.512285        0.804668
+ T_log       2. subida (21-140)      110        0.163636        0.481818
+ T_log 3. Mobilizacao (141-421)       72        0.152778        0.333333
+ T_log 4. Alerta ou mais (>421)      163        0.036810        0.134969
+T_raiz       1. calmaria (0-20)      814        0.515971        0.841523
+T_raiz       2. subida (21-140)      110        0.145455        0.554545
+T_raiz 3. Mobilizacao (141-421)       72        0.152778        0.430556
+T_raiz 4. Alerta ou mais (>421)      163        0.067485        0.159509
+    B0       1. calmaria (0-20)      814        0.592138        0.905405
+    B0       2. subida (21-140)      110        0.181818        0.636364
+    B0 3. Mobilizacao (141-421)       72        0.277778        0.472222
+    B0 4. Alerta ou mais (>421)      163        0.079755        0.177914
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_transformacao_de_escala/saidas/wis_por_h.csv e wis_por_faixa.csv
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_transformacao_de_escala/saidas/captura_do_pico.csv
+
+Captura do pico (IC 90%), por (braço, h):
+ braco  h data_alvo_do_pico  casos_no_pico  ic90_inferior  ic90_superior  cobriu_o_pico
+ T_log  1        2025-03-30         2381.0     684.755467    1358.484643          False
+ T_log  4        2025-03-30         2381.0     531.146902    1274.610068          False
+ T_log  8        2025-03-30         2381.0       0.000000     855.121483          False
+ T_log 12        2025-03-30         2381.0       0.000000     964.732746          False
+T_raiz  1        2025-03-30         2381.0     256.324796    1432.783311          False
+T_raiz  4        2025-03-30         2381.0     466.590806    1080.121513          False
+T_raiz  8        2025-03-30         2381.0       0.000000     891.391533          False
+T_raiz 12        2025-03-30         2381.0       0.000151    1176.477847          False
+
+Gravado: /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-26_transformacao_de_escala/saidas/veredito.csv
+
+VEREDITO — critério duplo da seção 5:
+ braco  cobertura_ic90_alerta  criterio_1_cobertura_ok    mae_h12  criterio_2_mae_ok veredito
+T_raiz               0.159509                    False 289.213328               True NEGATIVO
+ T_log               0.134969                    False 299.043121               True NEGATIVO
+
+RODADA CONCLUÍDA.

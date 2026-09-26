@@ -1,0 +1,9 @@
+braco,faixa,wis_medio,n
+T_log,1. calmaria (0-20),2.132610831072468,814
+T_log,2. subida (21-140),29.349393276377292,110
+T_log,3. Mobilizacao (141-421),140.9940076505867,72
+T_log,4. Alerta ou mais (>421),676.3694424666492,163
+T_raiz,1. calmaria (0-20),2.4998188314349656,814
+T_raiz,2. subida (21-140),34.17760507433584,110
+T_raiz,3. Mobilizacao (141-421),132.8280379971548,72
+T_raiz,4. Alerta ou mais (>421),640.5672841616419,163

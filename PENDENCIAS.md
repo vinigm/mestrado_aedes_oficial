@@ -101,9 +101,11 @@
   para a régua em 3 meses (239,6 × 226,8).
 - ✅ **WIS refeito na tabela oficial** (26/09): em 1 mês os dois modelos vencem a régua climatológica (p Holm < 0,0001);
   em 3 meses só o **folha 20** vence (p Holm 0,0020) — o adotado **não** (p Holm 0,096).
-  🔴 **Cobertura: boa na calmaria, péssima onde importa** (26/09). Acima de 421 casos o intervalo de 50% cobre
-  **8%** e o de 90% cobre **18%**; na calmaria, 59% e 91%. O agregado escondia isso.
-  `analises/2026-09-26_calibracao_por_faixa/`
+  🔴 **Cobertura: boa na calmaria, péssima onde importa** (26/09). Acima de 421 casos o intervalo de 90% cobre
+  **18%**; na calmaria, 91%. 🚫 **Transformação de escala não resolve** — raiz e log pioraram a cobertura em
+  todas as faixas. A causa medida é **viés, não variância**: o erro mediano acima de 421 é **539 casos sobre
+  917 reais**, e a faixa já cresce 70× enquanto o erro cresce 415×. Alargar não conserta viés.
+  `analises/2026-09-26_calibracao_por_faixa/` · `analises/2026-09-26_transformacao_de_escala/`
   ⚠️ Dívida: h=1 do adotado diverge **−2,75%** da rodada anterior, acima do teto de 1%; causa provável é a seleção de
   clima nos 60% mais antigos, não confirmada. `analises/2026-09-26_wis_na_tabela_restaurada/`
   `analises/2026-09-25_segunda_bateria_noturna/` · `analises/2026-09-25_busca_de_hiperparametros/`
