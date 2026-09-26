@@ -220,6 +220,24 @@ PAGINA_SEMINARIO = PaginaDoSite(
 )
 
 
+# Cópia de trabalho do seminário, só local (não publicada). A página original
+# `PAGINA_SEMINARIO` fica INTACTA, contando a versão de 23/09/2026 — é ela que
+# vai ao ar se o Vinicius decidir usar a antiga. Esta revisão incorpora as
+# rodadas de 25 e 26/09/2026: a régua sazonal, o teste de McNemar do alarme, a
+# calibração por faixa e o escore de intervalo ponderado.
+PAGINA_SEMINARIO_V2 = PaginaDoSite(
+    chave="seminario-v2",
+    arquivo="seminario-revisao.html",
+    titulo_no_menu="Seminário · revisão 26/09",
+    icone="apresentacao",
+    titulo="Seminário de Andamento — revisão de 26/09/2026",
+    resumo="",
+    rotulo_do_submenu="A apresentação",
+    secoes=(),
+    oculta_cabecalho=True,
+)
+
+
 # Página de trabalho, só local (não publicada) — registro enxuto da rodada de
 # 25/09/2026 que troca o alvo pela série do CEVS (Confirmados/Notificações).
 # `abre_grupo=True` repete o mesmo filete com respiro que separa "Próximos
@@ -252,6 +270,7 @@ PAGINAS_DO_SITE: tuple[PaginaDoSite, ...] = (
     PAGINA_COMPARACOES,
     PAGINA_PROXIMOS_PASSOS,
     PAGINA_SEMINARIO,
+    PAGINA_SEMINARIO_V2,
     PAGINA_NOTIFICACOES_COMO_ALVO,
 )
 

@@ -634,3 +634,222 @@ def formatar_decimal(valor: float, casas: int) -> str:
 def formatar_percentual(fracao: float, casas: int = 1) -> str:
     """Converte uma fração (0 a 1) em percentual escrito."""
     return f"{formatar_decimal(fracao * 100, casas)}%"
+
+
+# ---------------------------------------------------------------------------
+# NÚMEROS DA REVISÃO DE 26/09/2026
+#
+# Tudo abaixo entrou depois da bateria de 25 e 26/09/2026 e alimenta APENAS a
+# página "Seminário — revisão de 26/09". A página original do seminário não usa
+# nada daqui, de propósito: ela continua contando a versão de 23/09/2026.
+# ---------------------------------------------------------------------------
+
+
+@dataclasses.dataclass(frozen=True)
+class ComparacaoDeAlarmeContraRegua:
+    """O índice de Youden do alarme, por regra, em um horizonte.
+
+    Youden = sensibilidade + especificidade − 1. Quanto mais perto de 1, melhor.
+
+    Fonte: `analises/2026-09-25_alarme_contra_canal_endemico/saidas/
+    metricas_por_regra.csv`, evento "semana com mais de 100 casos", avaliação
+    de 2024 em diante, 102 semanas.
+
+    Attributes:
+        regra: Nome da regra ou do modelo.
+        e_modelo: True quando a linha é um modelo, e não uma regra simples.
+        youden_um_mes: Índice de Youden em 1 mês (4 semanas).
+        youden_tres_meses: Índice de Youden em 3 meses (12 semanas).
+    """
+
+    regra: str
+    e_modelo: bool
+    youden_um_mes: float
+    youden_tres_meses: float
+
+
+ALARME_CONTRA_REGUAS: tuple[ComparacaoDeAlarmeContraRegua, ...] = (
+    ComparacaoDeAlarmeContraRegua("Cenário adotado", True, 0.94, 0.66),
+    ComparacaoDeAlarmeContraRegua("HistGB, folha mínima 20", True, 0.90, 0.78),
+    ComparacaoDeAlarmeContraRegua("Mesma semana do ano passado", False, 0.84, 0.80),
+    ComparacaoDeAlarmeContraRegua("Hoje já passou do limiar", False, 0.68, 0.11),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class TesteDeAlarmeComHolm:
+    """Um teste de McNemar pareado do alarme, já com correção de Holm.
+
+    Fonte: `analises/2026-09-25_alarme_contra_canal_endemico/saidas/
+    mcnemar_holm.csv`, evento de 100 casos, família de 16 testes.
+
+    Attributes:
+        horizonte: Como o horizonte é dito em texto.
+        regra_base: Contra qual regra o cenário adotado foi comparado.
+        discordantes: Quantas semanas as duas regras classificaram diferente.
+            Só elas entram no teste de McNemar.
+        divisao: Como os discordantes se dividem, a favor e contra o modelo.
+        p_holm: O valor-p depois da correção de Holm.
+        vence: True quando o resultado é significativo a 5%.
+    """
+
+    horizonte: str
+    regra_base: str
+    discordantes: int
+    divisao: str
+    p_holm: float
+    vence: bool
+
+
+# 🔴 É o quadro mais importante da revisão: ele impede afirmar que o alarme de
+# 1 mês vence as regras simples.
+TESTES_DO_ALARME: tuple[TesteDeAlarmeComHolm, ...] = (
+    TesteDeAlarmeComHolm("1 mês", "Hoje já passou", 15, "13 a 2", 0.103, False),
+    TesteDeAlarmeComHolm("1 mês", "Ano passado", 7, "5 a 2", 1.000, False),
+    TesteDeAlarmeComHolm("3 meses", "Hoje já passou", 37, "31 a 6", 0.00062, True),
+    TesteDeAlarmeComHolm("3 meses", "Ano passado", 16, "4 a 12", 0.845, False),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class CalibracaoPorFaixa:
+    """A cobertura dos intervalos de previsão, por nível de casos reais.
+
+    Se as faixas fossem honestas, a cobertura observada seria igual à nominal:
+    50% e 90%.
+
+    Fonte: `analises/2026-09-26_calibracao_por_faixa/saidas/
+    cobertura_por_faixa.csv`, cenário adotado.
+
+    Attributes:
+        faixa: O nome da faixa de casos reais.
+        semanas: Quantas semanas caíram nessa faixa.
+        cobertura_50: Fração das semanas dentro do intervalo de 50%.
+        cobertura_90: Fração das semanas dentro do intervalo de 90%.
+    """
+
+    faixa: str
+    semanas: int
+    cobertura_50: float
+    cobertura_90: float
+
+
+CALIBRACAO_POR_FAIXA: tuple[CalibracaoPorFaixa, ...] = (
+    CalibracaoPorFaixa("Calmaria (0 a 20 casos)", 814, 0.592, 0.905),
+    CalibracaoPorFaixa("Subida (21 a 140)", 110, 0.182, 0.636),
+    CalibracaoPorFaixa("Mobilização (141 a 421)", 72, 0.278, 0.472),
+    CalibracaoPorFaixa("Alerta ou mais (acima de 421)", 163, 0.080, 0.178),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class EscoreDeIntervaloPonderado:
+    """O escore de intervalo ponderado (WIS), por horizonte.
+
+    O WIS avalia a distribuição prevista inteira, e não um número só. É a
+    métrica oficial dos sprints brasileiros de previsão de dengue. Menor é
+    melhor.
+
+    Fonte: `analises/2026-09-26_wis_na_tabela_restaurada/`, recorte de 2024 a
+    2025, tabela oficial.
+
+    Attributes:
+        horizonte: Como o horizonte é dito em texto.
+        adotado: WIS do cenário adotado.
+        folha20: WIS do HistGB de folha mínima 20.
+        regua_climatologica: WIS da régua climatológica.
+    """
+
+    horizonte: str
+    adotado: float
+    folha20: float
+    regua_climatologica: float
+
+
+ESCORE_DE_INTERVALO: tuple[EscoreDeIntervaloPonderado, ...] = (
+    EscoreDeIntervaloPonderado("1 semana", 101.9, 121.3, 292.7),
+    EscoreDeIntervaloPonderado("1 mês", 215.4, 199.0, 313.5),
+    EscoreDeIntervaloPonderado("2 meses", 288.6, 259.0, 322.2),
+    EscoreDeIntervaloPonderado("3 meses", 300.7, 278.6, 324.2),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class EstagioDoPlanoMunicipal:
+    """Um estágio de resposta do Plano Municipal de Contingência de 2026.
+
+    Fonte: Plano Municipal de Contingência de Arboviroses 2026 da Secretaria
+    Municipal de Saúde de Porto Alegre, Quadro 1, página 15. Conversão para
+    casos por semana na população de 1.404.269.
+
+    ⚠️ SIMPLIFICAÇÃO DECLARADA: no plano, o corte numérico nunca aparece
+    sozinho — vem sempre ligado por E ao Limite de Alerta ou ao Limite Superior
+    Endêmico, que são curvas do Rio Grande do Sul sobre casos prováveis. Mais
+    óbito confirmado e sorotipo novo. Usamos só a metade fixa do critério.
+
+    Attributes:
+        estagio: O nome do estágio.
+        incidencia: O corte de incidência declarado no plano.
+        casos_por_semana: O mesmo corte em casos por semana.
+        semanas_acima: Quantas das 121 semanas avaliadas ficaram acima dele.
+    """
+
+    estagio: str
+    incidencia: str
+    casos_por_semana: int
+    semanas_acima: int
+
+
+ESTAGIOS_DO_PLANO: tuple[EstagioDoPlanoMunicipal, ...] = (
+    EstagioDoPlanoMunicipal("Normalidade", "abaixo de 10", 140, 83),
+    EstagioDoPlanoMunicipal("Mobilização", "acima de 10", 140, 38),
+    EstagioDoPlanoMunicipal("Alerta", "acima de 30", 421, 28),
+    EstagioDoPlanoMunicipal("Epidemia", "acima de 50", 702, 23),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class AbordagemTestada:
+    """Uma família de abordagens testada, com o veredito.
+
+    Sustenta a afirmação de que o limite não é de configuração nem de código.
+
+    Attributes:
+        abordagem: O que foi testado.
+        quantidade: Quantas variantes, em texto.
+        veredito: O resultado, em poucas palavras.
+    """
+
+    abordagem: str
+    quantidade: str
+    veredito: str
+
+
+ABORDAGENS_TESTADAS: tuple[AbordagemTestada, ...] = (
+    AbordagemTestada("Busca de hiperparâmetros", "120 configurações", "nenhuma passa"),
+    AbordagemTestada("Algoritmos no grid", "9 algoritmos", "nenhum bate a régua em 3 meses"),
+    AbordagemTestada("Formulações do alvo", "6 variantes", "nenhuma passa; duas explodem"),
+    AbordagemTestada("Modelos de fundação", "2 modelos", "227,2 e 289,5 contra 217,8 da régua"),
+    AbordagemTestada("Modelos estatísticos clássicos", "SARIMA e LASSO", "explodem em epidemia"),
+    AbordagemTestada("Transformações de escala", "raiz e logaritmo", "pioram a calibração"),
+    AbordagemTestada("Correção conformal", "1 variante", "alarmes falsos de 15 para 124"),
+)
+
+
+# Contagem de blocos contíguos de semanas de surto, por limiar, na avaliação de
+# 121 semanas desde 2024. Fonte: `analises/2026-09-26_calibracao_por_faixa/` e
+# a medição de 26/09/2026. É o número que mais limita o que pode ser afirmado.
+BLOCOS_DE_SURTO = 2
+SEMANAS_ACIMA_DE_100 = 39
+MAIOR_BLOCO_EM_SEMANAS = 20
+
+# Captura do pico em 3 meses: razão entre a média prevista e a média real nas
+# semanas de surto. Fonte: `analises/2026-09-13_metrica_de_alarme/`.
+CAPTURA_DO_PICO_TRES_MESES = 0.388
+SEMANA_DE_PICO_REAL = 917
+SEMANA_DE_PICO_PREVISTA = 356
+
+# Erro mediano nas semanas acima de 421 casos, contra o valor real mediano.
+# Fonte: `analises/2026-09-26_calibracao_por_faixa/`.
+ERRO_MEDIANO_EM_EPIDEMIA = 539
+REAL_MEDIANO_EM_EPIDEMIA = 917
