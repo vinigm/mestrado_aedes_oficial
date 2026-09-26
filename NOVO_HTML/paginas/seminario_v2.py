@@ -239,17 +239,56 @@ def _slide_cenarios() -> deck.Slide:
 
 
 def _slide_adotado() -> deck.Slide:
-    """Qual configuração ficou, e por quê.
+    """Qual configuração ficou, com que hiperparâmetros, e por quê.
 
     Este slide responde "qual modelo?". O desempenho dele é outra pergunta, e
     vive no tópico de resultados.
+
+    ⚠️ **Mudado em 26/09/2026.** A ficha vinha de `cenario_adotado.py`, que
+    também alimenta a página publicada e o deck original — por isso a tabela é
+    montada aqui, e não lá: mexer no módulo compartilhado mudaria os três.
+
+    Duas correções em relação à versão de 23/09:
+
+    1. **Os hiperparâmetros passam a aparecer.** Eles faltavam, e a folha
+       mínima é justamente o parâmetro que decide se o vetor ajuda — o que o
+       slide do vetor agora afirma.
+    2. **A validação era descrita como "prevê uma semana à frente"**, e o
+       modelo prevê de 1 a 12. A frase também não dizia que o corte é pela data
+       da RESPOSTA, que é a correção de 13/09/2026 e custou +52% de erro.
+
+    Os valores vêm de `modelagem_aedes/config/experimentos/cidade_referencia.py`.
     """
+    cabecalhos = ["Característica", "Valor"]
+    linhas = [
+        ["Algoritmo", "<b>HistGradientBoostingRegressor</b> (scikit-learn)"],
+        ["Função de perda", "perda quantílica, quantil <b>0,85</b>"],
+        [
+            "Hiperparâmetros",
+            "<code>max_iter</code> 250 · <code>learning_rate</code> 0,05 · "
+            "<code>max_leaf_nodes</code> 15 · "
+            "<b><code>min_samples_leaf</code> 5</b>",
+        ],
+        ["Variáveis", "núcleo + clima + <b>variáveis do vetor</b> (mosquito)"],
+        ["Alvo", "casos de dengue <b>confirmados</b> (SINAN), nível cidade"],
+        [
+            "Selecionada por",
+            f"menor erro de calibração entre <b>{numeros.TOTAL_DE_CONFIGURACOES_TESTADAS}"
+            "</b> configurações (3 algoritmos × 5 perdas × com/sem vetor)",
+        ],
+        [
+            "Validação",
+            "<b>walk-forward</b>: treina só com o que já tinha <b>resposta</b> "
+            "na data da previsão, prevê de <b>1 a 12 semanas</b> à frente, avança "
+            "uma semana e repete",
+        ],
+    ]
     return deck.Slide(
         topico=TOPICO_CENARIOS,
         titulo="A configuração adotada, e como ela foi escolhida",
         rotulo_curto="Adotado",
         corpo=(
-            pagina_do_cenario_adotado.tabela_da_configuracao()
+            layout.montar_tabela(cabecalhos, linhas)
             + layout.montar_aviso(
                 tom="info",
                 rotulo="O que é perda quantílica em 0,85",
@@ -262,11 +301,14 @@ def _slide_adotado() -> deck.Slide:
             )
         ),
         nota=(
-            "Aqui é <b>qual modelo</b>, não quanto ele acerta. O desempenho vem "
-            "no próximo tópico. A frase que importa: 'a melhor entre as "
-            f"{numeros.TOTAL_DE_CONFIGURACOES_TESTADAS} testadas', nunca 'a "
-            "melhor possível'."
+            "Aqui é <b>qual modelo</b>, não quanto ele acerta. A frase que "
+            f"importa: 'a melhor entre as {numeros.TOTAL_DE_CONFIGURACOES_TESTADAS} "
+            "testadas', nunca 'a melhor possível'. Se perguntarem da <b>folha "
+            "mínima 5</b>: é ela que separa esta configuração da que extrai ganho "
+            "do vetor, no slide do vetor. <b>Cortar pela data da resposta</b> é a "
+            "correção de 13/09 — cortar pela data da pergunta custava +52% de erro."
         ),
+        e_denso=True,
     )
 
 
@@ -277,7 +319,14 @@ def _slide_resultados() -> deck.Slide:
         titulo="Prevendo o número de casos",
         rotulo_curto="Casos de dengue",
         corpo=(
-            pagina_do_cenario_adotado.tabela_do_desempenho()
+            layout.montar_aviso(
+                "info",
+                "Medido em",
+                f"<b>{numeros.SEMANAS_POR_HORIZONTE_NAS_COMPARACOES} semanas</b> de "
+                f"avaliação, de <b>{numeros.PERIODO_DE_AVALIACAO_DAS_COMPARACOES}</b>, "
+                "pareadas por data-alvo.",
+            )
+            + pagina_do_cenario_adotado.tabela_do_desempenho()
             + pagina_do_cenario_adotado.graficos_do_desempenho()
         ),
         nota=(
