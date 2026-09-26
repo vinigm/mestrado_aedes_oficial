@@ -8,15 +8,14 @@
 
 ---
 
-## 0. ⚠️ Escolha que o Vinicius fixa ANTES de rodar
+## 0. ✅ Evento principal fixado: **E_421**
 
-O evento principal está declarado como **E_140** (piso de Mobilização do plano municipal). Se ele preferir
-**E_421** (piso de Alerta), isto muda **antes** da execução e vira emenda. Depois de rodar, não muda.
+**Decisão do Vinicius em 26/09/2026, antes de rodar: o evento principal é `E_421`**, o piso do estágio
+**Alerta** do plano municipal. Ver a emenda 1 no fim.
 
-- **Por que E_140 como principal:** difere de E_100 em **1 semana de 121**, então preserva a comparação com
-  tudo que já foi medido, e ganha dono institucional.
-- **Por que E_421 seria defensável:** "Alerta" é semanticamente mais próximo de surto, e o evento é mais raro
-  (28 contra 38 semanas), o que o torna mais informativo.
+- **`E_421` é confirmatório.** `E_100`, `E_140` e `E_702` ficam **descritivos**.
+- **Custo aceito:** `E_421` não tem número anterior, então a comparação direta com 13/09 e 25/09 **não se
+  aplica** a ele. `E_100` continua sendo calculado, para manter a continuidade e a trava.
 
 ---
 
@@ -53,11 +52,11 @@ alarme_m_adotado = tabela["previsto_M_adotado"] > definicao_evento.limite_alvo
 ### B. Os estágios oficiais como evento
 
 - Acrescentar `E_140`, `E_421` e `E_702` à estrutura existente, **sem abrir família nova de Holm**.
-- **`E_140`: confirmatório**, somado à família já aberta em 25/09 — McNemar pareado, h=4 e h=12,
+- **`E_421`: confirmatório**, somado à família já aberta em 25/09 — McNemar pareado, h=4 e h=12,
   `M_adotado` e `M_folha20` contra `R_hoje` e `R_ano_passado`. **8 testes novos.**
-- **`E_421` e `E_702`: descritivos**, sempre, sem p-valor de veredito. Motivo: são o mesmo corte deslizante
-  sobre os mesmos **2 blocos** (ver C), e o aninhamento é aritmético.
-- **Critério de decisão para `E_140`:** o modelo só conta como ganho se vencer **`R_ano_passado`** em Youden
+- **`E_100`, `E_140` e `E_702`: descritivos**, sempre, sem p-valor de veredito. Motivo: são o mesmo corte
+  deslizante sobre os mesmos **2 blocos** (ver C), e o aninhamento é aritmético.
+- **Critério de decisão para `E_421`:** o modelo só conta como ganho se vencer **`R_ano_passado`** em Youden
   com p Holm < 0,05. Vencer só o `R_hoje` não conta — isso já foi mostrado em 25/09.
 - **Compromisso declarado:** o resultado é publicado mesmo se repetir a derrota de 3 meses para a régua
   sazonal (Youden 0,81 dela contra 0,66 do adotado em `E_100`).
@@ -101,9 +100,9 @@ explicada antes de seguir.
 
 | Parte | Estatuto |
 |---|---|
-| B, `E_140` contra `R_ano_passado` e `R_hoje` | **confirmatório**, 8 testes, Holm sobre a família de 25/09 |
+| B, `E_421` contra `R_ano_passado` e `R_hoje` | **confirmatório**, 8 testes, Holm sobre a família de 25/09 |
 | A, varredura de D | descritiva |
-| B, `E_421` e `E_702` | descritivas |
+| B, `E_100`, `E_140` e `E_702` | descritivas |
 | C, inflação do p | descritiva, mas **condiciona a leitura de tudo** |
 
 ---
@@ -113,8 +112,8 @@ explicada antes de seguir.
 - 🔴 **N efetivo é 2, não 121.** Só há 2 episódios epidêmicos. Toda métrica de alarme descreve 2 curvas.
 - 🔴 **Risco de pesca:** varrer D e escolher o melhor seria p-hacking. A defesa é o estatuto descritivo da
   parte A, declarado aqui, antes de rodar.
-- ⚠️ **O evento de 140 ocorre em 31% das semanas.** Isso é regime sazonal, não anomalia. Youden alto pode ser
-  o modelo aprendendo o calendário, e não detectando surto.
+- ⚠️ **O evento de 421 ocorre em 23% das semanas** (28 de 121), em 2 blocos de 14. Ainda é padrão sazonal,
+  não anomalia rara. Youden alto pode ser o modelo aprendendo o calendário, e não detectando surto.
 - ⚠️ **Aninhamento é aritmético:** toda semana acima de 702 está acima de 421 e de 140. Os estágios não são
   eventos independentes.
 - ⚠️ **140, 421 e 702 são só a metade fixa do critério do plano.** O Quadro 1 liga cada um por **E** ao
@@ -142,4 +141,11 @@ trava, pelo menos uma célula da varredura e pelo menos um p de *bootstrap*.
 
 ## Emendas
 
-- *(nenhuma até agora)*
+- **26/09/2026, antes de rodar — emenda 1:** o Vinicius escolheu **`E_421`** (piso de Alerta) como evento
+  principal, no lugar de `E_140`. Motivo declarado por ele: "421". Consequências, todas fixadas agora:
+  - `E_421` passa a ser o **único confirmatório**; `E_100`, `E_140` e `E_702` viram descritivos;
+  - a família confirmatória continua com **8 testes**, agora sobre `E_421`;
+  - `E_421` **não tem número anterior**, então nenhuma comparação com 13/09 ou 25/09 se aplica a ele;
+  - a **trava continua em `E_100`**, porque é ela que reproduz o painel publicado — a trava não depende da
+    escolha do evento principal;
+  - na varredura de D, o ponto **D = 421** é o equivalente à regra de hoje, e é o ponto de referência da curva.
