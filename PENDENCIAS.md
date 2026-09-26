@@ -22,7 +22,9 @@
 ## ⏳ Destrava com o VINICIUS
 
 - **Eixo da tese.** Candidatos em [ESTADO.md](ESTADO.md) §4.
-- 🔴 **Ler da Silva et al. 2026, PLOS NTD** — mesma cidade e armadilha; já está em `Artigos de referencia/`.
+- ✅ **da Silva et al. 2026 lido** (26/09): é **preprint medRxiv**, não PLOS NTD, e **não é revisado por pares**.
+  Mesma cidade e armadilha, mas alvo, validação e horizonte são outros — não comparável direto.
+  `analises/2026-09-26_ficha_da_silva_2026/`
 - 🔴 **Métrica primária: MAE × perda quantílica/WIS.** Pelo MAE, a régua vence em 3 meses (2024-25); pelo WIS, o modelo
   vence a régua dos sprints em 1 mês (a refazer na tabela oficial). Definição de produto: quanto custa subestimar surto?
 - **O que levar ao seminário** da régua sazonal. Ver `analises/2026-09-25_regua_regras_simples/`.
@@ -50,7 +52,9 @@
 - **Confirmatória em 2027**, pré-declarar antes da temporada: modelo × régua por skill; o vetor piora o alarme (13/09).
 - ⏳ **Faixas de previsão estreitas demais:** o intervalo de 50% cobre 14%; a conformal piora os alarmes. Medido na tabela com 2026.
 - ⏳ **Positividade das armadilhas e bairros em nível crítico** como atributos, com dado próprio de 2012 a 2026.
-- ⏳ **Defasagem vetor → casos nunca estimada.** da Silva 2026: τ 0,27 · 0,50 · 0,59 nos lags 0 · 4 · 8.
+- ⏳ **Defasagem vetor → casos nunca estimada por nós.** da Silva 2026 mediu τ de Kendall **0,274 no lag 0** e
+  **0,495 no lag 4**; a tabela dele **para no lag 4**. ⚠️ O "τ 0,59 no lag 8" que estava aqui **não existe no
+  artigo** — erro meu, corrigido em 26/09.
 - 🚫 **Canal endêmico e MEM em POA** — 26/09: exigem histórico longo e anos calmos. Porto Rico usa **38,5 anos**;
   aqui o limite dá 0 e o corte do MEM sobe de 6 para 94. Limiar vem do plano municipal, não do nosso histórico.
 - 🟢 **Aceleração de transmissão como régua de alarme:** média móvel 4 ÷ 26 semanas, alarme acima de **1,33**. Em 8
