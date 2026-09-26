@@ -88,6 +88,16 @@
 
 ## Registro cronológico
 
+### 26/09/2026 — documentação técnica completa
+
+- ✅ **`documentacao_completa/DOCUMENTACAO_COMPLETA.md`**: 11 partes, ~95 mil palavras, tudo conceituado do
+  zero, com fórmula e exemplo numérico. Escrita por 8 autores em paralelo sobre números canônicos comuns.
+- ✅ **Conferida número a número** por 5 verificadores independentes: 12 achados, 6 graves, **todos os
+  graves e médios corrigidos**. Lista em `documentacao_completa/CORRECOES_PENDENTES.md`.
+- 🔴 **Três erros eram meus, nos números canônicos:** o n avaliado é **102** e não 295/292/288/284; o
+  `V1_alvo_log` perde **9,9%** para o controle e 23,0% para a régua; o Youden da régua em h=12 é **0,80**
+  e não 0,81. Corrigidos no documento e aqui.
+
 ### 26/09/2026 — 2026 sai da avaliação, e o limiar ganha base
 
 - 🚫 **Premissa de Porto Rico derrubada:** eles usam **38,5 anos** de série (MMWR mm7405a1), não série curta. Limiar

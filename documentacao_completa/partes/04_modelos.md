@@ -153,9 +153,9 @@ Painel de erro na avaliação, de 01/01/2024 até aproximadamente 01/02/2026:
 
 | Horizonte | Erro absoluto médio (MAE) | Coeficiente de determinação (R²) | Pares avaliados |
 |---|---|---|---|
-| 1 semana | **98,0** | **0,898** | 295 |
-| 4 semanas | **219,7** | **0,628** | 292 |
-| 8 semanas | **272,6** | **0,450** | 288 |
+| 1 semana | **98,0** | **0,898** | **102** |
+| 4 semanas | **219,7** | **0,628** | **102** |
+| 8 semanas | **272,6** | **0,450** | **102** |
 | 12 semanas | **278,8** (painel publicado: 278,7) | **0,437** | 284 |
 
 O **erro absoluto médio** (em inglês, *mean absolute error*, abreviado **MAE**) é a média, em módulo, da
@@ -2053,9 +2053,17 @@ invicta em 3 meses contra tudo que foi tentado até 26/09/2026**: o cenário ado
 (§4.3), as 120 configurações da busca de hiperparâmetros (§4.5), as seis reformulações de alvo (§4.8), os
 dois modelos de fundação (§4.9), o SARIMA (§4.10), o LASSO (§4.11) e os dois ensembles (§4.12).
 
-✅ **FATO — em 1 mês, o quadro se inverte, e de forma consistente**: o cenário adotado vence tanto a régua
-sazonal quanto a régua de "hoje já passou", em erro pontual (MAE) e em desempenho de alarme (Youden de
-0,94), com significância estatística onde ela foi testada.
+⚠️ **Em 1 mês o quadro muda, mas é preciso separar duas coisas que NÃO têm o mesmo estatuto:**
+
+- ✅ **COM significância:** pela métrica probabilística — o escore de intervalo ponderado — o cenário
+  adotado vence a **régua climatológica** em 1 mês, com valor-p de Holm **menor que 0,0001**.
+- 🔴 **SEM significância:** no **alarme**, o índice de Youden do cenário adotado (**0,94**) é maior que o
+  das réguas simples (**0,84** e **0,68**), mas essa diferença **não sobrevive** ao teste de McNemar com
+  correção de Holm: os valores-p são **0,103** contra "hoje já passou de 100" e **1,000** contra "o ano
+  passado passou de 100" (ver o quadro na §4.15). São números descritivos, não vitória demonstrada.
+
+**A causa provável da ausência de significância é falta de poder do teste**, não ausência de efeito: em
+h=4 existem apenas **15** e **7** pares discordantes. HIPÓTESE, não fato.
 
 ⚠️ **RESSALVA que fecha este catálogo inteiro** — **e é a mais importante dele.** Nenhum destes vereditos é
 sobre "o vetor" ou sobre "se a rede de armadilhas serve para algo": são vereditos sobre um instrumento

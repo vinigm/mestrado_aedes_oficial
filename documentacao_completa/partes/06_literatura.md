@@ -187,7 +187,7 @@ o equivalente conceitual, embora não idêntico em implementação, da régua sa
 casos houve na mesma semana do ano passado").
 
 **A métrica: pontuação de habilidade probabilística (CRPSS).** O CRPSS (a definição de CRPS está na seção
-6.4.3, sobre o superensemble do Vietnã) é a versão relativa do CRPS: mostra o **quanto melhor** um modelo é
+6.4.5, sobre os *sprints* nacionais) é a versão relativa do CRPS: mostra o **quanto melhor** um modelo é
 em relação a uma régua, em percentual. Um CRPSS de +54% significa que o erro probabilístico do modelo é
 54% menor do que o da régua.
 
@@ -305,9 +305,17 @@ usa a **série semanal agregada para o município inteiro**.
 
 ### 6.3.4 Resultados relatados no PDF
 
-- **MFAI, *Aedes aegypti*:** raiz do erro quadrático médio (RMSE — ver definição e exemplo numérico na
-  seção 6.4.2) de **0,2866** para o modelo linear simples e **0,2864** para o LASSO; razão de deviance de
-  **0,5225**.
+- **MFAI, *Aedes aegypti*:** raiz do erro quadrático médio de **0,2866** para o modelo linear simples e
+  **0,2864** para o LASSO; razão de deviance de **0,5225**.
+  - A **raiz do erro quadrático médio** (em inglês *root mean squared error*, abreviado RMSE) é a raiz
+    quadrada da média dos erros elevados ao quadrado: $\text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}
+    (y_i - \hat{y}_i)^2}$, em que $y_i$ é o valor real, $\hat{y}_i$ é o previsto e $n$ é o número de
+    observações. Diferença em relação ao erro absoluto médio: elevar ao quadrado antes de somar faz com
+    que **erros grandes pesem desproporcionalmente mais**. Um erro de 10 pesa cem vezes um erro de 1,
+    enquanto no erro absoluto médio pesaria dez vezes.
+    ⚠️ **Estes valores não são comparáveis aos nossos**, porque estão numa escala diferente: eles medem o
+    erro sobre o índice de fêmeas por armadilha, um número que fica entre 0 e cerca de 1, e não sobre
+    contagem de casos.
   - A "razão de deviance" (*deviance ratio*) é uma medida análoga ao R² (definido com exemplo na seção
     6.4.2), usada quando o modelo estatístico não é uma regressão linear comum, mas sim um modelo da
     família de regressões generalizadas (como o LASSO usado aqui). Ela também varia entre 0 e 1 (quanto
@@ -327,7 +335,7 @@ usa a **série semanal agregada para o município inteiro**.
 - **Correlação de Kendall, MFAI defasado × casos autóctones (o número que interessa mais de perto ao
   projeto):** para *Aedes aegypti*, τ = **0,2737** na defasagem 0, subindo para **0,3376** (defasagem 1),
   **0,3911** (2), **0,4470** (3) e **0,4953** na defasagem 4 — todos com valor-p menor que 0,001 (o
-  valor-p é definido com exemplo na seção 6.4.4). Para *Aedes albopictus*, o padrão é semelhante, de
+  valor-p é definido com exemplo na seção **6.6.5**). Para *Aedes albopictus*, o padrão é semelhante, de
   0,1206 a 0,4479. **A tabela do artigo para exatamente na defasagem 4** — não há um ponto de defasagem 8
   medido neste estudo. Isso corrige um número que havia sido registrado anteriormente em `PENDENCIAS.md`
   ("τ 0,59 no lag 8"), que não existe no texto — a correção já foi feita no próprio `PENDENCIAS.md` em
@@ -628,13 +636,16 @@ brasileiros**, temporadas de 2025 e 2026.
 **As métricas usadas — todas próprias de previsão probabilística, e não de previsão de um único número:**
 
 - **CRPS** (*Continuous Ranked Probability Score*, pontuação de probabilidade classificada contínua) —
-  definida com fórmula e exemplo na seção 6.4.6 (D-MOSS/superensemble do Vietnã).
+  explicada na seção **6.4.5**, sobre os *sprints* nacionais. ⚠️ O escore de probabilidade classificada
+  contínua (CRPS) não recebe fórmula formal neste documento: aparece só na forma relativa, como escore de
+  habilidade, que é a forma em que os estudos citados o reportam.
 - **Log score** — o logaritmo negativo da probabilidade que o modelo atribuiu ao valor que de fato
   ocorreu. Quanto mais o modelo "confiava" (atribuía alta probabilidade) no valor que realmente aconteceu,
   menor (melhor) o log score.
 - **Escore de intervalo (*interval score*) e sua versão ponderada, o WIS** — a métrica de erro usada neste
   projeto para medir a qualidade da faixa de incerteza da previsão, com fórmula e exemplo numérico
-  completos na seção 6.4.7.
+  completos na seção **6.6.4**, que traz a fórmula e o exemplo numérico do escore de intervalo
+  ponderado.
 - **WIS normalizado** (WIS_norm), calculado no segundo sprint como a soma do WIS dividida pelo total de
   casos no período de validação — uma forma de comparar estados com escalas de caso muito diferentes
   entre si.

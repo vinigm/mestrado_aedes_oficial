@@ -408,11 +408,15 @@ pelo nome da coluna:
 - O grupo **vetor** tem exatamente **6 colunas**: `aedes_aegypti_por_armadilha` (o índice da semana
   corrente, ver **3.1.2**), suas quatro defasagens (`aedes_aegypti_por_armadilha_lag1` a `_lag4`) e
   `vetor_mm4` (a média móvel de 4 semanas do índice).
-- O grupo **clima** tem **42 colunas candidatas** — as 20 colunas brutas de clima listadas em **3.4.2**
-  mais as defasagens de 1 a 4 semanas das cinco que entram nesse cálculo (`temp_media`, `precip_total_mm`,
-  `orvalho_media`, `umid_media`, `pressao_media`), 20 defasagens adicionais, totalizando
-  **20 + 20 + 2 = 42** (as duas que sobram, `temp_amplitude_media` e `dias_de_chuva`, não recebem
-  defasagem própria, mas entram como coluna "sem atraso").
+- O grupo **clima** tem **42 colunas candidatas**, e a conta é esta:
+  - **22 colunas brutas**, isto é, sem defasagem, que são as listadas em **3.4.2**: chuva (4) mais
+    temperatura (4) mais umidade (6) mais pressão (3) mais radiação (3) mais vento (2);
+  - mais **20 colunas defasadas**, que vêm de **cinco** dessas variáveis (`temp_media`,
+    `precip_total_mm`, `orvalho_media`, `umid_media`, `pressao_media`), cada uma com defasagem de 1, 2, 3
+    e 4 semanas: 5 × 4 = 20;
+  - **22 + 20 = 42**.
+  - As outras **17** colunas brutas, entre elas `temp_amplitude_media` e `dias_de_chuva`, entram **apenas
+    sem atraso**, e não geram colunas defasadas.
 
 Dessas **42 colunas de clima candidatas**, o **cenário adotado do projeto usa só as 6 que mais ajudaram** a
 prever casos num teste específico (ver a seguir) — daí o **8 + 6 + 6 = 20 atributos** que o modelo

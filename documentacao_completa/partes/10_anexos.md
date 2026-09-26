@@ -17,7 +17,7 @@ parte indicada.
 | **Caso confirmado** | Caso com confirmação laboratorial ou por critério clínico-epidemiológico | Parte 3.3 |
 | **Município de notificação × de residência** | Onde o caso foi registrado × onde a pessoa mora; o projeto usa notificação | Parte 3.3 |
 | **Semana epidemiológica** | Unidade padronizada de tempo da vigilância, que não coincide com a semana do calendário | Parte 2.1 |
-| **Incidência** | Casos novos por unidade de população, em geral por 100 mil habitantes | Parte 7.2 |
+| **Incidência** | Casos novos por unidade de população, em geral por 100 mil habitantes | Parte 4.15, retomada em 6.1 e 7.2 |
 | **Canal endêmico** | Faixa do que se considera normal, construída a partir do histórico de anos anteriores | Parte 7.4 |
 | **Índice de fêmeas por armadilha** | Média de fêmeas de *Aedes aegypti* capturadas por armadilha vistoriada | Parte 3.1 |
 
@@ -181,7 +181,44 @@ recebendo o mesmo conjunto de números verificados e a instrução de reportar d
 corrigir sozinho. Em seguida o documento passou por uma conferência número a número contra os arquivos de
 origem.
 
-**Divergências encontradas durante a produção e corrigidas:**
+### Conferência número a número
+
+Depois da primeira montagem, cinco verificadores independentes conferiram o documento contra os arquivos
+de origem, um deles dedicado apenas a incoerências entre partes. Encontraram **12 problemas**: 6 graves,
+4 médios e 2 leves. **Todos os 6 graves e os 4 médios foram corrigidos**; a lista completa, com o trecho
+original e a fonte que decidiu cada caso, está em `CORRECOES_PENDENTES.md`, mantida como registro.
+
+**As correções graves aplicadas:**
+
+1. 🔴 **Contradição interna sobre significância** (Parte 4). O texto afirmava que o modelo vence as réguas
+   em 1 mês "com significância estatística", enquanto a mesma parte, 150 linhas antes, reportava os
+   valores-p de Holm de **0,103** e **1,000** como não significativos. Reescrito para separar o que tem
+   significância (o escore de intervalo ponderado contra a régua climatológica) do que não tem (o alarme).
+2. 🔴 **Número de pares avaliados** (Partes 4 e 8). A tabela do painel dizia 295, 292, 288 e 284. O valor
+   correto é **102** nos quatro horizontes — é o que reproduz os erros e os coeficientes citados na mesma
+   tabela. Erro originado nos números canônicos fornecidos aos autores.
+3. 🔴 **A variante de alvo em logaritmo** (Parte 5). O texto dizia "redução de 23,0% frente ao controle".
+   Na verdade o erro **piora 9,90%** contra o controle e **23,01%** contra a régua sazonal — dois
+   comparadores diferentes. Erro originado nos números canônicos.
+4. 🔴 **Atribuição do bootstrap por blocos** (Parte 2). As razões de inflação do valor-p foram apresentadas
+   junto da contagem de blocos do evento de 100 casos, mas pertencem ao evento de **421 casos**. Não
+   existe no repositório bootstrap rodado para o limiar de 100.
+5. 🔴 **Especificidade** (Partes 2 e 9). O valor 0,969 vinha de arredondar antes de subtrair; o valor
+   medido é **0,9706**. Corrigido nos dois lugares, com uma nota sobre a armadilha de arredondamento.
+6. 🔴 **Colunas brutas de clima** (Parte 3). Eram 22, não 20. O total de 42 estava certo, mas a conta
+   apresentada escondia duas colunas.
+
+**As correções médias aplicadas:** arredondamento do índice de Youden em 3 meses (0,80 e 0,11, não 0,81 e
+0,12); a âncora da formulação de resíduo está **acima** do teto do treino, e não próxima dele, o que muda
+a causa explicada da explosão; cinco referências cruzadas quebradas na Parte 6, com a definição da raiz do
+erro quadrático médio acrescentada onde faltava; e a entrada de "incidência" no glossário, que apontava
+para a Parte 7 ignorando que o termo aparece antes.
+
+⚠️ **Um problema leve permanece, declarado:** dentro da Parte 2, os termos "hiperparâmetro" e "quantil"
+são mencionados algumas páginas antes de sua definição formal, ainda que ambas cheguem antes do fim da
+parte. Corrigir exigiria reordenar a seção inteira, e o custo não se justifica.
+
+### Divergências encontradas já durante a escrita
 
 1. 🔴 **Erro nos números canônicos fornecidos aos autores.** O informe dizia que a variante de alvo em
    logaritmo perdia **23,0%** para o controle em horizonte de 12 semanas. O número correto é **9,9%**

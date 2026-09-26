@@ -240,7 +240,7 @@ sensibilidade de **97,1%** e Youden de **0,94** contra o evento "semana com mais
 **J = sensibilidade + especificidade − 1**, a especificidade fica isolada por:
 
 ```
-especificidade = J − sensibilidade + 1 = 0,94 − 0,971 + 1 = 0,969
+especificidade = J − sensibilidade + 1 = 0,9412 − 0,9706 + 1 = **0,9706**, ou seja 97,1%
 ```
 
 Ou seja, o modelo não só captura 97,1% dos surtos reais em 1 mês, como também fica em silêncio

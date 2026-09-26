@@ -853,12 +853,17 @@ diretamente da fórmula de Youden, já que $J = \text{Sensibilidade} + \text{Esp
 reorganizada para:
 
 $$
-\text{Especificidade} = J - \text{Sensibilidade} + 1 = 0,94 - 0,971 + 1 = 0,969
+\text{Especificidade} = J - \text{Sensibilidade} + 1 = 0{,}9412 - 0{,}9706 + 1 = 0{,}9706
 $$
 
 **Ou seja, em $h = 4$, o modelo tem sensibilidade de 97,1% (captura quase todo surto real de mais de 100
-casos) e especificidade de 96,9% (raramente soa o alarme numa semana calma).** Isso é consistente com o
+casos) e especificidade de 97,1% (raramente soa o alarme numa semana calma).** Isso é consistente com o
 número absoluto de "0,7 alarmes falsos por ano" — menos de um por ano.
+
+⚠️ **Uma armadilha de arredondamento, que vale para o documento inteiro.** A conta acima só fecha com os
+valores cheios. Se alguém arredondar **antes** de subtrair — 0,94 menos 0,971 mais 1 — o resultado dá
+**0,969**, um número que não existe em lugar nenhum. A especificidade medida, disponível direto no arquivo
+`metricas_por_regra.csv`, é **0,9706**. Arredondar depois da conta, nunca antes.
 
 Para efeito de comparação, em $h = 12$ (três meses à frente), a mesma sensibilidade cai para **76,9%** e o
 índice de Youden cai para **0,66** — o alarme de longo prazo é bem menos confiável do que o de curto prazo,
@@ -1090,14 +1095,27 @@ escolhido para permitir reprodução exata do mesmo sorteio por qualquer pessoa 
 
 ### 15.3 O resultado: o quanto o p nominal fica otimista
 
-O resultado é expresso como a **razão entre o p-valor obtido pelo bootstrap por blocos e o p-valor
-nominal** (o p-valor calculado pela fórmula fechada, ignorando a correlação serial):
+🔴 **Atenção ao limiar, porque ele muda entre os dois números abaixo.** A contagem de blocos apresentada na
+Seção 15.1 refere-se ao evento **"semana com mais de 100 casos"**. Já as razões de p-valor desta seção
+foram calculadas sobre o evento **"semana com mais de 421 casos"**, que é o piso do estágio Alerta do
+Plano Municipal de Contingência. São **limiares diferentes**, de análises diferentes. **Não existe, no
+repositório, nenhum bootstrap por blocos rodado especificamente para o limiar de 100 casos** — a
+reamostragem só foi feita na rodada de 26/09/2026, que adotou 421 como evento principal.
 
-- Contra a régua "hoje já passou de 100 casos": a razão variou entre **0,0001 e 0,82** — o p-valor nominal
+A lição sobre correlação serial vale para os dois limiares, porque a estrutura de blocos é a mesma: em
+qualquer limiar testado, as semanas de surto formam **exatamente dois blocos contíguos**. Mas os números
+específicos abaixo pertencem ao limiar de 421, e é assim que devem ser citados.
+
+O resultado é expresso como a **razão entre o p-valor obtido pelo bootstrap por blocos e o p-valor
+nominal** (o p-valor calculado pela fórmula fechada, ignorando a correlação serial). Todos os valores
+abaixo são do evento de **421 casos**:
+
+- Contra a régua "hoje já passou do limiar": a razão variou entre **0,0001 e 0,82** — o p-valor nominal
   já era, se algo, **conservador** (o bootstrap às vezes dá um p-valor até menor). Esse resultado é lido
   como **robusto**: a correlação serial não está inflando artificialmente a confiança nessa comparação
   específica.
-- Contra a régua "o ano passado" (a régua sazonal): em $h=4$, a razão ficou entre **1,10 e 1,51**; em
+- Contra a régua "o ano passado passou do limiar" (a régua sazonal): em $h=4$, a razão ficou entre
+  **1,10 e 1,51**; em
   $h=12$, entre **2,11 e 3,44**. Isso significa que, ao contabilizar a correlação serial real da série, o
   p-valor verdadeiro poderia ser **até 3,44 vezes maior** do que o p-valor nominal calculado sem essa
   correção — um resultado lido como **otimista demais** quando reportado sem essa ressalva.

@@ -757,16 +757,19 @@ vetor, com correção de Holm por família (25/09/2026):**
 
 1. **`V1_alvo_log`** — o modelo aprende a prever o **logaritmo** do número de casos (mais 1, para
    evitar logaritmo de zero), em vez do número bruto. Erro, nos 4 horizontes: **174,4 · 205,8 · 251,0
-   · 267,9**. Em `h=12`, é uma redução de **23,0%** frente ao controle (o próprio HistGB folha 20 sem
-   essa transformação) — mas ainda **não bate** a régua sazonal (217,8).
+   · 267,9**. Em `h=12`, o erro **piora 9,90%** frente ao controle (o próprio HistGB folha 20 sem essa
+   transformação, que erra 243,8) e **piora 23,01%** frente à régua sazonal (217,8). São dois
+   comparadores diferentes: contra o controle a perda é de 9,90%; contra a régua, de 23,01%.
 2. **Semana-alvo do ano anterior como atributo de entrada** — em vez de só usar o valor absoluto,
    adiciona explicitamente "quantos casos houve nesta mesma semana, no ano anterior" como uma coluna
    extra de entrada. Resultado: **piora** o erro em `h=12`, de 243,8 para **300,9** — o oposto do que
    a hipótese previa.
 3. **`V3` — resíduo sobre o ano anterior** — o modelo aprende a prever a **diferença** entre o valor
    de hoje e o mesmo período do ano passado, em vez do valor absoluto. **Explode**: em uma semana cujo
-   máximo histórico do treino era 879 casos, esta formulação previu **10.524** — a diferença aprendida
-   multiplicou um crescimento observado de 9,5 vezes por uma âncora já próxima do teto do treino.
+   máximo histórico do treino era 879 casos, esta formulação previu **10.524**. A causa é **extrapolação
+   para fora da faixa treinada**: a âncora usada valia **1.109** casos (semana de 23/03/2025), ou seja,
+   **acima** do maior valor visto no treino (879), e a diferença aprendida multiplicou esse valor já
+   extrapolado por um crescimento de 9,5 vezes. Não é "estar perto do teto"; é estar fora dele.
 4. **`V5` — regressão quantílica linear sobre o logaritmo** — troca o algoritmo de árvores por um
    modelo linear simples, ainda com perda quantílica, sobre o logaritmo do alvo. **Explode ainda
    mais**: previu **27.258** casos numa semana em que o real foi **1.855**. A causa é a colinearidade

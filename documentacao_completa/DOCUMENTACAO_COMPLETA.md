@@ -5,7 +5,7 @@
 **Pesquisa de mestrado — Programa de Pós-Graduação em Computação, Universidade Federal do Rio Grande do Sul**
 Orientador: Prof. Weverton Cordeiro · Início: setembro de 2025
 
-**Versão de 26/09/2026.**
+**Versão de 26/09/2026**, após conferência número a número contra os arquivos de origem.
 
 > Este documento foi escrito para ser lido por quem **não conhece o projeto** e pode **não trabalhar com
 > aprendizado de máquina nem com epidemiologia**. Todo conceito é definido antes de ser usado, toda sigla
@@ -1127,12 +1127,17 @@ diretamente da fórmula de Youden, já que $J = \text{Sensibilidade} + \text{Esp
 reorganizada para:
 
 $$
-\text{Especificidade} = J - \text{Sensibilidade} + 1 = 0,94 - 0,971 + 1 = 0,969
+\text{Especificidade} = J - \text{Sensibilidade} + 1 = 0{,}9412 - 0{,}9706 + 1 = 0{,}9706
 $$
 
 **Ou seja, em $h = 4$, o modelo tem sensibilidade de 97,1% (captura quase todo surto real de mais de 100
-casos) e especificidade de 96,9% (raramente soa o alarme numa semana calma).** Isso é consistente com o
+casos) e especificidade de 97,1% (raramente soa o alarme numa semana calma).** Isso é consistente com o
 número absoluto de "0,7 alarmes falsos por ano" — menos de um por ano.
+
+⚠️ **Uma armadilha de arredondamento, que vale para o documento inteiro.** A conta acima só fecha com os
+valores cheios. Se alguém arredondar **antes** de subtrair — 0,94 menos 0,971 mais 1 — o resultado dá
+**0,969**, um número que não existe em lugar nenhum. A especificidade medida, disponível direto no arquivo
+`metricas_por_regra.csv`, é **0,9706**. Arredondar depois da conta, nunca antes.
 
 Para efeito de comparação, em $h = 12$ (três meses à frente), a mesma sensibilidade cai para **76,9%** e o
 índice de Youden cai para **0,66** — o alarme de longo prazo é bem menos confiável do que o de curto prazo,
@@ -1364,14 +1369,27 @@ escolhido para permitir reprodução exata do mesmo sorteio por qualquer pessoa 
 
 ### 15.3 O resultado: o quanto o p nominal fica otimista
 
-O resultado é expresso como a **razão entre o p-valor obtido pelo bootstrap por blocos e o p-valor
-nominal** (o p-valor calculado pela fórmula fechada, ignorando a correlação serial):
+🔴 **Atenção ao limiar, porque ele muda entre os dois números abaixo.** A contagem de blocos apresentada na
+Seção 15.1 refere-se ao evento **"semana com mais de 100 casos"**. Já as razões de p-valor desta seção
+foram calculadas sobre o evento **"semana com mais de 421 casos"**, que é o piso do estágio Alerta do
+Plano Municipal de Contingência. São **limiares diferentes**, de análises diferentes. **Não existe, no
+repositório, nenhum bootstrap por blocos rodado especificamente para o limiar de 100 casos** — a
+reamostragem só foi feita na rodada de 26/09/2026, que adotou 421 como evento principal.
 
-- Contra a régua "hoje já passou de 100 casos": a razão variou entre **0,0001 e 0,82** — o p-valor nominal
+A lição sobre correlação serial vale para os dois limiares, porque a estrutura de blocos é a mesma: em
+qualquer limiar testado, as semanas de surto formam **exatamente dois blocos contíguos**. Mas os números
+específicos abaixo pertencem ao limiar de 421, e é assim que devem ser citados.
+
+O resultado é expresso como a **razão entre o p-valor obtido pelo bootstrap por blocos e o p-valor
+nominal** (o p-valor calculado pela fórmula fechada, ignorando a correlação serial). Todos os valores
+abaixo são do evento de **421 casos**:
+
+- Contra a régua "hoje já passou do limiar": a razão variou entre **0,0001 e 0,82** — o p-valor nominal
   já era, se algo, **conservador** (o bootstrap às vezes dá um p-valor até menor). Esse resultado é lido
   como **robusto**: a correlação serial não está inflando artificialmente a confiança nessa comparação
   específica.
-- Contra a régua "o ano passado" (a régua sazonal): em $h=4$, a razão ficou entre **1,10 e 1,51**; em
+- Contra a régua "o ano passado passou do limiar" (a régua sazonal): em $h=4$, a razão ficou entre
+  **1,10 e 1,51**; em
   $h=12$, entre **2,11 e 3,44**. Isso significa que, ao contabilizar a correlação serial real da série, o
   p-valor verdadeiro poderia ser **até 3,44 vezes maior** do que o p-valor nominal calculado sem essa
   correção — um resultado lido como **otimista demais** quando reportado sem essa ressalva.
@@ -1880,11 +1898,15 @@ pelo nome da coluna:
 - O grupo **vetor** tem exatamente **6 colunas**: `aedes_aegypti_por_armadilha` (o índice da semana
   corrente, ver **3.1.2**), suas quatro defasagens (`aedes_aegypti_por_armadilha_lag1` a `_lag4`) e
   `vetor_mm4` (a média móvel de 4 semanas do índice).
-- O grupo **clima** tem **42 colunas candidatas** — as 20 colunas brutas de clima listadas em **3.4.2**
-  mais as defasagens de 1 a 4 semanas das cinco que entram nesse cálculo (`temp_media`, `precip_total_mm`,
-  `orvalho_media`, `umid_media`, `pressao_media`), 20 defasagens adicionais, totalizando
-  **20 + 20 + 2 = 42** (as duas que sobram, `temp_amplitude_media` e `dias_de_chuva`, não recebem
-  defasagem própria, mas entram como coluna "sem atraso").
+- O grupo **clima** tem **42 colunas candidatas**, e a conta é esta:
+  - **22 colunas brutas**, isto é, sem defasagem, que são as listadas em **3.4.2**: chuva (4) mais
+    temperatura (4) mais umidade (6) mais pressão (3) mais radiação (3) mais vento (2);
+  - mais **20 colunas defasadas**, que vêm de **cinco** dessas variáveis (`temp_media`,
+    `precip_total_mm`, `orvalho_media`, `umid_media`, `pressao_media`), cada uma com defasagem de 1, 2, 3
+    e 4 semanas: 5 × 4 = 20;
+  - **22 + 20 = 42**.
+  - As outras **17** colunas brutas, entre elas `temp_amplitude_media` e `dias_de_chuva`, entram **apenas
+    sem atraso**, e não geram colunas defasadas.
 
 Dessas **42 colunas de clima candidatas**, o **cenário adotado do projeto usa só as 6 que mais ajudaram** a
 prever casos num teste específico (ver a seguir) — daí o **8 + 6 + 6 = 20 atributos** que o modelo
@@ -2393,9 +2415,9 @@ Painel de erro na avaliação, de 01/01/2024 até aproximadamente 01/02/2026:
 
 | Horizonte | Erro absoluto médio (MAE) | Coeficiente de determinação (R²) | Pares avaliados |
 |---|---|---|---|
-| 1 semana | **98,0** | **0,898** | 295 |
-| 4 semanas | **219,7** | **0,628** | 292 |
-| 8 semanas | **272,6** | **0,450** | 288 |
+| 1 semana | **98,0** | **0,898** | **102** |
+| 4 semanas | **219,7** | **0,628** | **102** |
+| 8 semanas | **272,6** | **0,450** | **102** |
 | 12 semanas | **278,8** (painel publicado: 278,7) | **0,437** | 284 |
 
 O **erro absoluto médio** (em inglês, *mean absolute error*, abreviado **MAE**) é a média, em módulo, da
@@ -4293,9 +4315,17 @@ invicta em 3 meses contra tudo que foi tentado até 26/09/2026**: o cenário ado
 (§4.3), as 120 configurações da busca de hiperparâmetros (§4.5), as seis reformulações de alvo (§4.8), os
 dois modelos de fundação (§4.9), o SARIMA (§4.10), o LASSO (§4.11) e os dois ensembles (§4.12).
 
-✅ **FATO — em 1 mês, o quadro se inverte, e de forma consistente**: o cenário adotado vence tanto a régua
-sazonal quanto a régua de "hoje já passou", em erro pontual (MAE) e em desempenho de alarme (Youden de
-0,94), com significância estatística onde ela foi testada.
+⚠️ **Em 1 mês o quadro muda, mas é preciso separar duas coisas que NÃO têm o mesmo estatuto:**
+
+- ✅ **COM significância:** pela métrica probabilística — o escore de intervalo ponderado — o cenário
+  adotado vence a **régua climatológica** em 1 mês, com valor-p de Holm **menor que 0,0001**.
+- 🔴 **SEM significância:** no **alarme**, o índice de Youden do cenário adotado (**0,94**) é maior que o
+  das réguas simples (**0,84** e **0,68**), mas essa diferença **não sobrevive** ao teste de McNemar com
+  correção de Holm: os valores-p são **0,103** contra "hoje já passou de 100" e **1,000** contra "o ano
+  passado passou de 100" (ver o quadro na §4.15). São números descritivos, não vitória demonstrada.
+
+**A causa provável da ausência de significância é falta de poder do teste**, não ausência de efeito: em
+h=4 existem apenas **15** e **7** pares discordantes. HIPÓTESE, não fato.
 
 ⚠️ **RESSALVA que fecha este catálogo inteiro** — **e é a mais importante dele.** Nenhum destes vereditos é
 sobre "o vetor" ou sobre "se a rede de armadilhas serve para algo": são vereditos sobre um instrumento
@@ -5065,16 +5095,19 @@ vetor, com correção de Holm por família (25/09/2026):**
 
 1. **`V1_alvo_log`** — o modelo aprende a prever o **logaritmo** do número de casos (mais 1, para
    evitar logaritmo de zero), em vez do número bruto. Erro, nos 4 horizontes: **174,4 · 205,8 · 251,0
-   · 267,9**. Em `h=12`, é uma redução de **23,0%** frente ao controle (o próprio HistGB folha 20 sem
-   essa transformação) — mas ainda **não bate** a régua sazonal (217,8).
+   · 267,9**. Em `h=12`, o erro **piora 9,90%** frente ao controle (o próprio HistGB folha 20 sem essa
+   transformação, que erra 243,8) e **piora 23,01%** frente à régua sazonal (217,8). São dois
+   comparadores diferentes: contra o controle a perda é de 9,90%; contra a régua, de 23,01%.
 2. **Semana-alvo do ano anterior como atributo de entrada** — em vez de só usar o valor absoluto,
    adiciona explicitamente "quantos casos houve nesta mesma semana, no ano anterior" como uma coluna
    extra de entrada. Resultado: **piora** o erro em `h=12`, de 243,8 para **300,9** — o oposto do que
    a hipótese previa.
 3. **`V3` — resíduo sobre o ano anterior** — o modelo aprende a prever a **diferença** entre o valor
    de hoje e o mesmo período do ano passado, em vez do valor absoluto. **Explode**: em uma semana cujo
-   máximo histórico do treino era 879 casos, esta formulação previu **10.524** — a diferença aprendida
-   multiplicou um crescimento observado de 9,5 vezes por uma âncora já próxima do teto do treino.
+   máximo histórico do treino era 879 casos, esta formulação previu **10.524**. A causa é **extrapolação
+   para fora da faixa treinada**: a âncora usada valia **1.109** casos (semana de 23/03/2025), ou seja,
+   **acima** do maior valor visto no treino (879), e a diferença aprendida multiplicou esse valor já
+   extrapolado por um crescimento de 9,5 vezes. Não é "estar perto do teto"; é estar fora dele.
 4. **`V5` — regressão quantílica linear sobre o logaritmo** — troca o algoritmo de árvores por um
    modelo linear simples, ainda com perda quantílica, sobre o logaritmo do alvo. **Explode ainda
    mais**: previu **27.258** casos numa semana em que o real foi **1.855**. A causa é a colinearidade
@@ -5556,7 +5589,7 @@ o equivalente conceitual, embora não idêntico em implementação, da régua sa
 casos houve na mesma semana do ano passado").
 
 **A métrica: pontuação de habilidade probabilística (CRPSS).** O CRPSS (a definição de CRPS está na seção
-6.4.3, sobre o superensemble do Vietnã) é a versão relativa do CRPS: mostra o **quanto melhor** um modelo é
+6.4.5, sobre os *sprints* nacionais) é a versão relativa do CRPS: mostra o **quanto melhor** um modelo é
 em relação a uma régua, em percentual. Um CRPSS de +54% significa que o erro probabilístico do modelo é
 54% menor do que o da régua.
 
@@ -5674,9 +5707,17 @@ usa a **série semanal agregada para o município inteiro**.
 
 ### 6.3.4 Resultados relatados no PDF
 
-- **MFAI, *Aedes aegypti*:** raiz do erro quadrático médio (RMSE — ver definição e exemplo numérico na
-  seção 6.4.2) de **0,2866** para o modelo linear simples e **0,2864** para o LASSO; razão de deviance de
-  **0,5225**.
+- **MFAI, *Aedes aegypti*:** raiz do erro quadrático médio de **0,2866** para o modelo linear simples e
+  **0,2864** para o LASSO; razão de deviance de **0,5225**.
+  - A **raiz do erro quadrático médio** (em inglês *root mean squared error*, abreviado RMSE) é a raiz
+    quadrada da média dos erros elevados ao quadrado: $\text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}
+    (y_i - \hat{y}_i)^2}$, em que $y_i$ é o valor real, $\hat{y}_i$ é o previsto e $n$ é o número de
+    observações. Diferença em relação ao erro absoluto médio: elevar ao quadrado antes de somar faz com
+    que **erros grandes pesem desproporcionalmente mais**. Um erro de 10 pesa cem vezes um erro de 1,
+    enquanto no erro absoluto médio pesaria dez vezes.
+    ⚠️ **Estes valores não são comparáveis aos nossos**, porque estão numa escala diferente: eles medem o
+    erro sobre o índice de fêmeas por armadilha, um número que fica entre 0 e cerca de 1, e não sobre
+    contagem de casos.
   - A "razão de deviance" (*deviance ratio*) é uma medida análoga ao R² (definido com exemplo na seção
     6.4.2), usada quando o modelo estatístico não é uma regressão linear comum, mas sim um modelo da
     família de regressões generalizadas (como o LASSO usado aqui). Ela também varia entre 0 e 1 (quanto
@@ -5696,7 +5737,7 @@ usa a **série semanal agregada para o município inteiro**.
 - **Correlação de Kendall, MFAI defasado × casos autóctones (o número que interessa mais de perto ao
   projeto):** para *Aedes aegypti*, τ = **0,2737** na defasagem 0, subindo para **0,3376** (defasagem 1),
   **0,3911** (2), **0,4470** (3) e **0,4953** na defasagem 4 — todos com valor-p menor que 0,001 (o
-  valor-p é definido com exemplo na seção 6.4.4). Para *Aedes albopictus*, o padrão é semelhante, de
+  valor-p é definido com exemplo na seção **6.6.5**). Para *Aedes albopictus*, o padrão é semelhante, de
   0,1206 a 0,4479. **A tabela do artigo para exatamente na defasagem 4** — não há um ponto de defasagem 8
   medido neste estudo. Isso corrige um número que havia sido registrado anteriormente em `PENDENCIAS.md`
   ("τ 0,59 no lag 8"), que não existe no texto — a correção já foi feita no próprio `PENDENCIAS.md` em
@@ -5997,13 +6038,16 @@ brasileiros**, temporadas de 2025 e 2026.
 **As métricas usadas — todas próprias de previsão probabilística, e não de previsão de um único número:**
 
 - **CRPS** (*Continuous Ranked Probability Score*, pontuação de probabilidade classificada contínua) —
-  definida com fórmula e exemplo na seção 6.4.6 (D-MOSS/superensemble do Vietnã).
+  explicada na seção **6.4.5**, sobre os *sprints* nacionais. ⚠️ O escore de probabilidade classificada
+  contínua (CRPS) não recebe fórmula formal neste documento: aparece só na forma relativa, como escore de
+  habilidade, que é a forma em que os estudos citados o reportam.
 - **Log score** — o logaritmo negativo da probabilidade que o modelo atribuiu ao valor que de fato
   ocorreu. Quanto mais o modelo "confiava" (atribuía alta probabilidade) no valor que realmente aconteceu,
   menor (melhor) o log score.
 - **Escore de intervalo (*interval score*) e sua versão ponderada, o WIS** — a métrica de erro usada neste
   projeto para medir a qualidade da faixa de incerteza da previsão, com fórmula e exemplo numérico
-  completos na seção 6.4.7.
+  completos na seção **6.6.4**, que traz a fórmula e o exemplo numérico do escore de intervalo
+  ponderado.
 - **WIS normalizado** (WIS_norm), calculado no segundo sprint como a soma do WIS dividida pelo total de
   casos no período de validação — uma forma de comparar estados com escalas de caso muito diferentes
   entre si.
@@ -7143,10 +7187,10 @@ Avaliação de **01/01/2024** a aproximadamente **01/02/2026**:
 
 | Horizonte | Pares avaliados ($n$) | Erro absoluto médio (MAE) | Coeficiente de determinação (R²) |
 |---|---|---|---|
-| 1 semana | 295 | **98,0** | **0,898** |
-| 4 semanas (1 mês) | 292 | **219,7** | **0,628** |
-| 8 semanas (2 meses) | 288 | **272,6** | **0,450** |
-| 12 semanas (3 meses) | 284 | **278,8** (painel publicado: 278,7) | **0,437** |
+| 1 semana | **102** | **98,0** | **0,898** |
+| 4 semanas (1 mês) | **102** | **219,7** | **0,628** |
+| 8 semanas (2 meses) | **102** | **272,6** | **0,450** |
+| 12 semanas (3 meses) | **102** | **278,8** (painel publicado: 278,7) | **0,437** |
 
 Um "par" é uma semana em que existe tanto um valor real de casos confirmados quanto uma previsão feita
 $h$ semanas antes para aquela mesma semana — o número de pares cai de 295 para 284 conforme $h$ cresce
@@ -7616,8 +7660,12 @@ toa, entre as opções comparadas.
 | 12 semanas (3 meses) | 76,9% | 81,1% | 2,3 | 0,66 | **0,388** |
 
 Para comparação, na variante HistGB folha 20: Youden **0,90** em h=4 e **0,78** em h=12; a régua "o ano
-passado passou de 100" tem Youden **0,84** em h=4 e **0,81** em h=12; e a régua "hoje já passou de 100" tem
-Youden **0,68** em h=4 e **0,12** em h=12.
+passado passou de 100" tem Youden **0,84** em h=4 e **0,80** em h=12; e a régua "hoje já passou de 100" tem
+Youden **0,68** em h=4 e **0,11** em h=12.
+
+⚠️ Os valores medidos em `metricas_por_regra.csv` são **0,8046** e **0,1148**, que arredondam para
+**0,80** e **0,11**. A correção não muda nenhuma conclusão: a régua do ano passado continua acima do
+cenário adotado em 3 meses, 0,80 contra 0,66.
 
 ### 8.9.3 🔴 O quadro dos testes de McNemar com correção de Holm — o mais importante desta seção
 
@@ -8044,7 +8092,7 @@ sensibilidade de **97,1%** e Youden de **0,94** contra o evento "semana com mais
 **J = sensibilidade + especificidade − 1**, a especificidade fica isolada por:
 
 ```
-especificidade = J − sensibilidade + 1 = 0,94 − 0,971 + 1 = 0,969
+especificidade = J − sensibilidade + 1 = 0,9412 − 0,9706 + 1 = **0,9706**, ou seja 97,1%
 ```
 
 Ou seja, o modelo não só captura 97,1% dos surtos reais em 1 mês, como também fica em silêncio
@@ -8560,7 +8608,7 @@ parte indicada.
 | **Caso confirmado** | Caso com confirmação laboratorial ou por critério clínico-epidemiológico | Parte 3.3 |
 | **Município de notificação × de residência** | Onde o caso foi registrado × onde a pessoa mora; o projeto usa notificação | Parte 3.3 |
 | **Semana epidemiológica** | Unidade padronizada de tempo da vigilância, que não coincide com a semana do calendário | Parte 2.1 |
-| **Incidência** | Casos novos por unidade de população, em geral por 100 mil habitantes | Parte 7.2 |
+| **Incidência** | Casos novos por unidade de população, em geral por 100 mil habitantes | Parte 4.15, retomada em 6.1 e 7.2 |
 | **Canal endêmico** | Faixa do que se considera normal, construída a partir do histórico de anos anteriores | Parte 7.4 |
 | **Índice de fêmeas por armadilha** | Média de fêmeas de *Aedes aegypti* capturadas por armadilha vistoriada | Parte 3.1 |
 
@@ -8724,7 +8772,44 @@ recebendo o mesmo conjunto de números verificados e a instrução de reportar d
 corrigir sozinho. Em seguida o documento passou por uma conferência número a número contra os arquivos de
 origem.
 
-**Divergências encontradas durante a produção e corrigidas:**
+### Conferência número a número
+
+Depois da primeira montagem, cinco verificadores independentes conferiram o documento contra os arquivos
+de origem, um deles dedicado apenas a incoerências entre partes. Encontraram **12 problemas**: 6 graves,
+4 médios e 2 leves. **Todos os 6 graves e os 4 médios foram corrigidos**; a lista completa, com o trecho
+original e a fonte que decidiu cada caso, está em `CORRECOES_PENDENTES.md`, mantida como registro.
+
+**As correções graves aplicadas:**
+
+1. 🔴 **Contradição interna sobre significância** (Parte 4). O texto afirmava que o modelo vence as réguas
+   em 1 mês "com significância estatística", enquanto a mesma parte, 150 linhas antes, reportava os
+   valores-p de Holm de **0,103** e **1,000** como não significativos. Reescrito para separar o que tem
+   significância (o escore de intervalo ponderado contra a régua climatológica) do que não tem (o alarme).
+2. 🔴 **Número de pares avaliados** (Partes 4 e 8). A tabela do painel dizia 295, 292, 288 e 284. O valor
+   correto é **102** nos quatro horizontes — é o que reproduz os erros e os coeficientes citados na mesma
+   tabela. Erro originado nos números canônicos fornecidos aos autores.
+3. 🔴 **A variante de alvo em logaritmo** (Parte 5). O texto dizia "redução de 23,0% frente ao controle".
+   Na verdade o erro **piora 9,90%** contra o controle e **23,01%** contra a régua sazonal — dois
+   comparadores diferentes. Erro originado nos números canônicos.
+4. 🔴 **Atribuição do bootstrap por blocos** (Parte 2). As razões de inflação do valor-p foram apresentadas
+   junto da contagem de blocos do evento de 100 casos, mas pertencem ao evento de **421 casos**. Não
+   existe no repositório bootstrap rodado para o limiar de 100.
+5. 🔴 **Especificidade** (Partes 2 e 9). O valor 0,969 vinha de arredondar antes de subtrair; o valor
+   medido é **0,9706**. Corrigido nos dois lugares, com uma nota sobre a armadilha de arredondamento.
+6. 🔴 **Colunas brutas de clima** (Parte 3). Eram 22, não 20. O total de 42 estava certo, mas a conta
+   apresentada escondia duas colunas.
+
+**As correções médias aplicadas:** arredondamento do índice de Youden em 3 meses (0,80 e 0,11, não 0,81 e
+0,12); a âncora da formulação de resíduo está **acima** do teto do treino, e não próxima dele, o que muda
+a causa explicada da explosão; cinco referências cruzadas quebradas na Parte 6, com a definição da raiz do
+erro quadrático médio acrescentada onde faltava; e a entrada de "incidência" no glossário, que apontava
+para a Parte 7 ignorando que o termo aparece antes.
+
+⚠️ **Um problema leve permanece, declarado:** dentro da Parte 2, os termos "hiperparâmetro" e "quantil"
+são mencionados algumas páginas antes de sua definição formal, ainda que ambas cheguem antes do fim da
+parte. Corrigir exigiria reordenar a seção inteira, e o custo não se justifica.
+
+### Divergências encontradas já durante a escrita
 
 1. 🔴 **Erro nos números canônicos fornecidos aos autores.** O informe dizia que a variante de alvo em
    logaritmo perdia **23,0%** para o controle em horizonte de 12 semanas. O número correto é **9,9%**

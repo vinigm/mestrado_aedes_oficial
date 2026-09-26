@@ -126,10 +126,10 @@ Avaliação de **01/01/2024** a aproximadamente **01/02/2026**:
 
 | Horizonte | Pares avaliados ($n$) | Erro absoluto médio (MAE) | Coeficiente de determinação (R²) |
 |---|---|---|---|
-| 1 semana | 295 | **98,0** | **0,898** |
-| 4 semanas (1 mês) | 292 | **219,7** | **0,628** |
-| 8 semanas (2 meses) | 288 | **272,6** | **0,450** |
-| 12 semanas (3 meses) | 284 | **278,8** (painel publicado: 278,7) | **0,437** |
+| 1 semana | **102** | **98,0** | **0,898** |
+| 4 semanas (1 mês) | **102** | **219,7** | **0,628** |
+| 8 semanas (2 meses) | **102** | **272,6** | **0,450** |
+| 12 semanas (3 meses) | **102** | **278,8** (painel publicado: 278,7) | **0,437** |
 
 Um "par" é uma semana em que existe tanto um valor real de casos confirmados quanto uma previsão feita
 $h$ semanas antes para aquela mesma semana — o número de pares cai de 295 para 284 conforme $h$ cresce
@@ -599,8 +599,12 @@ toa, entre as opções comparadas.
 | 12 semanas (3 meses) | 76,9% | 81,1% | 2,3 | 0,66 | **0,388** |
 
 Para comparação, na variante HistGB folha 20: Youden **0,90** em h=4 e **0,78** em h=12; a régua "o ano
-passado passou de 100" tem Youden **0,84** em h=4 e **0,81** em h=12; e a régua "hoje já passou de 100" tem
-Youden **0,68** em h=4 e **0,12** em h=12.
+passado passou de 100" tem Youden **0,84** em h=4 e **0,80** em h=12; e a régua "hoje já passou de 100" tem
+Youden **0,68** em h=4 e **0,11** em h=12.
+
+⚠️ Os valores medidos em `metricas_por_regra.csv` são **0,8046** e **0,1148**, que arredondam para
+**0,80** e **0,11**. A correção não muda nenhuma conclusão: a régua do ano passado continua acima do
+cenário adotado em 3 meses, 0,80 contra 0,66.
 
 ### 8.9.3 🔴 O quadro dos testes de McNemar com correção de Holm — o mais importante desta seção
 
