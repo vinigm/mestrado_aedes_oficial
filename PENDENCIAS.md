@@ -43,7 +43,8 @@
 - **Recorte da tese** — depende do eixo. Pré-declaração formal antes de qualquer rodada nova.
 - **Alvo:** vetor (letra do PEP) × casos (o código). O PEP também erra o horizonte: é **3 meses**
   (decisão do Vinicius, 23/09), não 1-4 semanas.
-- **Residência × notificação** — o Estado usa residência; o projeto usa notificação, ~10% maior em POA.
+- ✅ **Município de notificação mantido** — decisão do Vinicius em 25/09/2026, para comparar com os resultados já
+  medidos. Residência (CEVS) fica como cenário alternativo, se necessário.
 - **Corte de maturidade** 12 semanas; medido em 2025: mediana 10,4 · p90 31,6. Só testável com dado vintage.
 
 ---
