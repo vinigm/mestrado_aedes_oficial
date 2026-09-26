@@ -760,8 +760,17 @@ POSICAO_DA_CAPTURA = 3
 # ---------------------------------------------------------------------------
 # O ALARME DE SURTO DO MODELO COMPOSTO — medido em 26/09/2026
 #
-# Evento: semana com mais de 100 casos confirmados. Avaliacao de 2024 em
-# diante, 102 semanas, das quais 39 (38%) passaram de 100.
+# Evento: semana acima do piso do estagio ALERTA do Plano Municipal de
+# Contingencia de Arboviroses 2026 da SMS-POA — 421 casos por semana, que e
+# a incidencia de 30 por 100 mil na populacao de 1.404.269. Trocado em
+# 26/09/2026 por decisao do Vinicius: os 100 casos eram convencao do projeto,
+# sem base oficial.
+#
+# ⚠️ SIMPLIFICACAO DECLARADA: no plano o corte numerico nunca aparece sozinho.
+# Vem ligado por E a limiares estaduais sobre casos provaveis, mais obito e
+# sorotipo novo. Usamos so a metade fixa do criterio.
+#
+# Avaliacao de 2024 em diante, 102 semanas, das quais 28 (27%) passaram de 421.
 #
 # 🔴 ATENCAO AOS ALARMES FALSOS POR ANO. A medicao de 13/09/2026 dividiu por
 # 3 ANOS CIVIS (2024, 2025, 2026), mas a avaliacao cobre 1,96 ano de tempo
@@ -793,20 +802,26 @@ class AlarmeDeUmBraco:
 
 
 ALARME_DO_COMPOSTO: tuple[AlarmeDeUmBraco, ...] = (
-    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "1 semana", 0.969, 0.912, 1.5, 1),
-    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "1 mês", 0.971, 0.868, 2.5, 1),
-    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "2 meses", 0.895, 0.944, 1.0, 4),
-    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "3 meses", 0.846, 0.892, 2.0, 6),
-    AlarmeDeUmBraco(NOME_DO_ADOTADO, "1 semana", 0.969, 0.912, 1.5, 1),
-    AlarmeDeUmBraco(NOME_DO_ADOTADO, "1 mês", 0.971, 0.943, 1.0, 1),
-    AlarmeDeUmBraco(NOME_DO_ADOTADO, "2 meses", 0.816, 0.861, 2.5, 7),
-    AlarmeDeUmBraco(NOME_DO_ADOTADO, "3 meses", 0.769, 0.811, 3.6, 9),
-    AlarmeDeUmBraco(NOME_DA_REGUA, "1 semana", 0.812, 0.963, 0.5, 6),
-    AlarmeDeUmBraco(NOME_DA_REGUA, "1 mês", 0.853, 0.967, 0.5, 5),
-    AlarmeDeUmBraco(NOME_DA_REGUA, "2 meses", 0.842, 0.970, 0.5, 6),
-    AlarmeDeUmBraco(NOME_DA_REGUA, "3 meses", 0.821, 0.970, 0.5, 7),
+    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "1 semana", 0.958, 0.958, 0.5, 1),
+    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "1 mês", 1.000, 0.818, 3.1, 0),
+    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "2 meses", 0.857, 1.000, 0.0, 4),
+    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "3 meses", 0.500, 0.875, 1.0, 14),
+    AlarmeDeUmBraco(NOME_DO_ADOTADO, "1 semana", 0.958, 0.958, 0.5, 1),
+    AlarmeDeUmBraco(NOME_DO_ADOTADO, "1 mês", 1.000, 0.900, 1.5, 0),
+    AlarmeDeUmBraco(NOME_DO_ADOTADO, "2 meses", 0.679, 0.950, 0.5, 9),
+    AlarmeDeUmBraco(NOME_DO_ADOTADO, "3 meses", 0.393, 1.000, 0.0, 17),
+    AlarmeDeUmBraco(NOME_DA_REGUA, "1 semana", 0.708, 0.944, 0.5, 7),
+    AlarmeDeUmBraco(NOME_DA_REGUA, "1 mês", 0.741, 0.952, 0.5, 7),
+    AlarmeDeUmBraco(NOME_DA_REGUA, "2 meses", 0.750, 0.955, 0.5, 7),
+    AlarmeDeUmBraco(NOME_DA_REGUA, "3 meses", 0.750, 0.955, 0.5, 7),
 )
 
-# A base que explica por que a precisao e alta para todo mundo.
+# Quantas semanas de surto existem em cada horizonte. Varia porque o numero de
+# semanas com alvo conhecido cai conforme o horizonte cresce.
+SURTOS_POR_HORIZONTE = {"1 semana": 24, "1 mês": 27, "2 meses": 28, "3 meses": 28}
+
+# A base, no limiar oficial de Alerta.
+LIMIAR_DO_ALARME = 421
+NOME_DO_ESTAGIO_DO_ALARME = "Alerta"
 SEMANAS_AVALIADAS_NO_ALARME = 102
-SEMANAS_DE_SURTO_NO_ALARME = 39
+SEMANAS_DE_SURTO_NO_ALARME = 28

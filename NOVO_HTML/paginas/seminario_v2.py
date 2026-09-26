@@ -521,17 +521,21 @@ def _slide_modelo_composto() -> deck.Slide:
 
 
 def _slide_alarme_do_composto() -> deck.Slide:
-    """O alarme de surto do modelo composto, com a régua sazonal ao lado.
+    """O alarme do composto no limiar oficial de Alerta, com a régua ao lado.
 
-    Slide novo de 26/09/2026. O slide de alarme que já existia traz os números
-    da configuração adotada, que é a versão anterior à melhora.
+    ⚠️ **Limiar trocado em 26/09/2026, por decisão do Vinicius.** A versão
+    anterior usava 100 casos por semana, que era convenção do projeto sem base
+    oficial. Agora usa o piso do estágio **Alerta** do Plano Municipal de
+    Contingência: **421 casos por semana**.
 
-    ⚠️ A régua sazonal entra na tabela de propósito, e não por simetria. O
-    Vinicius estranhou a precisão de 81% do modelo adotado em 3 meses, e a
-    régua é o que explica o número: o evento é comum (39 das 102 semanas) e
-    concentrado em 2 blocos, então até uma regra que só olha o calendário
-    acerta muito. A régua tem a MAIOR precisão nos quatro horizontes. Sem ela
-    na tabela, 81% pareceria mérito do modelo.
+    A troca importa porque muda o veredito. Com 100, a régua sazonal competia
+    de igual para igual em todos os horizontes. Com 421, que é o evento que a
+    Prefeitura de fato monitora, o composto **vence a régua em 1 semana, 1 mês
+    e 2 meses** — e só perde em 3 meses.
+
+    A régua fica na tabela porque sem ela não dá para julgar se um número é
+    bom: o evento ocorre em 27% das semanas, e num evento comum qualquer regra
+    de calendário acerta bastante.
     """
     por_braco = {}
     for linha in numeros.ALARME_DO_COMPOSTO:
@@ -539,68 +543,59 @@ def _slide_alarme_do_composto() -> deck.Slide:
 
     cabecalhos = [
         "Horizonte",
-        "Pega quantos surtos",
-        "Precisão",
-        "Alarmes falsos por ano",
+        "Composto: pega",
+        "Régua: pega",
+        "Composto: precisão",
+        "Alarmes falsos/ano",
         "Deixa passar",
     ]
     linhas = []
     for rotulo in ROTULOS_DOS_HORIZONTES:
         do_composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
         da_regua = por_braco[numeros.NOME_DA_REGUA][rotulo]
+        composto_vence = do_composto.sensibilidade > da_regua.sensibilidade
+        total = numeros.SURTOS_POR_HORIZONTE[rotulo]
         linhas.append(
             [
                 f"<b>{layout.escapar(rotulo)}</b>",
                 _destacar(
                     numeros.formatar_percentual(do_composto.sensibilidade, 1),
-                    do_composto.sensibilidade > da_regua.sensibilidade,
+                    composto_vence,
                 ),
                 _destacar(
-                    numeros.formatar_percentual(do_composto.precisao, 1),
-                    do_composto.precisao > da_regua.precisao,
+                    numeros.formatar_percentual(da_regua.sensibilidade, 1),
+                    not composto_vence,
                 ),
+                numeros.formatar_percentual(do_composto.precisao, 1),
                 numeros.formatar_decimal(do_composto.falsos_por_ano, 1),
-                f"{do_composto.surtos_perdidos} de {numeros.SEMANAS_DE_SURTO_NO_ALARME}",
+                f"{do_composto.surtos_perdidos} de {total}",
             ]
         )
 
-    linhas.append(
-        [
-            f'<b>{layout.escapar(numeros.NOME_DA_REGUA)}</b>, 3 meses',
-            numeros.formatar_percentual(
-                por_braco[numeros.NOME_DA_REGUA]["3 meses"].sensibilidade, 1
-            ),
-            f"<b>{numeros.formatar_percentual(por_braco[numeros.NOME_DA_REGUA]['3 meses'].precisao, 1)}</b>",
-            f"<b>{numeros.formatar_decimal(por_braco[numeros.NOME_DA_REGUA]['3 meses'].falsos_por_ano, 1)}</b>",
-            f"{por_braco[numeros.NOME_DA_REGUA]['3 meses'].surtos_perdidos} de "
-            f"{numeros.SEMANAS_DE_SURTO_NO_ALARME}",
-        ]
-    )
-
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="O composto como alarme de surto — e o que a precisão esconde",
+        # O titulo e escapado pelo deck, entao nao aceita HTML.
+        titulo="Como alarme de Alerta, o composto vence a régua até 2 meses",
         rotulo_curto="Alarme do composto",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
             + layout.montar_aviso(
-                "atencao",
-                "Precisão alta não é mérito aqui",
-                f"<b>{numeros.SEMANAS_DE_SURTO_NO_ALARME} das "
-                f"{numeros.SEMANAS_AVALIADAS_NO_ALARME}</b> semanas avaliadas passaram "
-                "de 100 casos, e elas formam apenas <b>2 blocos</b>. Num evento tão "
-                "comum e concentrado, até a régua sazonal acerta — ela tem a "
-                "<b>maior precisão</b> dos quatro horizontes. O que o modelo compra é "
-                "<b>sensibilidade</b>: deixa passar menos surto.",
+                "info",
+                f"O que é uma semana de {numeros.NOME_DO_ESTAGIO_DO_ALARME}",
+                f"Mais de <b>{numeros.formatar_inteiro(numeros.LIMIAR_DO_ALARME)} casos "
+                "confirmados na semana</b> — o piso do estágio <b>Alerta</b> do Plano "
+                "Municipal de Contingência da Prefeitura, não um número nosso. "
+                f"Aconteceu em <b>{numeros.SEMANAS_DE_SURTO_NO_ALARME} das "
+                f"{numeros.SEMANAS_AVALIADAS_NO_ALARME}</b> semanas avaliadas. "
+                "<b>Pega</b> = das semanas que foram Alerta, em quantas o alarme tocou.",
             )
         ),
         nota=(
-            "⚠️ Se perguntarem por que a precisão do modelo é menor que a da régua: "
-            "porque ele dispara mais. Isso é <b>troca</b>, não inferioridade — para "
-            "vigilância, deixar passar um surto custa mais que um alarme falso. Mas é "
-            "escolha, e tem de ser dita como escolha. 🔴 Os <b>alarmes falsos por "
-            "ano</b> aqui usam a conta correta; o número do site divide por 3 anos "
-            "civis quando a avaliação tem 1,96 ano, e subestima em 53%."
+            "🔴 <b>Em 2 meses o composto pega 85,7% com precisão de 100% e ZERO "
+            "alarmes falsos.</b> É o melhor resultado do projeto. Em 3 meses cai para "
+            "metade, e a régua passa à frente. ⚠️ Dizer que o limiar é da Prefeitura, "
+            "e que usamos só a metade fixa do critério — o plano também exige "
+            "condições sobre limiares estaduais, óbito e sorotipo."
         ),
         e_denso=True,
     )

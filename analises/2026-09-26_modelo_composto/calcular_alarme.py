@@ -41,9 +41,23 @@ _especificacao = importlib.util.spec_from_file_location(
 calcular = importlib.util.module_from_spec(_especificacao)
 _especificacao.loader.exec_module(calcular)
 
-# Limiar de surto do projeto. E convencao, nao criterio oficial: o Plano
-# Municipal de Contingencia usa 140, 421 e 702.
-LIMIAR_DE_SURTO = 100
+# 🔴 TROCADO em 26/09/2026, por decisao do Vinicius: o limiar passa a ser o do
+# ESTAGIO ALERTA do Plano Municipal de Contingencia de Arboviroses 2026 da
+# SMS-POA, e nao mais os 100 casos, que eram convencao do projeto sem base
+# oficial.
+#
+# 421 casos por semana = incidencia de 30 por 100 mil na populacao de
+# 1.404.269. ⚠️ SIMPLIFICACAO DECLARADA: no plano o corte numerico nunca
+# aparece sozinho - vem ligado por E a limiares estaduais sobre casos
+# provaveis, mais obito e sorotipo novo. Usamos so a metade fixa do criterio.
+#
+# A troca muda MUITO os numeros, e e por isso que ela importa: com 100, o
+# composto pega 84,6% das semanas em 3 meses; com 421, pega 50,0%. Quanto mais
+# raro o evento, pior o modelo vai. O limiar antigo escondia isso.
+LIMIAR_DE_SURTO = 421
+
+# Os 100 casos ficam registrados porque a trava do painel publicado usa eles.
+LIMIAR_DA_CONVENCAO_ANTIGA = 100
 SEMANAS_POR_ANO = 52.0
 HORIZONTES_RELATADOS = (1, 4, 8, 12)
 
@@ -73,18 +87,21 @@ TOLERANCIA_DA_PROPORCAO = 0.01
 TOLERANCIA_DOS_FALSOS = 0.1
 
 
-def calcular_metricas_do_alarme(de_um_braco: pd.DataFrame) -> dict[str, float]:
+def calcular_metricas_do_alarme(
+    de_um_braco: pd.DataFrame, limiar: int = LIMIAR_DE_SURTO
+) -> dict[str, float]:
     """Calcula sensibilidade, precisao e alarmes falsos por ano.
 
     Args:
         de_um_braco: As previsoes de um unico braco e horizonte, com as colunas
             `real` e `previsto`.
+        limiar: Casos por semana acima dos quais a semana conta como surto.
 
     Returns:
         Um dicionario com as tres metricas, mais as contagens que as produzem.
     """
-    houve_surto = de_um_braco["real"] > LIMIAR_DE_SURTO
-    disparou_alarme = de_um_braco["previsto"] > LIMIAR_DE_SURTO
+    houve_surto = de_um_braco["real"] > limiar
+    disparou_alarme = de_um_braco["previsto"] > limiar
 
     acertos = int((houve_surto & disparou_alarme).sum())
     alarmes_falsos = int((~houve_surto & disparou_alarme).sum())
@@ -118,10 +135,12 @@ def conferir_trava(por_braco_e_horizonte: dict) -> bool:
     Returns:
         True se os seis numeros baterem dentro da tolerancia.
     """
-    print("TRAVA — configuracao adotada contra o painel publicado")
+    print(f"TRAVA — adotada contra o painel publicado (limiar {LIMIAR_DA_CONVENCAO_ANTIGA})")
     tudo_bate = True
     for horizonte, esperado in PAINEL_DO_ALARME_PUBLICADO.items():
-        medido = por_braco_e_horizonte[(calcular.BRACO_FOLHA_5, horizonte)]
+        medido = por_braco_e_horizonte[
+            (calcular.BRACO_FOLHA_5, horizonte, LIMIAR_DA_CONVENCAO_ANTIGA)
+        ]
         for nome, valor_esperado in esperado.items():
             tolerancia = TOLERANCIA_DA_PROPORCAO
             diferenca = abs(medido[nome] - valor_esperado)
@@ -168,7 +187,13 @@ def main() -> None:
             if recorte.empty:
                 continue
             metricas = calcular_metricas_do_alarme(recorte)
-            por_braco_e_horizonte[(nome_interno, horizonte)] = metricas
+            metricas_na_convencao_antiga = calcular_metricas_do_alarme(
+                recorte, LIMIAR_DA_CONVENCAO_ANTIGA
+            )
+            por_braco_e_horizonte[(nome_interno, horizonte, LIMIAR_DA_CONVENCAO_ANTIGA)] = (
+                metricas_na_convencao_antiga
+            )
+            por_braco_e_horizonte[(nome_interno, horizonte, LIMIAR_DE_SURTO)] = metricas
             linhas.append({"braco": nome_legivel, "h": horizonte, **metricas})
 
     if not conferir_trava(por_braco_e_horizonte):
@@ -189,10 +214,10 @@ def main() -> None:
                 f"perdidos {int(linha['surtos_perdidos'])}"
             )
 
-    de_referencia = por_braco_e_horizonte[(calcular.BRACO_FOLHA_5, 12)]
+    de_referencia = por_braco_e_horizonte[(calcular.BRACO_FOLHA_5, 12, LIMIAR_DE_SURTO)]
     print(
         f"\nBase: {de_referencia['semanas_de_surto']} das {de_referencia['semanas']} "
-        "semanas avaliadas passaram de 100 casos "
+        f"semanas avaliadas passaram de {LIMIAR_DE_SURTO} casos "
         f"({de_referencia['semanas_de_surto'] / de_referencia['semanas']:.0%})."
     )
 

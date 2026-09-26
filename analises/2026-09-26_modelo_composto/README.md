@@ -192,12 +192,44 @@ versão deste script caiu nessa armadilha.
 
 ---
 
-## 5. O alarme de surto — e de onde vem a precisão de 81%
+## 5. O alarme de surto
+
+> 🔴 **Limiar trocado em 26/09/2026, por decisão do Vinicius:** o evento passa a ser o piso do estágio
+> **Alerta** do Plano Municipal de Contingência, **421 casos por semana**, e não mais os 100 casos, que
+> eram convenção do projeto sem base oficial. A seção abaixo traz os dois, porque a comparação explica
+> muita coisa.
+
+### 5.0 No limiar oficial, o composto vence a régua até 2 meses
+
+Evento: semana acima de **421 casos**. Aconteceu em **28 das 102** semanas avaliadas, ou 27%.
+
+| Horizonte | Composto pega | Régua pega | Composto: precisão | Falsos/ano | Deixa passar |
+|---|---|---|---|---|---|
+| 1 semana | **95,8%** | 70,8% | 95,8% | 0,5 | 1 de 24 |
+| 1 mês | **100,0%** | 74,1% | 81,8% | 3,1 | 0 de 27 |
+| **2 meses** | **85,7%** | 75,0% | **100,0%** | **0,0** | 4 de 28 |
+| 3 meses | 50,0% | **75,0%** | 87,5% | 1,0 | 14 de 28 |
+
+- 🟢 **Em 2 meses: pega 85,7%, com precisão de 100% e ZERO alarmes falsos.** É o melhor número do projeto.
+- 🟢 **Em 1 mês pega todas as 27 semanas de Alerta.**
+- 🔴 **Em 3 meses pega metade**, e a régua passa à frente.
+
+**O que a troca de limiar revelou:** com 100 casos, a régua competia de igual para igual em todos os
+horizontes. Com 421, que é o evento que a Prefeitura de fato monitora, **a régua perde sensibilidade**
+(cai para 70-75%) enquanto o modelo a mantém alta no curto e médio prazo. O limiar antigo estava
+escondendo a vantagem do modelo, e não só os seus defeitos.
+
+⚠️ **Simplificação declarada:** no plano, o corte de 421 nunca aparece sozinho — vem ligado por **E** a
+limiares estaduais sobre casos prováveis, mais óbito e sorotipo novo. Usamos só a metade fixa do critério.
+
+---
+
+## 5.1 Com o limiar antigo de 100 casos — e de onde vinha a precisão de 81%
 
 > Medido em 26/09/2026 por [`calcular_alarme.py`](calcular_alarme.py). Evento: semana com mais de **100
 > casos** confirmados. Avaliação de 2024 em diante, **102 semanas**, das quais **39 (38%) passaram de 100**.
 
-### 5.1 🔴 A taxa de alarmes falsos publicada está subestimada em 53%
+### A taxa de alarmes falsos publicada está subestimada em 53%
 
 A trava reprovou logo na primeira tentativa, e o erro é do número publicado, não do recálculo.
 Sensibilidade e precisão batem exatamente; **alarmes falsos por ano, não**.
@@ -213,7 +245,7 @@ Sensibilidade e precisão batem exatamente; **alarmes falsos por ano, não**.
 
 ⚠️ **O número está no site publicado e no deck original.** Corrigir exige decisão do Vinicius.
 
-### 5.2 O composto melhora o alarme em horizonte longo
+### O composto melhora o alarme em horizonte longo
 
 | Horizonte | | Adotado (folha 5) | **Composto** | Régua sazonal |
 |---|---|---|---|---|
@@ -227,7 +259,7 @@ Sensibilidade e precisão batem exatamente; **alarmes falsos por ano, não**.
 Em 1 semana e 1 mês o composto empata ou fica um pouco atrás em precisão, porque ali ele **é** a
 configuração adotada ou a folha 20 pura.
 
-### 5.3 🔴 Por que 81% de precisão não é o que parece
+### 🔴 Por que 81% de precisão não era o que parecia
 
 A desconfiança do Vinicius estava certa, e a resposta não é "o número está errado" — é que **o número
 não mede o que parece medir**.
