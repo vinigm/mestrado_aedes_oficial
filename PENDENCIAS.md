@@ -44,7 +44,7 @@
 ## ⏳ Rodadas candidatas
 
 - 🔴 **O vetor ajuda em anos de epidemia e atrapalha em 2026:** com folha 20, em 3 meses, 254 × 270 em 2024-25, mas
-  579 × 315 em 2026 (p Holm 0,0499 contra). O mesmo padrão aparece no Chronos-2. Explicar antes de 2027.
+  579 × 315 em 2026 (p Holm 0,0499 contra). No Chronos-2 o vetor também só ajudou em 2024-25. Explicar antes de 2027.
 - **Confirmatória em 2027**, pré-declarar antes da temporada: modelo × régua por skill; o vetor piora o alarme (13/09).
 - ⏳ **Faixas de previsão estreitas demais:** o intervalo de 50% cobre 14%; a calibração conformal piora os alarmes.
 - ⏳ **Positividade das armadilhas e bairros em nível crítico** como atributos, com dado próprio de 2012 a 2026.
