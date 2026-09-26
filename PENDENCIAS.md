@@ -37,8 +37,8 @@
   por tipo, com o critério de sucesso de cada tipo escrito antes; ano calmo não se julga pelo erro absoluto.
 - **Alvo:** vetor (letra do PEP) × casos (o código). O PEP também erra o horizonte: é **3 meses** (Vinicius, 23/09).
 - ✅ **Município de notificação mantido** (Vinicius, 25/09), para comparar; residência fica como cenário alternativo.
-- **Limiar de surto:** 100 casos/semana é convenção; o plano municipal usa 140 · 421 · 702. Ver
-  `analises/2026-09-25_limiar_oficial_de_surto/`.
+- **Limiar de surto:** 100 casos/semana é convenção; o plano municipal usa 140 · 421 · 702, e é o instrumento certo
+  para série curta (26/09). ⚠️ O limiar do MS (100 ou 300 por 100 mil) **não tem fonte primária lida** — não citar.
 - **Corte de maturidade** 12 semanas; medido em 2025: mediana 10,4 · p90 31,6.
 
 ---
@@ -51,7 +51,13 @@
 - ⏳ **Faixas de previsão estreitas demais:** o intervalo de 50% cobre 14%; a conformal piora os alarmes. Medido na tabela com 2026.
 - ⏳ **Positividade das armadilhas e bairros em nível crítico** como atributos, com dado próprio de 2012 a 2026.
 - ⏳ **Defasagem vetor → casos nunca estimada.** da Silva 2026: τ 0,27 · 0,50 · 0,59 nos lags 0 · 4 · 8.
-- ⏳ **Canal endêmico em POA** tem limite 0 fora da temporada, porque 2018-2021 quase não tiveram casos.
+- 🚫 **Canal endêmico e MEM em POA** — 26/09: exigem histórico longo e anos calmos. Porto Rico usa **38,5 anos**;
+  aqui o limite dá 0 e o corte do MEM sobe de 6 para 94. Limiar vem do plano municipal, não do nosso histórico.
+- 🟢 **Aceleração de transmissão como régua de alarme:** média móvel 4 ÷ 26 semanas, alarme acima de **1,33**. Em 8
+  países: sensibilidade 100% × 30% do canal, antecedência 6,9 × 1,6 semanas. Precisa de 26 semanas, não de anos.
+  ⚠️ Regra importada pode não transferir: a da Malásia foi a pior aqui (Youden −0,05).
+- ⏳ **Limiar de decisão do alarme nunca foi ajustado** — hoje dispara quando a previsão passa de 100, o mesmo número
+  do evento. Varredura + semanas consecutivas + alarme composto com a régua: recálculo sobre previsões salvas.
 - 🚫 **Vírus no mosquito como atributo** — descartado pelo Vinicius em 25/09: exigiria dado novo da Prefeitura.
 - 🚫 **Notificações como alvo ou entrada** (25/09): pioram em 3 meses. 🚫 **SARIMA e LASSO** (25/09): explodem.
 
@@ -71,7 +77,12 @@
 
 ## Registro cronológico
 
-### 26/09/2026 — 2026 sai da avaliação
+### 26/09/2026 — 2026 sai da avaliação, e o limiar ganha base
+
+- 🚫 **Premissa de Porto Rico derrubada:** eles usam **38,5 anos** de série (MMWR mm7405a1), não série curta. Limiar
+  derivado de histórico exige anos calmos, que POA não tem. Reforça usar o plano municipal.
+  🟢 Achado: **aceleração de transmissão** (4÷26 semanas, corte 1,33) como régua sem série longa.
+  `analises/2026-09-26_limiar_para_serie_curta/`
 
 - 🚫 **2026 não entra (Vinicius):** com séries crescentes é impossível prever um ano de 19 casos. A tabela oficial voltou à
   de antes (até SE 202617, avaliação até 01/02/2026); a versão com 2026 fica guardada em `atualizacao_dados_2026/`.
