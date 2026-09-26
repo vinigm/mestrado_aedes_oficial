@@ -1,0 +1,303 @@
+==============================================================================
+BUSCA DE HIPERPARAMETROS — pre-declarada, julgada em 2026
+==============================================================================
+colunas do modelo (20): ['casos', 'casos_lag1', 'casos_lag2', 'casos_lag3', 'casos_lag4', 'casos_mm4', 'sem_sin', 'sem_cos', 'temp_media_lag4', 'umid_media', 'pressao_media_lag3', 'temp_max', 'temp_media_lag3', 'pressao_media_lag4', 'aedes_aegypti_por_armadilha', 'aedes_aegypti_por_armadilha_lag1', 'aedes_aegypti_por_armadilha_lag2', 'aedes_aegypti_por_armadilha_lag3', 'aedes_aegypti_por_armadilha_lag4', 'vetor_mm4']
+clima escolhido: ['temp_media_lag4', 'umid_media', 'pressao_media_lag3', 'temp_max', 'temp_media_lag3', 'pressao_media_lag4']
+
+Sorteio gravado: 60 HistGB + 60 LightGBM = 120 configs, semente 20260925.
+
+Triagem: 120 configs x horizontes (4, 12) (h=4 e h=12 — o par que a nota da secao 4 usa).
+  [histgb_008] h= 4  303 sem     9.6s
+  [histgb_028] h= 4  303 sem    11.8s
+  [histgb_016] h= 4  303 sem    12.8s
+  [histgb_024] h= 4  303 sem    13.5s
+  [histgb_008] h=12  295 sem     8.8s
+  [histgb_028] h=12  295 sem    11.1s
+  [histgb_004] h= 4  303 sem    23.2s
+  [histgb_016] h=12  295 sem    12.1s
+  [histgb_024] h=12  295 sem    12.9s
+  [histgb_020] h= 4  303 sem    29.9s
+  [histgb_029] h= 4  303 sem    17.0s
+  [histgb_000] h= 4  303 sem    45.0s
+  [histgb_004] h=12  295 sem    22.3s
+  [histgb_009] h= 4  303 sem    28.6s
+  [histgb_029] h=12  295 sem    16.2s
+  [histgb_020] h=12  295 sem    28.5s
+  [histgb_025] h= 4  303 sem    43.2s
+  [histgb_017] h= 4  303 sem    49.7s
+  [histgb_009] h=12  295 sem    28.0s
+  [histgb_030] h= 4  303 sem    19.6s
+  [histgb_010] h= 4  303 sem     8.8s
+  [histgb_000] h=12  295 sem    42.7s
+  [histgb_010] h=12  295 sem     8.1s
+  [histgb_030] h=12  295 sem    17.8s
+  [histgb_012] h= 4  303 sem    99.8s
+  [histgb_031] h= 4  303 sem     8.9s
+  [histgb_001] h= 4  303 sem    16.3s
+  [histgb_025] h=12  295 sem    39.2s
+  [histgb_031] h=12  295 sem     8.4s
+  [histgb_005] h= 4  303 sem    71.0s
+  [histgb_001] h=12  295 sem    16.8s
+  [histgb_017] h=12  295 sem    46.6s
+  [histgb_011] h= 4  303 sem    32.2s
+  [histgb_021] h= 4  303 sem    75.0s
+  [histgb_032] h= 4  303 sem    41.5s
+  [histgb_011] h=12  295 sem    29.3s
+  [histgb_018] h= 4  303 sem    47.4s
+  [histgb_002] h= 4  303 sem    50.4s
+  [histgb_036] h= 4  303 sem    20.0s
+  [histgb_005] h=12  295 sem    66.5s
+  [histgb_006] h= 4  303 sem     7.9s
+  [histgb_032] h=12  295 sem    39.4s
+  [histgb_012] h=12  295 sem    93.8s
+  [histgb_036] h=12  295 sem    20.1s
+  [histgb_006] h=12  295 sem     7.5s
+  [histgb_021] h=12  295 sem    71.6s
+  [histgb_013] h= 4  303 sem    17.4s
+  [histgb_018] h=12  295 sem    44.8s
+  [histgb_026] h= 4  303 sem   111.4s
+  [histgb_007] h= 4  303 sem    21.8s
+  [histgb_002] h=12  295 sem    50.0s
+  [histgb_019] h= 4  303 sem    13.5s
+  [histgb_013] h=12  295 sem    16.2s
+  [histgb_033] h= 4  303 sem    37.6s
+  [histgb_037] h= 4  303 sem    37.4s
+  [histgb_022] h= 4  303 sem    26.8s
+  [histgb_014] h= 4  303 sem    11.1s
+  [histgb_019] h=12  295 sem    12.5s
+  [histgb_007] h=12  295 sem    20.3s
+  [histgb_003] h= 4  303 sem    21.2s
+  [histgb_014] h=12  295 sem    11.5s
+  [histgb_044] h= 4  303 sem    14.7s
+  [histgb_040] h= 4  303 sem    16.6s
+  [histgb_022] h=12  295 sem    25.1s
+  [histgb_003] h=12  295 sem    20.0s
+  [histgb_033] h=12  295 sem    34.8s
+  [histgb_037] h=12  295 sem    35.0s
+  [histgb_044] h=12  295 sem    13.7s
+  [histgb_040] h=12  295 sem    15.6s
+  [histgb_041] h= 4  303 sem     9.4s
+  [histgb_041] h=12  295 sem     9.0s
+  [histgb_045] h= 4  303 sem    23.3s
+  [histgb_038] h= 4  303 sem    32.4s
+  [histgb_015] h= 4  303 sem    55.3s
+  [histgb_034] h= 4  303 sem    41.2s
+  [histgb_048] h= 4  303 sem    45.2s
+  [histgb_023] h= 4  303 sem    51.0s
+  [histgb_045] h=12  295 sem    22.2s
+  [histgb_026] h=12  295 sem   104.8s
+  [histgb_042] h= 4  303 sem    36.2s
+  [histgb_038] h=12  295 sem    30.6s
+  [histgb_027] h= 4  303 sem    11.5s
+  [histgb_034] h=12  295 sem    38.5s
+  [histgb_027] h=12  295 sem    11.1s
+  [histgb_048] h=12  295 sem    41.6s
+  [histgb_039] h= 4  303 sem    24.6s
+  [histgb_023] h=12  295 sem    46.6s
+  [histgb_015] h=12  295 sem    49.6s
+  [histgb_046] h= 4  303 sem    42.8s
+  [histgb_042] h=12  295 sem    33.2s
+  [lightgbm_000] h= 4  303 sem     5.7s
+  [lightgbm_000] h=12  295 sem     5.3s
+  [histgb_056] h= 4  303 sem    14.0s
+  [lightgbm_001] h= 4  303 sem     6.6s
+  [histgb_039] h=12  295 sem    22.7s
+  [lightgbm_001] h=12  295 sem     6.3s
+  [lightgbm_004] h= 4  303 sem     3.8s
+  [histgb_056] h=12  295 sem    13.5s
+  [lightgbm_004] h=12  295 sem     3.6s
+  [lightgbm_002] h= 4  303 sem     5.0s
+  [lightgbm_002] h=12  295 sem     4.8s
+  [lightgbm_005] h= 4  303 sem     5.0s
+  [histgb_049] h= 4  303 sem    40.1s
+  [lightgbm_003] h= 4  303 sem     3.3s
+  [lightgbm_005] h=12  295 sem     4.7s
+  [lightgbm_003] h=12  295 sem     3.0s
+  [histgb_046] h=12  295 sem    40.7s
+  [lightgbm_008] h= 4  303 sem     4.2s
+  [lightgbm_006] h= 4  303 sem     7.9s
+  [lightgbm_008] h=12  295 sem     3.8s
+  [lightgbm_006] h=12  295 sem     7.1s
+  [lightgbm_009] h= 4  303 sem     5.6s
+  [histgb_052] h= 4  303 sem    62.2s
+  [lightgbm_007] h= 4  303 sem     4.9s
+  [lightgbm_009] h=12  295 sem     5.1s
+  [histgb_047] h= 4  303 sem    15.8s
+  [histgb_043] h= 4  303 sem    55.9s
+  [histgb_057] h= 4  303 sem    35.1s
+  [lightgbm_007] h=12  295 sem     4.5s
+  [lightgbm_012] h= 4  303 sem     1.7s
+  [lightgbm_012] h=12  295 sem     2.0s
+  [lightgbm_010] h= 4  303 sem     8.9s
+  [lightgbm_013] h= 4  303 sem     3.8s
+  [histgb_049] h=12  295 sem    39.3s
+  [lightgbm_013] h=12  295 sem     3.5s
+  [lightgbm_010] h=12  295 sem     8.4s
+  [histgb_035] h= 4  303 sem    87.3s
+  [histgb_047] h=12  295 sem    17.7s
+  [lightgbm_014] h= 4  303 sem     2.8s
+  [lightgbm_011] h= 4  303 sem     2.8s
+  [lightgbm_016] h= 4  303 sem     2.8s
+  [lightgbm_014] h=12  295 sem     2.9s
+  [lightgbm_011] h=12  295 sem     2.6s
+  [lightgbm_016] h=12  295 sem     2.5s
+  [lightgbm_017] h= 4  303 sem     3.2s
+  [lightgbm_015] h= 4  303 sem     5.6s
+  [lightgbm_017] h=12  295 sem     3.0s
+  [lightgbm_020] h= 4  303 sem     8.0s
+  [lightgbm_015] h=12  295 sem     5.4s
+  [lightgbm_018] h= 4  303 sem     2.8s
+  [lightgbm_018] h=12  295 sem     2.7s
+  [lightgbm_020] h=12  295 sem     7.0s
+  [lightgbm_019] h= 4  303 sem     3.0s
+  [lightgbm_019] h=12  295 sem     2.6s
+  [histgb_057] h=12  295 sem    38.1s
+  [lightgbm_028] h= 4  303 sem     4.7s
+  [lightgbm_021] h= 4  303 sem     7.9s
+  [lightgbm_024] h= 4  303 sem    15.2s
+  [lightgbm_028] h=12  295 sem     4.4s
+  [lightgbm_021] h=12  295 sem     6.9s
+  [lightgbm_029] h= 4  303 sem     6.2s
+  [lightgbm_022] h= 4  303 sem     3.9s
+  [histgb_058] h= 4  303 sem    16.0s
+  [lightgbm_022] h=12  295 sem     3.6s
+  [lightgbm_024] h=12  295 sem    12.7s
+  [histgb_052] h=12  295 sem    64.8s
+  [lightgbm_023] h= 4  303 sem     1.6s
+  [lightgbm_029] h=12  295 sem     5.8s
+  [histgb_043] h=12  295 sem    60.4s
+  [lightgbm_023] h=12  295 sem     1.5s
+  [lightgbm_025] h= 4  303 sem     3.6s
+  [lightgbm_032] h= 4  303 sem     4.5s
+  [lightgbm_025] h=12  295 sem     3.3s
+  [histgb_050] h= 4  303 sem    53.8s
+  [lightgbm_036] h= 4  303 sem     5.7s
+  [lightgbm_030] h= 4  303 sem     7.9s
+  [lightgbm_026] h= 4  303 sem     3.8s
+  [lightgbm_032] h=12  295 sem     4.3s
+  [histgb_058] h=12  295 sem    13.8s
+  [histgb_053] h= 4  303 sem    10.6s
+  [lightgbm_036] h=12  295 sem     5.4s
+  [lightgbm_026] h=12  295 sem     3.4s
+  [lightgbm_033] h= 4  303 sem     3.9s
+  [lightgbm_030] h=12  295 sem     7.4s
+  [lightgbm_033] h=12  295 sem     3.4s
+  [lightgbm_027] h= 4  303 sem     5.0s
+  [lightgbm_037] h= 4  303 sem     6.0s
+  [lightgbm_031] h= 4  303 sem     3.3s
+  [histgb_053] h=12  295 sem    10.2s
+  [histgb_059] h= 4  303 sem    10.4s
+  [lightgbm_031] h=12  295 sem     3.1s
+  [lightgbm_034] h= 4  303 sem     5.6s
+  [lightgbm_027] h=12  295 sem     4.9s
+  [lightgbm_037] h=12  295 sem     5.5s
+  [lightgbm_040] h= 4  303 sem     4.0s
+  [lightgbm_038] h= 4  303 sem     2.0s
+  [lightgbm_034] h=12  295 sem     5.1s
+  [lightgbm_038] h=12  295 sem     2.0s
+  [lightgbm_044] h= 4  303 sem     6.0s
+  [lightgbm_040] h=12  295 sem     3.7s
+  [histgb_059] h=12  295 sem    10.2s
+  [lightgbm_039] h= 4  303 sem     2.8s
+  [lightgbm_039] h=12  295 sem     2.4s
+  [lightgbm_044] h=12  295 sem     5.6s
+  [lightgbm_041] h= 4  303 sem     6.0s
+  [lightgbm_045] h= 4  303 sem     2.9s
+  [lightgbm_052] h= 4  303 sem     3.7s
+  [lightgbm_048] h= 4  303 sem     6.9s
+  [lightgbm_045] h=12  295 sem     2.7s
+  [lightgbm_052] h=12  295 sem     3.4s
+  [lightgbm_041] h=12  295 sem     5.6s
+  [lightgbm_035] h= 4  303 sem    14.0s
+  [histgb_035] h=12  295 sem    86.9s
+  [lightgbm_048] h=12  295 sem     6.5s
+  [lightgbm_042] h= 4  303 sem     3.3s
+  [lightgbm_042] h=12  295 sem     2.9s
+  [lightgbm_049] h= 4  303 sem     3.6s
+  [lightgbm_056] h= 4  303 sem     5.0s
+  [lightgbm_053] h= 4  303 sem     7.5s
+  [lightgbm_049] h=12  295 sem     3.8s
+  [lightgbm_056] h=12  295 sem     4.9s
+  [lightgbm_046] h= 4  303 sem    13.2s
+  [lightgbm_043] h= 4  303 sem     5.9s
+  [lightgbm_050] h= 4  303 sem     2.5s
+  [lightgbm_035] h=12  295 sem    12.7s
+  [lightgbm_053] h=12  295 sem     7.1s
+  [histgb_050] h=12  295 sem    48.1s
+  [lightgbm_050] h=12  295 sem     2.3s
+  [lightgbm_057] h= 4  303 sem     4.7s
+  [lightgbm_043] h=12  295 sem     5.0s
+  [lightgbm_054] h= 4  303 sem     3.3s
+  [histgb_054] h= 4  303 sem    39.0s
+  [lightgbm_051] h= 4  303 sem     3.5s
+  [lightgbm_054] h=12  295 sem     3.1s
+  [lightgbm_057] h=12  295 sem     4.2s
+  [lightgbm_051] h=12  295 sem     3.2s
+  [lightgbm_046] h=12  295 sem    10.6s
+  [lightgbm_058] h= 4  303 sem     1.9s
+  [lightgbm_055] h= 4  303 sem     3.4s
+  [lightgbm_058] h=12  295 sem     1.7s
+  [lightgbm_059] h= 4  303 sem     1.3s
+  [lightgbm_059] h=12  295 sem     1.1s
+  [lightgbm_055] h=12  295 sem     3.2s
+  [lightgbm_047] h= 4  303 sem     6.4s
+  [histgb_051] h= 4  303 sem    15.8s
+  [lightgbm_047] h=12  295 sem     5.3s
+  [histgb_051] h=12  295 sem    11.9s
+  [histgb_054] h=12  295 sem    25.3s
+  [histgb_055] h= 4  303 sem    20.3s
+  [histgb_055] h=12  295 sem    19.0s
+Lote concluido: 120 configuracoes, horizontes (4, 12).
+PROVA: maior data_alvo usada na nota = 2025-12-28 (tem que ser <= 2025-12-31; 2026 NAO entra).
+
+HB_best  = histgb_018  nota=161.74  arvores=239
+LGB_best = lightgbm_040  nota=160.95  arvores=177
+
+LGB_linear: testando 3 candidatos de linear_lambda.
+  [lgb_linear_lambda0.1] h= 4  303 sem     3.3s
+  [lgb_linear_lambda10.0] h= 4  303 sem     3.3s
+  [lgb_linear_lambda1.0] h= 4  303 sem     3.3s
+  [lgb_linear_lambda0.1] h=12  295 sem     3.4s
+  [lgb_linear_lambda10.0] h=12  295 sem     3.4s
+  [lgb_linear_lambda1.0] h=12  295 sem     3.4s
+Lote concluido: 3 configuracoes, horizontes (4, 12).
+PROVA: maior data_alvo usada na nota = 2025-12-28 (tem que ser <= 2025-12-31; 2026 NAO entra).
+LGB_linear vencedora = lgb_linear_lambda0.1  nota=297.25
+[LightGBM] [Fatal] Cannot use ``monotone_constraints`` in quantile objective, please disable it.
+MONO (base LightGBM): monotone_constraints + objective=quantile FALHOU: LightGBMError('Cannot use ``monotone_constraints`` in quantile objective, please disable it.')
+
+MONO: IMPOSSIVEL — base lightgbm_040 e LightGBM, e monotone_constraints nao roda com objective=quantile nesta versao.
+
+Rodada final: 5 configuracoes de modelo x horizontes (1, 4, 8, 12).
+  [LGB_best] h= 1  306 sem     3.0s
+  [LGB_linear] h= 1  306 sem     3.5s
+  [LGB_best] h= 4  303 sem     3.0s
+  [LGB_linear] h= 4  303 sem     3.9s
+  [LGB_best] h= 8  299 sem     3.0s
+  [LGB_linear] h= 8  299 sem     4.0s
+  [LGB_best] h=12  295 sem     2.8s
+  [LGB_linear] h=12  295 sem     3.6s
+  [HistGB_folha20] h= 1  306 sem    26.4s
+  [HB_best] h= 1  306 sem    33.2s
+  [cenario_adotado] h= 1  306 sem    40.5s
+  [HistGB_folha20] h= 4  303 sem    23.8s
+  [HB_best] h= 4  303 sem    30.7s
+  [HistGB_folha20] h= 8  299 sem    22.6s
+  [cenario_adotado] h= 4  303 sem    37.3s
+  [HB_best] h= 8  299 sem    29.3s
+  [HistGB_folha20] h=12  295 sem    21.7s
+  [cenario_adotado] h= 8  299 sem    35.9s
+  [HB_best] h=12  295 sem    28.2s
+  [cenario_adotado] h=12  295 sem    35.3s
+Lote concluido: 5 configuracoes, horizontes (1, 4, 8, 12).
+
+  TRAVA DO CENARIO ADOTADO (tabela nova, ate 01/02/2026)
+    h= 1  MAE   48.63 (trava   97.4)  <<< DIVERGE  n=295
+    h= 4  MAE  103.20  (sem trava — registrado)  n=292
+    h= 8  MAE  127.35  (sem trava — registrado)  n=288
+    h=12  MAE  133.28 (trava  280.0)  <<< DIVERGE  n=284
+    veredito: INVALIDO
+
+  TRAVA INVALIDA — INVESTIGAR ANTES DE LER O RESTO. Nao forcar.
+
+CONCLUIDO em 12.6 min.

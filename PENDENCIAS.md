@@ -52,7 +52,7 @@
 ## ⏳ Rodadas candidatas
 
 - **Confirmatória em 2026-2027** — o único juiz que resta. Pré-declarar antes da temporada:
-  - vetor com folha 20 em 3 meses (exploratório: −12 a −16% de erro, carregado por 2024);
+  - 🔴 vetor com folha 20 em 3 meses: ajudava em 2024-2025, **inverteu em 2026** (p Holm 0,0499 contra);
   - modelo contra a régua sazonal, por skill score;
   - o vetor piora o alarme (único resultado que sobrevive a Holm, 13/09).
 - ⏳ **Métrica de alarme com folha 20** — nunca medida.
@@ -91,6 +91,14 @@
 ---
 
 ## Registro cronológico
+
+### 26/09/2026 — segunda bateria noturna: tudo medido em 2026, o ano atípico
+
+- ✅ **Dados de 2026 na tabela oficial** (19 confirmados); DENGBR26 lido uma vez só, com teste; 2018-2025 intactos.
+- 🔴 **Em 2026 o vetor atrapalha:** 3 meses com vetor 579 × sem 315 (p Holm 0,0499). Mosquito crítico, sem epidemia.
+- ✅ Modelo erra bem menos que "o ano passado" em 2026 (p Holm 0,004); pelo WIS, vence a régua dos sprints em 2024-25.
+- 🚫 Busca de 120 configurações: nenhuma passa; faixas de previsão estreitas demais (IC 50% cobre 14%).
+  `analises/2026-09-25_segunda_bateria_noturna/` · `analises/2026-09-25_busca_de_hiperparametros/`
 
 ### 25/09/2026 — a régua sazonal, a literatura e a bateria de formulação
 

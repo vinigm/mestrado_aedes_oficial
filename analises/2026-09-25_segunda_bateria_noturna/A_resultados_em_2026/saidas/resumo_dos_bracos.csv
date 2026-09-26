@@ -1,0 +1,9 @@
+braco,descricao,corte_maturidade,lags,modelo,n_features,clima_escolhido,colunas_extras,sem_vetor
+HistGB_M1,"cenario adotado: HistGB folha 5, com vetor",12,"[1, 2, 3, 4]",hist_gradient_boosting_quantil,20,temp_media_lag4 | umid_media | pressao_media_lag3 | temp_max | temp_media_lag3 | pressao_media_lag4,,False
+HistGB_M0,"HistGB folha 5, sem vetor",12,"[1, 2, 3, 4]",hist_gradient_boosting_quantil,14,temp_media_lag4 | umid_media | pressao_media_lag3 | temp_max | temp_media_lag3 | pressao_media_lag4,,True
+HistGB_folha20_M1,"HistGB folha 20, com vetor",12,"[1, 2, 3, 4]",histgb_folha20,20,temp_media_lag4 | umid_media | pressao_media_lag3 | temp_max | temp_media_lag3 | pressao_media_lag4,,False
+HistGB_folha20_M0,"HistGB folha 20, sem vetor",12,"[1, 2, 3, 4]",histgb_folha20,14,temp_media_lag4 | umid_media | pressao_media_lag3 | temp_max | temp_media_lag3 | pressao_media_lag4,,True
+LightGBM_M1,"LightGBM, com vetor",12,"[1, 2, 3, 4]",lightgbm_quantil,20,temp_media_lag4 | umid_media | pressao_media_lag3 | temp_max | temp_media_lag3 | pressao_media_lag4,,False
+LightGBM_M0,"LightGBM, sem vetor",12,"[1, 2, 3, 4]",lightgbm_quantil,14,temp_media_lag4 | umid_media | pressao_media_lag3 | temp_max | temp_media_lag3 | pressao_media_lag4,,True
+GradBoost_M1,"GradBoost, com vetor",12,"[1, 2, 3, 4]",gradient_boosting_quantil,20,temp_media_lag4 | umid_media | pressao_media_lag3 | temp_max | temp_media_lag3 | pressao_media_lag4,,False
+GradBoost_M0,"GradBoost, sem vetor",12,"[1, 2, 3, 4]",gradient_boosting_quantil,14,temp_media_lag4 | umid_media | pressao_media_lag3 | temp_max | temp_media_lag3 | pressao_media_lag4,,True

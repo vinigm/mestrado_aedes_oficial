@@ -1,0 +1,83 @@
+==============================================================================
+RODADA B — quantis multiplos e WIS (segunda bateria noturna)
+==============================================================================
+Disparando 56 combinacoes (ate 4 processos em paralelo)...
+  [ 1/56] cenario_adotado  h= 1  q=0.05  306 semanas  (  25.8s desde o inicio)
+  [ 2/56] cenario_adotado  h= 1  q=0.10  306 semanas  (  29.9s desde o inicio)
+  [ 3/56] cenario_adotado  h= 1  q=0.25  306 semanas  (  42.9s desde o inicio)
+  [ 4/56] cenario_adotado  h= 1  q=0.50  306 semanas  (  50.9s desde o inicio)
+  [ 5/56] cenario_adotado  h= 4  q=0.05  303 semanas  (  71.6s desde o inicio)
+  [ 6/56] cenario_adotado  h= 1  q=0.90  306 semanas  (  72.8s desde o inicio)
+  [ 7/56] cenario_adotado  h= 1  q=0.75  306 semanas  (  77.2s desde o inicio)
+  [ 8/56] cenario_adotado  h= 1  q=0.95  306 semanas  (  79.2s desde o inicio)
+  [ 9/56] cenario_adotado  h= 4  q=0.10  303 semanas  (  96.6s desde o inicio)
+  [10/56] cenario_adotado  h= 4  q=0.25  303 semanas  ( 113.9s desde o inicio)
+  [11/56] cenario_adotado  h= 4  q=0.50  303 semanas  ( 123.5s desde o inicio)
+  [12/56] cenario_adotado  h= 4  q=0.75  303 semanas  ( 129.4s desde o inicio)
+  [13/56] cenario_adotado  h= 4  q=0.90  303 semanas  ( 139.1s desde o inicio)
+  [14/56] cenario_adotado  h= 8  q=0.05  299 semanas  ( 140.2s desde o inicio)
+  [15/56] cenario_adotado  h= 4  q=0.95  303 semanas  ( 148.4s desde o inicio)
+  [16/56] cenario_adotado  h= 8  q=0.10  299 semanas  ( 150.4s desde o inicio)
+  [17/56] cenario_adotado  h= 8  q=0.25  299 semanas  ( 166.6s desde o inicio)
+  [18/56] cenario_adotado  h= 8  q=0.50  299 semanas  ( 184.7s desde o inicio)
+  [19/56] cenario_adotado  h= 8  q=0.90  299 semanas  ( 192.0s desde o inicio)
+  [20/56] cenario_adotado  h= 8  q=0.75  299 semanas  ( 197.1s desde o inicio)
+  [21/56] cenario_adotado  h=12  q=0.05  295 semanas  ( 200.3s desde o inicio)
+  [22/56] cenario_adotado  h= 8  q=0.95  299 semanas  ( 201.0s desde o inicio)
+  [23/56] cenario_adotado  h=12  q=0.10  295 semanas  ( 209.4s desde o inicio)
+  [24/56] cenario_adotado  h=12  q=0.25  295 semanas  ( 217.9s desde o inicio)
+  [25/56] cenario_adotado  h=12  q=0.50  295 semanas  ( 237.8s desde o inicio)
+  [26/56] cenario_adotado  h=12  q=0.75  295 semanas  ( 249.0s desde o inicio)
+  [27/56] cenario_adotado  h=12  q=0.90  295 semanas  ( 250.6s desde o inicio)
+  [28/56] cenario_adotado  h=12  q=0.95  295 semanas  ( 253.2s desde o inicio)
+  [29/56]  histgb_folha20  h= 1  q=0.05  306 semanas  ( 253.4s desde o inicio)
+  [30/56]  histgb_folha20  h= 1  q=0.10  306 semanas  ( 267.5s desde o inicio)
+  [31/56]  histgb_folha20  h= 1  q=0.25  306 semanas  ( 274.5s desde o inicio)
+  [32/56]  histgb_folha20  h= 1  q=0.50  306 semanas  ( 284.1s desde o inicio)
+  [33/56]  histgb_folha20  h= 1  q=0.75  306 semanas  ( 287.8s desde o inicio)
+  [34/56]  histgb_folha20  h= 1  q=0.90  306 semanas  ( 295.5s desde o inicio)
+  [35/56]  histgb_folha20  h= 1  q=0.95  306 semanas  ( 297.2s desde o inicio)
+  [36/56]  histgb_folha20  h= 4  q=0.05  303 semanas  ( 299.4s desde o inicio)
+  [37/56]  histgb_folha20  h= 4  q=0.10  303 semanas  ( 305.1s desde o inicio)
+  [38/56]  histgb_folha20  h= 4  q=0.25  303 semanas  ( 318.3s desde o inicio)
+  [39/56]  histgb_folha20  h= 4  q=0.50  303 semanas  ( 325.0s desde o inicio)
+  [40/56]  histgb_folha20  h= 4  q=0.75  303 semanas  ( 331.7s desde o inicio)
+  [41/56]  histgb_folha20  h= 4  q=0.90  303 semanas  ( 332.4s desde o inicio)
+  [42/56]  histgb_folha20  h= 8  q=0.05  299 semanas  ( 339.4s desde o inicio)
+  [43/56]  histgb_folha20  h= 4  q=0.95  303 semanas  ( 340.5s desde o inicio)
+  [44/56]  histgb_folha20  h= 8  q=0.10  299 semanas  ( 348.4s desde o inicio)
+  [45/56]  histgb_folha20  h= 8  q=0.25  299 semanas  ( 351.5s desde o inicio)
+  [46/56]  histgb_folha20  h= 8  q=0.50  299 semanas  ( 366.6s desde o inicio)
+  [47/56]  histgb_folha20  h= 8  q=0.75  299 semanas  ( 371.0s desde o inicio)
+  [48/56]  histgb_folha20  h= 8  q=0.95  299 semanas  ( 373.7s desde o inicio)
+  [49/56]  histgb_folha20  h= 8  q=0.90  299 semanas  ( 374.5s desde o inicio)
+  [50/56]  histgb_folha20  h=12  q=0.05  295 semanas  ( 380.4s desde o inicio)
+  [51/56]  histgb_folha20  h=12  q=0.10  295 semanas  ( 385.6s desde o inicio)
+  [52/56]  histgb_folha20  h=12  q=0.25  295 semanas  ( 390.0s desde o inicio)
+  [53/56]  histgb_folha20  h=12  q=0.50  295 semanas  ( 400.0s desde o inicio)
+  [54/56]  histgb_folha20  h=12  q=0.75  295 semanas  ( 408.8s desde o inicio)
+  [55/56]  histgb_folha20  h=12  q=0.90  295 semanas  ( 410.1s desde o inicio)
+  [56/56]  histgb_folha20  h=12  q=0.95  295 semanas  ( 410.7s desde o inicio)
+Treino completo em 6.8 min.
+
+TRAVA — cenario adotado (q0,85) contra a tabela atualizada
+  janela: 2024-01-01 a 2026-02-01
+    h= 1  MAE     nan  (esperado 97.4)  n=  0  <<< DIVERGE
+    h= 4  MAE     nan  (esperado —)  n=  0  (so registrado)
+    h= 8  MAE     nan  (esperado —)  n=  0  (so registrado)
+    h=12  MAE     nan  (esperado 280.0)  n=  0  <<< DIVERGE
+  veredito: FALHOU
+
+  INVESTIGACAO DA FALHA DA TRAVA
+  Checagem embutida do harness (desde 2024-01-01, sem teto, painel de 23/09):
+
+  TRAVA DE VALIDACAO — referencia contra o painel publicado
+    h= 1  SEM DADOS
+    h= 4  SEM DADOS
+    h= 8  SEM DADOS
+    h=12  SEM DADOS
+    veredito: INVALIDO
+  Maior data_alvo alcancada, por horizonte:
+Series([], )
+
+BLOCO INVALIDO: a trava nao bateu. Nao vou seguir para o WIS com um arranjo que nao reproduz o painel. Ver a investigacao acima.

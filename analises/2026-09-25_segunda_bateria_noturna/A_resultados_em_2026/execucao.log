@@ -1,0 +1,182 @@
+==============================================================================
+RODADA A — segunda bateria noturna: os resultados principais em 2026
+==============================================================================
+
+[HistGB_M1] cenario adotado: HistGB folha 5, com vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · hist_gradient_boosting_quantil
+  h= 1  306 sem   46.6s
+  h= 2  305 sem   43.0s
+  h= 3  304 sem   42.9s
+  h= 4  303 sem   42.3s
+  h= 5  302 sem   42.9s
+  h= 6  301 sem   40.9s
+  h= 7  300 sem   42.1s
+  h= 8  299 sem   41.1s
+  h= 9  298 sem   36.2s
+  h=10  297 sem   34.0s
+  h=11  296 sem   34.3s
+  h=12  295 sem   33.7s
+[HistGB_M1] 8.0 min
+
+[HistGB_M0] HistGB folha 5, sem vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 14 features · hist_gradient_boosting_quantil
+  h= 1  318 sem   46.3s
+  h= 2  317 sem   46.2s
+  h= 3  316 sem   45.5s
+  h= 4  315 sem   45.2s
+  h= 5  314 sem   44.8s
+  h= 6  313 sem   44.5s
+  h= 7  312 sem   45.1s
+  h= 8  311 sem   45.8s
+  h= 9  310 sem   43.7s
+  h=10  309 sem   45.1s
+  h=11  308 sem   45.0s
+  h=12  307 sem   41.5s
+[HistGB_M0] 9.0 min
+
+[HistGB_folha20_M1] HistGB folha 20, com vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · histgb_folha20
+  h= 1  306 sem   24.7s
+  h= 2  305 sem   23.1s
+  h= 3  304 sem   22.9s
+  h= 4  303 sem   22.8s
+  h= 5  302 sem   22.8s
+  h= 6  301 sem   23.1s
+  h= 7  300 sem   23.1s
+  h= 8  299 sem   22.0s
+  h= 9  298 sem   21.7s
+  h=10  297 sem   21.3s
+  h=11  296 sem   21.3s
+  h=12  295 sem   21.2s
+[HistGB_folha20_M1] 4.5 min
+
+[HistGB_folha20_M0] HistGB folha 20, sem vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 14 features · histgb_folha20
+  h= 1  318 sem   23.2s
+  h= 2  317 sem   22.6s
+  h= 3  316 sem   22.1s
+  h= 4  315 sem   21.9s
+  h= 5  314 sem   21.9s
+  h= 6  313 sem   21.7s
+  h= 7  312 sem   21.3s
+  h= 8  311 sem   21.3s
+  h= 9  310 sem   20.7s
+  h=10  309 sem   20.4s
+  h=11  308 sem   20.7s
+  h=12  307 sem   20.6s
+[HistGB_folha20_M0] 4.3 min
+
+[LightGBM_M1] LightGBM, com vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · lightgbm_quantil
+  h= 1  306 sem   81.2s
+  h= 2  305 sem   80.2s
+  h= 3  304 sem   79.1s
+  h= 4  303 sem   79.0s
+  h= 5  302 sem   78.3s
+  h= 6  301 sem   76.9s
+  h= 7  300 sem   76.0s
+  h= 8  299 sem   74.8s
+  h= 9  298 sem   74.0s
+  h=10  297 sem   72.8s
+  h=11  296 sem   72.7s
+  h=12  295 sem   72.6s
+[LightGBM_M1] 15.3 min
+
+[LightGBM_M0] LightGBM, sem vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 14 features · lightgbm_quantil
+  h= 1  318 sem   85.0s
+  h= 2  317 sem   85.0s
+  h= 3  316 sem   80.0s
+  h= 4  315 sem   83.5s
+  h= 5  314 sem   83.0s
+  h= 6  313 sem   81.9s
+  h= 7  312 sem   81.0s
+  h= 8  311 sem   80.8s
+  h= 9  310 sem   79.0s
+  h=10  309 sem   78.3s
+  h=11  308 sem   79.1s
+  h=12  307 sem   78.3s
+[LightGBM_M0] 16.3 min
+
+[GradBoost_M1] GradBoost, com vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 20 features · gradient_boosting_quantil
+  h= 1  306 sem   56.2s
+  h= 2  305 sem   55.8s
+  h= 3  304 sem   54.9s
+  h= 4  303 sem   54.7s
+  h= 5  302 sem   54.4s
+  h= 6  301 sem   53.7s
+  h= 7  300 sem   53.1s
+  h= 8  299 sem   52.2s
+  h= 9  298 sem   51.4s
+  h=10  297 sem   50.9s
+  h=11  296 sem   51.1s
+  h=12  295 sem   50.8s
+[GradBoost_M1] 10.7 min
+
+[GradBoost_M0] GradBoost, sem vetor
+  corte 12 sem · lags [1, 2, 3, 4] · 14 features · gradient_boosting_quantil
+  h= 1  318 sem   47.6s
+  h= 2  317 sem   47.7s
+  h= 3  316 sem   46.6s
+  h= 4  315 sem   47.1s
+  h= 5  314 sem   46.4s
+  h= 6  313 sem   46.1s
+  h= 7  312 sem   46.1s
+  h= 8  311 sem   45.6s
+  h= 9  310 sem   44.9s
+  h=10  309 sem   44.4s
+  h=11  308 sem   44.0s
+  h=12  307 sem   44.0s
+[GradBoost_M0] 9.2 min
+
+TRAVA — cenario adotado, ate 01/02/2026, tabela oficial atualizada
+ h  mae_medido  ancora  n_semanas bate_a_tolerancia
+ 1   97.376356    97.4        102              True
+ 2  160.725773     NaN        102              None
+ 3  188.167922     NaN        102              None
+ 4  211.314370     NaN        102              None
+ 5  217.646328     NaN        102              None
+ 6  260.341814     NaN        102              None
+ 7  249.414286     NaN        102              None
+ 8  270.547532     NaN        102              None
+ 9  282.978407     NaN        102              None
+10  276.202540     NaN        102              None
+11  289.436901     NaN        102              None
+12  279.958276   280.0        102              True
+veredito h=1/h=12: VALIDA
+Regua sazonal calculada para 3750 linhas (h, data_alvo) unicos.
+
+FAMILIA A1 — vetor com folha 20 (recorte de decisao: '2026')
+  recorte         com_vetor  horizonte  mae_com_vetor  mae_sem_vetor  reducao_percentual_do_vetor   p_holm  significativo_5pct
+2024-2025 HistGB_folha20_M1          8     232.065973     255.049457                     9.011383 0.002570                True
+2024-2025 HistGB_folha20_M1         12     254.126531     288.889556                    12.033327 0.011758                True
+2024-2025       LightGBM_M1          8     239.838804     247.463736                     3.081232 0.011758                True
+2024-2025       LightGBM_M1         12     253.390243     306.772791                    17.401331 0.000029                True
+     2026 HistGB_folha20_M1          8     737.487647     131.942234                  -458.947371 0.005035                True
+     2026 HistGB_folha20_M1         12     578.968946     315.070101                   -83.758772 0.049927                True
+     2026       LightGBM_M1          8     681.586828     137.122024                  -397.065904 0.004028                True
+     2026       LightGBM_M1         12     565.089436     314.646341                   -79.595108 0.049927                True
+     tudo HistGB_folha20_M1          8     154.101168     122.475502                   -25.822034 0.353576               False
+     tudo HistGB_folha20_M1         12     148.505984     144.572452                    -2.720804 0.341793               False
+     tudo       LightGBM_M1          8     151.661126     119.756761                   -26.640973 0.353576               False
+     tudo       LightGBM_M1         12     147.294091     151.449495                     2.743755 0.015437                True
+VEREDITO A1 (recorte 2026, h=12, os dois algoritmos): NAO confirma
+
+FAMILIA A2 — modelo contra a regua sazonal (recorte de decisao: '2026')
+  recorte            modelo  horizonte  mae_modelo  mae_regua  reducao_percentual_do_modelo   p_holm  significativo_5pct
+2024-2025         HistGB_M1          4  221.321733 221.989691                      0.300896 0.464120               False
+2024-2025         HistGB_M1         12  293.312132 226.835052                    -29.306353 0.011089                True
+2024-2025 HistGB_folha20_M1          4  205.688016 221.989691                      7.343438 0.633529               False
+2024-2025 HistGB_folha20_M1         12  254.126531 226.835052                    -12.031421 0.464120               False
+     2026         HistGB_M1          4  223.755354 902.875000                     75.217460 0.000122                True
+     2026         HistGB_M1         12  482.882553 902.875000                     46.517231 0.003937                True
+     2026 HistGB_folha20_M1          4  600.975002 902.875000                     33.437630 0.175354               False
+     2026 HistGB_folha20_M1         12  578.968946 902.875000                     35.874961 0.021973                True
+     tudo         HistGB_M1          4  110.982236 152.231023                     27.096177 0.006215                True
+     tudo         HistGB_M1         12  154.146421 156.749153                      1.660444 1.000000               False
+     tudo HistGB_folha20_M1          4  135.228889 152.231023                     11.168639 1.000000               False
+     tudo HistGB_folha20_M1         12  148.505984 156.749153                      5.258828 1.000000               False
+Figura gravada em /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/analises/2026-09-25_segunda_bateria_noturna/A_resultados_em_2026/saidas/figura_2026.png
+
+CONCLUIDO.

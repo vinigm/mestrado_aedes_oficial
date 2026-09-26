@@ -67,6 +67,8 @@
 | 25/09/2026 | Modelos de fundação zero-shot | 🚫 não batem a régua; ⚠️ o vetor ajuda o Chronos-2 só em 2024-2025 |
 | 25/09/2026 | SARIMA, LASSO e ensemble | 🚫 explodem ou não batem a régua; 🔴 pela perda quantílica, o Chronos-2 vence o B0 |
 | 25/09/2026 | Alarme contra o canal endêmico | ✅ 1 mês: modelo vence; 3 meses: empata com o ano passado |
+| 26/09/2026 | Busca aleatória de hiperparâmetros, julgada em 2026 | 🚫 nenhuma das 120 passa |
+| 26/09/2026 | Segunda bateria noturna: resultados em 2026 | 🔴 o vetor inverte em 2026; ✅ WIS vence a régua dos sprints em 2024-25 |
 
 ---
 
@@ -203,6 +205,23 @@ que 4 temporadas não dão.
 - ⏳ Exige pré-declaração com a perda quantílica como métrica primária, e decisão sobre qual métrica
   representa o custo da vigilância.
 - Detalhe: `analises/2026-09-25_sarima_lasso_ensemble/` §5.
+
+---
+
+### 1.8 🔴 Os resultados na temporada de 2026, o primeiro ano atípico (26/09/2026)
+
+**Por quê.** 2026 teve o mosquito em nível crítico e só 19 confirmados. Nenhuma decisão anterior o usou.
+
+**O que deu**, 16 semanas de jan a abr/2026, pré-declarado e certificado:
+
+- 🔴 **O vetor inverte:** com folha 20, em 3 meses, erro 579 com vetor contra 315 sem (HistGB) e 565 contra 315
+  (LightGBM), p Holm 0,0499. Em 2024-2025 o vetor ajudava.
+- ✅ O cenário adotado erra muito menos que "o ano passado", que repetiu o pico de 2025: p Holm 0,004 em 3 meses.
+  Ainda assim, previu até 1.117 casos numa semana com 3.
+- ✅ **Pelo WIS**, métrica oficial dos sprints, os modelos vencem a régua climatológica em 1 mês em 2024-2025, com
+  p Holm < 0,0001. Em 2026, em 3 meses, perdem para ela.
+- 🔴 As faixas de previsão são estreitas demais: o intervalo de 50% cobre 14% das semanas.
+- Detalhe: `analises/2026-09-25_segunda_bateria_noturna/`.
 
 ---
 

@@ -106,6 +106,10 @@ Ver `analises/2026-09-23_bateria_noturna/`.
 O mesmo padrão aparece no Chronos-2, um modelo de fundação (25/09): o vetor ajuda em 2024-2025 e atrapalha
 em 2022-2023. Ver `analises/2026-09-25_modelos_de_fundacao/`.
 
+🔴 **FATO (26/09) — em 2026 o efeito inverte, com significância:** com folha 20, o vetor aumenta o erro de 3 meses
+de 315 para 579 (p Holm 0,0499). Mosquito em nível crítico, só 19 confirmados. Ver
+`analises/2026-09-25_segunda_bateria_noturna/`.
+
 ### 3.3 O vetor no alarme de surto
 
 🔴 ✅ **FATO — o vetor PIORA o alarme em três meses, e é o único resultado do projeto que sobrevive a

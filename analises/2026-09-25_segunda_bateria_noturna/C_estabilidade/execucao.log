@@ -1,0 +1,168 @@
+==============================================================================
+RODADA C — segunda bateria noturna: estabilidade das vencedoras
+==============================================================================
+
+HB_best = histgb_018  max_features=0.5144743958486131  deterministico=False
+LGB_best = lightgbm_040
+
+20 colunas do modelo, clima escolhido: ['temp_media_lag4', 'umid_media', 'pressao_media_lag3', 'temp_max', 'temp_media_lag3', 'pressao_media_lag4']
+
+11 jobs, ate 5 processos simultaneos.
+  [HB_best_seed1] h= 1  306 sem    41.5s
+  [HB_best_seed4] h= 1  306 sem    41.6s
+  [HB_best_seed2] h= 1  306 sem    41.7s
+  [HB_best_seed3] h= 1  306 sem    41.9s
+  [referencia] h= 1  306 sem    51.0s
+  [HB_best_seed4] h= 2  305 sem    40.9s
+  [HB_best_seed2] h= 2  305 sem    41.0s
+  [HB_best_seed1] h= 2  305 sem    41.4s
+  [HB_best_seed3] h= 2  305 sem    41.3s
+  [referencia] h= 2  305 sem    48.8s
+  [HB_best_seed4] h= 3  304 sem    40.0s
+  [HB_best_seed2] h= 3  304 sem    39.9s
+  [HB_best_seed1] h= 3  304 sem    40.0s
+  [HB_best_seed3] h= 3  304 sem    40.2s
+  [referencia] h= 3  304 sem    48.0s
+  [HB_best_seed4] h= 4  303 sem    39.3s
+  [HB_best_seed2] h= 4  303 sem    39.4s
+  [HB_best_seed1] h= 4  303 sem    39.3s
+  [HB_best_seed3] h= 4  303 sem    39.7s
+  [referencia] h= 4  303 sem    47.4s
+  [HB_best_seed4] h= 5  302 sem    39.1s
+  [HB_best_seed2] h= 5  302 sem    39.0s
+  [HB_best_seed1] h= 5  302 sem    39.2s
+  [HB_best_seed3] h= 5  302 sem    39.4s
+  [HB_best_seed4] h= 6  301 sem    38.4s
+  [HB_best_seed2] h= 6  301 sem    38.9s
+  [HB_best_seed1] h= 6  301 sem    38.6s
+  [HB_best_seed3] h= 6  301 sem    39.0s
+  [referencia] h= 5  302 sem    47.0s
+  [HB_best_seed4] h= 7  300 sem    38.4s
+  [HB_best_seed2] h= 7  300 sem    38.3s
+  [HB_best_seed1] h= 7  300 sem    38.4s
+  [HB_best_seed3] h= 7  300 sem    38.4s
+  [referencia] h= 6  301 sem    45.8s
+  [HB_best_seed4] h= 8  299 sem    38.4s
+  [HB_best_seed2] h= 8  299 sem    38.1s
+  [HB_best_seed1] h= 8  299 sem    38.2s
+  [HB_best_seed3] h= 8  299 sem    38.5s
+  [referencia] h= 7  300 sem    47.2s
+  [HB_best_seed2] h= 9  298 sem    37.6s
+  [HB_best_seed4] h= 9  298 sem    37.9s
+  [HB_best_seed1] h= 9  298 sem    37.7s
+  [HB_best_seed3] h= 9  298 sem    37.6s
+  [referencia] h= 8  299 sem    46.3s
+  [HB_best_seed4] h=10  297 sem    37.0s
+  [HB_best_seed2] h=10  297 sem    37.3s
+  [HB_best_seed1] h=10  297 sem    37.1s
+  [HB_best_seed3] h=10  297 sem    37.2s
+  [referencia] h= 9  298 sem    46.2s
+  [HB_best_seed4] h=11  296 sem    37.5s
+  [HB_best_seed1] h=11  296 sem    37.4s
+  [HB_best_seed2] h=11  296 sem    37.6s
+  [HB_best_seed3] h=11  296 sem    37.8s
+  [HB_best_seed2] h=12  295 sem    36.6s
+  [HB_best_seed4] h=12  295 sem    36.8s
+[HB_best_seed2] concluido.
+[HB_best_seed4] concluido.
+  [HB_best_seed1] h=12  295 sem    36.7s
+[HB_best_seed1] concluido.
+  [HB_best_seed3] h=12  295 sem    37.0s
+[HB_best_seed3] concluido.
+  [LGB_best_seed1] h= 1  306 sem     3.4s
+  [LGB_best_seed2] h= 1  306 sem     3.3s
+  [LGB_best_seed3] h= 1  306 sem     3.3s
+  [LGB_best_seed1] h= 2  305 sem     3.3s
+  [LGB_best_seed2] h= 2  305 sem     3.3s
+  [referencia] h=10  297 sem    46.2s
+  [LGB_best_seed3] h= 2  305 sem     3.4s
+  [LGB_best_seed1] h= 3  304 sem     3.3s
+  [LGB_best_seed2] h= 3  304 sem     3.4s
+  [LGB_best_seed3] h= 3  304 sem     3.3s
+  [LGB_best_seed1] h= 4  303 sem     3.3s
+  [LGB_best_seed2] h= 4  303 sem     3.3s
+  [LGB_best_seed3] h= 4  303 sem     3.3s
+  [LGB_best_seed1] h= 5  302 sem     3.2s
+  [LGB_best_seed2] h= 5  302 sem     3.3s
+  [LGB_best_seed3] h= 5  302 sem     3.2s
+  [LGB_best_seed1] h= 6  301 sem     3.2s
+  [LGB_best_seed2] h= 6  301 sem     3.2s
+  [LGB_best_seed3] h= 6  301 sem     3.2s
+  [LGB_best_seed1] h= 7  300 sem     3.2s
+  [LGB_best_seed2] h= 7  300 sem     3.1s
+  [LGB_best_seed3] h= 7  300 sem     3.2s
+  [LGB_best_seed1] h= 8  299 sem     3.1s
+  [LGB_best_seed2] h= 8  299 sem     3.1s
+  [LGB_best_seed3] h= 8  299 sem     3.1s
+  [LGB_best_seed1] h= 9  298 sem     3.1s
+  [LGB_best_seed2] h= 9  298 sem     3.1s
+  [LGB_best_seed3] h= 9  298 sem     3.1s
+  [LGB_best_seed1] h=10  297 sem     3.1s
+  [LGB_best_seed2] h=10  297 sem     3.1s
+  [LGB_best_seed3] h=10  297 sem     3.1s
+  [LGB_best_seed1] h=11  296 sem     3.1s
+  [LGB_best_seed2] h=11  296 sem     3.0s
+  [LGB_best_seed3] h=11  296 sem     3.0s
+  [LGB_best_seed1] h=12  295 sem     3.1s
+[LGB_best_seed1] concluido.
+  [LGB_best_seed2] h=12  295 sem     3.0s
+[LGB_best_seed2] concluido.
+  [HB_best_seed5] h= 1  306 sem    40.2s
+  [LGB_best_seed3] h=12  295 sem     3.0s
+[LGB_best_seed3] concluido.
+  [LGB_best_seed4] h= 1  306 sem     3.3s
+  [LGB_best_seed5] h= 1  306 sem     3.2s
+  [LGB_best_seed4] h= 2  305 sem     3.0s
+  [LGB_best_seed5] h= 2  305 sem     3.0s
+  [LGB_best_seed4] h= 3  304 sem     3.0s
+  [LGB_best_seed5] h= 3  304 sem     3.0s
+  [LGB_best_seed4] h= 4  303 sem     3.0s
+  [LGB_best_seed5] h= 4  303 sem     3.0s
+  [referencia] h=11  296 sem    44.7s
+  [LGB_best_seed4] h= 5  302 sem     2.9s
+  [LGB_best_seed5] h= 5  302 sem     3.0s
+  [LGB_best_seed4] h= 6  301 sem     2.9s
+  [LGB_best_seed5] h= 6  301 sem     2.9s
+  [LGB_best_seed4] h= 7  300 sem     2.9s
+  [LGB_best_seed5] h= 7  300 sem     2.9s
+  [LGB_best_seed4] h= 8  299 sem     2.8s
+  [LGB_best_seed5] h= 8  299 sem     2.9s
+  [LGB_best_seed4] h= 9  298 sem     2.9s
+  [LGB_best_seed5] h= 9  298 sem     2.9s
+  [LGB_best_seed4] h=10  297 sem     2.8s
+  [LGB_best_seed5] h=10  297 sem     2.7s
+  [LGB_best_seed4] h=11  296 sem     2.8s
+  [LGB_best_seed5] h=11  296 sem     2.8s
+  [LGB_best_seed4] h=12  295 sem     2.8s
+[LGB_best_seed4] concluido.
+  [LGB_best_seed5] h=12  295 sem     2.8s
+[LGB_best_seed5] concluido.
+  [HB_best_seed5] h= 2  305 sem    35.6s
+  [referencia] h=12  295 sem    38.0s
+[referencia] concluido.
+  [HB_best_seed5] h= 3  304 sem    29.9s
+  [HB_best_seed5] h= 4  303 sem    29.2s
+  [HB_best_seed5] h= 5  302 sem    29.0s
+  [HB_best_seed5] h= 6  301 sem    29.1s
+  [HB_best_seed5] h= 7  300 sem    29.9s
+  [HB_best_seed5] h= 8  299 sem    28.9s
+  [HB_best_seed5] h= 9  298 sem    28.3s
+  [HB_best_seed5] h=10  297 sem    28.0s
+  [HB_best_seed5] h=11  296 sem    27.8s
+  [HB_best_seed5] h=12  295 sem    27.9s
+[HB_best_seed5] concluido.
+
+  TRAVA DO CENARIO ADOTADO (tabela nova, ate 01/02/2026)
+    h= 1  MAE   97.38 (trava   97.4)  ok  n=102
+    h= 4  MAE  211.31  (sem trava — registrado)  n=102
+    h= 8  MAE  270.55  (sem trava — registrado)  n=102
+    h=12  MAE  279.96 (trava  280.0)  ok  n=102
+    veredito: VALIDO
+
+  MAE h=12 do cenario adotado no recorte 2026: 482.88
+
+  ESTABILIDADE (h=12, recorte 2026):
+         HB_best  media= 519.69  cv=0.0852  estavel_cv=False  sinal_consistente=False
+        LGB_best  media= 538.11  cv=0.0198  estavel_cv=True  sinal_consistente=True
+
+CONCLUIDO.

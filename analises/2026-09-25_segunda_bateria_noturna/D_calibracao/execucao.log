@@ -1,0 +1,15 @@
+==============================================================================
+RODADA D — segunda bateria noturna: calibracao do quantil, sem treino
+==============================================================================
+2026-09-26 01:11:14,108 Previsoes da rodada A lidas: 33174 linhas, 9 bracos.
+2026-09-26 01:11:14,126 Linhas dos 2 bracos da rodada D: 7212.
+2026-09-26 01:11:14,312 Correcao aplicada em 4356 de 7212 linhas (o resto tinha pool < 26 pares).
+
+FAMILIA D (recorte tudo):
+            braco  horizonte  perda_original  perda_corrigida  reducao_percentual_da_correcao      p_bruto  n_semanas recorte       p_holm  significativo_5pct
+        HistGB_M1          4       65.612488        71.414570                       -8.842954 2.595524e-10        303    tudo 1.038210e-09                True
+        HistGB_M1         12      108.179191        98.980471                        8.503225 1.880749e-01        295    tudo 1.880749e-01               False
+HistGB_folha20_M1          4       66.636834        72.359064                       -8.587188 8.426907e-08        303    tudo 2.528072e-07                True
+HistGB_folha20_M1         12       93.863887        88.841605                        5.350601 2.878324e-02        295    tudo 5.756648e-02               False
+
+CONCLUIDO.
