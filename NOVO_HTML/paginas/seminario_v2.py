@@ -485,9 +485,6 @@ def _slide_modelo_composto() -> deck.Slide:
         rotulo_curto="Composto",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
-            + f'<p class="deckNotaDeGrafico">Em cada gráfico, a linha <b style="color:'
-            f'{COR_DA_REGUA_SAZONAL}">pontilhada cinza</b> é a <b>régua sazonal</b> '
-            "na mesma medida — repetir o número da mesma semana do ano passado.</p>"
             + f'<div class="graficosLadoALado">{graficos_das_medidas}</div>'
         ),
         nota=(
@@ -495,7 +492,9 @@ def _slide_modelo_composto() -> deck.Slide:
             "meses a régua ainda vence: a distância cai de 28% para <b>12%</b>, e "
             "não fecha. ⚠️ <b>Dizer que ainda não é adotável</b>: o ponto de corte "
             "entre as configurações foi escolhido olhando o período de avaliação, "
-            "que é o mesmo que julga. A régua <b>não olha o mosquito nem o clima</b>."
+            "que é o mesmo que julga. Se perguntarem o que é a linha pontilhada: "
+            "é a <b>régua sazonal</b> na mesma medida do gráfico — repetir o número "
+            "da mesma semana do ano passado. Ela <b>não olha o mosquito nem o clima</b>."
         ),
         e_denso=True,
     )
