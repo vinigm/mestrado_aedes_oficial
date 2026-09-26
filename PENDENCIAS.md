@@ -76,6 +76,12 @@
 
 ## ⏳ Dívida técnica
 
+- 🔴 **A taxa de alarmes falsos por ano está subestimada em ~53% no site publicado e no deck original.** A
+  medição de 13/09 dividiu por **3 anos civis** (2024, 2025, 2026), mas a avaliação cobre **1,96 ano**: 2024
+  entra com 45 semanas e 2026 com 5. Em 3 meses são **3,57/ano**, não 2,33. Achado em 26/09 pela trava de
+  `analises/2026-09-26_modelo_composto/calcular_alarme.py`. ⏳ Corrigir exige decisão do Vinicius, porque o
+  número está no ar.
+
 - **Seleção das 6 colunas de clima fora do walk-forward**, com ranking instável e dependente do alvo.
 - **`bairro_surto` não re-rodado** · **`cidade_lift_vetor` sem run no MLflow** · `rodar_regressao_selecao_clima` sem pareamento.
 - **Docstring de `acesso/fontes.py`:** 99,6% de confirmação em 2023; o medido é 69,3%.

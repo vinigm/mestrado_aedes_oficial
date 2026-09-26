@@ -755,3 +755,58 @@ REGUA_NOS_12_HORIZONTES: tuple[tuple[int, float, float, float], ...] = (
 POSICAO_DO_MAE = 1
 POSICAO_DO_R2 = 2
 POSICAO_DA_CAPTURA = 3
+
+
+# ---------------------------------------------------------------------------
+# O ALARME DE SURTO DO MODELO COMPOSTO — medido em 26/09/2026
+#
+# Evento: semana com mais de 100 casos confirmados. Avaliacao de 2024 em
+# diante, 102 semanas, das quais 39 (38%) passaram de 100.
+#
+# 🔴 ATENCAO AOS ALARMES FALSOS POR ANO. A medicao de 13/09/2026 dividiu por
+# 3 ANOS CIVIS (2024, 2025, 2026), mas a avaliacao cobre 1,96 ano de tempo
+# real: 2024 entra com 45 semanas e 2026 com 5. A taxa publicada esta
+# SUBESTIMADA em cerca de 53%. Os valores abaixo usam a conta correta.
+# Fonte: `analises/2026-09-26_modelo_composto/saidas/alarme_do_composto.csv`.
+# ---------------------------------------------------------------------------
+
+
+@dataclasses.dataclass(frozen=True)
+class AlarmeDeUmBraco:
+    """O alarme de surto de um braco, num horizonte.
+
+    Attributes:
+        braco: Nome do modelo ou da regua.
+        rotulo: Como o horizonte e dito em texto.
+        sensibilidade: Fracao das semanas de surto que o alarme sinalizou.
+        precisao: Fracao dos alarmes disparados que eram surto de verdade.
+        falsos_por_ano: Alarmes falsos por ano de tempo real.
+        surtos_perdidos: Quantas semanas de surto passaram sem alarme.
+    """
+
+    braco: str
+    rotulo: str
+    sensibilidade: float
+    precisao: float
+    falsos_por_ano: float
+    surtos_perdidos: int
+
+
+ALARME_DO_COMPOSTO: tuple[AlarmeDeUmBraco, ...] = (
+    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "1 semana", 0.969, 0.912, 1.5, 1),
+    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "1 mês", 0.971, 0.868, 2.5, 1),
+    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "2 meses", 0.895, 0.944, 1.0, 4),
+    AlarmeDeUmBraco(NOME_DO_COMPOSTO, "3 meses", 0.846, 0.892, 2.0, 6),
+    AlarmeDeUmBraco(NOME_DO_ADOTADO, "1 semana", 0.969, 0.912, 1.5, 1),
+    AlarmeDeUmBraco(NOME_DO_ADOTADO, "1 mês", 0.971, 0.943, 1.0, 1),
+    AlarmeDeUmBraco(NOME_DO_ADOTADO, "2 meses", 0.816, 0.861, 2.5, 7),
+    AlarmeDeUmBraco(NOME_DO_ADOTADO, "3 meses", 0.769, 0.811, 3.6, 9),
+    AlarmeDeUmBraco(NOME_DA_REGUA, "1 semana", 0.812, 0.963, 0.5, 6),
+    AlarmeDeUmBraco(NOME_DA_REGUA, "1 mês", 0.853, 0.967, 0.5, 5),
+    AlarmeDeUmBraco(NOME_DA_REGUA, "2 meses", 0.842, 0.970, 0.5, 6),
+    AlarmeDeUmBraco(NOME_DA_REGUA, "3 meses", 0.821, 0.970, 0.5, 7),
+)
+
+# A base que explica por que a precisao e alta para todo mundo.
+SEMANAS_AVALIADAS_NO_ALARME = 102
+SEMANAS_DE_SURTO_NO_ALARME = 39

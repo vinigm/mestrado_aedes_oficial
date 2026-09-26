@@ -520,6 +520,92 @@ def _slide_modelo_composto() -> deck.Slide:
     )
 
 
+def _slide_alarme_do_composto() -> deck.Slide:
+    """O alarme de surto do modelo composto, com a régua sazonal ao lado.
+
+    Slide novo de 26/09/2026. O slide de alarme que já existia traz os números
+    da configuração adotada, que é a versão anterior à melhora.
+
+    ⚠️ A régua sazonal entra na tabela de propósito, e não por simetria. O
+    Vinicius estranhou a precisão de 81% do modelo adotado em 3 meses, e a
+    régua é o que explica o número: o evento é comum (39 das 102 semanas) e
+    concentrado em 2 blocos, então até uma regra que só olha o calendário
+    acerta muito. A régua tem a MAIOR precisão nos quatro horizontes. Sem ela
+    na tabela, 81% pareceria mérito do modelo.
+    """
+    por_braco = {}
+    for linha in numeros.ALARME_DO_COMPOSTO:
+        por_braco.setdefault(linha.braco, {})[linha.rotulo] = linha
+
+    cabecalhos = [
+        "Horizonte",
+        "Pega quantos surtos",
+        "Precisão",
+        "Alarmes falsos por ano",
+        "Deixa passar",
+    ]
+    linhas = []
+    for rotulo in ROTULOS_DOS_HORIZONTES:
+        do_composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
+        da_regua = por_braco[numeros.NOME_DA_REGUA][rotulo]
+        linhas.append(
+            [
+                f"<b>{layout.escapar(rotulo)}</b>",
+                _destacar(
+                    numeros.formatar_percentual(do_composto.sensibilidade, 1),
+                    do_composto.sensibilidade > da_regua.sensibilidade,
+                ),
+                _destacar(
+                    numeros.formatar_percentual(do_composto.precisao, 1),
+                    do_composto.precisao > da_regua.precisao,
+                ),
+                numeros.formatar_decimal(do_composto.falsos_por_ano, 1),
+                f"{do_composto.surtos_perdidos} de {numeros.SEMANAS_DE_SURTO_NO_ALARME}",
+            ]
+        )
+
+    linhas.append(
+        [
+            f'<b>{layout.escapar(numeros.NOME_DA_REGUA)}</b>, 3 meses',
+            numeros.formatar_percentual(
+                por_braco[numeros.NOME_DA_REGUA]["3 meses"].sensibilidade, 1
+            ),
+            f"<b>{numeros.formatar_percentual(por_braco[numeros.NOME_DA_REGUA]['3 meses'].precisao, 1)}</b>",
+            f"<b>{numeros.formatar_decimal(por_braco[numeros.NOME_DA_REGUA]['3 meses'].falsos_por_ano, 1)}</b>",
+            f"{por_braco[numeros.NOME_DA_REGUA]['3 meses'].surtos_perdidos} de "
+            f"{numeros.SEMANAS_DE_SURTO_NO_ALARME}",
+        ]
+    )
+
+    return deck.Slide(
+        topico=TOPICO_RESULTADOS,
+        titulo="O composto como alarme de surto — e o que a precisão esconde",
+        rotulo_curto="Alarme do composto",
+        corpo=(
+            layout.montar_tabela(cabecalhos, linhas)
+            + layout.montar_aviso(
+                "atencao",
+                "Precisão alta não é mérito aqui",
+                f"<b>{numeros.SEMANAS_DE_SURTO_NO_ALARME} das "
+                f"{numeros.SEMANAS_AVALIADAS_NO_ALARME}</b> semanas avaliadas passaram "
+                "de 100 casos, e elas formam apenas <b>2 blocos</b>. Num evento tão "
+                "comum e concentrado, até a régua sazonal acerta — ela tem a "
+                "<b>maior precisão</b> dos quatro horizontes. O que o modelo compra é "
+                "<b>sensibilidade</b>: deixa passar menos surto.",
+            )
+        ),
+        nota=(
+            "⚠️ Se perguntarem por que a precisão do modelo é menor que a da régua: "
+            "porque ele dispara mais. Isso é <b>troca</b>, não inferioridade — para "
+            "vigilância, deixar passar um surto custa mais que um alarme falso. Mas é "
+            "escolha, e tem de ser dita como escolha. 🔴 Os <b>alarmes falsos por "
+            "ano</b> aqui usam a conta correta; o número do site divide por 3 anos "
+            "civis quando a avaliação tem 1,96 ano, e subestima em 53%."
+        ),
+        e_denso=True,
+    )
+
+
 def _slide_resultados() -> deck.Slide:
     """O desempenho da configuração adotada na previsão de casos.
 
@@ -726,6 +812,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_adotado(),
         _slide_folha_5_contra_folha_20(),
         _slide_modelo_composto(),
+        _slide_alarme_do_composto(),
         _slide_alarme(),
         _slide_o_vetor(),
         _slide_a_defasagem(),

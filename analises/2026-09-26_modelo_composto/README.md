@@ -189,3 +189,69 @@ A régua responde uma pergunta só: **"quantos casos houve nesta mesma semana, n
 diante, e o painel do projeto é medido **só de 2024**. Sem o recorte, o erro de 1 semana dá **48,5** em vez
 dos **98,0** publicados, porque 2020-2023 são anos quase sem casos e puxam a média para baixo. A primeira
 versão deste script caiu nessa armadilha.
+
+---
+
+## 5. O alarme de surto — e de onde vem a precisão de 81%
+
+> Medido em 26/09/2026 por [`calcular_alarme.py`](calcular_alarme.py). Evento: semana com mais de **100
+> casos** confirmados. Avaliação de 2024 em diante, **102 semanas**, das quais **39 (38%) passaram de 100**.
+
+### 5.1 🔴 A taxa de alarmes falsos publicada está subestimada em 53%
+
+A trava reprovou logo na primeira tentativa, e o erro é do número publicado, não do recálculo.
+Sensibilidade e precisão batem exatamente; **alarmes falsos por ano, não**.
+
+**A causa é o denominador.** A medição de 13/09/2026 dividiu os alarmes falsos por **3 anos civis** —
+2024, 2025 e 2026 — mas a avaliação cobre **102 semanas, ou 1,96 ano de tempo real**: 2024 entra com
+45 semanas e 2026 com apenas 5.
+
+| Em 3 meses | Conta |
+|---|---|
+| 7 alarmes falsos ÷ **3 anos civis** | **2,33 por ano** ← publicado no site e no slide |
+| 7 alarmes falsos ÷ **1,96 ano real** | **3,57 por ano** ← correto |
+
+⚠️ **O número está no site publicado e no deck original.** Corrigir exige decisão do Vinicius.
+
+### 5.2 O composto melhora o alarme em horizonte longo
+
+| Horizonte | | Adotado (folha 5) | **Composto** | Régua sazonal |
+|---|---|---|---|---|
+| **2 meses** | pega | 81,6% | **89,5%** | 84,2% |
+| | precisão | 86,1% | **94,4%** | **97,0%** |
+| | falsos/ano | 2,5 | **1,0** | **0,5** |
+| **3 meses** | pega | 76,9% | **84,6%** | 82,1% |
+| | precisão | 81,1% | **89,2%** | **97,0%** |
+| | falsos/ano | 3,6 | **2,0** | **0,5** |
+
+Em 1 semana e 1 mês o composto empata ou fica um pouco atrás em precisão, porque ali ele **é** a
+configuração adotada ou a folha 20 pura.
+
+### 5.3 🔴 Por que 81% de precisão não é o que parece
+
+A desconfiança do Vinicius estava certa, e a resposta não é "o número está errado" — é que **o número
+não mede o que parece medir**.
+
+- **O evento é comum:** 38% das semanas avaliadas passam de 100 casos.
+- **E é concentrado:** essas 39 semanas formam apenas **2 blocos contíguos**, um em 2024 e outro em 2025.
+
+Num evento assim, acertar é fácil para qualquer regra que saiba em que mês do ano está. E a prova é a
+régua sazonal:
+
+**A régua sazonal tem a MAIOR precisão em todos os quatro horizontes — 96% a 97% — e o MENOR número de
+alarmes falsos, 0,5 por ano.** Ela ganha do modelo adotado, do folha 20 e do composto.
+
+Ou seja: os 81% do modelo adotado em 3 meses não são um bom resultado — são **piores que os 97% de uma
+regra que só repete o ano anterior**.
+
+**Onde o modelo de fato ganha é em sensibilidade**, isto é, em não deixar surto passar:
+
+| 3 meses | Pega quantos surtos | Deixa passar |
+|---|---|---|
+| Composto | **84,6%** | 6 de 39 |
+| Régua sazonal | 82,1% | 7 de 39 |
+| Adotado | 76,9% | 9 de 39 |
+
+**A leitura honesta:** o modelo troca precisão por sensibilidade. Dispara mais, erra mais alarmes, e em
+troca deixa menos surto passar. Para vigilância isso pode ser o certo — deixar passar um surto custa mais
+que um alarme falso —, mas é uma **escolha**, e precisa ser apresentada como tal, não como superioridade.
