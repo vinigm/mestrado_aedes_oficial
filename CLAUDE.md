@@ -24,8 +24,16 @@ Contexto profundo (PEP, referências, artigos, histórico dos dados): pasta **`.
 Mestrado no PPGC/UFRGS (início set/2025, orientador Prof. Weverton Cordeiro): modelo preditivo usando a
 série de captura de mosquitos das armadilhas do MI-Aedes em Porto Alegre.
 
-**Pergunta da tese:** quanto vale a rede de armadilhas para a vigilância de dengue em Porto Alegre?
-⏳ O eixo está em revisão desde 13/09/2026 — ver [ESTADO.md](ESTADO.md) §4.
+🚫 **Não existe pergunta de tese definida.** Decisão do Vinicius em 26/09/2026: *"a gente nem tem pergunta na
+real, a gente tá modelando trocentas coisas só pra ver se chega em algum lugar"*. A fase é **exploratória**.
+
+- **Não inventar uma pergunta** nem atribuir uma a ele. A frase antiga, *"quanto vale a rede de armadilhas para a
+  vigilância de dengue em Porto Alegre"*, foi **apagada daqui em 26/09/2026** por não corresponder ao estado real.
+- **Consequência ao escrever:** nenhum resultado negativo é "a tese caindo". Cada rodada responde ao **instrumento
+  que ela testou**, e é assim que deve ser relatada.
+- ⚠️ **O que exploração NÃO dispensa:** a pré-declaração por escrito antes de cada rodada e a correção de múltiplas
+  comparações continuam valendo, e valem mais nesta fase. Ver Método, abaixo.
+- Candidatos de eixo, quando houver decisão: [ESTADO.md](ESTADO.md) §4.
 
 ---
 

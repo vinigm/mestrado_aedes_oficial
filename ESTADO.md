@@ -160,8 +160,13 @@ das duas treina, logo nenhuma tinha vazamento.
 
 ## 4. Direção da tese — **em revisão desde 13/09/2026**
 
-**A pergunta continua de pé: "Quanto vale a rede de armadilhas para a vigilância de dengue em Porto
-Alegre?"** O que caiu foi a resposta que estava sendo montada.
+🚫 **Não há pergunta de tese definida. Decisão do Vinicius em 26/09/2026.** A frase que ficava aqui, *"quanto
+vale a rede de armadilhas para a vigilância de dengue em Porto Alegre"*, foi apagada: ela descrevia uma intenção,
+não o estado. Nas palavras dele, *"a gente nem tem pergunta na real, a gente tá modelando trocentas coisas só pra
+ver se chega em algum lugar"*.
+
+**O que isso significa na prática:** a fase é exploratória e assumida como tal. O material abaixo é **inventário
+do que sobreviveu à medição**, não resposta a uma pergunta. A escolha do eixo segue em aberto.
 
 🚫 **O núcleo proposto em 29/08 — a equivalência clima × vetor — está refutado.** Não por falta de
 poder: são 576 a 587 semanas pareadas.
