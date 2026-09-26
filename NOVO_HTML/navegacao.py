@@ -220,17 +220,16 @@ PAGINA_SEMINARIO = PaginaDoSite(
 )
 
 
-# Cópia de trabalho do seminário, só local (não publicada). A página original
-# `PAGINA_SEMINARIO` fica INTACTA, contando a versão de 23/09/2026 — é ela que
-# vai ao ar se o Vinicius decidir usar a antiga. Esta revisão incorpora as
-# rodadas de 25 e 26/09/2026: a régua sazonal, o teste de McNemar do alarme, a
-# calibração por faixa e o escore de intervalo ponderado.
+# Cópia de trabalho do seminário, só local (não publicada). Nasceu em
+# 26/09/2026 como cópia LITERAL de `PAGINA_SEMINARIO`, para o Vinicius mexer à
+# vontade sem risco de estragar a original — que continua sendo a que vai ao ar
+# se ele decidir usar a versão de 23/09/2026.
 PAGINA_SEMINARIO_V2 = PaginaDoSite(
     chave="seminario-v2",
-    arquivo="seminario-revisao.html",
-    titulo_no_menu="Seminário · revisão 26/09",
+    arquivo="seminario-copia.html",
+    titulo_no_menu="Seminário (cópia)",
     icone="apresentacao",
-    titulo="Seminário de Andamento — revisão de 26/09/2026",
+    titulo="Seminário de Andamento",
     resumo="",
     rotulo_do_submenu="A apresentação",
     secoes=(),
