@@ -87,3 +87,9 @@ Se as semanas de jan-fev/2026 mudaram com a tabela nova, a diferença é explica
   em `analises/2026-09-25_atualizacao_dados_2026/CERTIFICACAO.md`. A trava exige reproduzir esses valores com
   tolerância de 0,2. Os de h=4 e h=8 são calculados e registrados pelo próprio script. Com a série maior, o
   recorte 2026 vai até **19/04/2026**, a última semana válida depois do corte de maturidade.
+- **26/09/2026, 01h20, antes de ler qualquer WIS:** a rodada B parou na trava porque a lista de quantis da seção B
+  não incluía o **0,85**, que é o quantil que a trava confere. Foi falha da pré-declaração, não do código. A B
+  passa a treinar também o 0,85, usado **só para a trava**; o WIS segue com os 7 níveis declarados.
+- **26/09/2026, 01h20:** na busca, a função de trava filtrou só `data_alvo ≤ 01/02/2026`, sem o início em
+  2024-01-01, e por isso deu "inválida". Recalculado na janela certa, a partir das previsões gravadas: h=1
+  **97,38** · h=4 211,31 · h=8 270,55 · h=12 **279,96**. **Bate as âncoras**, e as previsões da busca valem.

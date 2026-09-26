@@ -115,3 +115,7 @@ adotado, `random_state=42` e 1 thread.
   em `analises/2026-09-25_atualizacao_dados_2026/CERTIFICACAO.md`. A trava exige reproduzir esses valores com
   tolerância de 0,2. Os de h=4 e h=8 são calculados e registrados pelo próprio script. Com a série maior, o
   recorte 2026 vai até **19/04/2026**, a última semana válida depois do corte de maturidade.
+- **26/09/2026, 01h20, depois da rodada e antes de ler o julgamento:** a função de trava do script omitiu o
+  limite inferior da janela, 2024-01-01, e marcou "inválida" com MAE de 48,6 a 133,3. Recalculado na janela
+  certa, a partir de `saidas/previsoes_vencedoras_e_controles.csv`: **97,38 / 211,31 / 270,55 / 279,96**.
+  Trava válida. O script não foi alterado; a correção fica registrada aqui e na certificação.
