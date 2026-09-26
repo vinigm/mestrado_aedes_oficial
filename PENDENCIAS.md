@@ -110,6 +110,8 @@
   em 4 semanas); não há modelo preditivo publicado no RS. `analises/2026-09-25_catalogo_modelos_prontos/`
 - ✅ **Novas fontes oficiais** (CEVS 2015-2026, TabNet, IBGE): 2015-2017 não trazem temporada epidêmica.
   `analises/2026-09-25_novas_fontes_oficiais/`
+- ✅ **Notificações como alvo** (CEVS, até mai/2026): notificação como alvo ou entrada não ajuda; em 2026 o modelo
+  de confirmados erra muito menos que "o ano passado". Página local. `analises/2026-09-25_notificacoes_como_alvo/`
 
 ### 24/09/2026 — bateria noturna
 

@@ -220,6 +220,29 @@ PAGINA_SEMINARIO = PaginaDoSite(
 )
 
 
+# Página de trabalho, só local (não publicada) — registro enxuto da rodada de
+# 25/09/2026 que troca o alvo pela série do CEVS (Confirmados/Notificações).
+# `abre_grupo=True` repete o mesmo filete com respiro que separa "Próximos
+# passos" de "Seminário de Andamento", agora separando a área de páginas
+# padrão do site das páginas de rodada exploratória.
+PAGINA_NOTIFICACOES_COMO_ALVO = PaginaDoSite(
+    chave="notificacoes-como-alvo",
+    arquivo="notificacoes-como-alvo.html",
+    titulo_no_menu="Notificações como alvo",
+    icone="grafico",
+    titulo="Notificações como alvo",
+    resumo=(
+        "Rodada exploratória de 25/09/2026: troca o alvo pela série do CEVS "
+        "(Confirmados e Notificações) para ver se o modelo acompanha a queda de 2026."
+    ),
+    rotulo_do_submenu="A rodada",
+    secoes=(
+        SecaoDaPagina("o-resultado", "O que a rodada mostrou", "O resultado"),
+    ),
+    abre_grupo=True,
+)
+
+
 # Ordem dos itens no menu primário.
 PAGINAS_DO_SITE: tuple[PaginaDoSite, ...] = (
     PAGINA_INICIO,
@@ -229,6 +252,7 @@ PAGINAS_DO_SITE: tuple[PaginaDoSite, ...] = (
     PAGINA_COMPARACOES,
     PAGINA_PROXIMOS_PASSOS,
     PAGINA_SEMINARIO,
+    PAGINA_NOTIFICACOES_COMO_ALVO,
 )
 
 

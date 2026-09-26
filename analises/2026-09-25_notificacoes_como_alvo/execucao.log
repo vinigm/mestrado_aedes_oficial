@@ -1,0 +1,84 @@
+==============================================================================
+NOTIFICACOES COMO ALVO — protocolo em PRE_DECLARACAO.md
+==============================================================================
+  [T0] h= 1  295 sem   21.7s
+  [T0] h= 4  292 sem   21.1s
+  [T0] h= 8  288 sem   20.0s
+  [T0] h=12  284 sem   19.6s
+[T0] confirmados da tabela oficial — trava — 20 features · clima: temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4
+[T0] 1.4 min
+
+  [C0] h= 1  585 sem   57.2s
+  [C0] h= 4  582 sem   55.8s
+  [C0] h= 8  578 sem   55.7s
+  [C0] h=12  574 sem   55.5s
+[C0] confirmados do CEVS — base dos confirmados — 20 features · clima: radiacao_max | umid_media | temp_media | temp_min | umid_media_lag4 | orvalho_media
+[C0] 3.8 min
+
+  [N1] h= 1  585 sem   59.2s
+  [N1] h= 4  582 sem   59.3s
+  [N1] h= 8  578 sem   60.1s
+  [N1] h=12  574 sem   59.6s
+[N1] notificacoes do CEVS — 20 features · clima: radiacao_max | precip_total_mm | temp_media | precip_total_mm_lag3 | umid_min | umid_media_lag2
+[N1] 4.0 min
+
+  [C2a] h= 1  585 sem   57.1s
+  [C2a] h= 4  582 sem   58.7s
+  [C2a] h= 8  578 sem   57.6s
+  [C2a] h=12  574 sem   57.6s
+[C2a] confirmados do CEVS + notificacoes da origem e lags 1-4 — 25 features · clima: radiacao_max | umid_media | temp_media | temp_min | umid_media_lag4 | orvalho_media
+[C2a] 3.9 min
+
+  [C2b] h= 1  470 sem   45.3s
+  [C2b] h= 4  467 sem   43.5s
+  [C2b] h= 8  463 sem   42.9s
+  [C2b] h=12  459 sem   42.4s
+[C2b] confirmados do CEVS + taxa de confirmacao de 8 semanas — 21 features · clima: radiacao_max | umid_media | temp_media | temp_min | umid_media_lag4 | orvalho_media
+[C2b] 2.9 min
+
+
+  TRAVA 1 — T0 contra o bloco 7 (HistGB_folha20_M1)
+    h= 1  esperado  133.6  obtido  133.6  ok
+    h= 4  esperado  199.6  obtido  199.6  ok
+    h= 8  esperado  223.2  obtido  223.2  ok
+    h=12  esperado  243.8  obtido  243.8  ok
+    veredito: VALIDO
+
+  TRAVA 3 — clima identico entre bracos
+      T0: temp_media_lag4 | umid_media | temp_media_lag3 | temp_max | pressao_media_lag3 | pressao_media_lag4  ok
+      C0: radiacao_max | umid_media | temp_media | temp_min | umid_media_lag4 | orvalho_media  <<< DIVERGE
+      N1: radiacao_max | precip_total_mm | temp_media | precip_total_mm_lag3 | umid_min | umid_media_lag2  <<< DIVERGE
+     C2a: radiacao_max | umid_media | temp_media | temp_min | umid_media_lag4 | orvalho_media  <<< DIVERGE
+     C2b: radiacao_max | umid_media | temp_media | temp_min | umid_media_lag4 | orvalho_media  <<< DIVERGE
+    veredito: INVALIDO
+
+  TRAVA 3 INVALIDA — clima difere entre bracos (investigado, nao forcado; ver decisoes no retorno). Prosseguindo com as metricas mesmo assim, porque o protocolo nao lista isso como bloqueante.
+
+  FAMILIA K1 — notificacoes ajudam os confirmados? (Holm sobre 8)
+braco  h     mae_c0  mae_variante  reducao_percentual      p_bruto   p_holm  semanas_pareadas
+  C2a  1 108.003968    113.564536           -5.148485 9.447070e-01 1.000000               117
+  C2a  4 167.737132    200.557605          -19.566612 2.193823e-02 0.131629               117
+  C2a  8 208.139033    321.091067          -54.267589 1.800491e-06 0.000013               117
+  C2a 12 252.833467    368.444318          -45.726087 7.265662e-07 0.000006               117
+  C2b  1 108.003968    109.718034           -1.587040 8.394278e-01 1.000000               117
+  C2b  4 167.737132    180.224867           -7.444825 1.168887e-01 0.467555               117
+  C2b  8 208.139033    228.075378           -9.578379 5.927007e-02 0.296350               117
+  C2b 12 252.833467    251.240515            0.630040 4.091100e-01 1.000000               117
+
+  FAMILIA K2 — modelo bate a regua do proprio alvo? (Holm sobre 6)
+braco  h  mae_regua  mae_modelo  reducao_percentual_vs_regua      p_bruto   p_holm  semanas_pareadas
+   C0  4 331.777778  167.737132                    49.442928 1.422850e-01 0.569140               117
+   C0  8 333.820513  208.139033                    37.649418 9.425424e-01 1.000000               117
+   C0 12 334.863248  252.833467                    24.496501 3.404423e-01 1.000000               117
+   N1  4 801.717949  656.494057                    18.114088 7.431109e-01 1.000000               117
+   N1  8 811.128205 1051.330985                   -29.613417 1.705908e-07 0.000001               117
+   N1 12 813.726496 1212.404756                   -48.994135 3.962844e-04 0.001981               117
+
+  CRITERIOS DA SECAO 6
+    K1 h=12 C2a: MAE 368.4 contra C0 252.8, p Holm 0.0000 nao passou
+    K1 h=12 C2b: MAE 251.2 contra C0 252.8, p Holm 1.0000 nao passou
+    => 'as notificacoes ajudam os confirmados': NAO
+    N1 erro relativo 2026 9.419 · C0 397.158 · regua de notificacoes 11.281
+    => 'o modelo acompanha a transmissao' (descritivo, 1 temporada): SIM
+
+FIM.

@@ -28,6 +28,7 @@ import cenarios as pagina_cenarios  # noqa: E402
 import comparacoes as pagina_comparacoes  # noqa: E402
 import dados as pagina_dados  # noqa: E402
 import inicio as pagina_inicio  # noqa: E402
+import notificacoes_como_alvo as pagina_notificacoes_como_alvo  # noqa: E402
 import proximos_passos as pagina_proximos_passos  # noqa: E402
 import seminario as pagina_seminario  # noqa: E402
 
@@ -59,7 +60,36 @@ MODULOS_POR_PAGINA = {
     navegacao.PAGINA_PROXIMOS_PASSOS.chave: pagina_proximos_passos,
     navegacao.PAGINA_SEMINARIO.chave: pagina_seminario,
     navegacao.PAGINA_CENARIOS.chave: pagina_cenarios,
+    navegacao.PAGINA_NOTIFICACOES_COMO_ALVO.chave: pagina_notificacoes_como_alvo,
 }
+
+# Figura da rodada 'notificações como alvo' (25/09/2026), gerada por
+# `analises/2026-09-25_notificacoes_como_alvo/rodar.py`. Vive fora de
+# `pagina_web/imagens/` (que é só do gerador antigo), por isso tem sua
+# própria origem e cópia, em vez de entrar em FIGURAS_USADAS.
+PASTA_DA_ANALISE_NOTIFICACOES = (
+    PASTA_DESTE_ARQUIVO.parent
+    / "analises"
+    / "2026-09-25_notificacoes_como_alvo"
+    / "saidas"
+)
+FIGURA_NOTIFICACOES_COMO_ALVO = "notificacoes_como_alvo_2026.png"
+
+
+def copiar_figura_notificacoes_como_alvo() -> bool:
+    """Copia a figura da rodada de 25/09 para a saída do site.
+
+    Returns:
+        True se a figura foi encontrada e copiada.
+    """
+    origem = PASTA_DA_ANALISE_NOTIFICACOES / "figura_2026.png"
+    if not origem.is_file():
+        return False
+
+    PASTA_DE_IMAGENS_DESTINO.mkdir(parents=True, exist_ok=True)
+    destino = PASTA_DE_IMAGENS_DESTINO / FIGURA_NOTIFICACOES_COMO_ALVO
+    shutil.copyfile(origem, destino)
+    return True
 
 
 def copiar_figuras() -> list[str]:
@@ -163,6 +193,9 @@ def gerar_site(gerado_em: str) -> None:
     figuras_ausentes = copiar_figuras()
     if figuras_ausentes:
         print(f"  aviso: figuras não encontradas: {figuras_ausentes}")
+
+    if not copiar_figura_notificacoes_como_alvo():
+        print(f"  aviso: figura não encontrada: {FIGURA_NOTIFICACOES_COMO_ALVO}")
 
     figuras_de_slide_faltando = _figuras_de_slide_ausentes()
     if figuras_de_slide_faltando:
