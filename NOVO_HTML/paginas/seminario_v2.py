@@ -1136,41 +1136,216 @@ def _slide_o_vetor() -> deck.Slide:
     )
 
 
-def _slide_a_defasagem() -> deck.Slide:
-    """O atraso entre a curva do mosquito e a dos casos.
+# As duas faixas de nível do slide que mostra onde o modelo ainda falha. Azul
+# para a calmaria, vermelho para o Alerta — a mesma leitura de cor do plano
+# municipal, em que o Alerta é o estágio que exige resposta.
+COR_DA_CALMARIA = "#1B6EF3"
+COR_DO_ALERTA = "#C0392B"
 
-    Slide novo, de 26/09/2026. Existe porque a figura do slide anterior
-    mostrava a defasagem a olho nu e a apresentação nunca a nomeava — e o
-    estudo da mesma cidade a mediu, enquanto nós não.
+# As duas metades do slide da literatura. A primeira é a comparação JUSTA, a
+# segunda é a que perdemos — e cada uma tem a sua cor, como nos demais slides.
+COR_DA_MESMA_CIDADE = "#1F7A4D"
+COR_DE_SINGAPURA = "#8A94A6"
+
+
+def _slide_onde_ainda_falha() -> deck.Slide:
+    """O contrapeso do slide do vetor: o ganho é real e mesmo assim não basta.
+
+    ⚠️ **Refeito em 27/09/2026.** Antes este slide se chamava "A defasagem" e
+    repetia o slide 4: o título dele, *"a subida do mosquito vem antes da
+    subida dos casos"*, é literalmente a nota do slide 4, e a figura mostra as
+    mesmas duas séries.
+
+    A figura fica, mas com outro trabalho. O Vinicius desenhou o arco da
+    apresentação assim: o slide do vetor **sobe** a moral com o ganho da folha
+    20, este **desce** mostrando onde o modelo ainda falha, e o da literatura
+    **sobe** de novo pondo o resultado em contexto. Quem mostra o próprio
+    limite antes de ser perguntado ganha crédito para o resto.
+
+    Os números da defasagem (da Silva et al. 2026) saíram daqui e foram para a
+    tabela da literatura, no slide seguinte, onde viram uma linha entre as
+    outras em vez de um aviso solto.
     """
+    calmaria, alerta = numeros.CALIBRACAO_DO_ADOTADO
+
+    cabecalhos = [
+        "",
+        _celula_colorida(calmaria.rotulo, COR_DA_CALMARIA),
+        _celula_colorida(alerta.rotulo, COR_DO_ALERTA),
+    ]
+
+    def linha_da_cobertura(rotulo: str, atributo: str) -> list[str]:
+        """Monta uma linha de cobertura, com a faixa de Alerta em destaque."""
+        return [
+            f"<b>{layout.escapar(rotulo)}</b>",
+            _celula_colorida(
+                numeros.formatar_percentual(getattr(calmaria, atributo), 1),
+                COR_DA_CALMARIA,
+            ),
+            _celula_colorida_com_destaque(
+                numeros.formatar_percentual(getattr(alerta, atributo), 1),
+                COR_DO_ALERTA,
+                True,
+            ),
+        ]
+
+    linhas = [
+        [
+            "<b>Previsões na faixa</b>",
+            _celula_colorida(str(calmaria.previsoes), COR_DA_CALMARIA),
+            _celula_colorida(str(alerta.previsoes), COR_DO_ALERTA),
+        ],
+        linha_da_cobertura("O intervalo de 90% acerta", "cobertura_de_90"),
+        linha_da_cobertura("O intervalo de 50% acerta", "cobertura_de_50"),
+        [
+            "<b>Erro mediano</b>",
+            _celula_colorida(
+                f"{numeros.formatar_decimal(calmaria.erro_mediano, 1)} caso",
+                COR_DA_CALMARIA,
+            ),
+            _celula_colorida_com_destaque(
+                f"{numeros.formatar_decimal(alerta.erro_mediano, 0)} casos "
+                f"sobre {numeros.formatar_decimal(alerta.nivel_mediano, 0)} reais",
+                COR_DO_ALERTA,
+                True,
+            ),
+        ],
+    ]
+
+    cobertura_da_folha_20 = numeros.formatar_percentual(
+        numeros.COBERTURA_DE_90_DA_FOLHA_20_NO_ALERTA, 1
+    )
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="A subida do mosquito vem antes da subida dos casos",
-        rotulo_curto="A defasagem",
+        titulo="Onde mais importa, o modelo ainda erra mais da metade",
+        rotulo_curto="O que falta",
         corpo=(
+            layout.montar_tabela(cabecalhos, linhas)
+            + '<p class="deckNotaDeGrafico">⚠️ <b>Não é defeito da configuração '
+            "adotada:</b> na folha 20, a melhor que temos, o intervalo de 90% "
+            f"cobre <b>{cobertura_da_folha_20}</b> nas semanas de Alerta. E a causa "
+            "medida é <b>viés, não variância</b> — alargar a faixa não conserta, e "
+            "mudar a escala (raiz, log) <b>piorou</b> em todas as faixas.</p>"
+            # ⚠️ A figura entra com teto de altura porque a tabela já ocupa a
+            # maior parte do slide: no tamanho natural, de 436px, o conjunto
+            # passava 243px dos 720. Aqui ela é PROP para apontar os picos de
+            # 2024 e 2025 enquanto se diz o erro, e não a figura principal —
+            # essa é a do slide 4, maior e mais legível.
             '<div class="deckFiguraCheia">'
-            '<img src="imagens/vetor_vs_casos.png" '
+            '<img src="imagens/vetor_vs_casos.png" style="max-height:170px" '
             'alt="Aedes aegypti capturados e casos confirmados de dengue, '
             'semana a semana">'
-            + layout.montar_aviso(
-                "atencao",
-                "Leitura de gráfico, não medição nossa",
-                "A ordem entre as duas curvas se repete nas temporadas, mas "
-                "<b>nós não estimamos a defasagem</b>. Quem estimou foi o estudo "
-                "da mesma cidade e da mesma armadilha (da Silva et al. 2026): a "
-                "correlação com os casos sobe de <b>0,27</b> sem atraso para "
-                "<b>0,50</b> com <b>4 semanas</b> de atraso.",
-            )
-            + "</div>"
+            "</div>"
         ),
         nota=(
-            "Estender a memória do vetor para 6 a 12 semanas <b>não</b> ajudou "
-            "(bateria de 24/09) — o gargalo não é quanto passado do vetor o "
-            "modelo enxerga. Estimar a defasagem é próximo passo declarado."
+            "🔴 <b>Este é o slide que desce a moral, e é de propósito.</b> Apontar "
+            "os picos de <b>2024</b> e <b>2025</b> na figura e dizer: é aqui que a "
+            "decisão acontece, e é aqui que o modelo erra <b>539 casos sobre 917</b>. "
+            "⚠️ A unidade da tabela é <b>previsão</b>, não semana: cada linha é um "
+            "par (semana, horizonte), nos horizontes 1, 4, 8 e 12, no walk-forward "
+            "desde 2020. A calmaria tem 814 porque 2020-2023 quase não teve caso. "
+            "Se perguntarem por que não alargamos o intervalo: porque medimos, e o "
+            "problema é viés. O próximo slide põe isso em contexto."
         ),
-        e_figura=True,
+        e_denso=True,
     )
 
+
+
+def _slide_literatura() -> deck.Slide:
+    """O resultado em contexto: contra quem mediu a mesma cidade, e contra Singapura.
+
+    Slide novo de 27/09/2026, ideia do Vinicius. Fecha o arco que ele desenhou:
+    o slide do vetor sobe a moral, o anterior a desce, e este a levanta de
+    novo — pondo o número num contexto em vez de num vácuo.
+
+    ⚠️ **As duas metades existem por honestidade, não por simetria.** A
+    comparação direta só é legítima com o estudo da MESMA cidade e da mesma
+    unidade; a da direita nós perdemos, e o slide diz isso. Uma apresentação
+    que só mostrasse a metade favorável seria desmontada na primeira pergunta.
+
+    🚫 **Oliveira et al. 2025 ficou de fora, deliberadamente.** Ele prevê
+    aceleração binária em 10 a 15 dias, com acurácia balanceada de 0,67; nós
+    prevemos casos a 12 semanas. Não existe número nosso nas mesmas condições,
+    e dizer "somos melhores" seria indefensável.
+    """
+    da_mesma_cidade = [
+        linha for linha in numeros.R2_PUBLICADO if linha.onde == "Porto Alegre"
+    ]
+
+    cabecalhos_da_cidade = ["Modelo", _celula_colorida("R² em 1 mês", COR_DA_MESMA_CIDADE)]
+    linhas_da_cidade = []
+    for linha in da_mesma_cidade:
+        linhas_da_cidade.append(
+            [
+                f"<b>{layout.escapar(linha.modelo)}</b>"
+                if linha.este_projeto
+                else layout.escapar(linha.modelo),
+                _celula_colorida_com_destaque(
+                    linha.um_mes, COR_DA_MESMA_CIDADE, linha.este_projeto
+                ),
+            ]
+        )
+
+    cabecalhos_de_singapura = [
+        "Modelo",
+        _celula_colorida("1 semana", COR_DE_SINGAPURA),
+        _celula_colorida("3 meses", COR_DE_SINGAPURA),
+    ]
+    linhas_de_singapura = []
+    for linha in numeros.MAPE_PUBLICADO:
+        linhas_de_singapura.append(
+            [
+                f"<b>{layout.escapar(linha.modelo)}</b>"
+                if linha.este_projeto
+                else layout.escapar(linha.modelo),
+                _celula_colorida(linha.uma_semana, COR_DE_SINGAPURA),
+                _celula_colorida(linha.tres_meses, COR_DE_SINGAPURA),
+            ]
+        )
+
+    de_singapura = numeros.SINGAPURA
+    as_duas_tabelas = (
+        '<div class="deckTabelasLadoALado">'
+        f'<div><p class="deckTabelaRotulo" style="color:{COR_DA_MESMA_CIDADE}">'
+        "Porto Alegre — a comparação justa</p>"
+        f"{layout.montar_tabela(cabecalhos_da_cidade, linhas_da_cidade)}</div>"
+        f'<div><p class="deckTabelaRotulo" style="color:{COR_DE_SINGAPURA}">'
+        f"Singapura — {de_singapura.anos_de_treino} anos de série · erro "
+        "percentual</p>"
+        f"{layout.montar_tabela(cabecalhos_de_singapura, linhas_de_singapura)}</div>"
+        "</div>"
+    )
+
+    return deck.Slide(
+        topico=TOPICO_RESULTADOS,
+        titulo="Ganhamos de quem mediu a mesma cidade, e perdemos para 10 anos de série",
+        rotulo_curto="A literatura",
+        corpo=(
+            as_duas_tabelas
+            + '<p class="deckNotaDeGrafico">🔴 <b>E não é porque lá tem mais '
+            "dengue.</b> O pico semanal de Singapura em 2013 foi de "
+            f"<b>{numeros.formatar_decimal(de_singapura.pico_semanal, 0)}</b> casos; "
+            "o de Porto Alegre em 2025, "
+            f"<b>{numeros.formatar_decimal(de_singapura.pico_semanal_de_porto_alegre, 0)}</b>. "
+            "Eles têm <b>mais anos</b>, e anos calmos, que ensinam ao modelo o que é "
+            f"o normal da cidade. Nós temos <b>{de_singapura.temporadas_epidemicas_de_porto_alegre} "
+            "temporadas</b>.</p>"
+        ),
+        nota=(
+            "🟢 <b>Este slide levanta a moral de novo, e é o último dos resultados.</b> "
+            "À esquerda, o <b>único</b> estudo marcado como comparável no nosso "
+            "catálogo de 14: mesma cidade, mesma unidade, validação em avanço. "
+            "⚠️ À direita <b>não é páreo direto</b>: nosso erro percentual conta só "
+            "semanas com 100 casos ou mais e o modelo prevê o quantil 0,85 — as duas "
+            "coisas inflam o nosso número. Dizer isso antes que perguntem. "
+            "⚠️ <b>Nunca dizer que batemos o Oliveira 2025</b>: ele prevê aceleração "
+            "binária em 10 a 15 dias, e não existe número nosso nas mesmas condições. "
+            "⚠️ Ressalva do nosso R²: a janela tem as duas maiores epidemias da série, "
+            "e variância alta infla R²."
+        ),
+        e_denso=True,
+    )
 
 
 def _slide_proximos_passos() -> deck.Slide:
@@ -1227,7 +1402,8 @@ def montar_slides() -> list[deck.Slide]:
         _slide_estagios_do_plano(),
         _slide_alarme_do_composto(),
         _slide_o_vetor(),
-        _slide_a_defasagem(),
+        _slide_onde_ainda_falha(),
+        _slide_literatura(),
         _slide_proximos_passos(),
     ]
 

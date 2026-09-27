@@ -1047,3 +1047,93 @@ APOIO_NO_VETOR_NOS_12 = (
 # Posição de cada configuração dentro das tuplas de 12 horizontes acima.
 POSICAO_DA_FOLHA_5 = 1
 POSICAO_DA_FOLHA_20 = 2
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ONDE O MODELO AINDA FALHA — a calibração por faixa de nível
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+@dataclasses.dataclass(frozen=True)
+class CalibracaoNumaFaixa:
+    """O quanto o modelo acerta numa faixa de nível de casos.
+
+    ⚠️ A unidade é **previsão**, e não semana: cada linha da medição é um par
+    (semana-alvo, horizonte), com os horizontes 1, 4, 8 e 12. A conta cobre o
+    walk-forward inteiro, de 2020 em diante — e não só as 102 semanas da janela
+    de avaliação. É por isso que a calmaria tem 814 previsões: 2020 a 2023
+    quase não teve caso em Porto Alegre.
+
+    Fonte: `analises/2026-09-26_calibracao_por_faixa/saidas/
+    cobertura_por_faixa.csv` para as coberturas; o erro mediano foi remedido em
+    27/09/2026 de `analises/2026-09-26_wis_na_tabela_restaurada/saidas/
+    previsoes_quantis.csv`, no quantil 0,5 do cenário adotado.
+
+    Attributes:
+        rotulo: Como a faixa é dita em texto.
+        previsoes: Quantos pares (semana, horizonte) caem nesta faixa.
+        cobertura_de_90: Fração das vezes em que o intervalo de 90% conteve o
+            valor real. Deveria dar perto de 0,90.
+        cobertura_de_50: Idem para o intervalo de 50%. Deveria dar perto de 0,50.
+        erro_mediano: Erro absoluto mediano da previsão central, em casos.
+        nivel_mediano: Número real mediano de casos na faixa, para dar escala
+            ao erro.
+    """
+
+    rotulo: str
+    previsoes: int
+    cobertura_de_90: float
+    cobertura_de_50: float
+    erro_mediano: float
+    nivel_mediano: float
+
+
+CALIBRACAO_DO_ADOTADO = (
+    CalibracaoNumaFaixa(
+        rotulo="Calmaria — até 20 casos",
+        previsoes=814,
+        cobertura_de_90=0.905,
+        cobertura_de_50=0.592,
+        erro_mediano=1.3,
+        nivel_mediano=1.0,
+    ),
+    CalibracaoNumaFaixa(
+        rotulo="Alerta — mais de 421 casos",
+        previsoes=163,
+        cobertura_de_90=0.178,
+        cobertura_de_50=0.080,
+        erro_mediano=539.0,
+        nivel_mediano=917.0,
+    ),
+)
+
+# Mesmo a melhor configuração que temos cobre pouco onde importa. Entra como
+# ressalva do slide: o problema não é a configuração adotada, é o modelo.
+COBERTURA_DE_90_DA_FOLHA_20_NO_ALERTA = 0.270
+
+
+@dataclasses.dataclass(frozen=True)
+class SerieDeSingapura:
+    """Por que Singapura prevê melhor, e o que isso NÃO quer dizer.
+
+    O argumento intuitivo — "lá tem mais dengue, então dá mais dado" — está
+    errado, e o número mostra por quê: o pico semanal de Singapura em 2013 foi
+    **menor** que o de Porto Alegre em 2025. A diferença não é volume de
+    doença, é **volume de história**: dez anos de treino, com anos calmos, que
+    ensinam ao modelo o que é o normal da cidade.
+
+    É o mesmo argumento que derrubou a premissa de Porto Rico em 26/09/2026
+    (eles usam 38,5 anos de série).
+
+    Fonte: Shi et al. 2016, EHP 124(9):1369-75, ficha em
+    `analises/2026-09-25_catalogo_modelos_prontos/2_sistemas_operacionais_mundo.md`
+    e `documentacao_completa/partes/06_literatura.md`.
+    """
+
+    anos_de_treino: int = 10
+    pico_semanal: int = 842
+    temporadas_epidemicas_de_porto_alegre: int = 4
+    pico_semanal_de_porto_alegre: int = 2381
+
+
+SINGAPURA = SerieDeSingapura()

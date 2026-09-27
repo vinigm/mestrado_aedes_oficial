@@ -137,7 +137,8 @@
   🔴 **Cobertura: boa na calmaria, péssima onde importa** (26/09). Acima de 421 casos o intervalo de 90% cobre
   **18%**; na calmaria, 91%. 🚫 **Transformação de escala não resolve** — raiz e log pioraram a cobertura em
   todas as faixas. A causa medida é **viés, não variância**: o erro mediano acima de 421 é **539 casos sobre
-  917 reais**, e a faixa já cresce 70× enquanto o erro cresce 415×. Alargar não conserta viés.
+  917 reais**, e a faixa já cresce 69× enquanto o erro cresce **425×**. Alargar não conserta viés.
+  ⚠️ O "415×" que estava aqui era erro meu, corrigido em 27/09 remedindo do CSV de quantis.
   `analises/2026-09-26_calibracao_por_faixa/` · `analises/2026-09-26_transformacao_de_escala/`
   ⚠️ Dívida: h=1 do adotado diverge **−2,75%** da rodada anterior, acima do teto de 1%; causa provável é a seleção de
   clima nos 60% mais antigos, não confirmada. `analises/2026-09-26_wis_na_tabela_restaurada/`
