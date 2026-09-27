@@ -384,6 +384,13 @@ code.nomeColuna{white-space:nowrap}
   aspect-ratio:16/9; min-height:440px;
   display:flex; flex-direction:column}
 
+/* No estilo de projecao a faixa de graficos ganha ar em cima, separando-a da
+   tabela, e perde a margem de baixo quando e o ultimo elemento do slide —
+   ali ela so empurrava o conteudo para longe da borda inferior. O espaco que
+   sobra vai para a altura dos proprios graficos. */
+.deckPalco.semMoldura .graficosLadoALado{margin-top:18px}
+.deckPalco.semMoldura .graficosLadoALado:last-child{margin-bottom:0}
+
 /* Palco sem moldura: sai a borda, o arredondamento e a sombra, e o slide
    passa a ocupar a tela sem o contorno de cartao. Num deck que vai a projecao
    a moldura nao serve para nada — ela so existe para separar o deck do resto

@@ -72,6 +72,24 @@ TOPICOS_DA_AGENDA = (
 )
 
 
+def _slide_obrigado() -> deck.Slide:
+    """O fecho, pedido pelo Vinicius em 27/09/2026.
+
+    Sem tópico, como a capa: é o campo vazio que dá a esta página o estilo sem
+    rótulo e sem número, e é também o que a mantém fora da trilha — o fecho não
+    é etapa da apresentação.
+    """
+    return deck.Slide(
+        topico="",
+        titulo="Obrigado",
+        corpo=(
+            "<p><b>Vinicius Guerra</b> · viniciusguerramello@gmail.com<br>"
+            "PPGC — UFRGS · Orientação: Prof. Weverton Cordeiro</p>"
+        ),
+        nota="Parar aqui e abrir para perguntas.",
+    )
+
+
 def _slide_capa() -> deck.Slide:
     """Abertura. Sem tópico, então fica fora do índice."""
     return deck.Slide(
@@ -415,16 +433,17 @@ COR_DA_REGUA_SAZONAL = "#8A94A6"
 # eixos, fixa em 11 unidades, chegar a tela com 5,7px — os graficos ficam lado
 # a lado e recebem 376px cada. Com 400 ela chega com 10,3px.
 #
-# A altura de 245 nao e proporcional: ela e escolhida para o desenho ocupar
-# a folga que sobrava no slide. Como a largura na tela e fixa em 376px, a
-# altura renderizada e 376 x 245 / 400 = 230px, contra os 130px do padrao.
-TAMANHO_DO_DESENHO_DO_COMPOSTO = (400, 245)
+# A altura NAO e proporcional: ela e medida para o desenho ocupar a folga que
+# sobra no slide, deixando ~12px de seguranca. Como a largura na tela e fixa
+# em 376px pela grade de tres colunas, a altura renderizada e
+# 376 x altura / 400 — aqui, 288px contra os 130px do padrao de 720x250.
+TAMANHO_DO_DESENHO_DO_COMPOSTO = (400, 306)
 
 # O viewBox dos graficos dos slides que tem DUAS tabelas acima deles — o do
 # alarme e o dos dois anos. Eles sobram menos altura que o slide do composto,
-# que tem uma tabela so, entao a altura e menor: 212 contra 245. A largura e a
+# que tem uma tabela so, entao a altura e menor: 233 contra 306. A largura e a
 # mesma, e e ela que manda na fonte, que chega a tela com 10,3px nos tres.
-TAMANHO_DO_DESENHO_COM_DUAS_TABELAS = (400, 212)
+TAMANHO_DO_DESENHO_COM_DUAS_TABELAS = (400, 233)
 NOME_DA_LINHA_DA_REGUA = "Régua sazonal"
 
 
@@ -1069,7 +1088,7 @@ NOME_DA_LINHA_DA_FOLHA_5 = "Folha mínima 5"
 # A altura cai para 200, e não sobe: com a grade de colunas corrigida cada
 # gráfico passou a ocupar 574px em vez de 376, e manter a proporção antiga
 # deixaria o slide 17px acima dos 720.
-TAMANHO_DO_DESENHO_DO_VETOR = (540, 200)
+TAMANHO_DO_DESENHO_DO_VETOR = (540, 208)
 
 
 def _formatar_com_sinal(valor_percentual: float) -> str:
@@ -1756,6 +1775,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_literatura(),
         _slide_limitacao_de_2026(),
         _slide_proximos_passos(),
+        _slide_obrigado(),
     ]
 
 

@@ -52,6 +52,13 @@ FOLHA_DE_ESTILO_DO_DECK = """
   aspect-ratio:16/9; min-height:440px;
   display:flex; flex-direction:column}
 
+/* No estilo de projecao a faixa de graficos ganha ar em cima, separando-a da
+   tabela, e perde a margem de baixo quando e o ultimo elemento do slide —
+   ali ela so empurrava o conteudo para longe da borda inferior. O espaco que
+   sobra vai para a altura dos proprios graficos. */
+.deckPalco.semMoldura .graficosLadoALado{margin-top:18px}
+.deckPalco.semMoldura .graficosLadoALado:last-child{margin-bottom:0}
+
 /* Palco sem moldura: sai a borda, o arredondamento e a sombra, e o slide
    passa a ocupar a tela sem o contorno de cartao. Num deck que vai a projecao
    a moldura nao serve para nada — ela so existe para separar o deck do resto
@@ -511,22 +518,28 @@ def _indice_por_secao(slides: list[Slide]) -> str:
     o que conta quanto da apresentação cada parte ocupa é a quantidade de
     marcas dentro do grupo, não o tamanho dele.
 
-    Slides sem tópico — a capa — ficam de fora, como na trilha antiga.
+    Slides sem tópico — a capa e o fecho — ficam de fora: o campo vazio é o que
+    os marca como página sem rótulo e sem número, e nenhum dos dois é etapa da
+    apresentação.
 
     Args:
         slides: Os slides, na ordem da apresentação.
 
     Returns:
-        O HTML da trilha, ou string vazia se nenhum slide tiver tópico.
+        O HTML da trilha, ou string vazia se não houver slide nenhum.
     """
     grupos: list[tuple[str, list[int]]] = []
     for posicao, slide in enumerate(slides):
+        # A capa e o fecho ficam de fora: o campo `topico` vazio é o que marca
+        # os dois como página sem rótulo, e nenhum dos dois é etapa da
+        # apresentação — um é a porta, o outro é a saída.
         if not slide.topico:
             continue
-        if grupos and grupos[-1][0] == slide.topico:
+        nome_da_secao = slide.topico
+        if grupos and grupos[-1][0] == nome_da_secao:
             grupos[-1][1].append(posicao)
         else:
-            grupos.append((slide.topico, [posicao]))
+            grupos.append((nome_da_secao, [posicao]))
 
     if not grupos:
         return ""
