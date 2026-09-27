@@ -825,3 +825,45 @@ LIMIAR_DO_ALARME = 421
 NOME_DO_ESTAGIO_DO_ALARME = "Alerta"
 SEMANAS_AVALIADAS_NO_ALARME = 102
 SEMANAS_DE_SURTO_NO_ALARME = 28
+# ---------------------------------------------------------------------------
+# OS ESTAGIOS DO PLANO MUNICIPAL DE CONTINGENCIA DE ARBOVIROSES 2026
+#
+# Fonte: Secretaria Municipal de Saude de Porto Alegre, dezembro de 2025.
+# Quadro 1, pagina 15. Imagem do quadro extraida por
+# `analises/2026-09-25_limiar_oficial_de_surto/extrair_quadro_1.py`.
+#
+# 🔴 OS NUMEROS EM CASOS POR SEMANA NAO ESTAO NO PDF. O plano declara taxas de
+# incidencia (10,0 · 30,0 · 50,0) e a conversao para casos e nossa, usando a
+# populacao abaixo. Alem disso, o plano NAO declara a unidade da taxa: "por 100
+# mil habitantes" e a convencao nacional, e e inferencia. Se a unidade for
+# outra, todos os limiares do projeto mudam.
+#
+# ⚠️ SIMPLIFICACAO DECLARADA: no Quadro 1 o corte numerico nunca aparece
+# sozinho — vem ligado por E a limiares estaduais sobre casos provaveis (LA e
+# LSE), mais obito confirmado e sorotipo novo. Usamos so a metade fixa.
+# ---------------------------------------------------------------------------
+
+POPULACAO_DE_PORTO_ALEGRE = 1404269
+
+
+@dataclasses.dataclass(frozen=True)
+class EstagioDoPlano:
+    """Um estagio de resposta do plano municipal.
+
+    Attributes:
+        estagio: O nome do estagio, como o plano escreve.
+        incidencia: O corte de incidencia declarado no plano.
+        casos_por_semana: O mesmo corte convertido para a populacao de POA.
+    """
+
+    estagio: str
+    incidencia: str
+    casos_por_semana: int
+
+
+ESTAGIOS_DO_PLANO: tuple[EstagioDoPlano, ...] = (
+    EstagioDoPlano("Normalidade", "abaixo de 10,0", 140),
+    EstagioDoPlano("Mobilização", "acima de 10,0", 140),
+    EstagioDoPlano("Alerta", "acima de 30,0", 421),
+    EstagioDoPlano("Epidemia", "acima de 50,0", 702),
+)

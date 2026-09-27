@@ -399,6 +399,14 @@ code.nomeColuna{white-space:nowrap}
    seguinte sem gastar a altura de um aviso inteiro. */
 .deckNotaDeGrafico{margin:6px 0 2px; font-size:.78rem; color:var(--muted)}
 
+/* Duas colunas: documento a esquerda, leitura do documento a direita. Serve
+   para por uma imagem de prova ao lado da tabela que a traduz. */
+.deckDuasColunas{display:grid; grid-template-columns:1.35fr 1fr; gap:22px;
+  align-items:start; min-height:0}
+.deckDuasColunas img{width:100%; height:auto; display:block;
+  border:1px solid var(--borda); border-radius:6px}
+.deckFonte{margin:6px 0 0; font-size:.68rem; color:var(--faint)}
+
 /* Índice horizontal: uma trilha contínua com um marcador por tópico. A linha
    cinza atravessa tudo; a linha azul por cima cresce conforme a apresentação
    avança, e é o JS que mede a largura dela. Tópico já visto fica com o

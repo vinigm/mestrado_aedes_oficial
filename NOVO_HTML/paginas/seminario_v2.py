@@ -520,6 +520,73 @@ def _slide_modelo_composto() -> deck.Slide:
     )
 
 
+def _slide_estagios_do_plano() -> deck.Slide:
+    """O Quadro 1 do plano municipal, e a tradução dele para casos por semana.
+
+    Slide novo de 26/09/2026. Ele existe para responder, antes que perguntem,
+    de onde vem o limiar de 421 — e a resposta é que ele **não está no plano**:
+    o plano declara uma taxa de incidência, e o 421 é a conversão dela para a
+    população de Porto Alegre.
+
+    Mostrar o quadro inteiro, e não só a linha do Alerta, é deliberado: prova
+    que o 421 é o terceiro degrau de uma escala que já existia, e não um corte
+    escolhido por nós.
+    """
+    cabecalhos = ["Estágio", "O plano declara", "Em Porto Alegre"]
+    linhas = []
+    for estagio in numeros.ESTAGIOS_DO_PLANO:
+        e_o_alerta = estagio.estagio == numeros.NOME_DO_ESTAGIO_DO_ALARME
+        linhas.append(
+            [
+                _destacar(layout.escapar(estagio.estagio), e_o_alerta),
+                _destacar(layout.escapar(estagio.incidencia), e_o_alerta),
+                _destacar(
+                    f"{numeros.formatar_inteiro(estagio.casos_por_semana)} casos/semana",
+                    e_o_alerta,
+                ),
+            ]
+        )
+
+    a_conta = (
+        '<p class="deckNotaDeGrafico">A conversão, para o estágio <b>Alerta</b>:<br>'
+        "<b>30,0</b> por 100 mil × "
+        f"<b>{numeros.formatar_inteiro(numeros.POPULACAO_DE_PORTO_ALEGRE)}</b> ÷ 100.000 = "
+        f"<b>{numeros.formatar_inteiro(numeros.LIMIAR_DO_ALARME)} casos por semana</b></p>"
+    )
+
+    return deck.Slide(
+        topico=TOPICO_RESULTADOS,
+        titulo="O limiar não é nosso: é o estágio Alerta do plano da Prefeitura",
+        rotulo_curto="Limiares oficiais",
+        corpo=(
+            '<div class="deckDuasColunas">'
+            '<div><img src="imagens/quadro_1_plano_municipal.png" '
+            'alt="Quadro 1 do Plano Municipal de Contingência de Arboviroses 2026, '
+            'com os quatro estágios de resposta e seus indicadores">'
+            '<p class="deckFonte">Plano Municipal de Contingência de Arboviroses '
+            "2026 · Secretaria Municipal de Saúde de Porto Alegre · Quadro 1, "
+            "página 15</p></div>"
+            f"<div>{layout.montar_tabela(cabecalhos, linhas)}{a_conta}"
+            + layout.montar_aviso(
+                "atencao",
+                "Duas ressalvas",
+                "O plano escreve <b>30,0</b>, sem declarar a unidade — <b>por 100 mil</b> "
+                "é a convenção nacional, e é inferência nossa. E o corte numérico vem "
+                "ligado por <b>E</b> a limiares estaduais: usamos só a metade fixa.",
+            )
+            + "</div></div>"
+        ),
+        nota=(
+            "Mostrar o quadro inteiro é de propósito: prova que o <b>421 é o terceiro "
+            "degrau de uma escala que já existia</b>, e não um corte que escolhemos. "
+            "⚠️ O número 421 <b>não aparece no PDF</b> — o plano diz 30,0, e a conversão "
+            "é nossa. Dizer isso antes que perguntem. O <b>E</b> está visível na imagem, "
+            "então admitir que usamos só a metade fixa do critério."
+        ),
+        e_denso=True,
+    )
+
+
 def _slide_alarme_do_composto() -> deck.Slide:
     """O alarme do composto no limiar oficial de Alerta, com a régua ao lado.
 
@@ -807,6 +874,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_adotado(),
         _slide_folha_5_contra_folha_20(),
         _slide_modelo_composto(),
+        _slide_estagios_do_plano(),
         _slide_alarme_do_composto(),
         _slide_alarme(),
         _slide_o_vetor(),

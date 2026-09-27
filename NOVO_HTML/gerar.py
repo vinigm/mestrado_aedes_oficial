@@ -77,6 +77,32 @@ PASTA_DA_ANALISE_NOTIFICACOES = (
 )
 FIGURA_NOTIFICACOES_COMO_ALVO = "notificacoes_como_alvo_2026.png"
 
+# Quadro 1 do Plano Municipal de Contingencia, recortado do PDF oficial por
+# `analises/2026-09-25_limiar_oficial_de_surto/extrair_quadro_1.py`. Entra no
+# slide do seminario como prova documental dos quatro estagios de resposta.
+PASTA_DA_ANALISE_DO_LIMIAR = (
+    PASTA_DESTE_ARQUIVO.parent
+    / "analises"
+    / "2026-09-25_limiar_oficial_de_surto"
+    / "saidas"
+)
+FIGURA_QUADRO_DO_PLANO = "quadro_1_plano_municipal.png"
+
+
+def copiar_quadro_do_plano() -> bool:
+    """Copia o Quadro 1 do plano municipal para a saida do site.
+
+    Returns:
+        True se a figura existia na origem e foi copiada.
+    """
+    origem = PASTA_DA_ANALISE_DO_LIMIAR / FIGURA_QUADRO_DO_PLANO
+    if not origem.exists():
+        return False
+
+    PASTA_DE_IMAGENS_DESTINO.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(origem, PASTA_DE_IMAGENS_DESTINO / FIGURA_QUADRO_DO_PLANO)
+    return True
+
 
 def copiar_figura_notificacoes_como_alvo() -> bool:
     """Copia a figura da rodada de 25/09 para a saída do site.
@@ -198,6 +224,12 @@ def gerar_site(gerado_em: str) -> None:
 
     if not copiar_figura_notificacoes_como_alvo():
         print(f"  aviso: figura não encontrada: {FIGURA_NOTIFICACOES_COMO_ALVO}")
+
+    if not copiar_quadro_do_plano():
+        print(
+            f"  aviso: figura não encontrada: {FIGURA_QUADRO_DO_PLANO} — rode "
+            "`python3 analises/2026-09-25_limiar_oficial_de_surto/extrair_quadro_1.py`"
+        )
 
     figuras_de_slide_faltando = _figuras_de_slide_ausentes()
     if figuras_de_slide_faltando:
