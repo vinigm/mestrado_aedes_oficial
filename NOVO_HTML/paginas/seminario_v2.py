@@ -258,7 +258,7 @@ def _slide_cenarios() -> deck.Slide:
     )
 
 
-def _slide_adotado() -> deck.Slide:
+def _slide_da_folha_5() -> deck.Slide:
     """Qual configuração ficou, com que hiperparâmetros, e por quê.
 
     Este slide responde "qual modelo?". O desempenho dele é outra pergunta, e
@@ -305,8 +305,8 @@ def _slide_adotado() -> deck.Slide:
     ]
     return deck.Slide(
         topico=TOPICO_CENARIOS,
-        titulo="A configuração adotada, e como ela foi escolhida",
-        rotulo_curto="Adotado",
+        titulo="A configuração de folha mínima 5, e como ela foi escolhida",
+        rotulo_curto="Folha mínima 5",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
             + layout.montar_aviso(
@@ -336,7 +336,7 @@ def _slide_folha_5_contra_folha_20() -> deck.Slide:
     """As duas configurações lado a lado, e o ganho do vetor dentro da folha 20.
 
     Slide novo de 26/09/2026. Existe porque a apresentação mostrava só a
-    configuração adotada, e a bateria de 23-24/09/2026 mediu uma segunda que
+    folha mínima 5, e a bateria de 23-24/09/2026 mediu uma segunda que
     vai melhor em horizonte longo — e que é a única das duas que extrai ganho
     das colunas do vetor.
     """
@@ -345,18 +345,22 @@ def _slide_folha_5_contra_folha_20() -> deck.Slide:
         por_braco.setdefault(linha.braco, {})[linha.rotulo] = linha
 
     rotulos = list(ROTULOS_DOS_HORIZONTES)
-    cabecalhos_do_erro = ["Horizonte", "Adotado · folha 5", "Folha 20, com vetor"]
+    cabecalhos_do_erro = [
+        "Horizonte",
+        "Folha mínima 5",
+        "Folha mínima 20, com vetor",
+    ]
     linhas_do_erro = []
     for rotulo in rotulos:
-        erro_adotado = por_braco[numeros.NOME_DO_ADOTADO][rotulo].erro_medio_absoluto
+        erro_da_folha_5 = por_braco[numeros.NOME_DO_ADOTADO][rotulo].erro_medio_absoluto
         erro_folha20 = por_braco[numeros.NOME_DA_FOLHA_20][rotulo].erro_medio_absoluto
-        melhor_e_adotado = erro_adotado < erro_folha20
+        a_folha_5_e_melhor = erro_da_folha_5 < erro_folha20
         linhas_do_erro.append(
             [
                 f"<b>{layout.escapar(rotulo)}</b>",
-                _destacar(numeros.formatar_decimal(erro_adotado, 1), melhor_e_adotado),
+                _destacar(numeros.formatar_decimal(erro_da_folha_5, 1), a_folha_5_e_melhor),
                 _destacar(
-                    numeros.formatar_decimal(erro_folha20, 1), not melhor_e_adotado
+                    numeros.formatar_decimal(erro_folha20, 1), not a_folha_5_e_melhor
                 ),
             ]
         )
@@ -376,7 +380,7 @@ def _slide_folha_5_contra_folha_20() -> deck.Slide:
     return deck.Slide(
         topico=TOPICO_CENARIOS,
         titulo="Um único hiperparâmetro troca qual horizonte o modelo acerta",
-        rotulo_curto="Folha 5 × 20",
+        rotulo_curto="Folha mínima 5 × 20",
         corpo=(
             "<p class='deckLegenda'><b>Erro médio, em casos por semana</b> — menor é melhor</p>"
             + layout.montar_tabela(cabecalhos_do_erro, linhas_do_erro)
@@ -806,7 +810,7 @@ def _slide_alarme_do_composto() -> deck.Slide:
 
 
 def _slide_resultados() -> deck.Slide:
-    """O desempenho da configuração adotada na previsão de casos.
+    """O desempenho da folha mínima 5 na previsão de casos.
 
     🚫 **FORA DA APRESENTAÇÃO desde 26/09/2026, por decisão do Vinicius.**
 
@@ -817,9 +821,9 @@ def _slide_resultados() -> deck.Slide:
 
     A função continua aqui, fora da lista de `montar_slides()`, para o caso de
     ele querer o slide de volta. O que se perde ao tirá-lo: o R² e a captura do
-    pico da configuração adotada sozinha. O erro médio dela continua visível no
+    pico da folha mínima 5 sozinha. O erro médio dela continua visível no
     slide da folha 5 × 20, e nos horizontes de 1 a 3 semanas o composto **é** a
-    configuração adotada.
+    folha mínima 5.
     """
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
@@ -846,7 +850,7 @@ def _slide_resultados() -> deck.Slide:
 
 
 def _slide_alarme() -> deck.Slide:
-    """O modelo adotado lido como alarme de surto, no limiar de 100 casos.
+    """A folha mínima 5 lida como alarme de surto, no limiar de 100 casos.
 
     🚫 **FORA DA APRESENTAÇÃO desde 26/09/2026, por decisão do Vinicius.**
 
@@ -858,7 +862,7 @@ def _slide_alarme() -> deck.Slide:
 
     A função continua aqui, fora da lista de `montar_slides()`, caso ele
     queira de volta. O que se perde ao tirá-la: as métricas de alarme da
-    configuração adotada no limiar de 100 — que são as que estão publicadas no
+    folha mínima 5 no limiar de 100 — que são as que estão publicadas no
     site, e por isso ainda valem como referência histórica.
     """
     return deck.Slide(
@@ -887,7 +891,7 @@ COR_DO_APOIO = "#1B6EF3"
 # A folha 5 é a COMPARAÇÃO deste slide, e por isso usa o mesmo tratamento que a
 # régua sazonal usa nos slides de resultado: cinza e pontilhada.
 COR_DA_FOLHA_5 = COR_DA_REGUA_SAZONAL
-NOME_DA_LINHA_DA_FOLHA_5 = "Folha 5"
+NOME_DA_LINHA_DA_FOLHA_5 = "Folha mínima 5"
 
 # O viewBox dos dois gráficos deste slide, mais estreito e mais alto que o
 # padrão de 720 × 250. Não muda a largura na tela, que vem do CSS: muda o
@@ -982,7 +986,7 @@ def _grafico_do_vetor(
     return graficos.montar_grafico_de_linhas(
         {
             NOME_DA_LINHA_DA_FOLHA_5: pontos_da_folha_5,
-            "Folha 20": pontos_da_folha_20,
+            "Folha mínima 20": pontos_da_folha_20,
         },
         "horizonte (semanas)",
         rotulo_do_eixo,
@@ -1088,10 +1092,10 @@ def _slide_o_vetor() -> deck.Slide:
     as_duas_tabelas = (
         '<div class="deckTabelasLadoALado">'
         '<div><p class="deckTabelaRotulo" style="color:var(--tinta)">'
-        "Folha 5 — a configuração adotada</p>"
+        "Folha mínima 5</p>"
         f"{montar_tabela_de_uma_configuracao(e_a_folha_20=False)}</div>"
         '<div><p class="deckTabelaRotulo" style="color:var(--acento)">'
-        "Folha 20</p>"
+        "Folha mínima 20</p>"
         f"{montar_tabela_de_uma_configuracao(e_a_folha_20=True)}</div>"
         "</div>"
     )
@@ -1128,7 +1132,7 @@ def _slide_o_vetor() -> deck.Slide:
             "⚠️ <b>Exploratório e carregado por 2024</b>: em 2025, em 2 meses, o sinal "
             "chega a inverter. ⚠️ As "
             "famílias de Holm são diferentes: 12 na folha 5, 4 na folha 20. ⚠️ Por que "
-            "não adotamos a folha 20: o critério do projeto olha a calibração de "
+            "não usamos a folha 20: o critério do projeto olha a calibração de "
             "2020-2023, e ali ela é <b>~30% pior</b>. É pendência declarada. A linha "
             "cinza pontilhada é sempre a folha 5."
         ),
@@ -1438,7 +1442,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_clima(),
         _slide_colunas_de_clima(),
         _slide_cenarios(),
-        _slide_adotado(),
+        _slide_da_folha_5(),
         _slide_folha_5_contra_folha_20(),
         _slide_modelo_composto(),
         _slide_do_modelo_ao_alarme(),

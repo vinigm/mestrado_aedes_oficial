@@ -82,7 +82,7 @@ class AtributosDoModelo:
     nascem em tempo de execução, em `dominio/features.py`, e por isso não
     aparecem numa listagem das colunas do arquivo.
 
-    Medido rodando o próprio pipeline do cenário adotado em 23/09/2026:
+    Medido rodando o próprio pipeline da folha mínima 5 em 23/09/2026:
     `fontes.carregar_tabela_final` seguido de
     `features.construir_features_temporais` e
     `selecao_features.separar_grupos_de_features`.
@@ -91,7 +91,7 @@ class AtributosDoModelo:
         derivados: Atributos criados em tempo de execução.
         lags_por_coluna: Quantas defasagens cada coluna elegível recebe.
         colunas_com_lag: Quantas colunas recebem defasagem.
-        atributos_no_modelo: Quantos chegam ao modelo do cenário adotado.
+        atributos_no_modelo: Quantos chegam ao modelo de folha mínima 5.
         nucleo: Atributos do grupo núcleo — histórico do alvo e sazonalidade.
         vetor: Atributos do grupo vetor.
         clima_candidatos: Atributos de clima disponíveis para escolha.
@@ -136,7 +136,7 @@ class ColunaDeClimaCandidata:
 
 
 # Ranking medido em 23/09/2026 rodando `selecao_features.selecionar_clima_por_ganho`
-# com a configuração do cenário adotado. Só o topo aparece no site; são 42
+# com a configuração de folha mínima 5. Só o topo aparece no site; são 42
 # candidatas ao todo. O ganho é somado nos horizontes de 1, 4 e 8 semanas.
 RANKING_DE_CLIMA: tuple[ColunaDeClimaCandidata, ...] = (
     ColunaDeClimaCandidata("temp_media_lag4", 14.69, True),
@@ -157,7 +157,7 @@ HORIZONTES_DA_SELECAO_DE_CLIMA = "1, 4 e 8 semanas"
 
 @dataclasses.dataclass(frozen=True)
 class FeatureDoModelo:
-    """Uma coluna que chega ao modelo do cenário adotado.
+    """Uma coluna que chega ao modelo de folha mínima 5.
 
     Attributes:
         nome: Nome da coluna.
@@ -170,7 +170,7 @@ class FeatureDoModelo:
     descricao: str
 
 
-# As 20 colunas que o cenário adotado entrega ao modelo, na ordem em que o
+# As 20 colunas que a folha mínima 5 entrega ao modelo, na ordem em que o
 # pipeline as monta: núcleo, depois o clima escolhido, depois o vetor.
 # Medido em 23/09/2026.
 FEATURES_FINAIS: tuple[FeatureDoModelo, ...] = (
@@ -394,7 +394,7 @@ class ErroPorHorizonteEMetodo:
 
 
 REGUA_DE_METODOS_SIMPLES: tuple[ErroPorHorizonteEMetodo, ...] = (
-    ErroPorHorizonteEMetodo("Cenário adotado", 98.0, 219.7, 272.6, 278.8),
+    ErroPorHorizonteEMetodo("Folha mínima 5", 98.0, 219.7, 272.6, 278.8),
     ErroPorHorizonteEMetodo("HistGB, folha mínima 20", 133.6, 199.6, 223.2, 243.8),
     ErroPorHorizonteEMetodo("Repetir a semana atual", 83.3, 279.0, 531.0, 697.5),
     ErroPorHorizonteEMetodo("Mesma semana do ano passado", 202.1, 213.2, 216.2, 217.8),
@@ -449,7 +449,7 @@ METODOS_DA_LITERATURA_NOS_DADOS: tuple[ErroDeMetodoDaLiteratura, ...] = (
         False,
         True,
     ),
-    ErroDeMetodoDaLiteratura("Cenário adotado", "este projeto", 278.8, True, True),
+    ErroDeMetodoDaLiteratura("Folha mínima 5", "este projeto", 278.8, True, True),
     ErroDeMetodoDaLiteratura(
         "Chronos-Bolt, só casos", "modelo pré-treinado, Amazon, 2024", 289.5, False, True
     ),
@@ -487,7 +487,7 @@ class ErroPercentualPublicado:
 MAPE_PUBLICADO: tuple[ErroPercentualPublicado, ...] = (
     ErroPercentualPublicado("LASSO, Shi et al. 2016", "operacional, Singapura", "17%", "24%", False),
     ErroPercentualPublicado("SARIMA, mesmo artigo", "régua do artigo", "—", "29%", False),
-    ErroPercentualPublicado("Cenário adotado", "este projeto", "27%", "65%", True),
+    ErroPercentualPublicado("Folha mínima 5", "este projeto", "27%", "65%", True),
     ErroPercentualPublicado("HistGB, folha mínima 20", "este projeto", "49%", "58%", True),
 )
 
@@ -514,7 +514,7 @@ ERRO_RELATIVO_AO_TOTAL_PUBLICADO: tuple[ErroRelativoAoTotalPublicado, ...] = (
         "62,7%",
         False,
     ),
-    ErroRelativoAoTotalPublicado("Cenário adotado", "este projeto", "53%", "65%", True),
+    ErroRelativoAoTotalPublicado("Folha mínima 5", "este projeto", "53%", "65%", True),
     ErroRelativoAoTotalPublicado("HistGB, folha mínima 20", "este projeto", "48%", "57%", True),
 )
 
@@ -559,7 +559,7 @@ R2_PUBLICADO: tuple[R2Publicado, ...] = (
         "—",
         False,
     ),
-    R2Publicado("Cenário adotado", "Porto Alegre", "0,63", "0,44", True),
+    R2Publicado("Folha mínima 5", "Porto Alegre", "0,63", "0,44", True),
     R2Publicado("HistGB, folha mínima 20", "Porto Alegre", "0,72", "0,56", True),
 )
 
@@ -615,7 +615,7 @@ VANTAGEM_SOBRE_A_REGUA: tuple[VantagemSobreARegua, ...] = (
         "HistGB, folha mínima 20", "este projeto", "1 mês", 13.0, "3 meses", -7.0, True
     ),
     VantagemSobreARegua(
-        "Cenário adotado", "este projeto", "1 mês", 1.0, "3 meses", -21.0, True
+        "Folha mínima 5", "este projeto", "1 mês", 1.0, "3 meses", -21.0, True
     ),
 )
 
@@ -670,7 +670,11 @@ class DesempenhoDeUmBraco:
     captura_do_pico: float
 
 
-NOME_DO_ADOTADO = "Adotado (folha 5)"
+# ⚠️ "Cenário adotado" saiu de todo o material em 27/09/2026, por decisão do
+# Vinicius: o nome sugeria uma configuração em uso na Prefeitura, e isso não
+# existe. Só há três modelos, e eles se chamam pelo hiperparâmetro que os
+# separa: folha mínima 5, folha mínima 20 e o composto dos dois.
+NOME_DO_ADOTADO = "Folha mínima 5"
 NOME_DA_FOLHA_20 = "Folha 20, com vetor"
 NOME_DO_COMPOSTO = "Composto"
 NOME_DA_REGUA = "Régua sazonal"
