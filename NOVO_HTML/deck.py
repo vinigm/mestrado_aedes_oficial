@@ -130,9 +130,13 @@ FOLHA_DE_ESTILO_DO_DECK = """
    para aproveitar o espaco que sobra embaixo de uma tabela alta: em largura
    cheia o texto ocupa tres linhas e deixa metade do slide vazia. */
 /* A figura leva mais largura que o texto: ela e o que precisa ser lido de
-   longe, e o paragrafo apenas acompanha. */
-.deckTextoEFigura{display:grid; grid-template-columns:40% 1fr; gap:20px;
-  align-items:center; margin:8px 0 0}
+   longe, e o paragrafo apenas acompanha.
+
+   ⚠️ A margem do topo precisa ser MAIOR que a margem de baixo da tabela acima
+   (26px), porque as duas colapsam e vence a maior. Um valor menor que 26 nao
+   afasta nada — foi o que aconteceu com os 8px da primeira versao. */
+.deckTextoEFigura{display:grid; grid-template-columns:43% 1fr; gap:20px;
+  align-items:center; margin:44px 0 0}
 .deckTextoEFigura p{margin:0}
 .deckTextoEFigura img{display:block; width:100%; height:auto}
 
