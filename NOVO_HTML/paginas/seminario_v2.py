@@ -921,9 +921,10 @@ def _formatar_p_de_holm(p_de_holm: float) -> str:
     if p_de_holm >= 0.1:
         return f"{p_de_holm:.2f}".replace(".", ",")
 
-    # Abaixo de 0,0001 arredondar para quatro casas daria "0,0001", que é MAIOR
-    # que o valor real e faz o resultado parecer mais fraco do que é. O p do
-    # LightGBM, por exemplo, vale 0,000058.
+    # Guarda para p muito pequeno: arredondar 0,000058 para quatro casas daria
+    # "0,0001", que é MAIOR que o valor real e faz o resultado parecer mais
+    # fraco do que é. Nenhum p do slide cai aqui hoje, mas a guarda fica para
+    # que um valor futuro não saia distorcido em silêncio.
     if p_de_holm < 0.0001:
         return "&lt; 0,0001"
 
@@ -1083,20 +1084,12 @@ def _slide_o_vetor() -> deck.Slide:
         )
     )
 
-    replicacao = numeros.REPLICACAO_NO_LIGHTGBM
-
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
         titulo="Com folha 20, o mosquito reduz o erro em 2 e 3 meses",
         rotulo_curto="O vetor",
         corpo=(
             as_duas_tabelas
-            + '<p class="deckNotaDeGrafico">🟢 <b>De onde veio:</b> no LightGBM, que '
-            "já usava folha 20, o vetor derrubou o erro de 3 meses em "
-            f"<b>{numeros.formatar_decimal(replicacao.ganho_em_tres_meses, 1)}%</b> "
-            f"(p de Holm <b>{_formatar_p_de_holm(replicacao.p_holm)}</b>, família de "
-            f"{replicacao.tamanho_da_familia}) — subir a folha do HistGB "
-            "<b>replicou</b> o efeito, e é a tabela da direita.</p>"
             + f'<div class="graficosLadoALado">{os_dois_graficos}</div>'
         ),
         nota=(
@@ -1109,8 +1102,7 @@ def _slide_o_vetor() -> deck.Slide:
             "🔴 <b>Nem 'a folha decide'</b>: a folha 20 só ganha mais em 8 dos 12 "
             "horizontes, e o GradBoost de folha 5 rende +10,1% em 1 mês. "
             "⚠️ <b>Exploratório e carregado por 2024</b>: em 2025, em 2 meses, o sinal "
-            "chega a inverter. ⚠️ O LightGBM difere em mais que a folha (31 folhas e "
-            "300 árvores); o teste limpo de uma variável só é o do HistGB. ⚠️ As "
+            "chega a inverter. ⚠️ As "
             "famílias de Holm são diferentes: 12 na folha 5, 4 na folha 20. ⚠️ Por que "
             "não adotamos a folha 20: o critério do projeto olha a calibração de "
             "2020-2023, e ali ela é <b>~30% pior</b>. É pendência declarada. A linha "

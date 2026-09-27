@@ -1047,26 +1047,3 @@ APOIO_NO_VETOR_NOS_12 = (
 # Posição de cada configuração dentro das tuplas de 12 horizontes acima.
 POSICAO_DA_FOLHA_5 = 1
 POSICAO_DA_FOLHA_20 = 2
-
-
-@dataclasses.dataclass(frozen=True)
-class ReplicacaoNoLightGBM:
-    """O mesmo efeito, noutro algoritmo que já usava folha mínima 20.
-
-    É a evidência mais forte do projeto sobre o vetor, e por um motivo técnico:
-    o p dela foi corrigido na família **grande**, de 12 comparações — a mesma em
-    que o HistGB de folha 5 não passou de 1,00. Os dois números são, aí sim,
-    diretamente comparáveis.
-
-    Fonte: `analises/2026-09-23_bateria_noturna/bloco_5_algoritmos/saidas/
-    comparacoes_vetor.csv`, linha do LightGBM em h=12.
-    """
-
-    ganho_em_tres_meses: float = 15.46
-    p_holm: float = 0.000058
-    tamanho_da_familia: int = 12
-    erro_com_o_vetor: float = 247.23
-    erro_sem_o_vetor: float = 292.42
-
-
-REPLICACAO_NO_LIGHTGBM = ReplicacaoNoLightGBM()
