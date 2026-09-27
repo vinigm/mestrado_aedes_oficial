@@ -314,6 +314,7 @@ def montar_grafico_de_linhas(
     cores: list[str] | None = None,
     series_tracejadas: set[str] | None = None,
     marco_vertical: tuple[float, str] | None = None,
+    tamanho_do_desenho: tuple[int, int] = (720, 250),
 ) -> str:
     """Desenha um gráfico de linhas em SVG a partir de várias séries de pontos.
 
@@ -336,6 +337,21 @@ def montar_grafico_de_linhas(
             linha vertical pontilhada atravessando o gráfico, com o rótulo
             acima dela. Serve para marcar onde algo muda — por exemplo, o
             horizonte em que a régua passa a vencer o modelo.
+        tamanho_do_desenho: O par (largura, altura) do `viewBox`, em unidades
+            de desenho. **Não é o tamanho na tela**: a largura na tela vem do
+            CSS, e o SVG é esticado até ela.
+
+            ⚠️ O que este parâmetro controla de verdade é o tamanho RELATIVO
+            de tudo que está dentro do gráfico. As fontes e as margens são
+            fixas em unidades de desenho, então um `viewBox` mais estreito faz
+            números e rótulos aparecerem MAIORES na tela, e um mais alto deixa
+            o gráfico mais alto. Dois gráficos lado a lado num slide recebem
+            cerca de metade da largura, e no padrão de 720 a fonte de 11
+            unidades chega à tela com uns 7 pixels — pequena demais para
+            projeção.
+
+            O padrão reproduz exatamente o desenho de antes deste parâmetro
+            existir, então nenhuma chamada que não o passe muda de resultado.
 
     Returns:
         O HTML do gráfico (SVG + legenda), ou string vazia se não houver
@@ -353,7 +369,7 @@ def montar_grafico_de_linhas(
     folga_do_eixo_y = (maximo_y - minimo_y) * 0.08
     minimo_y, maximo_y = minimo_y - folga_do_eixo_y, maximo_y + folga_do_eixo_y
 
-    largura, altura = 720, 250
+    largura, altura = tamanho_do_desenho
     margem_esquerda, margem_direita, margem_topo, margem_base = 56, 16, 18, 44
     area_util_largura = largura - margem_esquerda - margem_direita
     area_util_altura = altura - margem_topo - margem_base

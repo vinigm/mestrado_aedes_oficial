@@ -889,6 +889,20 @@ COR_DO_APOIO = "#1B6EF3"
 COR_DA_FOLHA_5 = COR_DA_REGUA_SAZONAL
 NOME_DA_LINHA_DA_FOLHA_5 = "Folha 5"
 
+# O viewBox dos dois gráficos deste slide, mais estreito e mais alto que o
+# padrão de 720 × 250. Não muda a largura na tela, que vem do CSS: muda o
+# tamanho RELATIVO do que está dentro.
+#
+# Por que: os dois gráficos ficam lado a lado e recebem ~580px cada. No padrão
+# de 720 de largura, a fonte dos eixos, fixa em 11 unidades, chega à tela com
+# uns 9px — e o slide ainda é reduzido para caber na projeção, o que a leva
+# para perto de 7px. Com 540, a mesma fonte chega com ~12px.
+#
+# A altura cai para 200, e não sobe: com a grade de colunas corrigida cada
+# gráfico passou a ocupar 574px em vez de 376, e manter a proporção antiga
+# deixaria o slide 17px acima dos 720.
+TAMANHO_DO_DESENHO_DO_VETOR = (540, 200)
+
 
 def _formatar_com_sinal(valor_percentual: float) -> str:
     """Formata um percentual sempre com sinal explícito.
@@ -969,6 +983,7 @@ def _grafico_do_vetor(
         rotulo_do_eixo,
         cores=[COR_DA_FOLHA_5, cor_da_folha_20],
         series_tracejadas={NOME_DA_LINHA_DA_FOLHA_5},
+        tamanho_do_desenho=TAMANHO_DO_DESENHO_DO_VETOR,
     )
 
 

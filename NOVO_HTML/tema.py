@@ -348,15 +348,21 @@ code.nomeColuna{white-space:nowrap}
 .cardMedidaRotulo{color:var(--faint); font-size:.71rem; margin-top:1px}
 
 /* Vários gráficos lado a lado: cada um perde o teto de 620px e divide a
-   largura disponível, para que as curvas sejam comparadas de relance. */
-.graficosLadoALado{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:20px; margin:0 0 22px}
+   largura disponível, para que as curvas sejam comparadas de relance.
+
+   ⚠️ As colunas vêm de `grid-auto-flow:column`, e não de um `repeat(3,...)`
+   fixo: assim o número de colunas acompanha quantos gráficos o slide tem. Com
+   três colunas fixas, um slide de DOIS gráficos deixava a terceira vazia e
+   cada curva ficava com 376px em vez de 574 — pequena demais para projeção.
+   Com três gráficos o resultado é idêntico ao de antes: (1168 − 40) / 3 = 376. */
+.graficosLadoALado{display:grid; grid-auto-flow:column;
+  grid-auto-columns:minmax(0,1fr); gap:20px; margin:0 0 22px}
 .graficosLadoALado .grafico{max-width:none; margin:0}
 .graficosLadoALado .graficoTitulo{font-size:.83rem}
 .graficosLadoALado .graficoLegenda{font-size:.75rem}
 
 @media (max-width:1100px){
-  .graficosLadoALado{grid-template-columns:1fr; gap:14px}
+  .graficosLadoALado{grid-auto-flow:row; grid-auto-columns:auto; gap:14px}
   .graficosLadoALado .grafico{max-width:620px}
 }
 
