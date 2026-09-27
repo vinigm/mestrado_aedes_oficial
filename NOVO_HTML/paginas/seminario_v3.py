@@ -414,6 +414,12 @@ COR_DA_REGUA_SAZONAL = "#8A94A6"
 # a folga que sobrava no slide. Como a largura na tela e fixa em 376px, a
 # altura renderizada e 376 x 245 / 400 = 230px, contra os 130px do padrao.
 TAMANHO_DO_DESENHO_DO_COMPOSTO = (400, 245)
+
+# O viewBox dos graficos dos slides que tem DUAS tabelas acima deles — o do
+# alarme e o dos dois anos. Eles sobram menos altura que o slide do composto,
+# que tem uma tabela so, entao a altura e menor: 212 contra 245. A largura e a
+# mesma, e e ela que manda na fonte, que chega a tela com 10,3px nos tres.
+TAMANHO_DO_DESENHO_COM_DUAS_TABELAS = (400, 212)
 NOME_DA_LINHA_DA_REGUA = "Régua sazonal"
 
 
@@ -703,6 +709,7 @@ def _grafico_de_uma_medida_do_alarme(
         rotulo_do_eixo,
         cores=[cor, COR_DA_REGUA_SAZONAL],
         series_tracejadas={NOME_DA_LINHA_DA_REGUA},
+        tamanho_do_desenho=TAMANHO_DO_DESENHO_COM_DUAS_TABELAS,
     )
 
 
@@ -890,10 +897,6 @@ def _slide_alarme() -> deck.Slide:
 COR_DA_PARTIDA_A_FRIO = "#C0392B"
 COR_DO_ANO_COM_HISTORIA = "#1F7A4D"
 
-# O viewBox dos tres graficos deste slide. Mais estreito que o padrao de 720
-# pelo mesmo motivo do slide do vetor: tres graficos lado a lado recebem ~376px
-# cada, e no padrao a fonte dos eixos chegaria a tela com uns 6px.
-TAMANHO_DO_DESENHO_DOS_ANOS = (460, 210)
 
 # As tres medidas, na ordem em que aparecem na tabela e nos graficos.
 MEDIDAS_DOS_DOIS_ANOS = (
@@ -932,7 +935,7 @@ def _grafico_dos_dois_anos(rotulo_do_eixo: str, posicao_da_medida: int) -> str:
         "horizonte",
         rotulo_do_eixo,
         cores=[COR_DA_PARTIDA_A_FRIO, COR_DO_ANO_COM_HISTORIA],
-        tamanho_do_desenho=TAMANHO_DO_DESENHO_DOS_ANOS,
+        tamanho_do_desenho=TAMANHO_DO_DESENHO_COM_DUAS_TABELAS,
     )
 
 
