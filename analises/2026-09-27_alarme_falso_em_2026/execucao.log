@@ -5,3 +5,66 @@ ALARME FALSO EM 2026 — a temporada que nao veio
   h= 1  296 semanas, ate 2026-02-08  114.2s
   h= 4  296 semanas, ate 2026-03-01   77.6s
   h= 8  296 semanas, ate 2026-03-29   70.5s
+  h=12  296 semanas, ate 2026-04-26   89.5s
+
+  ALARMES EM 2026, por limiar do plano municipal
+  braco            h  semanas  maior previsto  Mobilizacao   Alerta  Emergencia
+  composto         1        6              64            0        0           0
+  composto         4        9             555            4        3           0
+  composto         8       13            1808            7        4           4
+  composto        12       17            1298           11       10           8
+  regua_sazonal    1        6             161            1        0           0
+  regua_sazonal    4        9             494            4        1           0
+  regua_sazonal    8       13            2381            8        5           4
+  regua_sazonal   12       17            2381           12        9           8
+
+  SEMANA A SEMANA DE 2026 — modelo composto
+    h=1:
+      2026-01-04  real     2  previsto       7  
+      2026-01-11  real     1  previsto       8  
+      2026-01-18  real     1  previsto       9  
+      2026-01-25  real     1  previsto      20  
+      2026-02-01  real     1  previsto      39  
+      2026-02-08  real     1  previsto      64  
+    h=4:
+      2026-01-04  real     2  previsto      15  
+      2026-01-11  real     1  previsto      13  
+      2026-01-18  real     1  previsto      17  
+      2026-01-25  real     1  previsto      13  
+      2026-02-01  real     1  previsto      45  
+      2026-02-08  real     1  previsto     227  
+      2026-02-15  real     1  previsto     480  <<< ALARME
+      2026-02-22  real     0  previsto     540  <<< ALARME
+      2026-03-01  real     1  previsto     555  <<< ALARME
+    h=8:
+      2026-01-04  real     2  previsto      10  
+      2026-01-11  real     1  previsto      10  
+      2026-01-18  real     1  previsto      12  
+      2026-01-25  real     1  previsto      31  
+      2026-02-01  real     1  previsto     173  
+      2026-02-08  real     1  previsto     128  
+      2026-02-15  real     1  previsto     146  
+      2026-02-22  real     0  previsto     139  
+      2026-03-01  real     1  previsto     298  
+      2026-03-08  real     0  previsto     822  <<< ALARME
+      2026-03-15  real     0  previsto     964  <<< ALARME
+      2026-03-22  real     0  previsto    1808  <<< ALARME
+      2026-03-29  real     0  previsto    1350  <<< ALARME
+    h=12:
+      2026-01-04  real     2  previsto      11  
+      2026-01-11  real     1  previsto      10  
+      2026-01-18  real     1  previsto      36  
+      2026-01-25  real     1  previsto      32  
+      2026-02-01  real     1  previsto      70  
+      2026-02-08  real     1  previsto     124  
+      2026-02-15  real     1  previsto     160  
+      2026-02-22  real     0  previsto     683  <<< ALARME
+      2026-03-01  real     1  previsto     667  <<< ALARME
+      2026-03-08  real     0  previsto     730  <<< ALARME
+      2026-03-15  real     0  previsto    1028  <<< ALARME
+      2026-03-22  real     0  previsto     780  <<< ALARME
+      2026-03-29  real     0  previsto    1298  <<< ALARME
+      2026-04-05  real     0  previsto    1285  <<< ALARME
+      2026-04-12  real     0  previsto    1197  <<< ALARME
+      2026-04-19  real     2  previsto    1206  <<< ALARME
+      2026-04-26  real     1  previsto    1203  <<< ALARME

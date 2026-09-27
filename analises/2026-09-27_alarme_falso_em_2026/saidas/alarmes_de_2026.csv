@@ -1,0 +1,9 @@
+braco,h,semanas,maior_previsto,maior_real,Mobilizacao,Alerta,Emergencia
+composto,1,6,63.66406819391178,2.0,0,0,0
+composto,4,9,554.5671972053285,2.0,4,3,0
+composto,8,13,1807.748542652705,2.0,7,4,4
+composto,12,17,1297.5988177163647,2.0,11,10,8
+regua_sazonal,1,6,161.0,2.0,1,0,0
+regua_sazonal,4,9,494.0,2.0,4,1,0
+regua_sazonal,8,13,2381.0,2.0,8,5,4
+regua_sazonal,12,17,2381.0,2.0,12,9,8

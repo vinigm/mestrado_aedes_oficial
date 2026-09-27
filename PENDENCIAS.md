@@ -99,6 +99,21 @@
 
 ## Registro cronológico
 
+### 27/09/2026 — o alarme falso de 2026, e os dois anos separados
+
+- 🔴 **Em março de 2026 o modelo previu 1.808 casos para uma semana de ZERO.** Em 3 meses disparou Alerta em
+  **10 das 17 semanas** do ano, 8 delas em Emergência — num ano de **12 casos**. A régua dispara 9. Em 1 semana,
+  nenhum. Ele aprendeu o calendário e a tendência de alta; falta-lhe entrada para **imunidade e sorotipo**.
+  ⚠️ Minha direção pré-declarada estava errada. `analises/2026-09-27_alarme_falso_em_2026/`
+- 🟢 **2024 e 2025 são regimes diferentes.** Em 3 meses o alarme vai de **1/14** para **13/14** e o R² de
+  **0,054** para **0,792**. Ao prever o pico de 2024 o modelo só conhecia 879 casos e precisava acertar 1.601.
+  Descritivo e pós-fato; confirmar em 2027. Slide novo na cópia 2 do seminário.
+- ⏳ **Slide 16 (literatura) é insustentável como está:** o R² 0,46 do da Silva **não existe** no PDF em disco, o
+  CatBoost prevê **internação** e não caso, e o R² é refém da variância da janela — o nosso modelo em 2021 daria
+  **−18,0**. Decidir se mata o slide ou o vira do avesso.
+- ⏳ `documentacao_completa/partes/06_literatura.md` L680 diz "mesma unidade (casos/incidência)" sobre o CatBoost.
+  **Está errado** — é internação por 100 mil. Corrigir antes da banca.
+
 ### 26/09/2026 — a folha 20 se apoia MUITO mais no vetor
 
 - ✅ **Permutação medida na folha 20**, pré-declarada, descritiva: o vetor pesa mais nos **12 de 12**
