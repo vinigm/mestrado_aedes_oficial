@@ -489,6 +489,9 @@ MAPE_PUBLICADO: tuple[ErroPercentualPublicado, ...] = (
     ErroPercentualPublicado("SARIMA, mesmo artigo", "régua do artigo", "—", "29%", False),
     ErroPercentualPublicado("Folha mínima 5", "este projeto", "27%", "65%", True),
     ErroPercentualPublicado("HistGB, folha mínima 20", "este projeto", "49%", "58%", True),
+    # O composto herda o valor da folha que manda em cada horizonte: a 5 em
+    # 1 semana, a 20 em 3 meses. Recalculado das previsões em 27/09/2026.
+    ErroPercentualPublicado("Modelo composto", "este projeto", "27%", "58%", True),
 )
 
 
@@ -561,6 +564,9 @@ R2_PUBLICADO: tuple[R2Publicado, ...] = (
     ),
     R2Publicado("Folha mínima 5", "Porto Alegre", "0,63", "0,44", True),
     R2Publicado("HistGB, folha mínima 20", "Porto Alegre", "0,72", "0,56", True),
+    # Em 1 mês e em 3 meses o composto usa a folha 20, então repete os
+    # números dela. Confere com `painel_do_composto.csv`: 0,717 e 0,558.
+    R2Publicado("Modelo composto", "Porto Alegre", "0,72", "0,56", True),
 )
 
 

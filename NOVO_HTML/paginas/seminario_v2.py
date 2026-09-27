@@ -1156,6 +1156,12 @@ SEMANAS_POR_MES = 52 / 12
 
 # As duas metades do slide da literatura. A primeira é a comparação JUSTA, a
 # segunda é a que perdemos — e cada uma tem a sua cor, como nos demais slides.
+# Como o composto se chama nas tabelas de literatura. Ali ele fica ao lado
+# de nomes de artigo ("LASSO, Shi et al. 2016"), e só "Composto" ficaria
+# críptico — por isso não usa NOME_DO_COMPOSTO, que serve aos slides de
+# resultado, onde o contexto já é o nosso modelo.
+NOME_NA_LITERATURA = "Modelo composto"
+
 COR_DA_MESMA_CIDADE = "#1F7A4D"
 COR_DE_SINGAPURA = "#8A94A6"
 
@@ -1316,8 +1322,23 @@ def _slide_literatura() -> deck.Slide:
     prevemos casos a 12 semanas. Não existe número nosso nas mesmas condições,
     e dizer "somos melhores" seria indefensável.
     """
+    # 🔴 O filtro era `onde == "Porto Alegre"` e derrubava justamente a linha
+    # que dá título ao slide: a do CatBoost das 27 capitais, cujo campo é
+    # "Porto Alegre, 1999-2021". Sem ela a tabela dizia "a comparação justa" e
+    # não mostrava o estudo comparável. Corrigido em 27/09/2026.
+    #
+    # Das linhas do projeto fica só o COMPOSTO: os slides de resultado falam de
+    # um modelo só, e separar folha 5 de folha 20 aqui repetiria a discussão que
+    # já aconteceu no slide do vetor.
+    def entra_na_tabela_da_cidade(linha) -> bool:
+        """Diz se a linha é de Porto Alegre e, sendo nossa, se é a do composto."""
+        if not linha.onde.startswith("Porto Alegre"):
+            return False
+
+        return not linha.este_projeto or linha.modelo == NOME_NA_LITERATURA
+
     da_mesma_cidade = [
-        linha for linha in numeros.R2_PUBLICADO if linha.onde == "Porto Alegre"
+        linha for linha in numeros.R2_PUBLICADO if entra_na_tabela_da_cidade(linha)
     ]
 
     cabecalhos_da_cidade = ["Modelo", _celula_colorida("R² em 1 mês", COR_DA_MESMA_CIDADE)]
@@ -1341,6 +1362,9 @@ def _slide_literatura() -> deck.Slide:
     ]
     linhas_de_singapura = []
     for linha in numeros.MAPE_PUBLICADO:
+        if linha.este_projeto and linha.modelo != NOME_NA_LITERATURA:
+            continue
+
         linhas_de_singapura.append(
             [
                 f"<b>{layout.escapar(linha.modelo)}</b>"
