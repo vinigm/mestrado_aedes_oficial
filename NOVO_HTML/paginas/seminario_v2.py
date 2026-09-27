@@ -547,11 +547,25 @@ def _slide_estagios_do_plano() -> deck.Slide:
             ]
         )
 
+    # A conta que leva da taxa do plano ao numero de casos, montada como
+    # formula. As ressalvas sobre a unidade e sobre a metade fixa do criterio
+    # saem da tela por decisao do Vinicius em 26/09 — ele diz em voz alta.
     a_conta = (
-        '<p class="deckNotaDeGrafico">A conversão, para o estágio <b>Alerta</b>:<br>'
-        "<b>30,0</b> por 100 mil × "
-        f"<b>{numeros.formatar_inteiro(numeros.POPULACAO_DE_PORTO_ALEGRE)}</b> ÷ 100.000 = "
-        f"<b>{numeros.formatar_inteiro(numeros.LIMIAR_DO_ALARME)} casos por semana</b></p>"
+        '<div class="deckFormula">'
+        '<span class="deckFormulaTermo">'
+        '<span class="deckFormulaValor">30,0</span>'
+        '<span class="deckFormulaRotulo">o que o plano diz</span></span>'
+        '<span class="deckFormulaOperador">×</span>'
+        '<span class="deckFormulaTermo">'
+        '<span class="deckFracao">'
+        f'<span class="deckFracaoTopo">{numeros.formatar_inteiro(numeros.POPULACAO_DE_PORTO_ALEGRE)}</span>'
+        '<span class="deckFracaoBase">100.000</span></span>'
+        '<span class="deckFormulaRotulo">população de Porto Alegre</span></span>'
+        '<span class="deckFormulaOperador">=</span>'
+        '<span class="deckFormulaTermo deckFormulaResultado">'
+        f'<span class="deckFormulaValor">{numeros.formatar_inteiro(numeros.LIMIAR_DO_ALARME)}</span>'
+        '<span class="deckFormulaRotulo">casos por semana</span></span>'
+        "</div>"
     )
 
     return deck.Slide(
@@ -566,22 +580,16 @@ def _slide_estagios_do_plano() -> deck.Slide:
             '<p class="deckFonte">Plano Municipal de Contingência de Arboviroses '
             "2026 · Secretaria Municipal de Saúde de Porto Alegre · Quadro 1, "
             "página 15</p></div>"
-            f"<div>{layout.montar_tabela(cabecalhos, linhas)}{a_conta}"
-            + layout.montar_aviso(
-                "atencao",
-                "Duas ressalvas",
-                "O plano escreve <b>30,0</b>, sem declarar a unidade — <b>por 100 mil</b> "
-                "é a convenção nacional, e é inferência nossa. E o corte numérico vem "
-                "ligado por <b>E</b> a limiares estaduais: usamos só a metade fixa.",
-            )
-            + "</div></div>"
+            f"<div>{layout.montar_tabela(cabecalhos, linhas)}{a_conta}</div></div>"
         ),
         nota=(
             "Mostrar o quadro inteiro é de propósito: prova que o <b>421 é o terceiro "
             "degrau de uma escala que já existia</b>, e não um corte que escolhemos. "
             "⚠️ O número 421 <b>não aparece no PDF</b> — o plano diz 30,0, e a conversão "
-            "é nossa. Dizer isso antes que perguntem. O <b>E</b> está visível na imagem, "
-            "então admitir que usamos só a metade fixa do critério."
+            "é nossa. 🔴 <b>As duas ressalvas saíram da tela — você diz em voz alta:</b> "
+            "(1) o plano escreve 30,0 <b>sem declarar a unidade</b>, e 'por 100 mil' é "
+            "convenção nacional, inferência nossa; (2) o <b>E</b> está visível na imagem, "
+            "ligando o corte a limiares estaduais — usamos só a metade fixa do critério."
         ),
         e_denso=True,
     )
