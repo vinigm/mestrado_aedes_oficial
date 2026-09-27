@@ -290,12 +290,19 @@ def _slide_da_folha_5() -> deck.Slide:
             "uma semana e repete",
         ],
     ]
+    # A linha do ALGORITMO vem dentro do retangulo claro: numa tabela de sete
+    # caracteristicas, "qual e o modelo" e a unica pergunta que a plateia faz
+    # de imediato, e sem destaque ela se perde entre perda, alvo e validacao.
+    classes_das_linhas = ["linhaVencedora"] + [""] * (len(linhas) - 1)
+
     return deck.Slide(
         topico=TOPICO_CENARIOS,
         titulo="A configuração de folha mínima 5, e como ela foi escolhida",
         rotulo_curto="Folha mínima 5",
         corpo=(
-            layout.montar_tabela(cabecalhos, linhas)
+            layout.montar_tabela(
+                cabecalhos, linhas, classes_das_linhas=classes_das_linhas
+            )
             + layout.montar_aviso(
                 tom="info",
                 rotulo="O que é perda quantílica em 0,85",
