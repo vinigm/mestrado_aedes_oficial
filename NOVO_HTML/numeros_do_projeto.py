@@ -1251,3 +1251,50 @@ MAIOR_PICO_CONHECIDO_EM_2024 = 879
 PICO_A_PREVER_EM_2024 = 1601
 MAIOR_PICO_CONHECIDO_EM_2025 = 1855
 PICO_A_PREVER_EM_2025 = 2381
+
+
+# As três medidas do composto nos 12 horizontes, separadas por ano, para os
+# gráficos do slide dos dois anos. Cada tupla é
+# (horizonte, R², captura do pico, fração de Alertas que o alarme pegou).
+#
+# A forma das curvas é o argumento: em 2024 as três caem sem parar conforme o
+# horizonte cresce — o modelo perde o pé quando o histórico recente de casos
+# deixa de informar. Em 2025 elas se mantêm altas e o R² até SOBE no fim.
+#
+# Recalculado em 27/09/2026 das previsões de
+# `analises/2026-09-23_bateria_noturna/bloco_7_vetor_com_folha_20/saidas/`,
+# recombinadas no composto. Alarme no limiar de 421.
+COMPOSTO_EM_2024_NOS_12 = (
+    (1, 0.851, 0.764, 0.900),
+    (2, 0.664, 0.668, 0.909),
+    (3, 0.707, 0.639, 1.000),
+    (4, 0.629, 0.610, 1.000),
+    (5, 0.514, 0.505, 0.857),
+    (6, 0.390, 0.431, 0.571),
+    (7, 0.322, 0.438, 0.786),
+    (8, 0.414, 0.437, 0.714),
+    (9, 0.316, 0.380, 0.643),
+    (10, 0.283, 0.365, 0.500),
+    (11, 0.204, 0.296, 0.286),
+    (12, 0.054, 0.248, 0.071),
+)
+
+COMPOSTO_EM_2025_NOS_12 = (
+    (1, 0.916, 0.958, 1.000),
+    (2, 0.775, 0.813, 1.000),
+    (3, 0.684, 0.770, 1.000),
+    (4, 0.753, 0.773, 1.000),
+    (5, 0.686, 0.679, 0.929),
+    (6, 0.707, 0.674, 1.000),
+    (7, 0.623, 0.561, 0.929),
+    (8, 0.644, 0.565, 1.000),
+    (9, 0.644, 0.564, 0.929),
+    (10, 0.681, 0.601, 1.000),
+    (11, 0.738, 0.619, 0.929),
+    (12, 0.792, 0.700, 0.929),
+)
+
+# Posição de cada medida dentro das tuplas acima.
+POSICAO_DO_R2_POR_ANO = 1
+POSICAO_DA_CAPTURA_POR_ANO = 2
+POSICAO_DO_ALARME_POR_ANO = 3

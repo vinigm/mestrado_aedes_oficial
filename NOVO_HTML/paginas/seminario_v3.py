@@ -876,6 +876,51 @@ def _slide_alarme() -> deck.Slide:
 COR_DA_PARTIDA_A_FRIO = "#C0392B"
 COR_DO_ANO_COM_HISTORIA = "#1F7A4D"
 
+# O viewBox dos tres graficos deste slide. Mais estreito que o padrao de 720
+# pelo mesmo motivo do slide do vetor: tres graficos lado a lado recebem ~376px
+# cada, e no padrao a fonte dos eixos chegaria a tela com uns 6px.
+TAMANHO_DO_DESENHO_DOS_ANOS = (460, 210)
+
+# As tres medidas, na ordem em que aparecem na tabela e nos graficos.
+MEDIDAS_DOS_DOIS_ANOS = (
+    ("R²", numeros.POSICAO_DO_R2_POR_ANO),
+    ("Captura do pico", numeros.POSICAO_DA_CAPTURA_POR_ANO),
+    ("Alarme pega", numeros.POSICAO_DO_ALARME_POR_ANO),
+)
+
+
+def _grafico_dos_dois_anos(rotulo_do_eixo: str, posicao_da_medida: int) -> str:
+    """Desenha uma medida nos 12 horizontes, com uma curva por ano.
+
+    A forma das curvas e o argumento do slide: em 2024 a medida cai sem parar
+    conforme o horizonte cresce, e em 2025 ela se mantem alta — o R2 ate sobe
+    no fim. Por isso os graficos cobrem os 12 horizontes, e nao so os quatro da
+    tabela: com quatro pontos a queda de 2024 vira um degrau, e nao uma curva.
+
+    Args:
+        rotulo_do_eixo: Texto do eixo vertical, tambem usado no titulo.
+        posicao_da_medida: Indice da medida dentro das tuplas de 12 horizontes.
+
+    Returns:
+        O HTML do grafico.
+    """
+    pontos_de_2024 = [
+        (float(linha[0]), linha[posicao_da_medida])
+        for linha in numeros.COMPOSTO_EM_2024_NOS_12
+    ]
+    pontos_de_2025 = [
+        (float(linha[0]), linha[posicao_da_medida])
+        for linha in numeros.COMPOSTO_EM_2025_NOS_12
+    ]
+
+    return graficos.montar_grafico_de_linhas(
+        {"2024": pontos_de_2024, "2025": pontos_de_2025},
+        "horizonte (semanas)",
+        rotulo_do_eixo,
+        cores=[COR_DA_PARTIDA_A_FRIO, COR_DO_ANO_COM_HISTORIA],
+        tamanho_do_desenho=TAMANHO_DO_DESENHO_DOS_ANOS,
+    )
+
 
 def _slide_os_dois_anos() -> deck.Slide:
     """O que a media de 2024 e 2025 escondia.
@@ -950,17 +995,20 @@ def _slide_os_dois_anos() -> deck.Slide:
         rotulo_curto="Os dois anos",
         corpo=(
             as_duas_tabelas
-            + '<p class="deckNotaDeGrafico">🔴 <b>A explicação é mecânica:</b> ao '
-            "prever o pico de <b>2024</b>, a maior semana que o modelo já tinha "
-            f"visto na vida tinha <b>{numeros.formatar_decimal(numeros.MAIOR_PICO_CONHECIDO_EM_2024, 0)}</b> casos, "
-            f"e ele precisava acertar <b>{numeros.formatar_decimal(numeros.PICO_A_PREVER_EM_2024, 0)}</b> — uma "
-            "árvore de decisão <b>nunca</b> prevê acima do que viu. Ao prever o pico "
-            "de <b>2025</b> ele já conhecia os "
-            f"<b>{numeros.formatar_decimal(numeros.MAIOR_PICO_CONHECIDO_EM_2025, 0)}</b> "
-            f"de 2024, e previu <b>1.614</b> para um real de "
-            f"{numeros.formatar_decimal(numeros.PICO_A_PREVER_EM_2025, 0)}.</p>"
+            + '<div class="graficosLadoALado">'
+            + "".join(
+                _grafico_dos_dois_anos(rotulo, posicao)
+                for rotulo, posicao in MEDIDAS_DOS_DOIS_ANOS
+            )
+            + "</div>"
         ),
         nota=(
+            "🔴 <b>A explicação, para dizer em voz alta:</b> ao prever o pico de "
+            "<b>2024</b> a maior semana que o modelo já tinha visto na vida tinha "
+            "<b>879</b> casos, e ele precisava acertar <b>1.601</b> — uma árvore de "
+            "decisão <b>nunca</b> prevê acima do que viu. Ao prever o pico de <b>2025</b> "
+            "ele já conhecia os <b>1.855</b> de 2024, e previu <b>1.614</b> para um real "
+            "de 2.381. "
             "🔴 <b>O número da apresentação:</b> em 3 meses o alarme vai de <b>1 de 14</b> "
             "para <b>13 de 14</b>, e o R² de <b>0,054</b> para <b>0,792</b>. O "
             "\"modelo não serve a 3 meses\" era, na verdade, <b>não servia antes de ter "
