@@ -319,6 +319,7 @@ def montar_tabela(
     cabecalhos: list[str],
     linhas: list[list[str]],
     classes_das_colunas: list[str] | None = None,
+    classes_das_linhas: list[str] | None = None,
 ) -> str:
     """Tabela com cabeçalho fixo na rolagem.
 
@@ -332,6 +333,9 @@ def montar_tabela(
             e a todas as células dela. Use `COLUNA_AZUL` e `COLUNA_VERDE` onde
             a cor distingue cenários. Vazio em coluna sem cor. Quando não vem,
             nenhuma coluna é tingida.
+        classes_das_linhas: Uma classe CSS por linha, para destacar linhas
+            inteiras. Vazio em linha sem destaque. Quando não vem, nenhuma
+            linha é marcada.
 
     Returns:
         O HTML da tabela dentro do envelope rolável.
@@ -368,14 +372,25 @@ def montar_tabela(
         atributo = f' class="{classe}"' if classe else ""
         celulas_de_cabecalho.append(f"<th{atributo}>{titulo}</th>")
 
+    if classes_das_linhas is None:
+        classes_das_linhas = [""] * len(linhas)
+
+    if len(classes_das_linhas) != len(linhas):
+        raise ValueError(
+            f"{len(linhas)} linhas pedem {len(linhas)} classes; "
+            f"vieram {len(classes_das_linhas)}."
+        )
+
     linhas_montadas = []
-    for linha in linhas:
+    for posicao_da_linha, linha in enumerate(linhas):
         celulas = []
         for posicao, celula in enumerate(linha):
             classe = classes_das_colunas[posicao]
             atributo = f' class="{classe}"' if classe else ""
             celulas.append(f"<td{atributo}>{celula}</td>")
-        linhas_montadas.append(f'<tr>{"".join(celulas)}</tr>')
+        classe_da_linha = classes_das_linhas[posicao_da_linha]
+        atributo_da_linha = f' class="{classe_da_linha}"' if classe_da_linha else ""
+        linhas_montadas.append(f'<tr{atributo_da_linha}>{"".join(celulas)}</tr>')
 
     return (
         '<div class="tabelaEnvelope"><div class="tabelaRolavel">'

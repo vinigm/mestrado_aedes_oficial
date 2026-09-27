@@ -446,6 +446,17 @@ code.nomeColuna{white-space:nowrap}
 .deckTabelaRotulo{margin:0 0 5px; font-size:.78rem; font-weight:700;
   letter-spacing:.04em; text-transform:uppercase}
 
+/* Linha vencedora: retangulo bem claro e translucido, marcando em qual
+   horizonte aquele sistema leva. O fundo vai nas celulas, e nao no <tr>,
+   porque linha de tabela nao aceita border-radius. */
+.linhaVencedora td{background:rgba(27,110,243,.055);
+  box-shadow:inset 0 1px 0 rgba(27,110,243,.16),
+             inset 0 -1px 0 rgba(27,110,243,.16)}
+.linhaVencedora td:first-child{box-shadow:inset 1px 1px 0 rgba(27,110,243,.16),
+  inset 0 -1px 0 rgba(27,110,243,.16)}
+.linhaVencedora td:last-child{box-shadow:inset -1px 1px 0 rgba(27,110,243,.16),
+  inset 0 -1px 0 rgba(27,110,243,.16)}
+
 /* Índice horizontal: uma trilha contínua com um marcador por tópico. A linha
    cinza atravessa tudo; a linha azul por cima cresce conforme a apresentação
    avança, e é o JS que mede a largura dela. Tópico já visto fica com o

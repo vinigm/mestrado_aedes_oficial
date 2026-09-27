@@ -740,6 +740,7 @@ def _slide_alarme_do_composto() -> deck.Slide:
             O HTML da tabela.
         """
         linhas_do_braco = []
+        classes_das_linhas = []
         for rotulo in ROTULOS_DOS_HORIZONTES:
             meus = valores_de(nome_do_braco, rotulo)
             dele = valores_de(nome_do_outro, rotulo)
@@ -753,7 +754,18 @@ def _slide_alarme_do_composto() -> deck.Slide:
                     formatado = numeros.formatar_decimal(meu, 1)
                 celulas.append(_celula_colorida_com_destaque(formatado, cor, eu_venco))
             linhas_do_braco.append(celulas)
-        return layout.montar_tabela(cabecalhos, linhas_do_braco)
+
+            # A linha inteira e marcada pelo criterio de SENSIBILIDADE, e nao
+            # pelo placar das tres medidas. Motivo: num alarme, deixar passar um
+            # surto custa mais que um alarme falso, entao "pega quantos Alertas"
+            # e a medida que decide. Em 1 mes isso importa — la o composto pega
+            # mais e a regua e mais precisa, e a linha fica com o composto.
+            venci_a_sensibilidade = meus[0] - dele[0] > empate
+            classes_das_linhas.append("linhaVencedora" if venci_a_sensibilidade else "")
+
+        return layout.montar_tabela(
+            cabecalhos, linhas_do_braco, classes_das_linhas=classes_das_linhas
+        )
 
     # Duas tabelas lado a lado, em vez de colunas pareadas numa so: o titulo do
     # slide afirma que o composto vence a regua, e sem os dois numeros na tela
