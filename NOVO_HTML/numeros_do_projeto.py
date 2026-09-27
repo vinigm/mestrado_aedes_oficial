@@ -1055,61 +1055,84 @@ POSICAO_DA_FOLHA_20 = 2
 
 
 @dataclasses.dataclass(frozen=True)
-class CalibracaoNumaFaixa:
-    """O quanto o modelo acerta numa faixa de nível de casos.
+class DuasPerguntasNumaFaixa:
+    """O que o modelo acerta numa faixa de nível, nas DUAS perguntas que ele responde.
 
-    ⚠️ A unidade é **previsão**, e não semana: cada linha da medição é um par
-    (semana-alvo, horizonte), com os horizontes 1, 4, 8 e 12. A conta cobre o
-    walk-forward inteiro, de 2020 em diante — e não só as 102 semanas da janela
-    de avaliação. É por isso que a calmaria tem 814 previsões: 2020 a 2023
-    quase não teve caso em Porto Alegre.
+    São perguntas diferentes, e o modelo vai muito melhor numa que na outra:
 
-    Fonte: `analises/2026-09-26_calibracao_por_faixa/saidas/
-    cobertura_por_faixa.csv` para as coberturas; o erro mediano foi remedido em
-    27/09/2026 de `analises/2026-09-26_wis_na_tabela_restaurada/saidas/
-    previsoes_quantis.csv`, no quantil 0,5 do cenário adotado.
+      - **"quantos casos?"** — a previsão do número, com a faixa de incerteza;
+      - **"vai passar de 421?"** — a decisão binária do alarme.
+
+    🔴 Mostrar só a primeira faz a metodologia parecer pior do que é: nas
+    semanas de Alerta a faixa de 90% acerta 14,3%, mas o alarme pega 24 dos 28
+    Alertas. O modelo **não sabe dizer quanto, e sabe dizer que vem**.
+
+    ⚠️ Tudo aqui é o **modelo composto em 2 meses** (h=8), na janela de
+    avaliação de 102 semanas. O horizonte é o mesmo nas duas perguntas de
+    propósito: as coberturas publicadas antes juntavam 4 horizontes e não eram
+    comparáveis com as métricas de alarme, que são por horizonte.
+
+    Fonte: coberturas e erro remedidos em 27/09/2026 de
+    `analises/2026-09-26_wis_na_tabela_restaurada/saidas/previsoes_quantis.csv`
+    (braço `histgb_folha20`, que é o composto em h=8); alarme de
+    `analises/2026-09-26_modelo_composto/saidas/alarme_do_composto.csv`.
 
     Attributes:
         rotulo: Como a faixa é dita em texto.
-        previsoes: Quantos pares (semana, horizonte) caem nesta faixa.
+        semanas: Quantas semanas da avaliação caem nesta faixa.
         cobertura_de_90: Fração das vezes em que o intervalo de 90% conteve o
             valor real. Deveria dar perto de 0,90.
-        cobertura_de_50: Idem para o intervalo de 50%. Deveria dar perto de 0,50.
         erro_mediano: Erro absoluto mediano da previsão central, em casos.
-        nivel_mediano: Número real mediano de casos na faixa, para dar escala
-            ao erro.
+        nivel_mediano: Número real mediano de casos na faixa, para dar escala.
     """
 
     rotulo: str
-    previsoes: int
+    semanas: int
     cobertura_de_90: float
-    cobertura_de_50: float
     erro_mediano: float
     nivel_mediano: float
 
 
-CALIBRACAO_DO_ADOTADO = (
-    CalibracaoNumaFaixa(
+CALIBRACAO_EM_DOIS_MESES = (
+    DuasPerguntasNumaFaixa(
         rotulo="Calmaria — até 20 casos",
-        previsoes=814,
-        cobertura_de_90=0.905,
-        cobertura_de_50=0.592,
-        erro_mediano=1.3,
-        nivel_mediano=1.0,
+        semanas=54,
+        cobertura_de_90=0.907,
+        erro_mediano=4.8,
+        nivel_mediano=4.0,
     ),
-    CalibracaoNumaFaixa(
+    DuasPerguntasNumaFaixa(
         rotulo="Alerta — mais de 421 casos",
-        previsoes=163,
-        cobertura_de_90=0.178,
-        cobertura_de_50=0.080,
-        erro_mediano=539.0,
-        nivel_mediano=917.0,
+        semanas=28,
+        cobertura_de_90=0.143,
+        erro_mediano=971.0,
+        nivel_mediano=1428.0,
     ),
 )
 
-# Mesmo a melhor configuração que temos cobre pouco onde importa. Entra como
-# ressalva do slide: o problema não é a configuração adotada, é o modelo.
-COBERTURA_DE_90_DA_FOLHA_20_NO_ALERTA = 0.270
+
+@dataclasses.dataclass(frozen=True)
+class AlarmeEmDoisMeses:
+    """O alarme do composto em 2 meses, para a linha de baixo da tabela.
+
+    É o contraponto da calibração: o mesmo modelo, o mesmo horizonte e a mesma
+    janela, medido na pergunta binária em vez de na do número.
+
+    Fonte: `analises/2026-09-26_modelo_composto/saidas/alarme_do_composto.csv`,
+    linha do braço `Composto` em h=8.
+    """
+
+    semanas_avaliadas: int = 102
+    semanas_de_alerta: int = 28
+    alertas_pegos: int = 24
+    alarmes_falsos: int = 0
+
+    def sensibilidade(self) -> float:
+        """Fração das semanas de Alerta em que o alarme tocou."""
+        return self.alertas_pegos / self.semanas_de_alerta
+
+
+ALARME_EM_DOIS_MESES = AlarmeEmDoisMeses()
 
 
 @dataclasses.dataclass(frozen=True)

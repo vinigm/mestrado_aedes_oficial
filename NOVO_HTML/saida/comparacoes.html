@@ -452,6 +452,12 @@ code.nomeColuna{white-space:nowrap}
 .deckTabelaRotulo{margin:0 0 5px; font-size:.78rem; font-weight:700;
   letter-spacing:.04em; text-transform:uppercase}
 
+/* Segunda linha de um rotulo de tabela, para separar a PERGUNTA da medida que
+   a responde: a pergunta fica em negrito e a medida, aqui, menor e mais leve.
+   Sem isso as duas leituras disputam o mesmo peso e a coluna vira ruido. */
+.deckSubrotulo{display:block; font-weight:400; font-size:.82em;
+  color:var(--muted); letter-spacing:0}
+
 /* Linha vencedora: retangulo bem claro e translucido, marcando em qual
    horizonte aquele sistema leva. O fundo vai nas celulas, e nao no <tr>,
    porque linha de tabela nao aceita border-radius. */

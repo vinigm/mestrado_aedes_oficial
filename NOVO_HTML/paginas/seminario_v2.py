@@ -1151,22 +1151,26 @@ COR_DE_SINGAPURA = "#8A94A6"
 def _slide_onde_ainda_falha() -> deck.Slide:
     """O contrapeso do slide do vetor: o ganho é real e mesmo assim não basta.
 
-    ⚠️ **Refeito em 27/09/2026.** Antes este slide se chamava "A defasagem" e
-    repetia o slide 4: o título dele, *"a subida do mosquito vem antes da
-    subida dos casos"*, é literalmente a nota do slide 4, e a figura mostra as
-    mesmas duas séries.
+    ⚠️ **Refeito duas vezes em 27/09/2026.**
 
-    A figura fica, mas com outro trabalho. O Vinicius desenhou o arco da
-    apresentação assim: o slide do vetor **sobe** a moral com o ganho da folha
-    20, este **desce** mostrando onde o modelo ainda falha, e o da literatura
-    **sobe** de novo pondo o resultado em contexto. Quem mostra o próprio
-    limite antes de ser perguntado ganha crédito para o resto.
+    Na primeira, deixou de ser "A defasagem", que repetia o slide 4 — o título
+    dele era literalmente a nota do slide 4. Passou a mostrar a calibração por
+    faixa, dentro do arco que o Vinicius desenhou: o slide do vetor **sobe** a
+    moral, este **desce**, e o da literatura **sobe** de novo.
 
-    Os números da defasagem (da Silva et al. 2026) saíram daqui e foram para a
-    tabela da literatura, no slide seguinte, onde viram uma linha entre as
-    outras em vez de um aviso solto.
+    Na segunda, ganhou a linha do ALARME, e o motivo é do Vinicius: *"parece
+    que a nossa metodologia está ruim, olhando puramente esses números"*. E
+    parecia mesmo. A tabela mostrava só a pergunta em que o modelo vai mal — o
+    número de casos — e escondia a pergunta em que ele vai bem, que é a que o
+    projeto está propondo. A descida continua honesta; o que sai é a leitura
+    errada de que o método falhou.
+
+    ⚠️ **Tudo no mesmo horizonte, 2 meses.** A versão anterior juntava 4
+    horizontes nas coberturas, e isso não era comparável com as métricas de
+    alarme, que são por horizonte. Remedido em 27/09.
     """
-    calmaria, alerta = numeros.CALIBRACAO_DO_ADOTADO
+    calmaria, alerta = numeros.CALIBRACAO_EM_DOIS_MESES
+    alarme = numeros.ALARME_EM_DOIS_MESES
 
     cabecalhos = [
         "",
@@ -1174,82 +1178,68 @@ def _slide_onde_ainda_falha() -> deck.Slide:
         _celula_colorida(alerta.rotulo, COR_DO_ALERTA),
     ]
 
-    def linha_da_cobertura(rotulo: str, atributo: str) -> list[str]:
-        """Monta uma linha de cobertura, com a faixa de Alerta em destaque."""
+    def par_de_celulas(da_calmaria: str, do_alerta: str) -> list[str]:
+        """As duas células de uma linha, cada uma na cor da sua faixa."""
         return [
-            f"<b>{layout.escapar(rotulo)}</b>",
-            _celula_colorida(
-                numeros.formatar_percentual(getattr(calmaria, atributo), 1),
-                COR_DA_CALMARIA,
-            ),
-            _celula_colorida_com_destaque(
-                numeros.formatar_percentual(getattr(alerta, atributo), 1),
-                COR_DO_ALERTA,
-                True,
-            ),
+            _celula_colorida(da_calmaria, COR_DA_CALMARIA),
+            _celula_colorida_com_destaque(do_alerta, COR_DO_ALERTA, True),
         ]
 
     linhas = [
-        [
-            "<b>Previsões na faixa</b>",
-            _celula_colorida(str(calmaria.previsoes), COR_DA_CALMARIA),
-            _celula_colorida(str(alerta.previsoes), COR_DO_ALERTA),
+        ["<b>Semanas avaliadas</b>"]
+        + [
+            _celula_colorida(str(calmaria.semanas), COR_DA_CALMARIA),
+            _celula_colorida(str(alerta.semanas), COR_DO_ALERTA),
         ],
-        linha_da_cobertura("O intervalo de 90% acerta", "cobertura_de_90"),
-        linha_da_cobertura("O intervalo de 50% acerta", "cobertura_de_50"),
-        [
-            "<b>Erro mediano</b>",
-            _celula_colorida(
-                f"{numeros.formatar_decimal(calmaria.erro_mediano, 1)} caso",
-                COR_DA_CALMARIA,
-            ),
-            _celula_colorida_com_destaque(
-                f"{numeros.formatar_decimal(alerta.erro_mediano, 0)} casos "
-                f"sobre {numeros.formatar_decimal(alerta.nivel_mediano, 0)} reais",
-                COR_DO_ALERTA,
-                True,
-            ),
-        ],
+        ['<b>“Quantos casos?”</b><br><span class="deckSubrotulo">o intervalo de '
+         "90% acerta</span>"]
+        + par_de_celulas(
+            numeros.formatar_percentual(calmaria.cobertura_de_90, 1),
+            numeros.formatar_percentual(alerta.cobertura_de_90, 1),
+        ),
+        ['<b>“Quantos casos?”</b><br><span class="deckSubrotulo">erro mediano'
+         "</span>"]
+        + par_de_celulas(
+            f"{numeros.formatar_decimal(calmaria.erro_mediano, 0)} casos",
+            f"{numeros.formatar_decimal(alerta.erro_mediano, 0)} sobre "
+            f"{numeros.formatar_decimal(alerta.nivel_mediano, 0)} reais",
+        ),
+        ['<b>“Vai passar de 421?”</b><br><span class="deckSubrotulo">o alarme '
+         "acerta</span>"]
+        + par_de_celulas(
+            # "0 alarmes falsos" lido em voz alta soa a ausência de medição;
+            # "nenhum" deixa claro que a conta foi feita e deu zero.
+            "nenhum alarme falso",
+            f"{alarme.alertas_pegos} de {alarme.semanas_de_alerta} · "
+            f"{numeros.formatar_percentual(alarme.sensibilidade(), 1)}",
+        ),
     ]
 
-    cobertura_da_folha_20 = numeros.formatar_percentual(
-        numeros.COBERTURA_DE_90_DA_FOLHA_20_NO_ALERTA, 1
-    )
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="Onde mais importa, o modelo ainda erra mais da metade",
+        titulo="O modelo sabe que o surto vem — não sabe de que tamanho",
         rotulo_curto="O que falta",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
-            + '<p class="deckNotaDeGrafico">⚠️ <b>Não é defeito da configuração '
-            "adotada:</b> na folha 20, a melhor que temos, o intervalo de 90% "
-            f"cobre <b>{cobertura_da_folha_20}</b> nas semanas de Alerta. E a causa "
-            "medida é <b>viés, não variância</b> — alargar a faixa não conserta, e "
-            "mudar a escala (raiz, log) <b>piorou</b> em todas as faixas.</p>"
-            # ⚠️ A figura entra com teto de altura porque a tabela já ocupa a
-            # maior parte do slide: no tamanho natural, de 436px, o conjunto
-            # passava 243px dos 720. Aqui ela é PROP para apontar os picos de
-            # 2024 e 2025 enquanto se diz o erro, e não a figura principal —
-            # essa é a do slide 4, maior e mais legível.
-            '<div class="deckFiguraCheia">'
-            '<img src="imagens/vetor_vs_casos.png" style="max-height:170px" '
-            'alt="Aedes aegypti capturados e casos confirmados de dengue, '
-            'semana a semana">'
-            "</div>"
+            + '<p class="deckNotaDeGrafico">⚠️ <b>A causa é viés, não '
+            "variância:</b> o modelo subestima o pico de forma sistemática. "
+            "Alargar a faixa não conserta, e mudar a escala (raiz, log) "
+            "<b>piorou</b> em todas as faixas. É por isso que o projeto passou a "
+            "tratar o modelo como <b>alarme</b>, e não como previsão de número.</p>"
         ),
         nota=(
-            "🔴 <b>Este é o slide que desce a moral, e é de propósito.</b> Apontar "
-            "os picos de <b>2024</b> e <b>2025</b> na figura e dizer: é aqui que a "
-            "decisão acontece, e é aqui que o modelo erra <b>539 casos sobre 917</b>. "
-            "⚠️ A unidade da tabela é <b>previsão</b>, não semana: cada linha é um "
-            "par (semana, horizonte), nos horizontes 1, 4, 8 e 12, no walk-forward "
-            "desde 2020. A calmaria tem 814 porque 2020-2023 quase não teve caso. "
+            "🔴 <b>Este slide desce a moral, e é de propósito — mas a última linha "
+            "impede a leitura errada.</b> Sem ela, a tabela sugere que o método "
+            "falhou; com ela, fica claro o que falhou: prever <b>quanto</b>. "
+            "Dizer: no pico de 2025 o modelo disse <b>no máximo 1.118 casos, com 90% "
+            "de confiança</b>, e vieram <b>2.381</b>. ⚠️ Tudo em <b>2 meses</b>, nas "
+            "102 semanas da avaliação — as 28 de Alerta são as mesmas do slide do "
+            "alarme. ⚠️ O erro mediano de 971 sobre 1.428 é da previsão central. "
             "Se perguntarem por que não alargamos o intervalo: porque medimos, e o "
-            "problema é viés. O próximo slide põe isso em contexto."
+            "problema não é a largura, é o centro."
         ),
         e_denso=True,
     )
-
 
 
 def _slide_literatura() -> deck.Slide:
