@@ -1142,6 +1142,10 @@ def _slide_o_vetor() -> deck.Slide:
 COR_DA_CALMARIA = "#1B6EF3"
 COR_DO_ALERTA = "#C0392B"
 
+# 52 semanas em 12 meses. Serve só para dar tamanho a uma contagem de semanas;
+# as semanas contadas não são seguidas, então é equivalência, não período.
+SEMANAS_POR_MES = 52 / 12
+
 # As duas metades do slide da literatura. A primeira é a comparação JUSTA, a
 # segunda é a que perdemos — e cada uma tem a sua cor, como nos demais slides.
 COR_DA_MESMA_CIDADE = "#1F7A4D"
@@ -1185,11 +1189,36 @@ def _slide_onde_ainda_falha() -> deck.Slide:
             _celula_colorida_com_destaque(do_alerta, COR_DO_ALERTA, True),
         ]
 
+    def semanas_com_equivalente_em_meses(semanas: int) -> str:
+        """Escreve a contagem de semanas com o equivalente em meses ao lado.
+
+        ⚠️ É **equivalente**, não período: estas semanas não são seguidas. As
+        de calmaria são as entressafras e as de Alerta formam dois blocos, um
+        por epidemia. O parêntese existe só para dar tamanho ao número — quem
+        apresenta não deve dizer "durante seis meses".
+
+        Args:
+            semanas: Quantas semanas caem na faixa.
+
+        Returns:
+            O texto da célula, com os meses num tom mais leve.
+        """
+        meses = semanas / SEMANAS_POR_MES
+        return (
+            f"{semanas} "
+            f'<span style="opacity:.62">(≈ {numeros.formatar_decimal(meses, 0)} '
+            "meses)</span>"
+        )
+
     linhas = [
         ["<b>Semanas avaliadas</b>"]
         + [
-            _celula_colorida(str(calmaria.semanas), COR_DA_CALMARIA),
-            _celula_colorida(str(alerta.semanas), COR_DO_ALERTA),
+            _celula_colorida(
+                semanas_com_equivalente_em_meses(calmaria.semanas), COR_DA_CALMARIA
+            ),
+            _celula_colorida(
+                semanas_com_equivalente_em_meses(alerta.semanas), COR_DO_ALERTA
+            ),
         ],
         ['<b>“Quantos casos?”</b><br><span class="deckSubrotulo">o intervalo de '
          "90% acerta</span>"]
@@ -1235,6 +1264,10 @@ def _slide_onde_ainda_falha() -> deck.Slide:
             "de confiança</b>, e vieram <b>2.381</b>. ⚠️ Tudo em <b>2 meses</b>, nas "
             "102 semanas da avaliação — as 28 de Alerta são as mesmas do slide do "
             "alarme. ⚠️ O erro mediano de 971 sobre 1.428 é da previsão central. "
+            "⚠️ <b>Os meses entre parênteses são equivalência, não período</b>: as "
+            "semanas não são seguidas — as de calmaria são as entressafras e as de "
+            "Alerta formam dois blocos, um por epidemia. Não dizer 'durante seis "
+            "meses'. "
             "Se perguntarem por que não alargamos o intervalo: porque medimos, e o "
             "problema não é a largura, é o centro."
         ),
