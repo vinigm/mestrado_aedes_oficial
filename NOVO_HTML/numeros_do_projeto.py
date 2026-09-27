@@ -1175,3 +1175,79 @@ class SerieDeSingapura:
 
 
 SINGAPURA = SerieDeSingapura()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OS DOIS ANOS SEPARADOS — partida a frio contra operação com história
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+@dataclasses.dataclass(frozen=True)
+class DesempenhoDeUmAno:
+    """O modelo composto num horizonte, medido num ano só da avaliação.
+
+    Por que separar: 2024 e 2025 são **regimes diferentes**, e a média dos dois
+    não descreve nenhum. Ao prever o pico de 2024 o modelo nunca tinha visto
+    uma semana acima de **879 casos**, e precisava acertar **1.601**; uma
+    árvore de decisão não prevê acima do que viu no treino. Ao prever o pico de
+    2025 ele já conhecia os **1.855** de 2024.
+
+    O efeito é enorme no horizonte longo: em 3 meses o R² vai de **0,054** para
+    **0,792**, e o alarme de **1 de 14** para **13 de 14**.
+
+    ⚠️ **Descritivo e pós-fato.** O corte por ano foi feito depois de ver o
+    resultado, é um ano contra um ano (45 e 52 semanas) e não foi pré-declarado.
+    A confirmação certa é pré-declarar e medir em 2027.
+
+    Fonte: recalculado em 27/09/2026 de `analises/2026-09-23_bateria_noturna/
+    bloco_7_vetor_com_folha_20/saidas/previsoes_por_braco.csv`, recombinado no
+    composto pelas funções de `analises/2026-09-26_modelo_composto/calcular.py`.
+
+    Attributes:
+        rotulo: Como o horizonte é dito em texto.
+        erro_medio_absoluto: MAE em casos por semana.
+        r2: Fração da variação dos casos que o modelo explica.
+        captura_do_pico: Fração da altura do pico que o modelo alcança.
+        alertas_pegos: Semanas de Alerta em que o alarme tocou.
+        alertas_no_ano: Quantas semanas de Alerta o ano teve.
+        precisao: Das vezes que o alarme tocou, quantas eram Alerta de verdade.
+        falsos_por_ano: Alarmes falsos, normalizados por ano.
+    """
+
+    rotulo: str
+    erro_medio_absoluto: float
+    r2: float
+    captura_do_pico: float
+    alertas_pegos: int
+    alertas_no_ano: int
+    precisao: float
+    falsos_por_ano: float
+
+    def sensibilidade(self) -> float:
+        """Fração das semanas de Alerta em que o alarme tocou."""
+        return self.alertas_pegos / self.alertas_no_ano
+
+
+SEMANAS_AVALIADAS_EM_2024 = 45
+SEMANAS_AVALIADAS_EM_2025 = 52
+
+COMPOSTO_EM_2024 = (
+    DesempenhoDeUmAno("1 semana", 100.6, 0.851, 0.764, 9, 10, 1.000, 0.0),
+    DesempenhoDeUmAno("1 mês", 193.9, 0.629, 0.610, 13, 13, 0.929, 1.2),
+    DesempenhoDeUmAno("2 meses", 238.8, 0.414, 0.437, 10, 14, 1.000, 0.0),
+    DesempenhoDeUmAno("3 meses", 322.3, 0.054, 0.248, 1, 14, 1.000, 0.0),
+)
+
+COMPOSTO_EM_2025 = (
+    DesempenhoDeUmAno("1 semana", 103.7, 0.916, 0.958, 14, 14, 0.933, 1.0),
+    DesempenhoDeUmAno("1 mês", 221.9, 0.753, 0.773, 14, 14, 0.737, 5.0),
+    DesempenhoDeUmAno("2 meses", 226.7, 0.644, 0.565, 14, 14, 1.000, 0.0),
+    DesempenhoDeUmAno("3 meses", 196.3, 0.792, 0.700, 13, 14, 0.867, 2.0),
+)
+
+# O que o modelo tinha visto ao prever o pico de cada temporada, e o que ele
+# precisava acertar. É a explicação mecânica do contraste entre os dois anos.
+MAIOR_PICO_CONHECIDO_EM_2024 = 879
+PICO_A_PREVER_EM_2024 = 1601
+MAIOR_PICO_CONHECIDO_EM_2025 = 1855
+PICO_A_PREVER_EM_2025 = 2381

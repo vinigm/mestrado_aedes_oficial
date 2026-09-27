@@ -870,6 +870,113 @@ def _slide_alarme() -> deck.Slide:
     )
 
 
+# As duas colunas do slide dos dois anos. Vermelho para a partida a frio,
+# verde para o ano em que o metodo ja tinha historia — a mesma leitura de cor
+# do slide dos limites.
+COR_DA_PARTIDA_A_FRIO = "#C0392B"
+COR_DO_ANO_COM_HISTORIA = "#1F7A4D"
+
+
+def _slide_os_dois_anos() -> deck.Slide:
+    """O que a media de 2024 e 2025 escondia.
+
+    Slide novo de 27/09/2026, e ele nasceu de uma pergunta do Vinicius: se o
+    modelo retreina a cada semana, por que os resultados de 3 meses sao tao
+    ruins? A medicao respondeu que nao sao — eles sao a media de dois regimes
+    que nao deveriam ser lidos juntos.
+
+    ⚠️ Os slides do painel e do alarme continuam com os numeros agregados, que
+    estao corretos. Este slide nao os substitui: ele mostra o que a media
+    esconde, e so existe porque 2024 esta na conta.
+
+    🔴 **Descritivo e pos-fato.** O corte por ano foi feito depois de ver o
+    resultado, e um ano contra um ano, e nao foi pre-declarado. A nota do
+    apresentador manda dizer isso em voz alta.
+    """
+    cabecalhos = ["Horizonte", "R²", "Captura do pico", "Alarme pega"]
+
+    def montar_tabela_de_um_ano(do_ano, cor: str, e_o_ano_bom: bool) -> str:
+        """Monta a tabela de um dos dois anos.
+
+        Args:
+            do_ano: As quatro linhas daquele ano.
+            cor: A cor da coluna, a mesma do rotulo.
+            e_o_ano_bom: True para 2025, cujas celulas vem em negrito.
+
+        Returns:
+            O HTML da tabela.
+        """
+        linhas = []
+        for linha in do_ano:
+            linhas.append(
+                [
+                    f"<b>{layout.escapar(linha.rotulo)}</b>",
+                    _celula_colorida_com_destaque(
+                        numeros.formatar_decimal(linha.r2, 3), cor, e_o_ano_bom
+                    ),
+                    _celula_colorida_com_destaque(
+                        numeros.formatar_percentual(linha.captura_do_pico, 1),
+                        cor,
+                        e_o_ano_bom,
+                    ),
+                    _celula_colorida_com_destaque(
+                        f"{linha.alertas_pegos} de {linha.alertas_no_ano} · "
+                        f"{numeros.formatar_percentual(linha.sensibilidade(), 1)}",
+                        cor,
+                        e_o_ano_bom,
+                    ),
+                ]
+            )
+        return layout.montar_tabela(cabecalhos, linhas)
+
+    as_duas_tabelas = (
+        '<div class="deckTabelasLadoALado">'
+        f'<div><p class="deckTabelaRotulo" style="color:{COR_DA_PARTIDA_A_FRIO}">'
+        f"2024 — nunca tinha visto epidemia grande "
+        f'<span style="font-weight:400;opacity:.62">· {numeros.SEMANAS_AVALIADAS_EM_2024} '
+        "semanas</span></p>"
+        f"{montar_tabela_de_um_ano(numeros.COMPOSTO_EM_2024, COR_DA_PARTIDA_A_FRIO, False)}</div>"
+        f'<div><p class="deckTabelaRotulo" style="color:{COR_DO_ANO_COM_HISTORIA}">'
+        f"2025 — com 2024 na história "
+        f'<span style="font-weight:400;opacity:.62">· {numeros.SEMANAS_AVALIADAS_EM_2025} '
+        "semanas</span></p>"
+        f"{montar_tabela_de_um_ano(numeros.COMPOSTO_EM_2025, COR_DO_ANO_COM_HISTORIA, True)}</div>"
+        "</div>"
+    )
+
+    return deck.Slide(
+        topico=TOPICO_RESULTADOS,
+        titulo="O modelo não previa o pico porque nunca tinha visto um",
+        rotulo_curto="Os dois anos",
+        corpo=(
+            as_duas_tabelas
+            + '<p class="deckNotaDeGrafico">🔴 <b>A explicação é mecânica:</b> ao '
+            "prever o pico de <b>2024</b>, a maior semana que o modelo já tinha "
+            f"visto na vida tinha <b>{numeros.formatar_decimal(numeros.MAIOR_PICO_CONHECIDO_EM_2024, 0)}</b> casos, "
+            f"e ele precisava acertar <b>{numeros.formatar_decimal(numeros.PICO_A_PREVER_EM_2024, 0)}</b> — uma "
+            "árvore de decisão <b>nunca</b> prevê acima do que viu. Ao prever o pico "
+            "de <b>2025</b> ele já conhecia os "
+            f"<b>{numeros.formatar_decimal(numeros.MAIOR_PICO_CONHECIDO_EM_2025, 0)}</b> "
+            f"de 2024, e previu <b>1.614</b> para um real de "
+            f"{numeros.formatar_decimal(numeros.PICO_A_PREVER_EM_2025, 0)}.</p>"
+        ),
+        nota=(
+            "🔴 <b>O número da apresentação:</b> em 3 meses o alarme vai de <b>1 de 14</b> "
+            "para <b>13 de 14</b>, e o R² de <b>0,054</b> para <b>0,792</b>. O "
+            "\"modelo não serve a 3 meses\" era, na verdade, <b>não servia antes de ter "
+            "visto uma epidemia</b>. ⚠️ <b>Dizer em voz alta que isto é descritivo e "
+            "pós-fato</b>: o corte por ano foi feito depois de ver o resultado, é um ano "
+            "contra um ano (45 e 52 semanas) e não foi pré-declarado. A confirmação é "
+            "pré-declarar e medir em 2027. ⚠️ E não é melhora em tudo: em 2025 os "
+            "<b>alarmes falsos sobem</b> (1 mês vai de 1,2 para 5,0 por ano) e a "
+            "<b>precisão de 1 mês cai</b> de 92,9% para 73,7% — o modelo fica mais "
+            "sensível. ⚠️ A régua sazonal também melhora em 2025, e volta a vencer em "
+            "erro médio; o que o modelo ganha dela é justamente no ano inédito."
+        ),
+        e_denso=True,
+    )
+
+
 # As duas medidas do slide do vetor, cada uma com a sua cor — a mesma na
 # coluna da tabela e na curva, para ligar as duas sem precisar de legenda.
 COR_DO_GANHO = "#1F7A4D"
@@ -1459,6 +1566,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_do_modelo_ao_alarme(),
         _slide_estagios_do_plano(),
         _slide_alarme_do_composto(),
+        _slide_os_dois_anos(),
         _slide_o_vetor(),
         _slide_onde_ainda_falha(),
         _slide_literatura(),
