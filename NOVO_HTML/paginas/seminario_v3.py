@@ -405,6 +405,15 @@ MEDIDAS_DO_COMPOSTO = (
     ("Captura do pico", "captura_do_pico", 3, "#1F7A4D", 6, numeros.POSICAO_DA_CAPTURA),
 )
 COR_DA_REGUA_SAZONAL = "#8A94A6"
+
+# O viewBox dos tres graficos do composto. O padrao de 720 deixava a fonte dos
+# eixos, fixa em 11 unidades, chegar a tela com 5,7px — os graficos ficam lado
+# a lado e recebem 376px cada. Com 400 ela chega com 10,3px.
+#
+# A altura de 245 nao e proporcional: ela e escolhida para o desenho ocupar
+# a folga que sobrava no slide. Como a largura na tela e fixa em 376px, a
+# altura renderizada e 376 x 245 / 400 = 230px, contra os 130px do padrao.
+TAMANHO_DO_DESENHO_DO_COMPOSTO = (400, 245)
 NOME_DA_LINHA_DA_REGUA = "Régua sazonal"
 
 
@@ -472,6 +481,7 @@ def _grafico_de_uma_medida(
         rotulo_do_eixo,
         cores=[cor, COR_DA_REGUA_SAZONAL],
         series_tracejadas={NOME_DA_LINHA_DA_REGUA},
+        tamanho_do_desenho=TAMANHO_DO_DESENHO_DO_COMPOSTO,
         marco_vertical=(
             float(horizonte_em_que_a_regua_passa),
             f"a régua passa a vencer · {horizonte_em_que_a_regua_passa} sem",
@@ -522,9 +532,6 @@ def _slide_modelo_composto() -> deck.Slide:
         rotulo_curto="Composto",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
-            + '<p class="deckNotaDeGrafico">⚠️ O ponto de corte entre as duas '
-            "configurações foi escolhido olhando o período de avaliação — "
-            "adotá-lo exige pré-declarar o critério e repetir a medição.</p>"
             + f'<div class="graficosLadoALado">{graficos_das_medidas}</div>'
         ),
         nota=(
