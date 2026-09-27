@@ -1274,11 +1274,22 @@ def _slide_onde_ainda_falha() -> deck.Slide:
             layout.montar_tabela(
                 cabecalhos, linhas_da_tabela, classes_das_linhas=classes_das_linhas
             )
+            # A explicação e a figura dividem a faixa que sobra embaixo da
+            # tabela. Em largura cheia o texto ocupava três linhas e deixava
+            # metade do slide vazia; ao lado dele a figura cabe sem apertar.
+            + '<div class="deckTextoEFigura">'
             + '<p class="deckNotaDeGrafico">⚠️ <b>A causa é viés, não '
             "variância:</b> o modelo subestima o pico de forma sistemática. "
             "Alargar a faixa não conserta, e mudar a escala (raiz, log) "
             "<b>piorou</b> em todas as faixas. É a razão de o projeto tratar o "
             "modelo como <b>alarme</b>, e não como previsão de número.</p>"
+            # Sem teto de altura: a figura preenche a coluna, e a largura dela
+            # (metade do slide, 574px) é que define o tamanho. Dá 264px de
+            # altura, e o slide fecha em 680 dos 720.
+            + '<img src="imagens/vetor_vs_casos.png" '
+            'alt="Aedes aegypti capturados e casos confirmados de dengue, '
+            'semana a semana">'
+            + "</div>"
         ),
         nota=(
             "🔴 <b>As quatro primeiras linhas são para chocar, e não devem ser "

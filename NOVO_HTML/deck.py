@@ -126,6 +126,14 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckSubrotulo{display:block; font-weight:400; font-size:.82em;
   color:var(--muted); letter-spacing:0}
 
+/* Um paragrafo a esquerda e uma figura a direita, dividindo a largura. Existe
+   para aproveitar o espaco que sobra embaixo de uma tabela alta: em largura
+   cheia o texto ocupa tres linhas e deixa metade do slide vazia. */
+.deckTextoEFigura{display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  align-items:center; margin:8px 0 0}
+.deckTextoEFigura p{margin:0}
+.deckTextoEFigura img{display:block; width:100%; height:auto}
+
 /* Linha vencedora: retangulo bem claro e translucido, marcando em qual
    horizonte aquele sistema leva. O fundo vai nas celulas, e nao no <tr>,
    porque linha de tabela nao aceita border-radius. */
