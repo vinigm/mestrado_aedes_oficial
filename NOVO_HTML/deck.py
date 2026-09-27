@@ -232,6 +232,18 @@ FOLHA_DE_ESTILO_DO_DECK = """
 
 /* Slide cuja mensagem É a figura: ela ocupa o corpo inteiro e encolhe junto
    com o palco, para caber na altura sem rolagem. */
+/* 🔴 COLISAO DE CSS, e nao um estilo escolhido: o deck poe a classe `figura`
+   no proprio <section> do slide, e o tema do site ja tem `.figura` para um
+   componente de cartao — com borda de 1px, raio de 14px, sombra e margem
+   inferior de 20px. Tudo isso vazava para dentro do slide, e era so nos slides
+   de figura que aparecia o contorno.
+
+   Aqui o vazamento e anulado no estilo de projecao. ⚠️ A colisao continua
+   existindo nos outros decks; a correcao de raiz e renomear a classe do deck
+   para algo com prefixo, o que mexe em todos eles. */
+.deckPalco.semMoldura .deckSlide.figura{border:none; border-radius:0;
+  box-shadow:none; margin:0}
+
 .deckSlide.figura .deckTitulo{font-size:1.32rem; margin-bottom:12px}
 .deckFiguraCheia{height:100%; display:flex; flex-direction:column; min-height:0}
 .deckFiguraCheia img{flex:1 1 auto; min-height:0; width:100%;
