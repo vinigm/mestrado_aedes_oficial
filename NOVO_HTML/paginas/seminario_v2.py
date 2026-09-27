@@ -697,20 +697,40 @@ def _slide_alarme_do_composto() -> deck.Slide:
         _celula_colorida(rotulo, cor) for rotulo, cor, _, _ in MEDIDAS_DO_ALARME
     ]
 
-    def montar_tabela_de_um_braco(nome_do_braco: str) -> str:
-        """Monta a tabela das tres medidas para um braco, nos 4 horizontes."""
+    # Diferenca abaixo da qual os dois contam como empate. Os valores ja vem
+    # arredondados a uma casa, entao comparar direto criaria "vencedor" onde ha
+    # so ruido de arredondamento.
+    empate = 0.001
+
+    def valores_de(nome_do_braco: str, rotulo: str) -> tuple[float, float, float]:
+        """As tres medidas de um braco num horizonte, na ordem das colunas."""
+        medidas = por_braco[nome_do_braco][rotulo]
+        return (medidas.sensibilidade, medidas.precisao, medidas.falsos_por_ano)
+
+    def montar_tabela_de_um_braco(nome_do_braco: str, nome_do_outro: str) -> str:
+        """Monta a tabela de um braco, com a celula vencedora em negrito.
+
+        Args:
+            nome_do_braco: O braco desta tabela.
+            nome_do_outro: O braco da tabela ao lado, para saber quem vence.
+
+        Returns:
+            O HTML da tabela.
+        """
         linhas_do_braco = []
         for rotulo in ROTULOS_DOS_HORIZONTES:
-            medidas = por_braco[nome_do_braco][rotulo]
-            valores = (
-                numeros.formatar_percentual(medidas.sensibilidade, 1),
-                numeros.formatar_percentual(medidas.precisao, 1),
-                numeros.formatar_decimal(medidas.falsos_por_ano, 1),
-            )
-            linhas_do_braco.append(
-                [f"<b>{layout.escapar(rotulo)}</b>"]
-                + [_celula_colorida(valor, cor) for valor, cor in zip(valores, cores)]
-            )
+            meus = valores_de(nome_do_braco, rotulo)
+            dele = valores_de(nome_do_outro, rotulo)
+            celulas = [f"<b>{layout.escapar(rotulo)}</b>"]
+            for meu, seu, (_, cor, _, maior_e_melhor) in zip(meus, dele, MEDIDAS_DO_ALARME):
+                if maior_e_melhor:
+                    eu_venco = meu - seu > empate
+                    formatado = numeros.formatar_percentual(meu, 1)
+                else:
+                    eu_venco = seu - meu > empate
+                    formatado = numeros.formatar_decimal(meu, 1)
+                celulas.append(_celula_colorida(_destacar(formatado, eu_venco), cor))
+            linhas_do_braco.append(celulas)
         return layout.montar_tabela(cabecalhos, linhas_do_braco)
 
     # Duas tabelas lado a lado, em vez de colunas pareadas numa so: o titulo do
@@ -719,10 +739,10 @@ def _slide_alarme_do_composto() -> deck.Slide:
     as_duas_tabelas = (
         '<div class="deckTabelasLadoALado">'
         f'<div><p class="deckTabelaRotulo" style="color:var(--acento)">Modelo composto</p>'
-        f"{montar_tabela_de_um_braco(numeros.NOME_DO_COMPOSTO)}</div>"
+        f"{montar_tabela_de_um_braco(numeros.NOME_DO_COMPOSTO, numeros.NOME_DA_REGUA)}</div>"
         f'<div><p class="deckTabelaRotulo" style="color:{COR_DA_REGUA_SAZONAL}">'
         f"Régua sazonal</p>"
-        f"{montar_tabela_de_um_braco(numeros.NOME_DA_REGUA)}</div>"
+        f"{montar_tabela_de_um_braco(numeros.NOME_DA_REGUA, numeros.NOME_DO_COMPOSTO)}</div>"
         "</div>"
     )
 
