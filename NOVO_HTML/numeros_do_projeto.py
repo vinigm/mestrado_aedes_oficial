@@ -1328,6 +1328,9 @@ class AlarmeFalsoEm2026:
     Attributes:
         rotulo: Como o horizonte é dito em texto.
         semanas: Quantas semanas de 2026 o walk-forward alcançou.
+        maior_real: O maior número de casos que alguma dessas semanas teve.
+            Dá dois em todos os horizontes — é o contraste com `maior_previsto`
+            que mostra o tamanho do erro.
         maior_previsto: A maior previsão do ano naquele horizonte.
         alarmes_do_modelo: Em quantas semanas o composto passou de 421.
         alarmes_da_regua: Idem para a régua sazonal.
@@ -1335,16 +1338,17 @@ class AlarmeFalsoEm2026:
 
     rotulo: str
     semanas: int
+    maior_real: int
     maior_previsto: int
     alarmes_do_modelo: int
     alarmes_da_regua: int
 
 
 ALARME_FALSO_EM_2026 = (
-    AlarmeFalsoEm2026("1 semana", 6, 64, 0, 0),
-    AlarmeFalsoEm2026("1 mês", 9, 555, 3, 1),
-    AlarmeFalsoEm2026("2 meses", 13, 1808, 4, 5),
-    AlarmeFalsoEm2026("3 meses", 17, 1298, 10, 9),
+    AlarmeFalsoEm2026("1 semana", 6, 2, 64, 0, 0),
+    AlarmeFalsoEm2026("1 mês", 9, 2, 555, 3, 1),
+    AlarmeFalsoEm2026("2 meses", 13, 2, 1808, 4, 5),
+    AlarmeFalsoEm2026("3 meses", 17, 2, 1298, 10, 9),
 )
 
 CASOS_EM_2026 = 12

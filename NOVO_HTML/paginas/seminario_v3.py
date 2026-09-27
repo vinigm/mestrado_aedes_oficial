@@ -1587,6 +1587,7 @@ def _slide_limitacao_de_2026() -> deck.Slide:
     """
     cabecalhos_de_2026 = [
         "Horizonte",
+        "Maior real",
         _celula_colorida("Maior previsto", COR_DO_QUE_O_MODELO_DISSE),
         _celula_colorida("Alarmes do modelo", COR_DO_QUE_O_MODELO_DISSE),
         _celula_colorida("Alarmes da régua", COR_DA_REGUA_NA_LIMITACAO),
@@ -1598,6 +1599,7 @@ def _slide_limitacao_de_2026() -> deck.Slide:
         linhas_de_2026.append(
             [
                 f"<b>{layout.escapar(linha.rotulo)}</b>",
+                f"<b>{numeros.formatar_decimal(linha.maior_real, 0)}</b>",
                 _celula_colorida_com_destaque(
                     numeros.formatar_decimal(linha.maior_previsto, 0),
                     COR_DO_QUE_O_MODELO_DISSE,
@@ -1619,11 +1621,15 @@ def _slide_limitacao_de_2026() -> deck.Slide:
     cabecalhos_das_saidas = ["O que acrescentar", "O que isso captura", "Precisa de"]
     linhas_das_saidas = []
     for saida in numeros.SAIDAS_PARA_A_LIMITACAO:
+        # Sem emoticon: a distincao entre o que da para fazer e o que nao da
+        # fica so na cor, que ja marcava a coluna "Precisa de" e agora marca o
+        # nome da ideia tambem.
         cor = COR_DA_SAIDA_POSSIVEL if saida.temos else COR_DO_QUE_O_MODELO_DISSE
-        marca = "🟢" if saida.temos else "🚫"
         linhas_das_saidas.append(
             [
-                f"{marca} <b>{layout.escapar(saida.ideia)}</b>",
+                _celula_colorida_com_destaque(
+                    layout.escapar(saida.ideia), cor, True
+                ),
                 layout.escapar(saida.captura),
                 _celula_colorida(layout.escapar(saida.precisa_de), cor),
             ]
