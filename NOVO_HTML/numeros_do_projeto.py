@@ -1082,6 +1082,7 @@ class DuasPerguntasNumaFaixa:
         semanas: Quantas semanas da avaliação caem nesta faixa.
         cobertura_de_90: Fração das vezes em que o intervalo de 90% conteve o
             valor real. Deveria dar perto de 0,90.
+        cobertura_de_50: Idem para o intervalo de 50%. Deveria dar perto de 0,50.
         erro_mediano: Erro absoluto mediano da previsão central, em casos.
         nivel_mediano: Número real mediano de casos na faixa, para dar escala.
     """
@@ -1089,6 +1090,7 @@ class DuasPerguntasNumaFaixa:
     rotulo: str
     semanas: int
     cobertura_de_90: float
+    cobertura_de_50: float
     erro_mediano: float
     nivel_mediano: float
 
@@ -1098,6 +1100,7 @@ CALIBRACAO_EM_DOIS_MESES = (
         rotulo="Calmaria — até 20 casos",
         semanas=54,
         cobertura_de_90=0.907,
+        cobertura_de_50=0.315,
         erro_mediano=4.8,
         nivel_mediano=4.0,
     ),
@@ -1105,6 +1108,7 @@ CALIBRACAO_EM_DOIS_MESES = (
         rotulo="Alerta — mais de 421 casos",
         semanas=28,
         cobertura_de_90=0.143,
+        cobertura_de_50=0.036,
         erro_mediano=971.0,
         nivel_mediano=1428.0,
     ),
@@ -1126,6 +1130,7 @@ class AlarmeEmDoisMeses:
     semanas_de_alerta: int = 28
     alertas_pegos: int = 24
     alarmes_falsos: int = 0
+    precisao: float = 1.0
 
     def sensibilidade(self) -> float:
         """Fração das semanas de Alerta em que o alarme tocou."""

@@ -1142,6 +1142,10 @@ def _slide_o_vetor() -> deck.Slide:
 COR_DA_CALMARIA = "#1B6EF3"
 COR_DO_ALERTA = "#C0392B"
 
+# A cor da tabela que dá a boa notícia do slide. Verde, a mesma de "pega
+# quantos Alertas" no slide do alarme, para o olho ligar os dois.
+COR_DO_ALARME_QUE_FUNCIONA = "#1F7A4D"
+
 # 52 semanas em 12 meses. Serve só para dar tamanho a uma contagem de semanas;
 # as semanas contadas não são seguidas, então é equivalência, não período.
 SEMANAS_POR_MES = 52 / 12
@@ -1176,19 +1180,6 @@ def _slide_onde_ainda_falha() -> deck.Slide:
     calmaria, alerta = numeros.CALIBRACAO_EM_DOIS_MESES
     alarme = numeros.ALARME_EM_DOIS_MESES
 
-    cabecalhos = [
-        "",
-        _celula_colorida(calmaria.rotulo, COR_DA_CALMARIA),
-        _celula_colorida(alerta.rotulo, COR_DO_ALERTA),
-    ]
-
-    def par_de_celulas(da_calmaria: str, do_alerta: str) -> list[str]:
-        """As duas células de uma linha, cada uma na cor da sua faixa."""
-        return [
-            _celula_colorida(da_calmaria, COR_DA_CALMARIA),
-            _celula_colorida_com_destaque(do_alerta, COR_DO_ALERTA, True),
-        ]
-
     def semanas_com_equivalente_em_meses(semanas: int) -> str:
         """Escreve a contagem de semanas com o equivalente em meses ao lado.
 
@@ -1210,7 +1201,27 @@ def _slide_onde_ainda_falha() -> deck.Slide:
             "meses)</span>"
         )
 
-    linhas = [
+    # ── Tabela da esquerda: a pergunta em que o modelo vai MAL ──────────────
+    #
+    # ⚠️ Nada aqui é suavizado, de propósito. O Vinicius pediu em 27/09/2026 que
+    # estes números fossem "chocantes, mostrando que está ruim mesmo": é a
+    # concessão que compra credibilidade para a tabela ao lado. Uma versão
+    # anterior deste slide fundiu as duas perguntas nas mesmas linhas e acabou
+    # escondendo a cobertura de 50%, que é o número mais duro dos três.
+    cabecalhos_da_previsao = [
+        "",
+        _celula_colorida(calmaria.rotulo, COR_DA_CALMARIA),
+        _celula_colorida(alerta.rotulo, COR_DO_ALERTA),
+    ]
+
+    def par_de_celulas(da_calmaria: str, do_alerta: str) -> list[str]:
+        """As duas células de uma linha, cada uma na cor da sua faixa."""
+        return [
+            _celula_colorida(da_calmaria, COR_DA_CALMARIA),
+            _celula_colorida_com_destaque(do_alerta, COR_DO_ALERTA, True),
+        ]
+
+    linhas_da_previsao = [
         ["<b>Semanas avaliadas</b>"]
         + [
             _celula_colorida(
@@ -1220,56 +1231,98 @@ def _slide_onde_ainda_falha() -> deck.Slide:
                 semanas_com_equivalente_em_meses(alerta.semanas), COR_DO_ALERTA
             ),
         ],
-        ['<b>“Quantos casos?”</b><br><span class="deckSubrotulo">o intervalo de '
-         "90% acerta</span>"]
+        ["<b>O intervalo de 90% acerta</b>"]
         + par_de_celulas(
             numeros.formatar_percentual(calmaria.cobertura_de_90, 1),
             numeros.formatar_percentual(alerta.cobertura_de_90, 1),
         ),
-        ['<b>“Quantos casos?”</b><br><span class="deckSubrotulo">erro mediano'
-         "</span>"]
+        ["<b>O intervalo de 50% acerta</b>"]
+        + par_de_celulas(
+            numeros.formatar_percentual(calmaria.cobertura_de_50, 1),
+            numeros.formatar_percentual(alerta.cobertura_de_50, 1),
+        ),
+        ["<b>Erro mediano</b>"]
         + par_de_celulas(
             f"{numeros.formatar_decimal(calmaria.erro_mediano, 0)} casos",
             f"{numeros.formatar_decimal(alerta.erro_mediano, 0)} sobre "
             f"{numeros.formatar_decimal(alerta.nivel_mediano, 0)} reais",
         ),
-        ['<b>“Vai passar de 421?”</b><br><span class="deckSubrotulo">o alarme '
-         "acerta</span>"]
-        + par_de_celulas(
-            # "0 alarmes falsos" lido em voz alta soa a ausência de medição;
-            # "nenhum" deixa claro que a conta foi feita e deu zero.
-            "nenhum alarme falso",
-            f"{alarme.alertas_pegos} de {alarme.semanas_de_alerta} · "
-            f"{numeros.formatar_percentual(alarme.sensibilidade(), 1)}",
-        ),
     ]
+
+    # ── Tabela da direita: a mesma faixa, na pergunta em que ele vai BEM ────
+    #
+    # Fica em tabela separada, e não como mais uma linha da tabela ao lado,
+    # porque são perguntas diferentes medidas em unidades diferentes. Junto,
+    # o alarme parecia mais uma métrica de calibração; separado, ele lê como
+    # o contraponto que de fato é.
+    cabecalhos_do_alarme = [
+        "",
+        _celula_colorida("Nas semanas de Alerta", COR_DO_ALARME_QUE_FUNCIONA),
+    ]
+    linhas_do_alarme = [
+        [
+            "<b>Pega quantos Alertas</b>",
+            _celula_colorida_com_destaque(
+                f"{alarme.alertas_pegos} de {alarme.semanas_de_alerta} · "
+                f"{numeros.formatar_percentual(alarme.sensibilidade(), 1)}",
+                COR_DO_ALARME_QUE_FUNCIONA,
+                True,
+            ),
+        ],
+        [
+            "<b>Precisão</b>",
+            _celula_colorida_com_destaque(
+                numeros.formatar_percentual(alarme.precisao, 0),
+                COR_DO_ALARME_QUE_FUNCIONA,
+                True,
+            ),
+        ],
+        [
+            "<b>Alarmes falsos</b>",
+            _celula_colorida_com_destaque(
+                "nenhum", COR_DO_ALARME_QUE_FUNCIONA, True
+            ),
+        ],
+    ]
+
+    as_duas_tabelas = (
+        '<div class="deckTabelasLadoALado">'
+        '<div><p class="deckTabelaRotulo" style="color:var(--tinta)">'
+        "Prever <u>quantos casos</u></p>"
+        f"{layout.montar_tabela(cabecalhos_da_previsao, linhas_da_previsao)}</div>"
+        f'<div><p class="deckTabelaRotulo" style="color:{COR_DO_ALARME_QUE_FUNCIONA}">'
+        "Dizer <u>se passa de 421</u></p>"
+        f"{layout.montar_tabela(cabecalhos_do_alarme, linhas_do_alarme)}</div>"
+        "</div>"
+    )
 
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="O modelo sabe que o surto vem — não sabe de que tamanho",
+        titulo="A previsão do número não serve — o alarme serve",
         rotulo_curto="O que falta",
         corpo=(
-            layout.montar_tabela(cabecalhos, linhas)
+            as_duas_tabelas
             + '<p class="deckNotaDeGrafico">⚠️ <b>A causa é viés, não '
             "variância:</b> o modelo subestima o pico de forma sistemática. "
             "Alargar a faixa não conserta, e mudar a escala (raiz, log) "
-            "<b>piorou</b> em todas as faixas. É por isso que o projeto passou a "
-            "tratar o modelo como <b>alarme</b>, e não como previsão de número.</p>"
+            "<b>piorou</b> em todas as faixas. É a razão de o projeto tratar o "
+            "modelo como <b>alarme</b>, e não como previsão de número.</p>"
         ),
         nota=(
-            "🔴 <b>Este slide desce a moral, e é de propósito — mas a última linha "
-            "impede a leitura errada.</b> Sem ela, a tabela sugere que o método "
-            "falhou; com ela, fica claro o que falhou: prever <b>quanto</b>. "
-            "Dizer: no pico de 2025 o modelo disse <b>no máximo 1.118 casos, com 90% "
-            "de confiança</b>, e vieram <b>2.381</b>. ⚠️ Tudo em <b>2 meses</b>, nas "
-            "102 semanas da avaliação — as 28 de Alerta são as mesmas do slide do "
-            "alarme. ⚠️ O erro mediano de 971 sobre 1.428 é da previsão central. "
+            "🔴 <b>A tabela da esquerda é para chocar, e não deve ser suavizada.</b> "
+            "Dizer: no pico de 2025 o modelo prometeu <b>no máximo 1.118 casos, com "
+            "90% de confiança</b>, e vieram <b>2.381</b>. O intervalo de 50% acerta "
+            "<b>3,6%</b> — ele é quase decorativo onde a decisão acontece. "
+            "🟢 <b>E então a da direita:</b> o mesmo modelo, no mesmo horizonte e nas "
+            "mesmas 28 semanas, pega <b>24 dos 28 Alertas sem um único alarme "
+            "falso</b>. Não saber o tamanho não impede saber que vem — e é isso que "
+            "a metodologia propõe. ⚠️ Tudo em <b>2 meses</b>, nas 102 semanas da "
+            "avaliação; as 28 de Alerta são as mesmas do slide do alarme. "
             "⚠️ <b>Os meses entre parênteses são equivalência, não período</b>: as "
             "semanas não são seguidas — as de calmaria são as entressafras e as de "
             "Alerta formam dois blocos, um por epidemia. Não dizer 'durante seis "
-            "meses'. "
-            "Se perguntarem por que não alargamos o intervalo: porque medimos, e o "
-            "problema não é a largura, é o centro."
+            "meses'. Se perguntarem por que não alargamos o intervalo: porque "
+            "medimos, e o problema não é a largura, é o centro."
         ),
         e_denso=True,
     )
