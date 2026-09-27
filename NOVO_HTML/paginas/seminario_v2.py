@@ -1201,14 +1201,15 @@ def _slide_onde_ainda_falha() -> deck.Slide:
             "meses)</span>"
         )
 
-    # ── Tabela da esquerda: a pergunta em que o modelo vai MAL ──────────────
+    # Uma tabela só, no formato que o Vinicius aprovou: rótulo, calmaria e
+    # Alerta. As quatro primeiras linhas são a pergunta em que o modelo vai MAL,
+    # sem suavizar nada — é a concessão que compra credibilidade para a última.
     #
-    # ⚠️ Nada aqui é suavizado, de propósito. O Vinicius pediu em 27/09/2026 que
-    # estes números fossem "chocantes, mostrando que está ruim mesmo": é a
-    # concessão que compra credibilidade para a tabela ao lado. Uma versão
-    # anterior deste slide fundiu as duas perguntas nas mesmas linhas e acabou
-    # escondendo a cobertura de 50%, que é o número mais duro dos três.
-    cabecalhos_da_previsao = [
+    # ⚠️ O alarme entra como LINHA, e não como par de colunas dentro de cada
+    # faixa. Quatro colunas deixariam metade das células vazias: o alarme não
+    # tem "intervalo de 90%" e a previsão não tem "alarmes falsos". Como linha
+    # destacada, a virada aparece sem buraco na grade.
+    cabecalhos = [
         "",
         _celula_colorida(calmaria.rotulo, COR_DA_CALMARIA),
         _celula_colorida(alerta.rotulo, COR_DO_ALERTA),
@@ -1221,7 +1222,7 @@ def _slide_onde_ainda_falha() -> deck.Slide:
             _celula_colorida_com_destaque(do_alerta, COR_DO_ALERTA, True),
         ]
 
-    linhas_da_previsao = [
+    linhas_da_tabela = [
         ["<b>Semanas avaliadas</b>"]
         + [
             _celula_colorida(
@@ -1247,61 +1248,32 @@ def _slide_onde_ainda_falha() -> deck.Slide:
             f"{numeros.formatar_decimal(alerta.erro_mediano, 0)} sobre "
             f"{numeros.formatar_decimal(alerta.nivel_mediano, 0)} reais",
         ),
-    ]
-
-    # ── Tabela da direita: a mesma faixa, na pergunta em que ele vai BEM ────
-    #
-    # Fica em tabela separada, e não como mais uma linha da tabela ao lado,
-    # porque são perguntas diferentes medidas em unidades diferentes. Junto,
-    # o alarme parecia mais uma métrica de calibração; separado, ele lê como
-    # o contraponto que de fato é.
-    cabecalhos_do_alarme = [
-        "",
-        _celula_colorida("Nas semanas de Alerta", COR_DO_ALARME_QUE_FUNCIONA),
-    ]
-    linhas_do_alarme = [
+        # A virada do slide, em verde e dentro do retângulo de linha destacada.
         [
-            "<b>Pega quantos Alertas</b>",
+            '<b>O alarme de surto acerta</b><span class="deckSubrotulo">'
+            "a mesma previsão, na pergunta binária</span>",
+            _celula_colorida_com_destaque(
+                "nenhum alarme falso", COR_DO_ALARME_QUE_FUNCIONA, True
+            ),
             _celula_colorida_com_destaque(
                 f"{alarme.alertas_pegos} de {alarme.semanas_de_alerta} · "
-                f"{numeros.formatar_percentual(alarme.sensibilidade(), 1)}",
+                f"{numeros.formatar_percentual(alarme.sensibilidade(), 1)} · "
+                f"precisão {numeros.formatar_percentual(alarme.precisao, 0)}",
                 COR_DO_ALARME_QUE_FUNCIONA,
                 True,
-            ),
-        ],
-        [
-            "<b>Precisão</b>",
-            _celula_colorida_com_destaque(
-                numeros.formatar_percentual(alarme.precisao, 0),
-                COR_DO_ALARME_QUE_FUNCIONA,
-                True,
-            ),
-        ],
-        [
-            "<b>Alarmes falsos</b>",
-            _celula_colorida_com_destaque(
-                "nenhum", COR_DO_ALARME_QUE_FUNCIONA, True
             ),
         ],
     ]
-
-    as_duas_tabelas = (
-        '<div class="deckTabelasLadoALado">'
-        '<div><p class="deckTabelaRotulo" style="color:var(--tinta)">'
-        "Prever <u>quantos casos</u></p>"
-        f"{layout.montar_tabela(cabecalhos_da_previsao, linhas_da_previsao)}</div>"
-        f'<div><p class="deckTabelaRotulo" style="color:{COR_DO_ALARME_QUE_FUNCIONA}">'
-        "Dizer <u>se passa de 421</u></p>"
-        f"{layout.montar_tabela(cabecalhos_do_alarme, linhas_do_alarme)}</div>"
-        "</div>"
-    )
+    classes_das_linhas = ["", "", "", "", "linhaVencedora"]
 
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
         titulo="A previsão do número não serve — o alarme serve",
         rotulo_curto="O que falta",
         corpo=(
-            as_duas_tabelas
+            layout.montar_tabela(
+                cabecalhos, linhas_da_tabela, classes_das_linhas=classes_das_linhas
+            )
             + '<p class="deckNotaDeGrafico">⚠️ <b>A causa é viés, não '
             "variância:</b> o modelo subestima o pico de forma sistemática. "
             "Alargar a faixa não conserta, e mudar a escala (raiz, log) "
@@ -1309,14 +1281,15 @@ def _slide_onde_ainda_falha() -> deck.Slide:
             "modelo como <b>alarme</b>, e não como previsão de número.</p>"
         ),
         nota=(
-            "🔴 <b>A tabela da esquerda é para chocar, e não deve ser suavizada.</b> "
-            "Dizer: no pico de 2025 o modelo prometeu <b>no máximo 1.118 casos, com "
-            "90% de confiança</b>, e vieram <b>2.381</b>. O intervalo de 50% acerta "
-            "<b>3,6%</b> — ele é quase decorativo onde a decisão acontece. "
-            "🟢 <b>E então a da direita:</b> o mesmo modelo, no mesmo horizonte e nas "
-            "mesmas 28 semanas, pega <b>24 dos 28 Alertas sem um único alarme "
-            "falso</b>. Não saber o tamanho não impede saber que vem — e é isso que "
-            "a metodologia propõe. ⚠️ Tudo em <b>2 meses</b>, nas 102 semanas da "
+            "🔴 <b>As quatro primeiras linhas são para chocar, e não devem ser "
+            "suavizadas.</b> Dizer: no pico de 2025 o modelo prometeu <b>no máximo "
+            "1.118 casos, com 90% de confiança</b>, e vieram <b>2.381</b>. O "
+            "intervalo de 50% acerta <b>3,6%</b> — ele é quase decorativo onde a "
+            "decisão acontece. 🟢 <b>E então a última linha, a verde:</b> a mesma "
+            "previsão, no mesmo horizonte e nas mesmas 28 semanas, pega <b>24 dos 28 "
+            "Alertas sem um único alarme falso</b>. Não saber o tamanho não impede "
+            "saber que vem — e é isso que a metodologia propõe. "
+            "⚠️ Tudo em <b>2 meses</b>, nas 102 semanas da "
             "avaliação; as 28 de Alerta são as mesmas do slide do alarme. "
             "⚠️ <b>Os meses entre parênteses são equivalência, não período</b>: as "
             "semanas não são seguidas — as de calmaria são as entressafras e as de "
