@@ -439,6 +439,13 @@ code.nomeColuna{white-space:nowrap}
 .deckFluxoSeta{display:flex; align-items:center; font-size:2.6rem;
   color:var(--acento); font-weight:300}
 
+/* Duas tabelas lado a lado, para comparar dois sistemas sem empilhar colunas
+   pareadas numa tabela so — que foi o que confundiu na primeira versao. */
+.deckTabelasLadoALado{display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  align-items:start}
+.deckTabelaRotulo{margin:0 0 5px; font-size:.78rem; font-weight:700;
+  letter-spacing:.04em; text-transform:uppercase}
+
 /* Índice horizontal: uma trilha contínua com um marcador por tópico. A linha
    cinza atravessa tudo; a linha azul por cima cresce conforme a apresentação
    avança, e é o JS que mede a largura dela. Tópico já visto fica com o

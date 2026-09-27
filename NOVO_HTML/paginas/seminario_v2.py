@@ -692,30 +692,39 @@ def _slide_alarme_do_composto() -> deck.Slide:
     for linha in numeros.ALARME_DO_COMPOSTO:
         por_braco.setdefault(linha.braco, {})[linha.rotulo] = linha
 
+    cores = [cor for _, cor, _, _ in MEDIDAS_DO_ALARME]
     cabecalhos = ["Horizonte"] + [
         _celula_colorida(rotulo, cor) for rotulo, cor, _, _ in MEDIDAS_DO_ALARME
-    ] + ["Deixa passar"]
+    ]
 
-    linhas = []
-    for rotulo in ROTULOS_DOS_HORIZONTES:
-        do_composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
-        total = numeros.SURTOS_POR_HORIZONTE[rotulo]
-        cor_pega, cor_precisao, cor_falsos = (cor for _, cor, _, _ in MEDIDAS_DO_ALARME)
-        linhas.append(
-            [
-                f"<b>{layout.escapar(rotulo)}</b>",
-                _celula_colorida(
-                    numeros.formatar_percentual(do_composto.sensibilidade, 1), cor_pega
-                ),
-                _celula_colorida(
-                    numeros.formatar_percentual(do_composto.precisao, 1), cor_precisao
-                ),
-                _celula_colorida(
-                    numeros.formatar_decimal(do_composto.falsos_por_ano, 1), cor_falsos
-                ),
-                f"{do_composto.surtos_perdidos} de {total}",
-            ]
-        )
+    def montar_tabela_de_um_braco(nome_do_braco: str) -> str:
+        """Monta a tabela das tres medidas para um braco, nos 4 horizontes."""
+        linhas_do_braco = []
+        for rotulo in ROTULOS_DOS_HORIZONTES:
+            medidas = por_braco[nome_do_braco][rotulo]
+            valores = (
+                numeros.formatar_percentual(medidas.sensibilidade, 1),
+                numeros.formatar_percentual(medidas.precisao, 1),
+                numeros.formatar_decimal(medidas.falsos_por_ano, 1),
+            )
+            linhas_do_braco.append(
+                [f"<b>{layout.escapar(rotulo)}</b>"]
+                + [_celula_colorida(valor, cor) for valor, cor in zip(valores, cores)]
+            )
+        return layout.montar_tabela(cabecalhos, linhas_do_braco)
+
+    # Duas tabelas lado a lado, em vez de colunas pareadas numa so: o titulo do
+    # slide afirma que o composto vence a regua, e sem os dois numeros na tela
+    # essa afirmacao so apareceria nos graficos.
+    as_duas_tabelas = (
+        '<div class="deckTabelasLadoALado">'
+        f'<div><p class="deckTabelaRotulo" style="color:var(--acento)">Modelo composto</p>'
+        f"{montar_tabela_de_um_braco(numeros.NOME_DO_COMPOSTO)}</div>"
+        f'<div><p class="deckTabelaRotulo" style="color:{COR_DA_REGUA_SAZONAL}">'
+        f"Régua sazonal</p>"
+        f"{montar_tabela_de_um_braco(numeros.NOME_DA_REGUA)}</div>"
+        "</div>"
+    )
 
     graficos_das_medidas = "".join(
         _grafico_de_uma_medida_do_alarme(rotulo, cor, posicao)
@@ -727,7 +736,7 @@ def _slide_alarme_do_composto() -> deck.Slide:
         titulo="Como alarme de Alerta, o composto vence a régua até 2 meses",
         rotulo_curto="Alarme do composto",
         corpo=(
-            layout.montar_tabela(cabecalhos, linhas)
+            as_duas_tabelas
             + f'<div class="graficosLadoALado">{graficos_das_medidas}</div>'
         ),
         nota=(
