@@ -419,7 +419,7 @@ SCRIPT_DO_DECK = """
 """
 
 
-def _indice_horizontal(slides: list[Slide]) -> str:
+def _indice_horizontal(slides: list[Slide], mostrar_rotulos: bool = True) -> str:
     """A trilha de progresso no topo do palco, com um marcador por slide.
 
     Cada marcador traz o tópico em cima e o nome curto do slide embaixo, para
@@ -428,6 +428,14 @@ def _indice_horizontal(slides: list[Slide]) -> str:
 
     Args:
         slides: Os slides, na ordem da apresentação.
+        mostrar_rotulos: Quando False, a trilha fica só com as bolinhas, sem
+            tópico nem nome de slide.
+
+            ⚠️ Existe porque num deck longo os rótulos poluem mais do que
+            orientam: o tópico se repetia onze vezes seguidas e os nomes
+            curtos não cabiam, saindo truncados com reticências. Só as
+            bolinhas dizem o que importa na trilha — onde estou e quanto
+            falta. O tópico e o título continuam no próprio slide.
 
     Returns:
         O HTML da trilha, ou string vazia se nenhum slide tiver tópico.
@@ -442,10 +450,15 @@ def _indice_horizontal(slides: list[Slide]) -> str:
         itens.append(
             f'<div class="deckIndiceItem" data-slide="{posicao}">'
             '<span class="deckIndiceMarca"></span>'
-            '<span class="deckIndiceRotulos">'
-            f'<span class="deckIndiceTopico">{layout.escapar(slide.topico)}</span>'
-            f'<span class="deckIndiceTexto">{layout.escapar(nome_curto)}</span>'
-            "</span></div>"
+            + (
+                '<span class="deckIndiceRotulos">'
+                f'<span class="deckIndiceTopico">{layout.escapar(slide.topico)}</span>'
+                f'<span class="deckIndiceTexto">{layout.escapar(nome_curto)}</span>'
+                "</span>"
+                if mostrar_rotulos
+                else ""
+            )
+            + "</div>"
         )
 
     if not itens:
@@ -460,11 +473,13 @@ def _indice_horizontal(slides: list[Slide]) -> str:
     )
 
 
-def montar(slides: list[Slide]) -> str:
+def montar(slides: list[Slide], mostrar_rotulos: bool = True) -> str:
     """Monta o deck inteiro: palco, slides e barra de navegação.
 
     Args:
         slides: Os slides, na ordem da apresentação.
+        mostrar_rotulos: Repassado à trilha de progresso. False deixa a
+            trilha só com as bolinhas.
 
     Returns:
         O HTML do deck.
@@ -524,7 +539,7 @@ def montar(slides: list[Slide]) -> str:
     return (
         '<div class="deck">'
         '<div class="deckPalco">'
-        f"{_indice_horizontal(slides)}"
+        f"{_indice_horizontal(slides, mostrar_rotulos)}"
         f'<div class="deckTela">{"".join(blocos_de_slide)}</div>'
         "</div>"
         f"{barra}"

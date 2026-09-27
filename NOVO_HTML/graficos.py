@@ -9,6 +9,7 @@ tema novo do site.
 
 import dataclasses
 import datetime
+import re
 
 import layout
 import mlflow_leitor
@@ -29,10 +30,10 @@ COR_DO_EIXO_ACIMA_DO_ZERO = "#1F7A4D"
 COR_DO_EIXO_ABAIXO_DO_ZERO = "#C0392B"
 COR_DA_LINHA_DO_ZERO = "#9AA5B4"
 
-# Faixas de fundo que separam o que esta acima do zero do que esta abaixo.
-# A opacidade e baixa de proposito: elas sao PANO DE FUNDO, e nao podem
-# competir com as curvas nem com a grade.
-OPACIDADE_DAS_FAIXAS_DO_SINAL = 0.07
+# Preenchimento da area entre a curva e o zero. Mais opaco que um pano de
+# fundo porque e area recortada, e nao faixa cheia — mas ainda translucido,
+# para a grade e a curva continuarem visiveis por baixo.
+OPACIDADE_DA_AREA_ATE_O_ZERO = 0.18
 
 
 def _cor_do_numero_do_eixo(valor: float) -> str:
@@ -346,7 +347,7 @@ def montar_grafico_de_linhas(
     marco_vertical: tuple[float, str] | None = None,
     tamanho_do_desenho: tuple[int, int] = (720, 250),
     eixo_y_destaca_o_sinal: bool = False,
-    pintar_faixas_do_sinal: bool = False,
+    pintar_area_ate_o_zero: bool = False,
 ) -> str:
     """Desenha um gráfico de linhas em SVG a partir de várias séries de pontos.
 
@@ -394,15 +395,17 @@ def montar_grafico_de_linhas(
             A linha do zero só aparece quando o zero cai dentro da faixa do
             gráfico. Num gráfico só de valores positivos, pedir o destaque
             colore os números e não desenha linha nenhuma.
-        pintar_faixas_do_sinal: Quando True, o fundo do gráfico ganha duas
-            faixas: verde do zero para cima e vermelha do zero para baixo.
-            Serve para deixar óbvio, de relance, em que lado cada trecho da
-            curva está — e sobretudo ONDE ela cruza.
+        pintar_area_ate_o_zero: Quando True, a área entre a curva principal
+            e a linha do zero é preenchida — verde no trecho que está acima do
+            zero, vermelha no que está abaixo. É o que torna visível, de
+            relance, ONDE a curva cruza e quanto de cada lado ela ocupa.
 
-            ⚠️ É separado de `eixo_y_destaca_o_sinal` de propósito: pintar o
-            fundo é uma escolha visual mais forte, e há gráficos que querem o
-            zero marcado sem o fundo colorido. Como as faixas ficam atrás de
-            tudo, elas não mudam a leitura das curvas.
+            Só a série principal recebe o preenchimento: as tracejadas são
+            referência, e preencher as duas sobreporia as áreas.
+
+            ⚠️ É separado de `eixo_y_destaca_o_sinal` de propósito: preencher
+            é uma escolha visual mais forte, e há gráficos que querem o zero
+            marcado sem área pintada.
 
     Returns:
         O HTML do gráfico (SVG + legenda), ou string vazia se não houver
@@ -440,25 +443,6 @@ def montar_grafico_de_linhas(
         f'aria-label="{layout.escapar(rotulo_y)} por {layout.escapar(rotulo_x)}">'
     ]
 
-    # As faixas vem ANTES da grade e das curvas, para ficarem atras de tudo.
-    if pintar_faixas_do_sinal and minimo_y < 0 < maximo_y:
-        y_do_zero = posicao_y(0.0)
-        largura_da_area = largura - margem_direita - margem_esquerda
-        altura_acima = y_do_zero - margem_topo
-        altura_abaixo = (altura - margem_base) - y_do_zero
-        partes_do_svg.append(
-            f'<rect x="{margem_esquerda}" y="{margem_topo}" '
-            f'width="{largura_da_area}" height="{altura_acima:.1f}" '
-            f'fill="{COR_DO_EIXO_ACIMA_DO_ZERO}" '
-            f'fill-opacity="{OPACIDADE_DAS_FAIXAS_DO_SINAL}"/>'
-        )
-        partes_do_svg.append(
-            f'<rect x="{margem_esquerda}" y="{y_do_zero:.1f}" '
-            f'width="{largura_da_area}" height="{altura_abaixo:.1f}" '
-            f'fill="{COR_DO_EIXO_ABAIXO_DO_ZERO}" '
-            f'fill-opacity="{OPACIDADE_DAS_FAIXAS_DO_SINAL}"/>'
-        )
-
     # Grade horizontal + números do eixo Y.
     for passo in range(5):
         valor_do_passo = minimo_y + (maximo_y - minimo_y) * passo / 4
@@ -492,6 +476,48 @@ def montar_grafico_de_linhas(
             f'<text x="{margem_esquerda - 8}" y="{y_do_zero + 3:.1f}" text-anchor="end" '
             f'fill="{COR_DO_TEXTO_DO_EIXO}" font-size="11" font-weight="700">0</text>'
         )
+
+    # A area entre a curva principal e o zero, recortada em duas metades para
+    # cada trecho sair na cor do seu lado. Vem depois da grade e antes das
+    # curvas, para ficar atras delas.
+    if pintar_area_ate_o_zero and minimo_y < 0 < maximo_y:
+        tracejadas = series_tracejadas if series_tracejadas else set()
+        principais = [nome for nome in series_com_dado if nome not in tracejadas]
+        if principais:
+            pontos_da_principal = series_com_dado[principais[0]]
+            y_do_zero = posicao_y(0.0)
+            vertices = " ".join(
+                f"{posicao_x(x):.1f},{posicao_y(y):.1f}" for x, y in pontos_da_principal
+            )
+            x_inicial = posicao_x(pontos_da_principal[0][0])
+            x_final = posicao_x(pontos_da_principal[-1][0])
+            fechamento = f"{x_final:.1f},{y_do_zero:.1f} {x_inicial:.1f},{y_do_zero:.1f}"
+
+            identificador = re.sub(r"[^a-z0-9]+", "-", rotulo_y.lower()).strip("-")
+            largura_util = largura - margem_direita - margem_esquerda
+            recortes = (
+                ("acima", COR_DO_EIXO_ACIMA_DO_ZERO, margem_topo, y_do_zero - margem_topo),
+                (
+                    "abaixo",
+                    COR_DO_EIXO_ABAIXO_DO_ZERO,
+                    y_do_zero,
+                    (altura - margem_base) - y_do_zero,
+                ),
+            )
+            for lado, cor_da_area, topo, altura_do_recorte in recortes:
+                nome_do_recorte = f"recorte-{identificador}-{lado}"
+                partes_do_svg.append(
+                    f'<clipPath id="{nome_do_recorte}">'
+                    f'<rect x="{margem_esquerda}" y="{topo:.1f}" '
+                    f'width="{largura_util}" height="{max(altura_do_recorte, 0):.1f}"/>'
+                    "</clipPath>"
+                )
+                partes_do_svg.append(
+                    f'<polygon points="{vertices} {fechamento}" '
+                    f'fill="{cor_da_area}" '
+                    f'fill-opacity="{OPACIDADE_DA_AREA_ATE_O_ZERO}" '
+                    f'clip-path="url(#{nome_do_recorte})"/>'
+                )
 
     # Números do eixo X (os horizontes).
     for x in todos_os_x:
