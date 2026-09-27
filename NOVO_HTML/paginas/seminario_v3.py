@@ -54,6 +54,11 @@ TOPICO_OBJETIVO = "Objetivo"
 TOPICO_DADOS = "Dados"
 TOPICO_CENARIOS = "Cenários"
 TOPICO_RESULTADOS = "Resultados"
+# Os tres slides que assumem o que o modelo ainda nao faz. Separa-los de
+# RESULTADOS e escolha de narrativa: a parte que sobe a moral e a que a
+# desce param de dividir o mesmo rotulo, e a plateia ve na trilha que a
+# apresentacao mudou de tom.
+TOPICO_LIMITACOES = "Limitações"
 TOPICO_PROXIMOS = "Próximos passos"
 
 # O que a agenda lista. A capa e a própria agenda ficam de fora: elas situam a
@@ -1420,7 +1425,7 @@ def _slide_onde_ainda_falha() -> deck.Slide:
     classes_das_linhas = ["", "", "", "linhaVencedora"]
 
     return deck.Slide(
-        topico=TOPICO_RESULTADOS,
+        topico=TOPICO_LIMITACOES,
         titulo="A previsão do número não serve — o alarme serve",
         rotulo_curto="O que falta",
         corpo=(
@@ -1549,7 +1554,7 @@ def _slide_literatura() -> deck.Slide:
     )
 
     return deck.Slide(
-        topico=TOPICO_RESULTADOS,
+        topico=TOPICO_LIMITACOES,
         titulo="Ganhamos de quem mediu a mesma cidade, e perdemos para 10 anos de série",
         rotulo_curto="A literatura",
         corpo=as_duas_tabelas,
@@ -1663,7 +1668,7 @@ def _slide_limitacao_de_2026() -> deck.Slide:
     )
 
     return deck.Slide(
-        topico=TOPICO_RESULTADOS,
+        topico=TOPICO_LIMITACOES,
         titulo="A limitação: o modelo não sabe quem já teve dengue",
         rotulo_curto="A limitação",
         corpo=as_duas_tabelas,
