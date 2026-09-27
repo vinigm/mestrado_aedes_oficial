@@ -1153,7 +1153,7 @@ def _grafico_do_vetor(
         series_tracejadas={NOME_DA_LINHA_DA_FOLHA_5},
         tamanho_do_desenho=TAMANHO_DO_DESENHO_DO_VETOR,
         eixo_y_destaca_o_sinal=destacar_o_sinal,
-        pintar_area_ate_o_zero=destacar_o_sinal,
+        pintar_faixas_do_sinal=destacar_o_sinal,
     )
 
 
@@ -1762,10 +1762,10 @@ def montar_metricas() -> list[layout.Metrica]:
 def montar_corpo() -> str:
     """Só o deck: a página inteira é a apresentação.
 
-    A trilha vai só com as bolinhas. Com dezenove slides, os rótulos poluíam
-    mais do que orientavam: o tópico se repetia onze vezes seguidas e os nomes
-    curtos saíam truncados com reticências. As bolinhas dizem o que a trilha
-    precisa dizer — onde estou e quanto falta. O tópico e o título continuam
-    no próprio slide.
+    Vai em **estilo de projeção**: trilha só com bolinhas, embaixo do slide,
+    e palco sem moldura. Com dezenove slides os rótulos poluíam mais do que
+    orientavam — o tópico se repetia onze vezes seguidas e os nomes curtos
+    saíam truncados. As bolinhas dizem o que a trilha precisa dizer: onde
+    estou e quanto falta. O tópico e o título continuam no próprio slide.
     """
-    return deck.montar(montar_slides(), mostrar_rotulos=False)
+    return deck.montar(montar_slides(), estilo_de_projecao=True)

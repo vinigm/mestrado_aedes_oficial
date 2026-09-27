@@ -384,6 +384,12 @@ code.nomeColuna{white-space:nowrap}
   aspect-ratio:16/9; min-height:440px;
   display:flex; flex-direction:column}
 
+/* Palco sem moldura: sai a borda, o arredondamento e a sombra, e o slide
+   passa a ocupar a tela sem o contorno de cartao. Num deck que vai a projecao
+   a moldura nao serve para nada — ela so existe para separar o deck do resto
+   da pagina, e numa apresentacao nao ha resto. */
+.deckPalco.semMoldura{border:none; border-radius:0; box-shadow:none}
+
 .deckTela{position:relative; flex:1 1 auto; min-height:0; overflow:hidden}
 
 /* O slide e uma TELA FIXA de 1280x720, como um slide de apresentacao de
@@ -509,6 +515,17 @@ code.nomeColuna{white-space:nowrap}
 .deckIndiceItem.atual .deckIndiceMarca{background:var(--acento);
   border-color:var(--acento); transform:scale(1.35);
   box-shadow:0 0 0 4px rgba(27,110,243,.16)}
+
+/* Trilha so com bolinhas: alem de perder os rotulos, ela perde tambem o azul
+   forte. Sem texto ao redor, a linha cheia no acento virava o elemento mais
+   chamativo da tela, competindo com o proprio slide. Aqui ela fica num azul
+   bem mais claro — continua legivel como progresso, e para de gritar. */
+.deckIndice.soBolinhas .deckIndiceProgresso{background:#A9C9F7}
+.deckIndice.soBolinhas .deckIndiceItem.passado .deckIndiceMarca{
+  background:#A9C9F7; border-color:#A9C9F7}
+.deckIndice.soBolinhas .deckIndiceItem.atual .deckIndiceMarca{
+  background:#7FAEF2; border-color:#7FAEF2;
+  box-shadow:0 0 0 4px rgba(27,110,243,.10)}
 
 .deckIndiceRotulos{display:flex; flex-direction:column; align-items:center;
   gap:1px; max-width:100%; min-width:0}

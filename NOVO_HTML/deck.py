@@ -52,6 +52,12 @@ FOLHA_DE_ESTILO_DO_DECK = """
   aspect-ratio:16/9; min-height:440px;
   display:flex; flex-direction:column}
 
+/* Palco sem moldura: sai a borda, o arredondamento e a sombra, e o slide
+   passa a ocupar a tela sem o contorno de cartao. Num deck que vai a projecao
+   a moldura nao serve para nada — ela so existe para separar o deck do resto
+   da pagina, e numa apresentacao nao ha resto. */
+.deckPalco.semMoldura{border:none; border-radius:0; box-shadow:none}
+
 .deckTela{position:relative; flex:1 1 auto; min-height:0; overflow:hidden}
 
 /* O slide e uma TELA FIXA de 1280x720, como um slide de apresentacao de
@@ -177,6 +183,17 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckIndiceItem.atual .deckIndiceMarca{background:var(--acento);
   border-color:var(--acento); transform:scale(1.35);
   box-shadow:0 0 0 4px rgba(27,110,243,.16)}
+
+/* Trilha so com bolinhas: alem de perder os rotulos, ela perde tambem o azul
+   forte. Sem texto ao redor, a linha cheia no acento virava o elemento mais
+   chamativo da tela, competindo com o proprio slide. Aqui ela fica num azul
+   bem mais claro — continua legivel como progresso, e para de gritar. */
+.deckIndice.soBolinhas .deckIndiceProgresso{background:#A9C9F7}
+.deckIndice.soBolinhas .deckIndiceItem.passado .deckIndiceMarca{
+  background:#A9C9F7; border-color:#A9C9F7}
+.deckIndice.soBolinhas .deckIndiceItem.atual .deckIndiceMarca{
+  background:#7FAEF2; border-color:#7FAEF2;
+  box-shadow:0 0 0 4px rgba(27,110,243,.10)}
 
 .deckIndiceRotulos{display:flex; flex-direction:column; align-items:center;
   gap:1px; max-width:100%; min-width:0}
@@ -464,8 +481,9 @@ def _indice_horizontal(slides: list[Slide], mostrar_rotulos: bool = True) -> str
     if not itens:
         return ""
 
+    classe_do_indice = "deckIndice" if mostrar_rotulos else "deckIndice soBolinhas"
     return (
-        '<div class="deckIndice">'
+        f'<div class="{classe_do_indice}">'
         '<div class="deckIndiceTrilha"></div>'
         '<div class="deckIndiceProgresso" id="deckIndiceProgresso"></div>'
         f'{"".join(itens)}'
@@ -473,13 +491,20 @@ def _indice_horizontal(slides: list[Slide], mostrar_rotulos: bool = True) -> str
     )
 
 
-def montar(slides: list[Slide], mostrar_rotulos: bool = True) -> str:
+def montar(slides: list[Slide], estilo_de_projecao: bool = False) -> str:
     """Monta o deck inteiro: palco, slides e barra de navegação.
 
     Args:
         slides: Os slides, na ordem da apresentação.
-        mostrar_rotulos: Repassado à trilha de progresso. False deixa a
-            trilha só com as bolinhas.
+        estilo_de_projecao: Quando True, o deck é montado para ser
+            projetado, e não para ser lido dentro do site. Três coisas mudam
+            juntas, e elas só fazem sentido juntas:
+
+              - a trilha perde os rótulos e fica só com as bolinhas;
+              - o palco perde a borda, o arredondamento e a sombra de cartão,
+                porque numa apresentação não há o que separar do deck;
+              - a trilha desce para baixo do slide, onde não disputa a
+                entrada de leitura com o título.
 
     Returns:
         O HTML do deck.
@@ -487,6 +512,8 @@ def montar(slides: list[Slide], mostrar_rotulos: bool = True) -> str:
     Raises:
         ValueError: Se a lista vier vazia, caso em que não há o que montar.
     """
+    classe_do_palco = "deckPalco semMoldura" if estilo_de_projecao else "deckPalco"
+
     if not slides:
         raise ValueError("Um deck precisa de pelo menos um slide.")
 
@@ -538,10 +565,13 @@ def montar(slides: list[Slide], mostrar_rotulos: bool = True) -> str:
 
     return (
         '<div class="deck">'
-        '<div class="deckPalco">'
-        f"{_indice_horizontal(slides, mostrar_rotulos)}"
-        f'<div class="deckTela">{"".join(blocos_de_slide)}</div>'
-        "</div>"
+        f'<div class="{classe_do_palco}">'
+        # Na projeção a trilha vai DEPOIS do slide: em cima, ela disputava a
+        # entrada de leitura com o tópico e o título.
+        + (f"{_indice_horizontal(slides, not estilo_de_projecao)}" if not estilo_de_projecao else "")
+        + f'<div class="deckTela">{"".join(blocos_de_slide)}</div>'
+        + (f"{_indice_horizontal(slides, False)}" if estilo_de_projecao else "")
+        + "</div>"
         f"{barra}"
         "</div>"
     )
