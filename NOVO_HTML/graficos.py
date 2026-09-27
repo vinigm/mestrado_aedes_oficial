@@ -21,6 +21,31 @@ CORES_DAS_SERIES = ["#1B6EF3", "#C0392B", "#1F7A4D", "#B4761C", "#6B7A8C", "#8E4
 # Cor da grade e do texto dos eixos, também do tema novo (--borda e --muted).
 COR_DA_GRADE = "#E3E8EE"
 COR_DO_TEXTO_DO_EIXO = "#6B7A8C"
+
+# Cores dos números do eixo Y quando o gráfico mede algo que muda de sinal, e o
+# sinal é o que interessa — um ganho, por exemplo, em que negativo significa
+# que a variável testada atrapalhou. Só entram com `eixo_y_destaca_o_sinal`.
+COR_DO_EIXO_ACIMA_DO_ZERO = "#1F7A4D"
+COR_DO_EIXO_ABAIXO_DO_ZERO = "#C0392B"
+COR_DA_LINHA_DO_ZERO = "#9AA5B4"
+
+
+def _cor_do_numero_do_eixo(valor: float) -> str:
+    """Diz em que cor um número do eixo Y aparece, pelo sinal dele.
+
+    Args:
+        valor: O valor daquela marca do eixo.
+
+    Returns:
+        Verde acima de zero, vermelho abaixo, e a cor neutra no próprio zero.
+    """
+    if valor > 0:
+        return COR_DO_EIXO_ACIMA_DO_ZERO
+
+    if valor < 0:
+        return COR_DO_EIXO_ABAIXO_DO_ZERO
+
+    return COR_DO_TEXTO_DO_EIXO
 COR_DO_TEXTO_PRINCIPAL = "#16202C"  # mesma tinta de --tinta, em tema.py
 
 # Largura máxima do envelope de um gráfico de barras. Maior que a dos
@@ -315,6 +340,7 @@ def montar_grafico_de_linhas(
     series_tracejadas: set[str] | None = None,
     marco_vertical: tuple[float, str] | None = None,
     tamanho_do_desenho: tuple[int, int] = (720, 250),
+    eixo_y_destaca_o_sinal: bool = False,
 ) -> str:
     """Desenha um gráfico de linhas em SVG a partir de várias séries de pontos.
 
@@ -352,6 +378,16 @@ def montar_grafico_de_linhas(
 
             O padrão reproduz exatamente o desenho de antes deste parâmetro
             existir, então nenhuma chamada que não o passe muda de resultado.
+        eixo_y_destaca_o_sinal: Quando True, o gráfico mede algo em que o SINAL
+            é a informação — um ganho, por exemplo, em que negativo significa
+            que a variável testada atrapalhou. Nesse caso o desenho ganha duas
+            coisas: uma linha marcando o **zero**, mais forte que a grade, e os
+            números do eixo Y coloridos por sinal, verde acima e vermelho
+            abaixo.
+
+            A linha do zero só aparece quando o zero cai dentro da faixa do
+            gráfico. Num gráfico só de valores positivos, pedir o destaque
+            colore os números e não desenha linha nenhuma.
 
     Returns:
         O HTML do gráfico (SVG + legenda), ou string vazia se não houver
@@ -397,9 +433,30 @@ def montar_grafico_de_linhas(
             f'<line x1="{margem_esquerda}" y1="{y:.1f}" x2="{largura - margem_direita}" y2="{y:.1f}" '
             f'stroke="{COR_DA_GRADE}" stroke-width="1"/>'
         )
+        cor_do_numero = COR_DO_TEXTO_DO_EIXO
+        if eixo_y_destaca_o_sinal:
+            cor_do_numero = _cor_do_numero_do_eixo(valor_do_passo)
+
         partes_do_svg.append(
             f'<text x="{margem_esquerda - 8}" y="{y + 3:.1f}" text-anchor="end" '
-            f'fill="{COR_DO_TEXTO_DO_EIXO}" font-size="11">{formatar_numero(valor_do_passo)}</text>'
+            f'fill="{cor_do_numero}" font-size="11">{formatar_numero(valor_do_passo)}</text>'
+        )
+
+    # A linha do zero, desenhada por cima da grade e mais forte que ela. As
+    # marcas da grade caem em valores quebrados (o eixo é dividido em quatro
+    # partes iguais entre o mínimo e o máximo), então o zero quase nunca
+    # coincide com uma delas — e sem esta linha não dá para ver, de relance, de
+    # que lado cada trecho da curva está.
+    if eixo_y_destaca_o_sinal and minimo_y < 0 < maximo_y:
+        y_do_zero = posicao_y(0.0)
+        partes_do_svg.append(
+            f'<line x1="{margem_esquerda}" y1="{y_do_zero:.1f}" '
+            f'x2="{largura - margem_direita}" y2="{y_do_zero:.1f}" '
+            f'stroke="{COR_DA_LINHA_DO_ZERO}" stroke-width="1.5"/>'
+        )
+        partes_do_svg.append(
+            f'<text x="{margem_esquerda - 8}" y="{y_do_zero + 3:.1f}" text-anchor="end" '
+            f'fill="{COR_DO_TEXTO_DO_EIXO}" font-size="11" font-weight="700">0</text>'
         )
 
     # Números do eixo X (os horizontes).

@@ -949,6 +949,7 @@ def _grafico_do_vetor(
     rotulo_do_eixo: str,
     serie_dos_12_horizontes: tuple[tuple[int, float, float], ...],
     cor_da_folha_20: str,
+    destacar_o_sinal: bool = False,
 ) -> str:
     """Desenha uma das duas medidas do vetor ao longo dos 12 horizontes.
 
@@ -961,6 +962,10 @@ def _grafico_do_vetor(
         rotulo_do_eixo: Texto do eixo vertical, também usado no título.
         serie_dos_12_horizontes: Tuplas de (horizonte, folha 5, folha 20).
         cor_da_folha_20: A cor desta medida, a mesma da coluna na tabela.
+        destacar_o_sinal: True marca o zero no eixo e pinta os números por
+            sinal. Vale para o GANHO, em que negativo significa que o vetor
+            atrapalhou naquele horizonte. Não vale para o apoio, que é sempre
+            positivo por construção — ali um zero destacado só poluiria.
 
     Returns:
         O HTML do gráfico.
@@ -984,6 +989,7 @@ def _grafico_do_vetor(
         cores=[COR_DA_FOLHA_5, cor_da_folha_20],
         series_tracejadas={NOME_DA_LINHA_DA_FOLHA_5},
         tamanho_do_desenho=TAMANHO_DO_DESENHO_DO_VETOR,
+        eixo_y_destaca_o_sinal=destacar_o_sinal,
     )
 
 
@@ -1009,8 +1015,13 @@ def _slide_o_vetor() -> deck.Slide:
     afirmam mais do que a medição sustenta, e é o que o orientador pediu para
     evitar em 21/09/2026.
     """
+    # "Erro médio" é a BASE sobre a qual os dois percentuais são calculados, e
+    # existe como coluna porque percentual sem base engana: sem ela, +12,3% e
+    # +2,2% parecem medidos sobre o mesmo erro, e não são. Vem em casos por
+    # semana, sem sinal e sem "%", para não se confundir com as outras duas.
     cabecalhos = [
         "Horizonte",
+        "Erro médio",
         _celula_colorida("Ganho do vetor", COR_DO_GANHO),
         "p de Holm",
         _celula_colorida("Erro sem o mosquito", COR_DO_APOIO),
@@ -1031,10 +1042,12 @@ def _slide_o_vetor() -> deck.Slide:
         linhas_da_tabela = []
         for do_horizonte in numeros.O_VETOR_NAS_DUAS_CONFIGURACOES:
             if e_a_folha_20:
+                erro_medio = do_horizonte.erro_na_folha_20
                 ganho = do_horizonte.ganho_na_folha_20
                 p_de_holm = do_horizonte.p_holm_na_folha_20
                 apoio = do_horizonte.apoio_na_folha_20
             else:
+                erro_medio = do_horizonte.erro_na_folha_5
                 ganho = do_horizonte.ganho_na_folha_5
                 p_de_holm = do_horizonte.p_holm_na_folha_5
                 apoio = do_horizonte.apoio_na_folha_5
@@ -1043,9 +1056,15 @@ def _slide_o_vetor() -> deck.Slide:
             apoio_vence = e_a_folha_20 and apoio > do_horizonte.apoio_na_folha_5
             p_passa = p_de_holm < 0.05
 
+            # No erro médio, MENOR é melhor — ao contrário das outras colunas.
+            erro_vence = (
+                e_a_folha_20 and erro_medio < do_horizonte.erro_na_folha_5
+            )
+
             linhas_da_tabela.append(
                 [
                     f"<b>{layout.escapar(do_horizonte.rotulo)}</b>",
+                    _destacar(numeros.formatar_decimal(erro_medio, 0), erro_vence),
                     _celula_colorida_com_destaque(
                         _formatar_com_sinal(ganho), COR_DO_GANHO, ganho_vence
                     ),
@@ -1058,41 +1077,31 @@ def _slide_o_vetor() -> deck.Slide:
 
         return layout.montar_tabela(cabecalhos, linhas_da_tabela)
 
-    # O erro base entra no rótulo de cada tabela, como faixa de 1 semana a 3
-    # meses. Sem ele o ganho relativo seria lido sobre uma base escondida — e a
-    # faixa mostra sozinha o essencial: a folha 20 começa PIOR (134 contra 98) e
-    # termina MELHOR (244 contra 279). Vai no rótulo, e não numa quinta coluna
-    # nem numa legenda, porque as duas alternativas estouravam os 720px.
-    primeiro = numeros.O_VETOR_NAS_DUAS_CONFIGURACOES[0]
-    ultimo = numeros.O_VETOR_NAS_DUAS_CONFIGURACOES[-1]
-
-    def faixa_de_erro(do_primeiro: float, do_ultimo: float) -> str:
-        """Escreve o erro base como faixa, de 1 semana a 3 meses."""
-        return (
-            f"{numeros.formatar_decimal(do_primeiro, 0)} a "
-            f"{numeros.formatar_decimal(do_ultimo, 0)} casos"
-        )
-
     # Duas tabelas lado a lado, uma por configuração, como no slide do alarme:
     # sem os dois blocos na tela a comparação ficaria só nas curvas.
+    #
+    # ⚠️ O erro base já viveu aqui no rótulo, como faixa ("erro 98 a 279
+    # casos"). Saiu em 27/09/2026 porque o Vinicius perguntou o que era: a
+    # faixa não dizia o que variava entre as duas pontas, e parecia intervalo
+    # de incerteza. Virou coluna da tabela, onde cada número fica ao lado do
+    # horizonte a que pertence.
     as_duas_tabelas = (
         '<div class="deckTabelasLadoALado">'
         '<div><p class="deckTabelaRotulo" style="color:var(--tinta)">'
-        "Folha 5 — a configuração adotada "
-        f"<span style=\"font-weight:400;opacity:.62\">· erro "
-        f"{faixa_de_erro(primeiro.erro_na_folha_5, ultimo.erro_na_folha_5)}</span></p>"
+        "Folha 5 — a configuração adotada</p>"
         f"{montar_tabela_de_uma_configuracao(e_a_folha_20=False)}</div>"
         '<div><p class="deckTabelaRotulo" style="color:var(--acento)">'
-        "Folha 20 "
-        f"<span style=\"font-weight:400;opacity:.62\">· erro "
-        f"{faixa_de_erro(primeiro.erro_na_folha_20, ultimo.erro_na_folha_20)}</span></p>"
+        "Folha 20</p>"
         f"{montar_tabela_de_uma_configuracao(e_a_folha_20=True)}</div>"
         "</div>"
     )
 
     os_dois_graficos = (
         _grafico_do_vetor(
-            "Ganho do vetor (%)", numeros.GANHO_DO_VETOR_NOS_12, COR_DO_GANHO
+            "Ganho do vetor (%)",
+            numeros.GANHO_DO_VETOR_NOS_12,
+            COR_DO_GANHO,
+            destacar_o_sinal=True,
         )
         + _grafico_do_vetor(
             "Erro sem o mosquito (%)", numeros.APOIO_NO_VETOR_NOS_12, COR_DO_APOIO
