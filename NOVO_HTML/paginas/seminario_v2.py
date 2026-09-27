@@ -415,6 +415,28 @@ def _celula_colorida(conteudo: str, cor: str) -> str:
     return f'<span style="color:{cor}">{conteudo}</span>'
 
 
+def _celula_colorida_com_destaque(valor: str, cor: str, em_destaque: bool) -> str:
+    """Celula colorida que pode vir em negrito sem perder a cor.
+
+    ⚠️ Por que nao basta embrulhar `_destacar` em `_celula_colorida`: o tema
+    tem uma regra global `strong, b {color: var(--tinta)}` que sobrepoe a cor
+    herdada do span pai, e o valor sairia preto. A cor precisa estar no PROPRIO
+    elemento em negrito, como estilo inline, para vencer a regra da folha.
+
+    Args:
+        valor: O numero ja formatado.
+        cor: A cor da medida, a mesma da coluna e do grafico.
+        em_destaque: True quando esta celula vence a comparacao da linha.
+
+    Returns:
+        O HTML da celula.
+    """
+    if em_destaque:
+        return f'<b style="color:{cor}">{valor}</b>'
+
+    return _celula_colorida(valor, cor)
+
+
 def _grafico_de_uma_medida(
     rotulo_do_eixo: str,
     atributo: str,
@@ -729,7 +751,7 @@ def _slide_alarme_do_composto() -> deck.Slide:
                 else:
                     eu_venco = seu - meu > empate
                     formatado = numeros.formatar_decimal(meu, 1)
-                celulas.append(_celula_colorida(_destacar(formatado, eu_venco), cor))
+                celulas.append(_celula_colorida_com_destaque(formatado, cor, eu_venco))
             linhas_do_braco.append(celulas)
         return layout.montar_tabela(cabecalhos, linhas_do_braco)
 
