@@ -846,7 +846,21 @@ def _slide_resultados() -> deck.Slide:
 
 
 def _slide_alarme() -> deck.Slide:
-    """O mesmo modelo lido como alarme de surto, nos quatro horizontes."""
+    """O modelo adotado lido como alarme de surto, no limiar de 100 casos.
+
+    🚫 **FORA DA APRESENTAÇÃO desde 26/09/2026, por decisão do Vinicius.**
+
+    Ficou obsoleto quando o slide do alarme do composto assumiu o lugar dele:
+    aquele usa a configuração melhor (o composto, e não a folha 5 sozinha) e o
+    limiar oficial (421, o piso do estágio Alerta do plano municipal, e não os
+    100 casos que eram convenção do projeto). Este slide mostraria a versão
+    antiga das duas coisas ao mesmo tempo.
+
+    A função continua aqui, fora da lista de `montar_slides()`, caso ele
+    queira de volta. O que se perde ao tirá-la: as métricas de alarme da
+    configuração adotada no limiar de 100 — que são as que estão publicadas no
+    site, e por isso ainda valem como referência histórica.
+    """
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
         titulo="O modelo como alarme de surto",
@@ -1014,7 +1028,6 @@ def montar_slides() -> list[deck.Slide]:
         _slide_do_modelo_ao_alarme(),
         _slide_estagios_do_plano(),
         _slide_alarme_do_composto(),
-        _slide_alarme(),
         _slide_o_vetor(),
         _slide_a_defasagem(),
         _slide_proximos_passos(),
