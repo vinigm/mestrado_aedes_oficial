@@ -1180,27 +1180,6 @@ def _slide_onde_ainda_falha() -> deck.Slide:
     calmaria, alerta = numeros.CALIBRACAO_EM_DOIS_MESES
     alarme = numeros.ALARME_EM_DOIS_MESES
 
-    def semanas_com_equivalente_em_meses(semanas: int) -> str:
-        """Escreve a contagem de semanas com o equivalente em meses ao lado.
-
-        ⚠️ É **equivalente**, não período: estas semanas não são seguidas. As
-        de calmaria são as entressafras e as de Alerta formam dois blocos, um
-        por epidemia. O parêntese existe só para dar tamanho ao número — quem
-        apresenta não deve dizer "durante seis meses".
-
-        Args:
-            semanas: Quantas semanas caem na faixa.
-
-        Returns:
-            O texto da célula, com os meses num tom mais leve.
-        """
-        meses = semanas / SEMANAS_POR_MES
-        return (
-            f"{semanas} "
-            f'<span style="opacity:.62">(≈ {numeros.formatar_decimal(meses, 0)} '
-            "meses)</span>"
-        )
-
     # Uma tabela só, no formato que o Vinicius aprovou: rótulo, calmaria e
     # Alerta. As quatro primeiras linhas são a pergunta em que o modelo vai MAL,
     # sem suavizar nada — é a concessão que compra credibilidade para a última.
@@ -1209,10 +1188,23 @@ def _slide_onde_ainda_falha() -> deck.Slide:
     # faixa. Quatro colunas deixariam metade das células vazias: o alarme não
     # tem "intervalo de 90%" e a previsão não tem "alarmes falsos". Como linha
     # destacada, a virada aparece sem buraco na grade.
+    # A contagem de semanas vive no cabeçalho, e não numa linha própria: ela
+    # qualifica a coluna inteira, e como linha custava ~25px de altura que a
+    # figura aproveita melhor.
+    def cabecalho_da_faixa(faixa, cor: str) -> str:
+        """O nome da faixa com a contagem de semanas ao lado, em tom leve."""
+        return _celula_colorida(
+            f"{layout.escapar(faixa.rotulo)} "
+            f'<span style="opacity:.62">· {faixa.semanas} semanas '
+            f"(≈ {numeros.formatar_decimal(faixa.semanas / SEMANAS_POR_MES, 0)} "
+            "meses)</span>",
+            cor,
+        )
+
     cabecalhos = [
         "",
-        _celula_colorida(calmaria.rotulo, COR_DA_CALMARIA),
-        _celula_colorida(alerta.rotulo, COR_DO_ALERTA),
+        cabecalho_da_faixa(calmaria, COR_DA_CALMARIA),
+        cabecalho_da_faixa(alerta, COR_DO_ALERTA),
     ]
 
     def par_de_celulas(da_calmaria: str, do_alerta: str) -> list[str]:
@@ -1223,15 +1215,6 @@ def _slide_onde_ainda_falha() -> deck.Slide:
         ]
 
     linhas_da_tabela = [
-        ["<b>Semanas avaliadas</b>"]
-        + [
-            _celula_colorida(
-                semanas_com_equivalente_em_meses(calmaria.semanas), COR_DA_CALMARIA
-            ),
-            _celula_colorida(
-                semanas_com_equivalente_em_meses(alerta.semanas), COR_DO_ALERTA
-            ),
-        ],
         ["<b>O intervalo de 90% acerta</b>"]
         + par_de_celulas(
             numeros.formatar_percentual(calmaria.cobertura_de_90, 1),
@@ -1264,7 +1247,7 @@ def _slide_onde_ainda_falha() -> deck.Slide:
             ),
         ],
     ]
-    classes_das_linhas = ["", "", "", "", "linhaVencedora"]
+    classes_das_linhas = ["", "", "", "linhaVencedora"]
 
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
