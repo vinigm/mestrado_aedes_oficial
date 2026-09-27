@@ -867,3 +867,43 @@ ESTAGIOS_DO_PLANO: tuple[EstagioDoPlano, ...] = (
     EstagioDoPlano("Alerta", "acima de 30,0", 421),
     EstagioDoPlano("Epidemia", "acima de 50,0", 702),
 )
+
+
+# As metricas do alarme nos 12 horizontes, para os graficos do slide. Evento:
+# semana acima de 421 casos, o piso do estagio Alerta.
+# Fonte: `analises/2026-09-26_modelo_composto/saidas/alarme_12_horizontes.csv`.
+# Cada item e (semanas, sensibilidade, precisao, alarmes falsos por ano).
+ALARME_DO_COMPOSTO_NOS_12: tuple[tuple[int, float, float, float], ...] = (
+    (1, 0.958, 0.958, 0.51),
+    (2, 0.960, 1.000, 0.00),
+    (3, 1.000, 0.929, 1.02),
+    (4, 1.000, 0.818, 3.06),
+    (5, 0.893, 0.833, 2.55),
+    (6, 0.786, 0.917, 1.02),
+    (7, 0.857, 0.923, 1.02),
+    (8, 0.857, 1.000, 0.00),
+    (9, 0.786, 0.957, 0.51),
+    (10, 0.750, 0.955, 0.51),
+    (11, 0.607, 0.944, 0.51),
+    (12, 0.500, 0.875, 1.02),
+)
+
+ALARME_DA_REGUA_NOS_12: tuple[tuple[int, float, float, float], ...] = (
+    (1, 0.708, 0.944, 0.51),
+    (2, 0.720, 0.947, 0.51),
+    (3, 0.731, 0.950, 0.51),
+    (4, 0.741, 0.952, 0.51),
+    (5, 0.750, 0.955, 0.51),
+    (6, 0.750, 0.955, 0.51),
+    (7, 0.750, 0.955, 0.51),
+    (8, 0.750, 0.955, 0.51),
+    (9, 0.750, 0.955, 0.51),
+    (10, 0.750, 0.955, 0.51),
+    (11, 0.750, 0.955, 0.51),
+    (12, 0.750, 0.955, 0.51),
+)
+
+# Posicao de cada metrica dentro das tuplas acima.
+POSICAO_DA_SENSIBILIDADE = 1
+POSICAO_DA_PRECISAO = 2
+POSICAO_DOS_FALSOS = 3

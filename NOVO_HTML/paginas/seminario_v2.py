@@ -630,82 +630,113 @@ def _slide_estagios_do_plano() -> deck.Slide:
     )
 
 
+# As tres medidas do alarme, cada uma com a sua cor — a mesma paleta das
+# medidas de desempenho, para que o olho reconheca o padrao entre os slides.
+# O quarto item e a posicao da medida nas tuplas de 12 horizontes.
+MEDIDAS_DO_ALARME = (
+    ("Pega quantos Alertas", "#1F7A4D", numeros.POSICAO_DA_SENSIBILIDADE, True),
+    ("Precisão", "#1B6EF3", numeros.POSICAO_DA_PRECISAO, True),
+    ("Alarmes falsos por ano", "#C0392B", numeros.POSICAO_DOS_FALSOS, False),
+)
+
+
+def _grafico_de_uma_medida_do_alarme(
+    rotulo_do_eixo: str, cor: str, posicao_da_medida: int
+) -> str:
+    """Desenha uma medida do alarme ao longo dos 12 horizontes.
+
+    A regua sazonal entra pontilhada, em cinza, como referencia — e o desenho
+    dela mostra sozinho o argumento: ela e quase uma reta horizontal, porque
+    repetir o ano anterior custa o mesmo em qualquer horizonte.
+
+    ⚠️ Sem marco vertical aqui, ao contrario do slide do composto: o
+    cruzamento das curvas cai em horizontes diferentes em cada medida (11 na
+    sensibilidade, 3 na precisao), e tres marcos com significados diferentes na
+    mesma tela confundiriam mais do que ajudariam.
+
+    Args:
+        rotulo_do_eixo: Texto do eixo vertical, tambem usado no titulo.
+        cor: Cor da linha do composto, a mesma da coluna na tabela.
+        posicao_da_medida: Indice da medida dentro das tuplas de 12 horizontes.
+
+    Returns:
+        O HTML do grafico.
+    """
+    pontos_do_composto = [
+        (float(linha[0]), linha[posicao_da_medida])
+        for linha in numeros.ALARME_DO_COMPOSTO_NOS_12
+    ]
+    pontos_da_regua = [
+        (float(linha[0]), linha[posicao_da_medida])
+        for linha in numeros.ALARME_DA_REGUA_NOS_12
+    ]
+    return graficos.montar_grafico_de_linhas(
+        {"Composto": pontos_do_composto, NOME_DA_LINHA_DA_REGUA: pontos_da_regua},
+        "horizonte (semanas)",
+        rotulo_do_eixo,
+        cores=[cor, COR_DA_REGUA_SAZONAL],
+        series_tracejadas={NOME_DA_LINHA_DA_REGUA},
+    )
+
+
 def _slide_alarme_do_composto() -> deck.Slide:
-    """O alarme do composto no limiar oficial de Alerta, com a régua ao lado.
+    """O alarme do composto no limiar oficial, com tabela e os tres graficos.
 
-    ⚠️ **Limiar trocado em 26/09/2026, por decisão do Vinicius.** A versão
-    anterior usava 100 casos por semana, que era convenção do projeto sem base
-    oficial. Agora usa o piso do estágio **Alerta** do Plano Municipal de
-    Contingência: **421 casos por semana**.
-
-    A troca importa porque muda o veredito. Com 100, a régua sazonal competia
-    de igual para igual em todos os horizontes. Com 421, que é o evento que a
-    Prefeitura de fato monitora, o composto **vence a régua em 1 semana, 1 mês
-    e 2 meses** — e só perde em 3 meses.
-
-    A régua fica na tabela porque sem ela não dá para julgar se um número é
-    bom: o evento ocorre em 27% das semanas, e num evento comum qualquer regra
-    de calendário acerta bastante.
+    ⚠️ **Refeito em 26/09/2026.** A versao anterior tinha a tabela e um aviso
+    explicando o que e uma semana de Alerta. O aviso saiu a pedido do Vinicius
+    — ele diz em voz alta — e no lugar entraram tres graficos, no mesmo formato
+    do slide do composto: uma cor por medida, ligando coluna e curva sem
+    precisar de legenda.
     """
     por_braco = {}
     for linha in numeros.ALARME_DO_COMPOSTO:
         por_braco.setdefault(linha.braco, {})[linha.rotulo] = linha
 
-    cabecalhos = [
-        "Horizonte",
-        "Composto: pega",
-        "Régua: pega",
-        "Composto: precisão",
-        "Alarmes falsos/ano",
-        "Deixa passar",
-    ]
+    cabecalhos = ["Horizonte"] + [
+        _celula_colorida(rotulo, cor) for rotulo, cor, _, _ in MEDIDAS_DO_ALARME
+    ] + ["Deixa passar"]
+
     linhas = []
     for rotulo in ROTULOS_DOS_HORIZONTES:
         do_composto = por_braco[numeros.NOME_DO_COMPOSTO][rotulo]
-        da_regua = por_braco[numeros.NOME_DA_REGUA][rotulo]
-        composto_vence = do_composto.sensibilidade > da_regua.sensibilidade
         total = numeros.SURTOS_POR_HORIZONTE[rotulo]
+        cor_pega, cor_precisao, cor_falsos = (cor for _, cor, _, _ in MEDIDAS_DO_ALARME)
         linhas.append(
             [
                 f"<b>{layout.escapar(rotulo)}</b>",
-                _destacar(
-                    numeros.formatar_percentual(do_composto.sensibilidade, 1),
-                    composto_vence,
+                _celula_colorida(
+                    numeros.formatar_percentual(do_composto.sensibilidade, 1), cor_pega
                 ),
-                _destacar(
-                    numeros.formatar_percentual(da_regua.sensibilidade, 1),
-                    not composto_vence,
+                _celula_colorida(
+                    numeros.formatar_percentual(do_composto.precisao, 1), cor_precisao
                 ),
-                numeros.formatar_percentual(do_composto.precisao, 1),
-                numeros.formatar_decimal(do_composto.falsos_por_ano, 1),
+                _celula_colorida(
+                    numeros.formatar_decimal(do_composto.falsos_por_ano, 1), cor_falsos
+                ),
                 f"{do_composto.surtos_perdidos} de {total}",
             ]
         )
 
+    graficos_das_medidas = "".join(
+        _grafico_de_uma_medida_do_alarme(rotulo, cor, posicao)
+        for rotulo, cor, posicao, _ in MEDIDAS_DO_ALARME
+    )
+
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        # O titulo e escapado pelo deck, entao nao aceita HTML.
         titulo="Como alarme de Alerta, o composto vence a régua até 2 meses",
         rotulo_curto="Alarme do composto",
         corpo=(
             layout.montar_tabela(cabecalhos, linhas)
-            + layout.montar_aviso(
-                "info",
-                f"O que é uma semana de {numeros.NOME_DO_ESTAGIO_DO_ALARME}",
-                f"Mais de <b>{numeros.formatar_inteiro(numeros.LIMIAR_DO_ALARME)} casos "
-                "confirmados na semana</b> — o piso do estágio <b>Alerta</b> do Plano "
-                "Municipal de Contingência da Prefeitura, não um número nosso. "
-                f"Aconteceu em <b>{numeros.SEMANAS_DE_SURTO_NO_ALARME} das "
-                f"{numeros.SEMANAS_AVALIADAS_NO_ALARME}</b> semanas avaliadas. "
-                "<b>Pega</b> = das semanas que foram Alerta, em quantas o alarme tocou.",
-            )
+            + f'<div class="graficosLadoALado">{graficos_das_medidas}</div>'
         ),
         nota=(
-            "🔴 <b>Em 2 meses o composto pega 85,7% com precisão de 100% e ZERO "
-            "alarmes falsos.</b> É o melhor resultado do projeto. Em 3 meses cai para "
-            "metade, e a régua passa à frente. ⚠️ Dizer que o limiar é da Prefeitura, "
-            "e que usamos só a metade fixa do critério — o plano também exige "
-            "condições sobre limiares estaduais, óbito e sorotipo."
+            "<b>Semana de Alerta = mais de 421 casos</b>, o piso do estágio Alerta do "
+            "plano — aconteceu em <b>28 das 102</b> semanas avaliadas. <b>Pega</b> = "
+            "das semanas que foram Alerta, em quantas o alarme tocou. 🔴 Em 2 meses: "
+            "<b>85,7% com precisão de 100% e zero alarmes falsos</b>, o melhor número "
+            "do projeto. A linha cinza pontilhada é a régua, e ela é quase reta — "
+            "repetir o ano anterior custa o mesmo em qualquer horizonte."
         ),
         e_denso=True,
     )
