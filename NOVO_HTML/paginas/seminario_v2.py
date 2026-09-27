@@ -520,6 +520,41 @@ def _slide_modelo_composto() -> deck.Slide:
     )
 
 
+def _slide_do_modelo_ao_alarme() -> deck.Slide:
+    """Slide de transicao: o modelo de previsao vira um sistema de alerta.
+
+    Slide novo de 26/09/2026, desenhado pelo Vinicius. Ele e deliberadamente
+    simples — dois blocos e uma seta. A funcao dele e anunciar a virada antes
+    de os numeros aparecerem, para que os tres slides seguintes (limiares do
+    plano, alarme do composto, e a objecao da regua) sejam lidos como uma
+    sequencia, e nao como assuntos soltos.
+    """
+    return deck.Slide(
+        topico=TOPICO_RESULTADOS,
+        titulo="Do modelo de previsão para um sistema de alerta",
+        rotulo_curto="A virada",
+        corpo=(
+            '<div class="deckFluxoDeDois">'
+            '<div class="deckFluxoBloco">'
+            '<div class="deckFluxoTitulo">Modelo de previsão</div>'
+            '<div class="deckFluxoTexto">quantos casos haverá<br>daqui a 1 a 3 meses</div>'
+            "</div>"
+            '<div class="deckFluxoSeta">&rarr;</div>'
+            '<div class="deckFluxoBloco destaque">'
+            '<div class="deckFluxoTitulo">Alarme de alerta</div>'
+            '<div class="deckFluxoTexto">em que estágio de resposta<br>'
+            "a cidade vai estar</div>"
+            "</div></div>"
+        ),
+        nota=(
+            "A frase: <b>pegamos as previsões do modelo e construímos um sistema de "
+            "alerta com elas.</b> Não é desistir da previsão — é usá-la para responder "
+            "a pergunta que a vigilância faz. Os próximos três slides são: de onde vêm "
+            "os limiares, como o alarme se sai, e por que não usar só a régua."
+        ),
+    )
+
+
 def _slide_estagios_do_plano() -> deck.Slide:
     """O Quadro 1 do plano municipal, e a tradução dele para casos por semana.
 
@@ -882,6 +917,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_adotado(),
         _slide_folha_5_contra_folha_20(),
         _slide_modelo_composto(),
+        _slide_do_modelo_ao_alarme(),
         _slide_estagios_do_plano(),
         _slide_alarme_do_composto(),
         _slide_alarme(),
