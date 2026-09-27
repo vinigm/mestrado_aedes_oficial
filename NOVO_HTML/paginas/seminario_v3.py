@@ -461,7 +461,7 @@ def _grafico_de_uma_medida(
 
     return graficos.montar_grafico_de_linhas(
         {"Composto": pontos_do_composto, NOME_DA_LINHA_DA_REGUA: pontos_da_regua},
-        "horizonte (semanas)",
+        "horizonte",
         rotulo_do_eixo,
         cores=[cor, COR_DA_REGUA_SAZONAL],
         series_tracejadas={NOME_DA_LINHA_DA_REGUA},
@@ -685,7 +685,7 @@ def _grafico_de_uma_medida_do_alarme(
     ]
     return graficos.montar_grafico_de_linhas(
         {"Composto": pontos_do_composto, NOME_DA_LINHA_DA_REGUA: pontos_da_regua},
-        "horizonte (semanas)",
+        "horizonte",
         rotulo_do_eixo,
         cores=[cor, COR_DA_REGUA_SAZONAL],
         series_tracejadas={NOME_DA_LINHA_DA_REGUA},
@@ -915,7 +915,7 @@ def _grafico_dos_dois_anos(rotulo_do_eixo: str, posicao_da_medida: int) -> str:
 
     return graficos.montar_grafico_de_linhas(
         {"2024": pontos_de_2024, "2025": pontos_de_2025},
-        "horizonte (semanas)",
+        "horizonte",
         rotulo_do_eixo,
         cores=[COR_DA_PARTIDA_A_FRIO, COR_DO_ANO_COM_HISTORIA],
         tamanho_do_desenho=TAMANHO_DO_DESENHO_DOS_ANOS,
@@ -1130,7 +1130,7 @@ def _grafico_do_vetor(
             NOME_DA_LINHA_DA_FOLHA_5: pontos_da_folha_5,
             "Folha mínima 20": pontos_da_folha_20,
         },
-        "horizonte (semanas)",
+        "horizonte",
         rotulo_do_eixo,
         cores=[COR_DA_FOLHA_5, cor_da_folha_20],
         series_tracejadas={NOME_DA_LINHA_DA_FOLHA_5},
