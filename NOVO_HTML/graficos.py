@@ -29,6 +29,11 @@ COR_DO_EIXO_ACIMA_DO_ZERO = "#1F7A4D"
 COR_DO_EIXO_ABAIXO_DO_ZERO = "#C0392B"
 COR_DA_LINHA_DO_ZERO = "#9AA5B4"
 
+# Faixas de fundo que separam o que esta acima do zero do que esta abaixo.
+# A opacidade e baixa de proposito: elas sao PANO DE FUNDO, e nao podem
+# competir com as curvas nem com a grade.
+OPACIDADE_DAS_FAIXAS_DO_SINAL = 0.07
+
 
 def _cor_do_numero_do_eixo(valor: float) -> str:
     """Diz em que cor um número do eixo Y aparece, pelo sinal dele.
@@ -341,6 +346,7 @@ def montar_grafico_de_linhas(
     marco_vertical: tuple[float, str] | None = None,
     tamanho_do_desenho: tuple[int, int] = (720, 250),
     eixo_y_destaca_o_sinal: bool = False,
+    pintar_faixas_do_sinal: bool = False,
 ) -> str:
     """Desenha um gráfico de linhas em SVG a partir de várias séries de pontos.
 
@@ -388,6 +394,15 @@ def montar_grafico_de_linhas(
             A linha do zero só aparece quando o zero cai dentro da faixa do
             gráfico. Num gráfico só de valores positivos, pedir o destaque
             colore os números e não desenha linha nenhuma.
+        pintar_faixas_do_sinal: Quando True, o fundo do gráfico ganha duas
+            faixas: verde do zero para cima e vermelha do zero para baixo.
+            Serve para deixar óbvio, de relance, em que lado cada trecho da
+            curva está — e sobretudo ONDE ela cruza.
+
+            ⚠️ É separado de `eixo_y_destaca_o_sinal` de propósito: pintar o
+            fundo é uma escolha visual mais forte, e há gráficos que querem o
+            zero marcado sem o fundo colorido. Como as faixas ficam atrás de
+            tudo, elas não mudam a leitura das curvas.
 
     Returns:
         O HTML do gráfico (SVG + legenda), ou string vazia se não houver
@@ -424,6 +439,25 @@ def montar_grafico_de_linhas(
         f'<svg viewBox="0 0 {largura} {altura}" role="img" '
         f'aria-label="{layout.escapar(rotulo_y)} por {layout.escapar(rotulo_x)}">'
     ]
+
+    # As faixas vem ANTES da grade e das curvas, para ficarem atras de tudo.
+    if pintar_faixas_do_sinal and minimo_y < 0 < maximo_y:
+        y_do_zero = posicao_y(0.0)
+        largura_da_area = largura - margem_direita - margem_esquerda
+        altura_acima = y_do_zero - margem_topo
+        altura_abaixo = (altura - margem_base) - y_do_zero
+        partes_do_svg.append(
+            f'<rect x="{margem_esquerda}" y="{margem_topo}" '
+            f'width="{largura_da_area}" height="{altura_acima:.1f}" '
+            f'fill="{COR_DO_EIXO_ACIMA_DO_ZERO}" '
+            f'fill-opacity="{OPACIDADE_DAS_FAIXAS_DO_SINAL}"/>'
+        )
+        partes_do_svg.append(
+            f'<rect x="{margem_esquerda}" y="{y_do_zero:.1f}" '
+            f'width="{largura_da_area}" height="{altura_abaixo:.1f}" '
+            f'fill="{COR_DO_EIXO_ABAIXO_DO_ZERO}" '
+            f'fill-opacity="{OPACIDADE_DAS_FAIXAS_DO_SINAL}"/>'
+        )
 
     # Grade horizontal + números do eixo Y.
     for passo in range(5):

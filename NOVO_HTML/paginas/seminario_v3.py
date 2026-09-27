@@ -1153,6 +1153,7 @@ def _grafico_do_vetor(
         series_tracejadas={NOME_DA_LINHA_DA_FOLHA_5},
         tamanho_do_desenho=TAMANHO_DO_DESENHO_DO_VETOR,
         eixo_y_destaca_o_sinal=destacar_o_sinal,
+        pintar_faixas_do_sinal=destacar_o_sinal,
     )
 
 
@@ -1551,18 +1552,14 @@ def _slide_literatura() -> deck.Slide:
         topico=TOPICO_RESULTADOS,
         titulo="Ganhamos de quem mediu a mesma cidade, e perdemos para 10 anos de série",
         rotulo_curto="A literatura",
-        corpo=(
-            as_duas_tabelas
-            + '<p class="deckNotaDeGrafico">🔴 <b>E não é porque lá tem mais '
-            "dengue.</b> O pico semanal de Singapura em 2013 foi de "
-            f"<b>{numeros.formatar_decimal(de_singapura.pico_semanal, 0)}</b> casos; "
-            "o de Porto Alegre em 2025, "
-            f"<b>{numeros.formatar_decimal(de_singapura.pico_semanal_de_porto_alegre, 0)}</b>. "
-            "Eles têm <b>mais anos</b>, e anos calmos, que ensinam ao modelo o que é "
-            f"o normal da cidade. Nós temos <b>{de_singapura.temporadas_epidemicas_de_porto_alegre} "
-            "temporadas</b>.</p>"
-        ),
+        corpo=as_duas_tabelas,
         nota=(
+            f"🔴 <b>A frase que explica a derrota, para dizer em voz alta:</b> não é "
+            "porque lá tem mais dengue. O pico semanal de Singapura em 2013 foi de "
+            "<b>{numeros.formatar_decimal(de_singapura.pico_semanal, 0)}</b> casos; o de Porto Alegre em "
+            "2025, <b>{numeros.formatar_decimal(de_singapura.pico_semanal_de_porto_alegre, 0)}</b>. Eles têm "
+            "<b>mais anos</b>, e anos calmos, que ensinam ao modelo o que é o normal "
+            "da cidade. Nós temos <b>{de_singapura.temporadas_epidemicas_de_porto_alegre} temporadas</b>. "
             "🟢 <b>Este slide levanta a moral de novo, e é o último dos resultados.</b> "
             "À esquerda, o <b>único</b> estudo marcado como comparável no nosso "
             "catálogo de 14: mesma cidade, mesma unidade, validação em avanço. "
@@ -1660,7 +1657,7 @@ def _slide_limitacao_de_2026() -> deck.Slide:
         f"{numeros.MAIOR_SEMANA_DE_2026} casos</span></p>"
         f"{layout.montar_tabela(cabecalhos_de_2026, linhas_de_2026, classes_das_linhas=classes_das_linhas)}</div>"
         f'<div><p class="deckTabelaRotulo" style="color:{COR_DA_SAIDA_POSSIVEL}">'
-        "O que faltaria para o modelo enxergar isso</p>"
+        "Possibilidades de alternativas</p>"
         f"{layout.montar_tabela(cabecalhos_das_saidas, linhas_das_saidas)}</div>"
         "</div>"
     )
@@ -1669,15 +1666,14 @@ def _slide_limitacao_de_2026() -> deck.Slide:
         topico=TOPICO_RESULTADOS,
         titulo="A limitação: o modelo não sabe quem já teve dengue",
         rotulo_curto="A limitação",
-        corpo=(
-            as_duas_tabelas
-            + '<p class="deckNotaDeGrafico">🔴 Em <b>22/03/2026</b> o modelo previu '
-            "<b>1.808 casos</b> para uma semana que teve <b>zero</b>. Ele aprendeu o "
-            "calendário e a tendência de alta da série — 5.583 casos em 2022, 24.793 "
-            "em 2025 — e projetou a continuação. As armadilhas continuaram pegando "
-            "mosquito; o que mudou não está em nenhuma coluna dele.</p>"
-        ),
+        corpo=as_duas_tabelas,
         nota=(
+            "🔴 <b>O número para dizer em voz alta:</b> em <b>22/03/2026</b> o modelo "
+            "previu <b>1.808 casos</b> para uma semana que teve <b>zero</b>. Ele "
+            "aprendeu o calendário e a tendência de alta da série — 5.583 casos em "
+            "2022, 24.793 em 2025 — e projetou a continuação. As armadilhas "
+            "continuaram pegando mosquito; o que mudou não está em nenhuma coluna "
+            "dele. "
             "🔴 <b>Este slide é a limitação, e ele é meu escudo, não meu problema.</b> "
             "Mostrar que eu conheço o limite do modelo, com número, vale mais que "
             "esconder. ⚠️ <b>Dizer que a régua falha junto</b>: 9 disparos contra 10 "
