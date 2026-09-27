@@ -189,15 +189,22 @@ FOLHA_DE_ESTILO_DO_DECK = """
    versoes anteriores — a com rotulo em cada slide repetia "RESULTADOS" onze
    vezes, e a so com bolinhas nao dizia em que parte da apresentacao se esta.
 
-   Cada grupo cresce em proporcao ao numero de slides dele, entao a largura da
-   faixa ja mostra o peso de cada secao na apresentacao. */
+   Os grupos tem largura igual; quem conta o peso de cada parte e a densidade
+   de marcas dentro dele. */
 .deckIndice.porSecao{display:flex; gap:18px; align-items:flex-start;
   padding:12px 40px 10px}
 /* `fit-content` no minimo: uma secao de UM slide ficaria com 55px e cortaria
    "Proximos passos" em "PROXIMO...". Assim o grupo nunca fica menor que o
    proprio nome, e a proporcionalidade continua valendo no espaco que sobra. */
-.deckSecao{display:flex; flex-direction:column; align-items:center; gap:7px;
-  min-width:fit-content}
+/* Todas as secoes com a MESMA largura, e nao proporcional ao numero de slides.
+   A versao proporcional foi tentada em 27/09/2026: ela contava o peso de cada
+   parte, mas deixava a barra irregular, com Resultados ocupando metade e as
+   secoes de um slide espremidas. O Vinicius preferiu a regua uniforme.
+
+   `min-width:fit-content` continua como piso: sem ele, "Proximos passos"
+   cortava em "PROXIMO...". */
+.deckSecao{flex:1 1 0; display:flex; flex-direction:column; align-items:center;
+  gap:7px; min-width:fit-content}
 .deckSecaoMarcas{display:flex; align-items:center; justify-content:center;
   gap:6px; width:100%; height:12px}
 .deckSecaoNome{font-size:.5rem; font-weight:700; letter-spacing:.06em;
@@ -500,9 +507,9 @@ def _indice_por_secao(slides: list[Slide]) -> str:
     """Monta a trilha agrupada por tópico, com uma marca por slide.
 
     Cada tópico vira um grupo. Dentro dele há uma marca por slide, e o nome do
-    tópico aparece uma vez só, embaixo. O grupo cresce em proporção ao número
-    de slides que tem, então a largura já conta quanto da apresentação cada
-    parte ocupa.
+    tópico aparece uma vez só, embaixo. Todos os grupos têm a **mesma largura**:
+    o que conta quanto da apresentação cada parte ocupa é a quantidade de
+    marcas dentro do grupo, não o tamanho dele.
 
     Slides sem tópico — a capa — ficam de fora, como na trilha antiga.
 
@@ -532,7 +539,7 @@ def _indice_por_secao(slides: list[Slide]) -> str:
             for posicao in posicoes
         )
         blocos.append(
-            f'<div class="deckSecao" style="flex:{len(posicoes)} 1 0">'
+            '<div class="deckSecao">'
             f'<div class="deckSecaoMarcas">{marcas}</div>'
             f'<span class="deckSecaoNome">{layout.escapar(topico)}</span>'
             "</div>"
