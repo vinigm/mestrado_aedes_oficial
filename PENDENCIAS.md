@@ -82,6 +82,11 @@
   `analises/2026-09-26_modelo_composto/calcular_alarme.py`. ⏳ Corrigir exige decisão do Vinicius, porque o
   número está no ar.
 
+- 🔴 **Dois Pythons no projeto, com resultados diferentes.** `python3` tem scikit-learn **1.8.0** (é o que o
+  `orquestrar.sh` e toda a bateria usaram); `.venv/bin/python` tem **1.9.0**. Mesmo dado e mesmo código dão
+  números diferentes **em silêncio** — descoberto em 26/09 pela trava, que reprovou. **Rodar sempre com
+  `python3`.** Detalhe em `analises/2026-09-26_importancia_na_folha_20/` §4.
+
 - **Seleção das 6 colunas de clima fora do walk-forward**, com ranking instável e dependente do alvo.
 - **`bairro_surto` não re-rodado** · **`cidade_lift_vetor` sem run no MLflow** · `rodar_regressao_selecao_clima` sem pareamento.
 - **Docstring de `acesso/fontes.py`:** 99,6% de confirmação em 2023; o medido é 69,3%.
@@ -93,6 +98,18 @@
 ---
 
 ## Registro cronológico
+
+### 26/09/2026 — a folha 20 se apoia MUITO mais no vetor
+
+- ✅ **Permutação medida na folha 20**, pré-declarada, descritiva: o vetor pesa mais nos **12 de 12**
+  horizontes. Em 1 mês, trocar as colunas do mosquito **dobra** o erro (**+108,3%** contra +62,2% na folha 5).
+  Maior também em casos absolutos, então não é artefato de denominador.
+- 🟢 **As duas medidas apontam junto:** a folha 20 **ganha** mais com o vetor (ablação) e **se apoia** mais
+  nele (permutação). É o argumento mais forte que o projeto tem sobre a armadilha.
+- 🚫 **Continua sem sustentar "indispensável":** na configuração adotada, tirar o vetor não piora
+  (p Holm 1,00). Permutação e ablação respondem perguntas diferentes.
+- 🔴 A primeira rodada **reprovou na trava** — causa era o Python, não o dado (ver Dívida técnica).
+  `analises/2026-09-26_importancia_na_folha_20/`
 
 ### 26/09/2026 — documentação técnica completa
 

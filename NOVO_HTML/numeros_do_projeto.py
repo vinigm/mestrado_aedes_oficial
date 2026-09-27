@@ -907,3 +907,166 @@ ALARME_DA_REGUA_NOS_12: tuple[tuple[int, float, float, float], ...] = (
 POSICAO_DA_SENSIBILIDADE = 1
 POSICAO_DA_PRECISAO = 2
 POSICAO_DOS_FALSOS = 3
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# O VETOR NAS DUAS CONFIGURAÇÕES — duas medidas que não podem ser confundidas
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+@dataclasses.dataclass(frozen=True)
+class VetorNoHorizonte:
+    """O que o mosquito rende e o quanto o modelo se apoia nele, num horizonte.
+
+    São DUAS medidas diferentes, e confundi-las é o erro clássico:
+
+      - **ganho** vem da ABLAÇÃO: treina um modelo do zero SEM as colunas do
+        mosquito e compara com o que tem. Positivo significa que o modelo com
+        mosquito erra menos. Responde "dá para viver sem?".
+      - **apoio** vem da PERMUTAÇÃO: pega o modelo JÁ TREINADO e embaralha as
+        colunas do mosquito na hora de prever. Diz quanto o erro sobe quando o
+        modelo perde o acesso ao mosquito. Responde "ele está usando?".
+
+    ⚠️ As duas podem discordar, e discordam na folha 5: o modelo se apoia no
+    mosquito, mas um modelo treinado sem ele reaprende pelo histórico de casos,
+    que é correlacionado. Por isso "indispensável" não se sustenta.
+
+    ⚠️ **As famílias de Holm são diferentes.** O p da folha 5 foi corrigido numa
+    família de **12** comparações (3 algoritmos × 4 horizontes, bloco 5); o da
+    folha 20, numa de **4** (bloco 7). Família maior penaliza mais, então os
+    dois p não são comparáveis um a um.
+
+    Fontes: `analises/2026-09-23_bateria_noturna/bloco_5_algoritmos/` e
+    `bloco_7_vetor_com_folha_20/` para o ganho;
+    `analises/2026-09-26_importancia_na_folha_20/` para o apoio.
+
+    Attributes:
+        rotulo: Como o horizonte é dito em texto.
+        ganho_na_folha_5: Queda percentual do erro com o vetor, folha 5.
+        p_holm_na_folha_5: p de Holm do ganho acima, família de 12.
+        ganho_na_folha_20: Queda percentual do erro com o vetor, folha 20.
+        p_holm_na_folha_20: p de Holm do ganho acima, família de 4.
+        apoio_na_folha_5: Quanto o erro sobe sem o mosquito, folha 5.
+        apoio_na_folha_20: Quanto o erro sobe sem o mosquito, folha 20.
+        erro_na_folha_5: MAE em casos por semana, folha 5. Existe para que o
+            ganho relativo não seja lido sobre uma base escondida.
+        erro_na_folha_20: MAE em casos por semana, folha 20.
+    """
+
+    rotulo: str
+    ganho_na_folha_5: float
+    p_holm_na_folha_5: float
+    ganho_na_folha_20: float
+    p_holm_na_folha_20: float
+    apoio_na_folha_5: float
+    apoio_na_folha_20: float
+    erro_na_folha_5: float
+    erro_na_folha_20: float
+
+
+O_VETOR_NAS_DUAS_CONFIGURACOES = (
+    VetorNoHorizonte(
+        rotulo="1 semana",
+        ganho_na_folha_5=-6.53,
+        p_holm_na_folha_5=1.0,
+        ganho_na_folha_20=-15.70,
+        p_holm_na_folha_20=0.4654,
+        apoio_na_folha_5=19.96,
+        apoio_na_folha_20=23.56,
+        erro_na_folha_5=97.99,
+        erro_na_folha_20=133.63,
+    ),
+    VetorNoHorizonte(
+        rotulo="1 mês",
+        ganho_na_folha_5=-0.13,
+        p_holm_na_folha_5=1.0,
+        ganho_na_folha_20=4.15,
+        p_holm_na_folha_20=0.8295,
+        apoio_na_folha_5=62.22,
+        apoio_na_folha_20=108.29,
+        erro_na_folha_5=219.67,
+        erro_na_folha_20=199.64,
+    ),
+    VetorNoHorizonte(
+        rotulo="2 meses",
+        ganho_na_folha_5=-7.74,
+        p_holm_na_folha_5=1.0,
+        ganho_na_folha_20=8.07,
+        p_holm_na_folha_20=0.0056,
+        apoio_na_folha_5=52.78,
+        apoio_na_folha_20=98.67,
+        erro_na_folha_5=272.63,
+        erro_na_folha_20=223.18,
+    ),
+    VetorNoHorizonte(
+        rotulo="3 meses",
+        ganho_na_folha_5=2.17,
+        p_holm_na_folha_5=1.0,
+        ganho_na_folha_20=12.32,
+        p_holm_na_folha_20=0.0151,
+        apoio_na_folha_5=38.62,
+        apoio_na_folha_20=51.07,
+        erro_na_folha_5=278.82,
+        erro_na_folha_20=243.76,
+    ),
+)
+
+# As duas medidas nos 12 horizontes, para as curvas do slide. Cada tupla é
+# (horizonte, folha 5, folha 20). Só os horizontes 1, 4, 8 e 12 têm p; os
+# demais são descritivos, e é por isso que o p vive na tabela e não na curva.
+GANHO_DO_VETOR_NOS_12 = (
+    (1, -6.53, -15.70),
+    (2, -4.84, -24.63),
+    (3, 6.37, -1.81),
+    (4, -0.13, 4.15),
+    (5, 3.52, -2.02),
+    (6, -10.15, 1.75),
+    (7, -5.64, 7.03),
+    (8, -7.74, 8.07),
+    (9, -9.36, 6.17),
+    (10, -3.88, 10.28),
+    (11, -10.74, 7.49),
+    (12, 2.17, 12.32),
+)
+
+APOIO_NO_VETOR_NOS_12 = (
+    (1, 19.96, 23.56),
+    (2, 40.39, 54.37),
+    (3, 70.55, 93.59),
+    (4, 62.22, 108.29),
+    (5, 73.07, 89.73),
+    (6, 56.95, 90.69),
+    (7, 60.83, 91.74),
+    (8, 52.78, 98.67),
+    (9, 48.74, 86.99),
+    (10, 54.74, 82.28),
+    (11, 45.66, 68.36),
+    (12, 38.62, 51.07),
+)
+
+# Posição de cada configuração dentro das tuplas de 12 horizontes acima.
+POSICAO_DA_FOLHA_5 = 1
+POSICAO_DA_FOLHA_20 = 2
+
+
+@dataclasses.dataclass(frozen=True)
+class ReplicacaoNoLightGBM:
+    """O mesmo efeito, noutro algoritmo que já usava folha mínima 20.
+
+    É a evidência mais forte do projeto sobre o vetor, e por um motivo técnico:
+    o p dela foi corrigido na família **grande**, de 12 comparações — a mesma em
+    que o HistGB de folha 5 não passou de 1,00. Os dois números são, aí sim,
+    diretamente comparáveis.
+
+    Fonte: `analises/2026-09-23_bateria_noturna/bloco_5_algoritmos/saidas/
+    comparacoes_vetor.csv`, linha do LightGBM em h=12.
+    """
+
+    ganho_em_tres_meses: float = 15.46
+    p_holm: float = 0.000058
+    tamanho_da_familia: int = 12
+    erro_com_o_vetor: float = 247.23
+    erro_sem_o_vetor: float = 292.42
+
+
+REPLICACAO_NO_LIGHTGBM = ReplicacaoNoLightGBM()

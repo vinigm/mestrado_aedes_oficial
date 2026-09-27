@@ -1,0 +1,27 @@
+==============================================================================
+IMPORTANCIA POR BLOCO — configuracao de folha minima 20
+==============================================================================
+  Nucleo: 8 colunas
+  Clima: 6 colunas
+  Vetor: 6 colunas
+  h= 1  295 sem  143.8s
+  h= 2  294 sem   80.3s
+  h= 3  293 sem   78.8s
+  h= 4  292 sem   79.8s
+  h= 5  291 sem   78.4s
+  h= 6  290 sem   73.9s
+  h= 7  289 sem   79.7s
+  h= 8  288 sem   77.8s
+  h= 9  287 sem   79.6s
+  h=10  286 sem   71.1s
+  h=11  285 sem   76.0s
+  h=12  284 sem   72.8s
+
+  TRAVA — folha 20 contra o bloco 7 (periodo de avaliacao)
+    h= 1  n 102  MAE  132.253 (bloco 7  133.626)  R2  0.839 (bloco 7 0.834)  <<< DIVERGE
+    h= 4  n 102  MAE  191.455 (bloco 7  199.635)  R2  0.734 (bloco 7 0.717)  <<< DIVERGE
+    h= 8  n 102  MAE  226.801 (bloco 7  223.183)  R2  0.558 (bloco 7 0.576)  <<< DIVERGE
+    h=12  n 102  MAE  245.911 (bloco 7  243.764)  R2  0.555 (bloco 7 0.558)  <<< DIVERGE
+    veredito: INVALIDO
+
+  BLOCO INVALIDO: a folha 20 nao reproduziu o bloco 7. Nenhum numero novo deve ser lido.

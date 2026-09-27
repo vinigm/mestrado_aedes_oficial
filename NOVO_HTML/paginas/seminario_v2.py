@@ -879,60 +879,242 @@ def _slide_alarme() -> deck.Slide:
     )
 
 
+# As duas medidas do slide do vetor, cada uma com a sua cor — a mesma na
+# coluna da tabela e na curva, para ligar as duas sem precisar de legenda.
+COR_DO_GANHO = "#1F7A4D"
+COR_DO_APOIO = "#1B6EF3"
+
+# A folha 5 é a COMPARAÇÃO deste slide, e por isso usa o mesmo tratamento que a
+# régua sazonal usa nos slides de resultado: cinza e pontilhada.
+COR_DA_FOLHA_5 = COR_DA_REGUA_SAZONAL
+NOME_DA_LINHA_DA_FOLHA_5 = "Folha 5"
+
+
+def _formatar_com_sinal(valor_percentual: float) -> str:
+    """Formata um percentual sempre com sinal explícito.
+
+    O sinal importa aqui: no ganho, negativo significa que o vetor atrapalhou
+    naquele horizonte, e omitir o "+" deixaria a leitura ambígua.
+
+    Args:
+        valor_percentual: O número já em pontos percentuais.
+
+    Returns:
+        O texto formatado, com vírgula decimal.
+    """
+    return f"{valor_percentual:+.1f}%".replace(".", ",")
+
+
+def _formatar_p_de_holm(p_de_holm: float) -> str:
+    """Formata o p com casas suficientes para ele não perder força.
+
+    ⚠️ O corte é em 0,1, e não em 0,05 ou 0,01: com duas casas, o p de 0,0151
+    da folha 20 sairia como **0,02** — que lido de relance parece quase no
+    limite, quando na verdade está três vezes abaixo dele.
+
+    Args:
+        p_de_holm: O p já corrigido por Holm.
+
+    Returns:
+        Duas casas quando o p é grande, quatro quando é pequeno.
+    """
+    if p_de_holm >= 0.1:
+        return f"{p_de_holm:.2f}".replace(".", ",")
+
+    # Abaixo de 0,0001 arredondar para quatro casas daria "0,0001", que é MAIOR
+    # que o valor real e faz o resultado parecer mais fraco do que é. O p do
+    # LightGBM, por exemplo, vale 0,000058.
+    if p_de_holm < 0.0001:
+        return "&lt; 0,0001"
+
+    return f"{p_de_holm:.4f}".replace(".", ",")
+
+
+def _grafico_do_vetor(
+    rotulo_do_eixo: str,
+    serie_dos_12_horizontes: tuple[tuple[int, float, float], ...],
+    cor_da_folha_20: str,
+) -> str:
+    """Desenha uma das duas medidas do vetor ao longo dos 12 horizontes.
+
+    ⚠️ Sem marco vertical, ao contrário do slide do composto: no ganho a folha
+    20 cruza o zero mais de uma vez (sobe em h=4, volta a cair em h=5 e só
+    então se firma), e um marco fingiria um ponto de virada único que não
+    existe.
+
+    Args:
+        rotulo_do_eixo: Texto do eixo vertical, também usado no título.
+        serie_dos_12_horizontes: Tuplas de (horizonte, folha 5, folha 20).
+        cor_da_folha_20: A cor desta medida, a mesma da coluna na tabela.
+
+    Returns:
+        O HTML do gráfico.
+    """
+    pontos_da_folha_5 = [
+        (float(linha[0]), linha[numeros.POSICAO_DA_FOLHA_5])
+        for linha in serie_dos_12_horizontes
+    ]
+    pontos_da_folha_20 = [
+        (float(linha[0]), linha[numeros.POSICAO_DA_FOLHA_20])
+        for linha in serie_dos_12_horizontes
+    ]
+
+    return graficos.montar_grafico_de_linhas(
+        {
+            NOME_DA_LINHA_DA_FOLHA_5: pontos_da_folha_5,
+            "Folha 20": pontos_da_folha_20,
+        },
+        "horizonte (semanas)",
+        rotulo_do_eixo,
+        cores=[COR_DA_FOLHA_5, cor_da_folha_20],
+        series_tracejadas={NOME_DA_LINHA_DA_FOLHA_5},
+    )
+
+
 def _slide_o_vetor() -> deck.Slide:
-    """A relação vetor-casos, e o que o modelo já faz com ela.
+    """O que o mosquito rende e o quanto o modelo se apoia nele, nas duas folhas.
 
-    ⚠️ **Corrigido em 26/09/2026.** A versão anterior deste slide dizia que o
-    modelo "ainda não captura" a relação. A bateria de 24/09/2026 mostrou que
-    isso afirma menos do que a medição sustenta, em dois pontos:
+    ⚠️ **Refeito em 26/09/2026**, a pedido do Vinicius: menos texto, mais tabela
+    e gráfico, com cor ligando cada medida à sua curva. A versão anterior tinha
+    uma tabela de 3 linhas e dois avisos de texto corrido.
 
-    1. O modelo adotado **usa** o vetor com peso — a partir de 1 mês à frente,
-       depende mais dele do que do próprio histórico de casos.
-    2. Trocando **um único hiperparâmetro** — a folha mínima, de 5 para 20 — o
-       vetor passa a **reduzir** o erro de 3 meses, com significância.
+    O slide junta **duas medições diferentes**, e a nota de rodapé existe para
+    impedir que elas sejam confundidas:
 
-    O que continua verdadeiro é que o cenário adotado, com folha 5, não extrai
-    ganho do vetor. Isso é escolha de configuração, não ausência do fenômeno.
+      - **ganho** (ablação): treinar do zero sem o mosquito e comparar;
+      - **erro sem o mosquito** (permutação): embaralhar as colunas no modelo
+        já treinado.
+
+    Na folha 5 as duas discordam — o modelo se apoia no mosquito e mesmo assim
+    treinar sem ele não piora. É exatamente por isso que **"indispensável" não
+    pode ser dito**, e a nota registra isso.
 
     Nunca dizer "o vetor não ajuda" nem "não deu correlação": as duas frases
     afirmam mais do que a medição sustenta, e é o que o orientador pediu para
     evitar em 21/09/2026.
     """
-    cabecalhos = ["Configuração", "Queda do erro em 3 meses com o vetor", "p de Holm"]
-    linhas = [
-        ["HistGB, folha 5 — <b>o cenário adotado</b>", "+2,2%", "não significativo"],
-        ["HistGB, folha <b>20</b>", "<b>+12,3%</b>", "<b>0,015</b>"],
-        ["LightGBM, folha <b>20</b>", "<b>+15,5%</b>", "<b>0,0001</b>"],
+    cabecalhos = [
+        "Horizonte",
+        _celula_colorida("Ganho do vetor", COR_DO_GANHO),
+        "p de Holm",
+        _celula_colorida("Erro sem o mosquito", COR_DO_APOIO),
     ]
+
+    def montar_tabela_de_uma_configuracao(e_a_folha_20: bool) -> str:
+        """Monta a tabela de uma das duas configurações.
+
+        A folha 20 vem em negrito onde supera a folha 5, que é a comparação —
+        o mesmo critério visual do slide do alarme.
+
+        Args:
+            e_a_folha_20: True para a configuração de folha mínima 20.
+
+        Returns:
+            O HTML da tabela.
+        """
+        linhas_da_tabela = []
+        for do_horizonte in numeros.O_VETOR_NAS_DUAS_CONFIGURACOES:
+            if e_a_folha_20:
+                ganho = do_horizonte.ganho_na_folha_20
+                p_de_holm = do_horizonte.p_holm_na_folha_20
+                apoio = do_horizonte.apoio_na_folha_20
+            else:
+                ganho = do_horizonte.ganho_na_folha_5
+                p_de_holm = do_horizonte.p_holm_na_folha_5
+                apoio = do_horizonte.apoio_na_folha_5
+
+            ganho_vence = e_a_folha_20 and ganho > do_horizonte.ganho_na_folha_5
+            apoio_vence = e_a_folha_20 and apoio > do_horizonte.apoio_na_folha_5
+            p_passa = p_de_holm < 0.05
+
+            linhas_da_tabela.append(
+                [
+                    f"<b>{layout.escapar(do_horizonte.rotulo)}</b>",
+                    _celula_colorida_com_destaque(
+                        _formatar_com_sinal(ganho), COR_DO_GANHO, ganho_vence
+                    ),
+                    _destacar(_formatar_p_de_holm(p_de_holm), p_passa),
+                    _celula_colorida_com_destaque(
+                        _formatar_com_sinal(apoio), COR_DO_APOIO, apoio_vence
+                    ),
+                ]
+            )
+
+        return layout.montar_tabela(cabecalhos, linhas_da_tabela)
+
+    # O erro base entra no rótulo de cada tabela, como faixa de 1 semana a 3
+    # meses. Sem ele o ganho relativo seria lido sobre uma base escondida — e a
+    # faixa mostra sozinha o essencial: a folha 20 começa PIOR (134 contra 98) e
+    # termina MELHOR (244 contra 279). Vai no rótulo, e não numa quinta coluna
+    # nem numa legenda, porque as duas alternativas estouravam os 720px.
+    primeiro = numeros.O_VETOR_NAS_DUAS_CONFIGURACOES[0]
+    ultimo = numeros.O_VETOR_NAS_DUAS_CONFIGURACOES[-1]
+
+    def faixa_de_erro(do_primeiro: float, do_ultimo: float) -> str:
+        """Escreve o erro base como faixa, de 1 semana a 3 meses."""
+        return (
+            f"{numeros.formatar_decimal(do_primeiro, 0)} a "
+            f"{numeros.formatar_decimal(do_ultimo, 0)} casos"
+        )
+
+    # Duas tabelas lado a lado, uma por configuração, como no slide do alarme:
+    # sem os dois blocos na tela a comparação ficaria só nas curvas.
+    as_duas_tabelas = (
+        '<div class="deckTabelasLadoALado">'
+        '<div><p class="deckTabelaRotulo" style="color:var(--tinta)">'
+        "Folha 5 — a configuração adotada "
+        f"<span style=\"font-weight:400;opacity:.62\">· erro "
+        f"{faixa_de_erro(primeiro.erro_na_folha_5, ultimo.erro_na_folha_5)}</span></p>"
+        f"{montar_tabela_de_uma_configuracao(e_a_folha_20=False)}</div>"
+        '<div><p class="deckTabelaRotulo" style="color:var(--acento)">'
+        "Folha 20 "
+        f"<span style=\"font-weight:400;opacity:.62\">· erro "
+        f"{faixa_de_erro(primeiro.erro_na_folha_20, ultimo.erro_na_folha_20)}</span></p>"
+        f"{montar_tabela_de_uma_configuracao(e_a_folha_20=True)}</div>"
+        "</div>"
+    )
+
+    os_dois_graficos = (
+        _grafico_do_vetor(
+            "Ganho do vetor (%)", numeros.GANHO_DO_VETOR_NOS_12, COR_DO_GANHO
+        )
+        + _grafico_do_vetor(
+            "Erro sem o mosquito (%)", numeros.APOIO_NO_VETOR_NOS_12, COR_DO_APOIO
+        )
+    )
+
+    replicacao = numeros.REPLICACAO_NO_LIGHTGBM
+
     return deck.Slide(
         topico=TOPICO_RESULTADOS,
-        titulo="O modelo usa o vetor — e com outro hiperparâmetro, ele reduz o erro",
+        titulo="Com folha 20, o mosquito reduz o erro em 2 e 3 meses",
         rotulo_curto="O vetor",
         corpo=(
-            layout.montar_tabela(cabecalhos, linhas)
-            + layout.montar_aviso(
-                "bom",
-                "Fato medido em 24/09/2026",
-                "A partir de <b>1 mês</b> à frente, o modelo adotado já depende "
-                "<b>mais do vetor</b> do que do histórico de casos: embaralhar as "
-                "colunas do mosquito aumenta o erro de <b>46% a 73%</b>; embaralhar "
-                "o histórico de casos, de <b>20% a 47%</b>.",
-            )
-            + layout.montar_aviso(
-                "atencao",
-                "Ressalva que vai junto",
-                "O ganho da folha 20 é <b>exploratório</b> e carregado pela "
-                "temporada de <b>2024</b>. Em 2025 ele só se repete com "
-                "significância no LightGBM, em 11 e 12 semanas.",
-            )
+            as_duas_tabelas
+            + '<p class="deckNotaDeGrafico">🟢 <b>De onde veio:</b> no LightGBM, que '
+            "já usava folha 20, o vetor derrubou o erro de 3 meses em "
+            f"<b>{numeros.formatar_decimal(replicacao.ganho_em_tres_meses, 1)}%</b> "
+            f"(p de Holm <b>{_formatar_p_de_holm(replicacao.p_holm)}</b>, família de "
+            f"{replicacao.tamanho_da_familia}) — subir a folha do HistGB "
+            "<b>replicou</b> o efeito, e é a tabela da direita.</p>"
+            + f'<div class="graficosLadoALado">{os_dois_graficos}</div>'
         ),
         nota=(
-            "⚠️ <b>O slide mais delicado, e ele mudou.</b> A mensagem agora é: o "
-            "modelo <b>usa</b> o mosquito, e a configuração adotada é que não "
-            "extrai ganho dele. <b>Nunca</b> dizer 'não ajuda' ou 'não deu "
-            "correlação'. Se perguntarem por que não adotamos a folha 20: porque "
-            "o critério de escolha do projeto olha a calibração de 2020-2023, e "
-            "ali a folha 20 é ~30% pior — é pendência declarada, não descuido."
+            "<b>Ganho</b> = treino um modelo do zero <b>sem</b> o mosquito e comparo; "
+            "responde <i>dá para viver sem?</i>. <b>Erro sem o mosquito</b> = pego o "
+            "modelo <b>já treinado</b> e embaralho as colunas dele; responde <i>ele "
+            "está usando?</i>. 🔴 <b>Nunca dizer 'indispensável'</b>: na folha 5 o "
+            "modelo se apoia no mosquito e mesmo assim treinar sem ele não piora "
+            "(p de Holm <b>1,00</b>) — ele reaprende pelo histórico de casos. "
+            "🔴 <b>Nem 'a folha decide'</b>: a folha 20 só ganha mais em 8 dos 12 "
+            "horizontes, e o GradBoost de folha 5 rende +10,1% em 1 mês. "
+            "⚠️ <b>Exploratório e carregado por 2024</b>: em 2025, em 2 meses, o sinal "
+            "chega a inverter. ⚠️ O LightGBM difere em mais que a folha (31 folhas e "
+            "300 árvores); o teste limpo de uma variável só é o do HistGB. ⚠️ As "
+            "famílias de Holm são diferentes: 12 na folha 5, 4 na folha 20. ⚠️ Por que "
+            "não adotamos a folha 20: o critério do projeto olha a calibração de "
+            "2020-2023, e ali ela é <b>~30% pior</b>. É pendência declarada. A linha "
+            "cinza pontilhada é sempre a folha 5."
         ),
         e_denso=True,
     )
