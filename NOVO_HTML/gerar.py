@@ -32,6 +32,7 @@ import notificacoes_como_alvo as pagina_notificacoes_como_alvo  # noqa: E402
 import proximos_passos as pagina_proximos_passos  # noqa: E402
 import seminario as pagina_seminario  # noqa: E402
 import seminario_v2 as pagina_seminario_v2  # noqa: E402
+import seminario_v3 as pagina_seminario_v3  # noqa: E402
 
 
 PASTA_DE_SAIDA = PASTA_DESTE_ARQUIVO / "saida"
@@ -61,6 +62,7 @@ MODULOS_POR_PAGINA = {
     navegacao.PAGINA_PROXIMOS_PASSOS.chave: pagina_proximos_passos,
     navegacao.PAGINA_SEMINARIO.chave: pagina_seminario,
     navegacao.PAGINA_SEMINARIO_V2.chave: pagina_seminario_v2,
+    navegacao.PAGINA_SEMINARIO_V3.chave: pagina_seminario_v3,
     navegacao.PAGINA_CENARIOS.chave: pagina_cenarios,
     navegacao.PAGINA_NOTIFICACOES_COMO_ALVO.chave: pagina_notificacoes_como_alvo,
 }

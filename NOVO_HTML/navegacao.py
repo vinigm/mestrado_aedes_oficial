@@ -237,6 +237,20 @@ PAGINA_SEMINARIO_V2 = PaginaDoSite(
 )
 
 
+# Segunda cópia, de 27/09/2026: a que testa mostrar 2024 e 2025 separados.
+PAGINA_SEMINARIO_V3 = PaginaDoSite(
+    chave="seminario-v3",
+    arquivo="seminario-copia-2.html",
+    titulo_no_menu="Seminário (cópia 2)",
+    icone="apresentacao",
+    titulo="Seminário de Andamento",
+    resumo="",
+    rotulo_do_submenu="A apresentação",
+    secoes=(),
+    oculta_cabecalho=True,
+)
+
+
 # Página de trabalho, só local (não publicada) — registro enxuto da rodada de
 # 25/09/2026 que troca o alvo pela série do CEVS (Confirmados/Notificações).
 # `abre_grupo=True` repete o mesmo filete com respiro que separa "Próximos
@@ -270,6 +284,7 @@ PAGINAS_DO_SITE: tuple[PaginaDoSite, ...] = (
     PAGINA_PROXIMOS_PASSOS,
     PAGINA_SEMINARIO,
     PAGINA_SEMINARIO_V2,
+    PAGINA_SEMINARIO_V3,
     PAGINA_NOTIFICACOES_COMO_ALVO,
 )
 
