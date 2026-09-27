@@ -184,6 +184,38 @@ FOLHA_DE_ESTILO_DO_DECK = """
   border-color:var(--acento); transform:scale(1.35);
   box-shadow:0 0 0 4px rgba(27,110,243,.16)}
 
+/* Trilha POR SECAO: uma marca por slide, agrupadas pelo topico, com o nome
+   do topico aparecendo UMA vez por grupo. Resolve o impasse entre as duas
+   versoes anteriores — a com rotulo em cada slide repetia "RESULTADOS" onze
+   vezes, e a so com bolinhas nao dizia em que parte da apresentacao se esta.
+
+   Cada grupo cresce em proporcao ao numero de slides dele, entao a largura da
+   faixa ja mostra o peso de cada secao na apresentacao. */
+.deckIndice.porSecao{display:flex; gap:18px; align-items:flex-start;
+  padding:12px 40px 10px}
+/* `fit-content` no minimo: uma secao de UM slide ficaria com 55px e cortaria
+   "Proximos passos" em "PROXIMO...". Assim o grupo nunca fica menor que o
+   proprio nome, e a proporcionalidade continua valendo no espaco que sobra. */
+.deckSecao{display:flex; flex-direction:column; align-items:center; gap:7px;
+  min-width:fit-content}
+.deckSecaoMarcas{display:flex; align-items:center; justify-content:center;
+  gap:6px; width:100%; height:12px}
+.deckSecaoNome{font-size:.5rem; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; color:#C6D0DB; white-space:nowrap; overflow:hidden;
+  text-overflow:ellipsis; max-width:100%; transition:color .18s ease}
+.deckSecao.ativa .deckSecaoNome{color:var(--acento)}
+.deckSecao.vista .deckSecaoNome{color:#AEBAC7}
+
+/* A marca e um TRACO, e nao uma bolinha: em grupo, tracos verticais leem como
+   uma regua de progresso, e circulos leem como uma lista de itens soltos. */
+.deckIndice.porSecao .deckIndiceItem{flex:0 0 auto}
+.deckIndice.porSecao .deckIndiceMarca{width:2px; height:10px; border:none;
+  border-radius:1px; background:var(--borda-forte)}
+.deckIndice.porSecao .deckIndiceItem.passado .deckIndiceMarca{
+  background:#A9C9F7}
+.deckIndice.porSecao .deckIndiceItem.atual .deckIndiceMarca{
+  background:var(--acento); height:14px; transform:none; box-shadow:none}
+
 /* Trilha so com bolinhas: alem de perder os rotulos, ela perde tambem o azul
    forte. Sem texto ao redor, a linha cheia no acento virava o elemento mais
    chamativo da tela, competindo com o proprio slide. Aqui ela fica num azul
@@ -358,7 +390,8 @@ SCRIPT_DO_DECK = """
   // alinham por ele, e não por um pixel fixo no CSS: assim continuam centradas
   // quando o tamanho da bolinha, a fonte ou o padding mudarem.
   function centroDoMarcador(item){
-    var barra = item.parentElement.getBoundingClientRect();
+    var trilha = item.closest('.deckIndice');
+    var barra = trilha.getBoundingClientRect();
     var marca = item.querySelector('.deckIndiceMarca').getBoundingClientRect();
     return {
       x: (marca.left + marca.width / 2) - barra.left,
@@ -387,6 +420,21 @@ SCRIPT_DO_DECK = """
       itensDoIndice[u].classList.toggle(
         'passado', posicaoDoTopico >= 0 && u < posicaoDoTopico
       );
+    }
+
+    // A seção do slide atual fica destacada, e as anteriores marcadas como
+    // vistas. É o que faz o nome do tópico acender quando se entra nele.
+    var secoes = document.querySelectorAll('.deckSecao');
+    for (var v = 0; v < secoes.length; v++) {
+      var marcasDaSecao = secoes[v].querySelectorAll('.deckIndiceItem');
+      var temAtual = false;
+      var todasPassadas = marcasDaSecao.length > 0;
+      for (var w = 0; w < marcasDaSecao.length; w++) {
+        if (marcasDaSecao[w].classList.contains('atual')) { temAtual = true; }
+        if (!marcasDaSecao[w].classList.contains('passado')) { todasPassadas = false; }
+      }
+      secoes[v].classList.toggle('ativa', temAtual);
+      secoes[v].classList.toggle('vista', todasPassadas && !temAtual);
     }
 
     // As duas linhas vão de marcador a marcador: a cinza do primeiro ao
@@ -446,6 +494,57 @@ SCRIPT_DO_DECK = """
   mostrar(isNaN(pedido) ? 0 : pedido - 1, false);
 })();
 """
+
+
+def _indice_por_secao(slides: list[Slide]) -> str:
+    """Monta a trilha agrupada por tópico, com uma marca por slide.
+
+    Cada tópico vira um grupo. Dentro dele há uma marca por slide, e o nome do
+    tópico aparece uma vez só, embaixo. O grupo cresce em proporção ao número
+    de slides que tem, então a largura já conta quanto da apresentação cada
+    parte ocupa.
+
+    Slides sem tópico — a capa — ficam de fora, como na trilha antiga.
+
+    Args:
+        slides: Os slides, na ordem da apresentação.
+
+    Returns:
+        O HTML da trilha, ou string vazia se nenhum slide tiver tópico.
+    """
+    grupos: list[tuple[str, list[int]]] = []
+    for posicao, slide in enumerate(slides):
+        if not slide.topico:
+            continue
+        if grupos and grupos[-1][0] == slide.topico:
+            grupos[-1][1].append(posicao)
+        else:
+            grupos.append((slide.topico, [posicao]))
+
+    if not grupos:
+        return ""
+
+    blocos = []
+    for topico, posicoes in grupos:
+        marcas = "".join(
+            f'<div class="deckIndiceItem" data-slide="{posicao}">'
+            '<span class="deckIndiceMarca"></span></div>'
+            for posicao in posicoes
+        )
+        blocos.append(
+            f'<div class="deckSecao" style="flex:{len(posicoes)} 1 0">'
+            f'<div class="deckSecaoMarcas">{marcas}</div>'
+            f'<span class="deckSecaoNome">{layout.escapar(topico)}</span>'
+            "</div>"
+        )
+
+    return (
+        '<div class="deckIndice porSecao">'
+        '<div class="deckIndiceTrilha"></div>'
+        '<div class="deckIndiceProgresso" id="deckIndiceProgresso"></div>'
+        f'{"".join(blocos)}'
+        "</div>"
+    )
 
 
 def _indice_horizontal(slides: list[Slide], mostrar_rotulos: bool = True) -> str:
@@ -515,8 +614,8 @@ def montar(slides: list[Slide], estilo_de_projecao: bool = False) -> str:
               - a trilha perde os rótulos e fica só com as bolinhas;
               - o palco perde a borda, o arredondamento e a sombra de cartão,
                 porque numa apresentação não há o que separar do deck;
-              - a trilha desce para baixo do slide, onde não disputa a
-                entrada de leitura com o título.
+              - a trilha vira uma régua agrupada por tópico: uma marca por
+                slide, e o nome do tópico uma vez por grupo.
 
     Returns:
         O HTML do deck.
@@ -578,11 +677,12 @@ def montar(slides: list[Slide], estilo_de_projecao: bool = False) -> str:
     return (
         '<div class="deck">'
         f'<div class="{classe_do_palco}">'
-        # Na projeção a trilha vai DEPOIS do slide: em cima, ela disputava a
-        # entrada de leitura com o tópico e o título.
-        + (f"{_indice_horizontal(slides, not estilo_de_projecao)}" if not estilo_de_projecao else "")
+        + (
+            _indice_por_secao(slides)
+            if estilo_de_projecao
+            else _indice_horizontal(slides)
+        )
         + f'<div class="deckTela">{"".join(blocos_de_slide)}</div>'
-        + (f"{_indice_horizontal(slides, False)}" if estilo_de_projecao else "")
         + "</div>"
         f"{barra}"
         "</div>"
