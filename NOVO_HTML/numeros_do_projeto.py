@@ -1298,3 +1298,105 @@ COMPOSTO_EM_2025_NOS_12 = (
 POSICAO_DO_R2_POR_ANO = 1
 POSICAO_DA_CAPTURA_POR_ANO = 2
 POSICAO_DO_ALARME_POR_ANO = 3
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# A LIMITAÇÃO DE 2026 — o alarme que tocou num ano sem dengue
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+@dataclasses.dataclass(frozen=True)
+class AlarmeFalsoEm2026:
+    """Quantas vezes o alarme tocou na temporada que não veio.
+
+    Porto Alegre teve **12 casos confirmados em 2026 inteiro**, com nenhuma
+    semana acima de 2. O modelo, treinado numa série que só cresce — 5.583
+    casos em 2022, 6.600 em 2023, 19.034 em 2024, 24.793 em 2025 —, aprendeu o
+    calendário e a tendência de alta e projetou a continuação.
+
+    🔴 Em 22/03/2026 ele previu **1.808 casos** para uma semana que teve ZERO.
+
+    A régua sazonal falha junto, e quase tanto: ela repete 2025 e dispara 9
+    vezes em 3 meses. Não é defeito de um modelo, é o limite de qualquer método
+    que só olhe casos, clima e vetor.
+
+    Fonte: `analises/2026-09-27_alarme_falso_em_2026/`, pré-declarada.
+    ⚠️ Nenhum número de erro, R² ou captura de 2026 entra em lugar nenhum: a
+    pergunta deste bloco é binária, porque prever 12 casos a partir de uma
+    série crescente é impossível.
+
+    Attributes:
+        rotulo: Como o horizonte é dito em texto.
+        semanas: Quantas semanas de 2026 o walk-forward alcançou.
+        maior_previsto: A maior previsão do ano naquele horizonte.
+        alarmes_do_modelo: Em quantas semanas o composto passou de 421.
+        alarmes_da_regua: Idem para a régua sazonal.
+    """
+
+    rotulo: str
+    semanas: int
+    maior_previsto: int
+    alarmes_do_modelo: int
+    alarmes_da_regua: int
+
+
+ALARME_FALSO_EM_2026 = (
+    AlarmeFalsoEm2026("1 semana", 6, 64, 0, 0),
+    AlarmeFalsoEm2026("1 mês", 9, 555, 3, 1),
+    AlarmeFalsoEm2026("2 meses", 13, 1808, 4, 5),
+    AlarmeFalsoEm2026("3 meses", 17, 1298, 10, 9),
+)
+
+CASOS_EM_2026 = 12
+MAIOR_SEMANA_DE_2026 = 2
+
+
+@dataclasses.dataclass(frozen=True)
+class SaidaParaALimitacao:
+    """Uma ideia para o modelo enxergar imunidade, e o que ela custa.
+
+    ⚠️ A coluna `precisa_de` existe por causa de uma regra do projeto: não
+    propor modelagem que dependa de pedir dado novo à Prefeitura. As três
+    primeiras ideias são **engenharia de atributo sobre a série que já temos**;
+    a quarta é o que faria falta de verdade, e está aqui declarada como
+    indisponível para não virar promessa.
+
+    Attributes:
+        ideia: O atributo ou método proposto.
+        captura: Que fenômeno ele representa.
+        precisa_de: O dado que ele exige.
+        temos: Se dá para fazer com o que já está em disco.
+    """
+
+    ideia: str
+    captura: str
+    precisa_de: str
+    temos: bool
+
+
+SAIDAS_PARA_A_LIMITACAO = (
+    SaidaParaALimitacao(
+        "Casos acumulados nas 2 temporadas anteriores",
+        "quanta gente já foi infectada — indicador indireto de imunidade",
+        "a própria série de casos",
+        True,
+    ),
+    SaidaParaALimitacao(
+        "Semanas desde o último surto",
+        "quanto tempo houve para repor suscetíveis",
+        "a própria série de casos",
+        True,
+    ),
+    SaidaParaALimitacao(
+        "Aceleração de transmissão (média de 4 ÷ média de 26 semanas)",
+        "subida relativa ao próprio nível, e não nível absoluto",
+        "26 semanas de série",
+        True,
+    ),
+    SaidaParaALimitacao(
+        "Sorotipo circulante",
+        "se o vírus em circulação é novo para a população",
+        "dado laboratorial que o projeto não tem",
+        False,
+    ),
+)

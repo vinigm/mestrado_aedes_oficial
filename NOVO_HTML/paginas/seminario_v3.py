@@ -1561,6 +1561,118 @@ def _slide_literatura() -> deck.Slide:
     )
 
 
+# As cores do slide da limitacao: vermelho para o que o modelo disse, cinza
+# para a regua, verde para as saidas que dependem so do que ja temos.
+COR_DO_QUE_O_MODELO_DISSE = "#C0392B"
+COR_DA_REGUA_NA_LIMITACAO = "#8A94A6"
+COR_DA_SAIDA_POSSIVEL = "#1F7A4D"
+
+
+def _slide_limitacao_de_2026() -> deck.Slide:
+    """O alarme que tocou num ano sem dengue, e o que faltaria para evita-lo.
+
+    Slide novo de 27/09/2026. Nasceu de uma preocupacao do Vinicius — o modelo
+    aprendeu numa serie que so cresce, e 2026 nao teve dengue — e a medicao deu
+    razao a ele: em marco de 2026 o composto previu 1.808 casos para uma semana
+    que teve ZERO, e disparou alarme em 10 das 17 semanas do ano em 3 meses.
+
+    ⚠️ **A regua falha junto**, com 9 disparos. Isso e deliberado no slide: sem
+    ela, a limitacao parece defeito deste modelo, quando e o limite de qualquer
+    metodo que so olhe casos, clima e vetor.
+
+    ⚠️ **As saidas respeitam a regra de nao contar com dado novo da
+    Prefeitura.** As tres primeiras sao engenharia de atributo sobre a serie que
+    ja esta em disco; a quarta e declarada indisponivel de proposito, para nao
+    virar promessa que o projeto nao pode cumprir.
+    """
+    cabecalhos_de_2026 = [
+        "Horizonte",
+        _celula_colorida("Maior previsto", COR_DO_QUE_O_MODELO_DISSE),
+        _celula_colorida("Alarmes do modelo", COR_DO_QUE_O_MODELO_DISSE),
+        _celula_colorida("Alarmes da régua", COR_DA_REGUA_NA_LIMITACAO),
+    ]
+    linhas_de_2026 = []
+    classes_das_linhas = []
+    for linha in numeros.ALARME_FALSO_EM_2026:
+        disparou = linha.alarmes_do_modelo > 0
+        linhas_de_2026.append(
+            [
+                f"<b>{layout.escapar(linha.rotulo)}</b>",
+                _celula_colorida_com_destaque(
+                    numeros.formatar_decimal(linha.maior_previsto, 0),
+                    COR_DO_QUE_O_MODELO_DISSE,
+                    disparou,
+                ),
+                _celula_colorida_com_destaque(
+                    f"{linha.alarmes_do_modelo} de {linha.semanas}",
+                    COR_DO_QUE_O_MODELO_DISSE,
+                    disparou,
+                ),
+                _celula_colorida(
+                    f"{linha.alarmes_da_regua} de {linha.semanas}",
+                    COR_DA_REGUA_NA_LIMITACAO,
+                ),
+            ]
+        )
+        classes_das_linhas.append("linhaVencedora" if disparou else "")
+
+    cabecalhos_das_saidas = ["O que acrescentar", "O que isso captura", "Precisa de"]
+    linhas_das_saidas = []
+    for saida in numeros.SAIDAS_PARA_A_LIMITACAO:
+        cor = COR_DA_SAIDA_POSSIVEL if saida.temos else COR_DO_QUE_O_MODELO_DISSE
+        marca = "🟢" if saida.temos else "🚫"
+        linhas_das_saidas.append(
+            [
+                f"{marca} <b>{layout.escapar(saida.ideia)}</b>",
+                layout.escapar(saida.captura),
+                _celula_colorida(layout.escapar(saida.precisa_de), cor),
+            ]
+        )
+
+    as_duas_tabelas = (
+        '<div class="deckTabelasLadoALado">'
+        f'<div><p class="deckTabelaRotulo" style="color:{COR_DO_QUE_O_MODELO_DISSE}">'
+        f"2026 — {numeros.CASOS_EM_2026} casos no ano inteiro "
+        f'<span style="font-weight:400;opacity:.62">· maior semana: '
+        f"{numeros.MAIOR_SEMANA_DE_2026} casos</span></p>"
+        f"{layout.montar_tabela(cabecalhos_de_2026, linhas_de_2026, classes_das_linhas=classes_das_linhas)}</div>"
+        f'<div><p class="deckTabelaRotulo" style="color:{COR_DA_SAIDA_POSSIVEL}">'
+        "O que faltaria para o modelo enxergar isso</p>"
+        f"{layout.montar_tabela(cabecalhos_das_saidas, linhas_das_saidas)}</div>"
+        "</div>"
+    )
+
+    return deck.Slide(
+        topico=TOPICO_RESULTADOS,
+        titulo="A limitação: o modelo não sabe quem já teve dengue",
+        rotulo_curto="A limitação",
+        corpo=(
+            as_duas_tabelas
+            + '<p class="deckNotaDeGrafico">🔴 Em <b>22/03/2026</b> o modelo previu '
+            "<b>1.808 casos</b> para uma semana que teve <b>zero</b>. Ele aprendeu o "
+            "calendário e a tendência de alta da série — 5.583 casos em 2022, 24.793 "
+            "em 2025 — e projetou a continuação. As armadilhas continuaram pegando "
+            "mosquito; o que mudou não está em nenhuma coluna dele.</p>"
+        ),
+        nota=(
+            "🔴 <b>Este slide é a limitação, e ele é meu escudo, não meu problema.</b> "
+            "Mostrar que eu conheço o limite do modelo, com número, vale mais que "
+            "esconder. ⚠️ <b>Dizer que a régua falha junto</b>: 9 disparos contra 10 "
+            "do modelo em 3 meses. Não é defeito deste modelo — é o limite de "
+            "qualquer método que só olhe casos, clima e vetor. ⚠️ <b>Em 1 semana não "
+            "há nenhum alarme falso</b>: ali manda o histórico recente de casos, que "
+            "dizia 'quase nada'. O erro cresce com o horizonte, onde o calendário e o "
+            "vetor mandam. 🟢 <b>As três primeiras saídas não exigem dado novo</b> — "
+            "são engenharia de atributo sobre a série que já temos, e é isso que "
+            "torna a proposta viável. A quarta está ali para ser honesta sobre o que "
+            "faria falta e não existe. ⚠️ Nenhum número de erro de 2026 entra aqui: "
+            "prever 12 casos a partir de uma série crescente é impossível, e a "
+            "pergunta deste bloco é binária."
+        ),
+        e_denso=True,
+    )
+
+
 def _slide_proximos_passos() -> deck.Slide:
     """O último slide, como o orientador pediu."""
     cabecalhos = ["", "Hoje", "Próxima etapa"]
@@ -1618,6 +1730,7 @@ def montar_slides() -> list[deck.Slide]:
         _slide_os_dois_anos(),
         _slide_onde_ainda_falha(),
         _slide_literatura(),
+        _slide_limitacao_de_2026(),
         _slide_proximos_passos(),
     ]
 
