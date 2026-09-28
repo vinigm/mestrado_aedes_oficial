@@ -1188,9 +1188,10 @@ class DesempenhoDeUmAno:
 
     Por que separar: 2024 e 2025 são **regimes diferentes**, e a média dos dois
     não descreve nenhum. Ao prever o pico de 2024 o modelo nunca tinha visto
-    uma semana acima de **879 casos**, e precisava acertar **1.601**; uma
-    árvore de decisão não prevê acima do que viu no treino. Ao prever o pico de
-    2025 ele já conhecia os **1.855** de 2024.
+    uma semana acima de **879 casos**, e precisava acertar **1.855**; previu
+    **363**, porque uma árvore de decisão não prevê acima do que viu no treino.
+    Ao prever o pico de 2025 ele já conhecia os **1.855** de 2024, e previu
+    **1.321** para um real de **2.381**.
 
     O efeito é enorme no horizonte longo: em 3 meses o R² vai de **0,054** para
     **0,792**, e o alarme de **1 de 14** para **13 de 14**.
@@ -1228,6 +1229,231 @@ class DesempenhoDeUmAno:
         return self.alertas_pegos / self.alertas_no_ano
 
 
+# A janela de avaliacao é UMA SÓ — 102 semanas, de 07/01/2024 a 01/02/2026, sem
+# corte entre 2024 e 2025. O recorte por ano é posterior e descritivo: a mesma
+# avaliação, olhada em dois pedaços. Conferido em 27/09/2026 contra
+# `previsoes_por_braco.csv`: 45 de 2024 + 52 de 2025 + 5 de 2026 = 102.
+#
+# ⚠️ Ela NÃO é contínua semana a semana: faltam **7 semanas**, porque a enchente
+# de maio de 2024 interrompeu as vistorias das armadilhas entre **28/04 e
+# 09/06/2024** e o `dropna` levou junto as semanas-alvo que dependiam daquelas
+# features. Como as features vêm de `alvo − horizonte`, o buraco DESLOCA com o
+# horizonte: em h=1 cai em 05/05–16/06/2024 e em h=12, em 21/07–01/09/2024. O
+# total avaliado é 102 em todo horizonte; o calendário tem 109.
+#
+# O braço SEM vetor (`HistGB_folha20_M0`) não depende das armadilhas e tem as
+# 109. Por isso toda comparação com ele é pareada por `data_alvo` — e é: o
+# `comparacoes.csv` do bloco 7 registra `semanas_pareadas = 102` em todo h.
+SEMANAS_PERDIDAS_PELA_ENCHENTE = 7
+PRIMEIRA_SEMANA_SEM_ARMADILHA = "28/04/2024"
+ULTIMA_SEMANA_SEM_ARMADILHA = "09/06/2024"
+PRIMEIRA_SEMANA_DA_AVALIACAO = "07/01/2024"
+ULTIMA_SEMANA_DA_AVALIACAO = "01/02/2026"
+SEMANAS_NA_AVALIACAO = 102
+
+# Ate onde o treino enxergava no momento de prever o pico de cada temporada. Nao
+# e uma data de projeto: e o resultado da regra de corte por data de RESPOSTA
+# somada ao corte de maturidade de 12 semanas, para o horizonte de 12 semanas.
+# Para o pico de 21/04/2024 da 05/11/2023; para o de 30/03/2025 da 13/10/2024.
+# O treino cresce a cada semana prevista — estas sao duas fotografias dele.
+MES_DO_CORTE_DO_TREINO_EM_2024 = (2023, 11)
+MES_DO_CORTE_DO_TREINO_EM_2025 = (2024, 10)
+CORTE_DO_TREINO_EM_2024 = "nov/2023"
+CORTE_DO_TREINO_EM_2025 = "out/2024"
+
+@dataclasses.dataclass(frozen=True)
+class EstudoDaLiteratura:
+    """Um trabalho publicado que tenta antecipar epidemia de dengue.
+
+    Estes seis entram no slide como PANORAMA, e nao como comparacao — decisao
+    do Vinicius em 27/09/2026, depois de a comparacao por R² ser reprovada.
+
+    A coluna que faz o slide funcionar e `bate_a_referencia`. Ela responde a
+    unica pergunta que E comparavel entre estudos com janelas, alvos e metricas
+    diferentes: **o modelo venceu o proprio comparador?** Numero absoluto de um
+    artigo nao se le contra o de outro; "venceu a propria regua" se le.
+
+    Por isso o nosso projeto tambem entra na tabela, na ultima linha: ele e
+    medido pela mesma vara que os outros.
+
+    🔴 Todos os campos foram conferidos CONTRA O PDF em 27/09/2026, depois de o
+    "R² 0,46" do da Silva se revelar inexistente. Duas divergencias com
+    `documentacao_completa/partes/06_literatura.md` foram resolvidas a favor do
+    PDF: a serie do Shi e de **12** anos (2001-2012), nao 13; e o "skill mediano
+    0,12" dos sprints e do SEGUNDO sprint, que **nao tem PDF em disco** — por
+    isso o numero nao entra aqui.
+
+    ⚠️ A janela de Porto Alegre no da Cunha e Silva e **1999-2021**, e nao
+    alcanca as epidemias de 2024-25. O R² negativo dele, portanto, nao se
+    compara ao nosso: sao janelas de dificuldade diferente.
+
+    Attributes:
+        nome: Como o estudo e citado no slide.
+        e_operacional: True quando o sistema roda em producao, e nao so em
+            artigo. Dois dos seis rodam.
+        e_deste_projeto: True para a nossa linha, que sai em destaque.
+        local: Cidade ou pais, e a escala geografica.
+        serie: Quantos anos de serie o estudo usou.
+        alvo: O que exatamente o modelo preve.
+        vence: "sim", "nao" ou "em parte" — como a celula e pintada.
+        bate_a_referencia: Contra o que se compara e com que numero.
+        condicoes: Em que condicoes aquele veredito foi obtido. É a coluna que
+            impede a leitura preguicosa da anterior: dos tres que batem a propria
+            referencia, dois tem 12 a 20+ anos de serie e o terceiro preve
+            CATEGORIA de risco, nao o numero de casos. Pedido do Vinicius em
+            27/09/2026, com as palavras dele: os que bateram "meio que roubaram,
+            por ser simplificado ou por ter muito mais dados".
+    """
+
+    nome: str
+    e_operacional: bool
+    e_deste_projeto: bool
+    local: str
+    serie: str
+    alvo: str
+    vence: str
+    bate_a_referencia: str
+    condicoes: str
+
+
+O_PANORAMA_DA_LITERATURA = (
+    EstudoDaLiteratura(
+        "da Silva 2026 · preprint",
+        False,
+        False,
+        "Porto Alegre",
+        "8 anos",
+        "infestação das armadilhas e incidência em log",
+        "nao",
+        "não · empata com uma regressão linear",
+        "mesma cidade, mesmos 8 anos",
+    ),
+    EstudoDaLiteratura(
+        "da Cunha e Silva 2026",
+        False,
+        False,
+        "27 capitais, incl. POA",
+        "23 anos",
+        "internação por dengue por 100 mil",
+        "nao",
+        "não · R² −0,21 e −0,31 em POA",
+        "janela até 2021, POA quase sem dengue",
+    ),
+    EstudoDaLiteratura(
+        "Shi 2016",
+        True,
+        False,
+        "Singapura",
+        "12 anos",
+        "notificações semanais",
+        "sim",
+        "sim · 24% contra 29% do SARIMA",
+        "12 anos, e compara com SARIMA, não com régua",
+    ),
+    EstudoDaLiteratura(
+        "D-MOSS",
+        True,
+        False,
+        "Vietnã, 63 províncias",
+        "20+ anos",
+        "incidência por 100 mil",
+        "sim",
+        "sim · RMSE 17,8% abaixo da sazonal",
+        "20+ anos, província agregada, passo mensal",
+    ),
+    EstudoDaLiteratura(
+        "Lowe 2016",
+        False,
+        False,
+        "Brasil, 553 microrregiões",
+        "14 anos",
+        "categoria de risco, alto ou baixo",
+        "sim",
+        "sim · 57% contra 33% do nulo",
+        "alvo mais fácil: categoria, não o número",
+    ),
+    EstudoDaLiteratura(
+        "Sprint Mosqlimate 2024",
+        False,
+        False,
+        "Brasil, 5 estados",
+        "13 anos",
+        "casos semanais, em faixa de probabilidade",
+        "nao",
+        "não · um baseline bayesiano empata",
+        "13 anos e dezenas de equipes tentando",
+    ),
+    EstudoDaLiteratura(
+        "Este projeto",
+        False,
+        True,
+        "Porto Alegre",
+        "8 anos",
+        "casos confirmados por semana",
+        "em parte",
+        "sim até 1 mês (+6,4%) · não depois (−11,9%)",
+        "8 anos, e POA só tem epidemia desde 2022",
+    ),
+)
+
+
+@dataclasses.dataclass(frozen=True)
+class SemanaDePico:
+    """Uma das semanas mais cheias de uma temporada, com o que o modelo previu.
+
+    Por que as CINCO maiores, e nao uma: a versao anterior do slide mostrava so
+    a semana de pico, e o Vinicius apontou em 27/09/2026 que uma semana sozinha
+    parece escolhida a dedo. "As cinco maiores do ano" e um criterio objetivo,
+    dito em voz alta, e o retrato nao muda — em 2024 o erro fica entre -76% e
+    -87%, em 2025 entre -26% e -45%.
+
+    Previsoes do modelo composto em **3 meses** (h=12), extraidas em 27/09/2026
+    de `analises/2026-09-23_bateria_noturna/bloco_7_vetor_com_folha_20/saidas/
+    previsoes_por_braco.csv`, recombinadas pela regra de `calcular.py`.
+
+    Attributes:
+        semana: A data-alvo, como aparece no slide.
+        real: Casos confirmados naquela semana.
+        previsto: O que o modelo disse, com 3 meses de antecedencia.
+    """
+
+    semana: str
+    real: int
+    previsto: int
+
+    def diferenca(self) -> int:
+        """Quanto o modelo errou, em casos. Negativo = subestimou."""
+        return self.previsto - self.real
+
+    def diferenca_relativa(self) -> float:
+        """O mesmo erro como fracao do real."""
+        return self.diferenca() / self.real
+
+
+MAIORES_SEMANAS_DE_2024 = (
+    SemanaDePico("31/03", 1601, 389),
+    SemanaDePico("07/04", 1849, 251),
+    SemanaDePico("14/04", 1783, 234),
+    SemanaDePico("21/04", 1855, 363),
+    SemanaDePico("12/05", 1510, 216),
+)
+
+MAIORES_SEMANAS_DE_2025 = (
+    SemanaDePico("30/03", 2381, 1321),
+    SemanaDePico("06/04", 2184, 1614),
+    SemanaDePico("13/04", 2247, 1542),
+    SemanaDePico("20/04", 2229, 1602),
+    SemanaDePico("27/04", 2212, 1392),
+)
+
+# Nenhuma previsao, em nenhum dos dois anos, passou do teto do treino: 0 de 45 em
+# 2024 e 0 de 52 em 2025. O real passou dele em 11 e 8 semanas. É a regra da
+# arvore de decisao medida no dado, e nao deduzida.
+PREVISOES_ACIMA_DO_TETO_EM_2024 = 0
+PREVISOES_ACIMA_DO_TETO_EM_2025 = 0
+SEMANAS_REAIS_ACIMA_DO_TETO_EM_2024 = 11
+SEMANAS_REAIS_ACIMA_DO_TETO_EM_2025 = 8
+
 SEMANAS_AVALIADAS_EM_2024 = 45
 SEMANAS_AVALIADAS_EM_2025 = 52
 
@@ -1245,12 +1471,50 @@ COMPOSTO_EM_2025 = (
     DesempenhoDeUmAno("3 meses", 196.3, 0.792, 0.700, 13, 14, 0.867, 2.0),
 )
 
-# O que o modelo tinha visto ao prever o pico de cada temporada, e o que ele
-# precisava acertar. É a explicação mecânica do contraste entre os dois anos.
+# O que o modelo tinha visto ao prever o pico de cada temporada, o que ele
+# precisava acertar e o que ele de fato previu. É a explicação mecânica do
+# contraste entre os dois anos.
+#
+# 🔴 Corrigido em 27/09/2026: `PICO_A_PREVER_EM_2024` estava em **1.601**, que é
+# a semana de 17/03/2024. O maior real da avaliação em 2024 é **1.855**, na
+# semana de 21/04/2024 — conferido em `previsoes_por_braco.csv`. Pelo mesmo
+# motivo, o "previu 1.614" que circulava era o MAIOR previsto de 2025 inteiro
+# (semana de 06/04/2025), e não a previsão na semana do pico.
+#
+# O teto do treino é o que a regra de corte por data de RESPOSTA deixava ver no
+# momento de prever cada pico, com o corte de maturidade de 12 semanas somado ao
+# horizonte de 12: para 21/04/2024 o treino via até 29/10/2023 (máximo 879, o
+# pico de 2022); para 30/03/2025 via até 13/10/2024 (máximo 1.855, o de 2024).
 MAIOR_PICO_CONHECIDO_EM_2024 = 879
-PICO_A_PREVER_EM_2024 = 1601
+PICO_A_PREVER_EM_2024 = 1855
+PREVISTO_NO_PICO_DE_2024 = 363
+MAIOR_PREVISTO_EM_2024 = 525
+
 MAIOR_PICO_CONHECIDO_EM_2025 = 1855
 PICO_A_PREVER_EM_2025 = 2381
+PREVISTO_NO_PICO_DE_2025 = 1321
+MAIOR_PREVISTO_EM_2025 = 1614
+
+# A série semanal de casos confirmados agregada por MÊS, guardando o MAIOR valor
+# de cada mês — o que interessa na régua visual do slide dos dois anos é a altura
+# dos picos, não a média. Começa em fevereiro de 2018, a primeira semana com
+# série de casos, e para em dezembro de 2025, o fim da avaliação; 2026 não entra,
+# por decisão do Vinicius em 26/09/2026.
+#
+# Extraída em 27/09/2026 de `modelagem_aedes/dados/entradas/tabela_modelagem/
+# tabela_final.csv`, coluna `casos_confirmados`, por `resample("MS").max()`.
+PRIMEIRO_ANO_DA_SERIE_MENSAL = 2018
+PRIMEIRO_MES_DA_SERIE_MENSAL = 2
+SERIE_MENSAL_DE_CASOS = (
+    1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1,                          # 2018, de fevereiro
+    2, 1, 22, 53, 64, 22, 2, 1, 3, 0, 0, 1,                   # 2019
+    4, 4, 4, 3, 1, 0, 0, 0, 0, 0, 0, 0,                       # 2020
+    0, 2, 1, 12, 9, 1, 1, 0, 0, 0, 0, 1,                      # 2021
+    2, 51, 482, 879, 344, 61, 24, 3, 3, 1, 11, 10,            # 2022
+    3, 27, 250, 760, 762, 225, 74, 18, 9, 7, 6, 10,           # 2023
+    39, 558, 1601, 1855, 1510, 277, 22, 16, 10, 6, 7, 19,     # 2024
+    47, 383, 2381, 2247, 2159, 579, 13, 11, 9, 8, 5, 2,       # 2025
+)
 
 
 # As três medidas do composto nos 12 horizontes, separadas por ano, para os

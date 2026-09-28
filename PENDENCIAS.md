@@ -101,16 +101,87 @@
 
 ### 27/09/2026 — o alarme falso de 2026, e os dois anos separados
 
+- ✅ **PDF do seminário refeito, e agora sai certo** (27/09). O caminho antigo imprimia os 21 slides de uma
+  vez com `transform:scale(.88)` e quebra de página, e o Chrome não reproduz isso: o título caía **na mesma
+  faixa** dos nomes da barra (48,1–69,8pt contra 49,3–54,6pt, medido na p.2). O novo `NOVO_HTML/gerar_pdf.py`
+  imprime **um slide por vez** via DevTools Protocol, com a barra de verdade do palco no topo, e junta as
+  páginas. Slide a **89,8%** numa página de 1280x720. Certificado: 21/21 slides com o texto da tela íntegro
+  no PDF, todas as páginas no tamanho certo, zero colisão. ⚠️ Nenhum conteúdo de slide foi tocado.
+  ⏳ O botão **"Salvar em PDF"** da própria página segue no caminho antigo (`@media print` do `deck.py`) e
+  continua produzindo a colisão — quem usar o botão, e não o script, vai ver o PDF velho.
+- ✅ **A mancha cinza do slide 3 era a sombra do tema** (27/09, apontada pelo Vinicius). A segunda camada de
+  `--sombra` tem **spread negativo** (`0 8px 24px -16px`), e o Chrome não escreve isso em vetor: no PDF vira
+  um retângulo chapado a 22% do tamanho do cartão — 8 blocos, o maior com **18.637pt²**. Já estava no PDF
+  antigo. O modo PDF agora usa só a 1ª camada (5%), e há trava que reprova a mancha se ela voltar.
+
 - 🔴 **Em março de 2026 o modelo previu 1.808 casos para uma semana de ZERO.** Em 3 meses disparou Alerta em
   **10 das 17 semanas** do ano, 8 delas em Emergência — num ano de **12 casos**. A régua dispara 9. Em 1 semana,
   nenhum. Ele aprendeu o calendário e a tendência de alta; falta-lhe entrada para **imunidade e sorotipo**.
   ⚠️ Minha direção pré-declarada estava errada. `analises/2026-09-27_alarme_falso_em_2026/`
 - 🟢 **2024 e 2025 são regimes diferentes.** Em 3 meses o alarme vai de **1/14** para **13/14** e o R² de
-  **0,054** para **0,792**. Ao prever o pico de 2024 o modelo só conhecia 879 casos e precisava acertar 1.601.
-  Descritivo e pós-fato; confirmar em 2027. Slide novo na cópia 2 do seminário.
-- ⏳ **Slide 16 (literatura) é insustentável como está:** o R² 0,46 do da Silva **não existe** no PDF em disco, o
-  CatBoost prevê **internação** e não caso, e o R² é refém da variância da janela — o nosso modelo em 2021 daria
-  **−18,0**. Decidir se mata o slide ou o vira do avesso.
+  **0,054** para **0,792**. Ao prever o pico de 2024 o modelo só conhecia **879** casos, precisava acertar
+  **1.855** e previu **363**; em 2025, conhecia 1.855 e previu 1.321 para 2.381. Descritivo e pós-fato;
+  confirmar em 2027. ✅ Certificado adversarialmente em 27/09: **9 de 9 afirmações confirmadas**.
+  🔴 **Correção de 27/09:** o "precisava acertar 1.601" era erro meu — 1.601 é a semana de 17/03/2024, e o
+  pico da avaliação é 1.855 (21/04). O "previu 1.614" era o maior previsto de 2025 inteiro, não o do pico.
+- ✅ **Seção nova no deck da cópia 2, "Os dois anos"**, entre Resultados e Limitações, com 2 slides: a régua
+  histórica e a tabela com os 3 gráficos. 21 slides. ⚠️ `seminario.py` e `seminario_v2.py` seguem intactos.
+  🔴 **A 1ª versão da régua mentia** (pergunta do Vinicius, 27/09): pintava uma faixa de avaliação por ano e
+  fazia parecer **dois experimentos com treino em bloco**. A avaliação é **UMA só e contínua** — 102 semanas,
+  07/01/2024 a 01/02/2026 — e o treino **cresce a cada semana**. Refeita: as duas réguas são duas fotografias
+  do mesmo experimento, cortadas em **nov/2023** e **out/2024**. Cada uma vem com a tabela das **5 maiores
+  semanas** do ano (semana · real · previsto · diferença), critério declarado no rótulo.
+- 🔴 **A melhora de 2025 NÃO é do modelo, é do ano** — medido em 27/09 contra a pergunta do Vinicius "por que
+  não adotar o cenário de 2025?". Em 3 meses, a **régua sazonal** melhora igual: R² **0,243 → 0,788**, contra
+  **0,054 → 0,792** do modelo. E no MAE o modelo **perde para a régua nos DOIS anos**: −14,7% em 2024 e −9,0%
+  em 2025. 2025 foi mais previsível porque repetiu 2024, e a régua não aprende nada.
+  ⚠️ **Não existem "dois cenários de treino"**: é um walk-forward só, que retreina a cada semana. Os números de
+  2025 JÁ SÃO "treinado com 2018-2024". Reportar só 2025 seria escolher a janela depois de ver o resultado.
+
+- 🟢 **Nenhuma previsão passou do teto do treino: 0 de 97** (27/09). Zero de 45 em 2024 (teto 879) e zero de 52
+  em 2025 (teto 1.855); o real passou dele em **11** e **8** semanas. É a regra da árvore de decisão medida.
+  Nas 5 maiores semanas o erro vai de **−76% a −87%** em 2024 e de **−26% a −45%** em 2025 — e as 4 primeiras
+  caem na mesma época nos dois anos (31/03·07/04·14/04·21/04 × 30/03·06/04·13/04·20/04), então são comparáveis.
+- ✅ **A avaliação NÃO é contínua semana a semana, e agora se sabe por quê** (27/09): faltam **7 semanas** das
+  109 do calendário. A **enchente de maio/2024** parou as vistorias das armadilhas de **28/04 a 09/06/2024**, e
+  o `dropna` levou as semanas-alvo que dependiam delas. Como a feature vem de `alvo − h`, o buraco **desloca
+  com o horizonte** (h=1: 05/05–16/06; h=12: 21/07–01/09). Total avaliado: **102 em todo h**.
+  ⚠️ O braço **sem vetor tem 109**, não 102 — não depende de armadilha. As comparações com ele **são pareadas**
+  (`comparacoes.csv` registra `semanas_pareadas=102` em todo h), então nada está contaminado.
+- 🔴 **Slide da literatura: certificado e REPROVADO** (27/09, leitura dos PDFs em disco). Três achados:
+  1. O **R² 0,46 do da Silva NÃO EXISTE** no artigo — o PDF traz `RMSE 1,003/1,006` e **razão de deviance 0,61**
+     em log(incidência). É **preprint medRxiv**, não PLOS NTD. A "confirmação" de 25/09 veio de **WebFetch**, não
+     do arquivo; o item está emendado em `analises/2026-09-25_comparacao_direta_literatura/verificacao_grupo_2.md`.
+  2. O **CatBoost é da Cunha e Silva 2026** (Int J Biometeorol, ≠ da Silva) e prevê **INTERNAÇÃO** (CID-10
+     A90/A91), não caso. R² POA −0,2064 em H1-H4. ✅ `06_literatura.md` L680 corrigido — dizia "mesma unidade".
+  3. ✅ **Shi et al. 2016 confere** literalmente (17% em 1 sem, 24% em 3 meses; SARIMA 29%).
+  🔴 **E o R² não compara nada:** o MESMO modelo nosso dá **−18,02 em 2021**, −0,22 em 2022, 0,33 em 2023 e
+  **0,717 em 2024-25** — é refém da variância da janela. Na nossa janela, **repetir o ano passado dá 0,623**.
+  ✅ **Decidido e reescrito (Vinicius, 27/09):** o slide deixou de ser placar e virou **panorama** — 6 estudos
+  com `estudo · onde e série · O QUE PREVÊ · resultado`, sem o nosso na tabela. A coluna do alvo é o argumento:
+  caso notificado, internação, incidência em log, categoria de risco e probabilístico — o campo não convergiu
+  nem sobre o que medir. **Só 2 dos 6 rodam em produção** (Shi/Singapura e D-MOSS/Vietnã).
+  Todos os campos conferidos contra o PDF. ⚠️ Duas correções contra a doc: Shi usa **12** anos (2001-2012),
+  não 13; e o "skill mediano 0,12" é do **2º sprint Mosqlimate, que não tem PDF em disco** — fora do slide.
+- 🟢 **A única coisa comparável entre estudos: cada um bate a própria referência?** Medido nos PDFs em 27/09.
+  **3 dos 6 batem** — Shi (24% × 29% do SARIMA), D-MOSS (−17,8% × média sazonal) e Lowe (57% × 33% do nulo);
+  os três têm **12 a 20 anos** de série. **Não batem:** da Silva (empata com regressão linear, RMSE 1,006 ×
+  1,003), da Cunha e Silva (R² negativo em POA) e o **sprint nacional** (baseline bayesiano empata com os
+  modelos complexos). **O nosso bate até 1 mês (+6,4%) e perde de 2 meses (−3,2%) e 3 meses (−11,9%).**
+  ⚠️ A janela de POA no da Cunha e Silva é **1999-2021** — não alcança 2024-25, então o R² negativo dele não
+  se compara ao nosso. 🔴 **Não dizer "o nosso é melhor que a literatura"**: não é sustentável.
+- 🟢 **As quatro arboviroses: o dado EXISTE, o problema é outro** (27/09). Temos zika e chikungunya em
+  `modelagem_aedes/dados/entradas/infodengue_poa/`. De 2010 a 2026: **125.868** casos de dengue, **528** de
+  chikungunya e **364** de zika — dengue é **99,3%**. Chik fica em zero em **70%** das semanas e zika em
+  **81%**; maior semana de cada uma: 14 e 16, contra 6.260 da dengue. O alvo seria quase sempre zero — o mesmo
+  problema de 2026. ⚠️ A série de zika do InfoDengue **para em fev/2024**.
+- 🟢 **A série do VETOR tem quase o dobro da de casos:** 13,9 anos (set/2012 a ago/2026) contra 8,2 (fev/2018 a
+  abr/2026). Em casos estamos abaixo dos 12-20 anos dos estudos que batem a própria referência; **no vetor,
+  dentro da faixa**. Argumento a favor de adotar o vetor como alvo, não contra.
+- 🟢 **E os três que batem tinham vantagem de partida** (coluna "em que condições", 27/09): Shi tem **12 anos**
+  e compara com **SARIMA**, não com régua sazonal; D-MOSS tem **20+ anos** e agrega província e mês; Lowe prevê
+  **categoria** de risco, não o número. **Nenhum dos três venceu nas nossas condições** — 8 anos, cidade com
+  epidemia só desde 2022, alvo é o número semanal.
 - ⏳ `documentacao_completa/partes/06_literatura.md` L680 diz "mesma unidade (casos/incidência)" sobre o CatBoost.
   **Está errado** — é internação por 100 mil. Corrigir antes da banca.
 

@@ -18,7 +18,19 @@ Método: WebFetch direto nas 4 fontes (PMC/PLOS), tentando reprovar cada campo. 
 - Casos típicos (zeros 10-59%, máximo 60,55/100mil) não verificável no texto recuperado —
   não contradiz, apenas não foi encontrado no trecho.
 
-## Item 1 — MFAI vs Index P, Porto Alegre (da Silva et al. 2026, PLOS NTD)
+## Item 1 — MFAI vs Index P, Porto Alegre (da Silva et al. 2026)
+
+> 🔴 **EMENDA DE 27/09/2026 — ESTE ITEM ESTÁ ERRADO, NÃO USAR.**
+> Dois erros, achados ao ler o PDF integral em disco (`Artigos de referencia/Climate-driven
+> spatiotemporal dynamics of Aedes infestation and dengue.pdf`):
+> 1. **O `R² = 0,46` NÃO EXISTE no artigo.** O que o texto traz é `RMSE 1,003/1,006` e
+>    **razão de deviance 0,61**, em log(incidência), não R² em casos.
+> 2. **Não é PLOS NTD:** é **preprint medRxiv**, com o aviso "not certified by peer review"
+>    em todas as páginas.
+>
+> A causa: esta verificação usou **WebFetch**, sem baixar o arquivo — ver o "Método" acima.
+> Vale a leitura integral de 26/09 (`analises/2026-09-26_ficha_da_silva_2026/`).
+
 
 **Status: PARCIAL** — um campo conflita com a fonte.
 

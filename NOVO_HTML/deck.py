@@ -139,6 +139,73 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckSubrotulo{display:block; font-weight:400; font-size:.82em;
   color:var(--muted); letter-spacing:0}
 
+/* A regua historica que fica sob uma tabela, mostrando de que trecho da serie
+   veio o treino e qual trecho foi avaliado. O `height:auto` e proposital: o
+   desenho mantem a propria proporcao e so acompanha a largura da coluna, para
+   que o texto dentro dele nao estique junto. */
+/* O rotulo da SEGUNDA regua precisa de ar acima, senao ele encosta no eixo de
+   anos da primeira e as duas figuras leem como uma so. */
+.deckRotuloDaSegundaRegua{margin-top:14px}
+/* A linha de numeros sob o titulo de cada regua. Todo o texto que vivia DENTRO
+   do desenho veio para ca: o grafico le-se de longe, os numeros de perto. */
+/* A coluna das dificuldades do slide de proximos passos: ela e ressalva, e nao
+   um terceiro cenario, entao vem sem cor de fundo e com o texto mais leve. */
+.oQueTrava{color:var(--muted); font-size:.93em}
+
+/* O selo dos estudos que rodam em producao, e nao so em artigo: no panorama da
+   literatura sao dois de seis, e essa e a informacao mais dura do slide. */
+.seloOperacional{display:inline-block; margin-left:8px; padding:1px 7px;
+  border-radius:9px; background:#E8F1FE; color:#12559C; font-size:.66rem;
+  font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  vertical-align:middle}
+
+/* A tabela chegou a ser apertada para caber com a ressalva embaixo; com a
+   ressalva fora, sobraram 163px e eles voltaram para o espacamento — este slide
+   e sete linhas de texto, e precisa ser lido de longe. */
+.panoramaDaLiteratura table{font-size:.94rem}
+/* As duas tabelas do panorama — as referencias e a nossa — dividem a MESMA
+   grade de larguras, senao as colunas nao se alinhariam de uma para a outra e a
+   separacao viraria confusao. */
+.panoramaDaLiteratura table{table-layout:fixed}
+.panoramaDaLiteratura th:nth-child(1), .panoramaDaLiteratura td:nth-child(1){width:13%}
+.panoramaDaLiteratura th:nth-child(2), .panoramaDaLiteratura td:nth-child(2){width:12%}
+.panoramaDaLiteratura th:nth-child(3), .panoramaDaLiteratura td:nth-child(3){width:8%}
+.panoramaDaLiteratura th:nth-child(4), .panoramaDaLiteratura td:nth-child(4){width:19%}
+.panoramaDaLiteratura th:nth-child(5), .panoramaDaLiteratura td:nth-child(5){width:24%}
+/* A coluna das condicoes e comentario, nao dado: vem mais leve, para nao
+   disputar a leitura com o veredito ao lado. */
+.condicoesDoEstudo{color:var(--muted); font-size:.92em}
+
+/* A tabela deste projeto vem abaixo, com o cabecalho escondido: as colunas ja
+   foram nomeadas acima, e repeti-las so encheria o slide. */
+.rotuloDesteProjeto{margin:18px 0 4px; font-size:.72rem; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:#12559C}
+.tabelaDesteProjeto thead{display:none}
+.tabelaDesteProjeto table{background:#F4F7FB}
+.tabelaDesteProjeto td{border-top:1px solid #D6E0EC; border-bottom:none}
+.linhaDesteProjeto{color:#12559C}
+/* A coluna da serie nao quebra: "23 anos · até 2021" em duas linhas desalinha a
+   tabela inteira, e ela e estreita o bastante para isso acontecer. */
+.serieDoEstudo{white-space:nowrap}
+.panoramaDaLiteratura table td, .panoramaDaLiteratura table th{line-height:1.45;
+  padding:7px 11px}
+
+
+/* A regua e a sua tabela dividem a linha: a figura diz o QUANTO e a tabela diz
+   o TANTO. `align-items:center` alinha as duas pelo meio, porque elas nunca tem
+   exatamente a mesma altura. */
+.reguaComTabela{display:grid; grid-template-columns:1fr 386px; gap:20px;
+  align-items:center; margin-top:4px}
+.reguaComTabela svg{display:block; width:100%; height:auto}
+/* A tabela ao lado da regua vem COMPACTA: com o espacamento normal do deck ela
+   media 239px contra os 184px da figura, e o slide estourava. */
+.reguaComTabela table td, .reguaComTabela table th{padding:3px 9px}
+.reguaComTabela table{font-size:.85rem}
+/* O que mandava na altura da tabela era a ENTRELINHA herdada do corpo, de 1,6 —
+   nao o padding nem a fonte. Com 1,25 a tabela passou de 179px para caber ao
+   lado da figura. */
+.reguaComTabela table td, .reguaComTabela table th{line-height:1.25}
+
 /* Um paragrafo a esquerda e uma figura a direita, dividindo a largura. Existe
    para aproveitar o espaco que sobra embaixo de uma tabela alta: em largura
    cheia o texto ocupa tres linhas e deixa metade do slide vazia. */
@@ -337,12 +404,110 @@ FOLHA_DE_ESTILO_DO_DECK = """
 .deckContador{flex:0 0 auto; color:var(--muted); font-size:.83rem;
   font-variant-numeric:tabular-nums}
 
+/* A copia da trilha que so existe na impressao. Na tela ela fica escondida —
+   quem manda ali e a barra do topo do palco, que o JS anima. */
+.deckTrilhaImpressa{display:none}
+
+/* O botao de salvar em PDF. Ele chama `window.print()`, e quem faz o trabalho
+   e o `@media print` abaixo, que poe cada slide numa pagina de 1280x720.
+   ⚠️ **Nao existe baixar direto**: uma pagina HTML nao gera PDF sozinha. As
+   bibliotecas que "baixam" (jsPDF, html2pdf) RASTERIZAM o conteudo — os SVGs
+   dos graficos virariam imagem, o texto deixaria de ser selecionavel e o
+   arquivo ficaria muito maior. Pela impressao o PDF sai vetorial. Por isso o
+   rotulo diz "Salvar em PDF", e nao "Baixar": o botao abre o dialogo, e quem
+   salva e o usuario. */
+.deckBotaoPdf{flex:0 0 auto; margin-left:auto; padding:7px 14px;
+  border:1px solid var(--borda-forte); border-radius:9px; background:var(--cartao);
+  color:var(--muted); font:inherit; font-size:.8rem; font-weight:600;
+  cursor:pointer}
+.deckBotaoPdf:hover{background:var(--elevado); color:var(--tinta);
+  border-color:var(--acento)}
+
+/* A impressao vira o PDF da apresentacao: uma pagina por slide, no mesmo
+   1280x720 da tela fixa. Tres coisas precisam ser desfeitas aqui, e todas com
+   `!important`, porque o JS de escala escreve `transform` INLINE em cada slide:
+   a escala, o posicionamento absoluto e o `display:none` dos inativos. */
 @media print{
-  .deckBarra{display:none}
-  .deckPalco{aspect-ratio:auto; min-height:0; border:none; box-shadow:none;
-    page-break-after:always; overflow:visible; height:auto}
-  .deckSlide{display:flex !important; position:static; padding:28px 0}
-  #navPrimaria{display:none}
+  /* O tamanho da pagina vai em POLEGADAS, nao em pixels: o Chrome ignora
+     `size` em px e cai no papel do dialogo — na pratica A4 paisagem, que tem
+     1123px de largura contra os 1280px do slide. O resultado era o slide
+     reduzido para caber na largura, com uma faixa branca de ~160px embaixo.
+     13,333in x 7,5in sao exatamente 1280x720 a 96dpi, e e tambem o tamanho de
+     um slide widescreen de PowerPoint. */
+  @page{size:13.333in 7.5in; margin:0}
+  /* Qualquer sobra de altura depois do ultimo slide — uma margem, um padding,
+     um `min-height` — vira uma pagina em branco no fim do PDF. Por isso os
+     containers sao zerados aqui, e nao so escondidos. */
+  html, body{margin:0 !important; padding:0 !important; background:#fff;
+    height:auto !important; min-height:0 !important}
+  .conteudoInterno, .deck, .deckPalco, .deckTela{margin:0 !important;
+    padding:0 !important; min-height:0 !important}
+
+  /* 🔴 A pagina do PDF tem sempre 1280px, mas o Chrome avalia as media queries
+     de LARGURA pela janela, e nao pela pagina. Numa janela estreita — que e o
+     caso comum, e o do `--headless`, que abre em 800px — as regras de tela
+     pequena disparam NO MEIO da impressao e quebram o slide: os tres graficos
+     lado a lado empilham e ganham `max-width:620px`, o que estoura os 720px de
+     altura e sai cortado no PDF. As regras abaixo desfazem, uma a uma, tudo o
+     que as media queries de 640 a 1180px mexem no deck. */
+  .graficosLadoALado{grid-auto-flow:column !important;
+    grid-auto-columns:minmax(0,1fr) !important; gap:20px !important}
+  .graficosLadoALado .grafico{max-width:none !important}
+  .grade2{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .grade3{grid-template-columns:repeat(3,minmax(0,1fr)) !important}
+  .grade4{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+  .fluxo{flex-wrap:nowrap !important}
+  .fluxoEtapa{flex:1 1 0 !important}
+  .fluxoSeta{display:flex !important}
+  .deckTitulo{font-size:1.72rem !important}
+  .deckSlide.capa .deckTitulo{font-size:2.5rem !important}
+  /* O `.rodape` do site vinha DEPOIS do deck e, como o ultimo slide quebra
+     pagina, ganhava uma 22a pagina so para ele. */
+  .deckBarra, #navPrimaria, .rodape{display:none !important}
+  /* A trilha do topo do palco sai — quem aparece e a copia que o JS poe dentro
+     de cada slide, ja com a secao daquela pagina acesa. */
+  .deckPalco > .deckIndice{display:none !important}
+  /* A copia ocupa o lugar do respiro que o slide tinha no topo: o padding cai
+     de 40px para 6px e a barra come 34px, entao o titulo continua comecando na
+     mesma altura de antes e nenhum slide perde espaco de conteudo. */
+  /* 🔴 A trilha sai do FLUXO e vai para o topo absoluto do slide. No fluxo ela
+     era o primeiro filho de um flex column, e nos slides centralizados — a capa
+     e o fecho — descia para o meio da pagina junto com o resto. Absoluta, ela
+     fica no topo em todos, e de quebra nao consome altura nenhuma: cabe dentro
+     dos 40px de padding que o slide ja tinha, entao nenhum slide perde espaco
+     de conteudo (o 10, que tem 13px de folga, era o teste). */
+  /* 🔴 O orcamento e de 46px de padding no topo, e nao mais: medido slide a
+     slide, em 52px o slide 14 ja estoura. Como a barra precisa caber ai DENTRO
+     e ainda sobrar separacao visivel ate o rotulo do slide, ela vem menor no
+     papel do que na tela — nome e marcas reduzidos. */
+  .deckTrilhaImpressa{display:block !important; position:absolute;
+    top:3px; left:56px; right:56px}
+  .deckTrilhaImpressa .deckIndice{display:flex !important; padding:0 0 3px;
+    background:none; border-bottom:1px solid var(--borda)}
+  /* O rotulo do slide sai no papel: ele repete, em texto, a mesma secao que a
+     barra ja mostra acesa logo acima — e era ele que colidia com os nomes da
+     trilha. Sem ele o titulo sobe e o slide ganha o espaco de volta. */
+  .deckSlide .deckRotulo{display:none !important}
+  .deckTrilhaImpressa .deckSecaoNome{font-size:.42rem}
+  .deckTrilhaImpressa .deckIndice.porSecao .deckIndiceMarca{height:7px}
+  .deckTrilhaImpressa .deckSecaoMarcas{margin-bottom:3px}
+  .deck, .deckPalco, .deckTela{display:block !important; position:static !important;
+    aspect-ratio:auto; min-height:0; height:auto; border:none; box-shadow:none;
+    overflow:visible !important; background:#fff}
+  /* `position:relative` e o que ancora a trilha absoluta acima. O `scale` da o
+     respiro que faltava: o conteudo foi desenhado para preencher 1280x720 numa
+     projecao, e no papel isso fica sufocado. A 88% sobra uma margem de ~6% em
+     volta, e o layout interno nao muda — o `transform` e visual, a caixa
+     continua com 1280x720 e uma pagina por slide. */
+  .deckSlide{display:flex !important; position:relative !important;
+    transform:scale(.88) !important; transform-origin:center center;
+    width:1280px; height:720px; padding:50px 56px 48px; overflow:hidden;
+    page-break-before:always; break-before:page}
+  /* A quebra vai ANTES de cada slide, e nao depois. Com `break-after` o ultimo
+     slide quebrava a pagina no fim e o PDF saia com uma 22a pagina em branco —
+     e o `:last-child{break-after:auto}` nao dava conta. Quebrando antes, o
+     primeiro slide e a excecao e nao sobra nada no fim. */
+  .deckSlide:first-child{page-break-before:auto; break-before:auto}
   .conteudoInterno{padding:0; max-width:none}
 }
 
@@ -487,6 +652,65 @@ SCRIPT_DO_DECK = """
 
   anterior.addEventListener('click', function(){ mostrar(atual - 1, true); });
   proximo.addEventListener('click', function(){ mostrar(atual + 1, true); });
+
+  // No PDF a trilha precisa aparecer em TODA pagina, e cada uma com a sua
+  // secao acesa. Ela nao pode ser copiada pronta: o JS posiciona as duas
+  // linhas em pixels, medindo o DOM, entao um HTML estatico sairia com a barra
+  // sem linha nenhuma. A saida e passar por cada slide, deixar o proprio
+  // `mostrar()` pintar a barra de verdade, e so entao clonar o resultado — com
+  // os estilos ja calculados — para dentro daquele slide.
+  function prepararTrilhaParaImpressao() {
+    var trilha = document.querySelector('.deckPalco > .deckIndice');
+    if (!trilha) { return; }
+
+    var slidesDoDeck = document.querySelectorAll('.deckSlide');
+    var voltarPara = atual;
+    var copias = [];
+
+    // 🔴 As duas linhas da trilha sao posicionadas em PIXELS, medidos do DOM.
+    // Se a barra for medida com a largura que ela tem no palco e depois colada
+    // num slide de outra largura, a linha para no meio do caminho. Por isso a
+    // barra original e posta, ANTES de medir, exatamente nas condicoes que tera
+    // no PDF: 1168px de largura — 1280 do slide menos os 56px de cada margem —
+    // e o mesmo padding. Ao fim tudo volta ao que era.
+    var LARGURA_NO_PDF = 1168;
+    var estiloOriginal = trilha.getAttribute('style') || '';
+    trilha.style.width = LARGURA_NO_PDF + 'px';
+    trilha.style.padding = '0 0 4px';
+
+    for (var i = 0; i < slidesDoDeck.length; i++) {
+      mostrar(i, false);
+      copias.push(trilha.outerHTML);
+    }
+
+    trilha.setAttribute('style', estiloOriginal);
+    mostrar(voltarPara, false);
+
+    for (var j = 0; j < slidesDoDeck.length; j++) {
+      var antiga = slidesDoDeck[j].querySelector('.deckTrilhaImpressa');
+      if (antiga) { antiga.remove(); }
+      var caixa = document.createElement('div');
+      caixa.className = 'deckTrilhaImpressa';
+      caixa.innerHTML = copias[j];
+      // O id repetido em 21 copias quebraria `getElementById`, que o JS da
+      // navegacao usa para achar a barra de verdade.
+      var comId = caixa.querySelectorAll('[id]');
+      for (var k = 0; k < comId.length; k++) { comId[k].removeAttribute('id'); }
+      slidesDoDeck[j].insertBefore(caixa, slidesDoDeck[j].firstChild);
+    }
+  }
+
+  window.addEventListener('beforeprint', prepararTrilhaParaImpressao);
+
+  // Salvar em PDF e a impressao do navegador: quem faz o trabalho e o
+  // `@media print`, que poe cada slide numa pagina de 1280x720.
+  var baixarPdf = document.getElementById('deckBaixarPdf');
+  if (baixarPdf) {
+    baixarPdf.addEventListener('click', function(){
+      prepararTrilhaParaImpressao();
+      window.print();
+    });
+  }
 
   for (var p = 0; p < pontos.length; p++) {
     (function(indice){
@@ -691,6 +915,10 @@ def montar(slides: list[Slide], estilo_de_projecao: bool = False) -> str:
         'aria-label="Próximo slide">&rarr;</button>'
         f'<div class="deckPontos">{"".join(pontos)}</div>'
         f'<div class="deckContador" id="deckContador">1 / {len(slides)}</div>'
+        '<button class="deckBotaoPdf" id="deckBaixarPdf" type="button" '
+        'title="Abre a impressão do navegador. Escolha &quot;Salvar como PDF&quot;, '
+        'com margens &quot;Nenhuma&quot; e sem cabeçalho e rodapé.">'
+        "Salvar em PDF</button>"
         "</div>"
     )
 

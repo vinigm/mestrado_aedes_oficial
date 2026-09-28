@@ -328,15 +328,21 @@ code.nomeColuna{white-space:nowrap}
 .cardMedidaRotulo{color:var(--faint); font-size:.71rem; margin-top:1px}
 
 /* Vários gráficos lado a lado: cada um perde o teto de 620px e divide a
-   largura disponível, para que as curvas sejam comparadas de relance. */
-.graficosLadoALado{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:20px; margin:0 0 22px}
+   largura disponível, para que as curvas sejam comparadas de relance.
+
+   ⚠️ As colunas vêm de `grid-auto-flow:column`, e não de um `repeat(3,...)`
+   fixo: assim o número de colunas acompanha quantos gráficos o slide tem. Com
+   três colunas fixas, um slide de DOIS gráficos deixava a terceira vazia e
+   cada curva ficava com 376px em vez de 574 — pequena demais para projeção.
+   Com três gráficos o resultado é idêntico ao de antes: (1168 − 40) / 3 = 376. */
+.graficosLadoALado{display:grid; grid-auto-flow:column;
+  grid-auto-columns:minmax(0,1fr); gap:20px; margin:0 0 22px}
 .graficosLadoALado .grafico{max-width:none; margin:0}
 .graficosLadoALado .graficoTitulo{font-size:.83rem}
 .graficosLadoALado .graficoLegenda{font-size:.75rem}
 
 @media (max-width:1100px){
-  .graficosLadoALado{grid-template-columns:1fr; gap:14px}
+  .graficosLadoALado{grid-auto-flow:row; grid-auto-columns:auto; gap:14px}
   .graficosLadoALado .grafico{max-width:620px}
 }
 
@@ -378,11 +384,184 @@ code.nomeColuna{white-space:nowrap}
   aspect-ratio:16/9; min-height:440px;
   display:flex; flex-direction:column}
 
-.deckTela{position:relative; flex:1 1 auto; min-height:0}
+/* No estilo de projecao a faixa de graficos ganha ar em cima, separando-a da
+   tabela, e perde a margem de baixo quando e o ultimo elemento do slide —
+   ali ela so empurrava o conteudo para longe da borda inferior. O espaco que
+   sobra vai para a altura dos proprios graficos. */
+.deckPalco.semMoldura .graficosLadoALado{margin-top:18px}
+.deckPalco.semMoldura .graficosLadoALado:last-child{margin-bottom:0}
 
-.deckSlide{position:absolute; inset:0; padding:32px 48px 40px;
-  display:none; flex-direction:column; overflow:auto}
+/* Palco sem moldura: sai a borda, o arredondamento e a sombra, e o slide
+   passa a ocupar a tela sem o contorno de cartao. Num deck que vai a projecao
+   a moldura nao serve para nada — ela so existe para separar o deck do resto
+   da pagina, e numa apresentacao nao ha resto. */
+.deckPalco.semMoldura{border:none; border-radius:0; box-shadow:none}
+
+.deckTela{position:relative; flex:1 1 auto; min-height:0; overflow:hidden}
+
+/* O slide e uma TELA FIXA de 1280x720, como um slide de apresentacao de
+   verdade. O tamanho nao muda com a janela: o que muda e a escala aplicada
+   pelo script, que encolhe tudo junto para caber no palco.
+
+   Por que assim: antes o slide era fluido e tinha `overflow:auto`. Numa janela
+   estreita o conteudo transbordava e virava rolagem — o que num PDF ou num
+   projetor significa conteudo cortado. Com tela fixa, o que cabe no desenho
+   cabe em qualquer tamanho, e o que nao cabe aparece como problema na hora de
+   montar o slide, nao na hora de apresentar. */
+.deckSlide{position:absolute; top:0; left:0;
+  width:1280px; height:720px; padding:40px 56px 48px;
+  transform-origin:top left;
+  display:none; flex-direction:column; overflow:hidden}
 .deckSlide.ativo{display:flex}
+
+/* Linha de legenda sob uma tabela, para explicar o que aparece no grafico
+   seguinte sem gastar a altura de um aviso inteiro. */
+.deckNotaDeGrafico{margin:6px 0 2px; font-size:.78rem; color:var(--muted)}
+
+/* Duas colunas: documento a esquerda, leitura do documento a direita. Serve
+   para por uma imagem de prova ao lado da tabela que a traduz. */
+.deckDuasColunas{display:grid; grid-template-columns:1.35fr 1fr; gap:22px;
+  align-items:start; min-height:0}
+.deckDuasColunas img{width:100%; height:auto; display:block;
+  border:1px solid var(--borda); border-radius:6px}
+.deckFonte{margin:6px 0 0; font-size:.68rem; color:var(--faint)}
+
+/* Formula matematica montada a mao, porque o site nao carrega renderizador.
+   A fracao e empilhada com uma borda fazendo as vezes do traco. */
+.deckFormula{display:flex; align-items:center; justify-content:center;
+  gap:14px; margin:18px 0 6px; font-size:1.15rem; color:var(--tinta)}
+.deckFormulaTermo{display:flex; flex-direction:column; align-items:center; gap:3px}
+.deckFormulaValor{font-weight:700; font-variant-numeric:tabular-nums}
+.deckFormulaRotulo{font-size:.62rem; font-weight:600; letter-spacing:.03em;
+  text-transform:uppercase; color:var(--muted); white-space:nowrap}
+.deckFormulaOperador{font-size:1.25rem; color:var(--muted)}
+.deckFracao{display:flex; flex-direction:column; align-items:center;
+  font-variant-numeric:tabular-nums}
+.deckFracaoTopo{padding:0 8px 2px; font-weight:700}
+.deckFracaoBase{padding:2px 8px 0; font-weight:700;
+  border-top:1.5px solid var(--tinta)}
+.deckFormulaResultado .deckFormulaValor{font-size:1.75rem; color:var(--acento)}
+
+/* Dois blocos com uma seta entre eles, para slide de transicao: o da esquerda
+   e o que ja existe, o da direita e o que vai ser construido com ele. */
+.deckFluxoDeDois{display:flex; align-items:center; justify-content:center;
+  gap:34px; padding:10px 0; height:100%}
+.deckFluxoBloco{flex:1 1 0; max-width:420px; display:flex; flex-direction:column;
+  justify-content:center; gap:10px; padding:34px 30px;
+  border:2px solid var(--borda-forte); border-radius:var(--raio-g);
+  background:var(--fundo); text-align:center}
+.deckFluxoBloco.destaque{border-color:var(--acento); background:var(--acento-suave)}
+.deckFluxoTitulo{font-size:1.3rem; font-weight:700; color:var(--tinta);
+  line-height:1.2}
+.deckFluxoBloco.destaque .deckFluxoTitulo{color:var(--acento-escuro)}
+.deckFluxoTexto{font-size:.92rem; color:var(--muted); line-height:1.35}
+.deckFluxoSeta{display:flex; align-items:center; font-size:2.6rem;
+  color:var(--acento); font-weight:300}
+
+/* Duas tabelas lado a lado, para comparar dois sistemas sem empilhar colunas
+   pareadas numa tabela so — que foi o que confundiu na primeira versao. */
+.deckTabelasLadoALado{display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  align-items:start; margin-top:20px}
+.deckTabelaRotulo{margin:0 0 5px; font-size:.78rem; font-weight:700;
+  letter-spacing:.04em; text-transform:uppercase}
+
+/* Segunda linha de um rotulo de tabela, para separar a PERGUNTA da medida que
+   a responde: a pergunta fica em negrito e a medida, aqui, menor e mais leve.
+   Sem isso as duas leituras disputam o mesmo peso e a coluna vira ruido. */
+.deckSubrotulo{display:block; font-weight:400; font-size:.82em;
+  color:var(--muted); letter-spacing:0}
+
+/* A regua historica que fica sob uma tabela, mostrando de que trecho da serie
+   veio o treino e qual trecho foi avaliado. O `height:auto` e proposital: o
+   desenho mantem a propria proporcao e so acompanha a largura da coluna, para
+   que o texto dentro dele nao estique junto. */
+/* O rotulo da SEGUNDA regua precisa de ar acima, senao ele encosta no eixo de
+   anos da primeira e as duas figuras leem como uma so. */
+.deckRotuloDaSegundaRegua{margin-top:14px}
+/* A linha de numeros sob o titulo de cada regua. Todo o texto que vivia DENTRO
+   do desenho veio para ca: o grafico le-se de longe, os numeros de perto. */
+/* A coluna das dificuldades do slide de proximos passos: ela e ressalva, e nao
+   um terceiro cenario, entao vem sem cor de fundo e com o texto mais leve. */
+.oQueTrava{color:var(--muted); font-size:.93em}
+
+/* O selo dos estudos que rodam em producao, e nao so em artigo: no panorama da
+   literatura sao dois de seis, e essa e a informacao mais dura do slide. */
+.seloOperacional{display:inline-block; margin-left:8px; padding:1px 7px;
+  border-radius:9px; background:#E8F1FE; color:#12559C; font-size:.66rem;
+  font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  vertical-align:middle}
+
+/* A tabela chegou a ser apertada para caber com a ressalva embaixo; com a
+   ressalva fora, sobraram 163px e eles voltaram para o espacamento — este slide
+   e sete linhas de texto, e precisa ser lido de longe. */
+.panoramaDaLiteratura table{font-size:.94rem}
+/* As duas tabelas do panorama — as referencias e a nossa — dividem a MESMA
+   grade de larguras, senao as colunas nao se alinhariam de uma para a outra e a
+   separacao viraria confusao. */
+.panoramaDaLiteratura table{table-layout:fixed}
+.panoramaDaLiteratura th:nth-child(1), .panoramaDaLiteratura td:nth-child(1){width:13%}
+.panoramaDaLiteratura th:nth-child(2), .panoramaDaLiteratura td:nth-child(2){width:12%}
+.panoramaDaLiteratura th:nth-child(3), .panoramaDaLiteratura td:nth-child(3){width:8%}
+.panoramaDaLiteratura th:nth-child(4), .panoramaDaLiteratura td:nth-child(4){width:19%}
+.panoramaDaLiteratura th:nth-child(5), .panoramaDaLiteratura td:nth-child(5){width:24%}
+/* A coluna das condicoes e comentario, nao dado: vem mais leve, para nao
+   disputar a leitura com o veredito ao lado. */
+.condicoesDoEstudo{color:var(--muted); font-size:.92em}
+
+/* A tabela deste projeto vem abaixo, com o cabecalho escondido: as colunas ja
+   foram nomeadas acima, e repeti-las so encheria o slide. */
+.rotuloDesteProjeto{margin:18px 0 4px; font-size:.72rem; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:#12559C}
+.tabelaDesteProjeto thead{display:none}
+.tabelaDesteProjeto table{background:#F4F7FB}
+.tabelaDesteProjeto td{border-top:1px solid #D6E0EC; border-bottom:none}
+.linhaDesteProjeto{color:#12559C}
+/* A coluna da serie nao quebra: "23 anos · até 2021" em duas linhas desalinha a
+   tabela inteira, e ela e estreita o bastante para isso acontecer. */
+.serieDoEstudo{white-space:nowrap}
+.panoramaDaLiteratura table td, .panoramaDaLiteratura table th{line-height:1.45;
+  padding:7px 11px}
+
+
+/* A regua e a sua tabela dividem a linha: a figura diz o QUANTO e a tabela diz
+   o TANTO. `align-items:center` alinha as duas pelo meio, porque elas nunca tem
+   exatamente a mesma altura. */
+.reguaComTabela{display:grid; grid-template-columns:1fr 386px; gap:20px;
+  align-items:center; margin-top:4px}
+.reguaComTabela svg{display:block; width:100%; height:auto}
+/* A tabela ao lado da regua vem COMPACTA: com o espacamento normal do deck ela
+   media 239px contra os 184px da figura, e o slide estourava. */
+.reguaComTabela table td, .reguaComTabela table th{padding:3px 9px}
+.reguaComTabela table{font-size:.85rem}
+/* O que mandava na altura da tabela era a ENTRELINHA herdada do corpo, de 1,6 —
+   nao o padding nem a fonte. Com 1,25 a tabela passou de 179px para caber ao
+   lado da figura. */
+.reguaComTabela table td, .reguaComTabela table th{line-height:1.25}
+
+/* Um paragrafo a esquerda e uma figura a direita, dividindo a largura. Existe
+   para aproveitar o espaco que sobra embaixo de uma tabela alta: em largura
+   cheia o texto ocupa tres linhas e deixa metade do slide vazia. */
+/* A figura leva mais largura que o texto: ela e o que precisa ser lido de
+   longe, e o paragrafo apenas acompanha.
+
+   ⚠️ A margem do topo precisa ser MAIOR que a margem de baixo da tabela acima
+   (26px), porque as duas colapsam e vence a maior. Um valor menor que 26 nao
+   afasta nada — foi o que aconteceu com os 8px da primeira versao. */
+.deckTextoEFigura{display:grid; grid-template-columns:43% 1fr; gap:20px;
+  align-items:center; margin:44px 0 0}
+.deckTextoEFigura p{margin:0}
+.deckTextoEFigura img{display:block; width:100%; height:auto}
+
+/* Linha vencedora: retangulo bem claro e translucido, marcando em qual
+   horizonte aquele sistema leva. O fundo vai nas celulas, e nao no <tr>,
+   porque linha de tabela nao aceita border-radius. */
+.linhaVencedora td{background:rgba(27,110,243,.055);
+  box-shadow:inset 0 1px 0 rgba(27,110,243,.16),
+             inset 0 -1px 0 rgba(27,110,243,.16)}
+.linhaVencedora td:first-child{box-shadow:inset 1px 1px 0 rgba(27,110,243,.16),
+  inset 0 -1px 0 rgba(27,110,243,.16)}
+.linhaVencedora td:last-child{box-shadow:inset -1px 1px 0 rgba(27,110,243,.16),
+  inset 0 -1px 0 rgba(27,110,243,.16)}
 
 /* Índice horizontal: uma trilha contínua com um marcador por tópico. A linha
    cinza atravessa tudo; a linha azul por cima cresce conforme a apresentação
@@ -410,6 +589,56 @@ code.nomeColuna{white-space:nowrap}
 .deckIndiceItem.atual .deckIndiceMarca{background:var(--acento);
   border-color:var(--acento); transform:scale(1.35);
   box-shadow:0 0 0 4px rgba(27,110,243,.16)}
+
+/* Trilha POR SECAO: uma marca por slide, agrupadas pelo topico, com o nome
+   do topico aparecendo UMA vez por grupo. Resolve o impasse entre as duas
+   versoes anteriores — a com rotulo em cada slide repetia "RESULTADOS" onze
+   vezes, e a so com bolinhas nao dizia em que parte da apresentacao se esta.
+
+   Os grupos tem largura igual; quem conta o peso de cada parte e a densidade
+   de marcas dentro dele. */
+.deckIndice.porSecao{display:flex; gap:18px; align-items:flex-start;
+  padding:12px 40px 10px}
+/* `fit-content` no minimo: uma secao de UM slide ficaria com 55px e cortaria
+   "Proximos passos" em "PROXIMO...". Assim o grupo nunca fica menor que o
+   proprio nome, e a proporcionalidade continua valendo no espaco que sobra. */
+/* Todas as secoes com a MESMA largura, e nao proporcional ao numero de slides.
+   A versao proporcional foi tentada em 27/09/2026: ela contava o peso de cada
+   parte, mas deixava a barra irregular, com Resultados ocupando metade e as
+   secoes de um slide espremidas. O Vinicius preferiu a regua uniforme.
+
+   `min-width:fit-content` continua como piso: sem ele, "Proximos passos"
+   cortava em "PROXIMO...". */
+.deckSecao{flex:1 1 0; display:flex; flex-direction:column; align-items:center;
+  gap:7px; min-width:fit-content}
+.deckSecaoMarcas{display:flex; align-items:center; justify-content:center;
+  gap:6px; width:100%; height:12px}
+.deckSecaoNome{font-size:.5rem; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; color:#C6D0DB; white-space:nowrap; overflow:hidden;
+  text-overflow:ellipsis; max-width:100%; transition:color .18s ease}
+.deckSecao.ativa .deckSecaoNome{color:var(--acento)}
+.deckSecao.vista .deckSecaoNome{color:#AEBAC7}
+
+/* A marca e um TRACO, e nao uma bolinha: em grupo, tracos verticais leem como
+   uma regua de progresso, e circulos leem como uma lista de itens soltos. */
+.deckIndice.porSecao .deckIndiceItem{flex:0 0 auto}
+.deckIndice.porSecao .deckIndiceMarca{width:2px; height:10px; border:none;
+  border-radius:1px; background:var(--borda-forte)}
+.deckIndice.porSecao .deckIndiceItem.passado .deckIndiceMarca{
+  background:#A9C9F7}
+.deckIndice.porSecao .deckIndiceItem.atual .deckIndiceMarca{
+  background:var(--acento); height:14px; transform:none; box-shadow:none}
+
+/* Trilha so com bolinhas: alem de perder os rotulos, ela perde tambem o azul
+   forte. Sem texto ao redor, a linha cheia no acento virava o elemento mais
+   chamativo da tela, competindo com o proprio slide. Aqui ela fica num azul
+   bem mais claro — continua legivel como progresso, e para de gritar. */
+.deckIndice.soBolinhas .deckIndiceProgresso{background:#A9C9F7}
+.deckIndice.soBolinhas .deckIndiceItem.passado .deckIndiceMarca{
+  background:#A9C9F7; border-color:#A9C9F7}
+.deckIndice.soBolinhas .deckIndiceItem.atual .deckIndiceMarca{
+  background:#7FAEF2; border-color:#7FAEF2;
+  box-shadow:0 0 0 4px rgba(27,110,243,.10)}
 
 .deckIndiceRotulos{display:flex; flex-direction:column; align-items:center;
   gap:1px; max-width:100%; min-width:0}
@@ -448,6 +677,18 @@ code.nomeColuna{white-space:nowrap}
 
 /* Slide cuja mensagem É a figura: ela ocupa o corpo inteiro e encolhe junto
    com o palco, para caber na altura sem rolagem. */
+/* 🔴 COLISAO DE CSS, e nao um estilo escolhido: o deck poe a classe `figura`
+   no proprio <section> do slide, e o tema do site ja tem `.figura` para um
+   componente de cartao — com borda de 1px, raio de 14px, sombra e margem
+   inferior de 20px. Tudo isso vazava para dentro do slide, e era so nos slides
+   de figura que aparecia o contorno.
+
+   Aqui o vazamento e anulado no estilo de projecao. ⚠️ A colisao continua
+   existindo nos outros decks; a correcao de raiz e renomear a classe do deck
+   para algo com prefixo, o que mexe em todos eles. */
+.deckPalco.semMoldura .deckSlide.figura{border:none; border-radius:0;
+  box-shadow:none; margin:0}
+
 .deckSlide.figura .deckTitulo{font-size:1.32rem; margin-bottom:12px}
 .deckFiguraCheia{height:100%; display:flex; flex-direction:column; min-height:0}
 .deckFiguraCheia img{flex:1 1 auto; min-height:0; width:100%;
@@ -495,12 +736,110 @@ code.nomeColuna{white-space:nowrap}
 .deckContador{flex:0 0 auto; color:var(--muted); font-size:.83rem;
   font-variant-numeric:tabular-nums}
 
+/* A copia da trilha que so existe na impressao. Na tela ela fica escondida —
+   quem manda ali e a barra do topo do palco, que o JS anima. */
+.deckTrilhaImpressa{display:none}
+
+/* O botao de salvar em PDF. Ele chama `window.print()`, e quem faz o trabalho
+   e o `@media print` abaixo, que poe cada slide numa pagina de 1280x720.
+   ⚠️ **Nao existe baixar direto**: uma pagina HTML nao gera PDF sozinha. As
+   bibliotecas que "baixam" (jsPDF, html2pdf) RASTERIZAM o conteudo — os SVGs
+   dos graficos virariam imagem, o texto deixaria de ser selecionavel e o
+   arquivo ficaria muito maior. Pela impressao o PDF sai vetorial. Por isso o
+   rotulo diz "Salvar em PDF", e nao "Baixar": o botao abre o dialogo, e quem
+   salva e o usuario. */
+.deckBotaoPdf{flex:0 0 auto; margin-left:auto; padding:7px 14px;
+  border:1px solid var(--borda-forte); border-radius:9px; background:var(--cartao);
+  color:var(--muted); font:inherit; font-size:.8rem; font-weight:600;
+  cursor:pointer}
+.deckBotaoPdf:hover{background:var(--elevado); color:var(--tinta);
+  border-color:var(--acento)}
+
+/* A impressao vira o PDF da apresentacao: uma pagina por slide, no mesmo
+   1280x720 da tela fixa. Tres coisas precisam ser desfeitas aqui, e todas com
+   `!important`, porque o JS de escala escreve `transform` INLINE em cada slide:
+   a escala, o posicionamento absoluto e o `display:none` dos inativos. */
 @media print{
-  .deckBarra{display:none}
-  .deckPalco{aspect-ratio:auto; min-height:0; border:none; box-shadow:none;
-    page-break-after:always; overflow:visible; height:auto}
-  .deckSlide{display:flex !important; position:static; padding:28px 0}
-  #navPrimaria{display:none}
+  /* O tamanho da pagina vai em POLEGADAS, nao em pixels: o Chrome ignora
+     `size` em px e cai no papel do dialogo — na pratica A4 paisagem, que tem
+     1123px de largura contra os 1280px do slide. O resultado era o slide
+     reduzido para caber na largura, com uma faixa branca de ~160px embaixo.
+     13,333in x 7,5in sao exatamente 1280x720 a 96dpi, e e tambem o tamanho de
+     um slide widescreen de PowerPoint. */
+  @page{size:13.333in 7.5in; margin:0}
+  /* Qualquer sobra de altura depois do ultimo slide — uma margem, um padding,
+     um `min-height` — vira uma pagina em branco no fim do PDF. Por isso os
+     containers sao zerados aqui, e nao so escondidos. */
+  html, body{margin:0 !important; padding:0 !important; background:#fff;
+    height:auto !important; min-height:0 !important}
+  .conteudoInterno, .deck, .deckPalco, .deckTela{margin:0 !important;
+    padding:0 !important; min-height:0 !important}
+
+  /* 🔴 A pagina do PDF tem sempre 1280px, mas o Chrome avalia as media queries
+     de LARGURA pela janela, e nao pela pagina. Numa janela estreita — que e o
+     caso comum, e o do `--headless`, que abre em 800px — as regras de tela
+     pequena disparam NO MEIO da impressao e quebram o slide: os tres graficos
+     lado a lado empilham e ganham `max-width:620px`, o que estoura os 720px de
+     altura e sai cortado no PDF. As regras abaixo desfazem, uma a uma, tudo o
+     que as media queries de 640 a 1180px mexem no deck. */
+  .graficosLadoALado{grid-auto-flow:column !important;
+    grid-auto-columns:minmax(0,1fr) !important; gap:20px !important}
+  .graficosLadoALado .grafico{max-width:none !important}
+  .grade2{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .grade3{grid-template-columns:repeat(3,minmax(0,1fr)) !important}
+  .grade4{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+  .fluxo{flex-wrap:nowrap !important}
+  .fluxoEtapa{flex:1 1 0 !important}
+  .fluxoSeta{display:flex !important}
+  .deckTitulo{font-size:1.72rem !important}
+  .deckSlide.capa .deckTitulo{font-size:2.5rem !important}
+  /* O `.rodape` do site vinha DEPOIS do deck e, como o ultimo slide quebra
+     pagina, ganhava uma 22a pagina so para ele. */
+  .deckBarra, #navPrimaria, .rodape{display:none !important}
+  /* A trilha do topo do palco sai — quem aparece e a copia que o JS poe dentro
+     de cada slide, ja com a secao daquela pagina acesa. */
+  .deckPalco > .deckIndice{display:none !important}
+  /* A copia ocupa o lugar do respiro que o slide tinha no topo: o padding cai
+     de 40px para 6px e a barra come 34px, entao o titulo continua comecando na
+     mesma altura de antes e nenhum slide perde espaco de conteudo. */
+  /* 🔴 A trilha sai do FLUXO e vai para o topo absoluto do slide. No fluxo ela
+     era o primeiro filho de um flex column, e nos slides centralizados — a capa
+     e o fecho — descia para o meio da pagina junto com o resto. Absoluta, ela
+     fica no topo em todos, e de quebra nao consome altura nenhuma: cabe dentro
+     dos 40px de padding que o slide ja tinha, entao nenhum slide perde espaco
+     de conteudo (o 10, que tem 13px de folga, era o teste). */
+  /* 🔴 O orcamento e de 46px de padding no topo, e nao mais: medido slide a
+     slide, em 52px o slide 14 ja estoura. Como a barra precisa caber ai DENTRO
+     e ainda sobrar separacao visivel ate o rotulo do slide, ela vem menor no
+     papel do que na tela — nome e marcas reduzidos. */
+  .deckTrilhaImpressa{display:block !important; position:absolute;
+    top:3px; left:56px; right:56px}
+  .deckTrilhaImpressa .deckIndice{display:flex !important; padding:0 0 3px;
+    background:none; border-bottom:1px solid var(--borda)}
+  /* O rotulo do slide sai no papel: ele repete, em texto, a mesma secao que a
+     barra ja mostra acesa logo acima — e era ele que colidia com os nomes da
+     trilha. Sem ele o titulo sobe e o slide ganha o espaco de volta. */
+  .deckSlide .deckRotulo{display:none !important}
+  .deckTrilhaImpressa .deckSecaoNome{font-size:.42rem}
+  .deckTrilhaImpressa .deckIndice.porSecao .deckIndiceMarca{height:7px}
+  .deckTrilhaImpressa .deckSecaoMarcas{margin-bottom:3px}
+  .deck, .deckPalco, .deckTela{display:block !important; position:static !important;
+    aspect-ratio:auto; min-height:0; height:auto; border:none; box-shadow:none;
+    overflow:visible !important; background:#fff}
+  /* `position:relative` e o que ancora a trilha absoluta acima. O `scale` da o
+     respiro que faltava: o conteudo foi desenhado para preencher 1280x720 numa
+     projecao, e no papel isso fica sufocado. A 88% sobra uma margem de ~6% em
+     volta, e o layout interno nao muda — o `transform` e visual, a caixa
+     continua com 1280x720 e uma pagina por slide. */
+  .deckSlide{display:flex !important; position:relative !important;
+    transform:scale(.88) !important; transform-origin:center center;
+    width:1280px; height:720px; padding:50px 56px 48px; overflow:hidden;
+    page-break-before:always; break-before:page}
+  /* A quebra vai ANTES de cada slide, e nao depois. Com `break-after` o ultimo
+     slide quebrava a pagina no fim e o PDF saia com uma 22a pagina em branco —
+     e o `:last-child{break-after:auto}` nao dava conta. Quebrando antes, o
+     primeiro slide e a excecao e nao sobra nada no fim. */
+  .deckSlide:first-child{page-break-before:auto; break-before:auto}
   .conteudoInterno{padding:0; max-width:none}
 }
 
@@ -512,7 +851,7 @@ code.nomeColuna{white-space:nowrap}
   .deckSlide.capa .deckTitulo{font-size:1.7rem}
   .deckIndice{display:none}
 }
-</style></head><body><div id="casca"><nav id="navPrimaria"><div class="marca"><div class="marcaSelo"><svg class="marcaMosquito" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 8.2 L7 10.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="8.4" cy="11" r="1.9" fill="currentColor"/><path d="M10 12.2 Q14 13.4 20.4 19.4 Q16.4 16.6 11.4 14.6 Z" fill="currentColor"/><ellipse cx="11.6" cy="13.4" rx="2.5" ry="1.9" fill="currentColor" transform="rotate(38 11.6 13.4)"/><ellipse cx="14.6" cy="8.2" rx="4.6" ry="1.7" fill="currentColor" opacity=".78" transform="rotate(-22 14.6 8.2)"/><ellipse cx="15.4" cy="11.4" rx="4.9" ry="1.6" fill="currentColor" opacity=".55" transform="rotate(6 15.4 11.4)"/><g stroke="currentColor" stroke-width="1.15" fill="none" stroke-linecap="round"><path d="M10.6 14.4 Q8.4 18 4.6 18.6"/><path d="M12.8 15.4 Q12 19.4 8.8 21.2"/><path d="M15 16.8 Q16.4 20 14.6 22"/></g></svg></div><div class="marcaTexto"><div class="marcaNome">Aedes aegypti · POA</div><div class="marcaSub">PPGC · UFRGS</div></div></div><div class="navRolagem"><div class="navRotulo">Navegação</div><a class="navItem" href="index.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.2 8.5 3.4a1 1 0 0 1 1.3 0L15 8.2"/><path d="M4.6 7.6V15a.8.8 0 0 0 .8.8h7.2a.8.8 0 0 0 .8-.8V7.6"/></svg><span class="navRotuloItem">Início</span></a><a class="navItem" href="dados.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.4 2.6 5.6 9 8.8l6.4-3.2L9 2.4Z"/><path d="M2.6 9.2 9 12.4l6.4-3.2"/><path d="M2.6 12.6 9 15.8l6.4-3.2"/></svg><span class="navRotuloItem">Dados</span></a><a class="navItem" href="cenarios.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Cenários testados</span></a><a class="navItem" href="cenario-adotado.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Cenário adotado</span></a><a class="navItem ativo" href="proximos-passos.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="4" width="12.4" height="11.2" rx="1.4"/><path d="M2.8 7.6h12.4"/><path d="M6.2 2.6v2.6"/><path d="M11.8 2.6v2.6"/></svg><span class="navRotuloItem">Próximos passos</span></a><div class="navDivisor"></div><a class="navItem" href="seminario.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 2.8h12.8"/><rect x="3.4" y="2.8" width="11.2" height="7.6" rx="1"/><path d="M9 10.4v2.4"/><path d="M6.4 15.2 9 12.8l2.6 2.4"/></svg><span class="navRotuloItem">Seminário de Andamento</span></a></div><div class="navRodape" id="navRodape">&laquo; Recolher menu</div></nav><main id="areaConteudo"><div class="conteudoInterno"><p class="trilha">Mestrado PPGC · UFRGS &nbsp;·&nbsp; Porto Alegre, RS &nbsp;·&nbsp; <b>Próximos passos</b></p><header class="cabecalhoPagina"><h1>Próximos passos</h1></header><section class="secao" id="o-que-se-ve"><div class="secaoTitulo"><span class="secaoOrdem">01</span><h2>O que os dados mostram a olho nu</h2></div><figure class="figura"><img src="imagens/vetor_vs_casos.png" alt="" loading="lazy"></figure></section><section class="secao" id="questao-aberta"><div class="secaoTitulo"><span class="secaoOrdem">02</span><h2>Por que a questão segue aberta</h2></div><div class="grade grade2"><div class="cartao"><div class="cartaoRotulo">✅ O que foi medido</div><p>Sobre um modelo que <b>já tem clima e histórico de casos</b>, a armadilha não melhora a previsão.</p></div><div class="cartao"><div class="cartaoRotulo">🚫 O que NÃO se deduz</div><p>Que o mosquito não influencia a doença. <b>Sem vetor não há transmissão</b> — isso é biologia.</p></div></div><div class="grade grade3"><div class="cartao"><div class="cartaoRotulo">Hipótese 01 · o alvo</div><h3>Prevemos a consequência</h3><p>Quando o caso é notificado, a transmissão <b>já aconteceu</b>. A causa é a proliferação do vetor.</p></div><div class="cartao"><div class="cartaoRotulo">Hipótese 02 · saturação</div><h3>O histórico já diz tudo</h3><p>Os casos recentes explicam <b>91%</b> do acerto em uma semana. <b>Redundante ≠ irrelevante.</b></p></div><div class="cartao"><div class="cartaoRotulo">Hipótese 03 · horizonte</div><h3>Paramos em 3 meses</h3><p>A defasagem do gráfico parece maior. Efeito fora da janela medida <b>não aparece</b>.</p></div><div class="cartao"><div class="cartaoRotulo">Hipótese 04 · escopo</div><h3>Só a dengue tem alvo</h3><p>O mesmo mosquito transmite <b>quatro doenças</b>. Três ficaram de fora da conta.</p></div><div class="cartao"><div class="cartaoRotulo">Hipótese 05 · biologia</div><h3>Mosquito não é vírus</h3><p>A armadilha conta mosquito, não mosquito <b>infectado</b>. Pode haver muito vetor e pouco vírus circulando — e o PCR do mosquito deixou de ser feito.</p></div></div></section><section class="secao" id="o-que-muda"><div class="secaoTitulo"><span class="secaoOrdem">03</span><h2>O que muda na próxima etapa</h2></div><div class="tabelaEnvelope"><div class="tabelaRolavel"><table class="tabela"><thead><tr><th></th><th class="colunaAzul">Hoje</th><th class="colunaVerde">Próxima etapa</th></tr></thead><tbody><tr><td><b>Alvo primário</b></td><td class="colunaAzul">casos de dengue</td><td class="colunaVerde">casos das <b>quatro arboviroses</b>, previstos <b>a partir da proliferação do vetor</b></td></tr><tr><td><b>Alvo secundário</b></td><td class="colunaAzul">—</td><td class="colunaVerde"><b>a própria proliferação do vetor</b>, a partir de clima e captura</td></tr><tr><td><b>Horizonte</b></td><td class="colunaAzul">até 3 meses</td><td class="colunaVerde">até <b>6 meses</b></td></tr><tr><td><b>Treino e teste</b></td><td class="colunaAzul">toda a série disponível</td><td class="colunaVerde">treinar em <b>2022-2024</b>, prever <b>2025</b></td></tr><tr><td><b>Pergunta</b></td><td class="colunaAzul">o vetor melhora a previsão?</td><td class="colunaVerde"><b>qual é a defasagem</b> entre as duas curvas?</td></tr><tr><td><b>Espécie</b></td><td class="colunaAzul">Aedes aegypti</td><td class="colunaVerde"><b>Aedes aegypti</b> — Culex fica de fora</td></tr></tbody></table></div></div><div class="aviso bom"><div class="avisoRotulo">Por que somar as arboviroses é legítimo</div><p><b>Um único vetor</b> transmite as quatro. Sem transmissão pessoa a pessoa, sem outro artrópode. Somar não mistura fenômenos — agrupa manifestações do <b>mesmo</b> evento entomológico. ⏳ Cada decisão dessas precisa de <b>referência bibliográfica</b> que a respalde.</p></div></section><section class="secao" id="literatura"><div class="secaoTitulo"><span class="secaoOrdem">04</span><h2>A literatura que falta levantar</h2></div><div class="grade grade4"><div class="cartao"><div class="cartaoRotulo">01</div><h3>Ovos que atravessam o inverno</h3><p>A temporada termina com ovos que não eclodiram e seguem <b>viáveis até a seguinte</b>. Uma temporada intensa pode carregar risco para a próxima.</p></div><div class="cartao"><div class="cartaoRotulo">02</div><h3>Transmissão pelo ovo</h3><p>O mosquito pode <b>já nascer com o vírus</b>, sem precisar picar alguém doente antes. Muda a dinâmica clássica de transmissão.</p></div><div class="cartao"><div class="cartaoRotulo">03</div><h3>Criadouro menos exigente</h3><p>A dependência de <b>água parada e limpa</b> não é mais o que era. Afeta onde o vetor consegue se desenvolver.</p></div><div class="cartao"><div class="cartaoRotulo">04</div><h3>Limiar térmico do ovo</h3><p>Abaixo de certa temperatura o ovo <b>inviabiliza</b> — a hipótese que explica por que há regiões estéreis ao vetor apesar de clima aparentemente favorável.</p></div></div><div class="aviso info"><div class="avisoRotulo">Por que isso entra na modelagem</div><p>Se a biologia do vetor mudou, <b>o mesmo número de mosquitos não significa o mesmo risco</b> em 2013 e em 2026. Ler a série de 14 anos sem isso é tratar como homogêneo um fenômeno que não é.</p></div></section><section class="secao" id="a-verificar"><div class="secaoTitulo"><span class="secaoOrdem">05</span><h2>O que precisa ser verificado antes</h2></div><div class="tabelaEnvelope"><div class="tabelaRolavel"><table class="tabela"><thead><tr><th>Risco</th><th>O número que já se conhece</th><th>O que medir antes</th></tr></thead><tbody><tr><td><b>Agregar soma pouco</b></td><td>chikungunya: dezenas de casos<br>zika: <b>zero</b> desde 2022</td><td>o ganho real de volume</td></tr><tr><td><b>Poucas epidemias no teste</b></td><td>a janela <b>2022 a 2025</b> deixa ~1 episódio</td><td>se a janela sustenta conclusão</td></tr><tr><td><b>6 meses pode não alcançar</b></td><td>a memória dos casos já é <b>nula</b> em 3 meses</td><td>o horizonte útil para o vetor</td></tr></tbody></table></div></div><div class="aviso atencao"><div class="avisoRotulo">Esta página não revoga nada</div><p>O resultado do cenário adotado <b>continua válido</b>. O que muda é alvo, horizonte e conjunto de doenças — e cada teste exigirá <b>pré-declaração escrita antes de rodar</b>.</p></div></section><section class="secao" id="o-desafio"><div class="secaoTitulo"><span class="secaoOrdem">06</span><h2>O desafio da temporada 2026-2027</h2></div><div class="grade grade2"><div class="cartao"><div class="cartaoRotulo">Hoje</div><h3>Gerar a curva prevista</h3><p>Captura de mosquito para a temporada <b>2026-2027</b>.</p></div><div class="cartao"><div class="cartaoRotulo">Julho de 2027</div><h3>Comparar com o real</h3><p>Previsão registrada <b>antes</b>, sem ajuste posterior.</p></div></div></section></div><footer class="rodape">Painel de acompanhamento da pesquisa · gerado em 23/09/2026</footer></main></div><script>
+</style></head><body><div id="casca"><nav id="navPrimaria"><div class="marca"><div class="marcaSelo"><svg class="marcaMosquito" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 8.2 L7 10.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="8.4" cy="11" r="1.9" fill="currentColor"/><path d="M10 12.2 Q14 13.4 20.4 19.4 Q16.4 16.6 11.4 14.6 Z" fill="currentColor"/><ellipse cx="11.6" cy="13.4" rx="2.5" ry="1.9" fill="currentColor" transform="rotate(38 11.6 13.4)"/><ellipse cx="14.6" cy="8.2" rx="4.6" ry="1.7" fill="currentColor" opacity=".78" transform="rotate(-22 14.6 8.2)"/><ellipse cx="15.4" cy="11.4" rx="4.9" ry="1.6" fill="currentColor" opacity=".55" transform="rotate(6 15.4 11.4)"/><g stroke="currentColor" stroke-width="1.15" fill="none" stroke-linecap="round"><path d="M10.6 14.4 Q8.4 18 4.6 18.6"/><path d="M12.8 15.4 Q12 19.4 8.8 21.2"/><path d="M15 16.8 Q16.4 20 14.6 22"/></g></svg></div><div class="marcaTexto"><div class="marcaNome">Aedes aegypti · POA</div><div class="marcaSub">PPGC · UFRGS</div></div></div><div class="navRolagem"><div class="navRotulo">Navegação</div><a class="navItem" href="index.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.2 8.5 3.4a1 1 0 0 1 1.3 0L15 8.2"/><path d="M4.6 7.6V15a.8.8 0 0 0 .8.8h7.2a.8.8 0 0 0 .8-.8V7.6"/></svg><span class="navRotuloItem">Início</span></a><a class="navItem" href="dados.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.4 2.6 5.6 9 8.8l6.4-3.2L9 2.4Z"/><path d="M2.6 9.2 9 12.4l6.4-3.2"/><path d="M2.6 12.6 9 15.8l6.4-3.2"/></svg><span class="navRotuloItem">Dados</span></a><a class="navItem" href="cenarios.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Cenários testados</span></a><a class="navItem" href="cenario-adotado.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Cenário adotado</span></a><a class="navItem" href="comparacoes.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.2" cy="7.2" r="4.4"/><path d="m10.6 10.6 3 3"/></svg><span class="navRotuloItem">Comparações</span></a><a class="navItem ativo" href="proximos-passos.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="4" width="12.4" height="11.2" rx="1.4"/><path d="M2.8 7.6h12.4"/><path d="M6.2 2.6v2.6"/><path d="M11.8 2.6v2.6"/></svg><span class="navRotuloItem">Próximos passos</span></a><div class="navDivisor"></div><a class="navItem" href="seminario.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 2.8h12.8"/><rect x="3.4" y="2.8" width="11.2" height="7.6" rx="1"/><path d="M9 10.4v2.4"/><path d="M6.4 15.2 9 12.8l2.6 2.4"/></svg><span class="navRotuloItem">Seminário de Andamento</span></a><a class="navItem" href="seminario-copia.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 2.8h12.8"/><rect x="3.4" y="2.8" width="11.2" height="7.6" rx="1"/><path d="M9 10.4v2.4"/><path d="M6.4 15.2 9 12.8l2.6 2.4"/></svg><span class="navRotuloItem">Seminário (cópia)</span></a><a class="navItem" href="seminario-copia-2.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 2.8h12.8"/><rect x="3.4" y="2.8" width="11.2" height="7.6" rx="1"/><path d="M9 10.4v2.4"/><path d="M6.4 15.2 9 12.8l2.6 2.4"/></svg><span class="navRotuloItem">Seminário (cópia 2)</span></a><div class="navDivisor"></div><a class="navItem" href="notificacoes-como-alvo.html"><svg class="navIcone" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15V7.4"/><path d="M7.3 15V3.6"/><path d="M11.6 15v-5.4"/><path d="M15.4 15V5.8"/></svg><span class="navRotuloItem">Notificações como alvo</span></a></div><div class="navRodape" id="navRodape">&laquo; Recolher menu</div></nav><main id="areaConteudo"><div class="conteudoInterno"><p class="trilha">Mestrado PPGC · UFRGS &nbsp;·&nbsp; Porto Alegre, RS &nbsp;·&nbsp; <b>Próximos passos</b></p><header class="cabecalhoPagina"><h1>Próximos passos</h1></header><section class="secao" id="o-que-se-ve"><div class="secaoTitulo"><span class="secaoOrdem">01</span><h2>O que os dados mostram a olho nu</h2></div><figure class="figura"><img src="imagens/vetor_vs_casos.png" alt="" loading="lazy"></figure></section><section class="secao" id="questao-aberta"><div class="secaoTitulo"><span class="secaoOrdem">02</span><h2>Por que a questão segue aberta</h2></div><div class="grade grade2"><div class="cartao"><div class="cartaoRotulo">✅ O que foi medido</div><p>Sobre um modelo que <b>já tem clima e histórico de casos</b>, a armadilha não melhora a previsão.</p></div><div class="cartao"><div class="cartaoRotulo">🚫 O que NÃO se deduz</div><p>Que o mosquito não influencia a doença. <b>Sem vetor não há transmissão</b> — isso é biologia.</p></div></div><div class="grade grade3"><div class="cartao"><div class="cartaoRotulo">Hipótese 01 · o alvo</div><h3>Prevemos a consequência</h3><p>Quando o caso é notificado, a transmissão <b>já aconteceu</b>. A causa é a proliferação do vetor.</p></div><div class="cartao"><div class="cartaoRotulo">Hipótese 02 · saturação</div><h3>O histórico já diz tudo</h3><p>Os casos recentes explicam <b>91%</b> do acerto em uma semana. <b>Redundante ≠ irrelevante.</b></p></div><div class="cartao"><div class="cartaoRotulo">Hipótese 03 · horizonte</div><h3>Paramos em 3 meses</h3><p>A defasagem do gráfico parece maior. Efeito fora da janela medida <b>não aparece</b>.</p></div><div class="cartao"><div class="cartaoRotulo">Hipótese 04 · escopo</div><h3>Só a dengue tem alvo</h3><p>O mesmo mosquito transmite <b>quatro doenças</b>. Três ficaram de fora da conta.</p></div><div class="cartao"><div class="cartaoRotulo">Hipótese 05 · biologia</div><h3>Mosquito não é vírus</h3><p>A armadilha conta mosquito, não mosquito <b>infectado</b>. Pode haver muito vetor e pouco vírus circulando — e o PCR do mosquito deixou de ser feito.</p></div></div></section><section class="secao" id="o-que-muda"><div class="secaoTitulo"><span class="secaoOrdem">03</span><h2>O que muda na próxima etapa</h2></div><div class="tabelaEnvelope"><div class="tabelaRolavel"><table class="tabela"><thead><tr><th></th><th class="colunaAzul">Hoje</th><th class="colunaVerde">Próxima etapa</th></tr></thead><tbody><tr><td><b>Alvo primário</b></td><td class="colunaAzul">casos de dengue</td><td class="colunaVerde">casos das <b>quatro arboviroses</b>, previstos <b>a partir da proliferação do vetor</b></td></tr><tr><td><b>Alvo secundário</b></td><td class="colunaAzul">—</td><td class="colunaVerde"><b>a própria proliferação do vetor</b>, a partir de clima e captura</td></tr><tr><td><b>Horizonte</b></td><td class="colunaAzul">até 3 meses</td><td class="colunaVerde">até <b>6 meses</b></td></tr><tr><td><b>Treino e teste</b></td><td class="colunaAzul">toda a série disponível</td><td class="colunaVerde">treinar em <b>2022-2024</b>, prever <b>2025</b></td></tr><tr><td><b>Pergunta</b></td><td class="colunaAzul">o vetor melhora a previsão?</td><td class="colunaVerde"><b>qual é a defasagem</b> entre as duas curvas?</td></tr><tr><td><b>Espécie</b></td><td class="colunaAzul">Aedes aegypti</td><td class="colunaVerde"><b>Aedes aegypti</b> — Culex fica de fora</td></tr></tbody></table></div></div><div class="aviso bom"><div class="avisoRotulo">Por que somar as arboviroses é legítimo</div><p><b>Um único vetor</b> transmite as quatro. Sem transmissão pessoa a pessoa, sem outro artrópode. Somar não mistura fenômenos — agrupa manifestações do <b>mesmo</b> evento entomológico. ⏳ Cada decisão dessas precisa de <b>referência bibliográfica</b> que a respalde.</p></div></section><section class="secao" id="literatura"><div class="secaoTitulo"><span class="secaoOrdem">04</span><h2>A literatura que falta levantar</h2></div><div class="grade grade4"><div class="cartao"><div class="cartaoRotulo">01</div><h3>Ovos que atravessam o inverno</h3><p>A temporada termina com ovos que não eclodiram e seguem <b>viáveis até a seguinte</b>. Uma temporada intensa pode carregar risco para a próxima.</p></div><div class="cartao"><div class="cartaoRotulo">02</div><h3>Transmissão pelo ovo</h3><p>O mosquito pode <b>já nascer com o vírus</b>, sem precisar picar alguém doente antes. Muda a dinâmica clássica de transmissão.</p></div><div class="cartao"><div class="cartaoRotulo">03</div><h3>Criadouro menos exigente</h3><p>A dependência de <b>água parada e limpa</b> não é mais o que era. Afeta onde o vetor consegue se desenvolver.</p></div><div class="cartao"><div class="cartaoRotulo">04</div><h3>Limiar térmico do ovo</h3><p>Abaixo de certa temperatura o ovo <b>inviabiliza</b> — a hipótese que explica por que há regiões estéreis ao vetor apesar de clima aparentemente favorável.</p></div></div><div class="aviso info"><div class="avisoRotulo">Por que isso entra na modelagem</div><p>Se a biologia do vetor mudou, <b>o mesmo número de mosquitos não significa o mesmo risco</b> em 2013 e em 2026. Ler a série de 14 anos sem isso é tratar como homogêneo um fenômeno que não é.</p></div></section><section class="secao" id="a-verificar"><div class="secaoTitulo"><span class="secaoOrdem">05</span><h2>O que precisa ser verificado antes</h2></div><div class="tabelaEnvelope"><div class="tabelaRolavel"><table class="tabela"><thead><tr><th>Risco</th><th>O número que já se conhece</th><th>O que medir antes</th></tr></thead><tbody><tr><td><b>Agregar soma pouco</b></td><td>chikungunya: dezenas de casos<br>zika: <b>zero</b> desde 2022</td><td>o ganho real de volume</td></tr><tr><td><b>Poucas epidemias no teste</b></td><td>a janela <b>2022 a 2025</b> deixa ~1 episódio</td><td>se a janela sustenta conclusão</td></tr><tr><td><b>6 meses pode não alcançar</b></td><td>a memória dos casos já é <b>nula</b> em 3 meses</td><td>o horizonte útil para o vetor</td></tr></tbody></table></div></div><div class="aviso atencao"><div class="avisoRotulo">Esta página não revoga nada</div><p>O resultado do cenário adotado <b>continua válido</b>. O que muda é alvo, horizonte e conjunto de doenças — e cada teste exigirá <b>pré-declaração escrita antes de rodar</b>.</p></div></section><section class="secao" id="o-desafio"><div class="secaoTitulo"><span class="secaoOrdem">06</span><h2>O desafio da temporada 2026-2027</h2></div><div class="grade grade2"><div class="cartao"><div class="cartaoRotulo">Hoje</div><h3>Gerar a curva prevista</h3><p>Captura de mosquito para a temporada <b>2026-2027</b>.</p></div><div class="cartao"><div class="cartaoRotulo">Julho de 2027</div><h3>Comparar com o real</h3><p>Previsão registrada <b>antes</b>, sem ajuste posterior.</p></div></div></section></div><footer class="rodape">Painel de acompanhamento da pesquisa · gerado em 28/09/2026</footer></main></div><script>
 (function(){
   var itensSecundarios = Array.prototype.slice.call(
     document.querySelectorAll('#navSecundaria .nav2Item[data-ancora]')
@@ -548,6 +887,36 @@ code.nomeColuna{white-space:nowrap}
   }
 })();
 
+// Escala os slides para que a tela fixa de 1280x720 caiba no palco, do mesmo
+// jeito que um projetor encaixa um slide de apresentacao. Roda na carga, a
+// cada mudanca de tamanho da janela e quando o menu lateral recolhe.
+(function ajustarEscalaDosSlides() {
+  var LARGURA_DA_TELA = 1280;
+  var ALTURA_DA_TELA = 720;
+
+  function aplicar() {
+    var tela = document.querySelector(".deckTela");
+    if (!tela) return;
+    var escala = Math.min(
+      tela.clientWidth / LARGURA_DA_TELA,
+      tela.clientHeight / ALTURA_DA_TELA
+    );
+    var sobra = (tela.clientWidth - LARGURA_DA_TELA * escala) / 2;
+    var slides = document.querySelectorAll(".deckSlide");
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].style.transform =
+        "translateX(" + sobra.toFixed(1) + "px) scale(" + escala.toFixed(4) + ")";
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", aplicar);
+  } else {
+    aplicar();
+  }
+  window.addEventListener("resize", aplicar);
+})();
+
 (function(){
   var slides = Array.prototype.slice.call(document.querySelectorAll('.deckSlide'));
   if (!slides.length) { return; }
@@ -564,7 +933,8 @@ code.nomeColuna{white-space:nowrap}
   // alinham por ele, e não por um pixel fixo no CSS: assim continuam centradas
   // quando o tamanho da bolinha, a fonte ou o padding mudarem.
   function centroDoMarcador(item){
-    var barra = item.parentElement.getBoundingClientRect();
+    var trilha = item.closest('.deckIndice');
+    var barra = trilha.getBoundingClientRect();
     var marca = item.querySelector('.deckIndiceMarca').getBoundingClientRect();
     return {
       x: (marca.left + marca.width / 2) - barra.left,
@@ -593,6 +963,21 @@ code.nomeColuna{white-space:nowrap}
       itensDoIndice[u].classList.toggle(
         'passado', posicaoDoTopico >= 0 && u < posicaoDoTopico
       );
+    }
+
+    // A seção do slide atual fica destacada, e as anteriores marcadas como
+    // vistas. É o que faz o nome do tópico acender quando se entra nele.
+    var secoes = document.querySelectorAll('.deckSecao');
+    for (var v = 0; v < secoes.length; v++) {
+      var marcasDaSecao = secoes[v].querySelectorAll('.deckIndiceItem');
+      var temAtual = false;
+      var todasPassadas = marcasDaSecao.length > 0;
+      for (var w = 0; w < marcasDaSecao.length; w++) {
+        if (marcasDaSecao[w].classList.contains('atual')) { temAtual = true; }
+        if (!marcasDaSecao[w].classList.contains('passado')) { todasPassadas = false; }
+      }
+      secoes[v].classList.toggle('ativa', temAtual);
+      secoes[v].classList.toggle('vista', todasPassadas && !temAtual);
     }
 
     // As duas linhas vão de marcador a marcador: a cinza do primeiro ao
@@ -631,6 +1016,65 @@ code.nomeColuna{white-space:nowrap}
 
   anterior.addEventListener('click', function(){ mostrar(atual - 1, true); });
   proximo.addEventListener('click', function(){ mostrar(atual + 1, true); });
+
+  // No PDF a trilha precisa aparecer em TODA pagina, e cada uma com a sua
+  // secao acesa. Ela nao pode ser copiada pronta: o JS posiciona as duas
+  // linhas em pixels, medindo o DOM, entao um HTML estatico sairia com a barra
+  // sem linha nenhuma. A saida e passar por cada slide, deixar o proprio
+  // `mostrar()` pintar a barra de verdade, e so entao clonar o resultado — com
+  // os estilos ja calculados — para dentro daquele slide.
+  function prepararTrilhaParaImpressao() {
+    var trilha = document.querySelector('.deckPalco > .deckIndice');
+    if (!trilha) { return; }
+
+    var slidesDoDeck = document.querySelectorAll('.deckSlide');
+    var voltarPara = atual;
+    var copias = [];
+
+    // 🔴 As duas linhas da trilha sao posicionadas em PIXELS, medidos do DOM.
+    // Se a barra for medida com a largura que ela tem no palco e depois colada
+    // num slide de outra largura, a linha para no meio do caminho. Por isso a
+    // barra original e posta, ANTES de medir, exatamente nas condicoes que tera
+    // no PDF: 1168px de largura — 1280 do slide menos os 56px de cada margem —
+    // e o mesmo padding. Ao fim tudo volta ao que era.
+    var LARGURA_NO_PDF = 1168;
+    var estiloOriginal = trilha.getAttribute('style') || '';
+    trilha.style.width = LARGURA_NO_PDF + 'px';
+    trilha.style.padding = '0 0 4px';
+
+    for (var i = 0; i < slidesDoDeck.length; i++) {
+      mostrar(i, false);
+      copias.push(trilha.outerHTML);
+    }
+
+    trilha.setAttribute('style', estiloOriginal);
+    mostrar(voltarPara, false);
+
+    for (var j = 0; j < slidesDoDeck.length; j++) {
+      var antiga = slidesDoDeck[j].querySelector('.deckTrilhaImpressa');
+      if (antiga) { antiga.remove(); }
+      var caixa = document.createElement('div');
+      caixa.className = 'deckTrilhaImpressa';
+      caixa.innerHTML = copias[j];
+      // O id repetido em 21 copias quebraria `getElementById`, que o JS da
+      // navegacao usa para achar a barra de verdade.
+      var comId = caixa.querySelectorAll('[id]');
+      for (var k = 0; k < comId.length; k++) { comId[k].removeAttribute('id'); }
+      slidesDoDeck[j].insertBefore(caixa, slidesDoDeck[j].firstChild);
+    }
+  }
+
+  window.addEventListener('beforeprint', prepararTrilhaParaImpressao);
+
+  // Salvar em PDF e a impressao do navegador: quem faz o trabalho e o
+  // `@media print`, que poe cada slide numa pagina de 1280x720.
+  var baixarPdf = document.getElementById('deckBaixarPdf');
+  if (baixarPdf) {
+    baixarPdf.addEventListener('click', function(){
+      prepararTrilhaParaImpressao();
+      window.print();
+    });
+  }
 
   for (var p = 0; p < pontos.length; p++) {
     (function(indice){

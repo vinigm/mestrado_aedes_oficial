@@ -54,6 +54,14 @@ TOPICO_OBJETIVO = "Objetivo"
 TOPICO_DADOS = "Dados"
 TOPICO_CENARIOS = "Cenários"
 TOPICO_RESULTADOS = "Resultados"
+
+# A secao dos dois anos, criada em 27/09/2026 entre RESULTADOS e LIMITACOES. Ela
+# tem dois slides porque a historia nao cabia num: o primeiro mostra POR QUE os
+# dois anos sao diferentes — o que o treino tinha visto antes de cada temporada —
+# e o segundo mostra QUANTO essa diferenca custou, em tabela e em curva. Juntar
+# os dois num slide so espremia a figura a ponto de ela virar enfeite.
+TOPICO_DOIS_ANOS = "Os dois anos"
+
 # Os tres slides que assumem o que o modelo ainda nao faz. Separa-los de
 # RESULTADOS e escolha de narrativa: a parte que sobe a moral e a que a
 # desce param de dividir o mesmo rotulo, e a plateia ve na trilha que a
@@ -444,6 +452,7 @@ TAMANHO_DO_DESENHO_DO_COMPOSTO = (400, 306)
 # que tem uma tabela so, entao a altura e menor: 233 contra 306. A largura e a
 # mesma, e e ela que manda na fonte, que chega a tela com 10,3px nos tres.
 TAMANHO_DO_DESENHO_COM_DUAS_TABELAS = (400, 233)
+
 NOME_DA_LINHA_DA_REGUA = "Régua sazonal"
 
 
@@ -930,6 +939,403 @@ MEDIDAS_DOS_DOIS_ANOS = (
 )
 
 
+# A regua historica do slide dos dois anos, em unidades do proprio viewBox. Ela
+# ocupa a largura inteira do slide, e nao meia coluna, porque a versao espremida
+# sob a tabela virou enfeite: os rotulos ficavam ilegiveis de longe e a diferenca
+# entre as duas faixas azuis, que e o argumento, nao se lia.
+#
+# 🔴 Refeita em 27/09/2026, depois de uma pergunta do Vinicius — "a avaliacao nao
+# teve 2024 E 2025?". A primeira versao pintava uma faixa de avaliacao por ano e
+# sugeria DOIS experimentos, com dois blocos de treino fixos. Nao e isso: a
+# avaliacao e UMA SO, continua, de 07/01/2024 a 01/02/2026, e o treino CRESCE a
+# cada semana prevista. As duas reguas sao dois INSTANTES do mesmo experimento —
+# aquele em que o modelo previu o pico de 2024, e aquele em que previu o de 2025.
+LARGURA_DA_REGUA = 1000
+ALTURA_DA_REGUA = 246
+TOPO_DO_TRACADO_DA_REGUA = 24
+BASE_DO_TRACADO_DA_REGUA = 214
+LINHA_DOS_ANOS_DA_REGUA = 234
+
+# A tira que fica sob as DUAS reguas, marcando a janela de avaliacao. Ela e
+# desenhada uma vez so de proposito: e esse o fato que a figura anterior
+# escondia, e repeti-la em cada regua reintroduziria a leitura errada.
+ALTURA_DA_TIRA_DA_AVALIACAO = 42
+
+COR_DA_AREA_DA_REGUA = "#8593A4"
+COR_DO_CONTORNO_DA_AREA = "#5F6E80"
+COR_DA_FAIXA_DE_TREINO = "#1B6EF3"
+COR_DO_TETO_DO_TREINO = "#12559C"
+COR_DA_AVALIACAO = "#6B7A8C"
+COR_DO_ANO_AVALIADO = "#4A5866"
+
+# O retangulo da janela avaliada e desenhado SOBRE o tracado, no mesmo estilo do
+# fundo azul do treino, so que mais claro e com contorno. Na regua de 2025 ele se
+# sobrepoe ao azul entre jan/2024 e out/2024, e isso e verdade: aquelas semanas
+# foram avaliadas e DEPOIS entraram no treino do instante seguinte. O contorno e
+# que delimita, para que a soma das duas cores nao vire ambiguidade.
+OPACIDADE_DO_FUNDO_DA_AVALIACAO = ".10"
+OPACIDADE_DO_CONTORNO_DA_AVALIACAO = ".5"
+
+# Quanto um caractere mede, em pontos do viewBox, nos rotulos de 13px em negrito.
+# Serve para decidir se um rotulo cabe a direita do pico ou tem que virar para a
+# esquerda — o SVG e montado em Python, que nao mede texto. O valor e uma
+# ESTIMATIVA generosa: o medido no navegador ficou em 6,7 por caractere.
+LARGURA_ESTIMADA_DO_CARACTERE = 7.0
+
+# O mesmo, para os rotulos das faixas, que levam espacamento entre letras e por
+# isso medem mais: 8,3 por caractere no navegador.
+LARGURA_ESTIMADA_DO_CARACTERE_ESPACADO = 8.4
+
+
+def _passo_do_mes() -> float:
+    """Quantos pontos do viewBox cabe um mes da serie."""
+    return LARGURA_DA_REGUA / len(numeros.SERIE_MENSAL_DE_CASOS)
+
+
+def _posicao_do_mes(ano: int, mes: int) -> float:
+    """Converte um mes de calendario na coordenada X da regua.
+
+    A serie mensal comeca em fevereiro de 2018, entao o mes de indice zero e
+    esse — a conta e a distancia em meses ate ele. Meses fora do intervalo da
+    serie sao permitidos de proposito: e assim que se acha a borda direita da
+    janela de avaliacao, que so termina em fevereiro de 2026.
+
+    Args:
+        ano: Ano de calendario.
+        mes: Mes de 1 a 12.
+
+    Returns:
+        A coordenada X dentro do viewBox da regua.
+    """
+    meses_desde_o_inicio = (ano - numeros.PRIMEIRO_ANO_DA_SERIE_MENSAL) * 12 + (
+        mes - numeros.PRIMEIRO_MES_DA_SERIE_MENSAL
+    )
+    return meses_desde_o_inicio * _passo_do_mes()
+
+
+def _altura_na_regua(casos: float) -> float:
+    """Converte uma contagem de casos na coordenada Y da regua.
+
+    As duas reguas do slide dividem a MESMA escala vertical — o teto e o pico de
+    2025. Sem isso as duas nao seriam comparaveis a olho, que e a unica coisa
+    que a figura serve para fazer.
+
+    Args:
+        casos: Casos numa semana.
+
+    Returns:
+        A coordenada Y dentro do viewBox da regua.
+    """
+    fracao = casos / max(numeros.SERIE_MENSAL_DE_CASOS)
+    altura_util = BASE_DO_TRACADO_DA_REGUA - TOPO_DO_TRACADO_DA_REGUA
+    return BASE_DO_TRACADO_DA_REGUA - fracao * altura_util
+
+
+def _extremos_da_avaliacao() -> tuple[float, float]:
+    """Onde a janela de avaliacao comeca e termina, no eixo do tempo.
+
+    Returns:
+        O par (inicio, fim) em coordenadas do viewBox, ja preso a borda direita.
+    """
+    return _posicao_do_mes(2024, 1), min(_posicao_do_mes(2026, 2), LARGURA_DA_REGUA)
+
+
+def _marcas_de_ano_da_regua() -> str:
+    """Desenha o eixo do tempo e pinta a janela de avaliacao sobre ele.
+
+    A faixa e a MESMA nas duas reguas, e e esse o ponto: o que muda entre elas e
+    o treino, nao o que foi avaliado. Os anos que caem dentro dela saem em
+    negrito e mais escuros, para que se leia de longe quais foram medidos.
+
+    Returns:
+        O trecho de SVG com a faixa, os tiques e os rotulos de ano.
+    """
+    inicio, fim = _extremos_da_avaliacao()
+    ultimo_ano = numeros.PRIMEIRO_ANO_DA_SERIE_MENSAL + (
+        len(numeros.SERIE_MENSAL_DE_CASOS) + numeros.PRIMEIRO_MES_DA_SERIE_MENSAL - 2
+    ) // 12
+
+    partes = []
+    for ano in range(numeros.PRIMEIRO_ANO_DA_SERIE_MENSAL, ultimo_ano + 1):
+        x = max(_posicao_do_mes(ano, 1), 0.0)
+        esta_na_avaliacao = inicio - 1 <= x < fim
+        cor = COR_DO_ANO_AVALIADO if esta_na_avaliacao else "#7C8A9A"
+        peso = "700" if esta_na_avaliacao else "400"
+        partes.append(
+            f'<line x1="{x:.1f}" y1="{BASE_DO_TRACADO_DA_REGUA}" x2="{x:.1f}" '
+            f'y2="{BASE_DO_TRACADO_DA_REGUA + 5}" stroke="#C6CFDA" stroke-width="1"/>'
+            f'<text x="{x + 5:.1f}" y="{LINHA_DOS_ANOS_DA_REGUA}" font-size="12.5" '
+            f'font-weight="{peso}" fill="{cor}">{ano}</text>'
+        )
+    return "".join(partes)
+
+
+def _retangulo_do_que_faltava_prever(x_do_corte: float) -> str:
+    """Marca o trecho que o modelo ainda nao via naquele instante.
+
+    Ele comeca EXATAMENTE onde a faixa azul do treino termina — os dois dividem
+    a mesma borda, que e a linha do corte. Foi assim que o Vinicius desenhou, e e
+    a leitura certa: de um lado o que ja tinha sido visto, do outro o que faltava
+    prever. Sem vao, sem sobreposicao.
+
+    ⚠️ Este retangulo NAO e a janela de avaliacao. A janela e a mesma nas duas
+    reguas, cobre 2024 e 2025, e esta dita por escrito na legenda de baixo —
+    desenha-la aqui sobrepunha treino e avaliacao na regua de 2025 e so gerava
+    duvida.
+
+    Args:
+        x_do_corte: Onde o treino daquele instante termina.
+
+    Returns:
+        O trecho de SVG com o retangulo.
+    """
+    largura = LARGURA_DA_REGUA - x_do_corte
+    altura = BASE_DO_TRACADO_DA_REGUA - TOPO_DO_TRACADO_DA_REGUA
+
+    return (
+        f'<rect x="{x_do_corte:.1f}" y="{TOPO_DO_TRACADO_DA_REGUA}" '
+        f'width="{largura:.1f}" height="{altura}" fill="{COR_DA_AVALIACAO}" '
+        f'opacity="{OPACIDADE_DO_FUNDO_DA_AVALIACAO}"/>'
+        f'<rect x="{x_do_corte:.1f}" y="{TOPO_DO_TRACADO_DA_REGUA}" '
+        f'width="{largura:.1f}" height="{altura}" fill="none" '
+        f'stroke="{COR_DA_AVALIACAO}" stroke-width="1.5" '
+        f'opacity="{OPACIDADE_DO_CONTORNO_DA_AVALIACAO}"/>'
+    )
+
+
+def _regua_de_um_instante(
+    ano_do_pico: int,
+    cor_do_ano: str,
+    mes_do_corte: tuple[int, int],
+    corte_por_extenso: str,
+    maior_pico_conhecido: int,
+) -> str:
+    """Desenha o que o treino enxergava no instante de prever um pico.
+
+    A figura tem tres camadas, e cada uma responde a uma pergunta:
+
+    - a faixa azul e a serie SÓLIDA dentro dela: o que o treino ja tinha visto
+      naquele instante;
+    - o trecho a direita do corte, so em contorno tracejado: aconteceu, mas o
+      modelo ainda nao o via;
+    - a linha tracejada horizontal e a barra colorida: o teto do treino e o que
+      o modelo de fato previu para aquela semana, em 3 meses. A barra sempre
+      para ABAIXO da linha, e esse e o ponto — uma arvore de decisao nao devolve
+      valor acima do maior que viu no treino.
+
+    ⚠️ Nao existe faixa de avaliacao aqui, de proposito. A avaliacao e uma so, e
+    a mesma para os dois instantes; ela e desenhada uma unica vez, na tira de
+    `_tira_da_avaliacao`, logo abaixo das duas reguas.
+
+    Args:
+        ano_do_pico: 2024 ou 2025, a temporada cujo pico esta sendo previsto.
+        cor_do_ano: A cor daquele ano, a mesma do rotulo e da tabela.
+        mes_do_corte: (ano, mes) ate onde o treino enxergava.
+        corte_por_extenso: O mesmo corte como texto curto, para o rotulo.
+        maior_pico_conhecido: A maior semana que o treino via nesse instante.
+
+    Returns:
+        O HTML do desenho.
+    """
+    x_do_corte = _posicao_do_mes(*mes_do_corte)
+    altura_das_faixas = BASE_DO_TRACADO_DA_REGUA - TOPO_DO_TRACADO_DA_REGUA
+    y_do_teto = _altura_na_regua(maior_pico_conhecido)
+
+    passo = _passo_do_mes()
+    pontos = [
+        (posicao * passo, _altura_na_regua(casos))
+        for posicao, casos in enumerate(numeros.SERIE_MENSAL_DE_CASOS)
+    ]
+    ate_o_corte = [ponto for ponto in pontos if ponto[0] <= x_do_corte]
+    depois_do_corte = [ponto for ponto in pontos if ponto[0] >= x_do_corte]
+
+    def tracar(trecho: list[tuple[float, float]]) -> str:
+        """Escreve um trecho da curva como caminho SVG."""
+        return "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in trecho)
+
+    area_vista = (
+        f"M0,{BASE_DO_TRACADO_DA_REGUA} "
+        + tracar(ate_o_corte)[1:]
+        + f" L{x_do_corte:.1f},{BASE_DO_TRACADO_DA_REGUA} Z"
+    )
+
+
+    return (
+        '<div class="reguaDoTreino">'
+        f'<svg viewBox="0 0 {LARGURA_DA_REGUA} {ALTURA_DA_REGUA}" role="img" '
+        f'aria-label="Casos de dengue por mês de 2018 a 2025. Ao prever o pico de '
+        f'{ano_do_pico}, o treino ia até {corte_por_extenso} e chegava a '
+        f'{numeros.formatar_inteiro(maior_pico_conhecido)} casos.">'
+        f'<rect x="0" y="{TOPO_DO_TRACADO_DA_REGUA}" width="{x_do_corte:.1f}" '
+        f'height="{altura_das_faixas}" fill="{COR_DA_FAIXA_DE_TREINO}" opacity=".12"/>'
+        f"{_retangulo_do_que_faltava_prever(x_do_corte)}"
+        f'<path d="{tracar(depois_do_corte)}" fill="none" '
+        f'stroke="{COR_DO_CONTORNO_DA_AREA}" stroke-width="1.2" '
+        'stroke-dasharray="4 3" opacity=".65"/>'
+        f'<path d="{area_vista}" fill="{COR_DA_AREA_DA_REGUA}" opacity=".55"/>'
+        f'<path d="{tracar(ate_o_corte)}" fill="none" '
+        f'stroke="{COR_DO_CONTORNO_DA_AREA}" stroke-width="1.3"/>'
+        f'<line x1="{x_do_corte:.1f}" y1="{TOPO_DO_TRACADO_DA_REGUA}" '
+        f'x2="{x_do_corte:.1f}" y2="{BASE_DO_TRACADO_DA_REGUA}" '
+        f'stroke="{COR_DA_FAIXA_DE_TREINO}" stroke-width="1.6"/>'
+        f'<line x1="0" y1="{y_do_teto:.1f}" x2="{LARGURA_DA_REGUA}" y2="{y_do_teto:.1f}" '
+        f'stroke="{COR_DO_TETO_DO_TREINO}" stroke-width="1.4" stroke-dasharray="7 4"/>'
+        f'<text x="6" y="{y_do_teto - 5:.1f}" font-size="13" font-weight="700" '
+        f'fill="{COR_DO_TETO_DO_TREINO}">teto do treino: '
+        f"{numeros.formatar_inteiro(maior_pico_conhecido)} casos</text>"
+        + f'<line x1="0" y1="{BASE_DO_TRACADO_DA_REGUA}" x2="{LARGURA_DA_REGUA}" '
+        f'y2="{BASE_DO_TRACADO_DA_REGUA}" stroke="#AFBCCA" stroke-width="1.2"/>'
+        f"{_marcas_de_ano_da_regua()}"
+        "</svg></div>"
+    )
+
+
+def _tabela_das_maiores_semanas(
+    semanas: tuple[numeros.SemanaDePico, ...], cor_do_ano: str
+) -> str:
+    """Monta a tabela das cinco maiores semanas de uma temporada.
+
+    Ela existe porque uma semana sozinha no grafico parecia escolhida a dedo —
+    critica do Vinicius em 27/09/2026. "As cinco maiores do ano" e um criterio
+    objetivo, e o retrato nao muda: em 2024 o erro fica entre -76% e -87%, em
+    2025 entre -26% e -45%.
+
+    A coluna da SEMANA entrou na mesma conversa, e ela faz mais do que rotular:
+    mostra que as duas temporadas tem o pico na mesma epoca do ano. As quatro
+    maiores semanas de 2024 caem em 31/03, 07/04, 14/04 e 21/04; as de 2025, em
+    30/03, 06/04, 13/04 e 20/04 — um dia de diferenca. Sem a coluna, quem olha
+    nao tem como saber se esta comparando periodos comparaveis.
+
+    Args:
+        semanas: As cinco linhas daquele ano.
+        cor_do_ano: A cor da coluna do previsto, a mesma do rotulo.
+
+    Returns:
+        O HTML da tabela.
+    """
+    linhas = []
+    for semana in semanas:
+        linhas.append(
+            [
+                f"<b>{layout.escapar(semana.semana)}</b>",
+                numeros.formatar_inteiro(semana.real),
+                f'<span style="color:{cor_do_ano}">'
+                f"{numeros.formatar_inteiro(semana.previsto)}</span>",
+                f'<b style="color:{COR_DA_PARTIDA_A_FRIO}">'
+                f"{numeros.formatar_percentual(semana.diferenca_relativa(), 0)}</b>",
+            ]
+        )
+    return layout.montar_tabela(
+        ["Semana", "Real", "Previsto", "Diferença"], linhas
+    )
+
+
+def _bloco_de_um_instante(
+    ano_do_pico: int,
+    semana_do_pico: str,
+    cor_do_ano: str,
+    mes_do_corte: tuple[int, int],
+    corte_por_extenso: str,
+    maior_pico_conhecido: int,
+    semanas: tuple[numeros.SemanaDePico, ...],
+    e_a_segunda: bool,
+) -> str:
+    """Junta o cabecalho, a regua e a tabela de um dos dois instantes.
+
+    A regua fica a esquerda e a tabela a direita, na mesma altura: a figura diz
+    o QUANTO e a tabela diz o TANTO. Foi o desenho pedido pelo Vinicius em
+    27/09/2026.
+
+    Args:
+        ano_do_pico: A temporada cujo pico esta sendo previsto.
+        semana_do_pico: A data da semana de pico, por extenso.
+        cor_do_ano: A cor daquele ano.
+        mes_do_corte: (ano, mes) ate onde o treino enxergava.
+        corte_por_extenso: O mesmo corte como texto curto.
+        maior_pico_conhecido: A maior semana que o treino via nesse instante.
+        semanas: As cinco maiores semanas daquele ano.
+        e_a_segunda: True para o bloco de baixo, que precisa de ar acima.
+
+    Returns:
+        O HTML do bloco.
+    """
+    espacamento = " deckRotuloDaSegundaRegua" if e_a_segunda else ""
+    return (
+        f'<p class="deckTabelaRotulo{espacamento}" style="color:{cor_do_ano}">'
+        f"Ao prever o pico de {ano_do_pico} "
+        f'<span style="font-weight:400;opacity:.62">· o treino ia até '
+        f"{corte_por_extenso}, e as 5 maiores semanas do ano foram estas</span></p>"
+        '<div class="reguaComTabela">'
+        + _regua_de_um_instante(
+            ano_do_pico, cor_do_ano, mes_do_corte, corte_por_extenso,
+            maior_pico_conhecido,
+        )
+        + f"<div>{_tabela_das_maiores_semanas(semanas, cor_do_ano)}</div>"
+        "</div>"
+    )
+
+
+def _slide_a_regua_dos_dois_anos() -> deck.Slide:
+    """Por que 2024 e 2025 nao podiam ser lidos juntos.
+
+    Slide de abertura da secao, criado em 27/09/2026 e refeito no mesmo dia. Ele
+    nao traz metrica agregada nenhuma de proposito: so mostra o que o modelo
+    tinha visto em cada um dos dois instantes e quanto errou nas semanas que
+    importavam, para que a tabela do slide seguinte ja chegue explicada.
+    """
+    return deck.Slide(
+        topico=TOPICO_DOIS_ANOS,
+        titulo="O modelo não previa o pico porque nunca tinha visto um",
+        rotulo_curto="O que o treino via",
+        corpo=(
+            _bloco_de_um_instante(
+                2024,
+                "21/04/2024",
+                COR_DA_PARTIDA_A_FRIO,
+                numeros.MES_DO_CORTE_DO_TREINO_EM_2024,
+                numeros.CORTE_DO_TREINO_EM_2024,
+                numeros.MAIOR_PICO_CONHECIDO_EM_2024,
+                numeros.MAIORES_SEMANAS_DE_2024,
+                e_a_segunda=False,
+            )
+            + _bloco_de_um_instante(
+                2025,
+                "30/03/2025",
+                COR_DO_ANO_COM_HISTORIA,
+                numeros.MES_DO_CORTE_DO_TREINO_EM_2025,
+                numeros.CORTE_DO_TREINO_EM_2025,
+                numeros.MAIOR_PICO_CONHECIDO_EM_2025,
+                numeros.MAIORES_SEMANAS_DE_2025,
+                e_a_segunda=True,
+            )
+        ),
+        nota=(
+            "🔴 <b>A frase do slide:</b> uma árvore de decisão <b>não</b> devolve "
+            "valor acima do maior que viu no treino. Medido: <b>nenhuma</b> das 45 "
+            "previsões de 2024 passou do teto de <b>879</b>, e nenhuma das 52 de 2025 "
+            "passou de <b>1.855</b> — <b>0 de 97</b>. O real passou do teto em "
+            "<b>11</b> semanas de 2024 e <b>8</b> de 2025, e essas eram impossíveis "
+            "de acertar por construção. "
+            "⚠️ <b>O critério da tabela é as 5 MAIORES semanas do ano</b>, não uma "
+            "semana escolhida — em 2024 o erro fica entre <b>−76%</b> e <b>−87%</b>, "
+            "em 2025 entre <b>−26%</b> e <b>−45%</b>. Tudo em <b>3 meses</b> de "
+            "antecedência, no modelo composto. "
+            "⚠️ <b>O retângulo cinza NÃO é a avaliação</b> — é só o que faltava "
+            "prever naquele instante. A avaliação é <b>uma só</b>: <b>102 semanas</b>, "
+            "de 07/01/2024 a 01/02/2026, cobrindo <b>2024 E 2025</b> (45 + 52 + 5 de "
+            "2026). O que muda entre as duas réguas é <b>o treino</b>, que cresce a "
+            "cada semana, porque o walk-forward <b>retreina toda semana</b>. "
+            "⚠️ <b>Se perguntarem por que 102 e não 109:</b> a <b>enchente de maio de "
+            "2024</b> parou as vistorias das armadilhas entre 28/04 e 09/06, e as "
+            "<b>7</b> semanas-alvo que dependiam daquelas leituras saíram da conta. "
+            "⚠️ As datas de corte (nov/2023 e out/2024) saem da regra de corte por "
+            "data de <b>resposta</b>, somando o horizonte de 12 semanas ao corte de "
+            "maturidade de 12. A linha tracejada cinza é o que aconteceu mas o modelo "
+            "ainda não via."
+        ),
+    )
+
+
 def _grafico_dos_dois_anos(rotulo_do_eixo: str, posicao_da_medida: int) -> str:
     """Desenha uma medida nos 12 horizontes, com uma curva por ano.
 
@@ -1031,8 +1437,8 @@ def _slide_os_dois_anos() -> deck.Slide:
     )
 
     return deck.Slide(
-        topico=TOPICO_RESULTADOS,
-        titulo="O modelo não previa o pico porque nunca tinha visto um",
+        topico=TOPICO_DOIS_ANOS,
+        titulo="Separados, 2024 e 2025 são dois modelos diferentes",
         rotulo_curto="Os dois anos",
         corpo=(
             as_duas_tabelas
@@ -1044,12 +1450,9 @@ def _slide_os_dois_anos() -> deck.Slide:
             + "</div>"
         ),
         nota=(
-            "🔴 <b>A explicação, para dizer em voz alta:</b> ao prever o pico de "
-            "<b>2024</b> a maior semana que o modelo já tinha visto na vida tinha "
-            "<b>879</b> casos, e ele precisava acertar <b>1.601</b> — uma árvore de "
-            "decisão <b>nunca</b> prevê acima do que viu. Ao prever o pico de <b>2025</b> "
-            "ele já conhecia os <b>1.855</b> de 2024, e previu <b>1.614</b> para um real "
-            "de 2.381. "
+            "🔴 <b>A explicação é o slide anterior:</b> em 2024 o teto do treino era "
+            "<b>879</b> casos contra um pico de <b>1.855</b>; em 2025 o teto já era "
+            "<b>1.855</b>, contra <b>2.381</b>. "
             "🔴 <b>O número da apresentação:</b> em 3 meses o alarme vai de <b>1 de 14</b> "
             "para <b>13 de 14</b>, e o R² de <b>0,054</b> para <b>0,792</b>. O "
             "\"modelo não serve a 3 meses\" era, na verdade, <b>não servia antes de ter "
@@ -1490,112 +1893,132 @@ def _slide_onde_ainda_falha() -> deck.Slide:
 
 
 def _slide_literatura() -> deck.Slide:
-    """O resultado em contexto: contra quem mediu a mesma cidade, e contra Singapura.
+    """Seis trabalhos que atacam o mesmo problema, e o que cada um mediu.
 
-    Slide novo de 27/09/2026, ideia do Vinicius. Fecha o arco que ele desenhou:
-    o slide do vetor sobe a moral, o anterior a desce, e este a levanta de
-    novo — pondo o número num contexto em vez de num vácuo.
+    🔴 Este slide era uma COMPARAÇÃO, e foi reescrito em 27/09/2026 depois de
+    a comparação ser reprovada na certificação. O que caiu:
 
-    ⚠️ **As duas metades existem por honestidade, não por simetria.** A
-    comparação direta só é legítima com o estudo da MESMA cidade e da mesma
-    unidade; a da direita nós perdemos, e o slide diz isso. Uma apresentação
-    que só mostrasse a metade favorável seria desmontada na primeira pergunta.
+    - o "R² 0,46 do da Silva" **não existe** no artigo — o PDF traz RMSE
+      1,003/1,006 e razão de deviance 0,61, em log(incidência). A confirmação
+      anterior tinha vindo de WebFetch, não do arquivo;
+    - o CatBoost é de **outro autor** (da Cunha e Silva) e prevê **internação**,
+      não caso;
+    - e o R² não compara nada entre estudos: o MESMO modelo nosso dá −18,02 em
+      2021 e 0,717 em 2024-25, só trocando a janela.
 
-    🚫 **Oliveira et al. 2025 ficou de fora, deliberadamente.** Ele prevê
-    aceleração binária em 10 a 15 dias, com acurácia balanceada de 0,67; nós
-    prevemos casos a 12 semanas. Não existe número nosso nas mesmas condições,
-    e dizer "somos melhores" seria indefensável.
+    A decisão do Vinicius foi trazer os artigos como referência do que já se
+    tentou, e não como placar: "por um método ou por outro, eles também querem
+    prever casos de dengue assim como nós". A coluna do ALVO é o que sustenta
+    isso — ela mostra que o campo ainda não convergiu nem sobre o que medir.
+
+    Todos os campos foram conferidos contra o PDF em disco.
     """
-    # 🔴 O filtro era `onde == "Porto Alegre"` e derrubava justamente a linha
-    # que dá título ao slide: a do CatBoost das 27 capitais, cujo campo é
-    # "Porto Alegre, 1999-2021". Sem ela a tabela dizia "a comparação justa" e
-    # não mostrava o estudo comparável. Corrigido em 27/09/2026.
-    #
-    # Das linhas do projeto fica só o COMPOSTO: os slides de resultado falam de
-    # um modelo só, e separar folha 5 de folha 20 aqui repetiria a discussão que
-    # já aconteceu no slide do vetor.
-    def entra_na_tabela_da_cidade(linha) -> bool:
-        """Diz se a linha é de Porto Alegre e, sendo nossa, se é a do composto."""
-        if not linha.onde.startswith("Porto Alegre"):
-            return False
+    # A cor do veredito: verde para quem bate o proprio comparador, vermelho
+    # para quem nao bate, ambar para o nosso, que bate so na metade curta.
+    cor_do_veredito = {
+        "sim": COR_DO_ANO_COM_HISTORIA,
+        "nao": COR_DA_PARTIDA_A_FRIO,
+        "em parte": "#B77500",
+    }
 
-        return not linha.este_projeto or linha.modelo == NOME_NA_LITERATURA
-
-    da_mesma_cidade = [
-        linha for linha in numeros.R2_PUBLICADO if entra_na_tabela_da_cidade(linha)
+    cabecalhos = [
+        "Estudo",
+        "Local",
+        "Série",
+        "O que prevê",
+        "Bate a própria referência?",
+        "Em que condições",
     ]
 
-    cabecalhos_da_cidade = ["Modelo", _celula_colorida("R² em 1 mês", COR_DA_MESMA_CIDADE)]
-    linhas_da_cidade = []
-    for linha in da_mesma_cidade:
-        linhas_da_cidade.append(
-            [
-                f"<b>{layout.escapar(linha.modelo)}</b>"
-                if linha.este_projeto
-                else layout.escapar(linha.modelo),
-                _celula_colorida_com_destaque(
-                    linha.um_mes, COR_DA_MESMA_CIDADE, linha.este_projeto
-                ),
-            ]
-        )
+    def montar_linha(estudo) -> list[str]:
+        """Monta as cinco celulas de um estudo.
 
-    cabecalhos_de_singapura = [
-        "Modelo",
-        _celula_colorida("1 semana", COR_DE_SINGAPURA),
-        _celula_colorida("3 meses", COR_DE_SINGAPURA),
+        Args:
+            estudo: A referencia ou a linha deste projeto.
+
+        Returns:
+            As celulas, ja formatadas.
+        """
+        selo = (
+            '<span class="seloOperacional">em operação</span>'
+            if estudo.e_operacional
+            else ""
+        )
+        nome = layout.escapar(estudo.nome)
+        return [
+            f'<b class="linhaDesteProjeto">{nome}</b>'
+            if estudo.e_deste_projeto
+            else f"<b>{nome}</b>{selo}",
+            layout.escapar(estudo.local),
+            f'<span class="serieDoEstudo">{layout.escapar(estudo.serie)}</span>',
+            layout.escapar(estudo.alvo),
+            f'<span style="color:{cor_do_veredito[estudo.vence]}">'
+            f"{layout.escapar(estudo.bate_a_referencia)}</span>",
+            f'<span class="condicoesDoEstudo">'
+            f"{layout.escapar(estudo.condicoes)}</span>",
+        ]
+
+    # A nossa linha sai da tabela das referencias e vira uma tabela propria, logo
+    # abaixo — pedido do Vinicius em 27/09/2026. As duas usam a MESMA grade de
+    # larguras (`table-layout:fixed` no CSS), entao as colunas continuam
+    # alinhadas e a leitura de cima para baixo nao se perde.
+    referencias = [
+        estudo
+        for estudo in numeros.O_PANORAMA_DA_LITERATURA
+        if not estudo.e_deste_projeto
     ]
-    linhas_de_singapura = []
-    for linha in numeros.MAPE_PUBLICADO:
-        if linha.este_projeto and linha.modelo != NOME_NA_LITERATURA:
-            continue
-
-        linhas_de_singapura.append(
-            [
-                f"<b>{layout.escapar(linha.modelo)}</b>"
-                if linha.este_projeto
-                else layout.escapar(linha.modelo),
-                _celula_colorida(linha.uma_semana, COR_DE_SINGAPURA),
-                _celula_colorida(linha.tres_meses, COR_DE_SINGAPURA),
-            ]
-        )
-
-    de_singapura = numeros.SINGAPURA
-    as_duas_tabelas = (
-        '<div class="deckTabelasLadoALado">'
-        f'<div><p class="deckTabelaRotulo" style="color:{COR_DA_MESMA_CIDADE}">'
-        "Porto Alegre — a comparação justa</p>"
-        f"{layout.montar_tabela(cabecalhos_da_cidade, linhas_da_cidade)}</div>"
-        f'<div><p class="deckTabelaRotulo" style="color:{COR_DE_SINGAPURA}">'
-        f"Singapura — {de_singapura.anos_de_treino} anos de série · erro "
-        "percentual</p>"
-        f"{layout.montar_tabela(cabecalhos_de_singapura, linhas_de_singapura)}</div>"
-        "</div>"
-    )
+    deste_projeto = [
+        estudo
+        for estudo in numeros.O_PANORAMA_DA_LITERATURA
+        if estudo.e_deste_projeto
+    ]
 
     return deck.Slide(
         topico=TOPICO_LIMITACOES,
-        titulo="Ganhamos de quem mediu a mesma cidade, e perdemos para 10 anos de série",
+        titulo="O mesmo problema, medido de seis formas diferentes",
         rotulo_curto="A literatura",
-        corpo=as_duas_tabelas,
-        nota=(
-            f"🔴 <b>A frase que explica a derrota, para dizer em voz alta:</b> não é "
-            "porque lá tem mais dengue. O pico semanal de Singapura em 2013 foi de "
-            "<b>{numeros.formatar_decimal(de_singapura.pico_semanal, 0)}</b> casos; o de Porto Alegre em "
-            "2025, <b>{numeros.formatar_decimal(de_singapura.pico_semanal_de_porto_alegre, 0)}</b>. Eles têm "
-            "<b>mais anos</b>, e anos calmos, que ensinam ao modelo o que é o normal "
-            "da cidade. Nós temos <b>{de_singapura.temporadas_epidemicas_de_porto_alegre} temporadas</b>. "
-            "🟢 <b>Este slide levanta a moral de novo, e é o último dos resultados.</b> "
-            "À esquerda, o <b>único</b> estudo marcado como comparável no nosso "
-            "catálogo de 14: mesma cidade, mesma unidade, validação em avanço. "
-            "⚠️ À direita <b>não é páreo direto</b>: nosso erro percentual conta só "
-            "semanas com 100 casos ou mais e o modelo prevê o quantil 0,85 — as duas "
-            "coisas inflam o nosso número. Dizer isso antes que perguntem. "
-            "⚠️ <b>Nunca dizer que batemos o Oliveira 2025</b>: ele prevê aceleração "
-            "binária em 10 a 15 dias, e não existe número nosso nas mesmas condições. "
-            "⚠️ Ressalva do nosso R²: a janela tem as duas maiores epidemias da série, "
-            "e variância alta infla R²."
+        corpo=(
+            '<div class="panoramaDaLiteratura">'
+            + layout.montar_tabela(
+                cabecalhos, [montar_linha(estudo) for estudo in referencias]
+            )
+            + '<p class="rotuloDesteProjeto">E onde o nosso entra</p>'
+            + '<div class="tabelaDesteProjeto">'
+            + layout.montar_tabela(
+                cabecalhos, [montar_linha(estudo) for estudo in deste_projeto]
+            )
+            + "</div></div>"
         ),
-        e_denso=True,
+        nota=(
+            "🔴 <b>Este slide já foi um placar, e o placar não se sustentava.</b> "
+            "Três achados da conferência contra os PDFs, em 27/09: o <b>R² 0,46 do "
+            "da Silva não existe</b> no artigo (o que há é RMSE 1,003–1,006 e razão "
+            "de deviance 0,61, em log-incidência), e ele é <b>preprint medRxiv</b>, "
+            "não PLOS NTD; o CatBoost é de <b>outro autor</b>, da Cunha e Silva, e "
+            "prevê <b>internação</b> (CID-10 A90/A91), não caso; e o Shi usa "
+            "<b>12</b> anos de série, não 13. "
+            "⚠️ <b>Só 2 dos 6 rodam em produção</b> — Shi (agência nacional de "
+            "Singapura) e D-MOSS (Vietnã, desde 2019). Os outros quatro são "
+            "pesquisa, como o nosso. "
+            "🔴 <b>A frase para dizer, e ela é defensável:</b> dos seis, só <b>três "
+            "batem a própria referência</b> — e a última coluna mostra <b>com que "
+            "vantagem</b>: o Shi tem <b>12 anos</b> e compara com SARIMA, não com "
+            "régua; o D-MOSS tem <b>20+ anos</b> e agrega província e mês; e o Lowe "
+            "prevê <b>categoria</b> de risco, não o número. <b>Nenhum dos três "
+            "venceu nas nossas condições.</b> Os dois que mediram Porto Alegre não "
+            "batem. E no <b>sprint nacional</b>, com dezenas de equipes, um baseline "
+            "bayesiano simples empatou com os modelos complexos: perder para régua "
+            "boba é <b>padrão do campo</b>, não falha nossa. "
+            "⚠️ <b>Não dizer \"o nosso é melhor que a literatura\"</b> — não se "
+            "sustenta. Os resultados brutos não se comparam: alvo, escala, janela e "
+            "métrica são diferentes em cada um. A prova é o nosso próprio dado — o "
+            "<b>mesmo</b> modelo, em 1 mês, dá R² <b>−18,02</b> em 2021 e "
+            "<b>0,717</b> em 2024-25; muda só quanta epidemia a janela tem. "
+            "Comparável é a <b>última coluna</b>, cada um contra o seu comparador. "
+            "⚠️ O D-MOSS é o único da lista que <b>vence a própria régua sazonal</b> "
+            "no horizonte longo (RMSE 25,99 contra 35,38 em 6 meses), e ele tem 20+ "
+            "anos de série e roda desde 2019."
+        ),
     )
 
 
@@ -1717,27 +2140,59 @@ def _slide_limitacao_de_2026() -> deck.Slide:
 
 
 def _slide_proximos_passos() -> deck.Slide:
-    """O último slide, como o orientador pediu."""
-    cabecalhos = ["", "Hoje", "Próxima etapa"]
-    # A cor separa os dois cenários que a tabela compara: azul é o que o
-    # projeto faz hoje, verde é para onde ele vai.
-    CORES_DAS_COLUNAS = ["", layout.COLUNA_AZUL, layout.COLUNA_VERDE]
+    """O último slide, como o orientador pediu.
+
+    As quatro linhas sao os direcionamentos da reuniao de 21/09/2026 e ficam
+    como estao — a decisao e do orientador, nao nossa. O que foi atualizado em
+    27/09 foi a coluna do HOJE, que envelheceu em cinco dias:
+
+    - "o vetor melhora a previsao?" deixou de ser pergunta em 26/09. A resposta
+      tem duas metades: o modelo **se apoia** no vetor (embaralhar as colunas do
+      mosquito custa +108,3% de erro em 1 mes, na folha 20) mas **tira-lo nao
+      piora** (p Holm 1,00, na folha 5). Sao perguntas diferentes, e deixar a
+      celula como pergunta jogava fora o achado.
+    - a defasagem ganhou endereco: o da Silva 2026 mediu tau de Kendall 0,274 no
+      lag 0 e 0,495 no lag 4, e a tabela dele PARA no lag 4, com a associacao
+      ainda subindo. Ninguem sabe onde ela pica.
+
+    ⚠️ **O horizonte de 6 meses e do orientador, e fica.** O que mudou e que a
+    celula agora diz "no alvo do vetor" — que e o que a linha do alvo secundario
+    ja propunha. Sem isso, a tabela lia como "queremos prever casos a 6 meses"
+    logo depois de o deck mostrar que a regua sazonal nos vence a partir de 2.
+    """
+    cabecalhos = ["", "Hoje", "Próxima etapa", "O que trava"]
+    # A cor separa os cenários que a tabela compara: azul é o que o projeto faz
+    # hoje, verde é para onde ele vai. A coluna das dificuldades fica SEM cor,
+    # de propósito — ela é ressalva, não um terceiro cenário.
+    CORES_DAS_COLUNAS = ["", layout.COLUNA_AZUL, layout.COLUNA_VERDE, ""]
     linhas = [
         [
             "<b>Alvo primário</b>",
             "casos de dengue",
             "casos das <b>quatro arboviroses</b>, a partir do vetor",
+            '<span class="oQueTrava"><b>99,3%</b> dos casos são dengue; zika '
+            "e chik ficam em zero na maioria das semanas</span>",
         ],
         [
             "<b>Alvo secundário</b>",
             "—",
             "<b>a proliferação do vetor</b>, de clima e captura",
+            '<span class="oQueTrava">é outro modelo: alvo, régua e validação '
+            "novos</span>",
         ],
-        ["<b>Horizonte</b>", "até 3 meses", "até <b>6 meses</b>"],
         [
-            "<b>Primeira pergunta</b>",
-            "o vetor melhora a previsão?",
-            "<b>qual é a defasagem</b> entre as duas curvas?",
+            "<b>Horizonte</b>",
+            "até 3 meses",
+            "até <b>6 meses</b>, no alvo do vetor",
+            '<span class="oQueTrava">quanto mais longe, pior: em 3 meses a '
+            "régua já nos vence</span>",
+        ],
+        [
+            "<b>A pergunta do vetor</b>",
+            "ele se apoia no vetor, mas tirá-lo não piora",
+            "<b>onde a defasagem pica?</b> a literatura parou no lag 4",
+            '<span class="oQueTrava">achar a defasagem não garante previsão '
+            "melhor</span>",
         ],
     ]
 
@@ -1747,8 +2202,31 @@ def _slide_proximos_passos() -> deck.Slide:
         rotulo_curto="A direção",
         corpo=layout.montar_tabela(cabecalhos, linhas, CORES_DAS_COLUNAS),
         nota=(
-            "Fechar aqui. Este slide saiu da reunião de "
-            f"{numeros.DATA_DA_REUNIAO_DE_ALINHAMENTO}."
+            "Fechar aqui. <b>As quatro linhas são direcionamentos do orientador</b>, "
+            f"da reunião de {numeros.DATA_DA_REUNIAO_DE_ALINHAMENTO} — vale dizer "
+            "isso em voz alta. "
+            "⚠️ <b>Se perguntarem sobre os 6 meses:</b> é o alvo do <b>vetor</b>, "
+            "não os casos. Em casos, a régua sazonal já nos vence a partir de "
+            "<b>2 meses</b> (−3,2%) e de <b>3 meses</b> (−11,9%) — prometer 6 em "
+            "casos seria indefensável. O vetor responde ao clima com defasagem "
+            "longa, e é ali que o horizonte maior tem chance. "
+            "⚠️ <b>A pergunta do vetor já tem resposta</b>, de 26/09: embaralhar as "
+            "colunas do mosquito custa <b>+108,3%</b> de erro em 1 mês na folha 20, "
+            "mas <b>tirá-las não piora</b> (p Holm <b>1,00</b>). São perguntas "
+            "diferentes — o modelo <b>usa</b> o vetor, e ainda assim ele não é "
+            "<b>indispensável</b>. Não dizer \"indispensável\". "
+            "⚠️ <b>A defasagem:</b> o da Silva mediu τ de Kendall <b>0,274</b> no "
+            "lag 0 e <b>0,495</b> no lag 4, e a tabela dele <b>para no lag 4</b>, "
+            "com a associação ainda subindo. A lacuna é essa. "
+            "⚠️ <b>As quatro arboviroses, com número:</b> temos as séries de zika e "
+            "de chikungunya (InfoDengue, POA, 2010 em diante), e elas são "
+            "minúsculas. De 2010 a 2026: <b>125.868</b> casos de dengue, "
+            "<b>528</b> de chikungunya e <b>364</b> de zika — a dengue é "
+            "<b>99,3%</b> do total. Chikungunya fica em <b>zero em 70%</b> das "
+            "semanas e zika, em <b>81%</b>; a maior semana de cada uma teve 14 e 16 "
+            "casos, contra 6.260 da dengue. <b>Não é falta de dado</b> — é que o "
+            "alvo seria quase sempre zero, o mesmo problema de 2026. "
+            "⚠️ A série de zika do InfoDengue <b>para em fev/2024</b>."
         ),
     )
 
@@ -1770,10 +2248,15 @@ def montar_slides() -> list[deck.Slide]:
         _slide_estagios_do_plano(),
         _slide_alarme_do_composto(),
         _slide_o_vetor(),
+        _slide_a_regua_dos_dois_anos(),
         _slide_os_dois_anos(),
+        # A limitacao de 2026 vem PRIMEIRO na secao, decisao do Vinicius em
+        # 27/09/2026: a secao anterior acaba de mostrar que a previsao melhora
+        # quando o modelo ganha historico, e o arco pede que o contrapeso venha
+        # logo em seguida — o mesmo historico crescente e o que produz o vies.
+        _slide_limitacao_de_2026(),
         _slide_onde_ainda_falha(),
         _slide_literatura(),
-        _slide_limitacao_de_2026(),
         _slide_proximos_passos(),
         _slide_obrigado(),
     ]
