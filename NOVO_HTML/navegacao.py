@@ -209,7 +209,7 @@ PAGINA_PROXIMOS_PASSOS = PaginaDoSite(
 PAGINA_SEMINARIO = PaginaDoSite(
     chave="seminario",
     arquivo="seminario.html",
-    titulo_no_menu="Seminário de Andamento",
+    titulo_no_menu="Seminário V1",
     icone="apresentacao",
     titulo="Seminário de Andamento",
     resumo="",
@@ -220,14 +220,13 @@ PAGINA_SEMINARIO = PaginaDoSite(
 )
 
 
-# Cópia de trabalho do seminário, só local (não publicada). Nasceu em
-# 26/09/2026 como cópia LITERAL de `PAGINA_SEMINARIO`, para o Vinicius mexer à
-# vontade sem risco de estragar a original — que continua sendo a que vai ao ar
-# se ele decidir usar a versão de 23/09/2026.
+# A V2 nasceu em 26/09/2026 como cópia LITERAL da V1, para o Vinicius mexer à
+# vontade sem risco de estragar a original. Passou a se chamar "Seminário V2"
+# no menu em 28/09/2026; antes era "Seminário (cópia)".
 PAGINA_SEMINARIO_V2 = PaginaDoSite(
     chave="seminario-v2",
     arquivo="seminario-copia.html",
-    titulo_no_menu="Seminário (cópia)",
+    titulo_no_menu="Seminário V2",
     icone="apresentacao",
     titulo="Seminário de Andamento",
     resumo="",
@@ -237,11 +236,12 @@ PAGINA_SEMINARIO_V2 = PaginaDoSite(
 )
 
 
-# Segunda cópia, de 27/09/2026: a que testa mostrar 2024 e 2025 separados.
+# A V3, de 27/09/2026, é a apresentação atual: a que separa 2024 de 2025 e
+# traz a seção "Os dois anos". Era "Seminário (cópia 2)" até 28/09/2026.
 PAGINA_SEMINARIO_V3 = PaginaDoSite(
     chave="seminario-v3",
     arquivo="seminario-copia-2.html",
-    titulo_no_menu="Seminário (cópia 2)",
+    titulo_no_menu="Seminário V3",
     icone="apresentacao",
     titulo="Seminário de Andamento",
     resumo="",
@@ -259,7 +259,7 @@ PAGINA_SEMINARIO_V3 = PaginaDoSite(
 PAGINA_NOTIFICACOES_COMO_ALVO = PaginaDoSite(
     chave="notificacoes-como-alvo",
     arquivo="notificacoes-como-alvo.html",
-    titulo_no_menu="Notificações como alvo",
+    titulo_no_menu="Hipótese — Notificações como alvo",
     icone="grafico",
     titulo="Notificações como alvo",
     resumo=(
