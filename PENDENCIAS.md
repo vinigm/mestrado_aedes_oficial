@@ -12,8 +12,12 @@
 - ⏳ **Título, resumo, palavras-chave e enquadramento** no sistema do PPGC. Banca provável: Mariana e Anderson.
 - ⏳ **Slides de até 10 min**, último de direcionamentos. **Só dengue.** Não dizer "não teve correlação com mosquito".
 - ⏳ Orientador mandar o link a Mariana e Mansilha · Vinicius mandar `brutos_secretarias_limpos/`.
-- 🧭 **Marcos (Vinicius, 25/09):** pré-montagem = site no ar, `710b411`, o que a banca viu · pós-montagem = de
-  `22b70a6` em diante, só local. ⚠️ A banca não sabe da régua sazonal nem de 2026.
+- ✅ **PUBLICADO em 28/09/2026: `6c6b1a2`.** As **10 páginas** foram ao ar (eram 6) — o menu do deck linka para
+  todas, e publicar um subconjunto daria 404 dentro do site. A **cópia 2** é a apresentação atual, 21 slides.
+  ⚠️ **A banca agora VÊ a régua sazonal e 2026** — o marco de 25/09 (pós-montagem só local) foi revogado aqui.
+  ⚠️ Os alarmes falsos subiram **como estavam, 2,3/ano**: decisão do Vinicius em 28/09, por o número já estar
+  no ar desde 23/09. Ver Dívida técnica — o correto é ~3,57/ano.
+- 🧭 Marcos antigos (Vinicius, 25/09): pré-montagem = `710b411`, o que a banca via até 27/09.
 - 📩 **Mansilha, 24/09:** sem tom de "IA marqueteira", sem dupla negação, sem depor contra quem cedeu os dados.
 - **Depois do seminário a pesquisa CONGELA**; foco no artigo (`../artigo_oficial/`, fora do git).
 
