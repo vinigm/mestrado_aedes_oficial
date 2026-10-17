@@ -1,0 +1,115 @@
+{
+  "params_config_folha5": {
+    "loss": "quantile",
+    "quantile": "0.85",
+    "max_iter": "250",
+    "learning_rate": "0.05",
+    "max_leaf_nodes": "15",
+    "min_samples_leaf": "5",
+    "random_state": "42",
+    "early_stopping": "auto",
+    "l2_regularization": "0.0",
+    "max_depth": "None",
+    "max_bins": "255",
+    "validation_fraction": "0.1",
+    "n_iter_no_change": "10",
+    "tol": "1e-07",
+    "scoring": "loss"
+  },
+  "params_explicitos_vs_config_divergentes": {},
+  "janela": [
+    "2024-01-07",
+    "2026-02-01"
+  ],
+  "v1_max_dif_pergunta": 0.0,
+  "v1_max_dif_resposta_vs_E2": 0.0,
+  "v1_treino_igual_a_s_menor_t_todas": true,
+  "v1_vazamento_pergunta_por_h": {
+    "completo_h4": 3,
+    "completo_h12": 11,
+    "sem_vetor_h4": 3,
+    "sem_vetor_h12": 11
+  },
+  "v1_vazamento_resposta_max": 0,
+  "v2_linhas_salvo_mine": [
+    24,
+    24,
+    24
+  ],
+  "v2_max_dif": {
+    "mae_resposta": 2.842170943040401e-14,
+    "mae_pergunta": 2.842170943040401e-14,
+    "variacao_pct": 3.552713678800501e-15,
+    "r2_resposta": 5.551115123125783e-17,
+    "r2_pergunta": 0.0,
+    "n": 0.0
+  },
+  "v2_n_por_braco": {
+    "completo": [
+      102
+    ],
+    "sem_vetor": [
+      109
+    ]
+  },
+  "v2_checks": {
+    "mesmas_semanas_todas": true,
+    "real_igual": true,
+    "origens_iguais_em_toda_a_serie": true
+  },
+  "v2_h1_variacao_exatamente_zero": true,
+  "v2_completo_resposta_igual_referencia": 0.0,
+  "v2_variacao_completo": [
+    0.0,
+    -12.1,
+    -18.3,
+    -23.2,
+    -11.1,
+    -32.0,
+    -33.4,
+    -34.6,
+    -40.6,
+    -41.5,
+    -43.7,
+    -33.9
+  ],
+  "v2_variacao_sem_vetor": [
+    0.0,
+    -10.8,
+    -14.6,
+    -18.3,
+    -13.1,
+    -16.8,
+    -17.3,
+    -28.8,
+    -22.6,
+    -28.9,
+    -27.4,
+    -29.8
+  ],
+  "v2_mae_resposta_completo_h1_4_8_12": [
+    97.987,
+    219.669,
+    272.627,
+    278.818
+  ],
+  "v2_mae_resposta_sem_vetor_h1_4_8_12": [
+    118.091,
+    227.391,
+    242.618,
+    270.303
+  ],
+  "v2_delta_r2_pontos_h12_completo_sem_vetor": [
+    0.3051,
+    0.3194
+  ],
+  "parciais": [
+    24,
+    7092,
+    7092
+  ],
+  "previsoes_e4_corte_col_unica": [
+    "pergunta"
+  ],
+  "previsoes_e4_duplicadas": 0
+}

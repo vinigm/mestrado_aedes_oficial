@@ -1,0 +1,55 @@
+{
+  "bracos": [
+    "HistGB_folha20_M1",
+    "referencia"
+  ],
+  "folha5_n_por_h_total": {
+    "1": 295,
+    "12": 284
+  },
+  "folha5_n_janela_por_h": [
+    102
+  ],
+  "folha5_mae_janela_h1_4_8_12": [
+    97.987,
+    219.669,
+    272.627,
+    278.818
+  ],
+  "folha5_n_calib_h1_4_8_12": [
+    193,
+    190,
+    186,
+    182
+  ],
+  "folha5_mae_calib_h1_4_8_12": [
+    22.337,
+    45.786,
+    48.167,
+    51.799
+  ],
+  "folha20_n_por_h_total": {
+    "1": 295,
+    "12": 284
+  },
+  "folha20_n_janela_por_h": [
+    102
+  ],
+  "folha20_mae_janela_h1_4_8_12": [
+    133.626,
+    199.635,
+    223.183,
+    243.765
+  ],
+  "metricas_cols": [
+    "braco",
+    "h",
+    "n",
+    "mae",
+    "r2"
+  ],
+  "metricas_n_linhas": 48,
+  "gabarito_manifesto_n": 17,
+  "gabarito_divergentes": [],
+  "gabarito_nao_listados": []
+}

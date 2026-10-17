@@ -1,0 +1,4 @@
+64 celulas (de 64 = 8 bracos x 2 folhas x h{1,4,8,12}); horizontes ['1', '4', '8', '12']
+max dif 0.0 | celulas com algum bit diferente 0 | datas ok True | previsoes replicadas 19188
+data_alvo min/max 2020-02-16 2026-02-01 | origem max 2026-01-25
+{'5': {'completo': 3474, 'sem_casos': 3544, 'sem_clima': 3474, 'sem_vetor': 3618, 'so_calendario': 3744, 'so_casos': 3618, 'so_clima': 3744, 'so_vetor': 3544}, '20': {'completo': 3474, 'sem_casos': 3544, 'sem_clima': 3474, 'sem_vetor': 3618, 'so_calendario': 3744, 'so_casos': 3618, 'so_clima': 3744, 'so_vetor': 3544}}

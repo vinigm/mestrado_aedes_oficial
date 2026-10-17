@@ -1,0 +1,24 @@
+M0 16 M1 22 vetor: ['aedes_aegypti_por_armadilha', 'aedes_aegypti_por_armadilha_lag1', 'aedes_aegypti_por_armadilha_lag2', 'aedes_aegypti_por_armadilha_lag3', 'aedes_aegypti_por_armadilha_lag4', 'vetor_mm4']
+hist_gradient_boosting   quantil_0.85  M1_com_vetor h= 4 origem=2020-03-15 n_treino=101 meu=5.8051751730 executor=5.8051751730 dif=0.00e+00 real_ok=True
+hist_gradient_boosting   quantil_0.85  M1_com_vetor h= 4 origem=2021-01-31 n_treino=147 meu=8.9496096775 executor=8.9496096775 dif=0.00e+00 real_ok=True
+hist_gradient_boosting   quantil_0.85  M1_com_vetor h= 4 origem=2023-02-05 n_treino=247 meu=248.7722846361 executor=248.7722846361 dif=0.00e+00 real_ok=True
+hist_gradient_boosting   quantil_0.85  M1_com_vetor h= 4 origem=2026-01-04 n_treino=392 meu=18.8781277080 executor=18.8781277080 dif=0.00e+00 real_ok=True
+gradient_boosting        quantil_0.80  M1_com_vetor h=12 origem=2020-03-15 n_treino=93 meu=15.0501158148 executor=15.0501158148 dif=0.00e+00 real_ok=True
+gradient_boosting        quantil_0.80  M1_com_vetor h=12 origem=2021-01-31 n_treino=139 meu=56.6664037436 executor=56.6664037436 dif=0.00e+00 real_ok=True
+gradient_boosting        quantil_0.80  M1_com_vetor h=12 origem=2023-02-05 n_treino=239 meu=269.2837536274 executor=269.2837536274 dif=0.00e+00 real_ok=True
+gradient_boosting        quantil_0.80  M1_com_vetor h=12 origem=2025-11-09 n_treino=376 meu=63.2766422340 executor=63.2766422340 dif=0.00e+00 real_ok=True
+lightgbm                 quantil_0.90  M1_com_vetor h= 1 origem=2020-03-15 n_treino=104 meu=42.2974513431 executor=42.2974513431 dif=0.00e+00 real_ok=True
+lightgbm                 quantil_0.90  M1_com_vetor h= 1 origem=2021-01-31 n_treino=150 meu=1.2556441965 executor=1.2556441965 dif=0.00e+00 real_ok=True
+lightgbm                 quantil_0.90  M1_com_vetor h= 1 origem=2023-02-05 n_treino=250 meu=354.0561146357 executor=354.0561146357 dif=0.00e+00 real_ok=True
+lightgbm                 quantil_0.90  M1_com_vetor h= 1 origem=2026-01-25 n_treino=398 meu=134.9378379233 executor=134.9378379233 dif=0.00e+00 real_ok=True
+lightgbm                 padrao        M0_sem_vetor h= 8 origem=2020-03-15 n_treino=97 meu=34.9813656670 executor=34.9813656670 dif=0.00e+00 real_ok=True
+lightgbm                 padrao        M0_sem_vetor h= 8 origem=2020-11-22 n_treino=133 meu=1.2293402781 executor=1.2293402781 dif=0.00e+00 real_ok=True
+lightgbm                 padrao        M0_sem_vetor h= 8 origem=2022-08-14 n_treino=223 meu=0.0000000000 executor=0.0000000000 dif=0.00e+00 real_ok=True
+lightgbm                 padrao        M0_sem_vetor h= 8 origem=2024-05-19 n_treino=315 meu=18.4095416114 executor=18.4095416114 dif=0.00e+00 real_ok=True
+lightgbm                 padrao        M0_sem_vetor h= 8 origem=2025-12-07 n_treino=396 meu=43.9798136671 executor=43.9798136671 dif=0.00e+00 real_ok=True
+hist_gradient_boosting   padrao        M0_sem_vetor h= 4 origem=2020-03-15 n_treino=101 meu=7.3660819312 executor=7.3660819312 dif=0.00e+00 real_ok=True
+hist_gradient_boosting   padrao        M0_sem_vetor h= 4 origem=2021-01-31 n_treino=147 meu=6.3103242776 executor=6.3103242776 dif=0.00e+00 real_ok=True
+hist_gradient_boosting   padrao        M0_sem_vetor h= 4 origem=2023-01-01 n_treino=247 meu=15.8775302309 executor=15.8775302309 dif=0.00e+00 real_ok=True
+hist_gradient_boosting   padrao        M0_sem_vetor h= 4 origem=2024-05-19 n_treino=319 meu=58.2123607887 executor=58.2123607887 dif=0.00e+00 real_ok=True
+hist_gradient_boosting   padrao        M0_sem_vetor h= 4 origem=2026-01-04 n_treino=404 meu=1.8612622017 executor=1.8612622017 dif=0.00e+00 real_ok=True
+N previsoes comparadas: 22 dif max: 0

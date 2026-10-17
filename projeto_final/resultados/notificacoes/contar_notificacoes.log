@@ -1,0 +1,23 @@
+2026-10-15 13:30:53 DENGBR18.csv.zip: linhas=478880 total=233 conf=3 incl=17 aberto=0 outros=213 codigos=[10=3;5=213;8=17] maior_dt_encerra=2019-02-25 00:00:00 entra_na_soma=True
+2026-10-15 13:30:56 DENGBR19.csv.zip: linhas=2261956 total=1358 conf=489 incl=70 aberto=1 outros=798 codigos=[10=486;11=2;12=1;5=798;8=70;em_aberto=1] maior_dt_encerra=2020-06-22 00:00:00 entra_na_soma=True
+2026-10-15 13:30:58 DENGBR20.csv.zip: linhas=1495117 total=196 conf=38 incl=18 aberto=0 outros=140 codigos=[10=38;5=140;8=18] maior_dt_encerra=2021-01-25 00:00:00 entra_na_soma=True
+2026-10-15 13:30:59 DENGBR21.csv.zip: linhas=1010359 total=165 conf=72 incl=11 aberto=0 outros=82 codigos=[10=72;5=82;8=11] maior_dt_encerra=2022-03-01 00:00:00 entra_na_soma=True
+2026-10-15 13:31:02 DENGBR22.csv.zip: linhas=1393877 total=5594 conf=5583 incl=11 aberto=0 outros=0 codigos=[10=5488;11=89;12=6;8=11] maior_dt_encerra=2023-04-13 00:00:00 entra_na_soma=True
+2026-10-15 13:31:04 DENGBR23.csv.zip: linhas=1508653 total=6622 conf=6591 incl=17 aberto=14 outros=0 codigos=[10=6521;11=65;12=5;8=17;em_aberto=14] maior_dt_encerra=2024-04-11 00:00:00 entra_na_soma=True
+2026-10-15 13:31:12 DENGBR24.csv.zip: linhas=6434137 total=31515 conf=19024 incl=12482 aberto=9 outros=0 codigos=[10=18208;11=712;12=104;8=12482;em_aberto=9] maior_dt_encerra=2025-05-15 00:00:00 entra_na_soma=True
+2026-10-15 13:31:14 DENGBR25.csv.zip: linhas=1651712 total=56508 conf=24812 incl=31593 aberto=103 outros=0 codigos=[10=24190;11=560;12=62;8=31593;em_aberto=103] maior_dt_encerra=2026-03-03 00:00:00 entra_na_soma=True
+2026-10-15 13:31:15 DENGBR26.csv.zip: linhas=369657 total=3835 conf=12 incl=2847 aberto=976 outros=0 codigos=[10=11;11=1;8=2847;em_aberto=976] maior_dt_encerra=2026-06-08 00:00:00 entra_na_soma=False
+2026-10-15 13:31:16 DENGBR26_atualizado_set26.csv.zip: linhas=453398 total=3861 conf=19 incl=3841 aberto=1 outros=0 codigos=[10=18;11=1;8=3841;em_aberto=1] maior_dt_encerra=2026-09-02 00:00:00 entra_na_soma=True
+2026-10-15 13:31:16 Por ano de sintomas:
+ano_dos_sintomas  confirmadas  inconclusivas  em_aberto  outros  total_fichas  fracao_confirmada
+            2017            0              0          0      11            11           0.000000
+            2018            3             17          0     206           226           0.013274
+            2019          489             70          1     805          1365           0.358242
+            2020           38             18          0     129           185           0.205405
+            2021           72             11          0      82           165           0.436364
+            2022         5583             11          0       0          5594           0.998034
+            2023         6593             17         14       0          6624           0.995320
+            2024        19027          12485          9       0         31521           0.603629
+            2025        24807          31588         37       0         56432           0.439591
+            2026           19           3843         67       0          3929           0.004836
+2026-10-15 13:31:16 Gravado: contagens_por_arquivo.csv, contagens_por_ano_de_sintomas.csv

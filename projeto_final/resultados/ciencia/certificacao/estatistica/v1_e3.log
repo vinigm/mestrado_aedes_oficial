@@ -1,0 +1,16 @@
+exec rows 9660 {8: 3312, 13: 3252, 26: 3096}
+meus rows 9660
+linhas com semana-alvo usada > origem (meu codigo): 0
+{'both': 9660, 'left_only': 0, 'right_only': 0}
+max |dprevisto| 2.2737367544323206e-13  max |dreal| 0.0
+folha diferente: 0  origem dif: 0
+Series([], dtype: int64)
+resumo: n difere: 0  max|dmae| 5.684341886080802e-14  max|dfrac| 0.0 linhas 36
+     N   h    n      mae  fracao_folha20
+12  13   1  102  102.332           0.314
+15  13   4  102  205.726           0.510
+19  13   8  102  233.506           0.667
+23  13  12  102  260.136           0.647
+mutacao vaza +1 sem: escolhas diferentes 118 de 1086
+mutacao vaza +4 sem: escolhas diferentes 282 de 1086
+N=13 janela: primeira/ultima data_alvo 2024-01-07 00:00:00 2026-02-01 00:00:00

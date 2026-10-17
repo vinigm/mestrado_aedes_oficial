@@ -1,0 +1,40 @@
+{
+  "escopo": "etapa_completa",
+  "trava_1_completo_folha5": {
+    "linhas_novas": 3474,
+    "linhas_do_gabarito": 3474,
+    "linhas_em_comum": 3474,
+    "linhas_so_nas_novas": 0,
+    "linhas_so_no_gabarito": 0,
+    "diferenca_maxima_do_previsto": 0.0,
+    "diferenca_maxima_do_real": 0.0,
+    "tolerancia": 1e-09,
+    "passou": true,
+    "gabarito": "resultados/referencia/previsoes.csv, braco referencia"
+  },
+  "trava_1_completo_folha20": {
+    "linhas_novas": 3474,
+    "linhas_do_gabarito": 3474,
+    "linhas_em_comum": 3474,
+    "linhas_so_nas_novas": 0,
+    "linhas_so_no_gabarito": 0,
+    "diferenca_maxima_do_previsto": 0.0,
+    "diferenca_maxima_do_real": 0.0,
+    "tolerancia": 1e-09,
+    "passou": true,
+    "gabarito": "resultados/referencia/previsoes.csv, braco HistGB_folha20_M1"
+  },
+  "trava_2_sem_vetor_folha20": {
+    "linhas_novas": 3618,
+    "linhas_do_gabarito": 3618,
+    "linhas_em_comum": 3618,
+    "linhas_so_nas_novas": 0,
+    "linhas_so_no_gabarito": 0,
+    "diferenca_maxima_do_previsto": 0.0,
+    "diferenca_maxima_do_real": 0.0,
+    "tolerancia": 1e-09,
+    "passou": true,
+    "gabarito": "testes/referencia_antiga/previsoes_por_braco_original.csv, braco HistGB_folha20_M0"
+  },
+  "todas_passaram": true
+}

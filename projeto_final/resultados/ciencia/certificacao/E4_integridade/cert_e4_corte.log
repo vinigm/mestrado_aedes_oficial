@@ -1,0 +1,128 @@
+{
+  "params_config_folha5": {
+    "loss": "quantile",
+    "quantile": "0.85",
+    "max_iter": "250",
+    "learning_rate": "0.05",
+    "max_leaf_nodes": "15",
+    "min_samples_leaf": "5",
+    "random_state": "42",
+    "early_stopping": "auto",
+    "l2_regularization": "0.0",
+    "max_depth": "None",
+    "max_bins": "255",
+    "validation_fraction": "0.1",
+    "n_iter_no_change": "10",
+    "tol": "1e-07",
+    "scoring": "loss"
+  },
+  "params_explicitos_vs_config_divergentes": {},
+  "janela": [
+    "2024-01-07",
+    "2026-02-01"
+  ],
+  "v1_max_dif_pergunta": 0.0,
+  "v1_max_dif_resposta_vs_E2": 0.0,
+  "v1_treino_igual_a_s_menor_t_todas": true,
+  "v1_vazamento_pergunta_por_h": {
+    "completo_h4": 3,
+    "completo_h12": 11,
+    "sem_vetor_h4": 3,
+    "sem_vetor_h12": 11
+  },
+  "v1_vazamento_resposta_max": 0,
+  "v2_linhas_salvo_mine": [
+    24,
+    24,
+    24
+  ],
+  "v2_max_dif": {
+    "mae_resposta": 2.842170943040401e-14,
+    "mae_pergunta": 2.842170943040401e-14,
+    "variacao_pct": 3.552713678800501e-15,
+    "r2_resposta": 5.551115123125783e-17,
+    "r2_pergunta": 0.0,
+    "n": 0.0
+  },
+  "v2_n_por_braco": {
+    "completo": [
+      102
+    ],
+    "sem_vetor": [
+      109
+    ]
+  },
+  "v2_checks": {
+    "mesmas_semanas_todas": true,
+    "real_igual": true,
+    "origens_iguais_em_toda_a_serie": true
+  },
+  "v2_h1_variacao_exatamente_zero": true,
+  "v2_completo_resposta_igual_referencia": 0.0,
+  "v2_variacao_completo": [
+    0.0,
+    -12.1,
+    -18.3,
+    -23.2,
+    -11.1,
+    -32.0,
+    -33.4,
+    -34.6,
+    -40.6,
+    -41.5,
+    -43.7,
+    -33.9
+  ],
+  "v2_variacao_sem_vetor": [
+    0.0,
+    -10.8,
+    -14.6,
+    -18.3,
+    -13.1,
+    -16.8,
+    -17.3,
+    -28.8,
+    -22.6,
+    -28.9,
+    -27.4,
+    -29.8
+  ],
+  "v2_mae_resposta_completo_h1_4_8_12": [
+    97.987,
+    219.669,
+    272.627,
+    278.818
+  ],
+  "v2_mae_resposta_sem_vetor_h1_4_8_12": [
+    118.091,
+    227.391,
+    242.618,
+    270.303
+  ],
+  "v2_delta_r2_pontos_h12_completo_sem_vetor": [
+    0.3051,
+    0.3194
+  ],
+  "parciais": [
+    24,
+    7092,
+    7092
+  ],
+  "previsoes_e4_corte_col_unica": [
+    "pergunta"
+  ],
+  "previsoes_e4_duplicadas": 0
+}
+        braco   h           t  n_treino_pergunta  n_treino_resposta  linhas_com_resposta_apos_t_no_treino_pergunta  idem_resposta  treino_igual_a_s_menor_t max_data_origem_treino  previsto_meu  previsto_salvo_e4  dif_abs_pergunta  dif_abs_resposta_vs_E2
+0    completo   4  2023-12-10                294                291                                              3              0                      True             2023-12-03      3.209495           3.209495               0.0                     0.0
+1    completo   4  2025-01-19                345                342                                              3              0                      True             2025-01-12    450.307729         450.307729               0.0                     0.0
+2    completo   4  2026-01-04                395                392                                              3              0                      True             2025-12-28      3.535766           3.535766               0.0                     0.0
+3    completo  12  2023-10-15                286                275                                             11              0                      True             2023-10-08      7.826264           7.826264               0.0                     0.0
+4    completo  12  2024-11-24                337                326                                             11              0                      True             2024-11-17     76.083015          76.083015               0.0                     0.0
+5    completo  12  2025-11-09                387                376                                             11              0                      True             2025-11-02     34.116364          34.116364               0.0                     0.0
+6   sem_vetor   4  2023-12-10                299                296                                              3              0                      True             2023-12-03     39.595980          39.595980               0.0                     0.0
+7   sem_vetor   4  2024-12-22                353                350                                              3              0                      True             2024-12-15     11.221862          11.221862               0.0                     0.0
+8   sem_vetor   4  2026-01-04                407                404                                              3              0                      True             2025-12-28      0.763651           0.763651               0.0                     0.0
+9   sem_vetor  12  2023-10-15                291                280                                             11              0                      True             2023-10-08      4.869873           4.869873               0.0                     0.0
+10  sem_vetor  12  2024-10-27                345                334                                             11              0                      True             2024-10-20     28.347151          28.347151               0.0                     0.0
+11  sem_vetor  12  2025-11-09                399                388                                             11              0                      True             2025-11-02     48.505930          48.505930               0.0                     0.0

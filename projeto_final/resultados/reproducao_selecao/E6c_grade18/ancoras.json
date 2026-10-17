@@ -1,0 +1,28 @@
+{
+  "primeiro_colocado": "lr0.03_it400_folhas15_min5",
+  "primeiro_e_o_esperado": true,
+  "mae_do_esperado_1o_medido": 41.66234279498096,
+  "mae_do_esperado_1o_ancora": 41.66,
+  "bate_o_mae_do_1o": true,
+  "mae_da_referencia_medido": 42.022260264866006,
+  "mae_da_referencia_ancora": 42.02,
+  "bate_o_mae_da_referencia": true,
+  "posicao_da_referencia_medida": 4,
+  "posicao_da_referencia_ancora": 4,
+  "folha_minima_20_posicoes": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "folha_minima_20_do_10o_ao_18o": true,
+  "folha_minima_20_mae_minimo": 54.68074011989953,
+  "folha_minima_20_mae_maximo": 55.688854513272425,
+  "folha_minima_20_na_faixa_54_68_a_55_69": true,
+  "maior_diferenca_de_mae_para_o_ranking_antigo": 0.0
+}

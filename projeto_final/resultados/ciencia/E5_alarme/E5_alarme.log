@@ -1,0 +1,10 @@
+2026-10-12 16:39:54 inicio E5: zips em /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/modelagem_aedes/dados/entradas/bases_governo
+2026-10-12 16:39:56 DENGBR18.csv.zip: 478880 linhas; confirmados POA com sintomas 2018-2023: notificacao=3 residencia=1
+2026-10-12 16:40:00 DENGBR19.csv.zip: 2261956 linhas; confirmados POA com sintomas 2018-2023: notificacao=489 residencia=467
+2026-10-12 16:40:03 DENGBR20.csv.zip: 1495117 linhas; confirmados POA com sintomas 2018-2023: notificacao=38 residencia=41
+2026-10-12 16:40:06 DENGBR21.csv.zip: 1010359 linhas; confirmados POA com sintomas 2018-2023: notificacao=72 residencia=83
+2026-10-12 16:40:08 DENGBR22.csv.zip: 1393877 linhas; confirmados POA com sintomas 2018-2023: notificacao=5583 residencia=5133
+2026-10-12 16:40:12 DENGBR23.csv.zip: 1508653 linhas; confirmados POA com sintomas 2018-2023: notificacao=6591 residencia=6307
+2026-10-12 16:40:22 DENGBR24.csv.zip: 6434137 linhas; confirmados POA com sintomas 2018-2023: notificacao=2 residencia=1
+2026-10-12 16:40:22 ancora: soma da tabela=12785 (esperado 12785); numerador=12778; diferenca=-0.055%; ancora_ok=True
+2026-10-12 16:40:22 fim E5: r=1.061913 L=447.065; 51 linhas em alarme.csv e 51 em alarme_421_sem_conversao.csv; valores de n=[102] (esperado 102)

@@ -1,0 +1,16 @@
+completo 5 4 {'n': 292, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 38.8}
+completo 20 4 {'n': 292, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 26.5}
+completo 5 8 {'n': 288, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 37.3}
+completo 20 8 {'n': 288, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 23.3}
+sem_casos 5 4 {'n': 297, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 40.1}
+sem_casos 20 4 {'n': 297, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 25.0}
+sem_casos 5 8 {'n': 293, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 37.3}
+sem_casos 20 8 {'n': 293, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 23.4}
+sem_clima 5 4 {'n': 292, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 35.5}
+sem_clima 20 4 {'n': 292, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 23.3}
+sem_clima 5 8 {'n': 288, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 36.2}
+sem_clima 20 8 {'n': 288, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 20.6}
+sem_vetor 5 4 {'n': 304, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 34.1}
+sem_vetor 20 4 {'n': 304, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 22.4}
+sem_vetor 5 8 {'n': 300, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 34.5}
+sem_vetor 20 8 {'n': 300, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 21.8}

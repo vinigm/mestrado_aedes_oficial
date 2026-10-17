@@ -1,0 +1,33 @@
+    folha  quantil   h  n_retreino  n_parcial  so_um_lado  dif_max_previsto  dif_max_real  n_acima_1e9
+0      20     0.05   1         295        295           0               0.0           0.0            0
+1      20     0.05  12         284        284           0               0.0           0.0            0
+2      20     0.10  12         284        284           0               0.0           0.0            0
+3      20     0.25   8         288        288           0               0.0           0.0            0
+4      20     0.25  12         284        284           0               0.0           0.0            0
+5      20     0.50  12         284        284           0               0.0           0.0            0
+6      20     0.75  12         284        284           0               0.0           0.0            0
+7      20     0.90  12         284        284           0               0.0           0.0            0
+8      20     0.95  12         284        284           0               0.0           0.0            0
+9       5     0.05   4         292        292           0               0.0           0.0            0
+10      5     0.10   4         292        292           0               0.0           0.0            0
+11      5     0.25   4         292        292           0               0.0           0.0            0
+12      5     0.50   1         295        295           0               0.0           0.0            0
+13      5     0.50   4         292        292           0               0.0           0.0            0
+14      5     0.75   4         292        292           0               0.0           0.0            0
+15      5     0.75   8         288        288           0               0.0           0.0            0
+16      5     0.90   4         292        292           0               0.0           0.0            0
+17      5     0.95   4         292        292           0               0.0           0.0            0
+WIS retreino ponta a ponta folha5 h4: n=102 meu=204.9989594688 executor=204.9989594688
+WIS retreino ponta a ponta folha20 h12: n=102 meu=265.2816649985 executor=265.2816649985
+sensibilidade a ordenacao (WIS sem ordenar vs ordenado): variacao relativa min/max 0.66% / 3.86%
+quantil 0,05 negativo: fracao min/max 0.000 / 0.088 ; menor previsao -97.90
+mutacao F5: DM h1 folha5 original 5.0158, sinal trocado -5.0158, embaralhado 5.0158
+statsmodels ausente (ModuleNotFoundError); Holm alternativo dif max 0.00e+00
+p bruto via t.cdf: dif max 1.11e-16
+relato do executor: 16 WIS medios da janela padrao conferem com os meus (arred. 0,1): sim
+cobertura ('folha5', 12): meu 0.196/0.402/0.539 vs relato (0.2, 0.4, 0.54)
+cobertura ('regua_climatologica', 12): meu 0.208/0.356/0.406 vs relato (0.21, 0.36, 0.41)
+cobertura folha5 h1-12: 50% [0.12,0.42] 80% [0.36,0.67] 90% [0.49,0.78]
+cobertura folha20 h1-12: 50% [0.17,0.36] 80% [0.38,0.74] 90% [0.59,0.85]
+cobertura composto_N13 h1-12: 50% [0.17,0.42] 80% [0.36,0.67] 90% [0.56,0.78]
+cobertura regua_climatologica h1-12: 50% [0.20,0.21] 80% [0.34,0.37] 90% [0.39,0.43]

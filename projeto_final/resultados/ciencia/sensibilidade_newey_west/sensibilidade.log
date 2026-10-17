@@ -1,0 +1,4 @@
+2026-10-17 11:35:34 inicio: familias.csv=52 linhas; E2 na janela=20256; composto N=13 na janela=1224; regua=1224; Holm do CSV reproduzido (dif max 0.0e+00)
+2026-10-17 11:35:34 trava (a) aprovada: DM-HLN e p bruto dos 13 testes de h=1 reproduzem familias.csv; maior diferenca = 0.000e+00
+2026-10-17 11:35:34 ancora exploratoria (composto x regua, h=1): ACF1=0.435009 (esperado ~0.44); p Newey-West=0.021462 (esperado ~0.021); bate=True
+2026-10-17 11:35:34 fim: 13 testes em sensibilidade.csv; vereditos que mudam=5

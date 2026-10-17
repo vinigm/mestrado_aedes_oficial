@@ -1,0 +1,34 @@
+=== VEREDITOS COM x SEM piso (descritivo)
+com piso : {'sem evidencia': 47, 'A melhor': 5}
+sem piso : {'sem evidencia': 47, 'A melhor': 5}
+vereditos que mudam se o piso for ignorado: 0
+
+=== p_Holm<0.05 (qualquer direcao)
+   familia  h            A                 B     delta  limiar_piso  p_holm  veredito
+0       F1  1  completo@f5      sem_casos@f5  118.3493      10.4419  0.0157  A melhor
+12      F2  1  so_casos@f5  so_calendario@f5  156.3756      10.4419  0.0004  A melhor
+20      F2  1  so_vetor@f5  so_calendario@f5   54.5866      10.4419  0.0334  A melhor
+36      F4  1  completo@f5     regua_sazonal  104.1208      10.4419  0.0040  A melhor
+44      F4  1   composto13     regua_sazonal   99.7754      10.4419  0.0064  A melhor
+
+=== quase-passagens: p_holm entre 0.05 e 0.10 ou |delta| perto do limiar (0.5x-2x) com p_holm<0.05
+Empty DataFrame
+Columns: [familia, h, A, B, delta, p_bruto, p_holm]
+Index: []
+
+statsmodels indisponivel: No module named 'statsmodels'
+Holm exemplo manual [0.01,0.04,0.03,0.005] -> [0.03 0.06 0.06 0.02] esperado [0.03,0.06,0.06,0.02]
+
+=== DM-HLN sob H0 (n=102, 20000 simulacoes, nivel nominal 5%)
+d iid h= 1: rejeicao= 4.81%  (erro-padrao MC ~0.15 pp)  fallback_Bartlett=0.00%
+d iid h= 4: rejeicao= 6.78%  (erro-padrao MC ~0.15 pp)  fallback_Bartlett=0.04%
+d iid h= 8: rejeicao= 9.68%  (erro-padrao MC ~0.15 pp)  fallback_Bartlett=1.24%
+d iid h=12: rejeicao=11.07%  (erro-padrao MC ~0.15 pp)  fallback_Bartlett=4.32%
+d ma  h= 1: rejeicao= 4.72%  (erro-padrao MC ~0.15 pp)  fallback_Bartlett=0.00%
+d ma  h= 4: rejeicao= 6.17%  (erro-padrao MC ~0.15 pp)  fallback_Bartlett=0.00%
+d ma  h= 8: rejeicao= 8.30%  (erro-padrao MC ~0.15 pp)  fallback_Bartlett=0.00%
+d ma  h=12: rejeicao= 9.79%  (erro-padrao MC ~0.15 pp)  fallback_Bartlett=0.03%
+
+Poder: iid normal com media 0.4 sd, n=102:
+ h=4:  0.975
+ h=12:  0.9646

@@ -1,0 +1,34 @@
+ok DENGBR18.csv.zip
+ok DENGBR19.csv.zip
+ok DENGBR20.csv.zip
+ok DENGBR21.csv.zip
+ok DENGBR22.csv.zip
+ok DENGBR23.csv.zip
+ok DENGBR24.csv.zip
+ok DENGBR25.csv.zip
+ok DENGBR26.csv.zip
+ok DENGBR26_atualizado_set26.csv.zip
+variantes ID_MUNICIP iniciadas em 431490: {('DENGBR18.csv.zip', '431490'): 233, ('DENGBR19.csv.zip', '431490'): 1358, ('DENGBR20.csv.zip', '431490'): 196, ('DENGBR21.csv.zip', '431490'): 165, ('DENGBR22.csv.zip', '431490'): 5594, ('DENGBR23.csv.zip', '431490'): 6622, ('DENGBR24.csv.zip', '431490'): 31515, ('DENGBR25.csv.zip', '431490'): 56508, ('DENGBR26.csv.zip', '431490'): 3835, ('DENGBR26_atualizado_set26.csv.zip', '431490'): 3861}
+SEM_PRI-ano != DT_SIN_PRI-ano: {'DENGBR18.csv.zip': 0, 'DENGBR19.csv.zip': 1, 'DENGBR20.csv.zip': 3, 'DENGBR21.csv.zip': 0, 'DENGBR22.csv.zip': 0, 'DENGBR23.csv.zip': 0, 'DENGBR24.csv.zip': 2, 'DENGBR25.csv.zip': 76, 'DENGBR26.csv.zip': 0, 'DENGBR26_atualizado_set26.csv.zip': 0}
+                             arquivo  total   conf   incl  aberto  outros                                  codigos maior_dt_encerra
+0                   DENGBR18.csv.zip    233      3     17       0     213                          10=3;5=213;8=17       2019-02-25
+1                   DENGBR19.csv.zip   1358    489     70       1     798      10=486;11=2;12=1;5=798;8=70;vazio=1       2020-06-22
+2                   DENGBR20.csv.zip    196     38     18       0     140                         10=38;5=140;8=18       2021-01-25
+3                   DENGBR21.csv.zip    165     72     11       0      82                          10=72;5=82;8=11       2022-03-01
+4                   DENGBR22.csv.zip   5594   5583     11       0       0                  10=5488;11=89;12=6;8=11       2023-04-13
+5                   DENGBR23.csv.zip   6622   6591     17      14       0         10=6521;11=65;12=5;8=17;vazio=14       2024-04-11
+6                   DENGBR24.csv.zip  31515  19024  12482       9       0   10=18208;11=712;12=104;8=12482;vazio=9       2025-05-15
+7                   DENGBR25.csv.zip  56508  24812  31593     103       0  10=24190;11=560;12=62;8=31593;vazio=103       2026-03-03
+8                   DENGBR26.csv.zip   3835     12   2847     976       0              10=11;11=1;8=2847;vazio=976       2026-06-08
+9  DENGBR26_atualizado_set26.csv.zip   3861     19   3841       1       0                10=18;11=1;8=3841;vazio=1       2026-09-02
+    ano   conf   incl  aberto  outros  total
+0  2017      0      0       0      11     11
+1  2018      3     17       0     206    226
+2  2019    489     70       1     805   1365
+3  2020     38     18       0     129    185
+4  2021     72     11       0      82    165
+5  2022   5583     11       0       0   5594
+6  2023   6593     17      14       0   6624
+7  2024  19027  12485       9       0  31521
+8  2025  24807  31588      37       0  56432
+9  2026     19   3843      67       0   3929

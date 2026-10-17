@@ -1,0 +1,37 @@
+L meu 447.06540347378046 L executor 447.06540347378046
+composto: linhas meu 3252 e3 3252 merge {'both': 3252, 'left_only': 0, 'right_only': 0}
+max |dif previsto| 0.0 folha dif 0
+h 1 semanas alvo completo f5: 102 f20: 102
+h 4 semanas alvo completo f5: 102 f20: 102
+h 8 semanas alvo completo f5: 102 f20: 102
+
+== alarme.csv linhas executor 51
+bracos executor: ['completo', 'composto', 'sem_casos', 'sem_clima', 'sem_vetor', 'so_calendario', 'so_casos', 'so_clima', 'so_vetor'] folhas [np.int64(0), np.int64(5), np.int64(20)]
+{'both': 51, 'left_only': 0, 'right_only': 0}
+linhas com contagens diferentes: 0
+max dif sens 0.0 prec 0.0 falsos/ano vs 1,96 0.0 vs calculado 0.00810324129651896
+surtos dif 0
+limiar executor [447.06540347]
+
+== alarme_421_sem_conversao.csv linhas executor 51
+bracos executor: ['completo', 'composto', 'sem_casos', 'sem_clima', 'sem_vetor', 'so_calendario', 'so_casos', 'so_clima', 'so_vetor'] folhas [np.int64(0), np.int64(5), np.int64(20)]
+{'both': 51, 'left_only': 0, 'right_only': 0}
+linhas com contagens diferentes: 0
+max dif sens 0.0 prec 0.0 falsos/ano vs 1,96 0.0 vs calculado 0.009453781512605008
+surtos dif 0
+limiar executor [421.]
+
+linhas em que > e >= diferem (L convertido): 0
+
+   braco  folha  h   n  surtos  VP  FN  FP   sens   prec  falsos_ano_196  falsos_ano_calc
+completo      5  1 102      24  23   1   1 0.9583 0.9583          0.5102           0.5116
+completo     20  1 102      24  24   0   2 1.0000 0.9231          1.0204           1.0231
+composto      0  1 102      24  23   1   1 0.9583 0.9583          0.5102           0.5116
+   braco  folha  h   n  surtos  VP  FN  FP  sens   prec  falsos_ano_196  falsos_ano_calc
+completo      5  4 102      27  26   1   3 0.963 0.8966          1.5306           1.5347
+completo     20  4 102      27  27   0   5 1.000 0.8438          2.5510           2.5578
+composto      0  4 102      27  26   1   5 0.963 0.8387          2.5510           2.5578
+   braco  folha  h   n  surtos  VP  FN  FP   sens  prec  falsos_ano_196  falsos_ano_calc
+completo      5  8 102      28  18  10   0 0.6429   1.0             0.0              0.0
+completo     20  8 102      28  24   4   0 0.8571   1.0             0.0              0.0
+composto      0  8 102      28  23   5   0 0.8214   1.0             0.0              0.0

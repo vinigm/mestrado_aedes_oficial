@@ -1,0 +1,22 @@
+lr0.03_it400_folhas15_min5     h= 8 origem=2020-03-15 meu=50.9892750493 antigo=50.9892750493 dif=0.00e+00
+lr0.03_it400_folhas15_min5     h= 8 origem=2021-08-08 meu=0.3093661642 antigo=0.3093661642 dif=0.00e+00
+lr0.03_it400_folhas15_min5     h= 8 origem=2023-04-16 meu=183.0506805664 antigo=183.0506805664 dif=0.00e+00
+lr0.03_it400_folhas15_min5     h= 8 origem=2024-10-20 meu=3.8506098710 antigo=3.8506098710 dif=0.00e+00
+lr0.03_it400_folhas15_min5     h= 8 origem=2025-12-07 meu=152.6660695483 antigo=152.6660695483 dif=0.00e+00
+lr0.1_it150_folhas31_min20     h= 4 origem=2020-03-15 meu=17.5382330088 antigo=17.5382330088 dif=0.00e+00
+lr0.1_it150_folhas31_min20     h= 4 origem=2021-08-08 meu=0.0132050031 antigo=0.0132050031 dif=0.00e+00
+lr0.1_it150_folhas31_min20     h= 4 origem=2023-04-16 meu=506.1127885551 antigo=506.1127885551 dif=0.00e+00
+lr0.1_it150_folhas31_min20     h= 4 origem=2024-11-17 meu=2.9698973571 antigo=2.9698973571 dif=0.00e+00
+lr0.1_it150_folhas31_min20     h= 4 origem=2026-01-04 meu=57.2786895867 antigo=57.2786895867 dif=0.00e+00
+lr0.1_it150_folhas15_min20     h= 4 origem=2020-03-15 meu=17.5382330088 antigo=17.5382330088 dif=0.00e+00
+lr0.1_it150_folhas15_min20     h= 4 origem=2021-08-08 meu=0.0132050031 antigo=0.0132050031 dif=0.00e+00
+lr0.1_it150_folhas15_min20     h= 4 origem=2023-04-16 meu=506.1127885551 antigo=506.1127885551 dif=0.00e+00
+lr0.1_it150_folhas15_min20     h= 4 origem=2024-11-17 meu=2.9698973571 antigo=2.9698973571 dif=0.00e+00
+lr0.1_it150_folhas15_min20     h= 4 origem=2026-01-04 meu=56.6194988969 antigo=56.6194988969 dif=0.00e+00
+lr0.03_it400_folhas7_min5      h=12 origem=2020-03-15 meu=19.8282675070 antigo=19.8282675070 dif=0.00e+00
+lr0.03_it400_folhas7_min5      h=12 origem=2021-08-08 meu=-0.0028599377 antigo=-0.0028599377 dif=0.00e+00
+lr0.03_it400_folhas7_min5      h=12 origem=2023-04-16 meu=24.8966558940 antigo=24.8966558940 dif=0.00e+00
+lr0.03_it400_folhas7_min5      h=12 origem=2024-09-22 meu=6.1057148992 antigo=6.1057148992 dif=0.00e+00
+lr0.03_it400_folhas7_min5      h=12 origem=2025-11-09 meu=54.5478550623 antigo=54.5478550623 dif=0.00e+00
+N: 20 dif max: 0
+empate folhas15 vs folhas31 (min20, lr0.1, h=4): dif max entre as previsoes: 0.6591906897934692

@@ -1,0 +1,5 @@
+braco=referencia h= 1 linhas_da_matriz=399 previsoes=295 tempo=145.6s
+braco=referencia h=12 linhas_da_matriz=388 previsoes=284 tempo=122.1s
+braco=HistGB_folha20_M1 h= 1 linhas_da_matriz=399 previsoes=295 tempo=80.1s
+braco=HistGB_folha20_M1 h=12 linhas_da_matriz=388 previsoes=284 tempo=72.5s
+Gravado previsoes_trava.csv: 1158 linhas em 420.5s.

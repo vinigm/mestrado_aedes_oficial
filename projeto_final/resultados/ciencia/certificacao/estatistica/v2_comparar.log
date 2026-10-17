@@ -1,0 +1,46 @@
+   familia             A                 B
+0       F1   completo@f5      sem_casos@f5
+4       F1   completo@f5      sem_clima@f5
+8       F1   completo@f5      sem_vetor@f5
+12      F3  completo@f20     sem_casos@f20
+16      F3  completo@f20     sem_clima@f20
+20      F3  completo@f20     sem_vetor@f20
+24      F2   so_casos@f5  so_calendario@f5
+28      F2   so_clima@f5  so_calendario@f5
+32      F2   so_vetor@f5  so_calendario@f5
+36      F4   completo@f5     regua_sazonal
+40      F4  completo@f20     regua_sazonal
+44      F4  composto_N13     regua_sazonal
+48      F4  composto_N13       completo@f5
+mesmo numero de linhas 52 52
+linhas casadas 52 | h iguais e ordem: True
+   familia  h           A_e           A_m               B_e               B_m
+0       F1  1   completo@f5   completo@f5      sem_casos@f5      sem_casos@f5
+4       F1  1   completo@f5   completo@f5      sem_clima@f5      sem_clima@f5
+8       F1  1   completo@f5   completo@f5      sem_vetor@f5      sem_vetor@f5
+12      F3  1  completo@f20  completo@f20     sem_casos@f20     sem_casos@f20
+16      F3  1  completo@f20  completo@f20     sem_clima@f20     sem_clima@f20
+20      F3  1  completo@f20  completo@f20     sem_vetor@f20     sem_vetor@f20
+24      F2  1   so_casos@f5   so_casos@f5  so_calendario@f5  so_calendario@f5
+28      F2  1   so_clima@f5   so_clima@f5  so_calendario@f5  so_calendario@f5
+32      F2  1   so_vetor@f5   so_vetor@f5  so_calendario@f5  so_calendario@f5
+36      F4  1   completo@f5   completo@f5     regua_sazonal     regua_sazonal
+40      F4  1  completo@f20  completo@f20     regua_sazonal     regua_sazonal
+44      F4  1  composto_N13    composto13     regua_sazonal     regua_sazonal
+48      F4  1  composto_N13    composto13       completo@f5       completo@f5
+n            max|dif| = 0.000e+00
+mae_A        max|dif| = 5.684e-14
+mae_B        max|dif| = 5.684e-14
+delta        max|dif| = 5.684e-14
+ganho_pct    max|dif| = 2.842e-14
+dm_hln       max|dif| = 1.624e-15
+p_bruto      max|dif| = 1.221e-15
+p_holm       max|dif| = 6.661e-16
+limiar_piso  max|dif| = 0.000e+00
+ic_inf       max|dif| = 2.132e-14
+ic_sup       max|dif| = 2.487e-14
+fallback diferente: 0
+veredito diferente: 0
+Empty DataFrame
+Columns: [familia, h, A_e, veredito_e, veredito_m]
+Index: []

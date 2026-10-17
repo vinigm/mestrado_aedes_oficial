@@ -1,0 +1,145 @@
+...........................................FF.F......................... [ 10%]
+.....FF................................................................. [ 21%]
+........................................................................ [ 32%]
+........................................................................ [ 43%]
+........................................................................ [ 53%]
+........................................................................ [ 64%]
+........................................................................ [ 75%]
+........................................................................ [ 86%]
+........................................................................ [ 96%]
+.....................                                                    [100%]
+=================================== FAILURES ===================================
+__________ test_o_dropna_olha_so_as_colunas_do_braco_ausente_no_vetor __________
+
+    def test_o_dropna_olha_so_as_colunas_do_braco_ausente_no_vetor() -> None:
+        """Vetor ausente na posicao 15: o sem_vetor (e o so_casos) MANTEM as origens que o completo perde.
+    
+        O vetor ausente em 15 contamina o vetor das origens 15 a 19 (valor, lags 1-4)
+        e a media movel das origens 15 a 18. O `completo` e o `so_vetor` perdem 15 a 19;
+        os bracos sem vetor nao perdem nenhuma.
+        """
+        tabela = montar_tabela_sintetica(40)
+        tabela.loc[15, NOME_DO_VETOR] = np.nan
+        horizonte = 2
+    
+        origens_perdidas = {PRIMEIRO_DOMINGO_SINTETICO + posicao * UMA_SEMANA for posicao in range(15, 20)}
+        origens_do_completo = datas_de_origem_da_matriz(matriz_do_braco(tabela, horizonte, "completo"))
+        origens_do_sem_vetor = datas_de_origem_da_matriz(matriz_do_braco(tabela, horizonte, "sem_vetor"))
+        origens_do_so_casos = datas_de_origem_da_matriz(matriz_do_braco(tabela, horizonte, "so_casos"))
+        origens_do_so_vetor = datas_de_origem_da_matriz(matriz_do_braco(tabela, horizonte, "so_vetor"))
+    
+        assert origens_perdidas.isdisjoint(origens_do_completo)
+        assert origens_perdidas.isdisjoint(origens_do_so_vetor)
+>       assert origens_perdidas <= origens_do_sem_vetor
+E       AssertionError: assert {Timestamp('2...17 00:00:00')} <= {Timestamp('2...:00:00'), ...}
+E         
+E         Extra items in the left set:
+E         Timestamp('2020-05-17 00:00:00')
+E         Timestamp('2020-05-10 00:00:00')
+E         Timestamp('2020-04-19 00:00:00')
+E         Timestamp('2020-04-26 00:00:00')
+E         Timestamp('2020-05-03 00:00:00')
+
+testes/test_bracos.py:266: AssertionError
+__________ test_o_dropna_olha_so_as_colunas_do_braco_ausente_no_clima __________
+
+    def test_o_dropna_olha_so_as_colunas_do_braco_ausente_no_clima() -> None:
+        """`temp_max` ausente na posicao 12 (sem defasagem): so a origem 12 sai, e so dos bracos com clima."""
+        tabela = montar_tabela_sintetica(40)
+        tabela.loc[12, "temp_max"] = np.nan
+        origem_afetada = PRIMEIRO_DOMINGO_SINTETICO + 12 * UMA_SEMANA
+        horizonte = 2
+    
+        for nome_do_braco in ("completo", "sem_casos", "sem_vetor", "so_clima"):
+            origens = datas_de_origem_da_matriz(matriz_do_braco(tabela, horizonte, nome_do_braco))
+            assert origem_afetada not in origens, nome_do_braco
+        for nome_do_braco in ("sem_clima", "so_casos", "so_vetor", "so_calendario"):
+            origens = datas_de_origem_da_matriz(matriz_do_braco(tabela, horizonte, nome_do_braco))
+>           assert origem_afetada in origens, nome_do_braco
+E           AssertionError: sem_clima
+E           assert Timestamp('2020-03-29 00:00:00') in {Timestamp('2020-02-02 00:00:00'), Timestamp('2020-02-09 00:00:00'), Timestamp('2020-02-16 00:00:00'), Timestamp('2020-02-23 00:00:00'), Timestamp('2020-03-01 00:00:00'), Timestamp('2020-03-08 00:00:00'), ...}
+
+testes/test_bracos.py:283: AssertionError
+______________ test_so_calendario_perde_apenas_as_linhas_sem_alvo ______________
+
+    def test_so_calendario_perde_apenas_as_linhas_sem_alvo() -> None:
+        """Sem nenhuma variavel de fonte, so o alvo (e a semana-alvo) limitam as linhas: tabela de 30 semanas, h = 3 -> 27 linhas."""
+        matriz = matriz_do_braco(montar_tabela_sintetica(30), 3, "so_calendario")
+>       assert len(matriz) == 27
+E       assert 23 == 27
+E        +  where 23 = len(   data_origem  data_alvo       sem_sin  ...      alvo_sin      alvo_cos    y_h\n0   2020-02-02 2020-02-23  5.680647e-0...50162e-01  290.0\n22  2020-07-05 2020-07-26 -1.205367e-01  ... -4.647232e-01 -8.854560e-01  300.0\n\n[23 rows x 7 columns])
+
+testes/test_bracos.py:302: AssertionError
+__________ test_o_sem_vetor_recupera_exatamente_as_semanas_sem_vetor ___________
+
+tabela_cortada =           fonte      SE  ... nino34_anom  oni
+0    secretaria  201239  ...         NaN  NaN
+1    secretaria  201240  ....aN
+723    raspagem  202631  ...         NaN  NaN
+724    raspagem  202632  ...         NaN  NaN
+
+[725 rows x 36 columns]
+
+    def test_o_sem_vetor_recupera_exatamente_as_semanas_sem_vetor(tabela_cortada: pd.DataFrame) -> None:
+        """As origens que o `sem_vetor` tem a mais que o `completo` sao exatamente as de vetor incompleto.
+    
+        O `completo` exige as 6 variaveis do vetor (valor, 4 defasagens e media movel); o `sem_vetor`
+        nao. Logo: origens do `sem_vetor` = origens do `completo` + (origens do `sem_vetor` com
+        alguma variavel do vetor ausente). A conta do lado direito sai das variaveis de origem
+        calculadas pelo modulo certificado, sem passar por `montar_matriz_do_braco`.
+        """
+        variaveis_de_origem = construir_variaveis_de_origem(tabela_cortada, CONFIGURACAO_VARIAVEIS, CONFIGURACAO_DADOS)
+        colunas_do_vetor = nomes_das_variaveis_do_bloco(BLOCO_VETOR, CONFIGURACAO_VARIAVEIS)
+        vetor_incompleto = variaveis_de_origem[colunas_do_vetor].isna().any(axis=1)
+        datas_da_tabela = tabela_cortada[COLUNA_DE_DATA]
+        origens_com_vetor_incompleto = set(datas_da_tabela.loc[vetor_incompleto])
+    
+        for horizonte in (1, 12):
+            origens_do_completo = datas_de_origem_da_matriz(matriz_do_braco(tabela_cortada, horizonte, "completo"))
+            origens_do_sem_vetor = datas_de_origem_da_matriz(matriz_do_braco(tabela_cortada, horizonte, "sem_vetor"))
+            origens_extras = origens_do_sem_vetor - origens_do_completo
+    
+            assert origens_do_completo <= origens_do_sem_vetor
+>           assert len(origens_extras) > 0
+E           assert 0 > 0
+E            +  where 0 = len(set())
+
+testes/test_bracos.py:450: AssertionError
+_ test_trava_2_sem_vetor_folha_20_h1_reproduz_o_braco_antigo_histgb_folha20_m0 _
+
+tabela_cortada =           fonte      SE  ... nino34_anom  oni
+0    secretaria  201239  ...         NaN  NaN
+1    secretaria  201240  ....aN
+723    raspagem  202631  ...         NaN  NaN
+724    raspagem  202632  ...         NaN  NaN
+
+[725 rows x 36 columns]
+
+    def test_trava_2_sem_vetor_folha_20_h1_reproduz_o_braco_antigo_histgb_folha20_m0(
+        tabela_cortada: pd.DataFrame,
+    ) -> None:
+        """307 previsoes em h = 1, mesmas (h, data_alvo) e `previsto` com diferenca < 1e-9 do gabarito antigo."""
+        horizonte = 1
+        matriz = montar_matriz_do_braco(
+            tabela_cortada, horizonte, "sem_vetor", CONFIGURACAO_VARIAVEIS, CONFIGURACAO_DADOS
+        )
+        previsoes = executar_walk_forward(matriz, horizonte, FOLHA_20, CONFIGURACAO_AVALIACAO)
+    
+        gabarito = pd.read_csv(CAMINHO_DO_GABARITO_POR_BRACO, parse_dates=["data_alvo"])
+        do_braco_antigo = gabarito["braco"] == "HistGB_folha20_M0"
+        do_horizonte = gabarito["h"] == horizonte
+        gabarito_do_horizonte = gabarito.loc[do_braco_antigo & do_horizonte]
+    
+        resultado = comparar_previsoes_com_gabarito(previsoes, gabarito_do_horizonte, CHAVE, TOLERANCIA)
+>       assert resultado.linhas_novas == 307
+E       assert 295 == 307
+E        +  where 295 = ResultadoDaTrava(linhas_novas=295, linhas_do_gabarito=307, linhas_em_comum=295, linhas_so_nas_novas=0, linhas_so_no_gabarito=12, diferenca_maxima_do_previsto=925.7061234784821, diferenca_maxima_do_real=0.0, tolerancia=1e-09, passou=False).linhas_novas
+
+testes/test_bracos_diferencial_modelo.py:66: AssertionError
+=========================== short test summary info ============================
+FAILED testes/test_bracos.py::test_o_dropna_olha_so_as_colunas_do_braco_ausente_no_vetor
+FAILED testes/test_bracos.py::test_o_dropna_olha_so_as_colunas_do_braco_ausente_no_clima
+FAILED testes/test_bracos.py::test_so_calendario_perde_apenas_as_linhas_sem_alvo
+FAILED testes/test_bracos.py::test_o_sem_vetor_recupera_exatamente_as_semanas_sem_vetor
+FAILED testes/test_bracos_diferencial_modelo.py::test_trava_2_sem_vetor_folha_20_h1_reproduz_o_braco_antigo_histgb_folha20_m0
+5 failed, 664 passed in 82.47s (0:01:22)

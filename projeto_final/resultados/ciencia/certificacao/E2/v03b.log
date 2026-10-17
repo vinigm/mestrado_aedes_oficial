@@ -1,0 +1,3 @@
+n linhas com leitura rapida != exata nos parciais: 12010 max 4.547473508864641e-13
+previsoes.csv(exato) vs parciais(exato): n diferentes 12010 max 4.547473508864641e-13
+previsoes.csv(exato) vs parciais(exato) colunas nao-previsto iguais: True

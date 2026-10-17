@@ -1,0 +1,28 @@
+old 35490 new 35490 configs old 30 new 30
+old dup keys: 0 new dup: 0
+{'both': 35490, 'left_only': 0, 'right_only': 0}
+dif max pred: 0.0  dif max real: 0.0
+dif max por algoritmo: {'gradient_boosting': 0.0, 'hist_gradient_boosting': 0.0, 'lightgbm': 0.0}
+min previsto new: 0.0  min pred old: 0.0
+origem==alvo-h*7: True
+n configs 30 horizontes cal por config (count): {4}
+dif mae_cal old-vs-new: 0.0  vs executor ranking.csv: 1.4210854715202004e-14
+dif mae_aval old-vs-new: 0.0  vs executor: 8.526512829121202e-14
+posicao igual old/new/executor: True
+   pos               algoritmo         perda      conjunto    mae_cal    mae_aval
+0    1  hist_gradient_boosting  quantil_0.85  M1_com_vetor  42.018692  217.234142
+1    2  hist_gradient_boosting  quantil_0.80  M0_sem_vetor  42.515742  214.679984
+2    3  hist_gradient_boosting  quantil_0.80  M1_com_vetor  42.712045  216.696967
+3    4       gradient_boosting  quantil_0.80  M1_com_vetor  42.714751  211.130877
+4    5       gradient_boosting  quantil_0.70  M1_com_vetor  42.825532  221.529985
+                                                  pos    mae_cal
+algoritmo              perda        conjunto                    
+hist_gradient_boosting padrao       M1_com_vetor   19  46.170543
+lightgbm               padrao       M1_com_vetor   21  46.995074
+                       quantil_0.90 M1_com_vetor   30  58.454831
+    pos algoritmo         perda      conjunto    mae_cal
+27   28  lightgbm  quantil_0.85  M1_com_vetor  54.635954
+28   29  lightgbm  quantil_0.90  M0_sem_vetor  55.526344
+29   30  lightgbm  quantil_0.90  M1_com_vetor  58.454831
+empates mae_cal: 0
+alvo min/max: 2020-03-22 00:00:00 2026-02-01 00:00:00

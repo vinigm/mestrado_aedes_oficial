@@ -1,0 +1,73 @@
+{
+  "r": 1.0619130723842767,
+  "numerador": 12778,
+  "denominador": 12033,
+  "limiar_base": 421,
+  "L": 447.06540347378046,
+  "versoes": {
+    "DENGBR18_a_24 (principal)": {
+      "numerador": 12778,
+      "denominador": 12033,
+      "r": 1.0619130723842767,
+      "L": 447.06540347378046
+    },
+    "DENGBR18_a_23": {
+      "numerador": 12776,
+      "denominador": 12032,
+      "r": 1.0618351063829787,
+      "L": 447.03257978723406
+    }
+  },
+  "por_arquivo": {
+    "DENGBR18.csv.zip": {
+      "linhas_lidas": 478880,
+      "numerador": 3,
+      "denominador": 1
+    },
+    "DENGBR19.csv.zip": {
+      "linhas_lidas": 2261956,
+      "numerador": 489,
+      "denominador": 467
+    },
+    "DENGBR20.csv.zip": {
+      "linhas_lidas": 1495117,
+      "numerador": 38,
+      "denominador": 41
+    },
+    "DENGBR21.csv.zip": {
+      "linhas_lidas": 1010359,
+      "numerador": 72,
+      "denominador": 83
+    },
+    "DENGBR22.csv.zip": {
+      "linhas_lidas": 1393877,
+      "numerador": 5583,
+      "denominador": 5133
+    },
+    "DENGBR23.csv.zip": {
+      "linhas_lidas": 1508653,
+      "numerador": 6591,
+      "denominador": 6307
+    },
+    "DENGBR24.csv.zip": {
+      "linhas_lidas": 6434137,
+      "numerador": 2,
+      "denominador": 1
+    }
+  },
+  "ancora": {
+    "soma_casos_confirmados_tabela_final_semanas_2018_2023": 12785,
+    "valor_esperado": 12785,
+    "numerador_menos_ancora_pct": -0.054751662104028154,
+    "tolerancia_pct": 1.0
+  },
+  "ancora_ok": true,
+  "definicao": {
+    "confirmado": "CLASSI_FIN em 10, 11 ou 12",
+    "porto_alegre": "431490",
+    "periodo_dos_sintomas": "DT_SIN_PRI de 2018 a 2023",
+    "r": "confirmados por ID_MUNICIP / confirmados por ID_MN_RESI",
+    "evento": "semana com real > L (estrito) e alarme com previsto > L (estrito), como em calcular_alarme.py antigo",
+    "anos_da_avaliacao": 1.96
+  }
+}

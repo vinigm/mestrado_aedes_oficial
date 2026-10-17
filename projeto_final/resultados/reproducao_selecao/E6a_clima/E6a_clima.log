@@ -1,0 +1,5 @@
+2026-10-12 18:46:20 inicio E6a: 8 do nucleo, 42 candidatas de clima, 6 do vetor; horizontes=[1, 4, 8]
+2026-10-12 18:46:22 variante=identico_ao_antigo top6=['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4'] reproduz_na_ordem=True mesmo_conjunto=True margem_6a_7a=332633.6 (7a=temp_amplitude_media)
+2026-10-12 18:46:22 variante=um_processo_sem_semente top6=['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4'] reproduz_na_ordem=True mesmo_conjunto=True margem_6a_7a=332633.6 (7a=temp_amplitude_media)
+2026-10-12 18:46:22 variante=um_processo_semente_42 top6=['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4'] reproduz_na_ordem=True mesmo_conjunto=True margem_6a_7a=332633.6 (7a=temp_amplitude_media)
+2026-10-12 18:46:22 fim E6a: 3 variantes; resumo em /Users/viniciusguerra/Library/CloudStorage/GoogleDrive-vinigm@gmail.com/Meu Drive/Mestrado/Pesquisa/Meu_Projeto/projeto_final/resultados/reproducao_selecao/E6a_clima/resumo.json

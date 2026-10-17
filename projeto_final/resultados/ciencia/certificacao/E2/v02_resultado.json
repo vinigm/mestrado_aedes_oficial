@@ -1,0 +1,249 @@
+{
+ "so_vetor|h1|f5|pos104": {
+  "colunas_modelo": 10,
+  "linhas_matriz": 404,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 104,
+  "meu": 1.6771559629316404,
+  "salvo": 1.6771559629316404,
+  "dif": 0.0
+ },
+ "so_vetor|h1|f5|pos322": {
+  "colunas_modelo": 10,
+  "linhas_matriz": 404,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 322,
+  "meu": 10.790997757406233,
+  "salvo": 10.790997757406233,
+  "dif": 0.0
+ },
+ "so_vetor|h1|f20|pos104": {
+  "colunas_modelo": 10,
+  "linhas_matriz": 404,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 104,
+  "meu": 8.394506035387419,
+  "salvo": 8.394506035387419,
+  "dif": 0.0
+ },
+ "so_vetor|h1|f20|pos322": {
+  "colunas_modelo": 10,
+  "linhas_matriz": 404,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 322,
+  "meu": 23.182712566748478,
+  "salvo": 23.18271256674848,
+  "dif": 3.552713678800501e-15
+ },
+ "so_vetor|h12|f5|pos104": {
+  "colunas_modelo": 10,
+  "linhas_matriz": 397,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 93,
+  "meu": 23.270333969291006,
+  "salvo": 23.27033396929101,
+  "dif": 3.552713678800501e-15
+ },
+ "so_vetor|h12|f5|pos315": {
+  "colunas_modelo": 10,
+  "linhas_matriz": 397,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 304,
+  "meu": 248.15301898207167,
+  "salvo": 248.15301898207167,
+  "dif": 0.0
+ },
+ "so_vetor|h12|f20|pos104": {
+  "colunas_modelo": 10,
+  "linhas_matriz": 397,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 93,
+  "meu": 33.714848362311734,
+  "salvo": 33.714848362311734,
+  "dif": 0.0
+ },
+ "so_vetor|h12|f20|pos315": {
+  "colunas_modelo": 10,
+  "linhas_matriz": 397,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 304,
+  "meu": 423.4702298759828,
+  "salvo": 423.4702298759828,
+  "dif": 0.0
+ },
+ "sem_casos|h1|f5|pos104": {
+  "colunas_modelo": 16,
+  "linhas_matriz": 404,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 104,
+  "meu": 2.8252600728489567,
+  "salvo": 2.8252600728489567,
+  "dif": 0.0
+ },
+ "sem_casos|h1|f5|pos322": {
+  "colunas_modelo": 16,
+  "linhas_matriz": 404,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 322,
+  "meu": 6.318616438994969,
+  "salvo": 6.318616438994969,
+  "dif": 0.0
+ },
+ "sem_casos|h1|f20|pos104": {
+  "colunas_modelo": 16,
+  "linhas_matriz": 404,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 104,
+  "meu": 7.9686017864734335,
+  "salvo": 7.9686017864734335,
+  "dif": 0.0
+ },
+ "sem_casos|h1|f20|pos322": {
+  "colunas_modelo": 16,
+  "linhas_matriz": 404,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 322,
+  "meu": 16.70583543587532,
+  "salvo": 16.70583543587532,
+  "dif": 0.0
+ },
+ "sem_casos|h12|f5|pos104": {
+  "colunas_modelo": 16,
+  "linhas_matriz": 397,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 93,
+  "meu": 17.537838766056037,
+  "salvo": 17.537838766056037,
+  "dif": 0.0
+ },
+ "sem_casos|h12|f5|pos315": {
+  "colunas_modelo": 16,
+  "linhas_matriz": 397,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 304,
+  "meu": 62.23707793246503,
+  "salvo": 62.23707793246503,
+  "dif": 0.0
+ },
+ "sem_casos|h12|f20|pos104": {
+  "colunas_modelo": 16,
+  "linhas_matriz": 397,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 93,
+  "meu": 28.198769053313676,
+  "salvo": 28.198769053313676,
+  "dif": 0.0
+ },
+ "sem_casos|h12|f20|pos315": {
+  "colunas_modelo": 16,
+  "linhas_matriz": 397,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 304,
+  "meu": 239.3013719434024,
+  "salvo": 239.3013719434024,
+  "dif": 0.0
+ },
+ "so_calendario|h1|f5|pos104": {
+  "colunas_modelo": 4,
+  "linhas_matriz": 416,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 104,
+  "meu": 1.4228175596637265,
+  "salvo": 1.4228175596637265,
+  "dif": 0.0
+ },
+ "so_calendario|h1|f5|pos327": {
+  "colunas_modelo": 4,
+  "linhas_matriz": 416,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 327,
+  "meu": 145.58341850032988,
+  "salvo": 145.58341850032988,
+  "dif": 0.0
+ },
+ "so_calendario|h1|f20|pos104": {
+  "colunas_modelo": 4,
+  "linhas_matriz": 416,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 104,
+  "meu": 5.652879777299452,
+  "salvo": 5.652879777299452,
+  "dif": 0.0
+ },
+ "so_calendario|h1|f20|pos327": {
+  "colunas_modelo": 4,
+  "linhas_matriz": 416,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 327,
+  "meu": 263.93514904561374,
+  "salvo": 263.93514904561374,
+  "dif": 0.0
+ },
+ "so_calendario|h12|f5|pos104": {
+  "colunas_modelo": 4,
+  "linhas_matriz": 416,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 93,
+  "meu": 0.9999995562093498,
+  "salvo": 0.9999995562093498,
+  "dif": 0.0
+ },
+ "so_calendario|h12|f5|pos327": {
+  "colunas_modelo": 4,
+  "linhas_matriz": 416,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 316,
+  "meu": 153.60610842083585,
+  "salvo": 153.60610842083585,
+  "dif": 0.0
+ },
+ "so_calendario|h12|f20|pos104": {
+  "colunas_modelo": 4,
+  "linhas_matriz": 416,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 93,
+  "meu": 19.04300721780198,
+  "salvo": 19.04300721780198,
+  "dif": 0.0
+ },
+ "so_calendario|h12|f20|pos327": {
+  "colunas_modelo": 4,
+  "linhas_matriz": 416,
+  "datas_ok": true,
+  "real_ok": true,
+  "n_treino": 316,
+  "meu": 243.85669262025908,
+  "salvo": 243.85669262025908,
+  "dif": 0.0
+ },
+ "controle_negativo_so_vetor_h12_f5": {
+  "salvo": 248.15301898207167,
+  "corte_ingenuo": 830.7645624692042,
+  "dif_ingenuo": 582.6115434871325,
+  "com_coluna_casos": 208.54114504707053,
+  "dif_com_casos": 39.61187393500114
+ }
+}

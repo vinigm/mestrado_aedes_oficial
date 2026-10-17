@@ -1,0 +1,206 @@
+2026-10-12 18:46:18 inicio: 1 configuracao(oes), horizontes=[12]
+2026-10-12 18:46:18 inicio: 1 configuracao(oes), horizontes=[8]
+2026-10-12 18:46:18 inicio: 1 configuracao(oes), horizontes=[1]
+2026-10-12 18:46:18 inicio: 1 configuracao(oes), horizontes=[4]
+2026-10-12 18:47:00 pedaco hist_gradient_boosting|quantil_0.85|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=42.0s
+2026-10-12 18:47:00 fim do pedaco: faltam 119 de 120 parciais; juncao adiada.
+2026-10-12 18:47:01 pedaco hist_gradient_boosting|quantil_0.85|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=42.8s
+2026-10-12 18:47:01 fim do pedaco: faltam 118 de 120 parciais; juncao adiada.
+2026-10-12 18:47:02 pedaco hist_gradient_boosting|quantil_0.85|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=43.8s
+2026-10-12 18:47:02 fim do pedaco: faltam 117 de 120 parciais; juncao adiada.
+2026-10-12 18:47:03 pedaco hist_gradient_boosting|quantil_0.85|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=45.2s
+2026-10-12 18:47:03 fim do pedaco: faltam 116 de 120 parciais; juncao adiada.
+2026-10-12 18:47:07 --so-trava: passou=True diferenca_maxima_do_previsto=2.2737367544323206e-13
+2026-10-12 18:50:18 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:50:18 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:50:25 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:50:54 pedaco hist_gradient_boosting|padrao|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=36.2s
+2026-10-12 18:51:01 pedaco hist_gradient_boosting|padrao|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=42.7s
+2026-10-12 18:51:13 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:51:13 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:51:13 pulado (parcial ja existe): previsoes_hist_gradient_boosting_padrao_M0_sem_vetor_h01.csv
+2026-10-12 18:51:13 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:51:13 pulado (parcial ja existe): previsoes_hist_gradient_boosting_padrao_M1_com_vetor_h01.csv
+2026-10-12 18:51:35 pedaco hist_gradient_boosting|quantil_0.85|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=69.6s
+2026-10-12 18:51:37 pedaco hist_gradient_boosting|padrao|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=43.0s
+2026-10-12 18:51:51 pedaco hist_gradient_boosting|padrao|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=50.2s
+2026-10-12 18:52:02 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:52:02 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:52:02 pulado (parcial ja existe): previsoes_hist_gradient_boosting_padrao_M0_sem_vetor_h01.csv
+2026-10-12 18:52:02 pulado (parcial ja existe): previsoes_hist_gradient_boosting_padrao_M0_sem_vetor_h04.csv
+2026-10-12 18:52:02 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:52:02 pulado (parcial ja existe): previsoes_hist_gradient_boosting_padrao_M1_com_vetor_h01.csv
+2026-10-12 18:52:02 pulado (parcial ja existe): previsoes_hist_gradient_boosting_padrao_M1_com_vetor_h04.csv
+2026-10-12 18:52:29 pedaco hist_gradient_boosting|padrao|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=26.7s
+2026-10-12 18:52:36 pedaco hist_gradient_boosting|padrao|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=33.3s
+2026-10-12 18:53:04 pedaco hist_gradient_boosting|padrao|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=34.6s
+2026-10-12 18:53:04 fim do pedaco: faltam 108 de 120 parciais; juncao adiada.
+2026-10-12 18:53:05 pedaco hist_gradient_boosting|quantil_0.70|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=62.3s
+2026-10-12 18:53:06 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:53:08 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:53:17 pedaco hist_gradient_boosting|padrao|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=40.9s
+2026-10-12 18:53:17 fim do pedaco: faltam 106 de 120 parciais; juncao adiada.
+2026-10-12 18:53:19 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:54:14 pedaco hist_gradient_boosting|quantil_0.70|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=69.4s
+2026-10-12 18:54:17 pedaco hist_gradient_boosting|quantil_0.80|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=69.1s
+2026-10-12 18:54:21 pedaco hist_gradient_boosting|quantil_0.70|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=74.8s
+2026-10-12 18:54:31 pedaco hist_gradient_boosting|quantil_0.80|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=72.2s
+2026-10-12 18:55:24 pedaco hist_gradient_boosting|quantil_0.70|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=70.0s
+2026-10-12 18:55:26 pedaco hist_gradient_boosting|quantil_0.80|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=69.3s
+2026-10-12 18:55:34 pedaco hist_gradient_boosting|quantil_0.70|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=73.7s
+2026-10-12 18:55:42 pedaco hist_gradient_boosting|quantil_0.80|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=71.5s
+2026-10-12 18:56:30 pedaco hist_gradient_boosting|quantil_0.70|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=66.3s
+2026-10-12 18:56:30 fim do pedaco: faltam 97 de 120 parciais; juncao adiada.
+2026-10-12 18:56:32 pedaco hist_gradient_boosting|quantil_0.80|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=66.1s
+2026-10-12 18:56:33 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:56:33 pulado (parcial ja existe): previsoes_hist_gradient_boosting_quantil_0.85_M0_sem_vetor_h01.csv
+2026-10-12 18:56:46 pedaco hist_gradient_boosting|quantil_0.70|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=71.7s
+2026-10-12 18:56:52 pedaco hist_gradient_boosting|quantil_0.80|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=69.4s
+2026-10-12 18:57:34 pedaco hist_gradient_boosting|quantil_0.85|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=62.0s
+2026-10-12 18:57:40 pedaco hist_gradient_boosting|quantil_0.80|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=67.4s
+2026-10-12 18:57:40 fim do pedaco: faltam 92 de 120 parciais; juncao adiada.
+2026-10-12 18:57:42 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:57:42 pulado (parcial ja existe): previsoes_hist_gradient_boosting_quantil_0.85_M1_com_vetor_h01.csv
+2026-10-12 18:57:42 pulado (parcial ja existe): previsoes_hist_gradient_boosting_quantil_0.85_M1_com_vetor_h04.csv
+2026-10-12 18:57:42 pulado (parcial ja existe): previsoes_hist_gradient_boosting_quantil_0.85_M1_com_vetor_h08.csv
+2026-10-12 18:57:42 pulado (parcial ja existe): previsoes_hist_gradient_boosting_quantil_0.85_M1_com_vetor_h12.csv
+2026-10-12 18:57:42 fim do pedaco: faltam 92 de 120 parciais; juncao adiada.
+2026-10-12 18:57:44 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:57:57 pedaco hist_gradient_boosting|quantil_0.70|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=71.0s
+2026-10-12 18:57:57 fim do pedaco: faltam 91 de 120 parciais; juncao adiada.
+2026-10-12 18:57:59 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:58:01 pedaco hist_gradient_boosting|quantil_0.80|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=69.3s
+2026-10-12 18:58:01 fim do pedaco: faltam 90 de 120 parciais; juncao adiada.
+2026-10-12 18:58:03 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:58:35 pedaco hist_gradient_boosting|quantil_0.85|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=60.6s
+2026-10-12 18:58:40 pedaco hist_gradient_boosting|quantil_0.90|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=56.5s
+2026-10-12 18:58:49 pedaco gradient_boosting|padrao|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=46.3s
+2026-10-12 18:58:58 pedaco hist_gradient_boosting|quantil_0.90|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=58.8s
+2026-10-12 18:59:34 pedaco hist_gradient_boosting|quantil_0.85|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=59.3s
+2026-10-12 18:59:34 fim do pedaco: faltam 85 de 120 parciais; juncao adiada.
+2026-10-12 18:59:35 pedaco gradient_boosting|padrao|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=45.9s
+2026-10-12 18:59:36 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:59:38 pedaco hist_gradient_boosting|quantil_0.90|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=57.4s
+2026-10-12 18:59:58 pedaco hist_gradient_boosting|quantil_0.90|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=60.4s
+2026-10-12 19:00:20 pedaco gradient_boosting|padrao|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=44.5s
+2026-10-12 19:00:37 pedaco hist_gradient_boosting|quantil_0.90|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=59.1s
+2026-10-12 19:00:38 pedaco gradient_boosting|padrao|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=61.5s
+2026-10-12 19:00:58 pedaco hist_gradient_boosting|quantil_0.90|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=59.5s
+2026-10-12 19:01:03 pedaco gradient_boosting|padrao|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=43.6s
+2026-10-12 19:01:03 fim do pedaco: faltam 77 de 120 parciais; juncao adiada.
+2026-10-12 19:01:05 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:01:35 pedaco hist_gradient_boosting|quantil_0.90|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=58.3s
+2026-10-12 19:01:35 fim do pedaco: faltam 76 de 120 parciais; juncao adiada.
+2026-10-12 19:01:37 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:01:37 pedaco gradient_boosting|padrao|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=59.2s
+2026-10-12 19:01:57 pedaco hist_gradient_boosting|quantil_0.90|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=59.4s
+2026-10-12 19:01:57 fim do pedaco: faltam 74 de 120 parciais; juncao adiada.
+2026-10-12 19:01:59 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:02:33 pedaco gradient_boosting|quantil_0.70|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=87.3s
+2026-10-12 19:02:34 pedaco gradient_boosting|padrao|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=57.1s
+2026-10-12 19:03:16 pedaco gradient_boosting|quantil_0.70|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=98.6s
+2026-10-12 19:03:24 pedaco gradient_boosting|quantil_0.80|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=85.0s
+2026-10-12 19:03:29 pedaco gradient_boosting|padrao|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=55.1s
+2026-10-12 19:03:29 fim do pedaco: faltam 69 de 120 parciais; juncao adiada.
+2026-10-12 19:03:31 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:03:59 pedaco gradient_boosting|quantil_0.70|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=86.2s
+2026-10-12 19:04:48 pedaco gradient_boosting|quantil_0.80|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=84.4s
+2026-10-12 19:04:52 pedaco gradient_boosting|quantil_0.70|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=96.3s
+2026-10-12 19:05:09 pedaco gradient_boosting|quantil_0.80|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=97.3s
+2026-10-12 19:05:24 pedaco gradient_boosting|quantil_0.70|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=85.0s
+2026-10-12 19:06:12 pedaco gradient_boosting|quantil_0.80|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=83.4s
+2026-10-12 19:06:25 pedaco gradient_boosting|quantil_0.70|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=93.3s
+2026-10-12 19:06:43 pedaco gradient_boosting|quantil_0.70|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=78.6s
+2026-10-12 19:06:43 fim do pedaco: faltam 61 de 120 parciais; juncao adiada.
+2026-10-12 19:06:43 pedaco gradient_boosting|quantil_0.80|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=94.7s
+2026-10-12 19:06:45 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:07:30 pedaco gradient_boosting|quantil_0.80|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=78.4s
+2026-10-12 19:07:30 fim do pedaco: faltam 59 de 120 parciais; juncao adiada.
+2026-10-12 19:07:32 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:07:57 pedaco gradient_boosting|quantil_0.70|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=91.6s
+2026-10-12 19:07:57 fim do pedaco: faltam 58 de 120 parciais; juncao adiada.
+2026-10-12 19:07:59 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:08:10 pedaco gradient_boosting|quantil_0.85|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=85.0s
+2026-10-12 19:08:16 pedaco gradient_boosting|quantil_0.80|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=92.6s
+2026-10-12 19:09:12 pedaco gradient_boosting|quantil_0.85|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=99.5s
+2026-10-12 19:09:23 pedaco gradient_boosting|quantil_0.90|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=84.0s
+2026-10-12 19:09:39 pedaco gradient_boosting|quantil_0.85|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=89.4s
+2026-10-12 19:09:53 pedaco gradient_boosting|quantil_0.80|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=96.9s
+2026-10-12 19:09:53 fim do pedaco: faltam 52 de 120 parciais; juncao adiada.
+2026-10-12 19:09:56 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:10:55 pedaco gradient_boosting|quantil_0.90|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=92.5s
+2026-10-12 19:10:57 pedaco gradient_boosting|quantil_0.85|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=105.3s
+2026-10-12 19:11:07 pedaco gradient_boosting|quantil_0.85|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=87.5s
+2026-10-12 19:11:33 pedaco gradient_boosting|quantil_0.90|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=97.4s
+2026-10-12 19:12:12 pedaco gradient_boosting|quantil_0.90|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=76.9s
+2026-10-12 19:12:23 pedaco gradient_boosting|quantil_0.85|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=75.7s
+2026-10-12 19:12:23 fim do pedaco: faltam 46 de 120 parciais; juncao adiada.
+2026-10-12 19:12:25 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:12:26 pedaco gradient_boosting|quantil_0.85|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=88.8s
+2026-10-12 19:13:02 pedaco gradient_boosting|quantil_0.90|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=88.3s
+2026-10-12 19:13:25 pedaco gradient_boosting|quantil_0.90|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=73.2s
+2026-10-12 19:13:25 fim do pedaco: faltam 43 de 120 parciais; juncao adiada.
+2026-10-12 19:13:28 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:13:50 pedaco gradient_boosting|quantil_0.85|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=84.8s
+2026-10-12 19:13:50 fim do pedaco: faltam 42 de 120 parciais; juncao adiada.
+2026-10-12 19:13:52 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:14:20 pedaco gradient_boosting|quantil_0.90|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=78.1s
+2026-10-12 19:15:23 pedaco lightgbm|padrao|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=177.7s
+2026-10-12 19:15:32 pedaco gradient_boosting|quantil_0.90|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=72.4s
+2026-10-12 19:15:32 fim do pedaco: faltam 39 de 120 parciais; juncao adiada.
+2026-10-12 19:15:34 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:17:50 pedaco lightgbm|padrao|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=262.4s
+2026-10-12 19:18:01 pedaco lightgbm|quantil_0.70|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=249.3s
+2026-10-12 19:20:26 pedaco lightgbm|quantil_0.70|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=291.8s
+2026-10-12 19:21:04 pedaco lightgbm|padrao|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=341.1s
+2026-10-12 19:23:04 pedaco lightgbm|quantil_0.70|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=303.1s
+2026-10-12 19:23:25 pedaco lightgbm|padrao|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=335.5s
+2026-10-12 19:25:11 pedaco lightgbm|quantil_0.70|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=284.5s
+2026-10-12 19:26:41 pedaco lightgbm|padrao|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=336.7s
+2026-10-12 19:28:02 pedaco lightgbm|quantil_0.70|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=297.7s
+2026-10-12 19:28:55 pedaco lightgbm|padrao|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=329.1s
+2026-10-12 19:29:51 pedaco lightgbm|quantil_0.70|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=280.8s
+2026-10-12 19:32:05 pedaco lightgbm|padrao|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=324.1s
+2026-10-12 19:32:05 fim do pedaco: faltam 27 de 120 parciais; juncao adiada.
+2026-10-12 19:32:07 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:32:48 pedaco lightgbm|quantil_0.70|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=285.9s
+2026-10-12 19:32:48 fim do pedaco: faltam 26 de 120 parciais; juncao adiada.
+2026-10-12 19:32:50 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:34:02 pedaco lightgbm|padrao|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=307.8s
+2026-10-12 19:34:02 fim do pedaco: faltam 25 de 120 parciais; juncao adiada.
+2026-10-12 19:34:05 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:34:22 pedaco lightgbm|quantil_0.70|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=270.8s
+2026-10-12 19:34:22 fim do pedaco: faltam 24 de 120 parciais; juncao adiada.
+2026-10-12 19:34:24 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:37:12 pedaco lightgbm|quantil_0.80|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=305.7s
+2026-10-12 19:37:42 pedaco lightgbm|quantil_0.80|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=292.5s
+2026-10-12 19:38:57 pedaco lightgbm|quantil_0.85|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=291.8s
+2026-10-12 19:39:02 pedaco lightgbm|quantil_0.85|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=277.5s
+2026-10-12 19:42:18 pedaco lightgbm|quantil_0.80|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=305.8s
+2026-10-12 19:42:30 pedaco lightgbm|quantil_0.80|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=287.9s
+2026-10-12 19:43:33 pedaco lightgbm|quantil_0.85|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=271.2s
+2026-10-12 19:43:47 pedaco lightgbm|quantil_0.85|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=290.1s
+2026-10-12 19:47:02 pedaco lightgbm|quantil_0.80|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=271.5s
+2026-10-12 19:47:11 pedaco lightgbm|quantil_0.80|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=292.9s
+2026-10-12 19:47:46 pedaco lightgbm|quantil_0.85|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=253.6s
+2026-10-12 19:48:26 pedaco lightgbm|quantil_0.85|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=279.2s
+2026-10-12 19:51:28 pedaco lightgbm|quantil_0.80|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=266.5s
+2026-10-12 19:51:28 fim do pedaco: faltam 11 de 120 parciais; juncao adiada.
+2026-10-12 19:51:31 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:51:57 pedaco lightgbm|quantil_0.85|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=250.7s
+2026-10-12 19:51:57 pedaco lightgbm|quantil_0.80|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=286.1s
+2026-10-12 19:51:57 fim do pedaco: faltam 9 de 120 parciais; juncao adiada.
+2026-10-12 19:51:57 fim do pedaco: faltam 9 de 120 parciais; juncao adiada.
+2026-10-12 19:51:59 inicio: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:52:44 pedaco lightgbm|quantil_0.85|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=257.8s
+2026-10-12 19:52:44 fim do pedaco: faltam 8 de 120 parciais; juncao adiada.
+2026-10-12 19:54:22 pedaco lightgbm|quantil_0.90|M0_sem_vetor h= 1 linhas_da_matriz=411 previsoes=307 tempo=170.9s
+2026-10-12 19:54:29 pedaco lightgbm|quantil_0.90|M1_com_vetor h= 1 linhas_da_matriz=399 previsoes=295 tempo=150.2s
+2026-10-12 19:56:48 pedaco lightgbm|quantil_0.90|M1_com_vetor h= 4 linhas_da_matriz=396 previsoes=292 tempo=139.5s
+2026-10-12 19:56:51 pedaco lightgbm|quantil_0.90|M0_sem_vetor h= 4 linhas_da_matriz=408 previsoes=304 tempo=149.2s
+2026-10-12 19:59:00 pedaco lightgbm|quantil_0.90|M1_com_vetor h= 8 linhas_da_matriz=392 previsoes=288 tempo=131.7s
+2026-10-12 19:59:13 pedaco lightgbm|quantil_0.90|M0_sem_vetor h= 8 linhas_da_matriz=404 previsoes=300 tempo=142.2s
+2026-10-12 20:01:12 pedaco lightgbm|quantil_0.90|M1_com_vetor h=12 linhas_da_matriz=388 previsoes=284 tempo=132.0s
+2026-10-12 20:01:12 fim do pedaco: faltam 1 de 120 parciais; juncao adiada.
+2026-10-12 20:01:31 pedaco lightgbm|quantil_0.90|M0_sem_vetor h=12 linhas_da_matriz=400 previsoes=296 tempo=137.4s
+2026-10-12 20:01:32 juncao: 35490 previsoes; trava OK; ranking: 1o=hist_gradient_boosting quantil_0.85 M1_com_vetor mae_cal=42.0187; tempo deste processo=600.7s

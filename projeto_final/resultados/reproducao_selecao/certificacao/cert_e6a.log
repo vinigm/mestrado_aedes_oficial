@@ -1,0 +1,28 @@
+ultima semana com caso crua: 2026-04-26 00:00:00 limite: 2026-02-01 00:00:00 casos nao nulos apos corte: 416
+8 ['casos', 'casos_lag1', 'casos_lag2', 'casos_lag3', 'casos_lag4', 'casos_mm4', 'sem_sin', 'sem_cos']
+42 6
+h 1 validas 411 treino 246
+h 4 validas 408 treino 244
+h 8 validas 404 treino 242
+a_nj-1_semsemente ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4', 'temp_amplitude_media', 'umid_media_lag2'] ['5613582', '5174219', '4135529', '3402577', '3070268', '2353990', '2021356', '1814675']
+h 1 validas 411 treino 246
+h 4 validas 408 treino 244
+h 8 validas 404 treino 242
+b_nj1_semsemente ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4', 'temp_amplitude_media', 'umid_media_lag2'] ['5613582', '5174219', '4135529', '3402577', '3070268', '2353990', '2021356', '1814675']
+h 1 validas 411 treino 246
+h 4 validas 408 treino 244
+h 8 validas 404 treino 242
+c_nj1_s42 ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4', 'temp_amplitude_media', 'umid_media_lag2'] ['5613582', '5174219', '4135529', '3402577', '3070268', '2353990', '2021356', '1814675']
+h 1 validas 411 treino 246
+h 4 validas 408 treino 244
+h 8 validas 404 treino 242
+d_nj1_s42_repetida ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4', 'temp_amplitude_media', 'umid_media_lag2'] ['5613582', '5174219', '4135529', '3402577', '3070268', '2353990', '2021356', '1814675']
+h 1 validas 411 treino 246
+h 4 validas 408 treino 244
+h 8 validas 404 treino 242
+e_nj1_s7 ['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3', 'pressao_media_lag4', 'temp_amplitude_media', 'umid_media_lag2'] ['5613582', '5174219', '4135529', '3402577', '3070268', '2353990', '2021356', '1814675']
+a_nj-1_semsemente dif max vs executor identico_ao_antigo: 2.3283064365386963e-10
+b_nj1_semsemente dif max vs executor identico_ao_antigo: 2.3283064365386963e-10
+c_nj1_s42 dif max vs executor identico_ao_antigo: 2.3283064365386963e-10
+d_nj1_s42_repetida dif max vs executor identico_ao_antigo: 2.3283064365386963e-10
+e_nj1_s7 dif max vs executor identico_ao_antigo: 2.3283064365386963e-10

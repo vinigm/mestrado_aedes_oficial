@@ -1,0 +1,15 @@
+2026-10-12 20:14:16 inicio E5b: L convertido=447.065403; sem conversao=421.0
+2026-10-12 20:14:16 grade: 306 linhas (h x semana-alvo); previsoes das reguas: 612 linhas (a regua sem previsao sai da conta)
+2026-10-12 20:14:16 limiar=447.065 regua_sazonal h=1: n=102 surtos=24 VP=17 FN=7 FP=1 sens=0.7083 prec=0.9444 falsos_por_ano=0.5102
+2026-10-12 20:14:16 limiar=447.065 persistencia h=1: n=102 surtos=24 VP=22 FN=2 FP=1 sens=0.9167 prec=0.9565 falsos_por_ano=0.5102
+2026-10-12 20:14:16 limiar=447.065 regua_sazonal h=4: n=102 surtos=27 VP=20 FN=7 FP=1 sens=0.7407 prec=0.9524 falsos_por_ano=0.5102
+2026-10-12 20:14:16 limiar=447.065 persistencia h=4: n=102 surtos=27 VP=19 FN=8 FP=4 sens=0.7037 prec=0.8261 falsos_por_ano=2.0408
+2026-10-12 20:14:16 limiar=447.065 regua_sazonal h=8: n=102 surtos=28 VP=21 FN=7 FP=1 sens=0.7500 prec=0.9545 falsos_por_ano=0.5102
+2026-10-12 20:14:16 limiar=447.065 persistencia h=8: n=102 surtos=28 VP=12 FN=16 FP=11 sens=0.4286 prec=0.5217 falsos_por_ano=5.6122
+2026-10-12 20:14:16 limiar=421.000 regua_sazonal h=1: n=102 surtos=24 VP=17 FN=7 FP=1 sens=0.7083 prec=0.9444 falsos_por_ano=0.5102
+2026-10-12 20:14:16 limiar=421.000 persistencia h=1: n=102 surtos=24 VP=22 FN=2 FP=1 sens=0.9167 prec=0.9565 falsos_por_ano=0.5102
+2026-10-12 20:14:16 limiar=421.000 regua_sazonal h=4: n=102 surtos=27 VP=20 FN=7 FP=1 sens=0.7407 prec=0.9524 falsos_por_ano=0.5102
+2026-10-12 20:14:16 limiar=421.000 persistencia h=4: n=102 surtos=27 VP=19 FN=8 FP=4 sens=0.7037 prec=0.8261 falsos_por_ano=2.0408
+2026-10-12 20:14:16 limiar=421.000 regua_sazonal h=8: n=102 surtos=28 VP=21 FN=7 FP=1 sens=0.7500 prec=0.9545 falsos_por_ano=0.5102
+2026-10-12 20:14:16 limiar=421.000 persistencia h=8: n=102 surtos=28 VP=12 FN=16 FP=11 sens=0.4286 prec=0.5217 falsos_por_ano=5.6122
+2026-10-12 20:14:16 fim E5b: 12 linhas em alarme_reguas.csv; ancoras da E5 conferidas (n=102; semanas de surto {1: 24, 4: 27, 8: 28})

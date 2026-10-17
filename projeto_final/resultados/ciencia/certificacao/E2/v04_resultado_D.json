@@ -1,0 +1,114 @@
+{
+ "completo|f5|h4": {
+  "n": 292,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 38.8
+ },
+ "completo|f20|h4": {
+  "n": 292,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 26.5
+ },
+ "completo|f5|h8": {
+  "n": 288,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 37.3
+ },
+ "completo|f20|h8": {
+  "n": 288,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 23.3
+ },
+ "sem_casos|f5|h4": {
+  "n": 297,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 40.1
+ },
+ "sem_casos|f20|h4": {
+  "n": 297,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 25.0
+ },
+ "sem_casos|f5|h8": {
+  "n": 293,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 37.3
+ },
+ "sem_casos|f20|h8": {
+  "n": 293,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 23.4
+ },
+ "sem_clima|f5|h4": {
+  "n": 292,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 35.5
+ },
+ "sem_clima|f20|h4": {
+  "n": 292,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 23.3
+ },
+ "sem_clima|f5|h8": {
+  "n": 288,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 36.2
+ },
+ "sem_clima|f20|h8": {
+  "n": 288,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 20.6
+ },
+ "sem_vetor|f5|h4": {
+  "n": 304,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 34.1
+ },
+ "sem_vetor|f20|h4": {
+  "n": 304,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 22.4
+ },
+ "sem_vetor|f5|h8": {
+  "n": 300,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 34.5
+ },
+ "sem_vetor|f20|h8": {
+  "n": 300,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 21.8
+ }
+}

@@ -1,0 +1,10 @@
+# Ambiente oficial do projeto_final: Python 3.14.4 (o python3 do sistema).
+# Versoes FIXADAS (==): versao diferente de scikit-learn muda resultado em silencio.
+# Conferido na execucao por testes/test_ambiente.py.
+pandas==3.0.2
+numpy==2.4.4
+scikit-learn==1.8.0
+scipy==1.17.1
+matplotlib==3.10.9
+lightgbm==4.6.0
+pytest==9.1.1

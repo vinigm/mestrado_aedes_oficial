@@ -1,0 +1,129 @@
+2026-10-12 18:50:18 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:50:58 pedaco fase1 lr0.05_it250_folhas15_min5 h= 1 linhas_da_matriz=297 previsoes=193 tempo=39.6s
+2026-10-12 18:51:13 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:51:13 pulado (parcial ja existe): fase1_lr0.05_it250_folhas15_min5_h01.csv
+2026-10-12 18:51:43 pedaco fase1 lr0.05_it250_folhas15_min5 h= 4 linhas_da_matriz=294 previsoes=190 tempo=45.4s
+2026-10-12 18:52:02 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 18:52:02 pulado (parcial ja existe): fase1_lr0.05_it250_folhas15_min5_h01.csv
+2026-10-12 18:52:02 pulado (parcial ja existe): fase1_lr0.05_it250_folhas15_min5_h04.csv
+2026-10-12 18:52:30 pedaco fase1 lr0.05_it250_folhas15_min5 h= 8 linhas_da_matriz=290 previsoes=186 tempo=28.0s
+2026-10-12 18:53:06 pedaco fase1 lr0.05_it250_folhas15_min5 h=12 linhas_da_matriz=286 previsoes=182 tempo=35.8s
+2026-10-12 18:53:06 fim do pedaco: faltam 68 de 72 parciais; juncao adiada.
+2026-10-12 19:51:59 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:52:21 pedaco fase1 lr0.05_it250_folhas15_min20 h= 1 linhas_da_matriz=297 previsoes=193 tempo=22.7s
+2026-10-12 19:52:44 pedaco fase1 lr0.05_it250_folhas15_min20 h= 4 linhas_da_matriz=294 previsoes=190 tempo=22.3s
+2026-10-12 19:52:45 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:53:02 pedaco fase1 lr0.05_it250_folhas15_min20 h= 8 linhas_da_matriz=290 previsoes=186 tempo=18.4s
+2026-10-12 19:53:07 pedaco fase1 lr0.05_it250_folhas7_min5 h= 1 linhas_da_matriz=297 previsoes=193 tempo=22.1s
+2026-10-12 19:53:19 pedaco fase1 lr0.05_it250_folhas15_min20 h=12 linhas_da_matriz=286 previsoes=182 tempo=16.7s
+2026-10-12 19:53:19 fim do pedaco: faltam 63 de 72 parciais; juncao adiada.
+2026-10-12 19:53:20 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:53:28 pedaco fase1 lr0.05_it250_folhas7_min5 h= 4 linhas_da_matriz=294 previsoes=190 tempo=20.4s
+2026-10-12 19:53:37 pedaco fase1 lr0.05_it250_folhas7_min20 h= 1 linhas_da_matriz=297 previsoes=193 tempo=17.3s
+2026-10-12 19:53:46 pedaco fase1 lr0.05_it250_folhas7_min5 h= 8 linhas_da_matriz=290 previsoes=186 tempo=18.2s
+2026-10-12 19:53:54 pedaco fase1 lr0.05_it250_folhas7_min20 h= 4 linhas_da_matriz=294 previsoes=190 tempo=16.2s
+2026-10-12 19:54:06 pedaco fase1 lr0.05_it250_folhas7_min5 h=12 linhas_da_matriz=286 previsoes=182 tempo=19.6s
+2026-10-12 19:54:06 fim do pedaco: faltam 58 de 72 parciais; juncao adiada.
+2026-10-12 19:54:07 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:54:10 pedaco fase1 lr0.05_it250_folhas7_min20 h= 8 linhas_da_matriz=290 previsoes=186 tempo=16.3s
+2026-10-12 19:54:25 pedaco fase1 lr0.05_it250_folhas7_min20 h=12 linhas_da_matriz=286 previsoes=182 tempo=14.9s
+2026-10-12 19:54:25 fim do pedaco: faltam 56 de 72 parciais; juncao adiada.
+2026-10-12 19:54:26 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:54:43 pedaco fase1 lr0.05_it250_folhas31_min5 h= 1 linhas_da_matriz=297 previsoes=193 tempo=36.0s
+2026-10-12 19:54:44 pedaco fase1 lr0.05_it250_folhas31_min20 h= 1 linhas_da_matriz=297 previsoes=193 tempo=18.2s
+2026-10-12 19:55:03 pedaco fase1 lr0.05_it250_folhas31_min20 h= 4 linhas_da_matriz=294 previsoes=190 tempo=18.6s
+2026-10-12 19:55:20 pedaco fase1 lr0.05_it250_folhas31_min5 h= 4 linhas_da_matriz=294 previsoes=190 tempo=36.8s
+2026-10-12 19:55:23 pedaco fase1 lr0.05_it250_folhas31_min20 h= 8 linhas_da_matriz=290 previsoes=186 tempo=19.5s
+2026-10-12 19:55:40 pedaco fase1 lr0.05_it250_folhas31_min20 h=12 linhas_da_matriz=286 previsoes=182 tempo=17.3s
+2026-10-12 19:55:40 fim do pedaco: faltam 50 de 72 parciais; juncao adiada.
+2026-10-12 19:55:42 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:55:56 pedaco fase1 lr0.05_it250_folhas31_min5 h= 8 linhas_da_matriz=290 previsoes=186 tempo=35.9s
+2026-10-12 19:56:29 pedaco fase1 lr0.05_it250_folhas31_min5 h=12 linhas_da_matriz=286 previsoes=182 tempo=33.5s
+2026-10-12 19:56:29 fim do pedaco: faltam 48 de 72 parciais; juncao adiada.
+2026-10-12 19:56:31 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:56:39 pedaco fase1 lr0.03_it400_folhas15_min5 h= 1 linhas_da_matriz=297 previsoes=193 tempo=57.5s
+2026-10-12 19:57:03 pedaco fase1 lr0.03_it400_folhas15_min20 h= 1 linhas_da_matriz=297 previsoes=193 tempo=31.9s
+2026-10-12 19:57:32 pedaco fase1 lr0.03_it400_folhas15_min5 h= 4 linhas_da_matriz=294 previsoes=190 tempo=53.0s
+2026-10-12 19:57:33 pedaco fase1 lr0.03_it400_folhas15_min20 h= 4 linhas_da_matriz=294 previsoes=190 tempo=30.6s
+2026-10-12 19:58:01 pedaco fase1 lr0.03_it400_folhas15_min20 h= 8 linhas_da_matriz=290 previsoes=186 tempo=27.9s
+2026-10-12 19:58:21 pedaco fase1 lr0.03_it400_folhas15_min5 h= 8 linhas_da_matriz=290 previsoes=186 tempo=49.0s
+2026-10-12 19:58:28 pedaco fase1 lr0.03_it400_folhas15_min20 h=12 linhas_da_matriz=286 previsoes=182 tempo=26.6s
+2026-10-12 19:58:28 fim do pedaco: faltam 41 de 72 parciais; juncao adiada.
+2026-10-12 19:58:30 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:59:04 pedaco fase1 lr0.03_it400_folhas7_min5 h= 1 linhas_da_matriz=297 previsoes=193 tempo=34.5s
+2026-10-12 19:59:09 pedaco fase1 lr0.03_it400_folhas15_min5 h=12 linhas_da_matriz=286 previsoes=182 tempo=47.4s
+2026-10-12 19:59:09 fim do pedaco: faltam 39 de 72 parciais; juncao adiada.
+2026-10-12 19:59:10 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 19:59:38 pedaco fase1 lr0.03_it400_folhas7_min20 h= 1 linhas_da_matriz=297 previsoes=193 tempo=28.3s
+2026-10-12 19:59:39 pedaco fase1 lr0.03_it400_folhas7_min5 h= 4 linhas_da_matriz=294 previsoes=190 tempo=35.1s
+2026-10-12 20:00:09 pedaco fase1 lr0.03_it400_folhas7_min20 h= 4 linhas_da_matriz=294 previsoes=190 tempo=30.7s
+2026-10-12 20:00:16 pedaco fase1 lr0.03_it400_folhas7_min5 h= 8 linhas_da_matriz=290 previsoes=186 tempo=36.8s
+2026-10-12 20:00:37 pedaco fase1 lr0.03_it400_folhas7_min20 h= 8 linhas_da_matriz=290 previsoes=186 tempo=28.0s
+2026-10-12 20:00:51 pedaco fase1 lr0.03_it400_folhas7_min5 h=12 linhas_da_matriz=286 previsoes=182 tempo=34.5s
+2026-10-12 20:00:51 fim do pedaco: faltam 33 de 72 parciais; juncao adiada.
+2026-10-12 20:00:52 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 20:01:06 pedaco fase1 lr0.03_it400_folhas7_min20 h=12 linhas_da_matriz=286 previsoes=182 tempo=29.2s
+2026-10-12 20:01:06 fim do pedaco: faltam 32 de 72 parciais; juncao adiada.
+2026-10-12 20:01:08 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 20:01:14 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 20:01:33 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 20:01:35 pedaco fase1 lr0.1_it150_folhas15_min5 h= 1 linhas_da_matriz=297 previsoes=193 tempo=20.9s
+2026-10-12 20:01:38 pedaco fase1 lr0.03_it400_folhas31_min20 h= 1 linhas_da_matriz=297 previsoes=193 tempo=29.9s
+2026-10-12 20:01:43 pedaco fase1 lr0.1_it150_folhas15_min20 h= 1 linhas_da_matriz=297 previsoes=193 tempo=9.7s
+2026-10-12 20:01:53 pedaco fase1 lr0.1_it150_folhas15_min5 h= 4 linhas_da_matriz=294 previsoes=190 tempo=18.0s
+2026-10-12 20:01:53 pedaco fase1 lr0.03_it400_folhas31_min5 h= 1 linhas_da_matriz=297 previsoes=193 tempo=60.6s
+2026-10-12 20:01:56 pedaco fase1 lr0.1_it150_folhas15_min20 h= 4 linhas_da_matriz=294 previsoes=190 tempo=12.8s
+2026-10-12 20:02:05 pedaco fase1 lr0.1_it150_folhas15_min20 h= 8 linhas_da_matriz=290 previsoes=186 tempo=9.5s
+2026-10-12 20:02:05 pedaco fase1 lr0.03_it400_folhas31_min20 h= 4 linhas_da_matriz=294 previsoes=190 tempo=27.3s
+2026-10-12 20:02:10 pedaco fase1 lr0.1_it150_folhas15_min5 h= 8 linhas_da_matriz=290 previsoes=186 tempo=17.3s
+2026-10-12 20:02:14 pedaco fase1 lr0.1_it150_folhas15_min20 h=12 linhas_da_matriz=286 previsoes=182 tempo=8.7s
+2026-10-12 20:02:14 fim do pedaco: faltam 22 de 72 parciais; juncao adiada.
+2026-10-12 20:02:15 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 20:02:25 pedaco fase1 lr0.1_it150_folhas15_min5 h=12 linhas_da_matriz=286 previsoes=182 tempo=15.3s
+2026-10-12 20:02:25 fim do pedaco: faltam 21 de 72 parciais; juncao adiada.
+2026-10-12 20:02:26 pedaco fase1 lr0.1_it150_folhas7_min5 h= 1 linhas_da_matriz=297 previsoes=193 tempo=10.7s
+2026-10-12 20:02:27 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 20:02:27 pedaco fase1 lr0.03_it400_folhas31_min20 h= 8 linhas_da_matriz=290 previsoes=186 tempo=22.0s
+2026-10-12 20:02:36 pedaco fase1 lr0.1_it150_folhas7_min20 h= 1 linhas_da_matriz=297 previsoes=193 tempo=9.1s
+2026-10-12 20:02:36 pedaco fase1 lr0.1_it150_folhas7_min5 h= 4 linhas_da_matriz=294 previsoes=190 tempo=10.5s
+2026-10-12 20:02:39 pedaco fase1 lr0.03_it400_folhas31_min5 h= 4 linhas_da_matriz=294 previsoes=190 tempo=46.3s
+2026-10-12 20:02:44 pedaco fase1 lr0.1_it150_folhas7_min20 h= 4 linhas_da_matriz=294 previsoes=190 tempo=8.4s
+2026-10-12 20:02:46 pedaco fase1 lr0.1_it150_folhas7_min5 h= 8 linhas_da_matriz=290 previsoes=186 tempo=9.8s
+2026-10-12 20:02:48 pedaco fase1 lr0.03_it400_folhas31_min20 h=12 linhas_da_matriz=286 previsoes=182 tempo=20.8s
+2026-10-12 20:02:48 fim do pedaco: faltam 13 de 72 parciais; juncao adiada.
+2026-10-12 20:02:49 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 20:02:52 pedaco fase1 lr0.1_it150_folhas7_min20 h= 8 linhas_da_matriz=290 previsoes=186 tempo=8.3s
+2026-10-12 20:02:56 pedaco fase1 lr0.1_it150_folhas7_min5 h=12 linhas_da_matriz=286 previsoes=182 tempo=9.6s
+2026-10-12 20:02:56 fim do pedaco: faltam 11 de 72 parciais; juncao adiada.
+2026-10-12 20:02:57 inicio da fase 1: 1 configuracao(oes), horizontes=[1, 4, 8, 12]
+2026-10-12 20:03:00 pedaco fase1 lr0.1_it150_folhas7_min20 h=12 linhas_da_matriz=286 previsoes=182 tempo=8.0s
+2026-10-12 20:03:00 fim do pedaco: faltam 10 de 72 parciais; juncao adiada.
+2026-10-12 20:03:06 pedaco fase1 lr0.1_it150_folhas31_min20 h= 1 linhas_da_matriz=297 previsoes=193 tempo=9.2s
+2026-10-12 20:03:08 pedaco fase1 lr0.1_it150_folhas31_min5 h= 1 linhas_da_matriz=297 previsoes=193 tempo=18.7s
+2026-10-12 20:03:15 pedaco fase1 lr0.1_it150_folhas31_min20 h= 4 linhas_da_matriz=294 previsoes=190 tempo=8.9s
+2026-10-12 20:03:19 pedaco fase1 lr0.03_it400_folhas31_min5 h= 8 linhas_da_matriz=290 previsoes=186 tempo=40.0s
+2026-10-12 20:03:24 pedaco fase1 lr0.1_it150_folhas31_min20 h= 8 linhas_da_matriz=290 previsoes=186 tempo=8.3s
+2026-10-12 20:03:25 pedaco fase1 lr0.1_it150_folhas31_min5 h= 4 linhas_da_matriz=294 previsoes=190 tempo=17.0s
+2026-10-12 20:03:32 pedaco fase1 lr0.1_it150_folhas31_min20 h=12 linhas_da_matriz=286 previsoes=182 tempo=8.2s
+2026-10-12 20:03:32 fim do pedaco: faltam 3 de 72 parciais; juncao adiada.
+2026-10-12 20:03:41 pedaco fase1 lr0.1_it150_folhas31_min5 h= 8 linhas_da_matriz=290 previsoes=186 tempo=16.1s
+2026-10-12 20:03:56 pedaco fase1 lr0.03_it400_folhas31_min5 h=12 linhas_da_matriz=286 previsoes=182 tempo=36.2s
+2026-10-12 20:03:56 fim do pedaco: faltam 1 de 72 parciais; juncao adiada.
+2026-10-12 20:03:56 pedaco fase1 lr0.1_it150_folhas31_min5 h=12 linhas_da_matriz=286 previsoes=182 tempo=14.5s
+2026-10-12 20:03:56 juncao da fase 1: 13518 previsoes; trava 1 OK; vencedora=lr0.03_it400_folhas15_min5 (mae_cal=41.6623; referencia=42.0223); tempo deste processo=66.5s
+2026-10-12 20:04:28 inicio da fase 2: ['lr0.05_it250_folhas15_min5', 'lr0.03_it400_folhas15_min5'], horizontes=[12]
+2026-10-12 20:04:28 inicio da fase 2: ['lr0.05_it250_folhas15_min5', 'lr0.03_it400_folhas15_min5'], horizontes=[1]
+2026-10-12 20:04:28 inicio da fase 2: ['lr0.05_it250_folhas15_min5', 'lr0.03_it400_folhas15_min5'], horizontes=[8]
+2026-10-12 20:04:28 inicio da fase 2: ['lr0.05_it250_folhas15_min5', 'lr0.03_it400_folhas15_min5'], horizontes=[4]
+2026-10-12 20:05:10 pedaco fase2 lr0.05_it250_folhas15_min5 h=12 linhas_da_matriz=388 previsoes=284 tempo=42.6s
+2026-10-12 20:05:11 pedaco fase2 lr0.05_it250_folhas15_min5 h= 8 linhas_da_matriz=392 previsoes=288 tempo=43.7s
+2026-10-12 20:05:13 pedaco fase2 lr0.05_it250_folhas15_min5 h= 4 linhas_da_matriz=396 previsoes=292 tempo=44.9s
+2026-10-12 20:05:14 pedaco fase2 lr0.05_it250_folhas15_min5 h= 1 linhas_da_matriz=399 previsoes=295 tempo=46.4s
+2026-10-12 20:06:14 pedaco fase2 lr0.03_it400_folhas15_min5 h=12 linhas_da_matriz=388 previsoes=284 tempo=63.6s
+2026-10-12 20:06:14 fim do pedaco da fase 2: faltam 3 de 8 parciais; juncao adiada.
+2026-10-12 20:06:16 pedaco fase2 lr0.03_it400_folhas15_min5 h= 8 linhas_da_matriz=392 previsoes=288 tempo=64.4s
+2026-10-12 20:06:16 fim do pedaco da fase 2: faltam 2 de 8 parciais; juncao adiada.
+2026-10-12 20:06:18 pedaco fase2 lr0.03_it400_folhas15_min5 h= 4 linhas_da_matriz=396 previsoes=292 tempo=65.6s
+2026-10-12 20:06:18 fim do pedaco da fase 2: faltam 1 de 8 parciais; juncao adiada.
+2026-10-12 20:06:21 pedaco fase2 lr0.03_it400_folhas15_min5 h= 1 linhas_da_matriz=399 previsoes=295 tempo=67.1s
+2026-10-12 20:06:21 fase 2: vencedora=lr0.03_it400_folhas15_min5; troca_a_referencia=False; p_holm=[1.0, 1.0, 1.0, 1.0]

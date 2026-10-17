@@ -1,0 +1,51 @@
+...................F.........F.......................................... [ 10%]
+........................................................................ [ 21%]
+........................................................................ [ 32%]
+........................................................................ [ 43%]
+........................................................................ [ 53%]
+........................................................................ [ 64%]
+........................................................................ [ 75%]
+........................................................................ [ 86%]
+........................................................................ [ 96%]
+.....................                                                    [100%]
+=================================== FAILURES ===================================
+_____________ test_quantidade_de_variaveis_de_cada_braco[so_vetor] _____________
+
+nome_do_braco = 'so_vetor'
+
+    @pytest.mark.parametrize("nome_do_braco", NOMES_DOS_BRACOS)
+    def test_quantidade_de_variaveis_de_cada_braco(nome_do_braco: str) -> None:
+        """completo 22; tirar uma fonte deixa 16; uma fonte so deixa 10; so o calendario deixa 4."""
+        nomes = nomes_das_variaveis_do_braco(nome_do_braco, CONFIGURACAO_VARIAVEIS)
+>       assert len(nomes) == QUANTIDADE_DE_VARIAVEIS_POR_BRACO[nome_do_braco]
+E       AssertionError: assert 16 == 10
+E        +  where 16 = len(['casos', 'casos_lag1', 'casos_lag2', 'casos_lag3', 'casos_lag4', 'casos_mm4', ...])
+
+testes/test_bracos.py:159: AssertionError
+___________ test_ordem_exata_das_colunas_do_so_vetor_e_do_sem_vetor ____________
+
+    def test_ordem_exata_das_colunas_do_so_vetor_e_do_sem_vetor() -> None:
+        """Conferencia literal da ordem: o calendario da origem vem antes do vetor, o do alvo depois."""
+>       assert nomes_das_variaveis_do_braco("so_vetor", CONFIGURACAO_VARIAVEIS) == [
+            "sem_sin",
+            "sem_cos",
+            "aedes_aegypti_por_armadilha",
+            "aedes_aegypti_por_armadilha_lag1",
+            "aedes_aegypti_por_armadilha_lag2",
+            "aedes_aegypti_por_armadilha_lag3",
+            "aedes_aegypti_por_armadilha_lag4",
+            "vetor_mm4",
+            "alvo_sin",
+            "alvo_cos",
+        ]
+E       AssertionError: assert ['casos', 'ca...sos_mm4', ...] == ['sem_sin', '...ha_lag3', ...]
+E         
+E         At index 0 diff: 'casos' != 'sem_sin'
+E         Left contains 6 more items, first extra item: 'aedes_aegypti_por_armadilha_lag2'
+E         Use -v to get more diff
+
+testes/test_bracos.py:176: AssertionError
+=========================== short test summary info ============================
+FAILED testes/test_bracos.py::test_quantidade_de_variaveis_de_cada_braco[so_vetor]
+FAILED testes/test_bracos.py::test_ordem_exata_das_colunas_do_so_vetor_e_do_sem_vetor
+2 failed, 667 passed in 84.21s (0:01:24)

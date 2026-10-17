@@ -1,0 +1,10 @@
+{'secretaria': 686, 'raspagem': 32}
+tabela por ano (semana iniciada): {2018: 4.0, 2019: 489.0, 2020: 37.0, 2021: 72.0, 2022: 5583.0, 2023: 6600.0} total 12785
+2018 DENGBR notif 3 resid 1 tabela 4.0
+2019 DENGBR notif 489 resid 468 tabela 489.0
+2020 DENGBR notif 38 resid 40 tabela 37.0
+2021 DENGBR notif 72 resid 83 tabela 72.0
+2022 DENGBR notif 5583 resid 5133 tabela 5583.0
+2023 DENGBR notif 6593 resid 6308 tabela 6600.0
+2024 DENGBR notif 19022 resid 17505 tabela None
+num 18-23 (todos arquivos) 12778 dif vs 12785 -7 -0.054751662104028154

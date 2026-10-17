@@ -1,0 +1,39 @@
+OK testes unitarios do WIS: zero perfeito, exemplo manual 59,2/3,5=14.628571, identidade Bracher = soma de pinball (500 casos aleatorios)
+parciais lidos: 176 arquivos, 50954 linhas
+OK grade completa: 24 (folha,h), 7 quantis cada, sem NaN, real unico por data_alvo; linhas por (folha,h): [284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295]
+serie de casos: ultima semana com caso 2026-04-26, ultima apos o corte 2026-02-01
+serie apos corte: minha vs gabarito antigo, dif max 0.0
+real dos parciais vs casos da tabela (apos corte): dif max 0.0
+quantis ordenados: executor vs meu np.sort, dif max 0.0; brutos vs parciais 0.0
+origens com cruzamento (antes de ordenar): min 0.647 max 0.887
+OK cruzamentos.csv confere com a minha contagem (24 linhas)
+trava q0,85: folha5 (0, 2.2737367544323206e-13, 1159), folha20 (0, 4.547473508864641e-13, 1159) (linhas fora do cruzamento, dif max, em comum)
+datas da grade 307; sem regua a partir de 2021-02: ['2021-02-07', '2021-02-14', '2025-12-28']
+regua: executor 2952 (h,data) vs minha; dif max 0.0; executor com data que eu nao tenho regua: 0; datas com regua minha 258
+datas em que eu tenho regua e o executor nao (por h): 0
+composto: escolhas E3 3252, minhas 3252, em comum 3252, divergentes 0; so na E3 0
+composto: quantis executor vs meus (folha escolhida pela E3), 3252 (h,data), dif max 0.0, so no executor 0
+WIS medio e cobertura: 96 linhas (4 modelos x 12 h x 2 janelas); dif max WIS 1.137e-13; dif max cobertura 0.000e+00; n diferentes 0
+wis_por_origem: 13152 linhas; so meu 0, so exec 0; dif max wis 0.000e+00; real 0.000e+00; cobertura 50/80/90 divergentes 0/0/0
+n padrao por modelo: {'composto_N13': {'min': 102, 'max': 102}, 'folha20': {'min': 102, 'max': 102}, 'folha5': {'min': 102, 'max': 102}, 'regua_climatologica': {'min': 101, 'max': 101}}
+previsoes brutas vs 26/09: em comum 16226, so novas 0, so antigas 0, dif max 0.0
+WIS janela antiga vs 26/09: 12 linhas, dif max WIS 5.684e-14, cob50 0.000e+00, cob90 0.000e+00, n dif 0
+ancoras da pre-declaracao (12 valores, tolerancia 0,05): todas batem
+n janela antiga (meu): {'folha5': [97], 'folha20': [97], 'regua_climatologica': [96]}
+F5: dif max n 0 | wis_A 0.00e+00 | wis_B 0.00e+00 | delta 9.95e-14 | ganho 3.55e-14 | DM 0.00e+00 | p_bruto 0.00e+00 | p_holm 0.00e+00
+F5: vereditos divergentes: 0; fallback de variancia meu: 0
+F5: IC bootstrap, dif max vs executor: variante vetor-por-replica 0.0000 pp; variante sorteio escalar 0.0000 pp
+               A   h  n_meu   delta_meu  ganho_pct_meu  ic_inf_v1  ic_sup_v1     ic_inf     ic_sup  p_holm_meu  p_holm_exec   veredito_meu  veredito_exec
+0         folha5   1    101  180.345230      64.803064  53.988186  74.680808  53.988186  74.680808    0.000025     0.000025       A melhor       A melhor
+1         folha5   4    101   91.070091      30.553922  14.639284  41.705999  14.639284  41.705999    0.285748     0.285748  sem evidencia  sem evidencia
+2         folha5   8    101   28.662781       9.356925   0.169766  22.721271   0.169766  22.721271    0.285748     0.285748  sem evidencia  sem evidencia
+3         folha5  12    101   19.088919       6.193514 -11.863517  21.181563 -11.863517  21.181563    0.978079     0.978079  sem evidencia  sem evidencia
+4        folha20   1    101  161.677727      58.095310  51.911094  65.213115  51.911094  65.213115    0.000005     0.000005       A melhor       A melhor
+5        folha20   4    101  106.768436      35.820700  29.151679  43.703543  29.151679  43.703543    0.184383     0.184383  sem evidencia  sem evidencia
+6        folha20   8    101   57.014566      18.612325  11.734520  30.587198  11.734520  30.587198    0.243766     0.243766  sem evidencia  sem evidencia
+7        folha20  12    101   40.322126      13.082756  -2.392487  28.284199  -2.392487  28.284199    0.978079     0.978079  sem evidencia  sem evidencia
+8   composto_N13   1    101  171.085382      61.475742  51.427788  70.847881  51.427788  70.847881    0.000025     0.000025       A melhor       A melhor
+9   composto_N13   4    101  107.699539      36.133084  29.071104  44.047834  29.071104  44.047834    0.184383     0.184383  sem evidencia  sem evidencia
+10  composto_N13   8    101   55.935656      18.260116  10.870616  30.290601  10.870616  30.290601    0.243766     0.243766  sem evidencia  sem evidencia
+11  composto_N13  12    101   26.010613       8.439299  -6.683798  21.925530  -6.683798  21.925530    0.978079     0.978079  sem evidencia  sem evidencia
+semanas de 07/01/2024 a 01/02/2026 (109) sem previsao em h=4: ['2024-05-26', '2024-06-02', '2024-06-09', '2024-06-16', '2024-06-23', '2024-06-30', '2024-07-07']

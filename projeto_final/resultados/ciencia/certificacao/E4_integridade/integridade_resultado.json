@@ -1,0 +1,15 @@
+{
+  "n_antes": 4269,
+  "n_agora": 4271,
+  "removidos": [],
+  "novos": [
+    "analises/2026-10-12_pre_declaracao_ciencia/PRE_DECLARACAO.md",
+    "analises/2026-10-12_pre_declaracao_ciencia/PRE_DECLARACAO.sha256"
+  ],
+  "alterados": [],
+  "pycache_agora": 29,
+  "pycache_antes": 29,
+  "pycache_novos": [],
+  "pycache_sumidos": [],
+  "linhas_csv_antes": 4269
+}

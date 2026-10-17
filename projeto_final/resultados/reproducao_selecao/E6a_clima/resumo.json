@@ -1,0 +1,163 @@
+{
+  "criterio": "os 6 nomes na mesma ordem do clima congelado do artigo",
+  "clima_do_artigo": [
+    "temp_media_lag4",
+    "umid_media",
+    "temp_media_lag3",
+    "temp_max",
+    "pressao_media_lag3",
+    "pressao_media_lag4"
+  ],
+  "variantes": {
+    "identico_ao_antigo": {
+      "configuracao_do_modelo": {
+        "numero_de_arvores": 250,
+        "taxa_de_aprendizado": 0.05,
+        "numero_de_folhas": 15,
+        "folha_minima": 5,
+        "nivel_de_mensagens": -1,
+        "numero_de_processos": -1,
+        "semente": null
+      },
+      "escolhidas": [
+        "temp_media_lag4",
+        "umid_media",
+        "temp_media_lag3",
+        "temp_max",
+        "pressao_media_lag3",
+        "pressao_media_lag4"
+      ],
+      "reproduz_os_6_nomes_na_ordem": true,
+      "mesmo_conjunto_de_6": true,
+      "margem_entre_a_6a_e_a_7a": {
+        "ultima_escolhida": "pressao_media_lag4",
+        "ganho_da_ultima_escolhida": 2353989.883889556,
+        "proxima": "temp_amplitude_media",
+        "ganho_da_proxima": 2021356.2493039966,
+        "diferenca": 332633.63458555937,
+        "razao_proxima_sobre_ultima": 0.8586936856177392
+      },
+      "linhas_validas_por_horizonte": {
+        "1": 411,
+        "4": 408,
+        "8": 404
+      },
+      "linhas_de_treino_por_horizonte": {
+        "1": 246,
+        "4": 244,
+        "8": 242
+      },
+      "nucleo": [
+        "casos",
+        "casos_lag1",
+        "casos_lag2",
+        "casos_lag3",
+        "casos_lag4",
+        "casos_mm4",
+        "sem_sin",
+        "sem_cos"
+      ],
+      "quantidade_de_candidatas_de_clima": 42
+    },
+    "um_processo_sem_semente": {
+      "configuracao_do_modelo": {
+        "numero_de_arvores": 250,
+        "taxa_de_aprendizado": 0.05,
+        "numero_de_folhas": 15,
+        "folha_minima": 5,
+        "nivel_de_mensagens": -1,
+        "numero_de_processos": 1,
+        "semente": null
+      },
+      "escolhidas": [
+        "temp_media_lag4",
+        "umid_media",
+        "temp_media_lag3",
+        "temp_max",
+        "pressao_media_lag3",
+        "pressao_media_lag4"
+      ],
+      "reproduz_os_6_nomes_na_ordem": true,
+      "mesmo_conjunto_de_6": true,
+      "margem_entre_a_6a_e_a_7a": {
+        "ultima_escolhida": "pressao_media_lag4",
+        "ganho_da_ultima_escolhida": 2353989.883889556,
+        "proxima": "temp_amplitude_media",
+        "ganho_da_proxima": 2021356.2493039966,
+        "diferenca": 332633.63458555937,
+        "razao_proxima_sobre_ultima": 0.8586936856177392
+      },
+      "linhas_validas_por_horizonte": {
+        "1": 411,
+        "4": 408,
+        "8": 404
+      },
+      "linhas_de_treino_por_horizonte": {
+        "1": 246,
+        "4": 244,
+        "8": 242
+      },
+      "nucleo": [
+        "casos",
+        "casos_lag1",
+        "casos_lag2",
+        "casos_lag3",
+        "casos_lag4",
+        "casos_mm4",
+        "sem_sin",
+        "sem_cos"
+      ],
+      "quantidade_de_candidatas_de_clima": 42
+    },
+    "um_processo_semente_42": {
+      "configuracao_do_modelo": {
+        "numero_de_arvores": 250,
+        "taxa_de_aprendizado": 0.05,
+        "numero_de_folhas": 15,
+        "folha_minima": 5,
+        "nivel_de_mensagens": -1,
+        "numero_de_processos": 1,
+        "semente": 42
+      },
+      "escolhidas": [
+        "temp_media_lag4",
+        "umid_media",
+        "temp_media_lag3",
+        "temp_max",
+        "pressao_media_lag3",
+        "pressao_media_lag4"
+      ],
+      "reproduz_os_6_nomes_na_ordem": true,
+      "mesmo_conjunto_de_6": true,
+      "margem_entre_a_6a_e_a_7a": {
+        "ultima_escolhida": "pressao_media_lag4",
+        "ganho_da_ultima_escolhida": 2353989.883889556,
+        "proxima": "temp_amplitude_media",
+        "ganho_da_proxima": 2021356.2493039966,
+        "diferenca": 332633.63458555937,
+        "razao_proxima_sobre_ultima": 0.8586936856177392
+      },
+      "linhas_validas_por_horizonte": {
+        "1": 411,
+        "4": 408,
+        "8": 404
+      },
+      "linhas_de_treino_por_horizonte": {
+        "1": 246,
+        "4": 244,
+        "8": 242
+      },
+      "nucleo": [
+        "casos",
+        "casos_lag1",
+        "casos_lag2",
+        "casos_lag3",
+        "casos_lag4",
+        "casos_mm4",
+        "sem_sin",
+        "sem_cos"
+      ],
+      "quantidade_de_candidatas_de_clima": 42
+    }
+  }
+}

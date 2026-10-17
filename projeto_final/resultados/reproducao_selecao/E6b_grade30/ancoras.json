@@ -1,0 +1,88 @@
+{
+  "ancoras_do_ranking": [
+    {
+      "algoritmo": "hist_gradient_boosting",
+      "perda": "quantil_0.85",
+      "conjunto": "M1_com_vetor",
+      "posicao_esperada": 1,
+      "posicao_medida": 1,
+      "mae_esperado": 42.02,
+      "mae_medido": 42.01869240236913,
+      "bate_o_mae": true,
+      "bate_a_posicao": true
+    },
+    {
+      "algoritmo": "hist_gradient_boosting",
+      "perda": "quantil_0.80",
+      "conjunto": "M0_sem_vetor",
+      "posicao_esperada": 2,
+      "posicao_medida": 2,
+      "mae_esperado": 42.52,
+      "mae_medido": 42.51574204904022,
+      "bate_o_mae": true,
+      "bate_a_posicao": true
+    },
+    {
+      "algoritmo": "hist_gradient_boosting",
+      "perda": "quantil_0.80",
+      "conjunto": "M1_com_vetor",
+      "posicao_esperada": 3,
+      "posicao_medida": 3,
+      "mae_esperado": 42.71,
+      "mae_medido": 42.71204530549029,
+      "bate_o_mae": true,
+      "bate_a_posicao": true
+    },
+    {
+      "algoritmo": "gradient_boosting",
+      "perda": "quantil_0.80",
+      "conjunto": "M1_com_vetor",
+      "posicao_esperada": 4,
+      "posicao_medida": 4,
+      "mae_esperado": 42.71,
+      "mae_medido": 42.71475105399859,
+      "bate_o_mae": true,
+      "bate_a_posicao": true
+    },
+    {
+      "algoritmo": "hist_gradient_boosting",
+      "perda": "padrao",
+      "conjunto": "M1_com_vetor",
+      "posicao_esperada": null,
+      "posicao_medida": 19,
+      "mae_esperado": 46.17,
+      "mae_medido": 46.170542617638475,
+      "bate_o_mae": true,
+      "bate_a_posicao": true
+    },
+    {
+      "algoritmo": "lightgbm",
+      "perda": "padrao",
+      "conjunto": "M1_com_vetor",
+      "posicao_esperada": null,
+      "posicao_medida": 21,
+      "mae_esperado": 47.0,
+      "mae_medido": 46.99507430032841,
+      "bate_o_mae": true,
+      "bate_a_posicao": true
+    },
+    {
+      "algoritmo": "lightgbm",
+      "perda": "quantil_0.90",
+      "conjunto": "M1_com_vetor",
+      "posicao_esperada": 30,
+      "posicao_medida": 30,
+      "mae_esperado": 58.45,
+      "mae_medido": 58.45483078326764,
+      "bate_o_mae": true,
+      "bate_a_posicao": true
+    }
+  ],
+  "todas_as_ancoras_batem": true,
+  "diferenca_maxima_contra_o_gabarito_por_algoritmo": {
+    "hist_gradient_boosting": 0.0,
+    "gradient_boosting": 0.0,
+    "lightgbm": 0.0
+  },
+  "celulas_fora_da_tolerancia_do_gabarito": 0
+}

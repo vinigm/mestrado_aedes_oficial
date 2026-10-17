@@ -1,0 +1,152 @@
+..........FF.FF.F.F.......................................FF
+=================================== FAILURES ===================================
+_____ test_os_blocos_tem_6_6_6_e_4_variaveis_e_juntos_sao_as_22_do_modelo ______
+
+    def test_os_blocos_tem_6_6_6_e_4_variaveis_e_juntos_sao_as_22_do_modelo() -> None:
+        """Casos 6, clima 6, vetor 6, calendario 4; sem sobreposicao; a uniao e `nomes_das_variaveis`."""
+        tamanhos_esperados = {BLOCO_CASOS: 6, BLOCO_CLIMA: 6, BLOCO_VETOR: 6, BLOCO_CALENDARIO: 4}
+        todos_os_nomes: list[str] = []
+        for bloco, tamanho in tamanhos_esperados.items():
+            nomes_do_bloco = nomes_das_variaveis_do_bloco(bloco, CONFIGURACAO_VARIAVEIS)
+>           assert len(nomes_do_bloco) == tamanho, bloco
+E           AssertionError: clima
+E           assert 5 == 6
+E            +  where 5 = len(['temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', 'pressao_media_lag3'])
+
+testes/test_bracos.py:121: AssertionError
+_________ test_o_conteudo_de_cada_bloco_bate_com_a_tabela_1_do_artigo __________
+
+    def test_o_conteudo_de_cada_bloco_bate_com_a_tabela_1_do_artigo() -> None:
+        """Nomes exatos de cada bloco, conferidos a mao contra a Tabela 1."""
+        assert set(nomes_das_variaveis_do_bloco(BLOCO_CASOS, CONFIGURACAO_VARIAVEIS)) == {
+            "casos", "casos_lag1", "casos_lag2", "casos_lag3", "casos_lag4", "casos_mm4",
+        }
+>       assert set(nomes_das_variaveis_do_bloco(BLOCO_CLIMA, CONFIGURACAO_VARIAVEIS)) == {
+            "temp_media_lag4", "umid_media", "temp_media_lag3", "temp_max", "pressao_media_lag3", "pressao_media_lag4",
+        }
+E       AssertionError: assert {'pressao_med... 'umid_media'} == {'pressao_med... 'umid_media'}
+E         
+E         Extra items in the right set:
+E         'pressao_media_lag4'
+E         Use -v to get more diff
+
+testes/test_bracos.py:133: AssertionError
+_____________ test_quantidade_de_variaveis_de_cada_braco[completo] _____________
+
+nome_do_braco = 'completo'
+
+    @pytest.mark.parametrize("nome_do_braco", NOMES_DOS_BRACOS)
+    def test_quantidade_de_variaveis_de_cada_braco(nome_do_braco: str) -> None:
+        """completo 22; tirar uma fonte deixa 16; uma fonte so deixa 10; so o calendario deixa 4."""
+        nomes = nomes_das_variaveis_do_braco(nome_do_braco, CONFIGURACAO_VARIAVEIS)
+>       assert len(nomes) == QUANTIDADE_DE_VARIAVEIS_POR_BRACO[nome_do_braco]
+E       AssertionError: assert 21 == 22
+E        +  where 21 = len(['casos', 'casos_lag1', 'casos_lag2', 'casos_lag3', 'casos_lag4', 'casos_mm4', ...])
+
+testes/test_bracos.py:159: AssertionError
+____________ test_quantidade_de_variaveis_de_cada_braco[sem_casos] _____________
+
+nome_do_braco = 'sem_casos'
+
+    @pytest.mark.parametrize("nome_do_braco", NOMES_DOS_BRACOS)
+    def test_quantidade_de_variaveis_de_cada_braco(nome_do_braco: str) -> None:
+        """completo 22; tirar uma fonte deixa 16; uma fonte so deixa 10; so o calendario deixa 4."""
+        nomes = nomes_das_variaveis_do_braco(nome_do_braco, CONFIGURACAO_VARIAVEIS)
+>       assert len(nomes) == QUANTIDADE_DE_VARIAVEIS_POR_BRACO[nome_do_braco]
+E       AssertionError: assert 15 == 16
+E        +  where 15 = len(['sem_sin', 'sem_cos', 'temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', ...])
+
+testes/test_bracos.py:159: AssertionError
+____________ test_quantidade_de_variaveis_de_cada_braco[sem_vetor] _____________
+
+nome_do_braco = 'sem_vetor'
+
+    @pytest.mark.parametrize("nome_do_braco", NOMES_DOS_BRACOS)
+    def test_quantidade_de_variaveis_de_cada_braco(nome_do_braco: str) -> None:
+        """completo 22; tirar uma fonte deixa 16; uma fonte so deixa 10; so o calendario deixa 4."""
+        nomes = nomes_das_variaveis_do_braco(nome_do_braco, CONFIGURACAO_VARIAVEIS)
+>       assert len(nomes) == QUANTIDADE_DE_VARIAVEIS_POR_BRACO[nome_do_braco]
+E       AssertionError: assert 15 == 16
+E        +  where 15 = len(['casos', 'casos_lag1', 'casos_lag2', 'casos_lag3', 'casos_lag4', 'casos_mm4', ...])
+
+testes/test_bracos.py:159: AssertionError
+_____________ test_quantidade_de_variaveis_de_cada_braco[so_clima] _____________
+
+nome_do_braco = 'so_clima'
+
+    @pytest.mark.parametrize("nome_do_braco", NOMES_DOS_BRACOS)
+    def test_quantidade_de_variaveis_de_cada_braco(nome_do_braco: str) -> None:
+        """completo 22; tirar uma fonte deixa 16; uma fonte so deixa 10; so o calendario deixa 4."""
+        nomes = nomes_das_variaveis_do_braco(nome_do_braco, CONFIGURACAO_VARIAVEIS)
+>       assert len(nomes) == QUANTIDADE_DE_VARIAVEIS_POR_BRACO[nome_do_braco]
+E       AssertionError: assert 9 == 10
+E        +  where 9 = len(['sem_sin', 'sem_cos', 'temp_media_lag4', 'umid_media', 'temp_media_lag3', 'temp_max', ...])
+
+testes/test_bracos.py:159: AssertionError
+_____ test_o_braco_completo_e_identico_bit_a_bit_a_matriz_do_horizonte[1] ______
+
+tabela_cortada =           fonte      SE  ... nino34_anom  oni
+0    secretaria  201239  ...         NaN  NaN
+1    secretaria  201240  ....aN
+723    raspagem  202631  ...         NaN  NaN
+724    raspagem  202632  ...         NaN  NaN
+
+[725 rows x 36 columns]
+horizonte = 1
+
+    @pytest.mark.parametrize("horizonte", CONFIGURACAO_AVALIACAO.horizontes)
+    def test_o_braco_completo_e_identico_bit_a_bit_a_matriz_do_horizonte(
+        tabela_cortada: pd.DataFrame,
+        horizonte: int,
+    ) -> None:
+        """Datas, colunas, ordem, valores (sem tolerancia), dtypes e indice: `completo` == `montar_matriz_do_horizonte`."""
+        matriz_original = montar_matriz_do_horizonte(tabela_cortada, horizonte, CONFIGURACAO_VARIAVEIS, CONFIGURACAO_DADOS)
+        matriz_do_completo = matriz_do_braco(tabela_cortada, horizonte, "completo")
+    
+>       assert list(matriz_do_completo.columns) == list(matriz_original.columns)
+E       AssertionError: assert ['data_origem...os_lag3', ...] == ['data_origem...os_lag3', ...]
+E         
+E         At index 15 diff: 'aedes_aegypti_por_armadilha' != 'pressao_media_lag4'
+E         Right contains one more item: 'y_h'
+E         Use -v to get more diff
+
+testes/test_bracos.py:393: AssertionError
+_____ test_o_braco_completo_e_identico_bit_a_bit_a_matriz_do_horizonte[2] ______
+
+tabela_cortada =           fonte      SE  ... nino34_anom  oni
+0    secretaria  201239  ...         NaN  NaN
+1    secretaria  201240  ....aN
+723    raspagem  202631  ...         NaN  NaN
+724    raspagem  202632  ...         NaN  NaN
+
+[725 rows x 36 columns]
+horizonte = 2
+
+    @pytest.mark.parametrize("horizonte", CONFIGURACAO_AVALIACAO.horizontes)
+    def test_o_braco_completo_e_identico_bit_a_bit_a_matriz_do_horizonte(
+        tabela_cortada: pd.DataFrame,
+        horizonte: int,
+    ) -> None:
+        """Datas, colunas, ordem, valores (sem tolerancia), dtypes e indice: `completo` == `montar_matriz_do_horizonte`."""
+        matriz_original = montar_matriz_do_horizonte(tabela_cortada, horizonte, CONFIGURACAO_VARIAVEIS, CONFIGURACAO_DADOS)
+        matriz_do_completo = matriz_do_braco(tabela_cortada, horizonte, "completo")
+    
+>       assert list(matriz_do_completo.columns) == list(matriz_original.columns)
+E       AssertionError: assert ['data_origem...os_lag3', ...] == ['data_origem...os_lag3', ...]
+E         
+E         At index 15 diff: 'aedes_aegypti_por_armadilha' != 'pressao_media_lag4'
+E         Right contains one more item: 'y_h'
+E         Use -v to get more diff
+
+testes/test_bracos.py:393: AssertionError
+=========================== short test summary info ============================
+FAILED testes/test_bracos.py::test_os_blocos_tem_6_6_6_e_4_variaveis_e_juntos_sao_as_22_do_modelo
+FAILED testes/test_bracos.py::test_o_conteudo_de_cada_bloco_bate_com_a_tabela_1_do_artigo
+FAILED testes/test_bracos.py::test_quantidade_de_variaveis_de_cada_braco[completo]
+FAILED testes/test_bracos.py::test_quantidade_de_variaveis_de_cada_braco[sem_casos]
+FAILED testes/test_bracos.py::test_quantidade_de_variaveis_de_cada_braco[sem_vetor]
+FAILED testes/test_bracos.py::test_quantidade_de_variaveis_de_cada_braco[so_clima]
+FAILED testes/test_bracos.py::test_o_braco_completo_e_identico_bit_a_bit_a_matriz_do_horizonte[1]
+FAILED testes/test_bracos.py::test_o_braco_completo_e_identico_bit_a_bit_a_matriz_do_horizonte[2]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 8 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+8 failed, 52 passed in 1.43s

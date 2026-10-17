@@ -1,0 +1,18 @@
+old 20862 18 f1 13518 18 f2 2318 2
+merge fase1: {'both': 13518, 'left_only': 0, 'right_only': 0} (right_only fora da calibracao: 7344 )
+fase1 dif max previsto: 0.0  real: 0.0
+merge fase2: {'both': 2318, 'left_only': 0, 'right_only': 0}  dif max: 0.0
+ranking: dif max old-vs-meu(f1): 0.0  vs executor: 7.105427357601002e-15
+{'lr0.03_it400_folhas15_min5': 41.662, 'lr0.03_it400_folhas31_min5': 41.717, 'lr0.05_it250_folhas31_min5': 41.9, 'lr0.05_it250_folhas15_min5': 42.022, 'lr0.03_it400_folhas7_min5': 42.628}
+posicao da referencia: 4
+min20: posicoes [10] .. 54.68 55.69 9
+ordem dos 18 por MAE (meu) == executor (exceto empates): 0 diferencas de posicao
+empates exatos: {'lr0.1_it150_folhas15_min20': 54.68074, 'lr0.1_it150_folhas31_min20': 54.68074, 'lr0.05_it250_folhas15_min20': 55.454638, 'lr0.05_it250_folhas31_min20': 55.454638, 'lr0.03_it400_folhas15_min20': 55.490336, 'lr0.03_it400_folhas31_min20': 55.490336}
+    h    n     mae_ref     mae_win   red_pct   p_scipy  p_manual  p_holm  p_holm_manual
+0   1  102   97.987082  105.355497 -7.519782  0.429832  0.429832     1.0            1.0
+1   4  102  219.669235  212.408870  3.305135  0.585208  0.585208     1.0            1.0
+2   8  102  272.626674  272.261799  0.133837  0.863503  0.863503     1.0            1.0
+3  12  102  278.817547  278.402436  0.148883  0.551265  0.551265     1.0            1.0
+dif vs executor p_bruto: 0.0  p_holm: 0.0  reducao: 5.023759186428833e-15
+dif vs antigo p_bruto: 0.0  mae_win: 0.0
+troca? (reduz h8 e h12 com Holm<0,05): False

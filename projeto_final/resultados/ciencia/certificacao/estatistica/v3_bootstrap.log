@@ -1,0 +1,20 @@
+variante matriz size=(B,nb) sem 42 (a do executor): max dif IC = 2.4868995751603507e-14
+variante por_rep (size=nb por reamostra) sem 42: max dif IC = 2.4868995751603507e-14 (ambiguidade de ordem dos sorteios)
+variante escalar (1 sorteio por bloco) sem 42: max dif IC = 2.4868995751603507e-14
+semente 1: p_bruto/p_holm/delta identicos ao executor: True | vereditos identicos: True
+semente 7: p_bruto/p_holm/delta identicos ao executor: True | vereditos identicos: True
+semente 123: p_bruto/p_holm/delta identicos ao executor: True | vereditos identicos: True
+semente 42: p_bruto/p_holm/delta identicos ao executor: True | vereditos identicos: True
+Variacao de Monte Carlo (sementes 42,1,7,123), amplitude entre sementes em pontos de ganho_pct: limite inferior mediana=1.14 max=7.15 | limite superior mediana=0.73 max=2.51
+amplitude maxima por teste (top 5):
+                                          inf   sup
+familia h A            B                           
+F2      4 so_casos@f5  so_calendario@f5  7.15  0.89
+F4      1 completo@f20 regua_sazonal     4.42  0.79
+        8 composto13   regua_sazonal     4.26  1.51
+F1      1 completo@f5  sem_vetor@f5      3.71  0.92
+F4      4 composto13   regua_sazonal     3.33  1.18
+testes cujo 'IC exclui zero' muda entre sementes: 1
+                                   1  7  123  42  ic_inf  ic_sup
+familia h  A          B                                         
+F4      12 composto13 completo@f5  1  0    0   1    0.03   11.99

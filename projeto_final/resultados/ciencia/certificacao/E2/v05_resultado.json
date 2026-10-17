@@ -1,0 +1,17 @@
+{
+ "tabela_cortada_meu_igual_pacote": true,
+ "casos_cortados_iguais": true,
+ "colunas_por_braco": {
+  "completo": 22,
+  "sem_casos": 16,
+  "sem_clima": 16,
+  "sem_vetor": 16,
+  "so_casos": 10,
+  "so_clima": 10,
+  "so_vetor": 10,
+  "so_calendario": 4
+ },
+ "vazamentos_de_bloco": [],
+ "matrizes_diferentes_bit_a_bit": [],
+ "n_matrizes_comparadas": 96
+}

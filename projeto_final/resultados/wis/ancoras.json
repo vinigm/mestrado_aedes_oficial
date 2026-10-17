@@ -1,0 +1,376 @@
+{
+  "n_de_102_semanas_por_horizonte_nos_3_modelos": true,
+  "n_da_regua_por_horizonte_na_janela_padrao": {
+    "1": 101,
+    "2": 101,
+    "3": 101,
+    "4": 101,
+    "5": 101,
+    "6": 101,
+    "7": 101,
+    "8": 101,
+    "9": 101,
+    "10": 101,
+    "11": 101,
+    "12": 101
+  },
+  "previsoes_dos_7_quantis_contra_a_rodada_de_26_09": {
+    "linhas_em_comum": 16226,
+    "linhas_so_nas_novas_nos_horizontes_antigos": 0,
+    "linhas_so_nas_antigas": 0,
+    "diferenca_maxima_do_previsto_bruto": 0.0,
+    "linhas_com_diferenca_acima_de_1e-9": 0
+  },
+  "wis_da_janela_antiga_contra_26_09": [
+    {
+      "modelo": "folha5",
+      "h": 1,
+      "n_novo": 97,
+      "n_antigo": 97,
+      "wis_novo": 101.89296104402206,
+      "wis_antigo_26_09": 101.89296104402206,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 101.9,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.41237113402061853,
+      "cobertura_50_antigo": 0.41237113402061853,
+      "cobertura_90_novo": 0.7731958762886598,
+      "cobertura_90_antigo": 0.7731958762886598
+    },
+    {
+      "modelo": "folha5",
+      "h": 4,
+      "n_novo": 97,
+      "n_antigo": 97,
+      "wis_novo": 215.37740754217072,
+      "wis_antigo_26_09": 215.37740754217072,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 215.4,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.25773195876288657,
+      "cobertura_50_antigo": 0.25773195876288657,
+      "cobertura_90_novo": 0.6907216494845361,
+      "cobertura_90_antigo": 0.6907216494845361
+    },
+    {
+      "modelo": "folha5",
+      "h": 8,
+      "n_novo": 97,
+      "n_antigo": 97,
+      "wis_novo": 288.6246681165304,
+      "wis_antigo_26_09": 288.6246681165304,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 288.6,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.24742268041237114,
+      "cobertura_50_antigo": 0.24742268041237114,
+      "cobertura_90_novo": 0.5463917525773195,
+      "cobertura_90_antigo": 0.5463917525773195
+    },
+    {
+      "modelo": "folha5",
+      "h": 12,
+      "n_novo": 97,
+      "n_antigo": 97,
+      "wis_novo": 300.6926929964153,
+      "wis_antigo_26_09": 300.6926929964153,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 300.7,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.1958762886597938,
+      "cobertura_50_antigo": 0.1958762886597938,
+      "cobertura_90_novo": 0.5154639175257731,
+      "cobertura_90_antigo": 0.5154639175257731
+    },
+    {
+      "modelo": "folha20",
+      "h": 1,
+      "n_novo": 97,
+      "n_antigo": 97,
+      "wis_novo": 121.32713592019103,
+      "wis_antigo_26_09": 121.32713592019103,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 121.3,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.3402061855670103,
+      "cobertura_50_antigo": 0.3402061855670103,
+      "cobertura_90_novo": 0.845360824742268,
+      "cobertura_90_antigo": 0.845360824742268
+    },
+    {
+      "modelo": "folha20",
+      "h": 4,
+      "n_novo": 97,
+      "n_antigo": 97,
+      "wis_novo": 199.002275205832,
+      "wis_antigo_26_09": 199.002275205832,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 199.0,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.31958762886597936,
+      "cobertura_50_antigo": 0.31958762886597936,
+      "cobertura_90_novo": 0.6804123711340206,
+      "cobertura_90_antigo": 0.6804123711340206
+    },
+    {
+      "modelo": "folha20",
+      "h": 8,
+      "n_novo": 97,
+      "n_antigo": 97,
+      "wis_novo": 258.98113895443555,
+      "wis_antigo_26_09": 258.98113895443555,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 259.0,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.1958762886597938,
+      "cobertura_50_antigo": 0.1958762886597938,
+      "cobertura_90_novo": 0.5773195876288659,
+      "cobertura_90_antigo": 0.5773195876288659
+    },
+    {
+      "modelo": "folha20",
+      "h": 12,
+      "n_novo": 97,
+      "n_antigo": 97,
+      "wis_novo": 278.5737627999703,
+      "wis_antigo_26_09": 278.5737627999703,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 278.6,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.26804123711340205,
+      "cobertura_50_antigo": 0.26804123711340205,
+      "cobertura_90_novo": 0.5670103092783505,
+      "cobertura_90_antigo": 0.5670103092783505
+    },
+    {
+      "modelo": "regua_climatologica",
+      "h": 1,
+      "n_novo": 96,
+      "n_antigo": 96,
+      "wis_novo": 292.6843005952381,
+      "wis_antigo_26_09": 292.6843005952381,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 292.7,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.17708333333333334,
+      "cobertura_50_antigo": 0.17708333333333334,
+      "cobertura_90_novo": 0.3958333333333333,
+      "cobertura_90_antigo": 0.3958333333333333
+    },
+    {
+      "modelo": "regua_climatologica",
+      "h": 4,
+      "n_novo": 96,
+      "n_antigo": 96,
+      "wis_novo": 313.4799107142857,
+      "wis_antigo_26_09": 313.4799107142857,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 313.5,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.17708333333333334,
+      "cobertura_50_antigo": 0.17708333333333334,
+      "cobertura_90_novo": 0.3854166666666667,
+      "cobertura_90_antigo": 0.3854166666666667
+    },
+    {
+      "modelo": "regua_climatologica",
+      "h": 8,
+      "n_novo": 96,
+      "n_antigo": 96,
+      "wis_novo": 322.17373511904765,
+      "wis_antigo_26_09": 322.17373511904765,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 322.2,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.16666666666666666,
+      "cobertura_50_antigo": 0.16666666666666666,
+      "cobertura_90_novo": 0.3541666666666667,
+      "cobertura_90_antigo": 0.3541666666666667
+    },
+    {
+      "modelo": "regua_climatologica",
+      "h": 12,
+      "n_novo": 96,
+      "n_antigo": 96,
+      "wis_novo": 324.1529761904762,
+      "wis_antigo_26_09": 324.1529761904762,
+      "diferenca_absoluta": 0.0,
+      "ancora_da_predeclaracao": 324.2,
+      "bate_a_ancora": true,
+      "cobertura_50_novo": 0.17708333333333334,
+      "cobertura_50_antigo": 0.17708333333333334,
+      "cobertura_90_novo": 0.375,
+      "cobertura_90_antigo": 0.375
+    }
+  ],
+  "origens_com_cruzamento": [
+    {
+      "folha": 5,
+      "h": 1,
+      "origens": 295,
+      "com_cruzamento": 247,
+      "fracao": 0.8372881355932204
+    },
+    {
+      "folha": 5,
+      "h": 2,
+      "origens": 294,
+      "com_cruzamento": 250,
+      "fracao": 0.8503401360544217
+    },
+    {
+      "folha": 5,
+      "h": 3,
+      "origens": 293,
+      "com_cruzamento": 243,
+      "fracao": 0.8293515358361775
+    },
+    {
+      "folha": 5,
+      "h": 4,
+      "origens": 292,
+      "com_cruzamento": 259,
+      "fracao": 0.886986301369863
+    },
+    {
+      "folha": 5,
+      "h": 5,
+      "origens": 291,
+      "com_cruzamento": 246,
+      "fracao": 0.845360824742268
+    },
+    {
+      "folha": 5,
+      "h": 6,
+      "origens": 290,
+      "com_cruzamento": 235,
+      "fracao": 0.8103448275862069
+    },
+    {
+      "folha": 5,
+      "h": 7,
+      "origens": 289,
+      "com_cruzamento": 243,
+      "fracao": 0.8408304498269896
+    },
+    {
+      "folha": 5,
+      "h": 8,
+      "origens": 288,
+      "com_cruzamento": 240,
+      "fracao": 0.8333333333333334
+    },
+    {
+      "folha": 5,
+      "h": 9,
+      "origens": 287,
+      "com_cruzamento": 238,
+      "fracao": 0.8292682926829268
+    },
+    {
+      "folha": 5,
+      "h": 10,
+      "origens": 286,
+      "com_cruzamento": 237,
+      "fracao": 0.8286713286713286
+    },
+    {
+      "folha": 5,
+      "h": 11,
+      "origens": 285,
+      "com_cruzamento": 232,
+      "fracao": 0.8140350877192982
+    },
+    {
+      "folha": 5,
+      "h": 12,
+      "origens": 284,
+      "com_cruzamento": 222,
+      "fracao": 0.7816901408450704
+    },
+    {
+      "folha": 20,
+      "h": 1,
+      "origens": 295,
+      "com_cruzamento": 211,
+      "fracao": 0.7152542372881356
+    },
+    {
+      "folha": 20,
+      "h": 2,
+      "origens": 294,
+      "com_cruzamento": 210,
+      "fracao": 0.7142857142857143
+    },
+    {
+      "folha": 20,
+      "h": 3,
+      "origens": 293,
+      "com_cruzamento": 207,
+      "fracao": 0.7064846416382252
+    },
+    {
+      "folha": 20,
+      "h": 4,
+      "origens": 292,
+      "com_cruzamento": 212,
+      "fracao": 0.726027397260274
+    },
+    {
+      "folha": 20,
+      "h": 5,
+      "origens": 291,
+      "com_cruzamento": 213,
+      "fracao": 0.7319587628865979
+    },
+    {
+      "folha": 20,
+      "h": 6,
+      "origens": 290,
+      "com_cruzamento": 209,
+      "fracao": 0.7206896551724138
+    },
+    {
+      "folha": 20,
+      "h": 7,
+      "origens": 289,
+      "com_cruzamento": 198,
+      "fracao": 0.6851211072664359
+    },
+    {
+      "folha": 20,
+      "h": 8,
+      "origens": 288,
+      "com_cruzamento": 199,
+      "fracao": 0.6909722222222222
+    },
+    {
+      "folha": 20,
+      "h": 9,
+      "origens": 287,
+      "com_cruzamento": 191,
+      "fracao": 0.6655052264808362
+    },
+    {
+      "folha": 20,
+      "h": 10,
+      "origens": 286,
+      "com_cruzamento": 185,
+      "fracao": 0.6468531468531469
+    },
+    {
+      "folha": 20,
+      "h": 11,
+      "origens": 285,
+      "com_cruzamento": 185,
+      "fracao": 0.6491228070175439
+    },
+    {
+      "folha": 20,
+      "h": 12,
+      "origens": 284,
+      "com_cruzamento": 194,
+      "fracao": 0.6830985915492958
+    }
+  ]
+}

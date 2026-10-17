@@ -1,0 +1,86 @@
+{
+ "completo|f5|h1": {
+  "n": 295,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 42.2
+ },
+ "completo|f20|h1": {
+  "n": 295,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 27.1
+ },
+ "completo|f5|h12": {
+  "n": 284,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 39.9
+ },
+ "completo|f20|h12": {
+  "n": 284,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 23.7
+ },
+ "sem_vetor|f5|h1": {
+  "n": 307,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 38.8
+ },
+ "sem_vetor|f20|h1": {
+  "n": 307,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 25.0
+ },
+ "sem_vetor|f5|h12": {
+  "n": 296,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 36.3
+ },
+ "sem_vetor|f20|h12": {
+  "n": 296,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 22.3
+ },
+ "so_calendario|f5|h1": {
+  "n": 312,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 29.8
+ },
+ "so_calendario|f20|h1": {
+  "n": 312,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 19.6
+ },
+ "so_calendario|f5|h12": {
+  "n": 312,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 33.5
+ },
+ "so_calendario|f20|h12": {
+  "n": 312,
+  "mesmas_datas": true,
+  "dif_max": 0.0,
+  "n_bit_diferentes": 0,
+  "seg": 20.4
+ }
+}

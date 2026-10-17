@@ -1,0 +1,195 @@
+2026-10-12 18:50:06 inicio: 2 celula(s) pedida(s)
+2026-10-12 18:50:06 inicio: 2 celula(s) pedida(s)
+2026-10-12 18:50:06 inicio: 2 celula(s) pedida(s)
+2026-10-12 18:50:06 inicio: 2 celula(s) pedida(s)
+2026-10-12 18:50:37 pedaco folha=20 q=0.85 h= 8 linhas_da_matriz=392 previsoes=288 tempo=31.1s
+2026-10-12 18:50:40 pedaco folha=20 q=0.85 h= 1 linhas_da_matriz=399 previsoes=295 tempo=34.1s
+2026-10-12 18:51:01 pedaco folha=5 q=0.85 h= 8 linhas_da_matriz=392 previsoes=288 tempo=55.0s
+2026-10-12 18:51:06 pedaco folha=5 q=0.85 h= 1 linhas_da_matriz=399 previsoes=295 tempo=59.4s
+2026-10-12 18:51:18 pedaco folha=20 q=0.85 h=12 linhas_da_matriz=388 previsoes=284 tempo=40.7s
+2026-10-12 18:51:18 fim do pedaco: faltam 171 de 176 parciais; juncao adiada.
+2026-10-12 18:51:27 pedaco folha=20 q=0.85 h= 4 linhas_da_matriz=396 previsoes=292 tempo=47.0s
+2026-10-12 18:51:27 fim do pedaco: faltam 170 de 176 parciais; juncao adiada.
+2026-10-12 18:52:04 pedaco folha=5 q=0.85 h=12 linhas_da_matriz=388 previsoes=284 tempo=63.2s
+2026-10-12 18:52:04 fim do pedaco: faltam 169 de 176 parciais; juncao adiada.
+2026-10-12 18:52:10 pedaco folha=5 q=0.85 h= 4 linhas_da_matriz=396 previsoes=292 tempo=64.4s
+2026-10-12 18:52:10 fim do pedaco: faltam 168 de 176 parciais; juncao adiada.
+2026-10-12 18:52:16 --so-trava: passou=True
+2026-10-12 18:52:25 inicio: 36 celula(s) pedida(s)
+2026-10-12 18:52:25 inicio: 48 celula(s) pedida(s)
+2026-10-12 18:52:25 inicio: 36 celula(s) pedida(s)
+2026-10-12 18:52:25 inicio: 12 celula(s) pedida(s)
+2026-10-12 18:52:54 pedaco folha=5 q=0.05 h= 1 linhas_da_matriz=399 previsoes=295 tempo=29.1s
+2026-10-12 18:53:06 pedaco folha=20 q=0.50 h= 1 linhas_da_matriz=399 previsoes=295 tempo=40.9s
+2026-10-12 18:53:13 pedaco folha=5 q=0.95 h= 1 linhas_da_matriz=399 previsoes=295 tempo=48.8s
+2026-10-12 18:53:24 pedaco folha=5 q=0.05 h= 2 linhas_da_matriz=398 previsoes=294 tempo=30.0s
+2026-10-12 18:53:34 pedaco folha=5 q=0.50 h= 1 linhas_da_matriz=399 previsoes=295 tempo=68.8s
+2026-10-12 18:53:47 pedaco folha=20 q=0.50 h= 2 linhas_da_matriz=398 previsoes=294 tempo=40.9s
+2026-10-12 18:53:51 pedaco folha=5 q=0.05 h= 3 linhas_da_matriz=397 previsoes=293 tempo=27.5s
+2026-10-12 18:54:02 pedaco folha=5 q=0.95 h= 2 linhas_da_matriz=398 previsoes=294 tempo=48.4s
+2026-10-12 18:54:17 pedaco folha=5 q=0.05 h= 4 linhas_da_matriz=396 previsoes=292 tempo=25.9s
+2026-10-12 18:54:25 pedaco folha=20 q=0.50 h= 3 linhas_da_matriz=397 previsoes=293 tempo=38.8s
+2026-10-12 18:54:40 pedaco folha=5 q=0.50 h= 2 linhas_da_matriz=398 previsoes=294 tempo=66.0s
+2026-10-12 18:54:42 pedaco folha=5 q=0.05 h= 5 linhas_da_matriz=395 previsoes=291 tempo=24.7s
+2026-10-12 18:54:51 pedaco folha=5 q=0.95 h= 3 linhas_da_matriz=397 previsoes=293 tempo=49.6s
+2026-10-12 18:55:04 pedaco folha=20 q=0.50 h= 4 linhas_da_matriz=396 previsoes=292 tempo=39.1s
+2026-10-12 18:55:07 pedaco folha=5 q=0.05 h= 6 linhas_da_matriz=394 previsoes=290 tempo=25.0s
+2026-10-12 18:55:29 pedaco folha=5 q=0.05 h= 7 linhas_da_matriz=393 previsoes=289 tempo=22.6s
+2026-10-12 18:55:41 pedaco folha=5 q=0.95 h= 4 linhas_da_matriz=396 previsoes=292 tempo=49.7s
+2026-10-12 18:55:43 pedaco folha=20 q=0.50 h= 5 linhas_da_matriz=395 previsoes=291 tempo=38.2s
+2026-10-12 18:55:47 pedaco folha=5 q=0.50 h= 3 linhas_da_matriz=397 previsoes=293 tempo=67.4s
+2026-10-12 18:55:52 pedaco folha=5 q=0.05 h= 8 linhas_da_matriz=392 previsoes=288 tempo=23.1s
+2026-10-12 18:56:14 pedaco folha=5 q=0.05 h= 9 linhas_da_matriz=391 previsoes=287 tempo=21.8s
+2026-10-12 18:56:21 pedaco folha=20 q=0.50 h= 6 linhas_da_matriz=394 previsoes=290 tempo=37.9s
+2026-10-12 18:56:32 pedaco folha=5 q=0.95 h= 5 linhas_da_matriz=395 previsoes=291 tempo=50.9s
+2026-10-12 18:56:36 pedaco folha=5 q=0.05 h=10 linhas_da_matriz=390 previsoes=286 tempo=22.1s
+2026-10-12 18:56:53 pedaco folha=5 q=0.50 h= 4 linhas_da_matriz=396 previsoes=292 tempo=66.0s
+2026-10-12 18:56:58 pedaco folha=5 q=0.05 h=11 linhas_da_matriz=389 previsoes=285 tempo=21.8s
+2026-10-12 18:56:59 pedaco folha=20 q=0.50 h= 7 linhas_da_matriz=393 previsoes=289 tempo=38.6s
+2026-10-12 18:57:20 pedaco folha=5 q=0.05 h=12 linhas_da_matriz=388 previsoes=284 tempo=22.1s
+2026-10-12 18:57:25 pedaco folha=5 q=0.95 h= 6 linhas_da_matriz=394 previsoes=290 tempo=53.0s
+2026-10-12 18:57:38 pedaco folha=20 q=0.50 h= 8 linhas_da_matriz=392 previsoes=288 tempo=38.8s
+2026-10-12 18:57:55 pedaco folha=5 q=0.10 h= 1 linhas_da_matriz=399 previsoes=295 tempo=34.6s
+2026-10-12 18:58:00 pedaco folha=5 q=0.50 h= 5 linhas_da_matriz=395 previsoes=291 tempo=66.7s
+2026-10-12 18:58:15 pedaco folha=5 q=0.95 h= 7 linhas_da_matriz=393 previsoes=289 tempo=49.9s
+2026-10-12 18:58:16 pedaco folha=20 q=0.50 h= 9 linhas_da_matriz=391 previsoes=287 tempo=37.7s
+2026-10-12 18:58:29 pedaco folha=5 q=0.10 h= 2 linhas_da_matriz=398 previsoes=294 tempo=34.5s
+2026-10-12 18:58:52 pedaco folha=20 q=0.50 h=10 linhas_da_matriz=390 previsoes=286 tempo=36.2s
+2026-10-12 18:59:02 pedaco folha=5 q=0.10 h= 3 linhas_da_matriz=397 previsoes=293 tempo=32.9s
+2026-10-12 18:59:03 pedaco folha=5 q=0.50 h= 6 linhas_da_matriz=394 previsoes=290 tempo=63.6s
+2026-10-12 18:59:04 pedaco folha=5 q=0.95 h= 8 linhas_da_matriz=392 previsoes=288 tempo=49.2s
+2026-10-12 18:59:27 pedaco folha=20 q=0.50 h=11 linhas_da_matriz=389 previsoes=285 tempo=35.4s
+2026-10-12 18:59:35 pedaco folha=5 q=0.10 h= 4 linhas_da_matriz=396 previsoes=292 tempo=33.1s
+2026-10-12 18:59:56 pedaco folha=5 q=0.95 h= 9 linhas_da_matriz=391 previsoes=287 tempo=52.3s
+2026-10-12 19:00:02 pedaco folha=20 q=0.50 h=12 linhas_da_matriz=388 previsoes=284 tempo=34.5s
+2026-10-12 19:00:07 pedaco folha=5 q=0.50 h= 7 linhas_da_matriz=393 previsoes=289 tempo=64.2s
+2026-10-12 19:00:08 pedaco folha=5 q=0.10 h= 5 linhas_da_matriz=395 previsoes=291 tempo=32.9s
+2026-10-12 19:00:40 pedaco folha=5 q=0.10 h= 6 linhas_da_matriz=394 previsoes=290 tempo=31.8s
+2026-10-12 19:00:47 pedaco folha=20 q=0.75 h= 1 linhas_da_matriz=399 previsoes=295 tempo=45.3s
+2026-10-12 19:00:48 pedaco folha=5 q=0.95 h=10 linhas_da_matriz=390 previsoes=286 tempo=51.6s
+2026-10-12 19:01:10 pedaco folha=5 q=0.10 h= 7 linhas_da_matriz=393 previsoes=289 tempo=30.1s
+2026-10-12 19:01:12 pedaco folha=5 q=0.50 h= 8 linhas_da_matriz=392 previsoes=288 tempo=64.6s
+2026-10-12 19:01:33 pedaco folha=20 q=0.75 h= 2 linhas_da_matriz=398 previsoes=294 tempo=45.9s
+2026-10-12 19:01:39 pedaco folha=5 q=0.95 h=11 linhas_da_matriz=389 previsoes=285 tempo=51.4s
+2026-10-12 19:01:40 pedaco folha=5 q=0.10 h= 8 linhas_da_matriz=392 previsoes=288 tempo=29.2s
+2026-10-12 19:02:05 pedaco folha=5 q=0.10 h= 9 linhas_da_matriz=391 previsoes=287 tempo=25.3s
+2026-10-12 19:02:16 pedaco folha=5 q=0.50 h= 9 linhas_da_matriz=391 previsoes=287 tempo=63.7s
+2026-10-12 19:02:17 pedaco folha=20 q=0.75 h= 3 linhas_da_matriz=397 previsoes=293 tempo=44.3s
+2026-10-12 19:02:29 pedaco folha=5 q=0.95 h=12 linhas_da_matriz=388 previsoes=284 tempo=49.4s
+2026-10-12 19:02:29 fim do pedaco: faltam 111 de 176 parciais; juncao adiada.
+2026-10-12 19:02:30 pedaco folha=5 q=0.10 h=10 linhas_da_matriz=390 previsoes=286 tempo=25.4s
+2026-10-12 19:02:31 inicio: 36 celula(s) pedida(s)
+2026-10-12 19:02:52 pedaco folha=20 q=0.05 h= 1 linhas_da_matriz=399 previsoes=295 tempo=21.8s
+2026-10-12 19:02:54 pedaco folha=5 q=0.10 h=11 linhas_da_matriz=389 previsoes=285 tempo=24.1s
+2026-10-12 19:03:02 pedaco folha=20 q=0.75 h= 4 linhas_da_matriz=396 previsoes=292 tempo=44.4s
+2026-10-12 19:03:14 pedaco folha=20 q=0.05 h= 2 linhas_da_matriz=398 previsoes=294 tempo=21.9s
+2026-10-12 19:03:18 pedaco folha=5 q=0.10 h=12 linhas_da_matriz=388 previsoes=284 tempo=23.6s
+2026-10-12 19:03:19 pedaco folha=5 q=0.50 h=10 linhas_da_matriz=390 previsoes=286 tempo=62.9s
+2026-10-12 19:03:36 pedaco folha=20 q=0.05 h= 3 linhas_da_matriz=397 previsoes=293 tempo=22.1s
+2026-10-12 19:03:47 pedaco folha=20 q=0.75 h= 5 linhas_da_matriz=395 previsoes=291 tempo=45.0s
+2026-10-12 19:03:57 pedaco folha=20 q=0.05 h= 4 linhas_da_matriz=396 previsoes=292 tempo=21.1s
+2026-10-12 19:04:14 pedaco folha=5 q=0.25 h= 1 linhas_da_matriz=399 previsoes=295 tempo=55.8s
+2026-10-12 19:04:17 pedaco folha=20 q=0.05 h= 5 linhas_da_matriz=395 previsoes=291 tempo=19.9s
+2026-10-12 19:04:18 pedaco folha=5 q=0.50 h=11 linhas_da_matriz=389 previsoes=285 tempo=59.3s
+2026-10-12 19:04:31 pedaco folha=20 q=0.75 h= 6 linhas_da_matriz=394 previsoes=290 tempo=44.1s
+2026-10-12 19:04:38 pedaco folha=20 q=0.05 h= 6 linhas_da_matriz=394 previsoes=290 tempo=20.2s
+2026-10-12 19:04:58 pedaco folha=20 q=0.05 h= 7 linhas_da_matriz=393 previsoes=289 tempo=20.5s
+2026-10-12 19:05:05 pedaco folha=5 q=0.25 h= 2 linhas_da_matriz=398 previsoes=294 tempo=51.4s
+2026-10-12 19:05:12 pedaco folha=5 q=0.50 h=12 linhas_da_matriz=388 previsoes=284 tempo=54.1s
+2026-10-12 19:05:16 pedaco folha=20 q=0.75 h= 7 linhas_da_matriz=393 previsoes=289 tempo=44.9s
+2026-10-12 19:05:19 pedaco folha=20 q=0.05 h= 8 linhas_da_matriz=392 previsoes=288 tempo=20.9s
+2026-10-12 19:05:39 pedaco folha=20 q=0.05 h= 9 linhas_da_matriz=391 previsoes=287 tempo=19.8s
+2026-10-12 19:05:58 pedaco folha=20 q=0.05 h=10 linhas_da_matriz=390 previsoes=286 tempo=18.9s
+2026-10-12 19:05:59 pedaco folha=20 q=0.75 h= 8 linhas_da_matriz=392 previsoes=288 tempo=43.4s
+2026-10-12 19:06:01 pedaco folha=5 q=0.25 h= 3 linhas_da_matriz=397 previsoes=293 tempo=55.6s
+2026-10-12 19:06:16 pedaco folha=20 q=0.05 h=11 linhas_da_matriz=389 previsoes=285 tempo=18.4s
+2026-10-12 19:06:26 pedaco folha=5 q=0.75 h= 1 linhas_da_matriz=399 previsoes=295 tempo=73.3s
+2026-10-12 19:06:35 pedaco folha=20 q=0.05 h=12 linhas_da_matriz=388 previsoes=284 tempo=19.0s
+2026-10-12 19:06:42 pedaco folha=20 q=0.75 h= 9 linhas_da_matriz=391 previsoes=287 tempo=42.3s
+2026-10-12 19:06:58 pedaco folha=5 q=0.25 h= 4 linhas_da_matriz=396 previsoes=292 tempo=56.7s
+2026-10-12 19:07:01 pedaco folha=20 q=0.10 h= 1 linhas_da_matriz=399 previsoes=295 tempo=25.5s
+2026-10-12 19:07:24 pedaco folha=20 q=0.75 h=10 linhas_da_matriz=390 previsoes=286 tempo=42.5s
+2026-10-12 19:07:27 pedaco folha=20 q=0.10 h= 2 linhas_da_matriz=398 previsoes=294 tempo=26.2s
+2026-10-12 19:07:39 pedaco folha=5 q=0.75 h= 2 linhas_da_matriz=398 previsoes=294 tempo=73.2s
+2026-10-12 19:07:48 pedaco folha=5 q=0.25 h= 5 linhas_da_matriz=395 previsoes=291 tempo=50.1s
+2026-10-12 19:07:52 pedaco folha=20 q=0.10 h= 3 linhas_da_matriz=397 previsoes=293 tempo=24.9s
+2026-10-12 19:08:07 pedaco folha=20 q=0.75 h=11 linhas_da_matriz=389 previsoes=285 tempo=42.5s
+2026-10-12 19:08:17 pedaco folha=20 q=0.10 h= 4 linhas_da_matriz=396 previsoes=292 tempo=25.0s
+2026-10-12 19:08:33 pedaco folha=5 q=0.25 h= 6 linhas_da_matriz=394 previsoes=290 tempo=45.8s
+2026-10-12 19:08:43 pedaco folha=20 q=0.10 h= 5 linhas_da_matriz=395 previsoes=291 tempo=25.9s
+2026-10-12 19:08:50 pedaco folha=20 q=0.75 h=12 linhas_da_matriz=388 previsoes=284 tempo=43.7s
+2026-10-12 19:08:52 pedaco folha=5 q=0.75 h= 3 linhas_da_matriz=397 previsoes=293 tempo=73.5s
+2026-10-12 19:09:08 pedaco folha=20 q=0.10 h= 6 linhas_da_matriz=394 previsoes=290 tempo=25.6s
+2026-10-12 19:09:20 pedaco folha=5 q=0.25 h= 7 linhas_da_matriz=393 previsoes=289 tempo=46.9s
+2026-10-12 19:09:33 pedaco folha=20 q=0.90 h= 1 linhas_da_matriz=399 previsoes=295 tempo=42.8s
+2026-10-12 19:09:36 pedaco folha=20 q=0.10 h= 7 linhas_da_matriz=393 previsoes=289 tempo=27.4s
+2026-10-12 19:10:02 pedaco folha=20 q=0.10 h= 8 linhas_da_matriz=392 previsoes=288 tempo=26.5s
+2026-10-12 19:10:08 pedaco folha=5 q=0.25 h= 8 linhas_da_matriz=392 previsoes=288 tempo=47.6s
+2026-10-12 19:10:15 pedaco folha=5 q=0.75 h= 4 linhas_da_matriz=396 previsoes=292 tempo=82.9s
+2026-10-12 19:10:20 pedaco folha=20 q=0.90 h= 2 linhas_da_matriz=398 previsoes=294 tempo=47.2s
+2026-10-12 19:10:27 pedaco folha=20 q=0.10 h= 9 linhas_da_matriz=391 previsoes=287 tempo=24.7s
+2026-10-12 19:10:46 pedaco folha=5 q=0.25 h= 9 linhas_da_matriz=391 previsoes=287 tempo=38.1s
+2026-10-12 19:10:46 pedaco folha=20 q=0.10 h=10 linhas_da_matriz=390 previsoes=286 tempo=19.7s
+2026-10-12 19:10:59 pedaco folha=20 q=0.90 h= 3 linhas_da_matriz=397 previsoes=293 tempo=38.6s
+2026-10-12 19:11:06 pedaco folha=20 q=0.10 h=11 linhas_da_matriz=389 previsoes=285 tempo=19.6s
+2026-10-12 19:11:19 pedaco folha=5 q=0.25 h=10 linhas_da_matriz=390 previsoes=286 tempo=33.2s
+2026-10-12 19:11:26 pedaco folha=20 q=0.10 h=12 linhas_da_matriz=388 previsoes=284 tempo=20.3s
+2026-10-12 19:11:28 pedaco folha=5 q=0.75 h= 5 linhas_da_matriz=395 previsoes=291 tempo=73.0s
+2026-10-12 19:11:38 pedaco folha=20 q=0.90 h= 4 linhas_da_matriz=396 previsoes=292 tempo=39.0s
+2026-10-12 19:11:46 pedaco folha=5 q=0.25 h=11 linhas_da_matriz=389 previsoes=285 tempo=26.4s
+2026-10-12 19:11:58 pedaco folha=20 q=0.25 h= 1 linhas_da_matriz=399 previsoes=295 tempo=31.5s
+2026-10-12 19:12:13 pedaco folha=5 q=0.25 h=12 linhas_da_matriz=388 previsoes=284 tempo=27.3s
+2026-10-12 19:12:13 fim do pedaco: faltam 50 de 176 parciais; juncao adiada.
+2026-10-12 19:12:15 pedaco folha=20 q=0.90 h= 5 linhas_da_matriz=395 previsoes=291 tempo=37.3s
+2026-10-12 19:12:28 pedaco folha=20 q=0.25 h= 2 linhas_da_matriz=398 previsoes=294 tempo=30.3s
+2026-10-12 19:12:38 pedaco folha=5 q=0.75 h= 6 linhas_da_matriz=394 previsoes=290 tempo=69.5s
+2026-10-12 19:12:51 pedaco folha=20 q=0.90 h= 6 linhas_da_matriz=394 previsoes=290 tempo=36.2s
+2026-10-12 19:12:59 pedaco folha=20 q=0.25 h= 3 linhas_da_matriz=397 previsoes=293 tempo=30.5s
+2026-10-12 19:13:28 pedaco folha=20 q=0.90 h= 7 linhas_da_matriz=393 previsoes=289 tempo=36.5s
+2026-10-12 19:13:30 pedaco folha=20 q=0.25 h= 4 linhas_da_matriz=396 previsoes=292 tempo=31.3s
+2026-10-12 19:13:46 pedaco folha=5 q=0.75 h= 7 linhas_da_matriz=393 previsoes=289 tempo=68.8s
+2026-10-12 19:13:56 pedaco folha=20 q=0.25 h= 5 linhas_da_matriz=395 previsoes=291 tempo=26.1s
+2026-10-12 19:14:00 pedaco folha=20 q=0.90 h= 8 linhas_da_matriz=392 previsoes=288 tempo=32.0s
+2026-10-12 19:14:18 pedaco folha=20 q=0.25 h= 6 linhas_da_matriz=394 previsoes=290 tempo=21.6s
+2026-10-12 19:14:29 pedaco folha=20 q=0.90 h= 9 linhas_da_matriz=391 previsoes=287 tempo=29.4s
+2026-10-12 19:14:42 pedaco folha=20 q=0.25 h= 7 linhas_da_matriz=393 previsoes=289 tempo=24.2s
+2026-10-12 19:14:44 pedaco folha=5 q=0.75 h= 8 linhas_da_matriz=392 previsoes=288 tempo=57.9s
+2026-10-12 19:15:00 pedaco folha=20 q=0.90 h=10 linhas_da_matriz=390 previsoes=286 tempo=31.1s
+2026-10-12 19:15:04 pedaco folha=20 q=0.25 h= 8 linhas_da_matriz=392 previsoes=288 tempo=22.4s
+2026-10-12 19:15:23 pedaco folha=20 q=0.25 h= 9 linhas_da_matriz=391 previsoes=287 tempo=19.3s
+2026-10-12 19:15:30 pedaco folha=20 q=0.90 h=11 linhas_da_matriz=389 previsoes=285 tempo=29.4s
+2026-10-12 19:15:44 pedaco folha=5 q=0.75 h= 9 linhas_da_matriz=391 previsoes=287 tempo=59.3s
+2026-10-12 19:15:45 pedaco folha=20 q=0.25 h=10 linhas_da_matriz=390 previsoes=286 tempo=21.7s
+2026-10-12 19:16:05 pedaco folha=20 q=0.90 h=12 linhas_da_matriz=388 previsoes=284 tempo=35.1s
+2026-10-12 19:16:05 pedaco folha=20 q=0.25 h=11 linhas_da_matriz=389 previsoes=285 tempo=20.3s
+2026-10-12 19:16:27 pedaco folha=20 q=0.25 h=12 linhas_da_matriz=388 previsoes=284 tempo=21.8s
+2026-10-12 19:16:27 fim do pedaco: faltam 27 de 176 parciais; juncao adiada.
+2026-10-12 19:16:36 pedaco folha=20 q=0.95 h= 1 linhas_da_matriz=399 previsoes=295 tempo=31.1s
+2026-10-12 19:16:50 pedaco folha=5 q=0.75 h=10 linhas_da_matriz=390 previsoes=286 tempo=66.3s
+2026-10-12 19:17:05 pedaco folha=20 q=0.95 h= 2 linhas_da_matriz=398 previsoes=294 tempo=28.9s
+2026-10-12 19:17:50 pedaco folha=20 q=0.95 h= 3 linhas_da_matriz=397 previsoes=293 tempo=45.5s
+2026-10-12 19:18:18 pedaco folha=5 q=0.75 h=11 linhas_da_matriz=389 previsoes=285 tempo=88.3s
+2026-10-12 19:18:29 pedaco folha=20 q=0.95 h= 4 linhas_da_matriz=396 previsoes=292 tempo=38.6s
+2026-10-12 19:19:24 pedaco folha=20 q=0.95 h= 5 linhas_da_matriz=395 previsoes=291 tempo=55.4s
+2026-10-12 19:20:05 pedaco folha=5 q=0.75 h=12 linhas_da_matriz=388 previsoes=284 tempo=106.9s
+2026-10-12 19:20:07 pedaco folha=20 q=0.95 h= 6 linhas_da_matriz=394 previsoes=290 tempo=43.0s
+2026-10-12 19:20:43 pedaco folha=20 q=0.95 h= 7 linhas_da_matriz=393 previsoes=289 tempo=35.5s
+2026-10-12 19:21:13 pedaco folha=5 q=0.90 h= 1 linhas_da_matriz=399 previsoes=295 tempo=67.8s
+2026-10-12 19:21:17 pedaco folha=20 q=0.95 h= 8 linhas_da_matriz=392 previsoes=288 tempo=34.2s
+2026-10-12 19:21:45 pedaco folha=20 q=0.95 h= 9 linhas_da_matriz=391 previsoes=287 tempo=27.8s
+2026-10-12 19:22:04 pedaco folha=5 q=0.90 h= 2 linhas_da_matriz=398 previsoes=294 tempo=51.1s
+2026-10-12 19:22:11 pedaco folha=20 q=0.95 h=10 linhas_da_matriz=390 previsoes=286 tempo=26.2s
+2026-10-12 19:22:36 pedaco folha=20 q=0.95 h=11 linhas_da_matriz=389 previsoes=285 tempo=24.7s
+2026-10-12 19:22:52 pedaco folha=5 q=0.90 h= 3 linhas_da_matriz=397 previsoes=293 tempo=48.0s
+2026-10-12 19:23:01 pedaco folha=20 q=0.95 h=12 linhas_da_matriz=388 previsoes=284 tempo=25.4s
+2026-10-12 19:23:01 fim do pedaco: faltam 9 de 176 parciais; juncao adiada.
+2026-10-12 19:24:00 pedaco folha=5 q=0.90 h= 4 linhas_da_matriz=396 previsoes=292 tempo=68.3s
+2026-10-12 19:25:09 pedaco folha=5 q=0.90 h= 5 linhas_da_matriz=395 previsoes=291 tempo=69.0s
+2026-10-12 19:26:35 pedaco folha=5 q=0.90 h= 6 linhas_da_matriz=394 previsoes=290 tempo=85.2s
+2026-10-12 19:28:07 pedaco folha=5 q=0.90 h= 7 linhas_da_matriz=393 previsoes=289 tempo=92.1s
+2026-10-12 19:29:11 pedaco folha=5 q=0.90 h= 8 linhas_da_matriz=392 previsoes=288 tempo=64.0s
+2026-10-12 19:30:25 pedaco folha=5 q=0.90 h= 9 linhas_da_matriz=391 previsoes=287 tempo=74.4s
+2026-10-12 19:31:25 pedaco folha=5 q=0.90 h=10 linhas_da_matriz=390 previsoes=286 tempo=59.5s
+2026-10-12 19:32:22 pedaco folha=5 q=0.90 h=11 linhas_da_matriz=389 previsoes=285 tempo=57.2s
+2026-10-12 19:33:38 pedaco folha=5 q=0.90 h=12 linhas_da_matriz=388 previsoes=284 tempo=75.8s
+2026-10-12 19:33:41 juncao: 50954 previsoes brutas; trava OK; 13152 escores por origem; 12 testes da F5; tempo deste processo=2476.5s

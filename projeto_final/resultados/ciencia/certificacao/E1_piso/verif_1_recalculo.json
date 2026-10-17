@@ -1,0 +1,134 @@
+{
+  "e1_linhas": 3755,
+  "e1_data_alvo_maxima": "2023-12-31",
+  "e1_data_alvo_minima": "2020-03-22",
+  "e1_tem_alvo_depois_da_calibracao": false,
+  "e1_ausentes_ou_infinitos": 0,
+  "e1_duplicatas_quantil_h_alvo": 0,
+  "e1_origem_mais_h_igual_alvo": true,
+  "e1_metricas_linhas_comparadas": 20,
+  "e1_dif_max_mae": 0.0,
+  "e1_dif_max_cobertura": 5.551115123125783e-17,
+  "e1_n_igual": true,
+  "e1_n_por_h_q085": {
+    "1": 193,
+    "4": 190,
+    "8": 186,
+    "12": 182
+  },
+  "e1_mae_medio_por_quantil_meu": {
+    "0.5": 45.7525869838231,
+    "0.7": 43.728908466753495,
+    "0.8": 42.72714027605279,
+    "0.85": 42.022260264866006,
+    "0.9": 43.85641791635396
+  },
+  "e1_melhor_meu": 0.85,
+  "e1_ganho_meu": 0.0,
+  "e1_escolhido_meu": 0.85,
+  "e1_ganho_de_cada_candidato_sobre_085": {
+    "0.5": -0.08877025403785689,
+    "0.7": -0.040612955874588796,
+    "0.8": -0.016773967100863544,
+    "0.85": 0.0,
+    "0.9": -0.04364728693619224
+  },
+  "e1_decisao_json_bate": true,
+  "referencia_bracos": [
+    "HistGB_folha20_M1",
+    "referencia"
+  ],
+  "trava3_linhas_e1": 751,
+  "trava3_linhas_ref": 751,
+  "trava3_comuns": 751,
+  "trava3_so_e1": 0,
+  "trava3_so_ref": 0,
+  "trava3_dif_max_previsto": 0.0,
+  "trava3_dif_max_real": 0.0,
+  "trava3_dif_max_data_origem": 0,
+  "gabarito_antigo_comuns": 751,
+  "gabarito_antigo_so_e1": 0,
+  "gabarito_antigo_so_gab": 0,
+  "gabarito_antigo_dif_max_previsto": 0.0,
+  "ancora_mae_cal_ref_f5": {
+    "1": 22.336713829800853,
+    "4": 45.78590508160733,
+    "8": 48.1669613514527,
+    "12": 51.799460796603135
+  },
+  "ancora_n_cal_ref_f5": {
+    "1": 193,
+    "4": 190,
+    "8": 186,
+    "12": 182
+  },
+  "ancora_mae_cal_ref_f5_media": 42.022260264866006,
+  "ancoras_janela_referencia": {
+    "referencia_h1": [
+      102,
+      97.98708193004315
+    ],
+    "referencia_h4": [
+      102,
+      219.6692347506603
+    ],
+    "referencia_h8": [
+      102,
+      272.6266744147025
+    ],
+    "referencia_h12": [
+      102,
+      278.8175469066808
+    ],
+    "HistGB_folha20_M1_h1": [
+      102,
+      133.6259070330219
+    ],
+    "HistGB_folha20_M1_h4": [
+      102,
+      199.63518360553894
+    ],
+    "HistGB_folha20_M1_h8": [
+      102,
+      223.18272015579177
+    ],
+    "HistGB_folha20_M1_h12": [
+      102,
+      243.76452770203178
+    ]
+  },
+  "referencia_previsoes_por_folha_h1_h12": {
+    "referencia": [
+      295,
+      284
+    ],
+    "HistGB_folha20_M1": [
+      295,
+      284
+    ]
+  },
+  "piso_linhas": 11590,
+  "piso_ausentes_ou_infinitos": 0,
+  "piso_n_todos_102": true,
+  "piso_celulas": 40,
+  "piso_dif_max_mae": 2.842170943040401e-14,
+  "piso_dif_max_delta": 1.7763568394002505e-15,
+  "piso_dif_max_mae_ref": 2.842170943040401e-14,
+  "piso_dif_max_piso": 0.0,
+  "piso_dif_max_2x": 0.0,
+  "piso_perturbacao_do_maximo_bate": true,
+  "piso_meu": {
+    "f5_h1": 5.220933597388225,
+    "f5_h4": 12.31071465486204,
+    "f5_h8": 12.676903321591396,
+    "f5_h12": 7.018900287725728,
+    "f20_h1": 1.3603387714998405,
+    "f20_h4": 2.20845450319851,
+    "f20_h8": 13.555009444807837,
+    "f20_h12": 10.20794107277689
+  },
+  "piso_delta_assinado_extremos": {
+    "min": -12.676903321591396,
+    "max": 13.555009444807837
+  }
+}

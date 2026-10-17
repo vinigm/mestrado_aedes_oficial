@@ -1,0 +1,26 @@
+{
+  "trava_1": {
+    "linhas_novas": 751,
+    "linhas_do_gabarito": 751,
+    "linhas_em_comum": 751,
+    "linhas_so_nas_novas": 0,
+    "linhas_so_no_gabarito": 0,
+    "diferenca_maxima_do_previsto": 5.684341886080802e-14,
+    "diferenca_maxima_do_real": 0.0,
+    "tolerancia": 1e-09,
+    "passou": true,
+    "gabarito": "resultados/referencia/previsoes.csv, braco referencia, h em [1, 4, 8, 12], data_alvo <= 2023-12-31"
+  },
+  "trava_2": {
+    "linhas_novas": 1159,
+    "linhas_do_gabarito": 1159,
+    "linhas_em_comum": 1159,
+    "linhas_so_nas_novas": 0,
+    "linhas_so_no_gabarito": 0,
+    "diferenca_maxima_do_previsto": 2.2737367544323206e-13,
+    "diferenca_maxima_do_real": 0.0,
+    "tolerancia": 1e-09,
+    "passou": true,
+    "gabarito": "resultados/referencia/previsoes.csv, braco referencia, h em [1, 4, 8, 12], todas as origens"
+  }
+}

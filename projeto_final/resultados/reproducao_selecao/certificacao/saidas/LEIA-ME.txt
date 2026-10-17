@@ -1,0 +1,2 @@
+Saídas dos scripts cert_*.py do certificador da E6 (12/10/2026). Eles gravam na raiz de projeto_final/;
+o orquestrador moveu os arquivos para cá depois da certificação. Se os scripts forem rodados de novo, mover outra vez.

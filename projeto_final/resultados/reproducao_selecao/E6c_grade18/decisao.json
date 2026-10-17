@@ -1,0 +1,11 @@
+{
+  "criterio": "menor MAE medio de calibracao (data_alvo <= 2023-12-31) nos horizontes 1, 4, 8 e 12",
+  "vencedora_da_fase_1": "lr0.03_it400_folhas15_min5",
+  "mae_da_vencedora": 41.66234279498096,
+  "mae_da_referencia": 42.022260264866006,
+  "a_referencia_venceu_a_propria_busca": false,
+  "fase_2": "realizada",
+  "troca_a_referencia": false,
+  "nota": "mesmo que `troca_a_referencia` seja verdadeiro, o modelo de referencia do artigo NAO muda (regra do Vinicius, 12/10/2026): a decisao e documentada e fica para depois",
+  "regra": "reduzir o MAE em h=8 E h=12 com p de Holm < 0,05 nos dois"
+}

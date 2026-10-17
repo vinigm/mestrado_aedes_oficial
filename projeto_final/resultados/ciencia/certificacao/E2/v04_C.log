@@ -1,0 +1,8 @@
+sem_clima 5 1 {'n': 295, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 38.4}
+sem_clima 20 1 {'n': 295, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 25.1}
+sem_clima 5 12 {'n': 284, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 37.1}
+sem_clima 20 12 {'n': 284, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 22.0}
+so_vetor 5 1 {'n': 300, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 37.4}
+so_vetor 20 1 {'n': 300, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 24.6}
+so_vetor 5 12 {'n': 293, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 34.3}
+so_vetor 20 12 {'n': 293, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 23.0}

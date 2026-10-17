@@ -1,0 +1,5 @@
+h=1: |p_t_amostra_unica - p_DM_HLN| max = 4.440892098500626e-16
+h=4,8,12 reais: |dif| max entre meu DM (loop) e DM por np.correlate = 4.440892098500626e-16
+h=1: n=102 ; saltos de calendario >7 dias: 1 tamanhos(dias): [56]
+h=12: n=102 ; saltos de calendario >7 dias: 1 tamanhos(dias): [56]
+N=13: linhas em que previsto != previsao da folha escolhida: 0

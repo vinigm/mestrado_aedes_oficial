@@ -1,0 +1,13 @@
+2026-10-12 20:23:32 inicio E5c (h=12): L convertido=447.065403; sem conversao=421.0
+2026-10-12 20:23:32 grade: 102 semanas-alvo; previsoes das reguas: 204 linhas
+2026-10-12 20:23:32 limiar=447.065 completo folha=5 h=12: n=102 surtos=28 VP=11 FN=17 FP=0 VN=74 sens=0.3929 prec=1.0000 falsos_por_ano=0.0000
+2026-10-12 20:23:32 limiar=447.065 completo folha=20 h=12: n=102 surtos=28 VP=14 FN=14 FP=2 VN=72 sens=0.5000 prec=0.8750 falsos_por_ano=1.0204
+2026-10-12 20:23:32 limiar=447.065 composto_N13 folha=composto h=12: n=102 surtos=28 VP=12 FN=16 FP=1 VN=73 sens=0.4286 prec=0.9231 falsos_por_ano=0.5102
+2026-10-12 20:23:32 limiar=447.065 regua_sazonal folha=- h=12: n=102 surtos=28 VP=21 FN=7 FP=1 VN=73 sens=0.7500 prec=0.9545 falsos_por_ano=0.5102
+2026-10-12 20:23:32 limiar=447.065 persistencia folha=- h=12: n=102 surtos=28 VP=4 FN=24 FP=19 VN=55 sens=0.1429 prec=0.1739 falsos_por_ano=9.6939
+2026-10-12 20:23:32 limiar=421.000 completo folha=5 h=12: n=102 surtos=28 VP=11 FN=17 FP=0 VN=74 sens=0.3929 prec=1.0000 falsos_por_ano=0.0000
+2026-10-12 20:23:32 limiar=421.000 completo folha=20 h=12: n=102 surtos=28 VP=14 FN=14 FP=2 VN=72 sens=0.5000 prec=0.8750 falsos_por_ano=1.0204
+2026-10-12 20:23:32 limiar=421.000 composto_N13 folha=composto h=12: n=102 surtos=28 VP=12 FN=16 FP=1 VN=73 sens=0.4286 prec=0.9231 falsos_por_ano=0.5102
+2026-10-12 20:23:32 limiar=421.000 regua_sazonal folha=- h=12: n=102 surtos=28 VP=21 FN=7 FP=1 VN=73 sens=0.7500 prec=0.9545 falsos_por_ano=0.5102
+2026-10-12 20:23:32 limiar=421.000 persistencia folha=- h=12: n=102 surtos=28 VP=4 FN=24 FP=19 VN=55 sens=0.1429 prec=0.1739 falsos_por_ano=9.6939
+2026-10-12 20:23:32 fim E5c: 10 linhas em alarme_h12.csv; ancoras conferidas

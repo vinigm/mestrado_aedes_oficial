@@ -1,0 +1,23 @@
+2026-10-12 15:11:18 inicio: quantis=[0.5, 0.7, 0.8, 0.85, 0.9] horizontes=[1, 4, 8, 12]
+2026-10-12 15:11:49 pedaco quantil=0.50 h= 1 linhas_da_matriz=297 previsoes=193 tempo=31.1s
+2026-10-12 15:12:21 pedaco quantil=0.50 h= 4 linhas_da_matriz=294 previsoes=190 tempo=31.4s
+2026-10-12 15:12:50 pedaco quantil=0.50 h= 8 linhas_da_matriz=290 previsoes=186 tempo=29.8s
+2026-10-12 15:13:10 pedaco quantil=0.50 h=12 linhas_da_matriz=286 previsoes=182 tempo=19.6s
+2026-10-12 15:13:48 pedaco quantil=0.70 h= 1 linhas_da_matriz=297 previsoes=193 tempo=38.4s
+2026-10-12 15:14:26 pedaco quantil=0.70 h= 4 linhas_da_matriz=294 previsoes=190 tempo=37.3s
+2026-10-12 15:15:05 pedaco quantil=0.70 h= 8 linhas_da_matriz=290 previsoes=186 tempo=38.9s
+2026-10-12 15:15:41 pedaco quantil=0.70 h=12 linhas_da_matriz=286 previsoes=182 tempo=36.9s
+2026-10-12 15:16:13 pedaco quantil=0.80 h= 1 linhas_da_matriz=297 previsoes=193 tempo=31.8s
+2026-10-12 15:16:41 pedaco quantil=0.80 h= 4 linhas_da_matriz=294 previsoes=190 tempo=27.9s
+2026-10-12 15:17:08 pedaco quantil=0.80 h= 8 linhas_da_matriz=290 previsoes=186 tempo=26.5s
+2026-10-12 15:17:31 pedaco quantil=0.80 h=12 linhas_da_matriz=286 previsoes=182 tempo=23.7s
+2026-10-12 15:17:54 pedaco quantil=0.85 h= 1 linhas_da_matriz=297 previsoes=193 tempo=23.1s
+2026-10-12 15:18:15 pedaco quantil=0.85 h= 4 linhas_da_matriz=294 previsoes=190 tempo=20.4s
+2026-10-12 15:18:34 pedaco quantil=0.85 h= 8 linhas_da_matriz=290 previsoes=186 tempo=19.5s
+2026-10-12 15:18:53 pedaco quantil=0.85 h=12 linhas_da_matriz=286 previsoes=182 tempo=18.9s
+2026-10-12 15:19:13 pedaco quantil=0.90 h= 1 linhas_da_matriz=297 previsoes=193 tempo=19.6s
+2026-10-12 15:19:32 pedaco quantil=0.90 h= 4 linhas_da_matriz=294 previsoes=190 tempo=19.4s
+2026-10-12 15:19:51 pedaco quantil=0.90 h= 8 linhas_da_matriz=290 previsoes=186 tempo=18.5s
+2026-10-12 15:20:10 pedaco quantil=0.90 h=12 linhas_da_matriz=286 previsoes=182 tempo=19.0s
+2026-10-12 15:20:10 juncao: 3755 previsoes; trava 3 OK; quantil_escolhido=0.85 (melhor=0.85, ganho=0.0000); tempo deste processo=532.0s
+2026-10-12 15:20:29 juncao: 3755 previsoes; trava 3 OK; quantil_escolhido=0.85 (melhor=0.85, ganho=0.0000); tempo deste processo=0.2s

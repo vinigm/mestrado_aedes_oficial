@@ -1,0 +1,87 @@
+DIF por arquivo (colunas total,conf,incl,aberto,outros):
+                          arquivo  total  conf  incl  aberto  outros
+                 DENGBR18.csv.zip      0     0     0       0       0
+                 DENGBR19.csv.zip      0     0     0       0       0
+                 DENGBR20.csv.zip      0     0     0       0       0
+                 DENGBR21.csv.zip      0     0     0       0       0
+                 DENGBR22.csv.zip      0     0     0       0       0
+                 DENGBR23.csv.zip      0     0     0       0       0
+                 DENGBR24.csv.zip      0     0     0       0       0
+                 DENGBR25.csv.zip      0     0     0       0       0
+                 DENGBR26.csv.zip      0     0     0       0       0
+DENGBR26_atualizado_set26.csv.zip      0     0     0       0       0
+soma abs: 0
+DIF por ano:
+ ano  conf  incl  aberto  outros_  total
+2017     0     0       0        0      0
+2018     0     0       0        0      0
+2019     0     0       0        0      0
+2020     0     0       0        0      0
+2021     0     0       0        0      0
+2022     0     0       0        0      0
+2023     0     0       0        0      0
+2024     0     0       0        0      0
+2025     0     0       0        0      0
+2026     0     0       0        0      0
+soma abs: 0
+linhas ano: 10 10
+tabela: soma casos 56624.0 linhas com caso nao nulo 428
+tabela por ano (coluna ano):
+ano
+2018        3.0
+2019      489.0
+2020       38.0
+2021       72.0
+2022     5583.0
+2023     6591.0
+2024    19024.0
+2025    24812.0
+2026       12.0
+--- versao jun: soma recontada 56624; semanas da tabela com caso != recontagem: 0
+semanas recontadas com caso mas sem valor na tabela: 0; soma 0
+2026 por semana (tabela vs recontagem):
+    SE  casos_confirmados  confirmadas
+202601                2.0          2.0
+202602                1.0          1.0
+202603                1.0          1.0
+202604                1.0          1.0
+202605                1.0          1.0
+202606                1.0          1.0
+202607                1.0          1.0
+202609                1.0          1.0
+202616                2.0          2.0
+202617                1.0          1.0
+--- versao set: soma recontada 56631; semanas da tabela com caso != recontagem: 3
+    SE data_inicio_semana_epidemi  casos_confirmados SEM_PRI  confirmadas
+202602                 2026-01-11                1.0     NaN          0.0
+202614                 2026-04-05                0.0  202614          1.0
+202616                 2026-04-19                2.0  202616          3.0
+semanas recontadas com caso mas sem valor na tabela: 6; soma 6
+    SE  confirmadas
+202618          1.0
+202619          1.0
+202620          1.0
+202623          1.0
+202624          1.0
+202628          1.0
+2026 por semana (tabela vs recontagem):
+    SE  casos_confirmados  confirmadas
+202601                2.0          2.0
+202602                1.0          0.0
+202603                1.0          1.0
+202604                1.0          1.0
+202605                1.0          1.0
+202606                1.0          1.0
+202607                1.0          1.0
+202609                1.0          1.0
+202614                0.0          1.0
+202616                2.0          3.0
+202617                1.0          1.0
+202618                NaN          1.0
+202619                NaN          1.0
+202620                NaN          1.0
+202623                NaN          1.0
+202624                NaN          1.0
+202628                NaN          1.0
+ultima SE com valor na tabela: 202617 2026-04-26
+tabela 2026: ultima linha SE 202632 casos NaN em 2026 apos ultima: 15 de 32

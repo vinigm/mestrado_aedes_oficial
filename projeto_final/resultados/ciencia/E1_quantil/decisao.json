@@ -1,0 +1,37 @@
+{
+  "regra": "0,85 continua se o melhor candidato for menos de 2% melhor (pre-declaracao, secao 3)",
+  "criterio": "MAE medio dos horizontes 1, 4, 8 e 12, so com semanas-alvo ate 2023-12-31",
+  "mae_medio_por_quantil": {
+    "0.50": 45.7525869838231,
+    "0.70": 43.728908466753495,
+    "0.80": 42.72714027605279,
+    "0.85": 42.022260264866006,
+    "0.90": 43.85641791635396
+  },
+  "quantil_de_referencia": 0.85,
+  "melhor_quantil": 0.85,
+  "mae_do_melhor": 42.022260264866006,
+  "mae_da_referencia": 42.022260264866006,
+  "ganho_relativo": 0.0,
+  "ganho_minimo_para_trocar": 0.02,
+  "quantil_escolhido": 0.85,
+  "quantil_mudou": false,
+  "n_por_horizonte": {
+    "1": 193,
+    "4": 190,
+    "8": 186,
+    "12": 182
+  },
+  "trava_3": {
+    "linhas_novas": 751,
+    "linhas_do_gabarito": 751,
+    "linhas_em_comum": 751,
+    "linhas_so_nas_novas": 0,
+    "linhas_so_no_gabarito": 0,
+    "diferenca_maxima_do_previsto": 0.0,
+    "diferenca_maxima_do_real": 0.0,
+    "tolerancia": 1e-09,
+    "passou": true,
+    "gabarito": "resultados/referencia/previsoes.csv, braco referencia, h em [1, 4, 8, 12], data_alvo <= 2023-12-31"
+  }
+}

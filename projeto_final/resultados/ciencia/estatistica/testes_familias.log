@@ -1,0 +1,2 @@
+2026-10-12 16:39:41 inicio: E2 na janela=20256 linhas; composto N=13 na janela=1224; regua=1224; piso=8 linhas
+2026-10-12 16:39:41 fim: 52 testes em familias.csv; por familia={'F1': 12, 'F2': 12, 'F3': 12, 'F4': 16}; vereditos={'sem evidencia': 47, 'A melhor': 5}; valores de n=[102, 109]; variancia_fallback=0

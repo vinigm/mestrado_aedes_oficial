@@ -1,0 +1,225 @@
+2026-10-12 15:22:36 inicio: bracos=['sem_vetor'] folhas=[20] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:22:36 inicio: bracos=['sem_casos'] folhas=[5] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:22:36 inicio: bracos=['completo'] folhas=[20] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:22:36 inicio: bracos=['completo'] folhas=[5] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:23:03 pedaco braco=sem_vetor folha=20 h= 1 linhas_da_matriz=411 colunas_do_modelo=16 previsoes=307 tempo=27.0s
+2026-10-12 15:23:05 pedaco braco=completo folha=20 h= 1 linhas_da_matriz=399 colunas_do_modelo=22 previsoes=295 tempo=28.2s
+2026-10-12 15:23:24 pedaco braco=completo folha=5 h= 1 linhas_da_matriz=399 colunas_do_modelo=22 previsoes=295 tempo=47.5s
+2026-10-12 15:23:25 pedaco braco=sem_casos folha=5 h= 1 linhas_da_matriz=404 colunas_do_modelo=16 previsoes=300 tempo=48.2s
+2026-10-12 15:23:35 pedaco braco=sem_vetor folha=20 h= 2 linhas_da_matriz=410 colunas_do_modelo=16 previsoes=306 tempo=31.4s
+2026-10-12 15:23:37 pedaco braco=completo folha=20 h= 2 linhas_da_matriz=398 colunas_do_modelo=22 previsoes=294 tempo=32.5s
+2026-10-12 15:24:06 pedaco braco=sem_vetor folha=20 h= 3 linhas_da_matriz=409 colunas_do_modelo=16 previsoes=305 tempo=30.9s
+2026-10-12 15:24:09 pedaco braco=completo folha=20 h= 3 linhas_da_matriz=397 colunas_do_modelo=22 previsoes=293 tempo=31.9s
+2026-10-12 15:24:13 pedaco braco=completo folha=5 h= 2 linhas_da_matriz=398 colunas_do_modelo=22 previsoes=294 tempo=49.0s
+2026-10-12 15:24:15 pedaco braco=sem_casos folha=5 h= 2 linhas_da_matriz=403 colunas_do_modelo=16 previsoes=299 tempo=50.0s
+2026-10-12 15:24:37 pedaco braco=sem_vetor folha=20 h= 4 linhas_da_matriz=408 colunas_do_modelo=16 previsoes=304 tempo=31.1s
+2026-10-12 15:24:41 pedaco braco=completo folha=20 h= 4 linhas_da_matriz=396 colunas_do_modelo=22 previsoes=292 tempo=32.2s
+2026-10-12 15:25:07 pedaco braco=completo folha=5 h= 3 linhas_da_matriz=397 colunas_do_modelo=22 previsoes=293 tempo=54.1s
+2026-10-12 15:25:11 pedaco braco=sem_casos folha=5 h= 3 linhas_da_matriz=402 colunas_do_modelo=16 previsoes=298 tempo=56.3s
+2026-10-12 15:25:12 pedaco braco=sem_vetor folha=20 h= 5 linhas_da_matriz=407 colunas_do_modelo=16 previsoes=303 tempo=35.0s
+2026-10-12 15:25:18 pedaco braco=completo folha=20 h= 5 linhas_da_matriz=395 colunas_do_modelo=22 previsoes=291 tempo=36.5s
+2026-10-12 15:25:46 pedaco braco=sem_vetor folha=20 h= 6 linhas_da_matriz=406 colunas_do_modelo=16 previsoes=302 tempo=34.2s
+2026-10-12 15:25:52 pedaco braco=completo folha=20 h= 6 linhas_da_matriz=394 colunas_do_modelo=22 previsoes=290 tempo=34.8s
+2026-10-12 15:26:02 pedaco braco=completo folha=5 h= 4 linhas_da_matriz=396 colunas_do_modelo=22 previsoes=292 tempo=55.4s
+2026-10-12 15:26:08 pedaco braco=sem_casos folha=5 h= 4 linhas_da_matriz=401 colunas_do_modelo=16 previsoes=297 tempo=57.4s
+2026-10-12 15:26:20 pedaco braco=sem_vetor folha=20 h= 7 linhas_da_matriz=405 colunas_do_modelo=16 previsoes=301 tempo=33.7s
+2026-10-12 15:26:27 pedaco braco=completo folha=20 h= 7 linhas_da_matriz=393 colunas_do_modelo=22 previsoes=289 tempo=34.2s
+2026-10-12 15:26:55 pedaco braco=sem_vetor folha=20 h= 8 linhas_da_matriz=404 colunas_do_modelo=16 previsoes=300 tempo=34.8s
+2026-10-12 15:26:58 pedaco braco=completo folha=5 h= 5 linhas_da_matriz=395 colunas_do_modelo=22 previsoes=291 tempo=55.7s
+2026-10-12 15:27:01 pedaco braco=completo folha=20 h= 8 linhas_da_matriz=392 colunas_do_modelo=22 previsoes=288 tempo=34.4s
+2026-10-12 15:27:06 pedaco braco=sem_casos folha=5 h= 5 linhas_da_matriz=400 colunas_do_modelo=16 previsoes=296 tempo=57.7s
+2026-10-12 15:27:27 pedaco braco=sem_vetor folha=20 h= 9 linhas_da_matriz=403 colunas_do_modelo=16 previsoes=299 tempo=32.7s
+2026-10-12 15:27:34 pedaco braco=completo folha=20 h= 9 linhas_da_matriz=391 colunas_do_modelo=22 previsoes=287 tempo=32.8s
+2026-10-12 15:27:52 pedaco braco=completo folha=5 h= 6 linhas_da_matriz=394 colunas_do_modelo=22 previsoes=290 tempo=53.4s
+2026-10-12 15:27:59 pedaco braco=sem_vetor folha=20 h=10 linhas_da_matriz=402 colunas_do_modelo=16 previsoes=298 tempo=31.9s
+2026-10-12 15:28:00 pedaco braco=sem_casos folha=5 h= 6 linhas_da_matriz=399 colunas_do_modelo=16 previsoes=295 tempo=54.3s
+2026-10-12 15:28:06 pedaco braco=completo folha=20 h=10 linhas_da_matriz=390 colunas_do_modelo=22 previsoes=286 tempo=32.4s
+2026-10-12 15:28:32 pedaco braco=sem_vetor folha=20 h=11 linhas_da_matriz=401 colunas_do_modelo=16 previsoes=297 tempo=32.8s
+2026-10-12 15:28:38 pedaco braco=completo folha=20 h=11 linhas_da_matriz=389 colunas_do_modelo=22 previsoes=285 tempo=32.0s
+2026-10-12 15:28:45 pedaco braco=completo folha=5 h= 7 linhas_da_matriz=393 colunas_do_modelo=22 previsoes=289 tempo=53.9s
+2026-10-12 15:28:55 pedaco braco=sem_casos folha=5 h= 7 linhas_da_matriz=398 colunas_do_modelo=16 previsoes=294 tempo=54.9s
+2026-10-12 15:29:04 pedaco braco=sem_vetor folha=20 h=12 linhas_da_matriz=400 colunas_do_modelo=16 previsoes=296 tempo=31.9s
+2026-10-12 15:29:04 fim do pedaco: faltam 155 de 192 parciais; juncao adiada.
+2026-10-12 15:29:06 inicio: bracos=['sem_vetor'] folhas=[5] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:29:11 pedaco braco=completo folha=20 h=12 linhas_da_matriz=388 colunas_do_modelo=22 previsoes=284 tempo=32.3s
+2026-10-12 15:29:11 fim do pedaco: faltam 154 de 192 parciais; juncao adiada.
+2026-10-12 15:29:12 inicio: bracos=['sem_clima'] folhas=[20] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:29:40 pedaco braco=completo folha=5 h= 8 linhas_da_matriz=392 colunas_do_modelo=22 previsoes=288 tempo=54.1s
+2026-10-12 15:29:46 pedaco braco=sem_clima folha=20 h= 1 linhas_da_matriz=399 colunas_do_modelo=16 previsoes=295 tempo=33.9s
+2026-10-12 15:29:51 pedaco braco=sem_casos folha=5 h= 8 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=55.3s
+2026-10-12 15:30:02 pedaco braco=sem_vetor folha=5 h= 1 linhas_da_matriz=411 colunas_do_modelo=16 previsoes=307 tempo=55.8s
+2026-10-12 15:30:20 pedaco braco=sem_clima folha=20 h= 2 linhas_da_matriz=398 colunas_do_modelo=16 previsoes=294 tempo=33.7s
+2026-10-12 15:30:33 pedaco braco=completo folha=5 h= 9 linhas_da_matriz=391 colunas_do_modelo=22 previsoes=287 tempo=53.4s
+2026-10-12 15:30:45 pedaco braco=sem_casos folha=5 h= 9 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=54.3s
+2026-10-12 15:30:52 pedaco braco=sem_clima folha=20 h= 3 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=32.6s
+2026-10-12 15:30:54 pedaco braco=sem_vetor folha=5 h= 2 linhas_da_matriz=410 colunas_do_modelo=16 previsoes=306 tempo=52.2s
+2026-10-12 15:31:27 pedaco braco=sem_clima folha=20 h= 4 linhas_da_matriz=396 colunas_do_modelo=16 previsoes=292 tempo=34.4s
+2026-10-12 15:31:28 pedaco braco=completo folha=5 h=10 linhas_da_matriz=390 colunas_do_modelo=22 previsoes=286 tempo=54.6s
+2026-10-12 15:31:41 pedaco braco=sem_casos folha=5 h=10 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=56.2s
+2026-10-12 15:31:50 pedaco braco=sem_vetor folha=5 h= 3 linhas_da_matriz=409 colunas_do_modelo=16 previsoes=305 tempo=56.4s
+2026-10-12 15:32:01 pedaco braco=sem_clima folha=20 h= 5 linhas_da_matriz=395 colunas_do_modelo=16 previsoes=291 tempo=34.5s
+2026-10-12 15:32:23 pedaco braco=completo folha=5 h=11 linhas_da_matriz=389 colunas_do_modelo=22 previsoes=285 tempo=55.7s
+2026-10-12 15:32:33 pedaco braco=sem_clima folha=20 h= 6 linhas_da_matriz=394 colunas_do_modelo=16 previsoes=290 tempo=32.0s
+2026-10-12 15:32:37 pedaco braco=sem_casos folha=5 h=11 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=55.9s
+2026-10-12 15:32:44 pedaco braco=sem_vetor folha=5 h= 4 linhas_da_matriz=408 colunas_do_modelo=16 previsoes=304 tempo=53.5s
+2026-10-12 15:33:06 pedaco braco=sem_clima folha=20 h= 7 linhas_da_matriz=393 colunas_do_modelo=16 previsoes=289 tempo=32.3s
+2026-10-12 15:33:17 pedaco braco=completo folha=5 h=12 linhas_da_matriz=388 colunas_do_modelo=22 previsoes=284 tempo=53.1s
+2026-10-12 15:33:17 fim do pedaco: faltam 134 de 192 parciais; juncao adiada.
+2026-10-12 15:33:18 inicio: bracos=['sem_clima'] folhas=[5] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:33:29 so-travas: todas_passaram=True (detalhe em travas.json).
+2026-10-12 15:33:33 pedaco braco=sem_casos folha=5 h=12 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=55.6s
+2026-10-12 15:33:33 fim do pedaco: faltam 133 de 192 parciais; juncao adiada.
+2026-10-12 15:33:34 inicio: bracos=['sem_casos'] folhas=[20] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:33:37 pedaco braco=sem_clima folha=20 h= 8 linhas_da_matriz=392 colunas_do_modelo=16 previsoes=288 tempo=31.1s
+2026-10-12 15:33:38 pedaco braco=sem_vetor folha=5 h= 5 linhas_da_matriz=407 colunas_do_modelo=16 previsoes=303 tempo=54.0s
+2026-10-12 15:34:07 pedaco braco=sem_clima folha=20 h= 9 linhas_da_matriz=391 colunas_do_modelo=16 previsoes=287 tempo=30.4s
+2026-10-12 15:34:11 pedaco braco=sem_clima folha=5 h= 1 linhas_da_matriz=399 colunas_do_modelo=16 previsoes=295 tempo=52.7s
+2026-10-12 15:34:11 pedaco braco=sem_casos folha=20 h= 1 linhas_da_matriz=404 colunas_do_modelo=16 previsoes=300 tempo=37.1s
+2026-10-12 15:34:30 pedaco braco=sem_vetor folha=5 h= 6 linhas_da_matriz=406 colunas_do_modelo=16 previsoes=302 tempo=52.6s
+2026-10-12 15:34:37 pedaco braco=sem_clima folha=20 h=10 linhas_da_matriz=390 colunas_do_modelo=16 previsoes=286 tempo=30.1s
+2026-10-12 15:34:49 pedaco braco=sem_casos folha=20 h= 2 linhas_da_matriz=403 colunas_do_modelo=16 previsoes=299 tempo=37.6s
+2026-10-12 15:35:04 pedaco braco=sem_clima folha=5 h= 2 linhas_da_matriz=398 colunas_do_modelo=16 previsoes=294 tempo=52.5s
+2026-10-12 15:35:07 pedaco braco=sem_clima folha=20 h=11 linhas_da_matriz=389 colunas_do_modelo=16 previsoes=285 tempo=29.5s
+2026-10-12 15:35:22 pedaco braco=sem_vetor folha=5 h= 7 linhas_da_matriz=405 colunas_do_modelo=16 previsoes=301 tempo=51.4s
+2026-10-12 15:35:24 pedaco braco=sem_casos folha=20 h= 3 linhas_da_matriz=402 colunas_do_modelo=16 previsoes=298 tempo=35.1s
+2026-10-12 15:35:35 pedaco braco=sem_clima folha=20 h=12 linhas_da_matriz=388 colunas_do_modelo=16 previsoes=284 tempo=27.8s
+2026-10-12 15:35:35 fim do pedaco: faltam 120 de 192 parciais; juncao adiada.
+2026-10-12 15:35:36 inicio: bracos=['so_casos'] folhas=[20] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:35:50 pedaco braco=sem_clima folha=5 h= 3 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=46.3s
+2026-10-12 15:35:56 pedaco braco=sem_casos folha=20 h= 4 linhas_da_matriz=401 colunas_do_modelo=16 previsoes=297 tempo=32.0s
+2026-10-12 15:36:05 pedaco braco=so_casos folha=20 h= 1 linhas_da_matriz=411 colunas_do_modelo=10 previsoes=307 tempo=28.4s
+2026-10-12 15:36:10 pedaco braco=sem_vetor folha=5 h= 8 linhas_da_matriz=404 colunas_do_modelo=16 previsoes=300 tempo=47.8s
+2026-10-12 15:36:27 pedaco braco=sem_casos folha=20 h= 5 linhas_da_matriz=400 colunas_do_modelo=16 previsoes=296 tempo=31.5s
+2026-10-12 15:36:33 pedaco braco=so_casos folha=20 h= 2 linhas_da_matriz=410 colunas_do_modelo=10 previsoes=306 tempo=28.5s
+2026-10-12 15:36:35 pedaco braco=sem_clima folha=5 h= 4 linhas_da_matriz=396 colunas_do_modelo=16 previsoes=292 tempo=45.5s
+2026-10-12 15:36:55 pedaco braco=sem_vetor folha=5 h= 9 linhas_da_matriz=403 colunas_do_modelo=16 previsoes=299 tempo=45.4s
+2026-10-12 15:36:59 pedaco braco=sem_casos folha=20 h= 6 linhas_da_matriz=399 colunas_do_modelo=16 previsoes=295 tempo=31.6s
+2026-10-12 15:37:03 pedaco braco=so_casos folha=20 h= 3 linhas_da_matriz=409 colunas_do_modelo=10 previsoes=305 tempo=29.5s
+2026-10-12 15:37:22 pedaco braco=sem_clima folha=5 h= 5 linhas_da_matriz=395 colunas_do_modelo=16 previsoes=291 tempo=46.3s
+2026-10-12 15:37:29 pedaco braco=sem_casos folha=20 h= 7 linhas_da_matriz=398 colunas_do_modelo=16 previsoes=294 tempo=30.5s
+2026-10-12 15:37:31 pedaco braco=so_casos folha=20 h= 4 linhas_da_matriz=408 colunas_do_modelo=10 previsoes=304 tempo=28.4s
+2026-10-12 15:37:42 pedaco braco=sem_vetor folha=5 h=10 linhas_da_matriz=402 colunas_do_modelo=16 previsoes=298 tempo=46.7s
+2026-10-12 15:38:00 pedaco braco=so_casos folha=20 h= 5 linhas_da_matriz=407 colunas_do_modelo=10 previsoes=303 tempo=28.4s
+2026-10-12 15:38:00 pedaco braco=sem_casos folha=20 h= 8 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=30.2s
+2026-10-12 15:38:07 pedaco braco=sem_clima folha=5 h= 6 linhas_da_matriz=394 colunas_do_modelo=16 previsoes=290 tempo=44.9s
+2026-10-12 15:38:31 pedaco braco=so_casos folha=20 h= 6 linhas_da_matriz=406 colunas_do_modelo=10 previsoes=302 tempo=31.2s
+2026-10-12 15:38:31 pedaco braco=sem_vetor folha=5 h=11 linhas_da_matriz=401 colunas_do_modelo=16 previsoes=297 tempo=49.7s
+2026-10-12 15:38:33 pedaco braco=sem_casos folha=20 h= 9 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=33.3s
+2026-10-12 15:38:54 pedaco braco=sem_clima folha=5 h= 7 linhas_da_matriz=393 colunas_do_modelo=16 previsoes=289 tempo=47.4s
+2026-10-12 15:38:59 pedaco braco=so_casos folha=20 h= 7 linhas_da_matriz=405 colunas_do_modelo=10 previsoes=301 tempo=28.5s
+2026-10-12 15:39:04 pedaco braco=sem_casos folha=20 h=10 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=31.2s
+2026-10-12 15:39:18 pedaco braco=sem_vetor folha=5 h=12 linhas_da_matriz=400 colunas_do_modelo=16 previsoes=296 tempo=46.9s
+2026-10-12 15:39:18 fim do pedaco: faltam 96 de 192 parciais; juncao adiada.
+2026-10-12 15:39:20 inicio: bracos=['so_clima'] folhas=[5] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:39:26 pedaco braco=so_casos folha=20 h= 8 linhas_da_matriz=404 colunas_do_modelo=10 previsoes=300 tempo=27.2s
+2026-10-12 15:39:34 pedaco braco=sem_casos folha=20 h=11 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=29.8s
+2026-10-12 15:39:38 pedaco braco=sem_clima folha=5 h= 8 linhas_da_matriz=392 colunas_do_modelo=16 previsoes=288 tempo=44.1s
+2026-10-12 15:39:53 pedaco braco=so_casos folha=20 h= 9 linhas_da_matriz=403 colunas_do_modelo=10 previsoes=299 tempo=26.5s
+2026-10-12 15:40:05 pedaco braco=sem_casos folha=20 h=12 linhas_da_matriz=397 colunas_do_modelo=16 previsoes=293 tempo=30.8s
+2026-10-12 15:40:05 fim do pedaco: faltam 91 de 192 parciais; juncao adiada.
+2026-10-12 15:40:06 inicio: bracos=['so_clima'] folhas=[20] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:40:09 pedaco braco=so_clima folha=5 h= 1 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=49.0s
+2026-10-12 15:40:20 pedaco braco=so_casos folha=20 h=10 linhas_da_matriz=402 colunas_do_modelo=10 previsoes=298 tempo=27.1s
+2026-10-12 15:40:23 pedaco braco=sem_clima folha=5 h= 9 linhas_da_matriz=391 colunas_do_modelo=16 previsoes=287 tempo=44.9s
+2026-10-12 15:40:40 pedaco braco=so_clima folha=20 h= 1 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=33.8s
+2026-10-12 15:40:48 pedaco braco=so_casos folha=20 h=11 linhas_da_matriz=401 colunas_do_modelo=10 previsoes=297 tempo=28.0s
+2026-10-12 15:41:01 pedaco braco=so_clima folha=5 h= 2 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=51.7s
+2026-10-12 15:41:10 pedaco braco=sem_clima folha=5 h=10 linhas_da_matriz=390 colunas_do_modelo=16 previsoes=286 tempo=47.3s
+2026-10-12 15:41:15 pedaco braco=so_clima folha=20 h= 2 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=34.4s
+2026-10-12 15:41:16 pedaco braco=so_casos folha=20 h=12 linhas_da_matriz=400 colunas_do_modelo=10 previsoes=296 tempo=27.5s
+2026-10-12 15:41:16 fim do pedaco: faltam 82 de 192 parciais; juncao adiada.
+2026-10-12 15:41:17 inicio: bracos=['so_calendario'] folhas=[20] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:41:44 pedaco braco=so_calendario folha=20 h= 1 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=26.6s
+2026-10-12 15:41:46 pedaco braco=so_clima folha=20 h= 3 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=31.7s
+2026-10-12 15:41:49 pedaco braco=so_clima folha=5 h= 3 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=47.8s
+2026-10-12 15:41:54 pedaco braco=sem_clima folha=5 h=11 linhas_da_matriz=389 colunas_do_modelo=16 previsoes=285 tempo=43.8s
+2026-10-12 15:42:10 pedaco braco=so_calendario folha=20 h= 2 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=26.4s
+2026-10-12 15:42:17 pedaco braco=so_clima folha=20 h= 4 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=30.9s
+2026-10-12 15:42:33 pedaco braco=so_clima folha=5 h= 4 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=44.9s
+2026-10-12 15:42:34 pedaco braco=so_calendario folha=20 h= 3 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=23.8s
+2026-10-12 15:42:34 pedaco braco=sem_clima folha=5 h=12 linhas_da_matriz=388 colunas_do_modelo=16 previsoes=284 tempo=40.1s
+2026-10-12 15:42:34 fim do pedaco: faltam 73 de 192 parciais; juncao adiada.
+2026-10-12 15:42:36 inicio: bracos=['so_casos'] folhas=[5] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:42:47 pedaco braco=so_clima folha=20 h= 5 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=29.7s
+2026-10-12 15:43:00 pedaco braco=so_calendario folha=20 h= 4 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=25.6s
+2026-10-12 15:43:15 pedaco braco=so_clima folha=20 h= 6 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=28.0s
+2026-10-12 15:43:16 pedaco braco=so_casos folha=5 h= 1 linhas_da_matriz=411 colunas_do_modelo=10 previsoes=307 tempo=40.9s
+2026-10-12 15:43:17 pedaco braco=so_clima folha=5 h= 5 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=43.3s
+2026-10-12 15:43:23 pedaco braco=so_calendario folha=20 h= 5 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=23.3s
+2026-10-12 15:43:42 pedaco braco=so_clima folha=20 h= 7 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=27.5s
+2026-10-12 15:43:47 pedaco braco=so_calendario folha=20 h= 6 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=23.6s
+2026-10-12 15:43:55 pedaco braco=so_casos folha=5 h= 2 linhas_da_matriz=410 colunas_do_modelo=10 previsoes=306 tempo=38.8s
+2026-10-12 15:43:57 pedaco braco=so_clima folha=5 h= 6 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=40.6s
+2026-10-12 15:44:09 pedaco braco=so_clima folha=20 h= 8 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=27.1s
+2026-10-12 15:44:10 pedaco braco=so_calendario folha=20 h= 7 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=23.1s
+2026-10-12 15:44:33 pedaco braco=so_calendario folha=20 h= 8 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=23.2s
+2026-10-12 15:44:33 pedaco braco=so_casos folha=5 h= 3 linhas_da_matriz=409 colunas_do_modelo=10 previsoes=305 tempo=37.7s
+2026-10-12 15:44:37 pedaco braco=so_clima folha=20 h= 9 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=27.2s
+2026-10-12 15:44:39 pedaco braco=so_clima folha=5 h= 7 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=41.3s
+2026-10-12 15:44:56 pedaco braco=so_calendario folha=20 h= 9 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=23.3s
+2026-10-12 15:45:04 pedaco braco=so_clima folha=20 h=10 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=27.1s
+2026-10-12 15:45:10 pedaco braco=so_casos folha=5 h= 4 linhas_da_matriz=408 colunas_do_modelo=10 previsoes=304 tempo=37.4s
+2026-10-12 15:45:19 pedaco braco=so_calendario folha=20 h=10 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=23.0s
+2026-10-12 15:45:21 pedaco braco=so_clima folha=5 h= 8 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=41.8s
+2026-10-12 15:45:31 pedaco braco=so_clima folha=20 h=11 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=26.7s
+2026-10-12 15:45:43 pedaco braco=so_calendario folha=20 h=11 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=23.7s
+2026-10-12 15:45:49 pedaco braco=so_casos folha=5 h= 5 linhas_da_matriz=407 colunas_do_modelo=10 previsoes=303 tempo=38.2s
+2026-10-12 15:45:58 pedaco braco=so_clima folha=20 h=12 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=27.9s
+2026-10-12 15:45:58 fim do pedaco: faltam 48 de 192 parciais; juncao adiada.
+2026-10-12 15:46:00 inicio: bracos=['so_vetor'] folhas=[20] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:46:02 pedaco braco=so_clima folha=5 h= 9 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=41.7s
+2026-10-12 15:46:07 pedaco braco=so_calendario folha=20 h=12 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=23.6s
+2026-10-12 15:46:07 fim do pedaco: faltam 46 de 192 parciais; juncao adiada.
+2026-10-12 15:46:25 pedaco braco=so_vetor folha=20 h= 1 linhas_da_matriz=404 colunas_do_modelo=10 previsoes=300 tempo=25.3s
+2026-10-12 15:46:26 pedaco braco=so_casos folha=5 h= 6 linhas_da_matriz=406 colunas_do_modelo=10 previsoes=302 tempo=37.0s
+2026-10-12 15:46:40 pedaco braco=so_clima folha=5 h=10 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=38.2s
+2026-10-12 15:46:50 pedaco braco=so_vetor folha=20 h= 2 linhas_da_matriz=403 colunas_do_modelo=10 previsoes=299 tempo=24.3s
+2026-10-12 15:47:00 pedaco braco=so_casos folha=5 h= 7 linhas_da_matriz=405 colunas_do_modelo=10 previsoes=301 tempo=34.3s
+2026-10-12 15:47:13 pedaco braco=so_vetor folha=20 h= 3 linhas_da_matriz=402 colunas_do_modelo=10 previsoes=298 tempo=23.3s
+2026-10-12 15:47:18 pedaco braco=so_clima folha=5 h=11 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=37.2s
+2026-10-12 15:47:34 pedaco braco=so_casos folha=5 h= 8 linhas_da_matriz=404 colunas_do_modelo=10 previsoes=300 tempo=33.7s
+2026-10-12 15:47:36 pedaco braco=so_vetor folha=20 h= 4 linhas_da_matriz=401 colunas_do_modelo=10 previsoes=297 tempo=23.0s
+2026-10-12 15:47:55 pedaco braco=so_clima folha=5 h=12 linhas_da_matriz=416 colunas_do_modelo=10 previsoes=312 tempo=37.8s
+2026-10-12 15:47:55 fim do pedaco: faltam 36 de 192 parciais; juncao adiada.
+2026-10-12 15:47:57 inicio: bracos=['so_vetor'] folhas=[5] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:48:00 pedaco braco=so_vetor folha=20 h= 5 linhas_da_matriz=400 colunas_do_modelo=10 previsoes=296 tempo=24.1s
+2026-10-12 15:48:09 pedaco braco=so_casos folha=5 h= 9 linhas_da_matriz=403 colunas_do_modelo=10 previsoes=299 tempo=35.6s
+2026-10-12 15:48:23 pedaco braco=so_vetor folha=20 h= 6 linhas_da_matriz=399 colunas_do_modelo=10 previsoes=295 tempo=23.4s
+2026-10-12 15:48:34 pedaco braco=so_vetor folha=5 h= 1 linhas_da_matriz=404 colunas_do_modelo=10 previsoes=300 tempo=37.1s
+2026-10-12 15:48:44 pedaco braco=so_casos folha=5 h=10 linhas_da_matriz=402 colunas_do_modelo=10 previsoes=298 tempo=34.7s
+2026-10-12 15:48:47 pedaco braco=so_vetor folha=20 h= 7 linhas_da_matriz=398 colunas_do_modelo=10 previsoes=294 tempo=23.3s
+2026-10-12 15:49:10 pedaco braco=so_vetor folha=20 h= 8 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=23.1s
+2026-10-12 15:49:12 pedaco braco=so_vetor folha=5 h= 2 linhas_da_matriz=403 colunas_do_modelo=10 previsoes=299 tempo=38.0s
+2026-10-12 15:49:19 pedaco braco=so_casos folha=5 h=11 linhas_da_matriz=401 colunas_do_modelo=10 previsoes=297 tempo=35.0s
+2026-10-12 15:49:31 pedaco braco=so_vetor folha=20 h= 9 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=21.5s
+2026-10-12 15:49:47 pedaco braco=so_vetor folha=5 h= 3 linhas_da_matriz=402 colunas_do_modelo=10 previsoes=298 tempo=35.1s
+2026-10-12 15:49:52 pedaco braco=so_casos folha=5 h=12 linhas_da_matriz=400 colunas_do_modelo=10 previsoes=296 tempo=32.9s
+2026-10-12 15:49:52 fim do pedaco: faltam 24 de 192 parciais; juncao adiada.
+2026-10-12 15:49:53 pedaco braco=so_vetor folha=20 h=10 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=21.5s
+2026-10-12 15:49:53 inicio: bracos=['so_calendario'] folhas=[5] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 15:50:15 pedaco braco=so_vetor folha=20 h=11 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=22.4s
+2026-10-12 15:50:23 pedaco braco=so_vetor folha=5 h= 4 linhas_da_matriz=401 colunas_do_modelo=10 previsoes=297 tempo=36.1s
+2026-10-12 15:50:24 pedaco braco=so_calendario folha=5 h= 1 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=30.9s
+2026-10-12 15:50:37 pedaco braco=so_vetor folha=20 h=12 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=22.1s
+2026-10-12 15:50:37 fim do pedaco: faltam 19 de 192 parciais; juncao adiada.
+2026-10-12 15:50:55 pedaco braco=so_calendario folha=5 h= 2 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=30.8s
+2026-10-12 15:50:57 pedaco braco=so_vetor folha=5 h= 5 linhas_da_matriz=400 colunas_do_modelo=10 previsoes=296 tempo=34.1s
+2026-10-12 15:51:25 pedaco braco=so_calendario folha=5 h= 3 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=30.4s
+2026-10-12 15:51:30 pedaco braco=so_vetor folha=5 h= 6 linhas_da_matriz=399 colunas_do_modelo=10 previsoes=295 tempo=32.8s
+2026-10-12 15:51:56 pedaco braco=so_calendario folha=5 h= 4 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=30.9s
+2026-10-12 15:52:03 pedaco braco=so_vetor folha=5 h= 7 linhas_da_matriz=398 colunas_do_modelo=10 previsoes=294 tempo=32.7s
+2026-10-12 15:52:27 pedaco braco=so_calendario folha=5 h= 5 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=31.3s
+2026-10-12 15:52:35 pedaco braco=so_vetor folha=5 h= 8 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=32.1s
+2026-10-12 15:52:59 pedaco braco=so_calendario folha=5 h= 6 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=31.0s
+2026-10-12 15:53:07 pedaco braco=so_vetor folha=5 h= 9 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=32.2s
+2026-10-12 15:53:31 pedaco braco=so_calendario folha=5 h= 7 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=32.0s
+2026-10-12 15:53:40 pedaco braco=so_vetor folha=5 h=10 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=33.0s
+2026-10-12 15:54:03 pedaco braco=so_calendario folha=5 h= 8 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=32.0s
+2026-10-12 15:54:13 pedaco braco=so_vetor folha=5 h=11 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=33.1s
+2026-10-12 15:54:35 pedaco braco=so_calendario folha=5 h= 9 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=32.5s
+2026-10-12 15:54:46 pedaco braco=so_vetor folha=5 h=12 linhas_da_matriz=397 colunas_do_modelo=10 previsoes=293 tempo=32.9s
+2026-10-12 15:54:46 fim do pedaco: faltam 3 de 192 parciais; juncao adiada.
+2026-10-12 15:55:06 pedaco braco=so_calendario folha=5 h=10 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=31.3s
+2026-10-12 15:55:37 pedaco braco=so_calendario folha=5 h=11 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=30.4s
+2026-10-12 15:56:07 pedaco braco=so_calendario folha=5 h=12 linhas_da_matriz=416 colunas_do_modelo=4 previsoes=312 tempo=30.4s
+2026-10-12 15:56:08 juncao: 57520 previsoes em previsoes.csv; travas OK; 192 linhas em mae_descritivo.csv; tempo deste processo=374.5s

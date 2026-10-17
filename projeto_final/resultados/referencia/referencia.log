@@ -1,0 +1,28 @@
+2026-10-12 13:56:01 inicio: folhas=[5] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 13:56:01 inicio: folhas=[20] horizontes=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+2026-10-12 13:56:27 pedaco braco=HistGB_folha20_M1 folha=20 h= 1 linhas_da_matriz=399 previsoes=295 tempo=26.3s
+2026-10-12 13:56:44 pedaco braco=referencia folha=5 h= 1 linhas_da_matriz=399 previsoes=295 tempo=43.1s
+2026-10-12 13:56:57 pedaco braco=HistGB_folha20_M1 folha=20 h= 2 linhas_da_matriz=398 previsoes=294 tempo=29.7s
+2026-10-12 13:57:30 pedaco braco=HistGB_folha20_M1 folha=20 h= 3 linhas_da_matriz=397 previsoes=293 tempo=32.7s
+2026-10-12 13:57:34 pedaco braco=referencia folha=5 h= 2 linhas_da_matriz=398 previsoes=294 tempo=49.6s
+2026-10-12 13:57:57 pedaco braco=HistGB_folha20_M1 folha=20 h= 4 linhas_da_matriz=396 previsoes=292 tempo=27.6s
+2026-10-12 13:58:14 pedaco braco=referencia folha=5 h= 3 linhas_da_matriz=397 previsoes=293 tempo=40.0s
+2026-10-12 13:58:20 pedaco braco=HistGB_folha20_M1 folha=20 h= 5 linhas_da_matriz=395 previsoes=291 tempo=22.7s
+2026-10-12 13:58:42 pedaco braco=HistGB_folha20_M1 folha=20 h= 6 linhas_da_matriz=394 previsoes=290 tempo=22.2s
+2026-10-12 13:58:50 pedaco braco=referencia folha=5 h= 4 linhas_da_matriz=396 previsoes=292 tempo=36.3s
+2026-10-12 13:59:06 pedaco braco=HistGB_folha20_M1 folha=20 h= 7 linhas_da_matriz=393 previsoes=289 tempo=23.7s
+2026-10-12 13:59:29 pedaco braco=referencia folha=5 h= 5 linhas_da_matriz=395 previsoes=291 tempo=39.6s
+2026-10-12 13:59:30 pedaco braco=HistGB_folha20_M1 folha=20 h= 8 linhas_da_matriz=392 previsoes=288 tempo=24.4s
+2026-10-12 13:59:52 pedaco braco=HistGB_folha20_M1 folha=20 h= 9 linhas_da_matriz=391 previsoes=287 tempo=21.5s
+2026-10-12 14:00:04 pedaco braco=referencia folha=5 h= 6 linhas_da_matriz=394 previsoes=290 tempo=34.9s
+2026-10-12 14:00:13 pedaco braco=HistGB_folha20_M1 folha=20 h=10 linhas_da_matriz=390 previsoes=286 tempo=21.2s
+2026-10-12 14:00:34 pedaco braco=HistGB_folha20_M1 folha=20 h=11 linhas_da_matriz=389 previsoes=285 tempo=21.4s
+2026-10-12 14:00:40 pedaco braco=referencia folha=5 h= 7 linhas_da_matriz=393 previsoes=289 tempo=35.7s
+2026-10-12 14:00:56 pedaco braco=HistGB_folha20_M1 folha=20 h=12 linhas_da_matriz=388 previsoes=284 tempo=21.9s
+2026-10-12 14:00:56 fim do pedaco: faltam 5 de 24 parciais; juncao adiada.
+2026-10-12 14:01:16 pedaco braco=referencia folha=5 h= 8 linhas_da_matriz=392 previsoes=288 tempo=35.9s
+2026-10-12 14:01:49 pedaco braco=referencia folha=5 h= 9 linhas_da_matriz=391 previsoes=287 tempo=33.3s
+2026-10-12 14:02:23 pedaco braco=referencia folha=5 h=10 linhas_da_matriz=390 previsoes=286 tempo=33.8s
+2026-10-12 14:02:57 pedaco braco=referencia folha=5 h=11 linhas_da_matriz=389 previsoes=285 tempo=34.3s
+2026-10-12 14:03:31 pedaco braco=referencia folha=5 h=12 linhas_da_matriz=388 previsoes=284 tempo=33.3s
+2026-10-12 14:03:31 juncao: 6948 previsoes em previsoes.csv; 48 linhas em metricas.csv; tempo deste processo=450.0s

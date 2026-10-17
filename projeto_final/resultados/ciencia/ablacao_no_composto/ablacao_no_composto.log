@@ -1,0 +1,18 @@
+2026-10-17 16:31:55 inicio ablacao no composto (EXPLORATORIA): 57520 previsoes da E2 lidas; N=13
+2026-10-17 16:31:55 ANCORA OK h= 1: 282 linhas identicas as da E3 (dif 0); MAE na janela 102.332477 (n=102)
+2026-10-17 16:31:55 composto sem_casos  h= 1: 287 previsoes; 102 na janela
+2026-10-17 16:31:55 composto sem_clima  h= 1: 282 previsoes; 102 na janela
+2026-10-17 16:31:55 composto sem_vetor  h= 1: 294 previsoes; 109 na janela
+2026-10-17 16:31:55 ANCORA OK h= 4: 276 linhas identicas as da E3 (dif 0); MAE na janela 205.726260 (n=102)
+2026-10-17 16:31:55 composto sem_casos  h= 4: 281 previsoes; 102 na janela
+2026-10-17 16:31:55 composto sem_clima  h= 4: 276 previsoes; 102 na janela
+2026-10-17 16:31:55 composto sem_vetor  h= 4: 288 previsoes; 109 na janela
+2026-10-17 16:31:55 ANCORA OK h= 8: 268 linhas identicas as da E3 (dif 0); MAE na janela 233.506461 (n=102)
+2026-10-17 16:31:55 composto sem_casos  h= 8: 273 previsoes; 102 na janela
+2026-10-17 16:31:55 composto sem_clima  h= 8: 268 previsoes; 102 na janela
+2026-10-17 16:31:55 composto sem_vetor  h= 8: 280 previsoes; 109 na janela
+2026-10-17 16:31:55 ANCORA OK h=12: 260 linhas identicas as da E3 (dif 0); MAE na janela 260.135628 (n=102)
+2026-10-17 16:31:55 composto sem_casos  h=12: 269 previsoes; 102 na janela
+2026-10-17 16:31:55 composto sem_clima  h=12: 260 previsoes; 102 na janela
+2026-10-17 16:31:55 composto sem_vetor  h=12: 272 previsoes; 109 na janela
+2026-10-17 16:31:55 fim: 12 testes em ablacao_no_composto.csv; vereditos={'sem evidencia': 11, 'A melhor': 1}; valores de n=[102]; variancia_fallback=0

@@ -1,0 +1,12 @@
+sem_casos 5 1 {'n': 300, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 42.3}
+sem_casos 20 1 {'n': 300, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 27.9}
+sem_casos 5 12 {'n': 293, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 40.8}
+sem_casos 20 12 {'n': 293, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 25.1}
+so_casos 5 1 {'n': 307, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 36.1}
+so_casos 20 1 {'n': 307, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 23.0}
+so_casos 5 12 {'n': 296, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 34.0}
+so_casos 20 12 {'n': 296, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 20.5}
+so_clima 5 1 {'n': 312, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 37.0}
+so_clima 20 1 {'n': 312, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 23.6}
+so_clima 5 12 {'n': 312, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 36.5}
+so_clima 20 12 {'n': 312, 'mesmas_datas': True, 'dif_max': 0.0, 'n_bit_diferentes': 0, 'seg': 23.7}

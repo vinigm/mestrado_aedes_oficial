@@ -1,0 +1,26 @@
+so_vetor 1 5 104 datas_ok True real_ok True dif 0.0
+so_vetor 1 5 322 datas_ok True real_ok True dif 0.0
+so_vetor 1 20 104 datas_ok True real_ok True dif 0.0
+so_vetor 1 20 322 datas_ok True real_ok True dif 3.552713678800501e-15
+so_vetor 12 5 104 datas_ok True real_ok True dif 3.552713678800501e-15
+so_vetor 12 5 315 datas_ok True real_ok True dif 0.0
+so_vetor 12 20 104 datas_ok True real_ok True dif 0.0
+so_vetor 12 20 315 datas_ok True real_ok True dif 0.0
+sem_casos 1 5 104 datas_ok True real_ok True dif 0.0
+sem_casos 1 5 322 datas_ok True real_ok True dif 0.0
+sem_casos 1 20 104 datas_ok True real_ok True dif 0.0
+sem_casos 1 20 322 datas_ok True real_ok True dif 0.0
+sem_casos 12 5 104 datas_ok True real_ok True dif 0.0
+sem_casos 12 5 315 datas_ok True real_ok True dif 0.0
+sem_casos 12 20 104 datas_ok True real_ok True dif 0.0
+sem_casos 12 20 315 datas_ok True real_ok True dif 0.0
+so_calendario 1 5 104 datas_ok True real_ok True dif 0.0
+so_calendario 1 5 327 datas_ok True real_ok True dif 0.0
+so_calendario 1 20 104 datas_ok True real_ok True dif 0.0
+so_calendario 1 20 327 datas_ok True real_ok True dif 0.0
+so_calendario 12 5 104 datas_ok True real_ok True dif 0.0
+so_calendario 12 5 327 datas_ok True real_ok True dif 0.0
+so_calendario 12 20 104 datas_ok True real_ok True dif 0.0
+so_calendario 12 20 327 datas_ok True real_ok True dif 0.0
+controle {'salvo': 248.15301898207167, 'corte_ingenuo': 830.7645624692042, 'dif_ingenuo': 582.6115434871325, 'com_coluna_casos': 208.54114504707053, 'dif_com_casos': 39.61187393500114}
+max dif origens: 3.552713678800501e-15
